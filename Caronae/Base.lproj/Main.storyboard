@@ -19,13 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyv-Ne-S5g">
-                                <rect key="frame" x="40" y="124" width="520" height="153"/>
+                                <rect key="frame" x="40" y="40" width="520" height="154"/>
                                 <animations/>
                                 <attributedString key="attributedText">
                                     <fragment content="Olá :)">
                                         <attributes>
                                             <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="22" name="HelveticaNeue"/>
+                                            <font key="NSFont" size="22" name="HelveticaNeue-Medium"/>
                                         </attributes>
                                     </fragment>
                                     <fragment>
@@ -64,7 +64,7 @@ Cg
                                     </fragment>
                                     <fragment content="Insira seu token">
                                         <attributes>
-                                            <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="NSColor" red="0.57647061347961426" green="0.58039218187332153" blue="0.57647061347961426" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -73,7 +73,7 @@ Cg
                                         <string key="content">
 Este é o token gerado através da Intranet UFRJ</string>
                                         <attributes>
-                                            <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="NSColor" red="0.57647061347961426" green="0.58039218187332153" blue="0.57647061347961426" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="13" name="HelveticaNeue"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -81,17 +81,17 @@ Este é o token gerado através da Intranet UFRJ</string>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex: 567KRT90" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-HP-hhp" customClass="CaronaeTextField">
-                                <rect key="frame" x="40" y="325" width="520" height="38"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ex: 567KRT90" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-HP-hhp" customClass="CaronaeTextField">
+                                <rect key="frame" x="40" y="242" width="520" height="30"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="7v7-j9-6O8"/>
+                                    <constraint firstAttribute="height" constant="30" id="7v7-j9-6O8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdC-RO-82W">
-                                <rect key="frame" x="266" y="371" width="67" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdC-RO-82W">
+                                <rect key="frame" x="266" y="296" width="67" height="30"/>
                                 <animations/>
                                 <state key="normal" title="ACESSAR"/>
                                 <connections>
@@ -108,8 +108,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                             <constraint firstItem="pyv-Ne-S5g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="VAn-S4-7OR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nW8-HP-hhp" secondAttribute="trailing" constant="20" id="XKU-0U-2HP"/>
                             <constraint firstItem="nW8-HP-hhp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="axo-ft-Qdf"/>
-                            <constraint firstItem="pyv-Ne-S5g" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="104" id="tZG-6O-LxU"/>
-                            <constraint firstItem="GdC-RO-82W" firstAttribute="top" secondItem="nW8-HP-hhp" secondAttribute="bottom" constant="16" id="zoy-SI-qxy"/>
+                            <constraint firstItem="pyv-Ne-S5g" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="tZG-6O-LxU"/>
+                            <constraint firstItem="GdC-RO-82W" firstAttribute="top" secondItem="nW8-HP-hhp" secondAttribute="bottom" constant="24" id="zoy-SI-qxy"/>
                         </constraints>
                     </view>
                     <connections>
@@ -122,7 +122,27 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="247" y="453"/>
         </scene>
-        <!--Item 2-->
+        <!--Menu-->
+        <scene sceneID="WrU-SP-t5G">
+            <objects>
+                <viewController id="w17-eZ-3Le" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ehP-x8-gSL"/>
+                        <viewControllerLayoutGuide type="bottom" id="DXE-W9-ctK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oJn-lf-biN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Menu" id="o2w-Kw-GdN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SGT-xO-Dpe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1816" y="1736"/>
+        </scene>
+        <!--Minhas-->
         <scene sceneID="kkC-ll-VwR">
             <objects>
                 <viewController id="rJZ-bG-VRD" sceneMemberID="viewController">
@@ -136,16 +156,16 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="qpg-Pw-SZw"/>
+                    <tabBarItem key="tabBarItem" title="Minhas" id="qpg-Pw-SZw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3EZ-kE-4qG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1816" y="759"/>
         </scene>
-        <!--Item 1-->
+        <!--All Rides View Controller-->
         <scene sceneID="gDL-Q3-1gu">
             <objects>
-                <viewController id="SGM-Y4-Xc0" sceneMemberID="viewController">
+                <viewController id="SGM-Y4-Xc0" customClass="AllRidesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kvQ-fO-iYi"/>
                         <viewControllerLayoutGuide type="bottom" id="lGn-dy-OHM"/>
@@ -156,11 +176,11 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="n9j-hq-hsm"/>
+                    <navigationItem key="navigationItem" id="bEF-x6-W9X"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ne-gW-Or1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1816" y="98"/>
+            <point key="canvasLocation" x="2628" y="98"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rql-kG-mhS">
@@ -173,13 +193,35 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="SGM-Y4-Xc0" kind="relationship" relationship="viewControllers" id="62t-xN-hU7"/>
+                        <segue destination="SI3-47-AYD" kind="relationship" relationship="viewControllers" id="62t-xN-hU7"/>
                         <segue destination="rJZ-bG-VRD" kind="relationship" relationship="viewControllers" id="9Du-so-X80"/>
+                        <segue destination="w17-eZ-3Le" kind="relationship" relationship="viewControllers" id="zq7-tR-DNg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zo3-Hi-9nL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="996" y="429"/>
+        </scene>
+        <!--Todas-->
+        <scene sceneID="PW9-Sc-m7n">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SI3-47-AYD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Todas" id="n9j-hq-hsm"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WwM-GX-35t">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="barTintColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SGM-Y4-Xc0" kind="relationship" relationship="rootViewController" id="xlq-xU-g90"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bp6-0k-0sY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1816" y="98"/>
         </scene>
     </scenes>
 </document>

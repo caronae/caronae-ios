@@ -2,11 +2,8 @@
 #import <AFNetworking/AFNetworking.h>
 
 @interface TokenViewController ()
-
 @property (weak, nonatomic) IBOutlet UITextField *tokenTextField;
 @property (weak, nonatomic) IBOutlet UIButton *authenticateButton;
-
-
 @end
 
 @implementation TokenViewController
@@ -20,7 +17,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"token": self.tokenTextField.text};
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager POST:@"http://caronae:8080/auth" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:@"http://45.55.46.90:8080/auth" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         
         // Check if the authentication was ok if we received an user object

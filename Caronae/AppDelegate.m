@@ -1,11 +1,3 @@
-//
-//  AppDelegate.m
-//  Caronae
-//
-//  Created by Mario Cecchi on 06/11/2015.
-//  Copyright © 2015 Mario Cecchi. All rights reserved.
-//
-
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -13,7 +5,6 @@
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"user"]) {
