@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Grf-xD-SWT">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Token View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InitialTokenScreen" id="BYZ-38-t0r" customClass="TokenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,169 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyv-Ne-S5g">
+                                <rect key="frame" x="40" y="124" width="520" height="153"/>
+                                <animations/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Olá :)">
+                                        <attributes>
+                                            <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="22" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">Bem vindo ao aplicativo de caronas da UFRJ. O acesso é restrito a usuários vinculados à universidade. Para continuar, insira seu token.</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content"> 
+</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Insira seu token">
+                                        <attributes>
+                                            <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">
+Este é o token gerado através da Intranet UFRJ</string>
+                                        <attributes>
+                                            <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ex: 567KRT90" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-HP-hhp" customClass="CaronaeTextField">
+                                <rect key="frame" x="40" y="325" width="520" height="38"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="7v7-j9-6O8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdC-RO-82W">
+                                <rect key="frame" x="266" y="371" width="67" height="30"/>
+                                <animations/>
+                                <state key="normal" title="ACESSAR"/>
+                                <connections>
+                                    <action selector="didTapAuthenticateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="da5-pN-Iyk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="pyv-Ne-S5g" secondAttribute="trailing" constant="20" id="Noh-4z-Ygh"/>
+                            <constraint firstItem="GdC-RO-82W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="T0V-i8-QbV"/>
+                            <constraint firstItem="nW8-HP-hhp" firstAttribute="top" secondItem="pyv-Ne-S5g" secondAttribute="bottom" constant="48" id="V3x-uF-VwH"/>
+                            <constraint firstItem="pyv-Ne-S5g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="VAn-S4-7OR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nW8-HP-hhp" secondAttribute="trailing" constant="20" id="XKU-0U-2HP"/>
+                            <constraint firstItem="nW8-HP-hhp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="axo-ft-Qdf"/>
+                            <constraint firstItem="pyv-Ne-S5g" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="104" id="tZG-6O-LxU"/>
+                            <constraint firstItem="GdC-RO-82W" firstAttribute="top" secondItem="nW8-HP-hhp" secondAttribute="bottom" constant="16" id="zoy-SI-qxy"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="authenticateButton" destination="GdC-RO-82W" id="Due-qn-Ay7"/>
+                        <outlet property="tokenTextField" destination="nW8-HP-hhp" id="nbL-Gr-mxx"/>
+                        <segue destination="Grf-xD-SWT" kind="show" identifier="tokenValidated" id="WCN-l5-gUT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="247" y="453"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="kkC-ll-VwR">
+            <objects>
+                <viewController id="rJZ-bG-VRD" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mg2-NX-rgz"/>
+                        <viewControllerLayoutGuide type="bottom" id="ocG-2N-lCI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YY5-bk-LFZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="qpg-Pw-SZw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3EZ-kE-4qG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1816" y="759"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="gDL-Q3-1gu">
+            <objects>
+                <viewController id="SGM-Y4-Xc0" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kvQ-fO-iYi"/>
+                        <viewControllerLayoutGuide type="bottom" id="lGn-dy-OHM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PFZ-Po-whf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="n9j-hq-hsm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7ne-gW-Or1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1816" y="98"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="rql-kG-mhS">
+            <objects>
+                <tabBarController id="Grf-xD-SWT" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="eUx-bw-n1E">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="SGM-Y4-Xc0" kind="relationship" relationship="viewControllers" id="62t-xN-hU7"/>
+                        <segue destination="rJZ-bG-VRD" kind="relationship" relationship="viewControllers" id="9Du-so-X80"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zo3-Hi-9nL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="996" y="429"/>
         </scene>
     </scenes>
 </document>

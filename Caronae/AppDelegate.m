@@ -16,7 +16,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"user"]) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        UIViewController *tokenViewController = [storyboard instantiateViewControllerWithIdentifier:@"InitialTokenScreen"];
+        self.window.rootViewController = tokenViewController;
+        [self.window makeKeyAndVisible];
+    }
+    
     return YES;
 }
 

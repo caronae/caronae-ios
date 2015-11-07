@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		A3169C951BED842D00A0D428 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C941BED842D00A0D428 /* main.m */; };
 		A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C971BED842D00A0D428 /* AppDelegate.m */; };
-		A3169C9B1BED842D00A0D428 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C9A1BED842D00A0D428 /* ViewController.m */; };
+		A3169C9B1BED842D00A0D428 /* TokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C9A1BED842D00A0D428 /* TokenViewController.m */; };
 		A3169C9E1BED842D00A0D428 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169C9C1BED842D00A0D428 /* Main.storyboard */; };
 		A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */; };
 		A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA21BED842D00A0D428 /* Assets.xcassets */; };
 		A3169CA61BED842D00A0D428 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */; };
 		A3169CB11BED842D00A0D428 /* CaronaeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CB01BED842D00A0D428 /* CaronaeTests.m */; };
 		A3169CBC1BED842D00A0D428 /* CaronaeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CBB1BED842D00A0D428 /* CaronaeUITests.m */; };
+		A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */; };
+		CA6E9412F08ECA00330BBD7E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DA16FE6BC427F62DBE27E5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,12 +38,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7A6BECEDB68F9DCBC935D1ED /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A3169C901BED842D00A0D428 /* Caronae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caronae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3169C941BED842D00A0D428 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A3169C961BED842D00A0D428 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A3169C971BED842D00A0D428 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A3169C991BED842D00A0D428 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A3169C9A1BED842D00A0D428 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A3169C991BED842D00A0D428 /* TokenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TokenViewController.h; sourceTree = "<group>"; };
+		A3169C9A1BED842D00A0D428 /* TokenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TokenViewController.m; sourceTree = "<group>"; };
 		A3169C9D1BED842D00A0D428 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A3169CA01BED842D00A0D428 /* Caronae.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Caronae.xcdatamodel; sourceTree = "<group>"; };
 		A3169CA21BED842D00A0D428 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +56,10 @@
 		A3169CB71BED842D00A0D428 /* CaronaeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaronaeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3169CBB1BED842D00A0D428 /* CaronaeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaronaeUITests.m; sourceTree = "<group>"; };
 		A3169CBD1BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3169CC91BED893F00A0D428 /* CaronaeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeTextField.h; sourceTree = "<group>"; };
+		A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeTextField.m; sourceTree = "<group>"; };
+		A7DA16FE6BC427F62DBE27E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0EBBD02EF13166ED3D0B34A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA6E9412F08ECA00330BBD7E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9EEF98FE6EBF502EF2E23188 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7DA16FE6BC427F62DBE27E5 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A3169C871BED842D00A0D428 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +103,8 @@
 				A3169CAF1BED842D00A0D428 /* CaronaeTests */,
 				A3169CBA1BED842D00A0D428 /* CaronaeUITests */,
 				A3169C911BED842D00A0D428 /* Products */,
+				D2A5ADC9EBDC943DAB5ACFFA /* Pods */,
+				9EEF98FE6EBF502EF2E23188 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,8 +123,10 @@
 			children = (
 				A3169C961BED842D00A0D428 /* AppDelegate.h */,
 				A3169C971BED842D00A0D428 /* AppDelegate.m */,
-				A3169C991BED842D00A0D428 /* ViewController.h */,
-				A3169C9A1BED842D00A0D428 /* ViewController.m */,
+				A3169C991BED842D00A0D428 /* TokenViewController.h */,
+				A3169C9A1BED842D00A0D428 /* TokenViewController.m */,
+				A3169CC91BED893F00A0D428 /* CaronaeTextField.h */,
+				A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */,
 				A3169C9C1BED842D00A0D428 /* Main.storyboard */,
 				A3169CA21BED842D00A0D428 /* Assets.xcassets */,
 				A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */,
@@ -143,6 +163,15 @@
 			path = CaronaeUITests;
 			sourceTree = "<group>";
 		};
+		D2A5ADC9EBDC943DAB5ACFFA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C0EBBD02EF13166ED3D0B34A /* Pods.debug.xcconfig */,
+				7A6BECEDB68F9DCBC935D1ED /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,9 +179,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3169CC01BED842D00A0D428 /* Build configuration list for PBXNativeTarget "Caronae" */;
 			buildPhases = (
+				B691BB43D7D46A240967937A /* Check Pods Manifest.lock */,
 				A3169C8C1BED842D00A0D428 /* Sources */,
 				A3169C8D1BED842D00A0D428 /* Frameworks */,
 				A3169C8E1BED842D00A0D428 /* Resources */,
+				33CFABFE4B10410E9256B97C /* Embed Pods Frameworks */,
+				E3ECA5EB01D3EB94E76F3031 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -268,15 +300,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		33CFABFE4B10410E9256B97C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B691BB43D7D46A240967937A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E3ECA5EB01D3EB94E76F3031 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A3169C8C1BED842D00A0D428 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3169C9B1BED842D00A0D428 /* ViewController.m in Sources */,
+				A3169C9B1BED842D00A0D428 /* TokenViewController.m in Sources */,
 				A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */,
 				A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */,
 				A3169C951BED842D00A0D428 /* main.m in Sources */,
+				A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +496,7 @@
 		};
 		A3169CC11BED842D00A0D428 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0EBBD02EF13166ED3D0B34A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Caronae/Info.plist;
@@ -426,6 +508,7 @@
 		};
 		A3169CC21BED842D00A0D428 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A6BECEDB68F9DCBC935D1ED /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Caronae/Info.plist;
@@ -502,6 +585,7 @@
 				A3169CC21BED842D00A0D428 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A3169CC31BED842D00A0D428 /* Build configuration list for PBXNativeTarget "CaronaeTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +594,7 @@
 				A3169CC51BED842D00A0D428 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A3169CC61BED842D00A0D428 /* Build configuration list for PBXNativeTarget "CaronaeUITests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +603,7 @@
 				A3169CC81BED842D00A0D428 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
