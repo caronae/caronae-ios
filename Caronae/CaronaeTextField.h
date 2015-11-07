@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface CaronaeTextField : UITextField IB_DESIGNABLE
+IB_DESIGNABLE
+@interface CaronaeTextField : UITextField
 
 @end
