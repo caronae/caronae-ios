@@ -323,6 +323,49 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LkG-Ym-CPN" userLabel="Reference">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Referência Ex: Shopping Tijuca" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ah4-oz-Cgc" customClass="CaronaeTextField">
+                                                        <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                        <animations/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                                <animations/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="Ah4-oz-Cgc" firstAttribute="leading" secondItem="LkG-Ym-CPN" secondAttribute="leading" constant="130" id="0W5-Uv-q7T">
+                                                        <variation key="widthClass=compact" constant="0.0"/>
+                                                    </constraint>
+                                                    <constraint firstAttribute="height" constant="40" id="H9H-Bl-HXo"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Ah4-oz-Cgc" secondAttribute="trailing" id="OPl-5Z-VFe"/>
+                                                    <constraint firstAttribute="centerY" secondItem="Ah4-oz-Cgc" secondAttribute="centerY" id="hfq-Ed-sg8"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="subviews">
+                                                        <exclude reference="Ah4-oz-Cgc"/>
+                                                    </mask>
+                                                    <mask key="constraints">
+                                                        <exclude reference="H9H-Bl-HXo"/>
+                                                        <exclude reference="0W5-Uv-q7T"/>
+                                                        <exclude reference="OPl-5Z-VFe"/>
+                                                        <exclude reference="hfq-Ed-sg8"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="widthClass=compact">
+                                                    <mask key="subviews">
+                                                        <include reference="Ah4-oz-Cgc"/>
+                                                    </mask>
+                                                    <mask key="constraints">
+                                                        <include reference="H9H-Bl-HXo"/>
+                                                        <include reference="0W5-Uv-q7T"/>
+                                                        <include reference="OPl-5Z-VFe"/>
+                                                        <include reference="hfq-Ed-sg8"/>
+                                                    </mask>
+                                                </variation>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOK-HL-cQ2" userLabel="Route">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                 <subviews>
@@ -385,8 +428,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <exclude reference="uqI-fU-mnA"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="11" width="150" height="18"/>
+                                                        <variation key="widthClass=compact">
                                                             <mask key="constraints">
                                                                 <include reference="uqI-fU-mnA"/>
                                                             </mask>
@@ -440,7 +482,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="be5-5E-ceQ" userLabel="Rotina">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="be5-5E-ceQ" userLabel="Routine">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gerar Rotina" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIe-hA-lnZ">
@@ -459,14 +501,13 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <exclude reference="1LY-HT-LiZ"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="11" width="150" height="18"/>
+                                                        <variation key="widthClass=compact">
                                                             <mask key="constraints">
                                                                 <include reference="1LY-HT-LiZ"/>
                                                             </mask>
                                                         </variation>
                                                     </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lia-S3-6b7">
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lia-S3-6b7">
                                                         <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                                         <animations/>
                                                         <connections>
@@ -512,7 +553,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3GS-su-zLV" userLabel="Arrival">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3GS-su-zLV" userLabel="Arrival">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chegada ao destino" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vk4-oS-Xq9">
@@ -531,8 +572,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <exclude reference="rlo-2g-hU4"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="5" width="150" height="18"/>
+                                                        <variation key="widthClass=compact">
                                                             <mask key="constraints">
                                                                 <include reference="rlo-2g-hU4"/>
                                                             </mask>
@@ -544,9 +584,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <date key="date" timeIntervalSinceReferenceDate="466505631.07282001">
                                                             <!--2015-10-14 08:53:51 +0000-->
                                                         </date>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="20" y="33" width="320" height="216"/>
-                                                        </variation>
                                                     </datePicker>
                                                 </subviews>
                                                 <animations/>
@@ -595,6 +632,229 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMq-cP-Q5E" userLabel="Routine pattern">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dias da semana" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubt-Cb-Gy3">
+                                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                        <animations/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="300" id="CFO-HU-Qf7">
+                                                                <variation key="widthClass=compact" constant="150"/>
+                                                            </constraint>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                        <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="CFO-HU-Qf7"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <variation key="widthClass=compact">
+                                                            <mask key="constraints">
+                                                                <exclude reference="CFO-HU-Qf7"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lel-3x-aaS" userLabel="Week buttons">
+                                                        <rect key="frame" x="-12" y="14" width="392" height="70"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0u-Of-kIS">
+                                                                <rect key="frame" x="20" y="20" width="40" height="30"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <state key="normal" title="Seg">
+                                                                    <color key="titleColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <state key="selected">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJg-q1-hZ7">
+                                                                <rect key="frame" x="126" y="20" width="45" height="30"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <state key="normal" title="Qua">
+                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <state key="selected">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLA-ws-d1e">
+                                                                <rect key="frame" x="179" y="20" width="45" height="30"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <state key="normal" title="Qui">
+                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <state key="selected">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBC-l1-G8T">
+                                                                <rect key="frame" x="232" y="20" width="45" height="30"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <state key="normal" title="Sex">
+                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <state key="selected">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hW-ff-mhz">
+                                                                <rect key="frame" x="274" y="20" width="45" height="30"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <state key="normal" title="Sab">
+                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <state key="selected">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eim-cd-0J5">
+                                                                <rect key="frame" x="327" y="20" width="45" height="30"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <state key="normal" title="Dom">
+                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <state key="selected">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JH2-vq-jd4">
+                                                                <rect key="frame" x="73" y="20" width="45" height="30"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <state key="normal" title="Ter">
+                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <state key="selected">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                            </button>
+                                                        </subviews>
+                                                        <animations/>
+                                                        <constraints>
+                                                            <constraint firstItem="eim-cd-0J5" firstAttribute="leading" secondItem="3hW-ff-mhz" secondAttribute="trailing" constant="8" id="3iN-dx-zN0">
+                                                                <variation key="widthClass=compact" constant="5"/>
+                                                            </constraint>
+                                                            <constraint firstItem="3hW-ff-mhz" firstAttribute="centerY" secondItem="Lel-3x-aaS" secondAttribute="centerY" id="8aZ-Wb-6yr"/>
+                                                            <constraint firstItem="NBC-l1-G8T" firstAttribute="centerY" secondItem="Lel-3x-aaS" secondAttribute="centerY" id="9XP-px-oya"/>
+                                                            <constraint firstItem="3hW-ff-mhz" firstAttribute="leading" secondItem="NBC-l1-G8T" secondAttribute="trailing" constant="-3" id="Aj5-hb-K6P">
+                                                                <variation key="widthClass=compact" constant="5"/>
+                                                            </constraint>
+                                                            <constraint firstItem="gJg-q1-hZ7" firstAttribute="centerY" secondItem="Lel-3x-aaS" secondAttribute="centerY" id="Av1-AT-Z9c"/>
+                                                            <constraint firstItem="gJg-q1-hZ7" firstAttribute="leading" secondItem="JH2-vq-jd4" secondAttribute="trailing" constant="13" id="BXN-MR-jjn">
+                                                                <variation key="widthClass=compact" constant="5"/>
+                                                            </constraint>
+                                                            <constraint firstItem="HLA-ws-d1e" firstAttribute="leading" secondItem="gJg-q1-hZ7" secondAttribute="trailing" constant="8" id="Bo5-A2-jIE">
+                                                                <variation key="widthClass=compact" constant="5"/>
+                                                            </constraint>
+                                                            <constraint firstAttribute="height" constant="30" id="G47-aT-5IO"/>
+                                                            <constraint firstItem="JH2-vq-jd4" firstAttribute="leading" secondItem="e0u-Of-kIS" secondAttribute="trailing" constant="8" id="HX0-gx-Lpp">
+                                                                <variation key="widthClass=compact" constant="5"/>
+                                                            </constraint>
+                                                            <constraint firstItem="e0u-Of-kIS" firstAttribute="leading" secondItem="Lel-3x-aaS" secondAttribute="leading" constant="8" id="PNj-Cb-JQP"/>
+                                                            <constraint firstItem="NBC-l1-G8T" firstAttribute="leading" secondItem="HLA-ws-d1e" secondAttribute="trailing" constant="8" id="QjF-ad-FDK">
+                                                                <variation key="widthClass=compact" constant="5"/>
+                                                            </constraint>
+                                                            <constraint firstItem="e0u-Of-kIS" firstAttribute="centerY" secondItem="Lel-3x-aaS" secondAttribute="centerY" id="SHZ-2d-hnD"/>
+                                                            <constraint firstAttribute="width" constant="258" id="cRf-LT-a89"/>
+                                                            <constraint firstItem="eim-cd-0J5" firstAttribute="centerY" secondItem="Lel-3x-aaS" secondAttribute="centerY" id="gXe-ty-eMf"/>
+                                                            <constraint firstItem="HLA-ws-d1e" firstAttribute="centerY" secondItem="Lel-3x-aaS" secondAttribute="centerY" id="nAv-3b-08F"/>
+                                                            <constraint firstItem="JH2-vq-jd4" firstAttribute="centerY" secondItem="Lel-3x-aaS" secondAttribute="centerY" id="uQu-jY-iKZ"/>
+                                                        </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="G47-aT-5IO"/>
+                                                                <exclude reference="cRf-LT-a89"/>
+                                                                <exclude reference="PNj-Cb-JQP"/>
+                                                                <exclude reference="SHZ-2d-hnD"/>
+                                                                <exclude reference="HX0-gx-Lpp"/>
+                                                                <exclude reference="uQu-jY-iKZ"/>
+                                                                <exclude reference="Av1-AT-Z9c"/>
+                                                                <exclude reference="BXN-MR-jjn"/>
+                                                                <exclude reference="Bo5-A2-jIE"/>
+                                                                <exclude reference="nAv-3b-08F"/>
+                                                                <exclude reference="9XP-px-oya"/>
+                                                                <exclude reference="QjF-ad-FDK"/>
+                                                                <exclude reference="8aZ-Wb-6yr"/>
+                                                                <exclude reference="Aj5-hb-K6P"/>
+                                                                <exclude reference="3iN-dx-zN0"/>
+                                                                <exclude reference="gXe-ty-eMf"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <variation key="widthClass=compact">
+                                                            <mask key="constraints">
+                                                                <include reference="G47-aT-5IO"/>
+                                                                <include reference="cRf-LT-a89"/>
+                                                                <include reference="PNj-Cb-JQP"/>
+                                                                <include reference="SHZ-2d-hnD"/>
+                                                                <include reference="HX0-gx-Lpp"/>
+                                                                <include reference="uQu-jY-iKZ"/>
+                                                                <include reference="Av1-AT-Z9c"/>
+                                                                <include reference="BXN-MR-jjn"/>
+                                                                <include reference="Bo5-A2-jIE"/>
+                                                                <include reference="nAv-3b-08F"/>
+                                                                <include reference="9XP-px-oya"/>
+                                                                <include reference="QjF-ad-FDK"/>
+                                                                <include reference="8aZ-Wb-6yr"/>
+                                                                <include reference="Aj5-hb-K6P"/>
+                                                                <include reference="3iN-dx-zN0"/>
+                                                                <include reference="gXe-ty-eMf"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </view>
+                                                </subviews>
+                                                <animations/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="Lel-3x-aaS" firstAttribute="leading" secondItem="cMq-cP-Q5E" secondAttribute="leading" id="346-5k-nnB"/>
+                                                    <constraint firstItem="ubt-Cb-Gy3" firstAttribute="top" secondItem="cMq-cP-Q5E" secondAttribute="top" constant="5" id="6Aj-cb-ZhA"/>
+                                                    <constraint firstItem="ubt-Cb-Gy3" firstAttribute="leading" secondItem="cMq-cP-Q5E" secondAttribute="leading" id="9Ax-uI-Nlx"/>
+                                                    <constraint firstAttribute="height" constant="40" id="SJb-Cp-9d5">
+                                                        <variation key="widthClass=compact" constant="200"/>
+                                                    </constraint>
+                                                    <constraint firstAttribute="centerY" secondItem="ubt-Cb-Gy3" secondAttribute="centerY" id="SlT-v7-Bbu"/>
+                                                    <constraint firstItem="Lel-3x-aaS" firstAttribute="centerX" secondItem="cMq-cP-Q5E" secondAttribute="centerX" id="eKm-KU-MGn"/>
+                                                    <constraint firstItem="Lel-3x-aaS" firstAttribute="top" secondItem="ubt-Cb-Gy3" secondAttribute="bottom" constant="-12" id="hMU-Rm-PkR">
+                                                        <variation key="widthClass=compact" constant="10"/>
+                                                    </constraint>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="subviews">
+                                                        <exclude reference="ubt-Cb-Gy3"/>
+                                                    </mask>
+                                                    <mask key="constraints">
+                                                        <exclude reference="SJb-Cp-9d5"/>
+                                                        <exclude reference="6Aj-cb-ZhA"/>
+                                                        <exclude reference="9Ax-uI-Nlx"/>
+                                                        <exclude reference="SlT-v7-Bbu"/>
+                                                        <exclude reference="346-5k-nnB"/>
+                                                        <exclude reference="eKm-KU-MGn"/>
+                                                        <exclude reference="hMU-Rm-PkR"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="widthClass=compact">
+                                                    <mask key="subviews">
+                                                        <include reference="ubt-Cb-Gy3"/>
+                                                    </mask>
+                                                    <mask key="constraints">
+                                                        <include reference="SJb-Cp-9d5"/>
+                                                        <include reference="6Aj-cb-ZhA"/>
+                                                        <include reference="9Ax-uI-Nlx"/>
+                                                        <exclude reference="SlT-v7-Bbu"/>
+                                                        <exclude reference="346-5k-nnB"/>
+                                                        <include reference="eKm-KU-MGn"/>
+                                                        <include reference="hMU-Rm-PkR"/>
+                                                    </mask>
+                                                </variation>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vpU-RE-bG4" userLabel="Vagas">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                 <subviews>
@@ -614,8 +874,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <exclude reference="jL6-sG-zCN"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="11" width="150" height="18"/>
+                                                        <variation key="widthClass=compact">
                                                             <mask key="constraints">
                                                                 <include reference="jL6-sG-zCN"/>
                                                             </mask>
@@ -680,7 +939,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6Y-5l-hRW" userLabel="Arrival">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6Y-5l-hRW" userLabel="Notes">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" text="Notas adicionais Ex: Não fumo, pode trazer o cachorro etc" translatesAutoresizingMaskIntoConstraints="NO" id="R6l-zH-LMn">
@@ -755,62 +1014,25 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <action selector="createRide:" destination="Frl-vE-K7W" eventType="touchUpInside" id="s1Z-GO-xnh"/>
                                                 </connections>
                                             </button>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LkG-Ym-CPN" userLabel="Reference">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                                <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Referência Ex: Shopping Tijuca" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ah4-oz-Cgc" customClass="CaronaeTextField">
-                                                        <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
-                                                        <animations/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                </subviews>
-                                                <animations/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="Ah4-oz-Cgc" firstAttribute="leading" secondItem="LkG-Ym-CPN" secondAttribute="leading" constant="130" id="0W5-Uv-q7T">
-                                                        <variation key="widthClass=compact" constant="0.0"/>
-                                                    </constraint>
-                                                    <constraint firstAttribute="height" constant="40" id="H9H-Bl-HXo"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Ah4-oz-Cgc" secondAttribute="trailing" id="OPl-5Z-VFe"/>
-                                                    <constraint firstAttribute="centerY" secondItem="Ah4-oz-Cgc" secondAttribute="centerY" id="hfq-Ed-sg8"/>
-                                                </constraints>
-                                                <variation key="default">
-                                                    <mask key="subviews">
-                                                        <exclude reference="Ah4-oz-Cgc"/>
-                                                    </mask>
-                                                    <mask key="constraints">
-                                                        <exclude reference="H9H-Bl-HXo"/>
-                                                        <exclude reference="0W5-Uv-q7T"/>
-                                                        <exclude reference="OPl-5Z-VFe"/>
-                                                        <exclude reference="hfq-Ed-sg8"/>
-                                                    </mask>
-                                                </variation>
-                                                <variation key="widthClass=compact">
-                                                    <mask key="subviews">
-                                                        <include reference="Ah4-oz-Cgc"/>
-                                                    </mask>
-                                                    <mask key="constraints">
-                                                        <include reference="H9H-Bl-HXo"/>
-                                                        <include reference="0W5-Uv-q7T"/>
-                                                        <include reference="OPl-5Z-VFe"/>
-                                                        <include reference="hfq-Ed-sg8"/>
-                                                    </mask>
-                                                </variation>
-                                            </view>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="SoK-oZ-c5J" firstAttribute="width" secondItem="I6Y-5l-hRW" secondAttribute="width" id="1eL-5w-xiT"/>
                                             <constraint firstItem="LkG-Ym-CPN" firstAttribute="width" secondItem="BOK-HL-cQ2" secondAttribute="width" id="4rq-Ds-SOr"/>
+                                            <constraint firstItem="cMq-cP-Q5E" firstAttribute="top" secondItem="be5-5E-ceQ" secondAttribute="bottom" constant="15" id="5Fp-qo-BaI">
+                                                <variation key="widthClass=compact" constant="10"/>
+                                            </constraint>
+                                            <constraint firstItem="cMq-cP-Q5E" firstAttribute="width" secondItem="7y7-B3-MXI" secondAttribute="width" id="5pI-g5-RL9"/>
                                             <constraint firstItem="I6Y-5l-hRW" firstAttribute="top" secondItem="vpU-RE-bG4" secondAttribute="bottom" constant="10" id="AWa-zm-kCe"/>
                                             <constraint firstItem="3GS-su-zLV" firstAttribute="width" secondItem="SoK-oZ-c5J" secondAttribute="width" id="Aag-RW-bAL"/>
                                             <constraint firstItem="wWF-a6-BXF" firstAttribute="centerX" secondItem="omJ-ZJ-6FM" secondAttribute="centerX" id="BeM-Xi-zyG"/>
                                             <constraint firstItem="BOK-HL-cQ2" firstAttribute="top" secondItem="LkG-Ym-CPN" secondAttribute="bottom" constant="10" id="DFc-IA-Ftz"/>
                                             <constraint firstItem="SoK-oZ-c5J" firstAttribute="top" secondItem="wWF-a6-BXF" secondAttribute="bottom" constant="10" id="FHe-14-Iw3"/>
                                             <constraint firstAttribute="height" constant="900" id="K6K-BT-j5Z"/>
-                                            <constraint firstItem="3GS-su-zLV" firstAttribute="top" secondItem="be5-5E-ceQ" secondAttribute="bottom" constant="10" id="Obw-2Q-zos"/>
+                                            <constraint firstItem="3GS-su-zLV" firstAttribute="top" secondItem="be5-5E-ceQ" secondAttribute="bottom" constant="10" id="Obw-2Q-zos">
+                                                <variation key="widthClass=compact" constant="10"/>
+                                            </constraint>
                                             <constraint firstItem="LkG-Ym-CPN" firstAttribute="leading" secondItem="SoK-oZ-c5J" secondAttribute="leading" id="PFa-0I-1pj"/>
                                             <constraint firstItem="SoK-oZ-c5J" firstAttribute="leading" secondItem="omJ-ZJ-6FM" secondAttribute="leading" constant="10" id="TZm-d6-SzH">
                                                 <variation key="widthClass=compact" constant="20"/>
@@ -822,8 +1044,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <constraint firstItem="be5-5E-ceQ" firstAttribute="leading" secondItem="SoK-oZ-c5J" secondAttribute="leading" id="Xjz-aA-0a4"/>
                                             <constraint firstItem="LkG-Ym-CPN" firstAttribute="leading" secondItem="BOK-HL-cQ2" secondAttribute="leading" id="YGl-KY-BON"/>
                                             <constraint firstItem="kWX-s3-c5B" firstAttribute="leading" secondItem="SoK-oZ-c5J" secondAttribute="leading" id="YGp-sL-olC"/>
+                                            <constraint firstItem="cMq-cP-Q5E" firstAttribute="leading" secondItem="7y7-B3-MXI" secondAttribute="leading" id="ZMZ-JT-Yhj"/>
                                             <constraint firstItem="vpU-RE-bG4" firstAttribute="top" secondItem="3GS-su-zLV" secondAttribute="bottom" constant="5" id="aVm-ih-rc5">
-                                                <variation key="widthClass=compact" constant="15"/>
+                                                <variation key="widthClass=compact" constant="10"/>
                                             </constraint>
                                             <constraint firstItem="be5-5E-ceQ" firstAttribute="width" secondItem="SoK-oZ-c5J" secondAttribute="width" id="abZ-sQ-VsZ"/>
                                             <constraint firstItem="LkG-Ym-CPN" firstAttribute="width" secondItem="SoK-oZ-c5J" secondAttribute="width" id="bCj-Jx-Dfn"/>
@@ -846,36 +1069,39 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <mask key="subviews">
                                                 <exclude reference="wWF-a6-BXF"/>
                                                 <exclude reference="SoK-oZ-c5J"/>
+                                                <exclude reference="LkG-Ym-CPN"/>
                                                 <exclude reference="BOK-HL-cQ2"/>
                                                 <exclude reference="kWX-s3-c5B"/>
                                                 <exclude reference="be5-5E-ceQ"/>
                                                 <exclude reference="3GS-su-zLV"/>
+                                                <exclude reference="cMq-cP-Q5E"/>
                                                 <exclude reference="vpU-RE-bG4"/>
                                                 <exclude reference="I6Y-5l-hRW"/>
                                                 <exclude reference="dRa-H4-Av0"/>
-                                                <exclude reference="LkG-Ym-CPN"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <exclude reference="BeM-Xi-zyG"/>
+                                                <exclude reference="5Fp-qo-BaI"/>
+                                                <exclude reference="5pI-g5-RL9"/>
+                                                <exclude reference="ZMZ-JT-Yhj"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
                                             <mask key="subviews">
                                                 <include reference="wWF-a6-BXF"/>
                                                 <include reference="SoK-oZ-c5J"/>
+                                                <include reference="LkG-Ym-CPN"/>
                                                 <include reference="BOK-HL-cQ2"/>
                                                 <include reference="kWX-s3-c5B"/>
                                                 <include reference="be5-5E-ceQ"/>
                                                 <include reference="3GS-su-zLV"/>
+                                                <include reference="cMq-cP-Q5E"/>
                                                 <include reference="vpU-RE-bG4"/>
                                                 <include reference="I6Y-5l-hRW"/>
                                                 <include reference="dRa-H4-Av0"/>
-                                                <include reference="LkG-Ym-CPN"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <include reference="K6K-BT-j5Z"/>
-                                                <include reference="BeM-Xi-zyG"/>
-                                                <include reference="Vgz-sR-2Nu"/>
                                                 <include reference="1eL-5w-xiT"/>
                                                 <include reference="FHe-14-Iw3"/>
                                                 <include reference="TZm-d6-SzH"/>
@@ -883,6 +1109,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <include reference="jvX-Yl-w9O"/>
                                                 <include reference="kXd-nh-M0m"/>
                                                 <include reference="kzZ-rP-DlV"/>
+                                                <include reference="BeM-Xi-zyG"/>
+                                                <include reference="Vgz-sR-2Nu"/>
                                                 <include reference="4rq-Ds-SOr"/>
                                                 <include reference="PFa-0I-1pj"/>
                                                 <include reference="YGl-KY-BON"/>
@@ -898,6 +1126,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <include reference="Aag-RW-bAL"/>
                                                 <include reference="Obw-2Q-zos"/>
                                                 <include reference="sWK-bE-fTz"/>
+                                                <include reference="5Fp-qo-BaI"/>
+                                                <include reference="5pI-g5-RL9"/>
+                                                <include reference="ZMZ-JT-Yhj"/>
                                                 <include reference="aVm-ih-rc5"/>
                                                 <include reference="AWa-zm-kCe"/>
                                                 <include reference="ghf-tJ-vGQ"/>
@@ -944,6 +1175,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="1y9-Cn-qo1" firstAttribute="top" secondItem="3Oq-zT-Esa" secondAttribute="bottom" id="74D-M0-f5s"/>
                             <constraint firstItem="3Oq-zT-Esa" firstAttribute="top" secondItem="taK-q3-UBl" secondAttribute="bottom" constant="-64" id="GX0-0l-aM4">
@@ -973,7 +1205,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Criar Carona" id="gT8-2O-S5n">
-                        <barButtonItem key="leftBarButtonItem" title="Voltar" id="oHO-Oe-5U4">
+                        <barButtonItem key="leftBarButtonItem" title="Fechar" id="oHO-Oe-5U4">
                             <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="goBack:" destination="Frl-vE-K7W" id="HCi-uo-aWP"/>
@@ -983,14 +1215,17 @@ Este é o token gerado através da Intranet UFRJ</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="900"/>
                     <connections>
+                        <outlet property="arrivalView" destination="3GS-su-zLV" id="aDO-er-7nJ"/>
                         <outlet property="datePicker" destination="P9Y-dW-rwy" id="lWx-k6-opc"/>
                         <outlet property="notes" destination="R6l-zH-LMn" id="cRY-La-vfi"/>
                         <outlet property="origin" destination="7y7-B3-MXI" id="VMf-nJ-aow"/>
                         <outlet property="reference" destination="Ah4-oz-Cgc" id="OUH-Ry-aeX"/>
                         <outlet property="route" destination="L9i-M2-F5w" id="1Me-st-Crl"/>
+                        <outlet property="routinePatternView" destination="cMq-cP-Q5E" id="jk5-yJ-Xnd"/>
                         <outlet property="routineSwitch" destination="lia-S3-6b7" id="LSb-rp-Yhg"/>
                         <outlet property="segmentedControl" destination="wWF-a6-BXF" id="iB5-jJ-3M4"/>
                         <outlet property="slotsLabel" destination="w8D-Fs-Xhk" id="uo8-nY-nI2"/>
+                        <outlet property="slotsStepper" destination="yHO-6g-1Vp" id="f6y-gZ-jgi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ouo-qq-kIA" userLabel="First Responder" sceneMemberID="firstResponder"/>

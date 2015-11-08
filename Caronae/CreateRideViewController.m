@@ -1,4 +1,5 @@
 #import "CreateRideViewController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface CreateRideViewController ()
 
@@ -18,12 +19,8 @@
     self.notes.layer.borderColor = [UIColor colorWithWhite:0.902 alpha:1.000].CGColor;
     self.notes.layer.borderWidth = 2.0f;
     self.notes.textContainerInset = UIEdgeInsetsMake(10, 5, 5, 5);
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    self.slotsLabel.text = [NSString stringWithFormat:@"%.f", self.slotsStepper.value];
 }
 
 - (IBAction)goBack:(id)sender {
@@ -44,21 +41,55 @@
                            @"route": self.route.text,
                            @"mydate": [dateFormat stringFromDate:self.datePicker.date],
                            @"mytime": [timeFormat stringFromDate:self.datePicker.date],
-                           @"slots": self.slotsLabel.text,
-                           @"hub": @"",
+                           @"slots": @((int)self.slotsStepper.value),
+                           @"hub": @"A",
                            @"description": self.notes.text,
                            @"going": @(self.segmentedControl.selectedSegmentIndex == 0),
                            @"week_days": @"",
                            @"repeats_until": @""
                            };
     NSLog(@"%@", ride);
+    
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"][@"token"];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
+    [manager POST:@"http://45.55.46.90:8080/ride" parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response JSON: %@", responseObject);
+        
+        // Check if we received an array of the created rides
+        if ([responseObject isKindOfClass:NSArray.class]) {
+            NSArray *createdRides = responseObject;
+            if (createdRides.count > 0) {
+                NSLog(@"%lu rides created.", (unsigned long)createdRides.count);
+            }
+            else {
+                NSLog(@"No rides created.");
+            }
+        }
+        else {
+            NSLog(@"Unexpected JSON format (not an array).");
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        NSLog(@"body: %@", operation.responseString);
+    }];
+
 }
 
 - (IBAction)slotsStepperChanged:(UIStepper *)sender {
-    self.slotsLabel.text = [NSString stringWithFormat:@"%d", (int)sender.value];
+    self.slotsLabel.text = [NSString stringWithFormat:@"%.f", sender.value];
 }
 
 - (IBAction)routineSwitchChanged:(UISwitch *)sender {
+    if (sender.on) {
+        self.arrivalView.hidden = YES;
+        self.routinePatternView.hidden = NO;
+    }
+    else {
+        self.arrivalView.hidden = NO;
+        self.routinePatternView.hidden = YES;
+    }
 }
 
 /*

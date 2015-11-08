@@ -10,4 +10,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *slotsLabel;
 @property (weak, nonatomic) IBOutlet UITextView *notes;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UIView *arrivalView;
+@property (weak, nonatomic) IBOutlet UIView *routinePatternView;
 @end
