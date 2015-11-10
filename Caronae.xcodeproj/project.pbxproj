@@ -23,6 +23,7 @@
 		A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312CC1BF01C26005BA311 /* EditProfileViewController.m */; };
 		A3AD19CA1BED9BFB003EDA17 /* AllRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AD19C91BED9BFB003EDA17 /* AllRidesViewController.m */; };
 		A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */; };
+		A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */; };
 		CA6E9412F08ECA00330BBD7E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DA16FE6BC427F62DBE27E5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,8 @@
 		A3AD19C91BED9BFB003EDA17 /* AllRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllRidesViewController.m; sourceTree = "<group>"; };
 		A3B5AEFD1BF1AAC10026A889 /* CaronaeConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeConstants.h; sourceTree = "<group>"; };
 		A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeConstants.m; sourceTree = "<group>"; };
+		A3B5AF041BF1ADF30026A889 /* MyRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRidesViewController.h; sourceTree = "<group>"; };
+		A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRidesViewController.m; sourceTree = "<group>"; };
 		A7DA16FE6BC427F62DBE27E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EBBD02EF13166ED3D0B34A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +152,8 @@
 				A3169C9C1BED842D00A0D428 /* Main.storyboard */,
 				A34312C51BF01B9A005BA311 /* MenuViewController.h */,
 				A34312C61BF01B9A005BA311 /* MenuViewController.m */,
+				A3B5AF041BF1ADF30026A889 /* MyRidesViewController.h */,
+				A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */,
 				A34312C81BF01C1D005BA311 /* ProfileViewController.h */,
 				A34312C91BF01C1D005BA311 /* ProfileViewController.m */,
 				A34312CB1BF01C26005BA311 /* EditProfileViewController.h */,
@@ -401,6 +406,7 @@
 				A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */,
 				A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */,
 				A3169C951BED842D00A0D428 /* main.m in Sources */,
+				A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */,
 				A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

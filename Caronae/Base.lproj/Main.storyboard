@@ -122,10 +122,10 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="247" y="453"/>
         </scene>
-        <!--Minhas-->
+        <!--My Rides View Controller-->
         <scene sceneID="kkC-ll-VwR">
             <objects>
-                <viewController id="rJZ-bG-VRD" sceneMemberID="viewController">
+                <viewController id="rJZ-bG-VRD" customClass="MyRidesViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mg2-NX-rgz"/>
                         <viewControllerLayoutGuide type="bottom" id="ocG-2N-lCI"/>
@@ -136,11 +136,11 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Minhas" id="qpg-Pw-SZw"/>
+                    <navigationItem key="navigationItem" id="YXq-dX-b0d"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3EZ-kE-4qG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1816" y="759"/>
+            <point key="canvasLocation" x="2619" y="759"/>
         </scene>
         <!--Todas-->
         <scene sceneID="gDL-Q3-1gu">
@@ -183,7 +183,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                     </tabBar>
                     <connections>
                         <segue destination="SI3-47-AYD" kind="relationship" relationship="viewControllers" id="62t-xN-hU7"/>
-                        <segue destination="rJZ-bG-VRD" kind="relationship" relationship="viewControllers" id="9Du-so-X80"/>
+                        <segue destination="ESO-TG-2Ch" kind="relationship" relationship="viewControllers" id="9Du-so-X80"/>
                         <segue destination="xHs-1X-X6c" kind="relationship" relationship="viewControllers" id="Lg6-kn-BYf"/>
                     </connections>
                 </tabBarController>
@@ -3945,6 +3945,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                         <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.94901961089999998" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -3954,6 +3955,27 @@ Este é o token gerado através da Intranet UFRJ</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IwO-QN-WiJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1059" y="1499"/>
+        </scene>
+        <!--Minhas-->
+        <scene sceneID="L3B-pk-WvI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ESO-TG-2Ch" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Minhas" id="qpg-Pw-SZw"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="N1E-gi-4wz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="barTintColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.94901961089999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rJZ-bG-VRD" kind="relationship" relationship="rootViewController" id="nOd-5Q-iir"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UWT-do-2U6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1815" y="759"/>
         </scene>
     </scenes>
     <resources>

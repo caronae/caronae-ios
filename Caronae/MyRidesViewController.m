@@ -1,10 +1,10 @@
-#import "MenuViewController.h"
+#import "MyRidesViewController.h"
 
-@interface MenuViewController ()
+@interface MyRidesViewController ()
 
 @end
 
-@implementation MenuViewController
+@implementation MyRidesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
