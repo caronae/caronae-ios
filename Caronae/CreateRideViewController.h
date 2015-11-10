@@ -11,6 +11,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UIView *arrivalView;
 @property (weak, nonatomic) IBOutlet UIView *routinePatternView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *routinePatternHeight;
 @property (weak, nonatomic) IBOutlet UIButton *routineDuration2MonthsButton;
 @property (weak, nonatomic) IBOutlet UIButton *routineDuration3MonthsButton;
 @property (weak, nonatomic) IBOutlet UIButton *routineDuration4MonthsButton;

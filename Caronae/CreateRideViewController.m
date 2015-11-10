@@ -1,9 +1,10 @@
+#import "CaronaeConstants.h"
 #import "CreateRideViewController.h"
 #import <AFNetworking/AFNetworking.h>
 #import <ActionSheetDatePicker.h>
 
 @interface CreateRideViewController ()
-
+@property CGFloat routinePatternHeightOriginal;
 @end
 
 @implementation CreateRideViewController
@@ -65,7 +66,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
-    [manager POST:@"http://45.55.46.90:8080/ride" parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride"] parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response JSON: %@", responseObject);
         
         // Check if we received an array of the created rides
@@ -73,6 +74,8 @@
             NSArray *createdRides = responseObject;
             if (createdRides.count > 0) {
                 NSLog(@"%lu rides created.", (unsigned long)createdRides.count);
+                // TODO: Pass created rides object somewhere
+                [self dismissViewControllerAnimated:YES completion:nil];
             }
             else {
                 NSLog(@"No rides created.");
@@ -92,19 +95,33 @@
     self.slotsLabel.text = [NSString stringWithFormat:@"%.f", sender.value];
 }
 
-- (IBAction)routineSwitchChanged:(UISwitch *)sender {
-    if (sender.on) {
-        self.arrivalView.hidden = YES;
-        self.routinePatternView.hidden = NO;
-    }
-    else {
-        self.arrivalView.hidden = NO;
-        self.routinePatternView.hidden = YES;
-    }
-}
-
 
 #pragma mark - Routine selection buttons
+
+/**
+ *  Show or hide the routine pattern fields if the 'generate routines' switch changes.
+ *
+ *  @param sender 'Generate routines' UISwitch
+ */
+- (IBAction)routineSwitchChanged:(UISwitch *)sender {
+    if (sender.on) {
+        [self.view layoutIfNeeded];
+        _routinePatternHeight.constant = _routinePatternHeightOriginal;
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.view layoutIfNeeded];
+            self.routinePatternView.alpha = 1.0f;
+        }];
+    }
+    else {
+        [self.view layoutIfNeeded];
+        _routinePatternHeightOriginal = _routinePatternHeight.constant;
+        _routinePatternHeight.constant = 0;
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.view layoutIfNeeded];
+            self.routinePatternView.alpha = 0.0f;
+        }];
+    }
+}
 
 - (IBAction)routineMondayButtonTapped:(UIButton *)sender {
     sender.selected = !sender.selected;
@@ -203,7 +220,7 @@
 - (void)timeWasSelected:(NSDate *)selectedTime element:(id)element {
     self.rideDate = selectedTime;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/mm/yyyy hh:mm"];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy hh:mm"];
     [self.arrivalTimeButton setTitle:[dateFormatter stringFromDate:selectedTime] forState:UIControlStateNormal];
 }
 

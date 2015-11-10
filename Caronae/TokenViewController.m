@@ -1,3 +1,4 @@
+#import "CaronaeConstants.h"
 #import "TokenViewController.h"
 #import <AFNetworking/AFNetworking.h>
 
@@ -17,7 +18,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"token": self.tokenTextField.text};
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager POST:@"http://45.55.46.90:8080/auth" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/auth"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         
         // Check if the authentication was ok if we received an user object
