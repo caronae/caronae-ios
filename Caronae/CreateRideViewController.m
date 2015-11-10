@@ -10,6 +10,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.weekDays = [NSMutableArray arrayWithCapacity:7];
+    self.routineDurationMonths = 2;
+    
     self.segmentedControl.layer.cornerRadius = 8.0;
     self.segmentedControl.layer.borderColor = [UIColor colorWithWhite:0.690 alpha:1.000].CGColor;
     self.segmentedControl.layer.borderWidth = 2.0f;
@@ -28,25 +31,32 @@
 }
 
 - (IBAction)createRide:(id)sender {
-    NSLog(@"Tapped create ride");
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"dd/MM/yyyy";
     NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
     timeFormat.dateFormat = @"HH:mm";
+    NSString *weekDaysString = [[self.weekDays sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] componentsJoinedByString:@","];
+    BOOL isRoutine = self.routineSwitch.on;
+    NSDate *eventDate = self.datePicker.date;
+
+    // Calculate final date for event based on the selected duration
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    dateComponents.month = self.routineDurationMonths;
+    NSDate *repeatsUntilDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:eventDate options:0];
     
     NSDictionary *ride = @{
                            @"myzone": @"Norte",
                            @"neighborhood": self.origin.text,
                            @"place": self.reference.text,
                            @"route": self.route.text,
-                           @"mydate": [dateFormat stringFromDate:self.datePicker.date],
-                           @"mytime": [timeFormat stringFromDate:self.datePicker.date],
+                           @"mydate": [dateFormat stringFromDate:eventDate],
+                           @"mytime": [timeFormat stringFromDate:eventDate],
                            @"slots": @((int)self.slotsStepper.value),
                            @"hub": @"A",
                            @"description": self.notes.text,
                            @"going": @(self.segmentedControl.selectedSegmentIndex == 0),
-                           @"week_days": @"",
-                           @"repeats_until": @""
+                           @"week_days": isRoutine ? weekDaysString : @"",
+                           @"repeats_until": isRoutine ? [dateFormat stringFromDate:repeatsUntilDate] : @""
                            };
     NSLog(@"%@", ride);
     
@@ -92,14 +102,96 @@
     }
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - Routine selection buttons
+
+- (IBAction)routineMondayButtonTapped:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [self.weekDays addObject:@"1"];
+    }
+    else {
+        [self.weekDays removeObject:@"1"];
+    }
 }
-*/
+
+- (IBAction)routineTuesdayButtonTapped:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [self.weekDays addObject:@"2"];
+    }
+    else {
+        [self.weekDays removeObject:@"2"];
+    }
+}
+
+- (IBAction)routineWednesdayButtonTapped:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [self.weekDays addObject:@"3"];
+    }
+    else {
+        [self.weekDays removeObject:@"3"];
+    }
+}
+
+- (IBAction)routineThursdayButtonTapped:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [self.weekDays addObject:@"4"];
+    }
+    else {
+        [self.weekDays removeObject:@"4"];
+    }
+}
+
+- (IBAction)routineFridayButtonTapped:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [self.weekDays addObject:@"5"];
+    }
+    else {
+        [self.weekDays removeObject:@"5"];
+    }
+}
+
+- (IBAction)routineSaturdayButtonTapped:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [self.weekDays addObject:@"6"];
+    }
+    else {
+        [self.weekDays removeObject:@"6"];
+    }
+}
+
+- (IBAction)routineSundayButtonTapped:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    if (sender.selected) {
+        [self.weekDays addObject:@"7"];
+    }
+    else {
+        [self.weekDays removeObject:@"7"];
+    }
+}
+
+- (IBAction)routineDurationButtonTapped:(UIButton *)sender {
+    sender.selected = YES;
+    if (sender == self.routineDuration2MonthsButton) {
+        self.routineDurationMonths = 2;
+        self.routineDuration3MonthsButton.selected = NO;
+        self.routineDuration4MonthsButton.selected = NO;
+    }
+    else if (sender == self.routineDuration3MonthsButton) {
+        self.routineDurationMonths = 3;
+        self.routineDuration2MonthsButton.selected = NO;
+        self.routineDuration4MonthsButton.selected = NO;
+    }
+    else if (sender == self.routineDuration4MonthsButton) {
+        self.routineDurationMonths = 4;
+        self.routineDuration2MonthsButton.selected = NO;
+        self.routineDuration3MonthsButton.selected = NO;
+    }
+}    
 
 @end
