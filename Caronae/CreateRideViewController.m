@@ -1,5 +1,6 @@
 #import "CreateRideViewController.h"
 #import <AFNetworking/AFNetworking.h>
+#import <ActionSheetDatePicker.h>
 
 @interface CreateRideViewController ()
 
@@ -10,6 +11,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.rideDate = [NSDate date];
     self.weekDays = [NSMutableArray arrayWithCapacity:7];
     self.routineDurationMonths = 2;
     
@@ -37,20 +39,19 @@
     timeFormat.dateFormat = @"HH:mm";
     NSString *weekDaysString = [[self.weekDays sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] componentsJoinedByString:@","];
     BOOL isRoutine = self.routineSwitch.on;
-    NSDate *eventDate = self.datePicker.date;
 
     // Calculate final date for event based on the selected duration
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     dateComponents.month = self.routineDurationMonths;
-    NSDate *repeatsUntilDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:eventDate options:0];
+    NSDate *repeatsUntilDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self.rideDate options:0];
     
     NSDictionary *ride = @{
                            @"myzone": @"Norte",
                            @"neighborhood": self.origin.text,
                            @"place": self.reference.text,
                            @"route": self.route.text,
-                           @"mydate": [dateFormat stringFromDate:eventDate],
-                           @"mytime": [timeFormat stringFromDate:eventDate],
+                           @"mydate": [dateFormat stringFromDate:self.rideDate],
+                           @"mytime": [timeFormat stringFromDate:self.rideDate],
                            @"slots": @((int)self.slotsStepper.value),
                            @"hub": @"A",
                            @"description": self.notes.text,
@@ -192,6 +193,18 @@
         self.routineDuration2MonthsButton.selected = NO;
         self.routineDuration3MonthsButton.selected = NO;
     }
-}    
+}
+
+- (IBAction)routineSelectDateTapped:(id)sender {
+    ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Chegada ao destino" datePickerMode:UIDatePickerModeDateAndTime selectedDate:[NSDate date] target:self action:@selector(timeWasSelected:element:) origin:sender];
+    [datePicker showActionSheetPicker];
+}
+
+- (void)timeWasSelected:(NSDate *)selectedTime element:(id)element {
+    self.rideDate = selectedTime;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/mm/yyyy hh:mm"];
+    [self.arrivalTimeButton setTitle:[dateFormatter stringFromDate:selectedTime] forState:UIControlStateNormal];
+}
 
 @end
