@@ -27,6 +27,8 @@
     self.notes.textContainerInset = UIEdgeInsetsMake(10, 5, 5, 5);
     
     self.slotsLabel.text = [NSString stringWithFormat:@"%.f", self.slotsStepper.value];
+    
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
 }
 
 - (IBAction)goBack:(id)sender {
@@ -53,12 +55,12 @@
                            @"route": self.route.text,
                            @"mydate": [dateFormat stringFromDate:self.rideDate],
                            @"mytime": [timeFormat stringFromDate:self.rideDate],
+                           @"week_days": isRoutine ? weekDaysString : @"",
+                           @"repeats_until": isRoutine ? [dateFormat stringFromDate:repeatsUntilDate] : @"",
                            @"slots": @((int)self.slotsStepper.value),
                            @"hub": @"A",
                            @"description": self.notes.text,
-                           @"going": @(self.segmentedControl.selectedSegmentIndex == 0),
-                           @"week_days": isRoutine ? weekDaysString : @"",
-                           @"repeats_until": isRoutine ? [dateFormat stringFromDate:repeatsUntilDate] : @""
+                           @"going": @(self.segmentedControl.selectedSegmentIndex == 0)
                            };
     NSLog(@"%@", ride);
     
