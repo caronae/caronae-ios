@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Token View Controller-->
@@ -1486,7 +1487,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Criar Carona" id="gT8-2O-S5n">
-                        <barButtonItem key="leftBarButtonItem" title="Fechar" id="oHO-Oe-5U4">
+                        <barButtonItem key="leftBarButtonItem" title="Cancelar" id="oHO-Oe-5U4">
                             <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="goBack:" destination="Frl-vE-K7W" id="HCi-uo-aWP"/>
@@ -3898,7 +3899,7 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="4072.5" y="1499"/>
         </scene>
-        <!--Caronae-->
+        <!--Menu-->
         <scene sceneID="8xb-bu-pIx">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="92W-6s-wlj" customClass="MenuViewController" sceneMemberID="viewController">
@@ -3910,11 +3911,145 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UH5-0I-VdT">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SeparatorColor" translatesAutoresizingMaskIntoConstraints="NO" id="s53-90-eDj">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="4" id="NK0-uZ-KdR"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="NK0-uZ-KdR"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="NK0-uZ-KdR"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="IhH-eB-lWM" userLabel="Photo">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="IhH-eB-lWM" secondAttribute="height" multiplier="1:1" id="Ffx-CC-hQG"/>
+                                            <constraint firstAttribute="width" constant="90" id="P7v-p1-pzg">
+                                                <variation key="widthClass=compact" constant="60"/>
+                                            </constraint>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value=""/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                <color key="value" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Ffx-CC-hQG"/>
+                                                <exclude reference="P7v-p1-pzg"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="Ffx-CC-hQG"/>
+                                                <include reference="P7v-p1-pzg"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Renan Souza" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ww-xG-Gue" userLabel="Name">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eng. Mecatrônica" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzZ-6k-4Fq" userLabel="Course">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="0.81568627450980391" green="0.81568627450980391" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="s53-90-eDj" secondAttribute="bottom" constant="6" id="08m-UH-JbQ">
+                                        <variation key="widthClass=compact" constant="0.0"/>
+                                    </constraint>
+                                    <constraint firstItem="s53-90-eDj" firstAttribute="leading" secondItem="UH5-0I-VdT" secondAttribute="leading" id="Hgz-19-S2m"/>
+                                    <constraint firstItem="wzZ-6k-4Fq" firstAttribute="top" secondItem="1Ww-xG-Gue" secondAttribute="bottom" constant="1" id="J2v-wY-g2M"/>
+                                    <constraint firstItem="1Ww-xG-Gue" firstAttribute="centerX" secondItem="IhH-eB-lWM" secondAttribute="centerX" id="WIQ-qu-e3R"/>
+                                    <constraint firstItem="1Ww-xG-Gue" firstAttribute="width" secondItem="wzZ-6k-4Fq" secondAttribute="width" id="Zc5-tg-gHc"/>
+                                    <constraint firstItem="1Ww-xG-Gue" firstAttribute="top" secondItem="IhH-eB-lWM" secondAttribute="bottom" constant="8" id="aZi-Bq-8ps">
+                                        <variation key="widthClass=compact" constant="7"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="130" id="dEl-PI-3Lt">
+                                        <variation key="widthClass=compact" constant="140"/>
+                                    </constraint>
+                                    <constraint firstAttribute="trailing" secondItem="s53-90-eDj" secondAttribute="trailing" id="dGH-HT-SSh"/>
+                                    <constraint firstItem="1Ww-xG-Gue" firstAttribute="leading" secondItem="wzZ-6k-4Fq" secondAttribute="leading" id="pt5-9c-9Bb"/>
+                                    <constraint firstItem="IhH-eB-lWM" firstAttribute="top" secondItem="UH5-0I-VdT" secondAttribute="top" constant="16" id="pxp-7x-upd">
+                                        <variation key="widthClass=compact" constant="20"/>
+                                    </constraint>
+                                    <constraint firstItem="IhH-eB-lWM" firstAttribute="centerX" secondItem="UH5-0I-VdT" secondAttribute="centerX" id="uWh-QM-rsl"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="s53-90-eDj"/>
+                                        <exclude reference="IhH-eB-lWM"/>
+                                        <exclude reference="1Ww-xG-Gue"/>
+                                        <exclude reference="wzZ-6k-4Fq"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="dEl-PI-3Lt"/>
+                                        <exclude reference="WIQ-qu-e3R"/>
+                                        <exclude reference="Zc5-tg-gHc"/>
+                                        <exclude reference="aZi-Bq-8ps"/>
+                                        <exclude reference="pt5-9c-9Bb"/>
+                                        <exclude reference="08m-UH-JbQ"/>
+                                        <exclude reference="Hgz-19-S2m"/>
+                                        <exclude reference="dGH-HT-SSh"/>
+                                        <exclude reference="J2v-wY-g2M"/>
+                                        <exclude reference="pxp-7x-upd"/>
+                                        <exclude reference="uWh-QM-rsl"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="s53-90-eDj"/>
+                                        <include reference="IhH-eB-lWM"/>
+                                        <include reference="1Ww-xG-Gue"/>
+                                        <include reference="wzZ-6k-4Fq"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="dEl-PI-3Lt"/>
+                                        <include reference="WIQ-qu-e3R"/>
+                                        <include reference="Zc5-tg-gHc"/>
+                                        <include reference="aZi-Bq-8ps"/>
+                                        <include reference="pt5-9c-9Bb"/>
+                                        <include reference="08m-UH-JbQ"/>
+                                        <include reference="Hgz-19-S2m"/>
+                                        <include reference="dGH-HT-SSh"/>
+                                        <include reference="J2v-wY-g2M"/>
+                                        <include reference="pxp-7x-upd"/>
+                                        <include reference="uWh-QM-rsl"/>
+                                    </mask>
+                                </variation>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVQ-c0-WsA">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Perfil e ajustes">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Editar perfil">
+                                    <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -3924,54 +4059,60 @@ Este é o token gerado através da Intranet UFRJ</string>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYi-br-Zjd">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Caronas">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzQ-fd-Bi5">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Histórico">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSu-Rx-2OT">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Falaê">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emk-kX-Xv3">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <state key="normal" title="Termos de Uso">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fY2-fr-NvX">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Sobre Nós">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Sobre o Caronaê">
+                                    <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jnc-Lr-4vj">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Faq">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="FAQ">
+                                    <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.3851404672" green="0.3851404672" blue="0.3851404672" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Jnc-Lr-4vj" firstAttribute="width" secondItem="QVQ-c0-WsA" secondAttribute="width" id="5pp-Kb-z0O"/>
@@ -3980,13 +4121,16 @@ Este é o token gerado através da Intranet UFRJ</string>
                                 <variation key="widthClass=compact" constant="5"/>
                             </constraint>
                             <constraint firstItem="QVQ-c0-WsA" firstAttribute="width" secondItem="IzQ-fd-Bi5" secondAttribute="width" id="9q0-jc-TgT"/>
+                            <constraint firstAttribute="trailing" secondItem="UH5-0I-VdT" secondAttribute="trailing" id="O26-gg-Ape"/>
                             <constraint firstItem="IzQ-fd-Bi5" firstAttribute="top" secondItem="aYi-br-Zjd" secondAttribute="bottom" constant="5" id="P6a-J8-CAw"/>
+                            <constraint firstItem="UH5-0I-VdT" firstAttribute="top" secondItem="1wB-TC-jMV" secondAttribute="bottom" id="SV5-dG-7An"/>
                             <constraint firstItem="JSu-Rx-2OT" firstAttribute="width" secondItem="IzQ-fd-Bi5" secondAttribute="width" id="TxG-te-E4F"/>
                             <constraint firstItem="emk-kX-Xv3" firstAttribute="leading" secondItem="JSu-Rx-2OT" secondAttribute="leading" id="Udu-DD-Lnm"/>
                             <constraint firstItem="fY2-fr-NvX" firstAttribute="top" secondItem="emk-kX-Xv3" secondAttribute="bottom" constant="5" id="Ufn-bA-GMX"/>
                             <constraint firstItem="Jnc-Lr-4vj" firstAttribute="top" secondItem="fY2-fr-NvX" secondAttribute="bottom" constant="5" id="Wfg-q0-xg8"/>
                             <constraint firstItem="emk-kX-Xv3" firstAttribute="width" secondItem="JSu-Rx-2OT" secondAttribute="width" id="XSB-li-K2d"/>
                             <constraint firstItem="QVQ-c0-WsA" firstAttribute="leading" secondItem="aYi-br-Zjd" secondAttribute="leading" id="aBc-zY-V8y"/>
+                            <constraint firstItem="QVQ-c0-WsA" firstAttribute="top" secondItem="UH5-0I-VdT" secondAttribute="bottom" constant="21" id="apH-AD-Kaj"/>
                             <constraint firstItem="QVQ-c0-WsA" firstAttribute="top" secondItem="1wB-TC-jMV" secondAttribute="bottom" constant="30" id="cg5-3L-VoL"/>
                             <constraint firstItem="QVQ-c0-WsA" firstAttribute="leading" secondItem="IzQ-fd-Bi5" secondAttribute="leading" constant="-4" id="eAz-BZ-g7T">
                                 <variation key="widthClass=compact" constant="0.0"/>
@@ -3995,6 +4139,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                             <constraint firstItem="JSu-Rx-2OT" firstAttribute="top" secondItem="IzQ-fd-Bi5" secondAttribute="bottom" constant="5" id="eTU-5U-NRu"/>
                             <constraint firstItem="emk-kX-Xv3" firstAttribute="top" secondItem="JSu-Rx-2OT" secondAttribute="bottom" constant="5" id="egG-fE-Q5I"/>
                             <constraint firstItem="Jnc-Lr-4vj" firstAttribute="leading" secondItem="QVQ-c0-WsA" secondAttribute="leading" id="lHj-ug-6X0"/>
+                            <constraint firstItem="UH5-0I-VdT" firstAttribute="leading" secondItem="JCe-oL-nfX" secondAttribute="leading" id="nex-hQ-q9F"/>
                             <constraint firstItem="JSu-Rx-2OT" firstAttribute="top" secondItem="IzQ-fd-Bi5" secondAttribute="bottom" constant="5" id="q8N-mb-qmy"/>
                             <constraint firstItem="QVQ-c0-WsA" firstAttribute="width" secondItem="aYi-br-Zjd" secondAttribute="width" id="rTV-dY-Hb7"/>
                             <constraint firstItem="fY2-fr-NvX" firstAttribute="width" secondItem="QVQ-c0-WsA" secondAttribute="width" id="sSb-bs-AF8"/>
@@ -4004,6 +4149,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="UH5-0I-VdT"/>
                                 <exclude reference="QVQ-c0-WsA"/>
                                 <exclude reference="aYi-br-Zjd"/>
                                 <exclude reference="IzQ-fd-Bi5"/>
@@ -4013,22 +4159,23 @@ Este é o token gerado através da Intranet UFRJ</string>
                                 <exclude reference="Jnc-Lr-4vj"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="P6a-J8-CAw"/>
-                                <exclude reference="TxG-te-E4F"/>
-                                <exclude reference="eTU-5U-NRu"/>
-                                <exclude reference="q8N-mb-qmy"/>
-                                <exclude reference="5pp-Kb-z0O"/>
-                                <exclude reference="Wfg-q0-xg8"/>
-                                <exclude reference="lHj-ug-6X0"/>
+                                <exclude reference="O26-gg-Ape"/>
+                                <exclude reference="SV5-dG-7An"/>
+                                <exclude reference="nex-hQ-q9F"/>
                                 <exclude reference="6us-rY-dFK"/>
                                 <exclude reference="9q0-jc-TgT"/>
                                 <exclude reference="aBc-zY-V8y"/>
+                                <exclude reference="apH-AD-Kaj"/>
                                 <exclude reference="cg5-3L-VoL"/>
                                 <exclude reference="eAz-BZ-g7T"/>
                                 <exclude reference="rTV-dY-Hb7"/>
                                 <exclude reference="vVG-Zk-3K5"/>
                                 <exclude reference="y5B-Dw-Gcx"/>
                                 <exclude reference="8VI-dX-Oz2"/>
+                                <exclude reference="P6a-J8-CAw"/>
+                                <exclude reference="TxG-te-E4F"/>
+                                <exclude reference="eTU-5U-NRu"/>
+                                <exclude reference="q8N-mb-qmy"/>
                                 <exclude reference="Udu-DD-Lnm"/>
                                 <exclude reference="XSB-li-K2d"/>
                                 <exclude reference="egG-fE-Q5I"/>
@@ -4036,10 +4183,14 @@ Este é o token gerado através da Intranet UFRJ</string>
                                 <exclude reference="eCZ-0L-vRG"/>
                                 <exclude reference="sSb-bs-AF8"/>
                                 <exclude reference="wYh-gM-3ZB"/>
+                                <exclude reference="5pp-Kb-z0O"/>
+                                <exclude reference="Wfg-q0-xg8"/>
+                                <exclude reference="lHj-ug-6X0"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
+                                <include reference="UH5-0I-VdT"/>
                                 <include reference="QVQ-c0-WsA"/>
                                 <include reference="aYi-br-Zjd"/>
                                 <include reference="IzQ-fd-Bi5"/>
@@ -4049,22 +4200,23 @@ Este é o token gerado através da Intranet UFRJ</string>
                                 <include reference="Jnc-Lr-4vj"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="P6a-J8-CAw"/>
-                                <include reference="TxG-te-E4F"/>
-                                <include reference="eTU-5U-NRu"/>
-                                <include reference="q8N-mb-qmy"/>
-                                <include reference="5pp-Kb-z0O"/>
-                                <include reference="Wfg-q0-xg8"/>
-                                <include reference="lHj-ug-6X0"/>
+                                <include reference="O26-gg-Ape"/>
+                                <include reference="SV5-dG-7An"/>
+                                <include reference="nex-hQ-q9F"/>
                                 <include reference="6us-rY-dFK"/>
                                 <include reference="9q0-jc-TgT"/>
                                 <include reference="aBc-zY-V8y"/>
-                                <include reference="cg5-3L-VoL"/>
+                                <include reference="apH-AD-Kaj"/>
+                                <exclude reference="cg5-3L-VoL"/>
                                 <include reference="eAz-BZ-g7T"/>
                                 <include reference="rTV-dY-Hb7"/>
                                 <include reference="vVG-Zk-3K5"/>
                                 <include reference="y5B-Dw-Gcx"/>
                                 <include reference="8VI-dX-Oz2"/>
+                                <include reference="P6a-J8-CAw"/>
+                                <include reference="TxG-te-E4F"/>
+                                <include reference="eTU-5U-NRu"/>
+                                <include reference="q8N-mb-qmy"/>
                                 <include reference="Udu-DD-Lnm"/>
                                 <include reference="XSB-li-K2d"/>
                                 <include reference="egG-fE-Q5I"/>
@@ -4072,10 +4224,18 @@ Este é o token gerado através da Intranet UFRJ</string>
                                 <include reference="eCZ-0L-vRG"/>
                                 <include reference="sSb-bs-AF8"/>
                                 <exclude reference="wYh-gM-3ZB"/>
+                                <include reference="5pp-Kb-z0O"/>
+                                <include reference="Wfg-q0-xg8"/>
+                                <include reference="lHj-ug-6X0"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Caronae" id="wdG-lq-Sxn"/>
+                    <navigationItem key="navigationItem" title="Menu" id="wdG-lq-Sxn"/>
+                    <connections>
+                        <outlet property="profileCourseLabel" destination="wzZ-6k-4Fq" id="6gX-tN-MFb"/>
+                        <outlet property="profileImageView" destination="IhH-eB-lWM" id="od9-cV-SHv"/>
+                        <outlet property="profileNameLabel" destination="1Ww-xG-Gue" id="7OH-Ib-GUT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqh-B2-gxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4134,5 +4294,6 @@ Este é o token gerado através da Intranet UFRJ</string>
         <image name="Profile Picture" width="710" height="710"/>
         <image name="Radio" width="20" height="20"/>
         <image name="Radio selected" width="20" height="20"/>
+        <image name="SeparatorColor" width="308" height="4"/>
     </resources>
 </document>
