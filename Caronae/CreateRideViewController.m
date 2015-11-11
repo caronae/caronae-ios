@@ -3,8 +3,10 @@
 #import <AFNetworking/AFNetworking.h>
 #import <ActionSheetDatePicker.h>
 
-@interface CreateRideViewController ()
-@property CGFloat routinePatternHeightOriginal;
+@interface CreateRideViewController () <UITextViewDelegate>
+@property (nonatomic) CGFloat routinePatternHeightOriginal;
+@property (nonatomic) NSString *notesPlaceholder;
+@property (nonatomic) UIColor *notesTextColor;
 @end
 
 @implementation CreateRideViewController
@@ -25,9 +27,13 @@
     self.notes.layer.borderColor = [UIColor colorWithWhite:0.902 alpha:1.000].CGColor;
     self.notes.layer.borderWidth = 2.0f;
     self.notes.textContainerInset = UIEdgeInsetsMake(10, 5, 5, 5);
+    self.notes.delegate = self;
+    self.notesPlaceholder = self.notes.text;
+    self.notesTextColor = self.notes.textColor;
     
     self.slotsLabel.text = [NSString stringWithFormat:@"%.f", self.slotsStepper.value];
     
+    // Dismiss keyboard when tapping the view
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
 }
 
@@ -224,6 +230,25 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM/yyyy hh:mm"];
     [self.arrivalTimeButton setTitle:[dateFormatter stringFromDate:selectedTime] forState:UIControlStateNormal];
+}
+
+
+#pragma mark - UITextView delegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([textView.text isEqualToString:_notesPlaceholder]) {
+        textView.text = @"";
+        textView.textColor = _notesTextColor;
+    }
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = _notesPlaceholder;
+        textView.textColor = [UIColor lightGrayColor];
+    }
+    [textView resignFirstResponder];
 }
 
 @end
