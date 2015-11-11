@@ -1,3 +1,3 @@
 #import "CaronaeConstants.h"
 
-const NSString *CaronaeAPIBaseURL = @"http://private-5b9ed6-caronae.apiary-mock.com";
+const NSString *CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
