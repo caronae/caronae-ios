@@ -24,6 +24,7 @@
 		A3AD19CA1BED9BFB003EDA17 /* AllRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AD19C91BED9BFB003EDA17 /* AllRidesViewController.m */; };
 		A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */; };
 		A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */; };
+		A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */; };
 		CA6E9412F08ECA00330BBD7E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DA16FE6BC427F62DBE27E5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,8 @@
 		A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeConstants.m; sourceTree = "<group>"; };
 		A3B5AF041BF1ADF30026A889 /* MyRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRidesViewController.h; sourceTree = "<group>"; };
 		A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRidesViewController.m; sourceTree = "<group>"; };
+		A3B5AF0F1BF2F0560026A889 /* CALayer+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+UIColor.h"; sourceTree = "<group>"; };
+		A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+UIColor.m"; sourceTree = "<group>"; };
 		A7DA16FE6BC427F62DBE27E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EBBD02EF13166ED3D0B34A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +145,7 @@
 		A3169C921BED842D00A0D428 /* Caronae */ = {
 			isa = PBXGroup;
 			children = (
+				A3B5AF121BF2F1050026A889 /* Categories */,
 				A3AD19C71BED96DC003EDA17 /* Custom views */,
 				A3B5AEFD1BF1AAC10026A889 /* CaronaeConstants.h */,
 				A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */,
@@ -204,6 +208,15 @@
 				A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */,
 			);
 			name = "Custom views";
+			sourceTree = "<group>";
+		};
+		A3B5AF121BF2F1050026A889 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A3B5AF0F1BF2F0560026A889 /* CALayer+UIColor.h */,
+				A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		D2A5ADC9EBDC943DAB5ACFFA /* Pods */ = {
@@ -405,6 +418,7 @@
 				A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */,
 				A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */,
 				A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */,
+				A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */,
 				A3169C951BED842D00A0D428 /* main.m in Sources */,
 				A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */,
 				A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */,
