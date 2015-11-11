@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Token View Controller-->
@@ -256,12 +257,14 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <color key="tintColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Todas" id="bEF-x6-W9X">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4ju-ql-cEA">
-                            <color key="tintColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <segue destination="CoL-uf-tJY" kind="presentation" id="0rk-0p-kI6"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="SearchRide" id="83b-gJ-Qes"/>
+                            <barButtonItem image="NewRide" id="4ju-ql-cEA">
+                                <connections>
+                                    <segue destination="CoL-uf-tJY" kind="presentation" id="0rk-0p-kI6"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ne-gW-Or1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -299,6 +302,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
+                        <color key="tintColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -4419,9 +4423,11 @@ Este é o token gerado através da Intranet UFRJ</string>
         <image name="CalendarIcon" width="17" height="16"/>
         <image name="ClockIcon" width="18" height="18"/>
         <image name="DrivesIcon" width="24" height="16"/>
+        <image name="NewRide" width="29" height="24"/>
         <image name="Profile Picture" width="710" height="710"/>
         <image name="Radio" width="20" height="20"/>
         <image name="Radio selected" width="20" height="20"/>
+        <image name="SearchRide" width="20" height="20"/>
         <image name="SeparatorColor" width="308" height="4"/>
     </resources>
 </document>
