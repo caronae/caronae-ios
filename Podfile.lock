@@ -1,0 +1,36 @@
+PODS:
+  - ActionSheetPicker-3.0 (2.0.3)
+  - AFNetworking (2.6.2):
+    - AFNetworking/NSURLConnection (= 2.6.2)
+    - AFNetworking/NSURLSession (= 2.6.2)
+    - AFNetworking/Reachability (= 2.6.2)
+    - AFNetworking/Security (= 2.6.2)
+    - AFNetworking/Serialization (= 2.6.2)
+    - AFNetworking/UIKit (= 2.6.2)
+  - AFNetworking/NSURLConnection (2.6.2):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.2):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.2)
+  - AFNetworking/Security (2.6.2)
+  - AFNetworking/Serialization (2.6.2)
+  - AFNetworking/UIKit (2.6.2):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - TPKeyboardAvoiding (1.2.10)
+
+DEPENDENCIES:
+  - ActionSheetPicker-3.0 (~> 2.0.3)
+  - AFNetworking (~> 2.0)
+  - TPKeyboardAvoiding (~> 1.2.10)
+
+SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: 11f2053085d3088dc1ef9d38a9f11c18b528dd9e
+  AFNetworking: 7f317038a9710cabfa43ec56396b307b45df72ab
+  TPKeyboardAvoiding: 614ebec846ec28b83d548769297fa5fb56468904
+
+COCOAPODS: 0.39.0
