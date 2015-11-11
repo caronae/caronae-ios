@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="NavigationBarLogo" translatesAutoresizingMaskIntoConstraints="NO" id="j5z-do-QYX">
-                                <rect key="frame" x="251" y="288" width="100" height="25"/>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NavigationBarLogo" translatesAutoresizingMaskIntoConstraints="NO" id="j5z-do-QYX">
+                                <rect key="frame" x="250" y="287" width="101" height="26"/>
                                 <animations/>
                             </imageView>
                         </subviews>
@@ -36,6 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NavigationBarLogo" width="100" height="25"/>
+        <image name="NavigationBarLogo" width="101" height="26"/>
     </resources>
 </document>
