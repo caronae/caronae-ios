@@ -2,11 +2,14 @@
 #import "CreateRideViewController.h"
 #import <AFNetworking/AFNetworking.h>
 #import <ActionSheetDatePicker.h>
+#import <ActionSheetStringPicker.h>
 
 @interface CreateRideViewController () <UITextViewDelegate>
 @property (nonatomic) CGFloat routinePatternHeightOriginal;
 @property (nonatomic) NSString *notesPlaceholder;
 @property (nonatomic) UIColor *notesTextColor;
+@property (nonatomic) NSDateFormatter *arrivalDateLabelFormatter;
+@property (nonatomic) NSString *selectedCenter;
 @end
 
 @implementation CreateRideViewController
@@ -17,6 +20,10 @@
     self.rideDate = [NSDate date];
     self.weekDays = [NSMutableArray arrayWithCapacity:7];
     self.routineDurationMonths = 2;
+    
+    self.arrivalDateLabelFormatter = [[NSDateFormatter alloc] init];
+    self.arrivalDateLabelFormatter.dateFormat = @"dd/MM/yyyy hh:mm";
+    [self.arrivalTimeButton setTitle:[self.arrivalDateLabelFormatter stringFromDate:self.rideDate] forState:UIControlStateNormal];
     
     self.segmentedControl.layer.cornerRadius = 8.0;
     self.segmentedControl.layer.borderColor = [UIColor colorWithWhite:0.690 alpha:1.000].CGColor;
@@ -74,7 +81,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride"] parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/store"] parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response JSON: %@", responseObject);
         
         // Check if we received an array of the created rides
@@ -93,8 +100,8 @@
             NSLog(@"Unexpected JSON format (not an array).");
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-        NSLog(@"body: %@", operation.responseString);
+        NSLog(@"Error: %@", error.localizedDescription);
+//        NSLog(@"body: %@", operation.responseString);
     }];
 
 }
@@ -232,6 +239,17 @@
     [self.arrivalTimeButton setTitle:[dateFormatter stringFromDate:selectedTime] forState:UIControlStateNormal];
 }
 
+- (IBAction)selectCenterTapped:(id)sender {
+    NSArray *centers = @[@"CT", @"CCMN", @"CCS", @"Letras", @"Reitoria"];
+    [ActionSheetStringPicker showPickerWithTitle:@"Selecione um centro"
+                                            rows:centers
+                                initialSelection:0
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           self.selectedCenter = selectedValue;
+                                           [self.center setTitle:selectedValue forState:UIControlStateNormal];
+                                       }
+                                     cancelBlock:nil origin:sender];
+}
 
 #pragma mark - UITextView delegate
 

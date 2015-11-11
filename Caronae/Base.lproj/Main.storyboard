@@ -489,70 +489,84 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kWX-s3-c5B" userLabel="Center">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Centro" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gv0-ay-lV4">
-                                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vII-kc-e4x">
+                                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                         <animations/>
+                                                        <state key="normal" title="CT">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="selectCenterTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="WsB-2U-F00"/>
+                                                        </connections>
+                                                    </button>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VnG-s1-gVC">
+                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                        <animations/>
+                                                        <color key="backgroundColor" red="0.50588235294117645" green="0.50980392156862742" blue="0.50588235294117645" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="300" id="uqI-fU-mnA">
-                                                                <variation key="widthClass=compact" constant="150"/>
-                                                            </constraint>
+                                                            <constraint firstAttribute="height" constant="1" id="mk5-2e-gG9"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                        <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <nil key="highlightedColor"/>
                                                         <variation key="default">
                                                             <mask key="constraints">
-                                                                <exclude reference="uqI-fU-mnA"/>
+                                                                <exclude reference="mk5-2e-gG9"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
                                                             <mask key="constraints">
-                                                                <include reference="uqI-fU-mnA"/>
+                                                                <include reference="mk5-2e-gG9"/>
                                                             </mask>
                                                         </variation>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vII-kc-e4x">
-                                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                        <animations/>
-                                                        <state key="normal" title="EBA">
-                                                            <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                    </button>
+                                                    </view>
                                                 </subviews>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="gv0-ay-lV4" firstAttribute="leading" secondItem="kWX-s3-c5B" secondAttribute="leading" id="27d-HE-t4a"/>
                                                     <constraint firstAttribute="height" constant="40" id="EVj-Cg-l4i"/>
+                                                    <constraint firstAttribute="bottom" secondItem="VnG-s1-gVC" secondAttribute="bottom" constant="69" id="HdJ-lj-N9u">
+                                                        <variation key="widthClass=compact" constant="0.0"/>
+                                                    </constraint>
+                                                    <constraint firstItem="VnG-s1-gVC" firstAttribute="width" secondItem="kWX-s3-c5B" secondAttribute="width" id="Kxw-5n-kXT"/>
                                                     <constraint firstAttribute="centerY" secondItem="vII-kc-e4x" secondAttribute="centerY" id="OF5-DT-R97"/>
+                                                    <constraint firstItem="VnG-s1-gVC" firstAttribute="leading" secondItem="kWX-s3-c5B" secondAttribute="leading" constant="24" id="aYx-y4-aRL">
+                                                        <variation key="widthClass=compact" constant="0.0"/>
+                                                    </constraint>
+                                                    <constraint firstItem="vII-kc-e4x" firstAttribute="leading" secondItem="kWX-s3-c5B" secondAttribute="leading" id="bXf-8t-Uqg"/>
                                                     <constraint firstAttribute="trailing" secondItem="vII-kc-e4x" secondAttribute="trailing" id="bau-Am-iua"/>
-                                                    <constraint firstAttribute="centerY" secondItem="gv0-ay-lV4" secondAttribute="centerY" id="wLJ-dG-zZn"/>
+                                                    <constraint firstAttribute="trailing" secondItem="VnG-s1-gVC" secondAttribute="trailing" constant="96" id="fxt-jf-Gio">
+                                                        <variation key="widthClass=compact" constant="0.0"/>
+                                                    </constraint>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="subviews">
-                                                        <exclude reference="gv0-ay-lV4"/>
                                                         <exclude reference="vII-kc-e4x"/>
+                                                        <exclude reference="VnG-s1-gVC"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="EVj-Cg-l4i"/>
-                                                        <exclude reference="27d-HE-t4a"/>
-                                                        <exclude reference="wLJ-dG-zZn"/>
                                                         <exclude reference="OF5-DT-R97"/>
+                                                        <exclude reference="bXf-8t-Uqg"/>
                                                         <exclude reference="bau-Am-iua"/>
+                                                        <exclude reference="HdJ-lj-N9u"/>
+                                                        <exclude reference="Kxw-5n-kXT"/>
+                                                        <exclude reference="aYx-y4-aRL"/>
+                                                        <exclude reference="fxt-jf-Gio"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
                                                     <mask key="subviews">
-                                                        <include reference="gv0-ay-lV4"/>
                                                         <include reference="vII-kc-e4x"/>
+                                                        <include reference="VnG-s1-gVC"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="EVj-Cg-l4i"/>
-                                                        <include reference="27d-HE-t4a"/>
-                                                        <include reference="wLJ-dG-zZn"/>
                                                         <include reference="OF5-DT-R97"/>
+                                                        <include reference="bXf-8t-Uqg"/>
                                                         <include reference="bau-Am-iua"/>
+                                                        <include reference="HdJ-lj-N9u"/>
+                                                        <include reference="Kxw-5n-kXT"/>
+                                                        <include reference="aYx-y4-aRL"/>
+                                                        <include reference="fxt-jf-Gio"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -1073,7 +1087,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                             </mask>
                                                         </variation>
                                                     </label>
-                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="yHO-6g-1Vp">
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minimumValue="1" maximumValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="yHO-6g-1Vp">
                                                         <rect key="frame" x="-47" y="-14" width="94" height="29"/>
                                                         <animations/>
                                                         <connections>
@@ -1184,7 +1198,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRa-H4-Av0">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRa-H4-Av0">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <animations/>
                                                 <constraints>
@@ -1450,6 +1464,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                     <size key="freeformSize" width="400" height="900"/>
                     <connections>
                         <outlet property="arrivalTimeButton" destination="5VK-HF-o3E" id="bQW-Nw-HE5"/>
+                        <outlet property="center" destination="vII-kc-e4x" id="eTU-7w-7IQ"/>
                         <outlet property="notes" destination="R6l-zH-LMn" id="cRY-La-vfi"/>
                         <outlet property="origin" destination="7y7-B3-MXI" id="VMf-nJ-aow"/>
                         <outlet property="reference" destination="Ah4-oz-Cgc" id="OUH-Ry-aeX"/>
