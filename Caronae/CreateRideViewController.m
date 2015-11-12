@@ -5,6 +5,7 @@
 #import <ActionSheetStringPicker.h>
 
 @interface CreateRideViewController () <UITextViewDelegate>
+
 @property (nonatomic) CGFloat routinePatternHeightOriginal;
 @property (nonatomic) NSString *notesPlaceholder;
 @property (nonatomic) UIColor *notesTextColor;
@@ -48,14 +49,14 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)createRide:(id)sender {
+- (NSDictionary *)generateRideDictionaryFromView {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"dd/MM/yyyy";
     NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
     timeFormat.dateFormat = @"HH:mm";
     NSString *weekDaysString = [[self.weekDays sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] componentsJoinedByString:@","];
     BOOL isRoutine = self.routineSwitch.on;
-
+    
     // Calculate final date for event based on the selected duration
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     dateComponents.month = self.routineDurationMonths;
@@ -75,6 +76,41 @@
                            @"description": self.notes.text,
                            @"going": @(self.segmentedControl.selectedSegmentIndex == 0)
                            };
+    return ride;
+}
+
++ (NSArray *)parseCreateRidesFromResponse:(id)responseObject withError:(NSError *__autoreleasing *)err {
+    // Check if we received an array of the created rides
+    if ([responseObject isKindOfClass:NSArray.class]) {
+        
+        NSArray *createdRides = responseObject;
+        if (createdRides.count == 0) {
+            if (err) {
+                NSDictionary *errorInfo = @{
+                                           NSLocalizedDescriptionKey: NSLocalizedString(@"No rides were created.", nil)
+                                           };
+                *err = [NSError errorWithDomain:CaronaeErrorDomain code:CaronaeErrorNoRidesCreated userInfo:errorInfo];
+            }
+        }
+        else {
+            return createdRides;
+        }
+    }
+    else {
+        if (err) {
+            NSDictionary *errorInfo = @{
+                                        NSLocalizedDescriptionKey: NSLocalizedString(@"Unexpected server response.", nil)
+                                        };
+            *err = [NSError errorWithDomain:CaronaeErrorDomain code:CaronaeErrorInvalidResponse userInfo:errorInfo];
+        }
+    }
+    
+    return nil;
+}
+
+- (IBAction)createRide:(id)sender {
+    NSDictionary *ride;
+    ride = [self generateRideDictionaryFromView];
     NSLog(@"%@", ride);
     
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"][@"token"];
@@ -83,22 +119,13 @@
     [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/store"] parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response JSON: %@", responseObject);
+        NSError *responseError;
+        NSArray *createdRides = [CreateRideViewController parseCreateRidesFromResponse:responseObject withError:&responseError];
+        if (responseError) {
+            NSLog(@"Response error: %@", responseError.localizedDescription);
+        }
         
-        // Check if we received an array of the created rides
-        if ([responseObject isKindOfClass:NSArray.class]) {
-            NSArray *createdRides = responseObject;
-            if (createdRides.count > 0) {
-                NSLog(@"%lu rides created.", (unsigned long)createdRides.count);
-                // TODO: Pass created rides object somewhere
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }
-            else {
-                NSLog(@"No rides created.");
-            }
-        }
-        else {
-            NSLog(@"Unexpected JSON format (not an array).");
-        }
+        NSLog(@"%lu rides created.", (unsigned long)createdRides.count);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.localizedDescription);
 //        NSLog(@"body: %@", operation.responseString);

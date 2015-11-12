@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A302B29B1BF4439300FA161D /* CreateRideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A302B29A1BF4439300FA161D /* CreateRideTests.m */; };
 		A3169C951BED842D00A0D428 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C941BED842D00A0D428 /* main.m */; };
 		A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C971BED842D00A0D428 /* AppDelegate.m */; };
 		A3169C9B1BED842D00A0D428 /* TokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C9A1BED842D00A0D428 /* TokenViewController.m */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		7A6BECEDB68F9DCBC935D1ED /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A302B29A1BF4439300FA161D /* CreateRideTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRideTests.m; sourceTree = "<group>"; };
 		A3169C901BED842D00A0D428 /* Caronae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caronae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3169C941BED842D00A0D428 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A3169C961BED842D00A0D428 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				A3169CB01BED842D00A0D428 /* CaronaeTests.m */,
+				A302B29A1BF4439300FA161D /* CreateRideTests.m */,
 				A3169CB21BED842D00A0D428 /* Info.plist */,
 			);
 			path = CaronaeTests;
@@ -430,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3169CB11BED842D00A0D428 /* CaronaeTests.m in Sources */,
+				A302B29B1BF4439300FA161D /* CreateRideTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
