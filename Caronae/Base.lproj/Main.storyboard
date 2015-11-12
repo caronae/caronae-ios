@@ -364,9 +364,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <animations/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <textInputTraits key="textInputTraits"/>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="5" width="360" height="30"/>
-                                                        </variation>
                                                     </textField>
                                                 </subviews>
                                                 <animations/>
@@ -416,9 +413,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <animations/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <textInputTraits key="textInputTraits"/>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="5" width="360" height="30"/>
-                                                        </variation>
                                                     </textField>
                                                 </subviews>
                                                 <animations/>
@@ -462,9 +456,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <animations/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <textInputTraits key="textInputTraits"/>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="5" width="360" height="30"/>
-                                                        </variation>
                                                     </textField>
                                                 </subviews>
                                                 <animations/>
@@ -975,16 +966,16 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="oVb-37-Jvl"/>
-                                                        <exclude reference="bIg-ZG-x5W"/>
-                                                        <exclude reference="tdp-aw-t9g"/>
-                                                        <exclude reference="96e-Ln-Wcr"/>
-                                                        <exclude reference="hMU-Rm-PkR"/>
                                                         <exclude reference="lDQ-hd-XSd"/>
                                                         <exclude reference="sRl-tl-J40"/>
-                                                        <exclude reference="B3z-h2-lUu"/>
-                                                        <exclude reference="lkL-t7-TXd"/>
+                                                        <exclude reference="bIg-ZG-x5W"/>
+                                                        <exclude reference="tdp-aw-t9g"/>
                                                         <exclude reference="01e-rC-mlt"/>
                                                         <exclude reference="1uh-1y-Qz3"/>
+                                                        <exclude reference="96e-Ln-Wcr"/>
+                                                        <exclude reference="hMU-Rm-PkR"/>
+                                                        <exclude reference="B3z-h2-lUu"/>
+                                                        <exclude reference="lkL-t7-TXd"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
@@ -995,16 +986,16 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="oVb-37-Jvl"/>
-                                                        <include reference="bIg-ZG-x5W"/>
-                                                        <include reference="tdp-aw-t9g"/>
-                                                        <include reference="96e-Ln-Wcr"/>
-                                                        <include reference="hMU-Rm-PkR"/>
                                                         <include reference="lDQ-hd-XSd"/>
                                                         <include reference="sRl-tl-J40"/>
-                                                        <include reference="B3z-h2-lUu"/>
-                                                        <include reference="lkL-t7-TXd"/>
+                                                        <include reference="bIg-ZG-x5W"/>
+                                                        <include reference="tdp-aw-t9g"/>
                                                         <include reference="01e-rC-mlt"/>
                                                         <include reference="1uh-1y-Qz3"/>
+                                                        <include reference="96e-Ln-Wcr"/>
+                                                        <include reference="hMU-Rm-PkR"/>
+                                                        <include reference="B3z-h2-lUu"/>
+                                                        <include reference="lkL-t7-TXd"/>
                                                     </mask>
                                                 </variation>
                                             </view>

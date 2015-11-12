@@ -81,8 +81,8 @@
     XCTAssertEqualObjects(ride[@"slots"], @(4));
     XCTAssertEqualObjects(ride[@"description"], @"Fumante");
     XCTAssertEqualObjects(ride[@"going"], @(YES));
-    XCTAssertEqualObjects(ride[@"week_days"], @"2,4", @"week_days does not match the selected days.");
-    XCTAssertEqualObjects(ride[@"repeats_until"], @"12/02/2016", @"repeats_until should be 3 months from initial date.");
+    XCTAssertEqualObjects(ride[@"week_days"], @"2,4", @"week_days string did not match expected format.");
+    XCTAssertEqualObjects(ride[@"repeats_until"], @"12/02/2016", @"repeats_until date not calculated successfully.");
     XCTAssertNotEqualObjects(ride[@"hub"], @"", @"hub should not be empty.");
 }
 

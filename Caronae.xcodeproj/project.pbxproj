@@ -15,7 +15,6 @@
 		A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */; };
 		A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA21BED842D00A0D428 /* Assets.xcassets */; };
 		A3169CA61BED842D00A0D428 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */; };
-		A3169CB11BED842D00A0D428 /* CaronaeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CB01BED842D00A0D428 /* CaronaeTests.m */; };
 		A3169CBC1BED842D00A0D428 /* CaronaeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CBB1BED842D00A0D428 /* CaronaeUITests.m */; };
 		A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */; };
 		A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */; };
@@ -61,7 +60,6 @@
 		A3169CA51BED842D00A0D428 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3169CA71BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3169CAC1BED842D00A0D428 /* CaronaeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaronaeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3169CB01BED842D00A0D428 /* CaronaeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaronaeTests.m; sourceTree = "<group>"; };
 		A3169CB21BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3169CB71BED842D00A0D428 /* CaronaeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaronaeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3169CBB1BED842D00A0D428 /* CaronaeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaronaeUITests.m; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 		A3169CAF1BED842D00A0D428 /* CaronaeTests */ = {
 			isa = PBXGroup;
 			children = (
-				A3169CB01BED842D00A0D428 /* CaronaeTests.m */,
 				A302B29A1BF4439300FA161D /* CreateRideTests.m */,
 				A3169CB21BED842D00A0D428 /* Info.plist */,
 			);
@@ -432,7 +429,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3169CB11BED842D00A0D428 /* CaronaeTests.m in Sources */,
 				A302B29B1BF4439300FA161D /* CreateRideTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
