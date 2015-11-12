@@ -688,71 +688,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                     <action selector="routineMondayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="dWw-Uv-5lg"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJg-q1-hZ7">
-                                                                <rect key="frame" x="126" y="20" width="45" height="30"/>
-                                                                <animations/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <state key="normal" title="Qua">
-                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                                </state>
-                                                                <state key="selected">
-                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="routineWednesdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="BHJ-Rb-Xvb"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBC-l1-G8T">
-                                                                <rect key="frame" x="232" y="20" width="45" height="30"/>
-                                                                <animations/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <state key="normal" title="Sex">
-                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                                </state>
-                                                                <state key="selected">
-                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                </state>
-                                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                                    <rect key="frame" x="148" y="2" width="30" height="27"/>
-                                                                </variation>
-                                                                <connections>
-                                                                    <action selector="routineFridayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="vZ0-P4-fE9"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hW-ff-mhz">
-                                                                <rect key="frame" x="274" y="20" width="45" height="30"/>
-                                                                <animations/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <state key="normal" title="Sab">
-                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                                </state>
-                                                                <state key="selected">
-                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                </state>
-                                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                                    <rect key="frame" x="183" y="2" width="30" height="27"/>
-                                                                </variation>
-                                                                <connections>
-                                                                    <action selector="routineSaturdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="8te-7a-hkg"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eim-cd-0J5">
-                                                                <rect key="frame" x="327" y="20" width="45" height="30"/>
-                                                                <animations/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <state key="normal" title="Dom">
-                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                                </state>
-                                                                <state key="selected">
-                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                </state>
-                                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                                    <rect key="frame" x="218" y="2" width="30" height="27"/>
-                                                                </variation>
-                                                                <connections>
-                                                                    <action selector="routineSundayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="dcS-0M-nQF"/>
-                                                                </connections>
-                                                            </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JH2-vq-jd4">
                                                                 <rect key="frame" x="73" y="20" width="45" height="30"/>
                                                                 <animations/>
@@ -767,10 +702,83 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                     <action selector="routineTuesdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="cLv-mo-pvV"/>
                                                                 </connections>
                                                             </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJg-q1-hZ7">
+                                                                <rect key="frame" x="126" y="20" width="45" height="30"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <state key="normal" title="Qua">
+                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <state key="selected">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="routineWednesdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="BHJ-Rb-Xvb"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLA-ws-d1e">
+                                                                <rect key="frame" x="179" y="20" width="45" height="30"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <state key="normal" title="Qui">
+                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <state key="selected">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="routineThursdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="7s2-Fu-k4a"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBC-l1-G8T">
+                                                                <rect key="frame" x="232" y="20" width="45" height="30"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <state key="normal" title="Sex">
+                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <state key="selected">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="routineFridayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="vZ0-P4-fE9"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hW-ff-mhz">
+                                                                <rect key="frame" x="274" y="20" width="45" height="30"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <state key="normal" title="Sab">
+                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <state key="selected">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="routineSaturdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="8te-7a-hkg"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eim-cd-0J5">
+                                                                <rect key="frame" x="327" y="20" width="45" height="30"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <state key="normal" title="Dom">
+                                                                    <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </state>
+                                                                <state key="selected">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="routineSundayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="dcS-0M-nQF"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <animations/>
                                                         <constraints>
                                                             <constraint firstItem="eim-cd-0J5" firstAttribute="leading" secondItem="3hW-ff-mhz" secondAttribute="trailing" constant="8" id="3iN-dx-zN0">
+                                                                <variation key="widthClass=compact" constant="5"/>
+                                                            </constraint>
+                                                            <constraint firstItem="HLA-ws-d1e" firstAttribute="leading" secondItem="gJg-q1-hZ7" secondAttribute="trailing" constant="6" id="7Cp-Pv-4Tf">
                                                                 <variation key="widthClass=compact" constant="5"/>
                                                             </constraint>
                                                             <constraint firstItem="3hW-ff-mhz" firstAttribute="centerY" secondItem="Lel-3x-aaS" secondAttribute="centerY" id="8aZ-Wb-6yr"/>
@@ -790,9 +798,14 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                             <constraint firstItem="e0u-Of-kIS" firstAttribute="centerY" secondItem="Lel-3x-aaS" secondAttribute="centerY" id="SHZ-2d-hnD"/>
                                                             <constraint firstAttribute="width" constant="258" id="cRf-LT-a89"/>
                                                             <constraint firstItem="eim-cd-0J5" firstAttribute="centerY" secondItem="Lel-3x-aaS" secondAttribute="centerY" id="gXe-ty-eMf"/>
+                                                            <constraint firstItem="HLA-ws-d1e" firstAttribute="centerY" secondItem="Lel-3x-aaS" secondAttribute="centerY" id="uPT-wf-arP"/>
                                                             <constraint firstItem="JH2-vq-jd4" firstAttribute="centerY" secondItem="Lel-3x-aaS" secondAttribute="centerY" id="uQu-jY-iKZ"/>
+                                                            <constraint firstItem="NBC-l1-G8T" firstAttribute="leading" secondItem="HLA-ws-d1e" secondAttribute="trailing" constant="5" id="yBa-mI-1Ex"/>
                                                         </constraints>
                                                         <variation key="default">
+                                                            <mask key="subviews">
+                                                                <exclude reference="HLA-ws-d1e"/>
+                                                            </mask>
                                                             <mask key="constraints">
                                                                 <exclude reference="G47-aT-5IO"/>
                                                                 <exclude reference="cRf-LT-a89"/>
@@ -802,7 +815,10 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <exclude reference="uQu-jY-iKZ"/>
                                                                 <exclude reference="Av1-AT-Z9c"/>
                                                                 <exclude reference="BXN-MR-jjn"/>
+                                                                <exclude reference="7Cp-Pv-4Tf"/>
+                                                                <exclude reference="uPT-wf-arP"/>
                                                                 <exclude reference="9XP-px-oya"/>
+                                                                <exclude reference="yBa-mI-1Ex"/>
                                                                 <exclude reference="8aZ-Wb-6yr"/>
                                                                 <exclude reference="Aj5-hb-K6P"/>
                                                                 <exclude reference="3iN-dx-zN0"/>
@@ -810,6 +826,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
+                                                            <mask key="subviews">
+                                                                <include reference="HLA-ws-d1e"/>
+                                                            </mask>
                                                             <mask key="constraints">
                                                                 <include reference="G47-aT-5IO"/>
                                                                 <include reference="cRf-LT-a89"/>
@@ -819,7 +838,10 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <include reference="uQu-jY-iKZ"/>
                                                                 <include reference="Av1-AT-Z9c"/>
                                                                 <include reference="BXN-MR-jjn"/>
+                                                                <include reference="7Cp-Pv-4Tf"/>
+                                                                <include reference="uPT-wf-arP"/>
                                                                 <include reference="9XP-px-oya"/>
+                                                                <include reference="yBa-mI-1Ex"/>
                                                                 <include reference="8aZ-Wb-6yr"/>
                                                                 <include reference="Aj5-hb-K6P"/>
                                                                 <include reference="3iN-dx-zN0"/>
@@ -925,25 +947,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                             </mask>
                                                         </variation>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLA-ws-d1e">
-                                                        <rect key="frame" x="179" y="20" width="45" height="30"/>
-                                                        <animations/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <state key="normal" title="Qui">
-                                                            <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </state>
-                                                        <state key="selected">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="routineThursdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="7s2-Fu-k4a"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
                                                 <animations/>
                                                 <constraints>
-                                                    <constraint firstItem="HLA-ws-d1e" firstAttribute="centerY" secondItem="Lel-3x-aaS" secondAttribute="centerY" id="01e-rC-mlt"/>
-                                                    <constraint firstItem="HLA-ws-d1e" firstAttribute="leading" secondItem="gJg-q1-hZ7" secondAttribute="trailing" constant="6" id="1uh-1y-Qz3"/>
                                                     <constraint firstItem="Lel-3x-aaS" firstAttribute="centerX" secondItem="cMq-cP-Q5E" secondAttribute="centerX" id="96e-Ln-Wcr"/>
                                                     <constraint firstItem="RFV-cv-WBa" firstAttribute="centerX" secondItem="cMq-cP-Q5E" secondAttribute="centerX" id="B3z-h2-lUu"/>
                                                     <constraint firstItem="ubt-Cb-Gy3" firstAttribute="leading" secondItem="cMq-cP-Q5E" secondAttribute="leading" id="bIg-ZG-x5W"/>
@@ -962,18 +968,15 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <mask key="subviews">
                                                         <exclude reference="ubt-Cb-Gy3"/>
                                                         <exclude reference="2A6-v7-dOF"/>
-                                                        <exclude reference="HLA-ws-d1e"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="oVb-37-Jvl"/>
-                                                        <exclude reference="lDQ-hd-XSd"/>
-                                                        <exclude reference="sRl-tl-J40"/>
                                                         <exclude reference="bIg-ZG-x5W"/>
                                                         <exclude reference="tdp-aw-t9g"/>
-                                                        <exclude reference="01e-rC-mlt"/>
-                                                        <exclude reference="1uh-1y-Qz3"/>
                                                         <exclude reference="96e-Ln-Wcr"/>
                                                         <exclude reference="hMU-Rm-PkR"/>
+                                                        <exclude reference="lDQ-hd-XSd"/>
+                                                        <exclude reference="sRl-tl-J40"/>
                                                         <exclude reference="B3z-h2-lUu"/>
                                                         <exclude reference="lkL-t7-TXd"/>
                                                     </mask>
@@ -982,18 +985,15 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <mask key="subviews">
                                                         <include reference="ubt-Cb-Gy3"/>
                                                         <include reference="2A6-v7-dOF"/>
-                                                        <include reference="HLA-ws-d1e"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="oVb-37-Jvl"/>
-                                                        <include reference="lDQ-hd-XSd"/>
-                                                        <include reference="sRl-tl-J40"/>
                                                         <include reference="bIg-ZG-x5W"/>
                                                         <include reference="tdp-aw-t9g"/>
-                                                        <include reference="01e-rC-mlt"/>
-                                                        <include reference="1uh-1y-Qz3"/>
                                                         <include reference="96e-Ln-Wcr"/>
                                                         <include reference="hMU-Rm-PkR"/>
+                                                        <include reference="lDQ-hd-XSd"/>
+                                                        <include reference="sRl-tl-J40"/>
                                                         <include reference="B3z-h2-lUu"/>
                                                         <include reference="lkL-t7-TXd"/>
                                                     </mask>
