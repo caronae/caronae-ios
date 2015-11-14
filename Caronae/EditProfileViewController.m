@@ -11,10 +11,12 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)didTapCancelButton:(id)sender {
+     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)didTapSaveButton:(id)sender {
+//     [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end
