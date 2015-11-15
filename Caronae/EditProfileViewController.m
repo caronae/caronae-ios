@@ -39,7 +39,7 @@
     self.zoneTextField.text = @"";
     self.neighborhoodTextField.text = user[@"location"];
     
-    self.hasCarSwitch.on = user[@"car_owner"];
+    self.hasCarSwitch.on = [user[@"car_owner"] isEqual:@(YES)];
     
     self.carPlateTextField.text = user[@"car_plate"];
     self.carModelTextField.text = user[@"car_model"];
