@@ -281,6 +281,12 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="SI3-47-AYD" kind="relationship" relationship="viewControllers" id="62t-xN-hU7"/>
@@ -296,7 +302,7 @@ Este é o token gerado através da Intranet UFRJ</string>
         <scene sceneID="PW9-Sc-m7n">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SI3-47-AYD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Todas" id="n9j-hq-hsm"/>
+                    <tabBarItem key="tabBarItem" title="Todas" image="menu1" id="n9j-hq-hsm"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WwM-GX-35t">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -4712,7 +4718,7 @@ Este é o token gerado através da Intranet UFRJ</string>
         <scene sceneID="GrR-Pn-lN6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xHs-1X-X6c" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Menu" id="Ad4-X8-hjG">
+                    <tabBarItem key="tabBarItem" title="Menu" image="menu4" id="Ad4-X8-hjG">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-5"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -4736,7 +4742,7 @@ Este é o token gerado através da Intranet UFRJ</string>
         <scene sceneID="L3B-pk-WvI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ESO-TG-2Ch" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Minhas" id="qpg-Pw-SZw"/>
+                    <tabBarItem key="tabBarItem" title="Minhas" image="menu2" id="qpg-Pw-SZw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="N1E-gi-4wz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -4765,5 +4771,9 @@ Este é o token gerado através da Intranet UFRJ</string>
         <image name="Radio selected" width="20" height="20"/>
         <image name="SearchRide" width="20" height="20"/>
         <image name="SeparatorColor" width="308" height="4"/>
+        <image name="menu1" width="34" height="26"/>
+        <image name="menu2" width="26" height="26"/>
+        <image name="menu4" width="25" height="26"/>
     </resources>
+    <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>
