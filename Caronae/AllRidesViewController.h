@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
 
-@interface AllRidesViewController : UIViewController
+@interface AllRidesViewController : UITableViewController
 
 @end
