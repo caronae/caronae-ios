@@ -156,16 +156,16 @@
 				A3169C9C1BED842D00A0D428 /* Main.storyboard */,
 				A34312C51BF01B9A005BA311 /* MenuViewController.h */,
 				A34312C61BF01B9A005BA311 /* MenuViewController.m */,
+				A33FABE81BEE8E93008B4F51 /* CreateRideViewController.h */,
+				A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */,
+				A3AD19C81BED9BFB003EDA17 /* AllRidesViewController.h */,
+				A3AD19C91BED9BFB003EDA17 /* AllRidesViewController.m */,
 				A3B5AF041BF1ADF30026A889 /* MyRidesViewController.h */,
 				A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */,
 				A34312C81BF01C1D005BA311 /* ProfileViewController.h */,
 				A34312C91BF01C1D005BA311 /* ProfileViewController.m */,
 				A34312CB1BF01C26005BA311 /* EditProfileViewController.h */,
 				A34312CC1BF01C26005BA311 /* EditProfileViewController.m */,
-				A33FABE81BEE8E93008B4F51 /* CreateRideViewController.h */,
-				A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */,
-				A3AD19C81BED9BFB003EDA17 /* AllRidesViewController.h */,
-				A3AD19C91BED9BFB003EDA17 /* AllRidesViewController.m */,
 				A3169CA21BED842D00A0D428 /* Assets.xcassets */,
 				A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */,
 				A3169CA71BED842D00A0D428 /* Info.plist */,
@@ -298,6 +298,7 @@
 				TargetAttributes = {
 					A3169C8F1BED842D00A0D428 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = SSYVN73XF2;
 					};
 					A3169CAB1BED842D00A0D428 = {
 						CreatedOnToolsVersion = 7.1;
@@ -563,11 +564,15 @@
 			baseConfigurationReference = C0EBBD02EF13166ED3D0B34A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Caronae/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.meriw.Caronae;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -576,11 +581,15 @@
 			baseConfigurationReference = 7A6BECEDB68F9DCBC935D1ED /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Caronae/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.meriw.Caronae;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

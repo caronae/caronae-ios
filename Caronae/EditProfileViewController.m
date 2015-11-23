@@ -48,7 +48,7 @@
 
 - (IBAction)didTapSaveButton:(id)sender {
     NSDictionary *updatedUser = [self generateUserDictionaryFromView];
-    NSString *userToken = self.user[@"token"];
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];

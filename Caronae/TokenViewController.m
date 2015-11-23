@@ -14,9 +14,12 @@
 }
 
 
-- (IBAction)didTapAuthenticateButton:(id)sender {
+- (IBAction)didTapAuthenticateButton:(UIButton *)sender {
+    sender.enabled = NO;
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSDictionary *parameters = @{@"token": self.tokenTextField.text};
+    NSString *userToken = self.tokenTextField.text;
+    NSDictionary *parameters = @{@"token": userToken};
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/user/login"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
@@ -31,13 +34,16 @@
                 }
             }
             [[NSUserDefaults standardUserDefaults] setObject:userProfile forKey:@"user"];
+            [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"token"];
             [self performSegueWithIdentifier:@"tokenValidated" sender:self];
         }
         else {
             NSLog(@"Error authenticating");
+            sender.enabled = YES;
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        NSLog(@"Error: %@", error.localizedDescription);
+        sender.enabled = YES;
     }];
 }
 
