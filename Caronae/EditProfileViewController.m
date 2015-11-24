@@ -64,7 +64,6 @@
 
     [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user"] parameters:updatedUser success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self showLoadingHUD:NO];
-        NSLog(@"Response JSON: %@", responseObject);
         
         NSLog(@"User updated.");
         NSMutableDictionary *newUpdatedUser = [[NSMutableDictionary alloc] initWithDictionary:self.user];

@@ -1,6 +1,8 @@
 #import "AllRidesViewController.h"
+#import "CaronaeRideTableViewCell.h"
+#import "SearchRideViewController.h"
 
-@interface AllRidesViewController ()
+@interface AllRidesViewController () <SeachRideDelegate>
 
 @end
 
@@ -9,10 +11,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.estimatedRowHeight = 400.0;
+    self.tableView.estimatedRowHeight = 100.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"SearchRide"]) {
+        UINavigationController *searchNavController = segue.destinationViewController;
+        SearchRideViewController *searchVC = searchNavController.viewControllers.firstObject;
+        searchVC.delegate = self;
+    }
+}
+
+
+#pragma mark - Search methods
+
+- (void)searchedForRideWithCenter:(NSString *)center andNeighborhood:(NSString *)neighborhood onDate:(NSDate *)date going:(BOOL)going {
+    
 }
 
 
@@ -27,19 +44,20 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Ride Cell" forIndexPath:indexPath];
+    CaronaeRideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Ride Cell" forIndexPath:indexPath];
     
-    [self configureOpportunityCell:cell atIndexPath:indexPath];
+    [self configureRideCell:cell atIndexPath:indexPath];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 }
 
-- (void)configureOpportunityCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-
+- (void)configureRideCell:(CaronaeRideTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *ride = @{};
+    [cell configureCellWithRide:ride];
 }
 
 

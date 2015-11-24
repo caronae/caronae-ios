@@ -21,6 +21,7 @@
     self.rideDate = [NSDate date];
     self.weekDays = [NSMutableArray arrayWithCapacity:7];
     self.routineDurationMonths = 2;
+    self.selectedCenter = @"CT";
     
     self.arrivalDateLabelFormatter = [[NSDateFormatter alloc] init];
     self.arrivalDateLabelFormatter.dateFormat = @"dd/MM/yyyy hh:mm";
@@ -56,6 +57,7 @@
     timeFormat.dateFormat = @"HH:mm";
     NSString *weekDaysString = [[self.weekDays sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] componentsJoinedByString:@","];
     BOOL isRoutine = self.routineSwitch.on;
+    BOOL going = (self.segmentedControl.selectedSegmentIndex == 0);
     
     // Calculate final date for event based on the selected duration
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
@@ -72,9 +74,9 @@
                            @"week_days": isRoutine ? weekDaysString : @"",
                            @"repeats_until": isRoutine ? [dateFormat stringFromDate:repeatsUntilDate] : @"",
                            @"slots": @((int)self.slotsStepper.value),
-                           @"hub": @"A",
+                           @"hub": going ? self.selectedCenter : @"",
                            @"description": self.notes.text,
-                           @"going": @(self.segmentedControl.selectedSegmentIndex == 0)
+                           @"going": @(going)
                            };
     return ride;
 }
