@@ -3,7 +3,9 @@
 #import "EditProfileViewController.h"
 
 @interface EditProfileViewController ()
+@property (nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic) NSDateFormatter *joinedDateFormatter;
+@property (nonatomic) UIBarButtonItem *loadingButton;
 @end
 
 @implementation EditProfileViewController
@@ -12,6 +14,11 @@
     [super viewDidLoad];
     
     [self updateProfileFields];
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
+                                        initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [spinner startAnimating];
+    self.loadingButton = [[UIBarButtonItem alloc] initWithCustomView:spinner];
 }
 
 - (IBAction)didTapCancelButton:(id)sender {
@@ -52,7 +59,11 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
+    
+    [self showLoadingHUD:YES];
+
     [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user"] parameters:updatedUser success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self showLoadingHUD:NO];
         NSLog(@"Response JSON: %@", responseObject);
         
         NSLog(@"User updated.");
@@ -73,6 +84,7 @@
         
         [self dismissViewControllerAnimated:YES completion:nil];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self showLoadingHUD:NO];
         NSLog(@"Error: %@", error.localizedDescription);
     }];
 }
@@ -92,6 +104,15 @@
                                   };
     
     return updatedUser;
+}
+
+- (void)showLoadingHUD:(BOOL)loading {
+    if (!loading) {
+        self.navigationItem.rightBarButtonItem = self.saveButton;
+    }
+    else {
+        self.navigationItem.rightBarButtonItem = self.loadingButton;
+    }
 }
 
 @end
