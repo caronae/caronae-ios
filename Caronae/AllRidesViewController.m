@@ -3,6 +3,7 @@
 #import "AllRidesViewController.h"
 #import "CaronaeRideTableViewCell.h"
 #import "SearchRideViewController.h"
+#import "Ride.h"
 
 @interface AllRidesViewController () <SeachRideDelegate, CaronaeRideCellDelegate>
 @property (nonatomic) NSArray *rides;
@@ -79,7 +80,13 @@
 + (NSArray *)parseSearchResultsFromResponse:(id)responseObject withError:(NSError *__autoreleasing *)err {
     // Check if we received an array of the rides
     if ([responseObject isKindOfClass:NSArray.class]) {
-        return responseObject;
+        NSMutableArray *rides = [NSMutableArray arrayWithCapacity:((NSArray*)responseObject).count];
+        for (NSDictionary *result in responseObject) {
+            Ride *ride = [[Ride alloc] initWithDictionary:result];
+            [rides addObject:ride];
+        }
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+        return [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
     }
     else {
         if (err) {
@@ -94,9 +101,8 @@
 }
 
 - (void)tappedJoinRide:(CaronaeRideTableViewCell *)cell {
-    NSDictionary *ride = cell.ride;
-    NSLog(@"Requesting to join ride %@", ride[@"rideId"]);
-    NSDictionary *params = @{@"rideId": ride[@"rideId"]};
+    NSLog(@"Requesting to join ride %ld", cell.ride.rideID);
+    NSDictionary *params = @{@"rideId": @(cell.ride.rideID)};
     
     NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

@@ -633,7 +633,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                     <animations/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="lcG-ey-JEI" secondAttribute="bottom" constant="10" id="Ih4-tb-lzF">
-                                            <variation key="widthClass=compact" constant="0.0"/>
+                                            <variation key="widthClass=compact" constant="10"/>
                                         </constraint>
                                         <constraint firstAttribute="trailing" secondItem="lcG-ey-JEI" secondAttribute="trailing" constant="10" id="TXU-UA-ZDF"/>
                                         <constraint firstItem="lcG-ey-JEI" firstAttribute="top" secondItem="nYC-YM-EcE" secondAttribute="top" constant="10" id="rnb-gY-BNs"/>
@@ -4182,7 +4182,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="417" width="370" height="130.5"/>
+                                                    <rect key="frame" x="15" y="417" width="370" height="131"/>
                                                     <mask key="subviews">
                                                         <include reference="ftJ-lK-bEs"/>
                                                         <include reference="1W7-OK-GJ3"/>
@@ -4516,7 +4516,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="628" width="370" height="175.5"/>
+                                                    <rect key="frame" x="15" y="628" width="370" height="176"/>
                                                     <mask key="subviews">
                                                         <include reference="q8t-lO-Jqk"/>
                                                         <include reference="ZA1-8O-6ah"/>

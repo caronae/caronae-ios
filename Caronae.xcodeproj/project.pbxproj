@@ -23,6 +23,7 @@
 		A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312CC1BF01C26005BA311 /* EditProfileViewController.m */; };
 		A38F1D4D1C0398B500DEF6B1 /* CaronaeRideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F1D4C1C0398B500DEF6B1 /* CaronaeRideTableViewCell.m */; };
 		A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */; };
+		A39BBCFF1C06296200EF9EBD /* Ride.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBCFE1C06296200EF9EBD /* Ride.m */; };
 		A3AD19CA1BED9BFB003EDA17 /* AllRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AD19C91BED9BFB003EDA17 /* AllRidesViewController.m */; };
 		A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */; };
 		A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */; };
@@ -80,6 +81,8 @@
 		A38F1D4C1C0398B500DEF6B1 /* CaronaeRideTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeRideTableViewCell.m; sourceTree = "<group>"; };
 		A39BBCF41C048E4D00EF9EBD /* SearchRideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRideViewController.h; sourceTree = "<group>"; };
 		A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRideViewController.m; sourceTree = "<group>"; };
+		A39BBCFD1C06296200EF9EBD /* Ride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ride.h; sourceTree = "<group>"; };
+		A39BBCFE1C06296200EF9EBD /* Ride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ride.m; sourceTree = "<group>"; };
 		A3AD19C81BED9BFB003EDA17 /* AllRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllRidesViewController.h; sourceTree = "<group>"; };
 		A3AD19C91BED9BFB003EDA17 /* AllRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllRidesViewController.m; sourceTree = "<group>"; };
 		A3B5AEFD1BF1AAC10026A889 /* CaronaeConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeConstants.h; sourceTree = "<group>"; };
@@ -152,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				A3B5AF121BF2F1050026A889 /* Categories */,
+				A39BBD001C0629E100EF9EBD /* Model */,
 				A3AD19C71BED96DC003EDA17 /* Custom views */,
 				A3B5AEFD1BF1AAC10026A889 /* CaronaeConstants.h */,
 				A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */,
@@ -207,6 +211,15 @@
 				A3169CBD1BED842D00A0D428 /* Info.plist */,
 			);
 			path = CaronaeUITests;
+			sourceTree = "<group>";
+		};
+		A39BBD001C0629E100EF9EBD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A39BBCFD1C06296200EF9EBD /* Ride.h */,
+				A39BBCFE1C06296200EF9EBD /* Ride.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		A3AD19C71BED96DC003EDA17 /* Custom views */ = {
@@ -425,6 +438,7 @@
 				A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */,
 				A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */,
 				A3169C9B1BED842D00A0D428 /* TokenViewController.m in Sources */,
+				A39BBCFF1C06296200EF9EBD /* Ride.m in Sources */,
 				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
 				A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */,
 				A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */,

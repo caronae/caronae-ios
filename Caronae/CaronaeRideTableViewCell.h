@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
 
+@class Ride;
 @class CaronaeRideTableViewCell;
 
 @protocol CaronaeRideCellDelegate <NSObject>
@@ -11,7 +12,7 @@
 - (void)configureCellWithRide:(NSDictionary *)ride canJoin:(BOOL)joinEnabled;
 
 @property (nonatomic, assign) id<CaronaeRideCellDelegate> delegate;
-@property (nonatomic, readonly) NSDictionary *ride;
+@property (nonatomic, readonly) Ride *ride;
 
 @property (weak, nonatomic) IBOutlet UIView *detailView;
 
