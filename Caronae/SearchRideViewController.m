@@ -36,6 +36,11 @@
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setDateFormat:@"dd/MM/yyyy HH:mm"];
     [self.dateButton setTitle:[self.dateFormatter stringFromDate:self.searchedDate] forState:UIControlStateNormal];
+    
+    self.directionControl.layer.cornerRadius = 8.0;
+    self.directionControl.layer.borderColor = [UIColor colorWithWhite:0.690 alpha:1.000].CGColor;
+    self.directionControl.layer.borderWidth = 2.0f;
+    self.directionControl.layer.masksToBounds = YES;
 }
 
 - (IBAction)didTapCancelButton:(id)sender {
