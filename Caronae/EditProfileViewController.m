@@ -1,5 +1,5 @@
 #import <AFNetworking/AFNetworking.h>
-#import "CaronaeConstants.h"
+#import "CaronaeDefaults.h"
 #import "EditProfileViewController.h"
 
 @interface EditProfileViewController ()

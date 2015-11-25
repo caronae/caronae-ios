@@ -1,4 +1,4 @@
-#import "CaronaeConstants.h"
+#import "CaronaeDefaults.h"
 #import "TokenViewController.h"
 #import <AFNetworking/AFNetworking.h>
 

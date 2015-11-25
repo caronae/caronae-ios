@@ -1,5 +1,6 @@
-#import "CaronaeConstants.h"
+#import "CaronaeDefaults.h"
 #import "CreateRideViewController.h"
+#import "NSDate+nextHour.h"
 #import <AFNetworking/AFNetworking.h>
 #import <ActionSheetDatePicker.h>
 #import <ActionSheetStringPicker.h>
@@ -10,7 +11,8 @@
 @property (nonatomic) NSString *notesPlaceholder;
 @property (nonatomic) UIColor *notesTextColor;
 @property (nonatomic) NSDateFormatter *arrivalDateLabelFormatter;
-@property (nonatomic) NSString *selectedCenter;
+@property (nonatomic) NSString *selectedHub;
+@property (nonatomic) NSArray *hubs;
 @end
 
 @implementation CreateRideViewController
@@ -18,10 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.rideDate = [NSDate date];
+    self.hubs = [CaronaeDefaults defaults].centers;
+    self.selectedHub = self.hubs[0];
+    
+    self.rideDate = [NSDate nextHour];
     self.weekDays = [NSMutableArray arrayWithCapacity:7];
     self.routineDurationMonths = 2;
-    self.selectedCenter = @"CT";
     
     self.arrivalDateLabelFormatter = [[NSDateFormatter alloc] init];
     self.arrivalDateLabelFormatter.dateFormat = @"dd/MM/yyyy HH:mm";
@@ -75,7 +79,7 @@
                            @"week_days": isRoutine ? weekDaysString : [NSNull null],
                            @"repeats_until": isRoutine ? [dateFormat stringFromDate:repeatsUntilDate] : [NSNull null],
                            @"slots": @((int)self.slotsStepper.value),
-                           @"hub": going ? self.selectedCenter : @"",
+                           @"hub": going ? self.selectedHub : @"",
                            @"description": description,
                            @"going": @(going)
                            };
@@ -271,13 +275,23 @@
     [self.arrivalTimeButton setTitle:[dateFormatter stringFromDate:selectedTime] forState:UIControlStateNormal];
 }
 
+- (IBAction)directionChanged:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == 0) {
+        self.hubs = [CaronaeDefaults defaults].centers;
+    }
+    else {
+        self.hubs = [CaronaeDefaults defaults].hubs;
+    }
+    self.selectedHub = self.hubs[0];
+    [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
+}
+
 - (IBAction)selectCenterTapped:(id)sender {
-    NSArray *centers = @[@"CT", @"CCMN", @"CCS", @"Letras", @"Reitoria"];
     [ActionSheetStringPicker showPickerWithTitle:@"Selecione um centro"
-                                            rows:centers
+                                            rows:self.hubs
                                 initialSelection:0
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           self.selectedCenter = selectedValue;
+                                           self.selectedHub = selectedValue;
                                            [self.center setTitle:selectedValue forState:UIControlStateNormal];
                                        }
                                      cancelBlock:nil origin:sender];

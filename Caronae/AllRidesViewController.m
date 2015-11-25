@@ -1,5 +1,5 @@
 #import <AFNetworking/AFNetworking.h>
-#import "CaronaeConstants.h"
+#import "CaronaeDefaults.h"
 #import "AllRidesViewController.h"
 #import "CaronaeRideTableViewCell.h"
 #import "SearchRideViewController.h"

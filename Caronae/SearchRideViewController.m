@@ -1,15 +1,18 @@
 #import "SearchRideViewController.h"
 #import <ActionSheetDatePicker.h>
 #import <ActionSheetStringPicker.h>
+#import "NSDate+nextHour.h"
+#import "CaronaeDefaults.h"
 
 @interface SearchRideViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *directionControl;
 @property (weak, nonatomic) IBOutlet UITextField *neighborhood;
 @property (nonatomic) NSDate *searchedDate;
-@property (nonatomic) NSString *selectedCenter;
+@property (nonatomic) NSString *selectedHub;
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
 @property (weak, nonatomic) IBOutlet UIButton *centerButton;
 @property (nonatomic) NSDateFormatter *dateFormatter;
+@property (nonatomic) NSArray *hubs;
 @end
 
 @implementation SearchRideViewController
@@ -23,16 +26,16 @@
     }
     
     NSString *lastSearchedCenter = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearchedCenter"];
+    self.hubs = [CaronaeDefaults defaults].centers;
     if (lastSearchedCenter) {
-        self.selectedCenter = lastSearchedCenter;
-        [self.centerButton setTitle:lastSearchedCenter forState:UIControlStateNormal];
+        self.selectedHub = lastSearchedCenter;
     }
     else {
-        self.selectedCenter = @"CT";
-        [self.centerButton setTitle:@"CT" forState:UIControlStateNormal];
+        self.selectedHub = self.hubs[0];
     }
+    [self.centerButton setTitle:self.selectedHub forState:UIControlStateNormal];
     
-    self.searchedDate = [NSDate date];
+    self.searchedDate = [NSDate nextHour];
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setDateFormat:@"dd/MM/yyyy HH:mm"];
     [self.dateButton setTitle:[self.dateFormatter stringFromDate:self.searchedDate] forState:UIControlStateNormal];
@@ -54,14 +57,20 @@
     // Test if user has selected a neighborhood
     if (![neighborhood isEqualToString:@""]) {
         [[NSUserDefaults standardUserDefaults] setObject:neighborhood forKey:@"lastSearchedNeighborhood"];
-        [[NSUserDefaults standardUserDefaults] setObject:self.selectedCenter forKey:@"lastSearchedCenter"];
-        [self.delegate searchedForRideWithCenter:self.selectedCenter andNeighborhood:neighborhood onDate:self.searchedDate going:going];
+        if (going) {
+            [[NSUserDefaults standardUserDefaults] setObject:self.selectedHub forKey:@"lastSearchedCenter"];
+        }
+        else {
+            [[NSUserDefaults standardUserDefaults] setObject:self.selectedHub forKey:@"lastSearchedHub"];
+        }
+        [self.delegate searchedForRideWithCenter:self.selectedHub andNeighborhood:neighborhood onDate:self.searchedDate going:going];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
 - (IBAction)didTapDate:(id)sender {
     ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Hora" datePickerMode:UIDatePickerModeDateAndTime selectedDate:self.searchedDate target:self action:@selector(timeWasSelected:element:) origin:sender];
+    ((UIDatePicker *)datePicker).minuteInterval = 30;
     [datePicker showActionSheetPicker];
 }
 
@@ -70,14 +79,37 @@
     [self.dateButton setTitle:[self.dateFormatter stringFromDate:selectedTime] forState:UIControlStateNormal];
 }
 
+- (IBAction)directionChanged:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == 0) {
+        NSString *lastSearchedCenter = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearchedCenter"];
+        self.hubs = [CaronaeDefaults defaults].centers;
+        if (lastSearchedCenter) {
+            self.selectedHub = lastSearchedCenter;
+        }
+        else {
+            self.selectedHub = self.hubs[0];
+        }
+    }
+    else {
+        NSString *lastSearchedHubs = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearchedHub"];
+        self.hubs = [CaronaeDefaults defaults].hubs;
+        if (lastSearchedHubs) {
+            self.selectedHub = lastSearchedHubs;
+        }
+        else {
+            self.selectedHub = self.hubs[0];
+        }
+    }
+    [self.centerButton setTitle:self.selectedHub forState:UIControlStateNormal];
+}
+
 - (IBAction)selectCenterTapped:(id)sender {
-    NSArray *centers = @[@"CT", @"CCMN", @"CCS", @"Letras", @"Reitoria"];
-    long lastSearchedCenterIndex = [centers indexOfObject:self.selectedCenter];
+    long lastSearchedCenterIndex = [self.hubs indexOfObject:self.selectedHub];
     [ActionSheetStringPicker showPickerWithTitle:@"Selecione um centro"
-                                            rows:centers
+                                            rows:self.hubs
                                 initialSelection:lastSearchedCenterIndex
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           self.selectedCenter = selectedValue;
+                                           self.selectedHub = selectedValue;
                                            [self.centerButton setTitle:selectedValue forState:UIControlStateNormal];
                                        }
                                      cancelBlock:nil origin:sender];

@@ -791,6 +791,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <include reference="eAG-Yl-6aG"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="directionChanged:" destination="Frl-vE-K7W" eventType="valueChanged" id="rd0-J1-Vtb"/>
+                                                </connections>
                                             </segmentedControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SoK-oZ-c5J" userLabel="Origin">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -893,7 +896,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOK-HL-cQ2" userLabel="Route">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Referência Ex: Via Leopoldina e Maracanã" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L9i-M2-F5w" customClass="CaronaeTextField">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rota Ex: Maracanã, Leopoldina, Linha Vermelha" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L9i-M2-F5w" customClass="CaronaeTextField">
                                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                         <animations/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -5208,11 +5211,11 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="996" y="1499"/>
         </scene>
-        <!--Minhas-->
+        <!--Ativas-->
         <scene sceneID="L3B-pk-WvI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ESO-TG-2Ch" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Minhas" image="menu2" id="qpg-Pw-SZw"/>
+                    <tabBarItem key="tabBarItem" title="Ativas" image="menu3" id="qpg-Pw-SZw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="N1E-gi-4wz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -5270,6 +5273,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <include reference="cyh-xu-vzE"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="directionChanged:" destination="ygN-Ct-tDz" eventType="valueChanged" id="w5r-H6-f6r"/>
+                                                </connections>
                                             </segmentedControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Kk-3k-hQd" userLabel="Center">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -5731,7 +5737,7 @@ Este é o token gerado através da Intranet UFRJ</string>
         <image name="SearchRide" width="20" height="20"/>
         <image name="SeparatorColor" width="308" height="4"/>
         <image name="menu1" width="34" height="26"/>
-        <image name="menu2" width="26" height="26"/>
+        <image name="menu3" width="38" height="26"/>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
