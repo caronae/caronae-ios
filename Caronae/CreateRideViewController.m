@@ -24,7 +24,7 @@
     self.selectedCenter = @"CT";
     
     self.arrivalDateLabelFormatter = [[NSDateFormatter alloc] init];
-    self.arrivalDateLabelFormatter.dateFormat = @"dd/MM/yyyy hh:mm";
+    self.arrivalDateLabelFormatter.dateFormat = @"dd/MM/yyyy HH:mm";
     [self.arrivalTimeButton setTitle:[self.arrivalDateLabelFormatter stringFromDate:self.rideDate] forState:UIControlStateNormal];
     
     self.segmentedControl.layer.cornerRadius = 8.0;
@@ -56,6 +56,7 @@
     NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
     timeFormat.dateFormat = @"HH:mm";
     NSString *weekDaysString = [[self.weekDays sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] componentsJoinedByString:@","];
+    NSString *description = [self.notes.text isEqualToString:_notesPlaceholder] ? @"" : self.notes.text;
     BOOL isRoutine = self.routineSwitch.on;
     BOOL going = (self.segmentedControl.selectedSegmentIndex == 0);
     
@@ -75,7 +76,7 @@
                            @"repeats_until": isRoutine ? [dateFormat stringFromDate:repeatsUntilDate] : @"",
                            @"slots": @((int)self.slotsStepper.value),
                            @"hub": going ? self.selectedCenter : @"",
-                           @"description": self.notes.text,
+                           @"description": description,
                            @"going": @(going)
                            };
     return ride;
@@ -119,17 +120,19 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/store"] parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride"] parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response JSON: %@", responseObject);
         NSError *responseError;
         NSArray *createdRides = [CreateRideViewController parseCreateRidesFromResponse:responseObject withError:&responseError];
         if (responseError) {
-            NSLog(@"Response error: %@", responseError.localizedDescription);
+            NSLog(@"Response error: %@", responseError.description);
         }
-        
-        NSLog(@"%lu rides created.", (unsigned long)createdRides.count);
+        else {
+            NSLog(@"%lu rides created.", (unsigned long)createdRides.count);
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"Error: %@", error.description);
 //        NSLog(@"body: %@", operation.responseString);
     }];
 
@@ -264,7 +267,7 @@
 - (void)timeWasSelected:(NSDate *)selectedTime element:(id)element {
     self.rideDate = selectedTime;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM/yyyy hh:mm"];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy HH:mm"];
     [self.arrivalTimeButton setTitle:[dateFormatter stringFromDate:selectedTime] forState:UIControlStateNormal];
 }
 

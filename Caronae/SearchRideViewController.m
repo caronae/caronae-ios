@@ -17,10 +17,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.selectedCenter = @"CT";
+    NSString *lastSearchedNeighborhood = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearchedNeighborhood"];
+    if (lastSearchedNeighborhood) {
+        self.neighborhood.text = lastSearchedNeighborhood;
+    }
+    
+    NSString *lastSearchedCenter = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearchedCenter"];
+    if (lastSearchedCenter) {
+        self.selectedCenter = lastSearchedCenter;
+        [self.centerButton setTitle:lastSearchedCenter forState:UIControlStateNormal];
+    }
+    else {
+        self.selectedCenter = @"CT";
+        [self.centerButton setTitle:@"CT" forState:UIControlStateNormal];
+    }
+    
     self.searchedDate = [NSDate date];
     self.dateFormatter = [[NSDateFormatter alloc] init];
-    [self.dateFormatter setDateFormat:@"dd/MM/yyyy hh:mm"];
+    [self.dateFormatter setDateFormat:@"dd/MM/yyyy HH:mm"];
     [self.dateButton setTitle:[self.dateFormatter stringFromDate:self.searchedDate] forState:UIControlStateNormal];
 }
 
@@ -34,6 +48,8 @@
     
     // Test if user has selected a neighborhood
     if (![neighborhood isEqualToString:@""]) {
+        [[NSUserDefaults standardUserDefaults] setObject:neighborhood forKey:@"lastSearchedNeighborhood"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.selectedCenter forKey:@"lastSearchedCenter"];
         [self.delegate searchedForRideWithCenter:self.selectedCenter andNeighborhood:neighborhood onDate:self.searchedDate going:going];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
@@ -51,9 +67,10 @@
 
 - (IBAction)selectCenterTapped:(id)sender {
     NSArray *centers = @[@"CT", @"CCMN", @"CCS", @"Letras", @"Reitoria"];
+    long lastSearchedCenterIndex = [centers indexOfObject:self.selectedCenter];
     [ActionSheetStringPicker showPickerWithTitle:@"Selecione um centro"
                                             rows:centers
-                                initialSelection:0
+                                initialSelection:lastSearchedCenterIndex
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            self.selectedCenter = selectedValue;
                                            [self.centerButton setTitle:selectedValue forState:UIControlStateNormal];

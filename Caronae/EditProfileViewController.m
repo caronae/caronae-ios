@@ -84,7 +84,7 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showLoadingHUD:NO];
-        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"Error: %@", error.description);
     }];
 }
 

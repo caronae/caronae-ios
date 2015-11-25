@@ -377,7 +377,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 </label>
                                                             </subviews>
                                                             <animations/>
-                                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstItem="fov-bO-tsv" firstAttribute="leading" secondItem="Mo8-5Q-MSH" secondAttribute="leading" id="32z-G2-BlQ"/>
                                                                 <constraint firstItem="Mo8-5Q-MSH" firstAttribute="leading" secondItem="9pb-P6-S6G" secondAttribute="leading" constant="8" id="Fqm-wf-tV9">
@@ -539,6 +538,18 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 </constraint>
                                                 <constraint firstAttribute="trailing" secondItem="sTL-gX-06d" secondAttribute="trailing" id="vel-OD-FLr"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                    <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                    <color key="value" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="d20-k3-jmD"/>

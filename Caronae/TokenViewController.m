@@ -42,7 +42,7 @@
             sender.enabled = YES;
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"Error: %@", error.description);
         sender.enabled = YES;
     }];
 }

@@ -17,13 +17,15 @@
     
     NSDateFormatter *dateParserFormatter = [[NSDateFormatter alloc] init];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateParserFormatter.dateFormat = @"yyyy-MM-dd hh:mm";
-    dateFormatter.dateFormat = @"hh:mm | dd/MM";
-    NSDate *arrivalDate = [dateParserFormatter dateFromString:[NSString stringWithFormat:@"%@ %@", ride[@"date"], ride[@"time"]]];
+    dateParserFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    dateFormatter.dateFormat = @"HH:mm | dd/MM";
+    NSString *dateTimeString = [NSString stringWithFormat:@"%@ %@", ride[@"date"], ride[@"time"]];
+    NSDate *arrivalDate = [dateParserFormatter dateFromString:dateTimeString];
+    int slots = [ride[@"slots"] intValue];
     
     _titleLabel.text = [NSString stringWithFormat:@"%@ → %@", ride[@"neighborhood"], ride[@"hub"]];
     _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Chegando às %@", [dateFormatter stringFromDate:arrivalDate]];
-    _slotsLabel.text = [NSString stringWithFormat:@"%d %@", (int)ride[@"slots"], [ride[@"slots"] isEqual: @(1)] ? @"vaga" : @"vagas"];
+    _slotsLabel.text = [NSString stringWithFormat:@"%d %@", slots, slots == 1 ? @"vaga" : @"vagas"];
     _driverLabel.text = [NSString stringWithFormat:@"%@ | %@", ride[@"driverName"], ride[@"course"]];
     _friendsInCommonLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", 0];
     _driverMessageLabel.text = ride[@"description"];
