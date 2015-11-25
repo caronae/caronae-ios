@@ -12,7 +12,7 @@
     // Configure the view for the selected state
 }
 
-- (void)configureCellWithRide:(NSDictionary *)ride {
+- (void)configureCellWithRide:(NSDictionary *)ride canJoin:(BOOL)joinEnabled {
     _ride = ride;
     
     NSDateFormatter *dateParserFormatter = [[NSDateFormatter alloc] init];
@@ -30,6 +30,12 @@
     _friendsInCommonLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", 0];
     _driverMessageLabel.text = ride[@"description"];
     _routeLabel.text = ride[@"route"];
+    
+    _requestRideButton.enabled = joinEnabled;
+}
+
+- (IBAction)didTapJoinRideButton:(id)sender {
+    [self.delegate tappedJoinRide:self];
 }
 
 @end

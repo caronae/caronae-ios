@@ -4,7 +4,7 @@
 #import "CaronaeRideTableViewCell.h"
 #import "SearchRideViewController.h"
 
-@interface AllRidesViewController () <SeachRideDelegate>
+@interface AllRidesViewController () <SeachRideDelegate, CaronaeRideCellDelegate>
 @property (nonatomic) NSArray *rides;
 @end
 
@@ -93,6 +93,29 @@
     return nil;
 }
 
+- (void)tappedJoinRide:(CaronaeRideTableViewCell *)cell {
+    NSDictionary *ride = cell.ride;
+    NSLog(@"Requesting to join ride %@", ride[@"rideId"]);
+    NSDictionary *params = @{@"rideId": ride[@"rideId"]};
+    
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
+    
+    cell.requestRideButton.enabled = NO;
+    
+    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"Done requesting ride.");
+        [cell.requestRideButton setTitle:@"CARONA SOLICITADA" forState:UIControlStateNormal];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.description);
+        cell.requestRideButton.enabled = YES;
+    }];
+
+}
+
 #pragma mark - Table methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -106,7 +129,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CaronaeRideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Ride Cell" forIndexPath:indexPath];
     
-    [cell configureCellWithRide:self.rides[indexPath.row]];
+    [cell configureCellWithRide:self.rides[indexPath.row] canJoin:YES];
+    cell.delegate = self;
     
     return cell;
 }
