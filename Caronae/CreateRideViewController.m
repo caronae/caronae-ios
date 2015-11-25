@@ -72,8 +72,8 @@
                            @"route": self.route.text,
                            @"mydate": [dateFormat stringFromDate:self.rideDate],
                            @"mytime": [timeFormat stringFromDate:self.rideDate],
-                           @"week_days": isRoutine ? weekDaysString : @"",
-                           @"repeats_until": isRoutine ? [dateFormat stringFromDate:repeatsUntilDate] : @"",
+                           @"week_days": isRoutine ? weekDaysString : [NSNull null],
+                           @"repeats_until": isRoutine ? [dateFormat stringFromDate:repeatsUntilDate] : [NSNull null],
                            @"slots": @((int)self.slotsStepper.value),
                            @"hub": going ? self.selectedCenter : @"",
                            @"description": description,
@@ -260,7 +260,7 @@
 }
 
 - (IBAction)routineSelectDateTapped:(id)sender {
-    ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Chegada ao destino" datePickerMode:UIDatePickerModeDateAndTime selectedDate:[NSDate date] target:self action:@selector(timeWasSelected:element:) origin:sender];
+    ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Chegada ao destino" datePickerMode:UIDatePickerModeDateAndTime selectedDate:self.rideDate target:self action:@selector(timeWasSelected:element:) origin:sender];
     [datePicker showActionSheetPicker];
 }
 
