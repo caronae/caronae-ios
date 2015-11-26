@@ -1,7 +1,7 @@
-#import "CaronaeRideTableViewCell.h"
+#import "CaronaeRideCell.h"
 #import "Ride.h"
 
-@implementation CaronaeRideTableViewCell
+@implementation CaronaeRideCell
 
 - (void)awakeFromNib {
     // Initialization code

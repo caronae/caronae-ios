@@ -1,7 +1,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "CaronaeDefaults.h"
 #import "AllRidesViewController.h"
-#import "CaronaeRideTableViewCell.h"
+#import "CaronaeRideCell.h"
 #import "SearchRideViewController.h"
 #import "Ride.h"
 
@@ -100,7 +100,7 @@
     return nil;
 }
 
-- (void)tappedJoinRide:(CaronaeRideTableViewCell *)cell {
+- (void)tappedJoinRide:(CaronaeRideCell *)cell {
     NSLog(@"Requesting to join ride %ld", cell.ride.rideID);
     NSDictionary *params = @{@"rideId": @(cell.ride.rideID)};
     
@@ -133,7 +133,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CaronaeRideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Ride Cell" forIndexPath:indexPath];
+    CaronaeRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Ride Cell" forIndexPath:indexPath];
     
     [cell configureCellWithRide:self.rides[indexPath.row] canJoin:YES];
     cell.delegate = self;

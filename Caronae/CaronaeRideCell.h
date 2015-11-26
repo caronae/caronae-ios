@@ -1,13 +1,13 @@
 #import <UIKit/UIKit.h>
 
 @class Ride;
-@class CaronaeRideTableViewCell;
+@class CaronaeRideCell;
 
 @protocol CaronaeRideCellDelegate <NSObject>
-- (void)tappedJoinRide:(CaronaeRideTableViewCell *)cell;
+- (void)tappedJoinRide:(CaronaeRideCell *)cell;
 @end
 
-@interface CaronaeRideTableViewCell : UITableViewCell
+@interface CaronaeRideCell : UITableViewCell
 
 - (void)configureCellWithRide:(NSDictionary *)ride canJoin:(BOOL)joinEnabled;
 
