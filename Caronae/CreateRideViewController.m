@@ -79,7 +79,7 @@
                            @"week_days": isRoutine ? weekDaysString : [NSNull null],
                            @"repeats_until": isRoutine ? [dateFormat stringFromDate:repeatsUntilDate] : [NSNull null],
                            @"slots": @((int)self.slotsStepper.value),
-                           @"hub": going ? self.selectedHub : @"",
+                           @"hub": self.selectedHub,
                            @"description": description,
                            @"going": @(going)
                            };

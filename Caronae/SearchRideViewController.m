@@ -57,12 +57,7 @@
     // Test if user has selected a neighborhood
     if (![neighborhood isEqualToString:@""]) {
         [[NSUserDefaults standardUserDefaults] setObject:neighborhood forKey:@"lastSearchedNeighborhood"];
-        if (going) {
-            [[NSUserDefaults standardUserDefaults] setObject:self.selectedHub forKey:@"lastSearchedCenter"];
-        }
-        else {
-            [[NSUserDefaults standardUserDefaults] setObject:self.selectedHub forKey:@"lastSearchedHub"];
-        }
+        [[NSUserDefaults standardUserDefaults] setObject:self.selectedHub forKey:@"lastSearchedCenter"];
         [self.delegate searchedForRideWithCenter:self.selectedHub andNeighborhood:neighborhood onDate:self.searchedDate going:going];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
@@ -77,30 +72,6 @@
 - (void)timeWasSelected:(NSDate *)selectedTime element:(id)element {
     self.searchedDate = selectedTime;
     [self.dateButton setTitle:[self.dateFormatter stringFromDate:selectedTime] forState:UIControlStateNormal];
-}
-
-- (IBAction)directionChanged:(UISegmentedControl *)sender {
-    if (sender.selectedSegmentIndex == 0) {
-        NSString *lastSearchedCenter = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearchedCenter"];
-        self.hubs = [CaronaeDefaults defaults].centers;
-        if (lastSearchedCenter) {
-            self.selectedHub = lastSearchedCenter;
-        }
-        else {
-            self.selectedHub = self.hubs[0];
-        }
-    }
-    else {
-        NSString *lastSearchedHubs = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearchedHub"];
-        self.hubs = [CaronaeDefaults defaults].hubs;
-        if (lastSearchedHubs) {
-            self.selectedHub = lastSearchedHubs;
-        }
-        else {
-            self.selectedHub = self.hubs[0];
-        }
-    }
-    [self.centerButton setTitle:self.selectedHub forState:UIControlStateNormal];
 }
 
 - (IBAction)selectCenterTapped:(id)sender {

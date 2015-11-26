@@ -5273,9 +5273,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <include reference="cyh-xu-vzE"/>
                                                     </mask>
                                                 </variation>
-                                                <connections>
-                                                    <action selector="directionChanged:" destination="ygN-Ct-tDz" eventType="valueChanged" id="w5r-H6-f6r"/>
-                                                </connections>
                                             </segmentedControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Kk-3k-hQd" userLabel="Center">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
