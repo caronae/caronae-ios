@@ -1,8 +1,10 @@
 #import <Foundation/Foundation.h>
 
-extern const NSString *CaronaeAPIBaseURL;
+extern NSString *const CaronaeAPIBaseURL;
 
-extern NSString *CaronaeErrorDomain;
+extern NSString *const CaronaeUserRidesUpdatedNotification;
+
+extern NSString *const CaronaeErrorDomain;
 extern const NSInteger CaronaeErrorInvalidResponse;
 extern const NSInteger CaronaeErrorNoRidesCreated;
 

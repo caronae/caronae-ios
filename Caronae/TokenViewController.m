@@ -24,10 +24,11 @@
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/user/login"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // Check if the authentication was ok if we received an user object
         if (responseObject[@"user"]) {
-            // Convert NSNull properties to empty strings
+            // Save user's profile
             NSDictionary *userProfile = [responseObject[@"user"] dictionaryWithoutNulls];
             [[NSUserDefaults standardUserDefaults] setObject:userProfile forKey:@"user"];
             
+            // Save user's created rides
             NSArray *rides = responseObject[@"rides"];
             NSMutableArray *filteredRides = [NSMutableArray arrayWithCapacity:rides.count];
             for (id rideDictionary in rides) {
@@ -35,7 +36,11 @@
             }
             [[NSUserDefaults standardUserDefaults] setObject:filteredRides forKey:@"userCreatedRides"];
             
+            // Save user's token
             [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"token"];
+            
+            // Synchronize
+            [[NSUserDefaults standardUserDefaults] synchronize];
             
             [self.authTextField resignFirstResponder];
             [self performSegueWithIdentifier:@"tokenValidated" sender:self];

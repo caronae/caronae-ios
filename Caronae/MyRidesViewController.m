@@ -1,11 +1,13 @@
 #import "MyRidesViewController.h"
 #import "Ride.h"
 #import "CaronaeRideCell.h"
+#import "CaronaeDefaults.h"
 #import "RideViewController.h"
 
 @interface MyRidesViewController ()
 @property (nonatomic) NSArray *rides;
 @property (nonatomic) Ride *selectedRide;
+@property (nonatomic) NSDictionary *user;
 @end
 
 @implementation MyRidesViewController
@@ -21,8 +23,14 @@
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
     
-    NSDictionary *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+    self.user = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNotification:) name:CaronaeUserRidesUpdatedNotification object:nil];
+    
+    [self updateRides];
+}
+
+- (void)updateRides {
     // TODO: Add to secondary thread?
     NSArray *rideArchive = [[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"];
     NSMutableArray *rides = [[NSMutableArray alloc] initWithCapacity:rideArchive.count];
@@ -34,15 +42,21 @@
             continue;
         }
         
-        ride.driverID = [user[@"id"] longValue];
-        ride.driverName = user[@"name"];
-        ride.driverCourse = user[@"course"];
+        ride.driverID = [self.user[@"id"] longValue];
+        ride.driverName = self.user[@"name"];
+        ride.driverCourse = self.user[@"course"];
         [rides addObject:ride];
     }
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
     self.rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
-    
+}
+
+- (void)didReceiveNotification:(NSNotification *)notification {
+    if ([notification.name isEqualToString:CaronaeUserRidesUpdatedNotification]) {
+        [self updateRides];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

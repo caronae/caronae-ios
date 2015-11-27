@@ -1,6 +1,7 @@
 #import "CaronaeDefaults.h"
 #import "CreateRideViewController.h"
 #import "NSDate+nextHour.h"
+#import "NSDictionary+dictionaryWithoutNulls.h"
 #import <AFNetworking/AFNetworking.h>
 #import <ActionSheetDatePicker.h>
 #import <ActionSheetStringPicker.h>
@@ -133,6 +134,16 @@
         }
         else {
             NSLog(@"%lu rides created.", (unsigned long)createdRides.count);
+            
+            NSMutableArray *userRidesArchive = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"]];
+            for (id rideDictionary in createdRides) {
+                [userRidesArchive addObject:[rideDictionary dictionaryWithoutNulls]];
+            }
+            [[NSUserDefaults standardUserDefaults] setObject:userRidesArchive forKey:@"userCreatedRides"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeUserRidesUpdatedNotification object:self];
+            
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

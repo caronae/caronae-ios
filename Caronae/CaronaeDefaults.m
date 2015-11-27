@@ -2,13 +2,16 @@
 
 #pragma mark - API settings
 
-//const NSString *CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
-//const NSString *CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
-const NSString *CaronaeAPIBaseURL = @"http://localhost:8000";
+// NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
+NSString *const CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
+// NSString *const CaronaeAPIBaseURL = @"http://localhost:8000";
+
+#pragma mark - Notifications
+NSString *const CaronaeUserRidesUpdatedNotification = @"CaronaeUserRidesUpdatedNotification";
 
 #pragma mark - Error types
 
-NSString *CaronaeErrorDomain = @"CaronaeError";
+NSString *const CaronaeErrorDomain = @"CaronaeError";
 const NSInteger CaronaeErrorInvalidResponse = 1;
 const NSInteger CaronaeErrorNoRidesCreated = 2;
 
