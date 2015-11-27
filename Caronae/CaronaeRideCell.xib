@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Ride Cell" id="h46-Tw-XO0" customClass="CaronaeRideCell">
+            <rect key="frame" x="0.0" y="0.0" width="449" height="90"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h46-Tw-XO0" id="N9U-VB-hra">
+                <rect key="frame" x="0.0" y="0.0" width="449" height="90"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="FREGUESIA → CT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWN-UA-DTI" userLabel="Description">
+                        <rect key="frame" x="82" y="18" width="120" height="17"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="3 vagas" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaW-GQ-xGL" userLabel="Slots">
+                        <rect key="frame" x="82" y="54" width="45" height="14"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="yhy-4r-phG" userLabel="Driver photo">
+                        <rect key="frame" x="17" y="18" width="50" height="50"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="yhy-4r-phG" secondAttribute="height" multiplier="1:1" id="2D4-Mp-YKR"/>
+                            <constraint firstAttribute="width" constant="90" id="SNe-u5-LTM">
+                                <variation key="widthClass=compact" constant="50"/>
+                            </constraint>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="25"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2D4-Mp-YKR"/>
+                                <exclude reference="SNe-u5-LTM"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="2D4-Mp-YKR"/>
+                                <include reference="SNe-u5-LTM"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Chegando às 16:45 | 03/11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2br-U4-dn5" userLabel="Date">
+                        <rect key="frame" x="82" y="37" width="151" height="15"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="yhy-4r-phG" firstAttribute="top" secondItem="N9U-VB-hra" secondAttribute="topMargin" constant="10" id="3GV-Xb-qgT"/>
+                    <constraint firstItem="2br-U4-dn5" firstAttribute="top" secondItem="fWN-UA-DTI" secondAttribute="bottom" constant="2" id="4fl-AD-vlR"/>
+                    <constraint firstItem="yhy-4r-phG" firstAttribute="leading" secondItem="N9U-VB-hra" secondAttribute="leadingMargin" constant="15" id="FQY-PI-bbJ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="yhy-4r-phG" secondAttribute="bottom" constant="10" id="Ibd-4U-nFX"/>
+                    <constraint firstItem="2br-U4-dn5" firstAttribute="leading" secondItem="fWN-UA-DTI" secondAttribute="leading" id="Lso-h8-v0S"/>
+                    <constraint firstItem="qaW-GQ-xGL" firstAttribute="leading" secondItem="fWN-UA-DTI" secondAttribute="leading" id="Vbg-WO-Mol"/>
+                    <constraint firstItem="fWN-UA-DTI" firstAttribute="leading" secondItem="yhy-4r-phG" secondAttribute="trailing" constant="15" id="XxF-EX-rNX"/>
+                    <constraint firstItem="2br-U4-dn5" firstAttribute="width" secondItem="fWN-UA-DTI" secondAttribute="width" id="aU7-Hu-Kpb"/>
+                    <constraint firstItem="fWN-UA-DTI" firstAttribute="top" secondItem="yhy-4r-phG" secondAttribute="top" id="iEc-fV-uEr"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fWN-UA-DTI" secondAttribute="trailing" constant="15" id="oQz-pv-YbD"/>
+                    <constraint firstItem="yhy-4r-phG" firstAttribute="width" secondItem="yhy-4r-phG" secondAttribute="height" multiplier="1:1" id="xhV-bg-6X0"/>
+                    <constraint firstItem="qaW-GQ-xGL" firstAttribute="top" secondItem="2br-U4-dn5" secondAttribute="bottom" constant="2" id="zLm-jH-KTz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="arrivalDateTimeLabel" destination="2br-U4-dn5" id="ITd-qo-zn4"/>
+                <outlet property="slotsLabel" destination="qaW-GQ-xGL" id="RIo-vd-88u"/>
+                <outlet property="titleLabel" destination="fWN-UA-DTI" id="GMN-BP-W02"/>
+            </connections>
+            <point key="canvasLocation" x="319.5" y="234"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Profile Picture" width="710" height="710"/>
+    </resources>
+</document>

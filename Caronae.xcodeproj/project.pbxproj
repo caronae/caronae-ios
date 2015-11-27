@@ -25,6 +25,8 @@
 		A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */; };
 		A39BBCFF1C06296200EF9EBD /* Ride.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBCFE1C06296200EF9EBD /* Ride.m */; };
 		A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBD021C06378E00EF9EBD /* NSDate+nextHour.m */; };
+		A39BBD051C06AB9D00EF9EBD /* CaronaeRideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39BBD041C06AB9D00EF9EBD /* CaronaeRideCell.xib */; };
+		A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */; };
 		A3AD19CA1BED9BFB003EDA17 /* AllRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AD19C91BED9BFB003EDA17 /* AllRidesViewController.m */; };
 		A3B5AEFF1BF1AAC10026A889 /* CaronaeDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AEFE1BF1AAC10026A889 /* CaronaeDefaults.m */; };
 		A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */; };
@@ -86,6 +88,9 @@
 		A39BBCFE1C06296200EF9EBD /* Ride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ride.m; sourceTree = "<group>"; };
 		A39BBD011C06378E00EF9EBD /* NSDate+nextHour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+nextHour.h"; sourceTree = "<group>"; };
 		A39BBD021C06378E00EF9EBD /* NSDate+nextHour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+nextHour.m"; sourceTree = "<group>"; };
+		A39BBD041C06AB9D00EF9EBD /* CaronaeRideCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CaronaeRideCell.xib; sourceTree = "<group>"; };
+		A39BBD091C06B94E00EF9EBD /* RideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideViewController.h; sourceTree = "<group>"; };
+		A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideViewController.m; sourceTree = "<group>"; };
 		A3AD19C81BED9BFB003EDA17 /* AllRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllRidesViewController.h; sourceTree = "<group>"; };
 		A3AD19C91BED9BFB003EDA17 /* AllRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllRidesViewController.m; sourceTree = "<group>"; };
 		A3B5AEFD1BF1AAC10026A889 /* CaronaeDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeDefaults.h; sourceTree = "<group>"; };
@@ -177,6 +182,8 @@
 				A3AD19C91BED9BFB003EDA17 /* AllRidesViewController.m */,
 				A3B5AF041BF1ADF30026A889 /* MyRidesViewController.h */,
 				A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */,
+				A39BBD091C06B94E00EF9EBD /* RideViewController.h */,
+				A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */,
 				A34312C81BF01C1D005BA311 /* ProfileViewController.h */,
 				A34312C91BF01C1D005BA311 /* ProfileViewController.m */,
 				A34312CB1BF01C26005BA311 /* EditProfileViewController.h */,
@@ -228,6 +235,7 @@
 		A3AD19C71BED96DC003EDA17 /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
+				A39BBD041C06AB9D00EF9EBD /* CaronaeRideCell.xib */,
 				A38F1D4B1C0398B500DEF6B1 /* CaronaeRideCell.h */,
 				A38F1D4C1C0398B500DEF6B1 /* CaronaeRideCell.m */,
 				A3169CC91BED893F00A0D428 /* CaronaeTextField.h */,
@@ -364,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3169CA61BED842D00A0D428 /* LaunchScreen.storyboard in Resources */,
+				A39BBD051C06AB9D00EF9EBD /* CaronaeRideCell.xib in Resources */,
 				A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */,
 				A3169C9E1BED842D00A0D428 /* Main.storyboard in Resources */,
 			);
@@ -442,6 +451,7 @@
 				A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */,
 				A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */,
 				A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */,
+				A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */,
 				A3169C9B1BED842D00A0D428 /* TokenViewController.m in Sources */,
 				A39BBCFF1C06296200EF9EBD /* Ride.m in Sources */,
 				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,

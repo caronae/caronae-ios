@@ -4,15 +4,20 @@
 #import "CaronaeRideCell.h"
 #import "SearchRideViewController.h"
 #import "Ride.h"
+#import "RideViewController.h"
 
-@interface AllRidesViewController () <SeachRideDelegate, CaronaeRideCellDelegate>
+@interface AllRidesViewController () <SeachRideDelegate>
 @property (nonatomic) NSArray *rides;
+@property (nonatomic) Ride *selectedRide;
 @end
 
 @implementation AllRidesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UINib *cellNib = [UINib nibWithNibName:@"CaronaeRideCell" bundle:nil];
+    [self.tableView registerNib:cellNib forCellReuseIdentifier:@"Ride Cell"];
     
     self.tableView.estimatedRowHeight = 100.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -25,6 +30,10 @@
         UINavigationController *searchNavController = segue.destinationViewController;
         SearchRideViewController *searchVC = searchNavController.viewControllers.firstObject;
         searchVC.delegate = self;
+    }
+    else if ([segue.identifier isEqualToString:@"ViewRideDetails"]) {
+        RideViewController *vc = segue.destinationViewController;
+        vc.ride = self.selectedRide;
     }
 }
 
@@ -100,28 +109,6 @@
     return nil;
 }
 
-- (void)tappedJoinRide:(CaronaeRideCell *)cell {
-    NSLog(@"Requesting to join ride %ld", cell.ride.rideID);
-    NSDictionary *params = @{@"rideId": @(cell.ride.rideID)};
-    
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
-    
-    cell.requestRideButton.enabled = NO;
-    
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSLog(@"Done requesting ride.");
-        [cell.requestRideButton setTitle:@"CARONA SOLICITADA" forState:UIControlStateNormal];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.description);
-        cell.requestRideButton.enabled = YES;
-    }];
-
-}
-
 #pragma mark - Table methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -135,14 +122,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CaronaeRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Ride Cell" forIndexPath:indexPath];
     
-    [cell configureCellWithRide:self.rides[indexPath.row] canJoin:YES];
-    cell.delegate = self;
+    [cell configureCellWithRide:self.rides[indexPath.row]];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    self.selectedRide = self.rides[indexPath.row];
+    [self performSegueWithIdentifier:@"ViewRideDetails" sender:self];
 }
 
 
