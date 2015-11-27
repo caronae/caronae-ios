@@ -31,6 +31,15 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
     if (self) {
         _centers = @[@"CT", @"CCMN", @"CCS", @"EEFD", @"Reitoria", @"Letras"];
         _hubs = @[@"CT Fundos Bloco I", @"CT Bloco D", @"CT Bloco H", @"CCMN Frente", @"CCMN Fundos", @"CCS Frente", @"CCS Saída HU", @"Reitoria", @"EEFD", @"Letras"];
+        _zones = @[@"Baixada Fluminense", @"Centro", @"Grande Niterói", @"Zona Norte", @"Zona Oeste", @"Zona Sul", @"Outra"];
+        _zoneColors = @{@"Baixada Fluminense": [UIColor colorWithRed:0.890 green:0.145 blue:0.165 alpha:1.000],
+                        @"Centro":  [UIColor colorWithRed:0.906 green:0.424 blue:0.114 alpha:1.000],
+                        @"Grande Niterói":  [UIColor colorWithRed:0.898 green:0.349 blue:0.620 alpha:1.000],
+                        @"Zona Norte":  [UIColor colorWithRed:0.353 green:0.157 blue:0.094 alpha:1.000],
+                        @"Zona Oeste":  [UIColor colorWithRed:0.125 green:0.145 blue:0.467 alpha:1.000],
+                        @"Zona Sul":  [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000],
+                        @"Outra":  [UIColor colorWithWhite:0.541 alpha:1.000]
+                        };
     }
     return self;
 }

@@ -1,4 +1,4 @@
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 extern NSString *const CaronaeAPIBaseURL;
 
@@ -14,5 +14,7 @@ extern const NSInteger CaronaeErrorNoRidesCreated;
 
 @property (nonatomic, readonly) NSArray *centers;
 @property (nonatomic, readonly) NSArray *hubs;
+@property (nonatomic, readonly) NSArray *zones;
+@property (nonatomic, readonly) NSDictionary *zoneColors;
 
 @end
