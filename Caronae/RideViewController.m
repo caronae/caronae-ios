@@ -9,6 +9,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *driverNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *driverCourseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *friendsInCommonLabel;
 @property (weak, nonatomic) IBOutlet UILabel *driverMessageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *routeLabel;
@@ -29,7 +30,8 @@
     _titleLabel.text = [rideTitle uppercaseString];
     _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", [dateFormatter stringFromDate:_ride.date]];
     _slotsLabel.text = [NSString stringWithFormat:@"%d %@", _ride.slots, _ride.slots == 1 ? @"vaga" : @"vagas"];
-    _driverNameLabel.text = [NSString stringWithFormat:@"%@ | %@", _ride.driverName, _ride.driverCourse];
+    _driverNameLabel.text = _ride.driverName;
+    _driverCourseLabel.text = _ride.driverCourse;
     _friendsInCommonLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", 0];
     _driverMessageLabel.text = _ride.notes;
     _routeLabel.text = _ride.route;
