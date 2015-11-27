@@ -1,7 +1,6 @@
 #import "MyRidesViewController.h"
 #import "Ride.h"
 #import "CaronaeRideCell.h"
-#import "CaronaeDefaults.h"
 #import "RideViewController.h"
 
 @interface MyRidesViewController ()

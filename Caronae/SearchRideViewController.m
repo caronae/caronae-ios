@@ -2,7 +2,6 @@
 #import <ActionSheetDatePicker.h>
 #import <ActionSheetStringPicker.h>
 #import "NSDate+nextHour.h"
-#import "CaronaeDefaults.h"
 
 @interface SearchRideViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *directionControl;

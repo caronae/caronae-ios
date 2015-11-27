@@ -1,7 +1,6 @@
 #import <AFNetworking/AFNetworking.h>
 #import "RideViewController.h"
 #import "Ride.h"
-#import "CaronaeDefaults.h"
 
 @interface RideViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
