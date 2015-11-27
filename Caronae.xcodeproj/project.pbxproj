@@ -174,7 +174,6 @@
 		A3169C921BED842D00A0D428 /* Caronae */ = {
 			isa = PBXGroup;
 			children = (
-				A3F30EF11C08ABDC0024BE37 /* bairros.csv */,
 				A3B5AF121BF2F1050026A889 /* Categories */,
 				A39BBD001C0629E100EF9EBD /* Model */,
 				A3AD19C71BED96DC003EDA17 /* Custom views */,
@@ -215,6 +214,7 @@
 		A3169C931BED842D00A0D428 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3F30EF11C08ABDC0024BE37 /* bairros.csv */,
 				A3169C941BED842D00A0D428 /* main.m */,
 				A3F30EEA1C0823CA0024BE37 /* PrefixHeader.pch */,
 			);

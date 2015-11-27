@@ -1,11 +1,12 @@
 #import "CreateRideViewController.h"
 #import "NSDate+nextHour.h"
 #import "NSDictionary+dictionaryWithoutNulls.h"
+#import "ZoneSelectionViewController.h"
 #import <AFNetworking/AFNetworking.h>
 #import <ActionSheetDatePicker.h>
 #import <ActionSheetStringPicker.h>
 
-@interface CreateRideViewController () <UITextViewDelegate>
+@interface CreateRideViewController () <UITextViewDelegate, ZoneSelectionDelegate>
 
 @property (nonatomic) CGFloat routinePatternHeightOriginal;
 @property (nonatomic) NSString *notesPlaceholder;
@@ -13,6 +14,8 @@
 @property (nonatomic) NSDateFormatter *arrivalDateLabelFormatter;
 @property (nonatomic) NSString *selectedHub;
 @property (nonatomic) NSArray *hubs;
+@property (nonatomic) NSString *neighborhood;
+@property (nonatomic) NSString *zone;
 @end
 
 @implementation CreateRideViewController
@@ -71,7 +74,7 @@
     
     NSDictionary *ride = @{
                            @"myzone": @"Norte",
-                           @"neighborhood": self.origin.text,
+                           @"neighborhood": self.neighborhood,
                            @"place": self.reference.text,
                            @"route": self.route.text,
                            @"mydate": [dateFormat stringFromDate:self.rideDate],
@@ -311,6 +314,14 @@
                                      cancelBlock:nil origin:sender];
 }
 
+- (void)hasSelectedNeighborhood:(NSString *)neighborhood inZone:(NSString *)zone {
+    NSLog(@"User has selected %@ in %@", neighborhood, zone);
+    self.zone = zone;
+    self.neighborhood = neighborhood;
+    [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
+}
+
+
 #pragma mark - UITextView delegate
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
@@ -327,6 +338,17 @@
         textView.textColor = [UIColor lightGrayColor];
     }
     [textView resignFirstResponder];
+}
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ViewZones"]) {
+        ZoneSelectionViewController *vc = segue.destinationViewController;
+        vc.type = ZoneSelectionZone;
+        vc.delegate = self;
+    }
 }
 
 @end
