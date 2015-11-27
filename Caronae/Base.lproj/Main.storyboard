@@ -95,7 +95,10 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstAttribute="height" constant="30" id="7v7-j9-6O8"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="3hU-5e-wNb"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdC-RO-82W">
                                                 <rect key="frame" x="146" y="313" width="67" height="30"/>
@@ -212,6 +215,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="authButton" destination="GdC-RO-82W" id="bVN-mb-NRQ"/>
+                        <outlet property="authTextField" destination="nW8-HP-hhp" id="3N6-CB-VYr"/>
                         <outlet property="authenticateButton" destination="GdC-RO-82W" id="Due-qn-Ay7"/>
                         <outlet property="tokenTextField" destination="nW8-HP-hhp" id="nbL-Gr-mxx"/>
                         <segue destination="Grf-xD-SWT" kind="show" identifier="tokenValidated" id="WCN-l5-gUT"/>
