@@ -15,6 +15,15 @@ NSString *const CaronaeErrorDomain = @"CaronaeError";
 const NSInteger CaronaeErrorInvalidResponse = 1;
 const NSInteger CaronaeErrorNoRidesCreated = 2;
 
+@interface CaronaeDefaults()
+@property (nonatomic, readwrite) NSArray *centers;
+@property (nonatomic, readwrite) NSArray *hubs;
+@property (nonatomic, readwrite) NSArray *zones;
+@property (nonatomic, readwrite) NSDictionary *zoneColors;
+@property (nonatomic, readwrite) NSDictionary *neighborhoods;
+@end
+
+
 @implementation CaronaeDefaults
 
 + (instancetype)defaults {
@@ -26,12 +35,29 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
     return sharedMyManager;
 }
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
+- (NSArray *)centers {
+    if (!_centers) {
         _centers = @[@"CT", @"CCMN", @"CCS", @"EEFD", @"Reitoria", @"Letras"];
+    }
+    return _centers;
+}
+
+- (NSArray *)hubs {
+    if (!_hubs) {
         _hubs = @[@"CT Fundos Bloco I", @"CT Bloco D", @"CT Bloco H", @"CCMN Frente", @"CCMN Fundos", @"CCS Frente", @"CCS Saída HU", @"Reitoria", @"EEFD", @"Letras"];
+    }
+    return _hubs;
+}
+
+- (NSArray *)zones {
+    if (!_zones) {
         _zones = @[@"Baixada Fluminense", @"Centro", @"Grande Niterói", @"Zona Norte", @"Zona Oeste", @"Zona Sul", @"Outra"];
+    }
+    return _zones;
+}
+
+- (NSDictionary *)zoneColors {
+    if (!_zoneColors) {
         _zoneColors = @{@"Baixada Fluminense": [UIColor colorWithRed:0.890 green:0.145 blue:0.165 alpha:1.000],
                         @"Centro":  [UIColor colorWithRed:0.906 green:0.424 blue:0.114 alpha:1.000],
                         @"Grande Niterói":  [UIColor colorWithRed:0.898 green:0.349 blue:0.620 alpha:1.000],
@@ -41,7 +67,37 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
                         @"Outra":  [UIColor colorWithWhite:0.541 alpha:1.000]
                         };
     }
-    return self;
+    return _zoneColors;
+}
+
+- (NSDictionary *)neighborhoods {
+    if (!_neighborhoods) {
+        NSMutableDictionary *neighborhoods = [NSMutableDictionary dictionaryWithCapacity:7];
+        NSString *pathName = [[NSBundle mainBundle] pathForResource:@"bairros" ofType:@"csv"];
+        NSFileManager *fm = [NSFileManager defaultManager];
+        if ([fm fileExistsAtPath:pathName]) {
+            NSError *readError;
+            NSString *content = [NSString stringWithContentsOfFile:pathName encoding:NSUTF8StringEncoding error:&readError];
+            if (!readError) {
+                NSArray *lines = [content componentsSeparatedByString:@"\r\n"];
+                for (NSString *line in lines) {
+                    NSArray *items = [line componentsSeparatedByString:@","];
+                    NSString *zone = items[0];
+                    NSString *neighborhood = items[1];
+                    if (!neighborhoods[zone]) {
+                        neighborhoods[zone] = [NSMutableArray arrayWithCapacity:15];
+                    }
+                    [neighborhoods[zone] addObject:neighborhood];
+                }
+            }
+            else {
+                NSLog(@"Error: %@", readError.description);
+            }
+
+        }
+        _neighborhoods = neighborhoods;
+    }
+    return _neighborhoods;
 }
 
 @end

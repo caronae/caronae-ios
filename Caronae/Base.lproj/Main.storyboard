@@ -5307,6 +5307,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <outlet property="centerButton" destination="NrO-mC-qNO" id="GWo-UP-E1w"/>
                         <outlet property="dateButton" destination="HkZ-Ki-Ucb" id="g2v-dM-Kr8"/>
                         <outlet property="directionControl" destination="ymB-Vw-rcK" id="TVH-49-egP"/>
+                        <outlet property="neighborhoodButton" destination="4mm-CF-Oik" id="Jfa-t8-2WY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAq-wA-fXd" userLabel="First Responder" sceneMemberID="firstResponder"/>

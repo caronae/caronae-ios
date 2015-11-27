@@ -16,5 +16,6 @@ extern const NSInteger CaronaeErrorNoRidesCreated;
 @property (nonatomic, readonly) NSArray *hubs;
 @property (nonatomic, readonly) NSArray *zones;
 @property (nonatomic, readonly) NSDictionary *zoneColors;
+@property (nonatomic, readonly) NSDictionary *neighborhoods;
 
 @end

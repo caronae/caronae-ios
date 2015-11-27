@@ -17,7 +17,7 @@
     }
     else {
         self.title = self.selectedZone;
-        self.zones = @[@"Jardim Guanabara"];
+        self.zones = [CaronaeDefaults defaults].neighborhoods[self.selectedZone];
     }
 }
 
@@ -60,7 +60,8 @@
     }
     else {
         self.selectedNeighborhood = self.zones[indexPath.row];
-        NSLog(@"Selected %@ in %@", self.selectedNeighborhood, self.selectedZone);
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.delegate hasSelectedNeighborhood:self.selectedNeighborhood inZone:self.selectedZone];
     }
 }
 
@@ -72,6 +73,7 @@
         ZoneSelectionViewController *vc = segue.destinationViewController;
         vc.type = ZoneSelectionNeighborhood;
         vc.selectedZone = self.selectedZone;
+        vc.delegate = self.delegate;
     }
 }
 
