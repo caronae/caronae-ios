@@ -22,11 +22,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Carona";
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"HH:mm | dd/MM";
     
     NSString *rideTitle = [NSString stringWithFormat:@"%@ → %@", _ride.neighborhood, _ride.hub];
-    self.title = rideTitle;
     _titleLabel.text = [rideTitle uppercaseString];
     _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", [dateFormatter stringFromDate:_ride.date]];
     _slotsLabel.text = [NSString stringWithFormat:@"%d %@", _ride.slots, _ride.slots == 1 ? @"vaga" : @"vagas"];
@@ -35,7 +36,6 @@
     _friendsInCommonLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", 0];
     _driverMessageLabel.text = _ride.notes;
     _routeLabel.text = _ride.route;
-    
 }
 
 - (IBAction)didTapRequestRide:(UIButton *)sender {

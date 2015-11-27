@@ -5564,7 +5564,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                             <constraint firstAttribute="trailing" secondItem="iZ9-2r-k89" secondAttribute="trailing" constant="197" id="IWY-Wn-i2o">
                                                                 <variation key="widthClass=compact" constant="20"/>
                                                             </constraint>
-                                                            <constraint firstItem="iZ9-2r-k89" firstAttribute="leading" secondItem="C3d-pJ-uoK" secondAttribute="trailing" constant="8" id="JKK-wa-Y6A"/>
+                                                            <constraint firstItem="iZ9-2r-k89" firstAttribute="leading" secondItem="C3d-pJ-uoK" secondAttribute="trailing" constant="8" id="JKK-wa-Y6A">
+                                                                <variation key="widthClass=compact" constant="15"/>
+                                                            </constraint>
                                                             <constraint firstItem="5vV-zN-OD0" firstAttribute="width" secondItem="iZ9-2r-k89" secondAttribute="width" id="RQB-hn-Zws"/>
                                                             <constraint firstItem="iZ9-2r-k89" firstAttribute="top" secondItem="C3d-pJ-uoK" secondAttribute="top" id="ReC-8h-ZTq">
                                                                 <variation key="widthClass=compact" constant="15"/>
