@@ -128,6 +128,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     self.selectedRide = self.rides[indexPath.row];
     [self performSegueWithIdentifier:@"ViewRideDetails" sender:self];
 }

@@ -261,7 +261,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                             </barButtonItem>
                             <barButtonItem image="NewRide" id="4ju-ql-cEA">
                                 <connections>
-                                    <segue destination="CoL-uf-tJY" kind="presentation" id="VGz-uS-yQa"/>
+                                    <segue destination="CoL-uf-tJY" kind="presentation" identifier="CreateRide" id="VGz-uS-yQa"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -5814,20 +5814,20 @@ Este é o token gerado através da Intranet UFRJ</string>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="ALM-Cb-mY1"/>
                                 <exclude reference="TZs-Rn-SFL"/>
                                 <exclude reference="Xlr-hj-4WH"/>
                                 <exclude reference="qTq-ad-RGX"/>
                                 <exclude reference="RIH-rn-Vdv"/>
+                                <exclude reference="ALM-Cb-mY1"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
-                                <include reference="ALM-Cb-mY1"/>
                                 <include reference="TZs-Rn-SFL"/>
                                 <include reference="Xlr-hj-4WH"/>
                                 <include reference="qTq-ad-RGX"/>
                                 <include reference="RIH-rn-Vdv"/>
+                                <include reference="ALM-Cb-mY1"/>
                             </mask>
                         </variation>
                     </view>
@@ -5901,10 +5901,11 @@ Este é o token gerado através da Intranet UFRJ</string>
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Minhas" id="44K-G3-VjJ">
-                        <rightBarButtonItems>
-                            <barButtonItem image="SearchRide" id="UIL-Pw-7ZX"/>
-                            <barButtonItem image="NewRide" id="Zbp-D5-Dix"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="NewRide" id="Zbp-D5-Dix">
+                            <connections>
+                                <segue destination="CoL-uf-tJY" kind="presentation" identifier="CreateRide" id="iap-vV-xAI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
@@ -5929,6 +5930,7 @@ Este é o token gerado através da Intranet UFRJ</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="iap-vV-xAI"/>
         <segue reference="tug-g2-rGR"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>

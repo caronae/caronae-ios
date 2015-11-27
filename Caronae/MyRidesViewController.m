@@ -28,6 +28,12 @@
     NSMutableArray *rides = [[NSMutableArray alloc] initWithCapacity:rideArchive.count];
     for (id rideDictionary in rideArchive) {
         Ride *ride = [[Ride alloc] initWithDictionary:rideDictionary];
+        
+        // Skip rides in the past
+        if ([ride.date compare:[NSDate date]] == NSOrderedAscending) {
+            continue;
+        }
+        
         ride.driverID = [user[@"id"] longValue];
         ride.driverName = user[@"name"];
         ride.driverCourse = user[@"course"];
@@ -66,6 +72,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     self.selectedRide = self.rides[indexPath.row];
     [self performSegueWithIdentifier:@"ViewRideDetails" sender:self];
 }
