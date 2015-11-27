@@ -155,6 +155,7 @@
  *  @param sender 'Generate routines' UISwitch
  */
 - (IBAction)routineSwitchChanged:(UISwitch *)sender {
+    [self.view endEditing:YES];
     if (sender.on) {
         [self.view layoutIfNeeded];
         _routinePatternHeight.constant = _routinePatternHeightOriginal;
@@ -277,6 +278,7 @@
 }
 
 - (IBAction)directionChanged:(UISegmentedControl *)sender {
+    [self.view endEditing:YES];
     if (sender.selectedSegmentIndex == 0) {
         self.hubs = [CaronaeDefaults defaults].centers;
     }
@@ -288,6 +290,7 @@
 }
 
 - (IBAction)selectCenterTapped:(id)sender {
+    [self.view endEditing:YES];
     [ActionSheetStringPicker showPickerWithTitle:@"Selecione um centro"
                                             rows:self.hubs
                                 initialSelection:0

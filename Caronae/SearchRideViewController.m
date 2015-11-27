@@ -76,6 +76,7 @@
 }
 
 - (IBAction)selectCenterTapped:(id)sender {
+    [self.view endEditing:YES];
     long lastSearchedCenterIndex = [self.hubs indexOfObject:self.selectedHub];
     [ActionSheetStringPicker showPickerWithTitle:@"Selecione um centro"
                                             rows:self.hubs
