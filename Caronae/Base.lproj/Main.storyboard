@@ -221,26 +221,6 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="246" y="453"/>
         </scene>
-        <!--My Rides View Controller-->
-        <scene sceneID="kkC-ll-VwR">
-            <objects>
-                <viewController id="rJZ-bG-VRD" customClass="MyRidesViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Mg2-NX-rgz"/>
-                        <viewControllerLayoutGuide type="bottom" id="ocG-2N-lCI"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YY5-bk-LFZ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="YXq-dX-b0d"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3EZ-kE-4qG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2628" y="759"/>
-        </scene>
         <!--Todas-->
         <scene sceneID="aEb-UJ-7dz">
             <objects>
@@ -3776,7 +3756,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="417" width="370" height="131"/>
+                                                    <rect key="frame" x="15" y="418" width="370" height="131"/>
                                                     <mask key="subviews">
                                                         <include reference="ftJ-lK-bEs"/>
                                                         <include reference="1W7-OK-GJ3"/>
@@ -3847,7 +3827,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="568" width="370" height="50"/>
+                                                    <rect key="frame" x="15" y="569" width="370" height="50"/>
                                                     <mask key="subviews">
                                                         <include reference="K8h-kP-2X5"/>
                                                         <include reference="P3j-hD-d2F"/>
@@ -4110,7 +4090,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="628" width="370" height="176"/>
+                                                    <rect key="frame" x="15" y="629" width="370" height="176"/>
                                                     <mask key="subviews">
                                                         <include reference="q8t-lO-Jqk"/>
                                                         <include reference="ZA1-8O-6ah"/>
@@ -4261,7 +4241,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="819"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="820"/>
                                             <mask key="subviews">
                                                 <include reference="wC6-CD-nF5"/>
                                                 <include reference="NpW-3h-cia"/>
@@ -4802,11 +4782,11 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="996" y="1499"/>
         </scene>
-        <!--Ativas-->
+        <!--Minhas-->
         <scene sceneID="L3B-pk-WvI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ESO-TG-2Ch" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ativas" image="menu3" id="qpg-Pw-SZw"/>
+                    <tabBarItem key="tabBarItem" title="Minhas" image="menu2" id="qpg-Pw-SZw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="N1E-gi-4wz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -4816,7 +4796,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="rJZ-bG-VRD" kind="relationship" relationship="rootViewController" id="nOd-5Q-iir"/>
+                        <segue destination="g3M-dt-arm" kind="relationship" relationship="rootViewController" id="rwv-Da-6hh"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWT-do-2U6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5302,15 +5282,16 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <viewControllerLayoutGuide type="bottom" id="GiZ-cY-BAp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yaI-7v-qLw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T7m-fq-ERe">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T7m-fq-ERe">
                                 <rect key="frame" x="-20" y="44" width="440" height="532"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zB7-Ma-qJK" userLabel="Content View">
                                         <rect key="frame" x="20" y="20" width="400" height="492"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmH-vg-yLk" userLabel="Header View">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hmH-vg-yLk" userLabel="Header View">
                                                 <rect key="frame" x="-5" y="-5" width="256" height="90"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="3 vagas" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMj-CH-dHN" userLabel="Slots">
@@ -5351,14 +5332,14 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         </userDefinedRuntimeAttributes>
                                                         <variation key="default">
                                                             <mask key="constraints">
-                                                                <exclude reference="wVR-EJ-z8q"/>
                                                                 <exclude reference="X4v-6k-raT"/>
+                                                                <exclude reference="wVR-EJ-z8q"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
                                                             <mask key="constraints">
-                                                                <include reference="wVR-EJ-z8q"/>
                                                                 <include reference="X4v-6k-raT"/>
+                                                                <include reference="wVR-EJ-z8q"/>
                                                             </mask>
                                                         </variation>
                                                     </imageView>
@@ -5415,7 +5396,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ERr-yS-hg4" userLabel="Detail View">
                                                 <rect key="frame" x="-20" y="46" width="420" height="397"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iA1-Kq-194" userLabel="Driver details View">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iA1-Kq-194" userLabel="Driver details View">
                                                         <rect key="frame" x="0.0" y="-5" width="392" height="104"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Renan Souza | Eng. Mecatrônica" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZ9-2r-k89" userLabel="Driver name">
@@ -5556,8 +5537,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                         <exclude reference="beY-Mg-PSi"/>
                                                                     </mask>
                                                                 </variation>
-                                                                <variation key="widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="20" y="95" width="71" height="43"/>
+                                                                <variation key="widthClass=compact">
                                                                     <mask key="constraints">
                                                                         <include reference="beY-Mg-PSi"/>
                                                                     </mask>
@@ -5599,16 +5579,16 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <exclude reference="0a3-ca-yPl"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="jar-nM-w79"/>
-                                                                <exclude reference="9Eh-Cu-ZLq"/>
                                                                 <exclude reference="3P1-m2-pOk"/>
                                                                 <exclude reference="Jyd-vx-tK3"/>
                                                                 <exclude reference="aXV-Uf-gVS"/>
-                                                                <exclude reference="dhk-Xv-kU5"/>
-                                                                <exclude reference="ZdQ-GD-jqM"/>
-                                                                <exclude reference="eRZ-r5-TgB"/>
                                                                 <exclude reference="1Tj-eD-gVU"/>
                                                                 <exclude reference="JOL-B5-4bw"/>
+                                                                <exclude reference="eRZ-r5-TgB"/>
+                                                                <exclude reference="ZdQ-GD-jqM"/>
+                                                                <exclude reference="dhk-Xv-kU5"/>
+                                                                <exclude reference="9Eh-Cu-ZLq"/>
+                                                                <exclude reference="jar-nM-w79"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -5619,16 +5599,16 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <include reference="0a3-ca-yPl"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <include reference="jar-nM-w79"/>
-                                                                <include reference="9Eh-Cu-ZLq"/>
                                                                 <include reference="3P1-m2-pOk"/>
                                                                 <include reference="Jyd-vx-tK3"/>
                                                                 <include reference="aXV-Uf-gVS"/>
-                                                                <include reference="dhk-Xv-kU5"/>
-                                                                <include reference="ZdQ-GD-jqM"/>
-                                                                <include reference="eRZ-r5-TgB"/>
                                                                 <include reference="1Tj-eD-gVU"/>
                                                                 <include reference="JOL-B5-4bw"/>
+                                                                <include reference="eRZ-r5-TgB"/>
+                                                                <include reference="ZdQ-GD-jqM"/>
+                                                                <include reference="dhk-Xv-kU5"/>
+                                                                <include reference="9Eh-Cu-ZLq"/>
+                                                                <include reference="jar-nM-w79"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -5688,16 +5668,16 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         </constraints>
                                                         <variation key="default">
                                                             <mask key="constraints">
-                                                                <exclude reference="rm0-Wb-2Ca"/>
                                                                 <exclude reference="OSZ-7g-iuC"/>
                                                                 <exclude reference="e4h-Jj-b9X"/>
+                                                                <exclude reference="rm0-Wb-2Ca"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
                                                             <mask key="constraints">
-                                                                <include reference="rm0-Wb-2Ca"/>
                                                                 <include reference="OSZ-7g-iuC"/>
                                                                 <include reference="e4h-Jj-b9X"/>
+                                                                <include reference="rm0-Wb-2Ca"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -5834,20 +5814,20 @@ Este é o token gerado através da Intranet UFRJ</string>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="ALM-Cb-mY1"/>
                                 <exclude reference="TZs-Rn-SFL"/>
                                 <exclude reference="Xlr-hj-4WH"/>
                                 <exclude reference="qTq-ad-RGX"/>
                                 <exclude reference="RIH-rn-Vdv"/>
-                                <exclude reference="ALM-Cb-mY1"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="constraints">
+                                <include reference="ALM-Cb-mY1"/>
                                 <include reference="TZs-Rn-SFL"/>
                                 <include reference="Xlr-hj-4WH"/>
                                 <include reference="qTq-ad-RGX"/>
                                 <include reference="RIH-rn-Vdv"/>
-                                <include reference="ALM-Cb-mY1"/>
                             </mask>
                         </variation>
                     </view>
@@ -5889,6 +5869,49 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="4380" y="104"/>
         </scene>
+        <!--Minhas-->
+        <scene sceneID="EZD-JH-uNB">
+            <objects>
+                <tableViewController id="g3M-dt-arm" userLabel="Minhas" customClass="MyRidesViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" id="0qH-vX-hEU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Ride Cell" rowHeight="453" id="h2w-t9-4oO">
+                                <rect key="frame" x="0.0" y="92" width="600" height="453"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h2w-t9-4oO" id="msA-e4-PG1">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="453"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <segue destination="SRb-hM-LXF" kind="show" identifier="ViewRideDetails" id="tug-g2-rGR"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="g3M-dt-arm" id="LzP-wg-n2S"/>
+                            <outlet property="delegate" destination="g3M-dt-arm" id="65r-ra-0BM"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Minhas" id="44K-G3-VjJ">
+                        <rightBarButtonItems>
+                            <barButtonItem image="SearchRide" id="UIL-Pw-7ZX"/>
+                            <barButtonItem image="NewRide" id="Zbp-D5-Dix"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ejJ-kb-mqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2628" y="759"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ButtonColor" width="100" height="42"/>
@@ -5902,8 +5925,11 @@ Este é o token gerado através da Intranet UFRJ</string>
         <image name="SearchRide" width="20" height="20"/>
         <image name="SeparatorColor" width="308" height="4"/>
         <image name="menu1" width="34" height="26"/>
-        <image name="menu3" width="38" height="26"/>
+        <image name="menu2" width="26" height="26"/>
         <image name="menu4" width="25" height="26"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="tug-g2-rGR"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -1,6 +1,6 @@
+#import <AFNetworking/AFNetworking.h>
 #import "CaronaeDefaults.h"
 #import "TokenViewController.h"
-#import <AFNetworking/AFNetworking.h>
 
 @interface TokenViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *tokenTextField;
@@ -22,18 +22,19 @@
     NSDictionary *parameters = @{@"token": userToken};
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/user/login"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-        
         // Check if the authentication was ok if we received an user object
-        if (responseObject[@"user"]) {
+        if (responseObject[@"user"]) {            
             // Convert NSNull properties to empty strings
-            NSMutableDictionary *userProfile = [NSMutableDictionary dictionaryWithDictionary:responseObject[@"user"]];
-            for (id key in userProfile.allKeys) {
-                if ([userProfile[key] isKindOfClass:[NSNull class]]) {
-                    userProfile[key] = @"";
-                }
-            }
+            NSDictionary *userProfile = [self dictionaryWithoutNulls:responseObject[@"user"]];
             [[NSUserDefaults standardUserDefaults] setObject:userProfile forKey:@"user"];
+            
+            NSArray *rides = responseObject[@"rides"];
+            NSMutableArray *filteredRides = [NSMutableArray arrayWithCapacity:rides.count];
+            for (id rideDictionary in rides) {
+                [filteredRides addObject:[self dictionaryWithoutNulls:rideDictionary]];
+            }
+            [[NSUserDefaults standardUserDefaults] setObject:filteredRides forKey:@"userCreatedRides"];
+            
             [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"token"];
             [self performSegueWithIdentifier:@"tokenValidated" sender:self];
         }
@@ -45,6 +46,16 @@
         NSLog(@"Error: %@", error.description);
         sender.enabled = YES;
     }];
+}
+
+- (NSDictionary *)dictionaryWithoutNulls:(NSDictionary *)dictionary {
+    NSMutableDictionary *new = [[NSMutableDictionary alloc] initWithDictionary:dictionary];
+    for (id key in new.allKeys) {
+        if ([new[key] isKindOfClass:[NSNull class]]) {
+            new[key] = @"";
+        }
+    }
+    return new;
 }
 
 @end
