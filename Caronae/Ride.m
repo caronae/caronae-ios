@@ -24,7 +24,7 @@ static NSDateFormatter *otherDateParserFormatter;
         if (_rideID == 0) {
             _rideID = [ride[@"id"] longValue];
         }
-        _driverID = [ride[@"driverId"] longValue];        
+        _driverID = ride[@"driverId"];
     }
     return self;
 }

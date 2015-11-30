@@ -100,4 +100,12 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
     return _neighborhoods;
 }
 
+- (NSDictionary *)user {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+}
+
+- (NSString *)userToken {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+}
+
 @end

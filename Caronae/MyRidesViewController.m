@@ -41,7 +41,7 @@
             continue;
         }
         
-        ride.driverID = [self.user[@"id"] longValue];
+        ride.driverID = self.user[@"id"];
         ride.driverName = self.user[@"name"];
         ride.driverCourse = self.user[@"course"];
         [rides addObject:ride];

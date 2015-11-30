@@ -15,5 +15,5 @@
 @property (nonatomic) NSString *hub;
 @property (nonatomic) BOOL going;
 @property (nonatomic) long rideID;
-@property (nonatomic) long driverID;
+@property (nonatomic) NSNumber *driverID;
 @end

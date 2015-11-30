@@ -48,7 +48,11 @@
     self.requestsTable.rowHeight = 95.0f;
     self.requestsTableHeight.constant = 0;
     
-    [self searchForJoinRequests];
+    // If the user is the driver of the ride, load pending join requests and hide 'join' button
+    if ([[CaronaeDefaults defaults].user[@"id"] isEqual:_ride.driverID]) {
+        [self searchForJoinRequests];
+        self.requestRideButton.hidden = YES;
+    }
 }
 
 - (void)searchForJoinRequests {
