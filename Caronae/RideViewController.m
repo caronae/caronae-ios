@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *requestsTable;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *requestsTableHeight;
 @property (nonatomic) NSArray *joinRequests;
-
+@property (nonatomic) NSDictionary *selectedUser;
 @end
 
 @implementation RideViewController
@@ -62,7 +62,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ViewProfile"]) {
         ProfileViewController *vc = segue.destinationViewController;
-        vc.user = @{@"name": _ride.driverName, @"course": _ride.driverCourse, @"id": _ride.driverID};
+        vc.user = self.selectedUser;
     }
 }
 
@@ -89,7 +89,7 @@
 }
 
 - (IBAction)viewUserProfile:(id)sender {
-    NSLog(@"Tapped");
+    self.selectedUser = @{@"name": _ride.driverName, @"course": _ride.driverCourse, @"id": _ride.driverID};
     [self performSegueWithIdentifier:@"ViewProfile" sender:self];
 }
 
@@ -172,6 +172,11 @@
     self.joinRequests = joinRequestsMutable;
     [self.requestsTable endUpdates];
     [self adjustHeightOfTableview];
+}
+
+- (void)tappedUserDetailsForRequest:(NSDictionary *)request {
+    self.selectedUser = request;
+    [self performSegueWithIdentifier:@"ViewProfile" sender:self];
 }
 
 

@@ -25,6 +25,9 @@
 - (void)updateProfileFields {
     if ([self isMyProfile]) {
         self.title = @"Meu Perfil";
+        _carPlateLabel.text = _user[@"car_plate"];
+        _carModelLabel.text = _user[@"car_model"];
+        _carColorLabel.text = _user[@"car_color"];
     }
     else {
         self.title = _user[@"name"];
@@ -44,10 +47,6 @@
     _courseLabel.text = _user[@"course"];
     
     _joinedDateLabel.text = [self.joinedDateFormatter stringFromDate:joinedDate];
-    
-    _carPlateLabel.text = _user[@"car_plate"];
-    _carModelLabel.text = _user[@"car_model"];
-    _carColorLabel.text = _user[@"car_color"];
 }
 
 

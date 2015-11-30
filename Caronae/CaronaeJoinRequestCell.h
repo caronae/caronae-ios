@@ -3,6 +3,7 @@
 @protocol JoinRequestDelegate <NSObject>
 
 - (void)joinRequest:(NSDictionary *)request hasAccepted:(BOOL)accepted;
+- (void)tappedUserDetailsForRequest:(NSDictionary *)request ;
 
 @end
 

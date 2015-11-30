@@ -16,16 +16,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Renan Souza" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nl-H4-CEK" userLabel="Driver name">
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Renan Souza" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nl-H4-CEK" userLabel="Driver name">
                         <rect key="frame" x="81" y="14" width="113" height="18"/>
                         <animations/>
+                        <gestureRecognizers/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="1RG-CV-C0R" userLabel="Driver photo">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="1RG-CV-C0R" userLabel="Driver photo">
                         <rect key="frame" x="16" y="8" width="50" height="50"/>
                         <animations/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="1RG-CV-C0R" secondAttribute="height" multiplier="1:1" id="VnQ-LI-Bdj"/>
                             <constraint firstAttribute="width" constant="50" id="uXY-vd-76X"/>
