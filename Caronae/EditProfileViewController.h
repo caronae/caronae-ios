@@ -22,8 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 
 // Locale
-@property (weak, nonatomic) IBOutlet UITextField *zoneTextField;
-@property (weak, nonatomic) IBOutlet UITextField *neighborhoodTextField;
+@property (weak, nonatomic) IBOutlet UIButton *neighborhoodButton;
 
 
 // Car details

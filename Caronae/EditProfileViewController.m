@@ -1,10 +1,12 @@
 #import <AFNetworking/AFNetworking.h>
 #import "EditProfileViewController.h"
+#import "ZoneSelectionViewController.h"
 
-@interface EditProfileViewController ()
+@interface EditProfileViewController () <ZoneSelectionDelegate>
 @property (nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic) NSDateFormatter *joinedDateFormatter;
 @property (nonatomic) UIBarButtonItem *loadingButton;
+@property (nonatomic) NSString *neighborhood;
 @end
 
 @implementation EditProfileViewController
@@ -42,8 +44,13 @@
     self.emailTextField.text = user[@"email"];
     self.phoneTextField.text = user[@"phone_number"];
     
-    self.zoneTextField.text = @"";
-    self.neighborhoodTextField.text = user[@"location"];
+    self.neighborhood = user[@"location"];
+    if (![self.neighborhood isEqualToString:@""]) {
+        [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
+    }
+    else {
+        [self.neighborhoodButton setTitle:@"Bairro" forState:UIControlStateNormal];
+    }
     
     self.hasCarSwitch.on = [user[@"car_owner"] isEqual:@(YES)];
     
@@ -98,11 +105,33 @@
                                   @"car_model": self.carModelTextField.text,
                                   @"car_plate": self.carPlateTextField.text,
                                   @"car_color": self.carColorTextField.text,
-                                  @"location": self.neighborhoodTextField.text
+                                  @"location": self.neighborhood
                                   };
     
     return updatedUser;
 }
+
+#pragma mark - Zone selection methods
+
+- (void)hasSelectedNeighborhood:(NSString *)neighborhood inZone:(NSString *)zone {
+    NSLog(@"User has selected %@ in %@", neighborhood, zone);
+    self.neighborhood = neighborhood;
+    [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
+}
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ViewZones"]) {
+        ZoneSelectionViewController *vc = segue.destinationViewController;
+        vc.type = ZoneSelectionZone;
+        vc.delegate = self;
+    }
+}
+
+
+#pragma mark - Etc
 
 - (void)showLoadingHUD:(BOOL)loading {
     if (!loading) {

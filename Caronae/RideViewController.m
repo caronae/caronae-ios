@@ -50,7 +50,6 @@
     _requestRideButton.enabled = NO;
     
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
         NSLog(@"Done requesting ride.");
         [_requestRideButton setTitle:@"CARONA SOLICITADA" forState:UIControlStateNormal];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
