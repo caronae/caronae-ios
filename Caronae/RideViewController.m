@@ -71,8 +71,10 @@
         if (!responseError) {
             NSLog(@"Search returned %lu join requests.", (unsigned long)joinRequests.count);
             self.joinRequests = joinRequests;
-            [self.requestsTable reloadData];
-            [self adjustHeightOfTableview];
+            if (joinRequests.count > 0) {
+                [self.requestsTable reloadData];
+                [self adjustHeightOfTableview];
+            }
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -128,8 +130,34 @@
 - (void)joinRequest:(NSDictionary *)request hasAccepted:(BOOL)accepted {
     NSLog(@"Request for user %@ was %@", request[@"name"], accepted ? @"accepted" : @"not accepted");
     
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+    NSDictionary *params = @{@"userId": request[@"id"],
+                             @"rideId": @(_ride.rideID),
+                             @"accepted": @(accepted)};
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
+    
+    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/answerJoinRequest"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Answer to join request successfully sent.");
+        [self removeJoinRequest:request];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.description);
+    }];
 }
 
+- (void)removeJoinRequest:(NSDictionary *)request {
+    NSMutableArray *joinRequestsMutable = [NSMutableArray arrayWithArray:self.joinRequests];
+    [joinRequestsMutable removeObject:request];
+    
+    [self.requestsTable beginUpdates];
+    unsigned long index = [self.joinRequests indexOfObject:request];
+    [self.requestsTable deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    self.joinRequests = joinRequestsMutable;
+    [self.requestsTable endUpdates];
+    [self adjustHeightOfTableview];
+}
 
 #pragma mark - Table methods
 
@@ -152,8 +180,8 @@
 
 - (void)adjustHeightOfTableview {
     [self.view layoutIfNeeded];
-    
-    self.requestsTableHeight.constant = self.requestsTable.contentSize.height;
+    CGFloat height = self.requestsTable.contentSize.height;
+    self.requestsTableHeight.constant = height;
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
     }];
