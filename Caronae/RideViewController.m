@@ -1,8 +1,9 @@
 #import <AFNetworking/AFNetworking.h>
 #import "RideViewController.h"
+#import "CaronaeJoinRequestCell.h"
 #import "Ride.h"
 
-@interface RideViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface RideViewController () <UITableViewDelegate, UITableViewDataSource, JoinRequestDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *driverPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *slotsLabel;
@@ -39,11 +40,11 @@
     _driverMessageLabel.text = _ride.notes;
     _routeLabel.text = _ride.route;
     
-    UINib *cellNib = [UINib nibWithNibName:@"CaronaeRideRequestCell" bundle:nil];
+    UINib *cellNib = [UINib nibWithNibName:@"CaronaeJoinRequestCell" bundle:nil];
     [self.requestsTable registerNib:cellNib forCellReuseIdentifier:@"Request Cell"];
     self.requestsTable.dataSource = self;
     self.requestsTable.delegate = self;
-    self.requestsTable.rowHeight = 100.0f;
+    self.requestsTable.rowHeight = 95.0f;
     self.requestsTableHeight.constant = 0;
 }
 
@@ -68,6 +69,13 @@
 }
 
 
+#pragma mark - Join request methods
+
+- (void)joinRequest:(NSDictionary *)request hasAccepted:(BOOL)accepted {
+    NSLog(@"Request for user %@ was %@", request[@"name"], accepted ? @"accepted" : @"not accepted");
+}
+
+
 #pragma mark - Table methods
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -85,7 +93,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Request Cell" forIndexPath:indexPath];
+    CaronaeJoinRequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Request Cell" forIndexPath:indexPath];
+    
+    cell.delegate = self;
+    [cell configureCellWithRequest:nil];
     
     return cell;
 }

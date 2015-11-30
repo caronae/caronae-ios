@@ -17,8 +17,8 @@
 		A3169CA61BED842D00A0D428 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */; };
 		A3169CBC1BED842D00A0D428 /* CaronaeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CBB1BED842D00A0D428 /* CaronaeUITests.m */; };
 		A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */; };
-		A325DA701C0CAFD700B9124E /* CaronaeRideRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A325DA6E1C0CAFD700B9124E /* CaronaeRideRequestCell.m */; };
-		A325DA711C0CAFD700B9124E /* CaronaeRideRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A325DA6F1C0CAFD700B9124E /* CaronaeRideRequestCell.xib */; };
+		A325DA701C0CAFD700B9124E /* CaronaeJoinRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A325DA6E1C0CAFD700B9124E /* CaronaeJoinRequestCell.m */; };
+		A325DA711C0CAFD700B9124E /* CaronaeJoinRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A325DA6F1C0CAFD700B9124E /* CaronaeJoinRequestCell.xib */; };
 		A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */; };
 		A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C61BF01B9A005BA311 /* MenuViewController.m */; };
 		A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C91BF01C1D005BA311 /* ProfileViewController.m */; };
@@ -78,9 +78,9 @@
 		A3169CBD1BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3169CC91BED893F00A0D428 /* CaronaeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeTextField.h; sourceTree = "<group>"; };
 		A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeTextField.m; sourceTree = "<group>"; };
-		A325DA6D1C0CAFD700B9124E /* CaronaeRideRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeRideRequestCell.h; sourceTree = "<group>"; };
-		A325DA6E1C0CAFD700B9124E /* CaronaeRideRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeRideRequestCell.m; sourceTree = "<group>"; };
-		A325DA6F1C0CAFD700B9124E /* CaronaeRideRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CaronaeRideRequestCell.xib; sourceTree = "<group>"; };
+		A325DA6D1C0CAFD700B9124E /* CaronaeJoinRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeJoinRequestCell.h; sourceTree = "<group>"; };
+		A325DA6E1C0CAFD700B9124E /* CaronaeJoinRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeJoinRequestCell.m; sourceTree = "<group>"; };
+		A325DA6F1C0CAFD700B9124E /* CaronaeJoinRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CaronaeJoinRequestCell.xib; sourceTree = "<group>"; };
 		A33FABE81BEE8E93008B4F51 /* CreateRideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRideViewController.h; sourceTree = "<group>"; };
 		A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRideViewController.m; sourceTree = "<group>"; };
 		A34312C51BF01B9A005BA311 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -259,9 +259,9 @@
 				A39BBD041C06AB9D00EF9EBD /* CaronaeRideCell.xib */,
 				A38F1D4B1C0398B500DEF6B1 /* CaronaeRideCell.h */,
 				A38F1D4C1C0398B500DEF6B1 /* CaronaeRideCell.m */,
-				A325DA6D1C0CAFD700B9124E /* CaronaeRideRequestCell.h */,
-				A325DA6E1C0CAFD700B9124E /* CaronaeRideRequestCell.m */,
-				A325DA6F1C0CAFD700B9124E /* CaronaeRideRequestCell.xib */,
+				A325DA6D1C0CAFD700B9124E /* CaronaeJoinRequestCell.h */,
+				A325DA6E1C0CAFD700B9124E /* CaronaeJoinRequestCell.m */,
+				A325DA6F1C0CAFD700B9124E /* CaronaeJoinRequestCell.xib */,
 				A3F30EEB1C0890C10024BE37 /* CaronaeZoneCell.h */,
 				A3F30EEC1C0890C10024BE37 /* CaronaeZoneCell.m */,
 				A3169CC91BED893F00A0D428 /* CaronaeTextField.h */,
@@ -404,7 +404,7 @@
 				A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */,
 				A3F30EF21C08ABDC0024BE37 /* bairros.csv in Resources */,
 				A3169C9E1BED842D00A0D428 /* Main.storyboard in Resources */,
-				A325DA711C0CAFD700B9124E /* CaronaeRideRequestCell.xib in Resources */,
+				A325DA711C0CAFD700B9124E /* CaronaeJoinRequestCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +484,7 @@
 				A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */,
 				A3F30EED1C0890C10024BE37 /* CaronaeZoneCell.m in Sources */,
 				A3169C9B1BED842D00A0D428 /* TokenViewController.m in Sources */,
-				A325DA701C0CAFD700B9124E /* CaronaeRideRequestCell.m in Sources */,
+				A325DA701C0CAFD700B9124E /* CaronaeJoinRequestCell.m in Sources */,
 				A39BBCFF1C06296200EF9EBD /* Ride.m in Sources */,
 				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
 				A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */,
