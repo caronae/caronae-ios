@@ -61,10 +61,9 @@
 
 - (IBAction)didTapSaveButton:(id)sender {
     NSDictionary *updatedUser = [self generateUserDictionaryFromView];
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
     [self showLoadingHUD:YES];
 

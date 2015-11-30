@@ -36,10 +36,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:filteredRides forKey:@"userCreatedRides"];
             
             // Save user's token
-            [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"token"];
-            
-            // Synchronize
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            [CaronaeDefaults defaults].userToken = userToken;
             
             [self.authTextField resignFirstResponder];
             [self performSegueWithIdentifier:@"tokenValidated" sender:self];

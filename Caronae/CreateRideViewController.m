@@ -123,10 +123,9 @@
     ride = [self generateRideDictionaryFromView];
     NSLog(@"%@", ride);
     
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride"] parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response JSON: %@", responseObject);
         NSError *responseError;

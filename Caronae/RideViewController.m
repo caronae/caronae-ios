@@ -56,12 +56,11 @@
 }
 
 - (void)searchForJoinRequests {
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
     long rideID = _ride.rideID;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
     //    [self showLoadingHUD:YES];
     
@@ -112,10 +111,9 @@
     NSLog(@"Requesting to join ride %ld", _ride.rideID);
     NSDictionary *params = @{@"rideId": @(_ride.rideID)};
     
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
     _requestRideButton.enabled = NO;
     
@@ -133,15 +131,13 @@
 
 - (void)joinRequest:(NSDictionary *)request hasAccepted:(BOOL)accepted {
     NSLog(@"Request for user %@ was %@", request[@"name"], accepted ? @"accepted" : @"not accepted");
-    
-    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
     NSDictionary *params = @{@"userId": request[@"id"],
                              @"rideId": @(_ride.rideID),
                              @"accepted": @(accepted)};
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/answerJoinRequest"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Answer to join request successfully sent.");
