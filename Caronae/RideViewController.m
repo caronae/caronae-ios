@@ -1,9 +1,10 @@
 #import <AFNetworking/AFNetworking.h>
 #import "RideViewController.h"
 #import "CaronaeJoinRequestCell.h"
+#import "ProfileViewController.h"
 #import "Ride.h"
 
-@interface RideViewController () <UITableViewDelegate, UITableViewDataSource, JoinRequestDelegate>
+@interface RideViewController () <UITableViewDelegate, UITableViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *driverPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *slotsLabel;
@@ -55,6 +56,45 @@
     }
 }
 
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ViewProfile"]) {
+        ProfileViewController *vc = segue.destinationViewController;
+        vc.user = @{@"name": _ride.driverName, @"course": _ride.driverCourse, @"id": _ride.driverID};
+    }
+}
+
+
+#pragma mark - IBActions
+
+- (IBAction)didTapRequestRide:(UIButton *)sender {
+    NSLog(@"Requesting to join ride %ld", _ride.rideID);
+    NSDictionary *params = @{@"rideId": @(_ride.rideID)};
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    
+    _requestRideButton.enabled = NO;
+    
+    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Done requesting ride.");
+        [_requestRideButton setTitle:@"CARONA SOLICITADA" forState:UIControlStateNormal];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.description);
+        _requestRideButton.enabled = YES;
+    }];
+}
+
+- (IBAction)viewUserProfile:(id)sender {
+    NSLog(@"Tapped");
+    [self performSegueWithIdentifier:@"ViewProfile" sender:self];
+}
+
+#pragma mark - Join request methods
+
 - (void)searchForJoinRequests {
     long rideID = _ride.rideID;
     
@@ -104,31 +144,6 @@
     return nil;
 }
 
-
-#pragma mark - IBActions
-
-- (IBAction)didTapRequestRide:(UIButton *)sender {
-    NSLog(@"Requesting to join ride %ld", _ride.rideID);
-    NSDictionary *params = @{@"rideId": @(_ride.rideID)};
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
-    
-    _requestRideButton.enabled = NO;
-    
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Done requesting ride.");
-        [_requestRideButton setTitle:@"CARONA SOLICITADA" forState:UIControlStateNormal];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.description);
-        _requestRideButton.enabled = YES;
-    }];
-}
-
-
-#pragma mark - Join request methods
-
 - (void)joinRequest:(NSDictionary *)request hasAccepted:(BOOL)accepted {
     NSLog(@"Request for user %@ was %@", request[@"name"], accepted ? @"accepted" : @"not accepted");
     NSDictionary *params = @{@"userId": request[@"id"],
@@ -158,6 +173,7 @@
     [self.requestsTable endUpdates];
     [self adjustHeightOfTableview];
 }
+
 
 #pragma mark - Table methods
 
