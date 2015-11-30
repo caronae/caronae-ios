@@ -2,7 +2,7 @@
 #import "RideViewController.h"
 #import "Ride.h"
 
-@interface RideViewController ()
+@interface RideViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *driverPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *slotsLabel;
@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *driverMessageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *routeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
+@property (weak, nonatomic) IBOutlet UITableView *requestsTable;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *requestsTableHeight;
 
 @end
 
@@ -36,6 +38,13 @@
     _friendsInCommonLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", 0];
     _driverMessageLabel.text = _ride.notes;
     _routeLabel.text = _ride.route;
+    
+    UINib *cellNib = [UINib nibWithNibName:@"CaronaeRideRequestCell" bundle:nil];
+    [self.requestsTable registerNib:cellNib forCellReuseIdentifier:@"Request Cell"];
+    self.requestsTable.dataSource = self;
+    self.requestsTable.delegate = self;
+    self.requestsTable.rowHeight = 100.0f;
+    self.requestsTableHeight.constant = 0;
 }
 
 - (IBAction)didTapRequestRide:(UIButton *)sender {
@@ -55,6 +64,38 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.description);
         _requestRideButton.enabled = YES;
+    }];
+}
+
+
+#pragma mark - Table methods
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self adjustHeightOfTableview];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Request Cell" forIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (void)adjustHeightOfTableview {
+    [self.view layoutIfNeeded];
+    
+    self.requestsTableHeight.constant = self.requestsTable.contentSize.height;
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.view layoutIfNeeded];
     }];
 }
 

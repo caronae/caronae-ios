@@ -3,8 +3,8 @@
 #pragma mark - API settings
 
 // NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
-NSString *const CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
-// NSString *const CaronaeAPIBaseURL = @"http://localhost:8000";
+//NSString *const CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
+NSString *const CaronaeAPIBaseURL = @"http://localhost:8000";
 
 #pragma mark - Notifications
 NSString *const CaronaeUserRidesUpdatedNotification = @"CaronaeUserRidesUpdatedNotification";
