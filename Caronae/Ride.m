@@ -21,6 +21,9 @@ static NSDateFormatter *otherDateParserFormatter;
         _hub = ride[@"hub"];
         _going = [ride[@"going"] boolValue];
         _rideID = [ride[@"rideId"] longValue];
+        if (_rideID == 0) {
+            _rideID = [ride[@"id"] longValue];
+        }
         _driverID = [ride[@"driverId"] longValue];        
     }
     return self;

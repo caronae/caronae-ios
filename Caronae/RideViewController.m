@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
 @property (weak, nonatomic) IBOutlet UITableView *requestsTable;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *requestsTableHeight;
+@property (nonatomic) NSArray *joinRequests;
 
 @end
 
@@ -46,7 +47,60 @@
     self.requestsTable.delegate = self;
     self.requestsTable.rowHeight = 95.0f;
     self.requestsTableHeight.constant = 0;
+    
+    [self searchForJoinRequests];
 }
+
+- (void)searchForJoinRequests {
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+    long rideID = _ride.rideID;
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:userToken forHTTPHeaderField:@"token"];
+    
+    //    [self showLoadingHUD:YES];
+    
+    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/getRequesters/%ld", rideID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        [self showLoadingHUD:NO];
+        
+        NSLog(@"Results for join requests are back.");
+        
+        NSError *responseError;
+        NSArray *joinRequests = [RideViewController parseJoinRequestsFromResponse:responseObject withError:&responseError];
+        if (!responseError) {
+            NSLog(@"Search returned %lu join requests.", (unsigned long)joinRequests.count);
+            self.joinRequests = joinRequests;
+            [self.requestsTable reloadData];
+            [self adjustHeightOfTableview];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //        [self showLoadingHUD:NO];
+        NSLog(@"Error: %@", error.description);
+    }];
+    
+}
+
++ (NSArray *)parseJoinRequestsFromResponse:(id)responseObject withError:(NSError *__autoreleasing *)err {
+    // Check if we received an array of the rides
+    if ([responseObject isKindOfClass:NSArray.class]) {
+        return responseObject;
+    }
+    else {
+        if (err) {
+            NSDictionary *errorInfo = @{
+                                        NSLocalizedDescriptionKey: NSLocalizedString(@"Unexpected server response.", nil)
+                                        };
+            *err = [NSError errorWithDomain:CaronaeErrorDomain code:CaronaeErrorInvalidResponse userInfo:errorInfo];
+        }
+    }
+    
+    return nil;
+}
+
+
+#pragma mark - IBActions
 
 - (IBAction)didTapRequestRide:(UIButton *)sender {
     NSLog(@"Requesting to join ride %ld", _ride.rideID);
@@ -73,30 +127,25 @@
 
 - (void)joinRequest:(NSDictionary *)request hasAccepted:(BOOL)accepted {
     NSLog(@"Request for user %@ was %@", request[@"name"], accepted ? @"accepted" : @"not accepted");
+    
 }
 
 
 #pragma mark - Table methods
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    [self adjustHeightOfTableview];
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return self.joinRequests.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CaronaeJoinRequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Request Cell" forIndexPath:indexPath];
     
     cell.delegate = self;
-    [cell configureCellWithRequest:nil];
+    [cell configureCellWithRequest:self.joinRequests[indexPath.row]];
     
     return cell;
 }
