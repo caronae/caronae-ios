@@ -104,8 +104,18 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
 }
 
+- (void)setUser:(NSDictionary *)user {
+    [[NSUserDefaults standardUserDefaults] setObject:user forKey:@"user"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 - (NSString *)userToken {
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+}
+
+- (void)setUserToken:(NSString *)userToken {
+    [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"token"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

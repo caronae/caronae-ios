@@ -11,7 +11,7 @@
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
     
-    NSDictionary *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+    NSDictionary *user = [CaronaeDefaults defaults].user;
     self.profileNameLabel.text = user[@"name"];
     self.profileCourseLabel.text = user[@"course"];
 }

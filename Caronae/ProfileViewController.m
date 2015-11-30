@@ -19,11 +19,11 @@
 - (IBAction)didTapLogoutButton:(id)sender {
     // TODO: Add confirmation dialog
     [self performSegueWithIdentifier:@"AuthScreen" sender:self];
-    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"user"];
+    [CaronaeDefaults defaults].user = nil;
 }
 
 - (void)updateProfileFields {
-    NSDictionary *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+    NSDictionary *user = [CaronaeDefaults defaults].user;
     
     NSDateFormatter *joinedDateParser = [[NSDateFormatter alloc] init];
     joinedDateParser.dateFormat = @"yyyy-MM-dd HH:mm:ss";

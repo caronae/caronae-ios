@@ -22,7 +22,7 @@
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
     
-    self.user = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+    self.user = [CaronaeDefaults defaults].user;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNotification:) name:CaronaeUserRidesUpdatedNotification object:nil];
     

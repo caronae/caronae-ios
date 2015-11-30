@@ -25,7 +25,7 @@
         if (responseObject[@"user"]) {
             // Save user's profile
             NSDictionary *userProfile = [responseObject[@"user"] dictionaryWithoutNulls];
-            [[NSUserDefaults standardUserDefaults] setObject:userProfile forKey:@"user"];
+            [CaronaeDefaults defaults].user = userProfile;
             
             // Save user's created rides
             NSArray *rides = responseObject[@"rides"];

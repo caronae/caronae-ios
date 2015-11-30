@@ -7,7 +7,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"user"]) {
+    if (![CaronaeDefaults defaults].user) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         UIViewController *tokenViewController = [storyboard instantiateViewControllerWithIdentifier:@"InitialTokenScreen"];
         self.window.rootViewController = tokenViewController;

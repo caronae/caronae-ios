@@ -27,7 +27,7 @@
 }
 
 - (void)updateProfileFields {
-    NSDictionary *user = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+    NSDictionary *user = [CaronaeDefaults defaults].user;
     self.user = user;
     
     NSDateFormatter *joinedDateParser = [[NSDateFormatter alloc] init];
@@ -85,7 +85,7 @@
         newUpdatedUser[@"location"] = updatedUser[@"location"];
         self.user = newUpdatedUser;
         
-        [[NSUserDefaults standardUserDefaults] setObject:newUpdatedUser forKey:@"user"];
+        [CaronaeDefaults defaults].user = newUpdatedUser;
         
         [self dismissViewControllerAnimated:YES completion:nil];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

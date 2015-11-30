@@ -17,7 +17,7 @@ extern const NSInteger CaronaeErrorNoRidesCreated;
 @property (nonatomic, readonly) NSArray *zones;
 @property (nonatomic, readonly) NSDictionary *zoneColors;
 @property (nonatomic, readonly) NSDictionary *neighborhoods;
-@property (nonatomic, readonly) NSDictionary *user;
-@property (nonatomic, readonly) NSString *userToken;
+@property (nonatomic, readwrite) NSDictionary *user;
+@property (nonatomic, readwrite) NSString *userToken;
 
 @end
