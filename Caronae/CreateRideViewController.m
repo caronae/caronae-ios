@@ -73,7 +73,7 @@
     NSDate *repeatsUntilDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self.rideDate options:0];
     
     NSDictionary *ride = @{
-                           @"myzone": @"Norte",
+                           @"myzone": self.zone,
                            @"neighborhood": self.neighborhood,
                            @"place": self.reference.text,
                            @"route": self.route.text,
