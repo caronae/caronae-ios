@@ -3,7 +3,7 @@
 #import "CaronaeRideCell.h"
 #import "RideViewController.h"
 
-@interface MyRidesViewController ()
+@interface MyRidesViewController () <RideDelegate>
 @property (nonatomic) NSArray *rides;
 @property (nonatomic) Ride *selectedRide;
 @property (nonatomic) NSDictionary *user;
@@ -48,7 +48,7 @@
     }
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-    self.rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
+    _rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
 }
 
 - (void)didReceiveNotification:(NSNotification *)notification {
@@ -58,11 +58,34 @@
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ViewRideDetails"]) {
-        RideViewController *vc = segue.destinationViewController;
-        vc.ride = self.selectedRide;
+#pragma mark - Ride methods
+
+- (void)didDeleteRide:(Ride *)ride {
+    NSLog(@"User has deleted ride with id %ld", ride.rideID);
+    
+    // Find and delete ride from persistent store
+    NSMutableArray *newRides = [[[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"] mutableCopy];
+    for (NSDictionary *r in newRides) {
+        if ([r[@"rideId"] longValue] == ride.rideID || [r[@"id"] longValue] == ride.rideID) {
+            [newRides removeObject:r];
+            break;
+        }
     }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:newRides forKey:@"userCreatedRides"];
+    
+    NSInteger deletedIndex = [_rides indexOfObject:ride];
+    if (deletedIndex == NSNotFound) {
+        NSLog(@"Error: ride to be deleted was not found in user's rides");
+        return;
+    }
+
+    [self updateRides];
+    
+    // Update view
+    [self.tableView beginUpdates];
+    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:deletedIndex inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
 }
 
 
@@ -91,5 +114,15 @@
     [self performSegueWithIdentifier:@"ViewRideDetails" sender:self];
 }
 
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ViewRideDetails"]) {
+        RideViewController *vc = segue.destinationViewController;
+        vc.ride = self.selectedRide;
+        vc.delegate = self;
+    }
+}
 
 @end

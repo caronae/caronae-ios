@@ -53,7 +53,7 @@
     // If the user is the driver of the ride, load pending join requests and hide 'join' button
     if ([self userIsDriver]) {
         [self searchForJoinRequests];
-        [self.requestRideButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];        
+        [self.requestRideButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
     else {
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];        
@@ -102,7 +102,27 @@
 }
 
 - (IBAction)didTapCancelRide:(id)sender {
-       
+    // TODO: Add confirmation dialog
+    NSLog(@"Requesting to cancel ride %ld", _ride.rideID);
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    
+    _cancelButton.enabled = NO;
+    
+    [manager DELETE:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/%ld", _ride.rideID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Ride was deleted.");
+        
+        if ([_delegate respondsToSelector:@selector(didDeleteRide:)]) {
+            [_delegate didDeleteRide:_ride];
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.description);
+        _cancelButton.enabled = YES;
+    }];
 }
 
 #pragma mark - Join request methods
