@@ -57,7 +57,7 @@
     BOOL going = (self.directionControl.selectedSegmentIndex == 0);
     
     // Test if user has selected a neighborhood
-    if (![self.neighborhood isEqualToString:@""]) {
+    if (self.neighborhood) {
         [[NSUserDefaults standardUserDefaults] setObject:self.neighborhood forKey:@"lastSearchedNeighborhood"];
         [[NSUserDefaults standardUserDefaults] setObject:self.selectedHub forKey:@"lastSearchedCenter"];
         [self.delegate searchedForRideWithCenter:self.selectedHub andNeighborhood:self.neighborhood onDate:self.searchedDate going:going];

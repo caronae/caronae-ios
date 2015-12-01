@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *requestsTableHeight;
 @property (nonatomic) NSArray *joinRequests;
 @property (nonatomic) NSDictionary *selectedUser;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @end
 
 @implementation RideViewController
@@ -50,10 +51,17 @@
     self.requestsTableHeight.constant = 0;
     
     // If the user is the driver of the ride, load pending join requests and hide 'join' button
-    if ([[CaronaeDefaults defaults].user[@"id"] isEqual:_ride.driverID]) {
+    if ([self userIsDriver]) {
         [self searchForJoinRequests];
-        self.requestRideButton.hidden = YES;
+        [self.requestRideButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];        
     }
+    else {
+        [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];        
+    }
+}
+
+- (BOOL)userIsDriver {
+    return [[CaronaeDefaults defaults].user[@"id"] isEqual:_ride.driverID];
 }
 
 
@@ -91,6 +99,10 @@
 - (IBAction)viewUserProfile:(id)sender {
     self.selectedUser = @{@"name": _ride.driverName, @"course": _ride.driverCourse, @"id": _ride.driverID};
     [self performSegueWithIdentifier:@"ViewProfile" sender:self];
+}
+
+- (IBAction)didTapCancelRide:(id)sender {
+       
 }
 
 #pragma mark - Join request methods
