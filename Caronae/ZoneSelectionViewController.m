@@ -37,16 +37,20 @@
     
     NSString *zone = self.zones[indexPath.row];
     NSDictionary *zoneColors = [CaronaeDefaults defaults].zoneColors;
-    cell.zoneNameLabel.text = zone;
+    UIColor *cellColor;
     
     if (self.type == ZoneSelectionZone) {
-        cell.colorDetail.backgroundColor = zoneColors[zone];
+        cellColor = zoneColors[zone];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     else {
-        cell.colorDetail.backgroundColor = zoneColors[self.selectedZone];
+        cellColor = zoneColors[self.selectedZone];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    
+    cell.zoneNameLabel.text = zone;
+    cell.colorDetail.backgroundColor = cellColor;
+    cell.zoneNameLabel.textColor = cellColor;
     
     return cell;
 }
