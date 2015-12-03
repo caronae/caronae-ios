@@ -228,7 +228,7 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="228" y="429"/>
         </scene>
-        <!--Todas-->
+        <!--Ativas-->
         <scene sceneID="aEb-UJ-7dz">
             <objects>
                 <tableViewController id="qPf-v5-qZ8" customClass="AllRidesViewController" sceneMemberID="viewController">
@@ -259,7 +259,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Todas" id="3Xy-Gf-p9D">
+                    <navigationItem key="navigationItem" title="Ativas" id="3Xy-Gf-p9D">
                         <rightBarButtonItems>
                             <barButtonItem image="SearchRide" id="83b-gJ-Qes">
                                 <connections>
@@ -306,11 +306,11 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="996" y="429"/>
         </scene>
-        <!--Todas-->
+        <!--Ativas-->
         <scene sceneID="PW9-Sc-m7n">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SI3-47-AYD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Todas" image="menu1" id="n9j-hq-hsm"/>
+                    <tabBarItem key="tabBarItem" title="Ativas" image="menu3" id="n9j-hq-hsm"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WwM-GX-35t">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -5520,16 +5520,16 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <exclude reference="FCq-V2-p1d"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="Jhn-fz-7G3"/>
-                                                                <exclude reference="Rjd-IO-zTv"/>
+                                                                <exclude reference="60b-iH-nXW"/>
+                                                                <exclude reference="GMv-B7-bJr"/>
+                                                                <exclude reference="Pz0-dX-Les"/>
                                                                 <exclude reference="2w5-fb-Bfm"/>
                                                                 <exclude reference="7fg-Mr-ffc"/>
                                                                 <exclude reference="Fmq-eP-B52"/>
                                                                 <exclude reference="eQW-tb-V5I"/>
                                                                 <exclude reference="jsH-gF-lxV"/>
-                                                                <exclude reference="60b-iH-nXW"/>
-                                                                <exclude reference="GMv-B7-bJr"/>
-                                                                <exclude reference="Pz0-dX-Les"/>
+                                                                <exclude reference="Jhn-fz-7G3"/>
+                                                                <exclude reference="Rjd-IO-zTv"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -5539,16 +5539,16 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <include reference="FCq-V2-p1d"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <include reference="Jhn-fz-7G3"/>
-                                                                <include reference="Rjd-IO-zTv"/>
+                                                                <include reference="60b-iH-nXW"/>
+                                                                <include reference="GMv-B7-bJr"/>
+                                                                <include reference="Pz0-dX-Les"/>
                                                                 <include reference="2w5-fb-Bfm"/>
                                                                 <include reference="7fg-Mr-ffc"/>
                                                                 <exclude reference="Fmq-eP-B52"/>
                                                                 <exclude reference="eQW-tb-V5I"/>
                                                                 <include reference="jsH-gF-lxV"/>
-                                                                <include reference="60b-iH-nXW"/>
-                                                                <include reference="GMv-B7-bJr"/>
-                                                                <include reference="Pz0-dX-Les"/>
+                                                                <include reference="Jhn-fz-7G3"/>
+                                                                <include reference="Rjd-IO-zTv"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -6396,14 +6396,14 @@ Este é o token gerado através da Intranet UFRJ</string>
         <image name="Radio selected" width="20" height="20"/>
         <image name="SearchRide" width="20" height="20"/>
         <image name="SeparatorColor" width="308" height="4"/>
-        <image name="menu1" width="34" height="26"/>
         <image name="menu2" width="26" height="26"/>
+        <image name="menu3" width="38" height="26"/>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="H8O-Mc-OH3"/>
-        <segue reference="GWy-OD-WPe"/>
         <segue reference="VGz-uS-yQa"/>
+        <segue reference="kXd-xG-sw3"/>
+        <segue reference="GWy-OD-WPe"/>
         <segue reference="tvA-Ui-5Q1"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>

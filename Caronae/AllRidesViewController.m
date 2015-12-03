@@ -22,7 +22,40 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
+    
+    [self loadActiveRides];
 }
+
+
+#pragma mark - Active rides methods
+
+- (void)loadActiveRides {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    
+    //    [self showLoadingHUD:YES];
+    
+    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/getMyActiveRides"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        [self showLoadingHUD:NO];
+        
+        NSLog(@"Active rides results are back.");
+        
+        NSError *responseError;
+//        NSArray *rides = [AllRidesViewController parseSearchResultsFromResponse:responseObject withError:&responseError];
+        NSArray *rides = responseObject;
+        if (!responseError) {
+            NSLog(@"Search returned %lu rides.", (unsigned long)rides.count);
+            self.rides = rides;
+            [self.tableView reloadData];
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //        [self showLoadingHUD:NO];
+        NSLog(@"Error: %@", error.description);
+    }];
+}
+
 
 #pragma mark - Navigation
 
