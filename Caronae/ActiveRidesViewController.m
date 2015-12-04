@@ -1,16 +1,16 @@
 #import <AFNetworking/AFNetworking.h>
-#import "AllRidesViewController.h"
+#import "ActiveRidesViewController.h"
 #import "CaronaeRideCell.h"
 #import "SearchRideViewController.h"
 #import "Ride.h"
 #import "RideViewController.h"
 
-@interface AllRidesViewController () <SeachRideDelegate>
+@interface ActiveRidesViewController () <SeachRideDelegate>
 @property (nonatomic) NSArray *rides;
 @property (nonatomic) Ride *selectedRide;
 @end
 
-@implementation AllRidesViewController
+@implementation ActiveRidesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -105,7 +105,7 @@
         NSLog(@"Search results are back.");
         
         NSError *responseError;
-        NSArray *rides = [AllRidesViewController parseSearchResultsFromResponse:responseObject withError:&responseError];
+        NSArray *rides = [ActiveRidesViewController parseSearchResultsFromResponse:responseObject withError:&responseError];
         if (!responseError) {
             NSLog(@"Search returned %lu rides.", (unsigned long)rides.count);
             self.rides = rides;
