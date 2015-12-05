@@ -24,6 +24,10 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     [self loadActiveRides];
 }
