@@ -231,7 +231,7 @@ Este é o token gerado através da Intranet UFRJ</string>
         <!--Ativas-->
         <scene sceneID="aEb-UJ-7dz">
             <objects>
-                <tableViewController id="qPf-v5-qZ8" customClass="AllRidesViewController" sceneMemberID="viewController">
+                <tableViewController id="qPf-v5-qZ8" customClass="ActiveRidesViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" id="3hV-yF-fyh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2642,8 +2642,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                         <exclude reference="rtV-71-yGf"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="64" width="400" height="487"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="Kiw-qC-kJK"/>
                                         <include reference="T1v-DT-0Ay"/>
@@ -5479,9 +5478,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <state key="normal" title="CANCELAR">
                                                                     <color key="titleColor" red="0.92941176891326904" green="0.18039216101169586" blue="0.050980392843484879" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
-                                                                <variation key="widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="233" y="9" width="152" height="30"/>
-                                                                </variation>
                                                                 <connections>
                                                                     <action selector="didTapCancelRide:" destination="SRb-hM-LXF" eventType="touchUpInside" id="08h-o1-KQd"/>
                                                                 </connections>
