@@ -228,6 +228,44 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="228" y="429"/>
         </scene>
+        <!--Pesquisa-->
+        <scene sceneID="86N-xC-KLU">
+            <objects>
+                <tableViewController title="Pesquisa" id="63o-N6-NEe" customClass="SearchResultsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kno-Ub-h1N">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="MYU-FF-CyH">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MYU-FF-CyH" id="I25-tB-Fbm">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="63o-N6-NEe" id="esn-rj-JJD"/>
+                            <outlet property="delegate" destination="63o-N6-NEe" id="lx1-7C-dNb"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Pesquisa" id="frv-QM-TF5">
+                        <barButtonItem key="rightBarButtonItem" image="SearchRide" id="I4b-tM-lj5">
+                            <connections>
+                                <segue destination="K5N-ci-Dp7" kind="presentation" identifier="SearchRide" id="9kE-zS-Odm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="SRb-hM-LXF" kind="show" identifier="ViewRideDetails" id="TRe-kz-qy8"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="936-oT-CHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2628" y="-1002"/>
+        </scene>
         <!--Ativas-->
         <scene sceneID="aEb-UJ-7dz">
             <objects>
@@ -274,6 +312,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="63o-N6-NEe" kind="show" identifier="ViewSearchResults" id="gns-F9-8s8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MPm-iD-62t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -6397,10 +6438,11 @@ Este é o token gerado através da Intranet UFRJ</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VGz-uS-yQa"/>
         <segue reference="kXd-xG-sw3"/>
-        <segue reference="GWy-OD-WPe"/>
-        <segue reference="tvA-Ui-5Q1"/>
+        <segue reference="VGz-uS-yQa"/>
+        <segue reference="9kE-zS-Odm"/>
+        <segue reference="TRe-kz-qy8"/>
+        <segue reference="CEp-XF-lJK"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>
