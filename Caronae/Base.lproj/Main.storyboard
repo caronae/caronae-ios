@@ -1754,16 +1754,16 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UD9-3b-3BN">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UD9-3b-3BN">
                                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                         <animations/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="70" id="6aV-FG-3ME">
-                                                                <variation key="widthClass=compact" constant="50"/>
+                                                                <variation key="widthClass=compact" constant="71"/>
                                                             </constraint>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                        <state key="normal" title="Sair">
+                                                        <state key="normal" image="ButtonSignout">
                                                             <color key="titleColor" red="0.92941176470588238" green="0.1803921568627451" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -2125,8 +2125,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                         <exclude reference="L7w-P4-C3K"/>
                                                                     </mask>
                                                                 </variation>
-                                                                <variation key="widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="19" y="8" width="24" height="15"/>
+                                                                <variation key="widthClass=compact">
                                                                     <mask key="constraints">
                                                                         <exclude reference="GxS-oY-8BY"/>
                                                                         <include reference="L7w-P4-C3K"/>
@@ -2773,6 +2772,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="700"/>
                     <connections>
                         <outlet property="carColorLabel" destination="wMG-kW-a5r" id="L2D-dH-MCU"/>
                         <outlet property="carDetailsView" destination="dAI-e5-Rkq" id="W6v-oS-jW3"/>
@@ -2878,16 +2879,16 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdM-sY-aqY">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdM-sY-aqY">
                                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                         <animations/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="70" id="aWj-In-NR1">
-                                                                <variation key="widthClass=compact" constant="50"/>
+                                                                <variation key="widthClass=compact" constant="71"/>
                                                             </constraint>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                        <state key="normal" title="Sair">
+                                                        <state key="normal" image="ButtonSignout">
                                                             <color key="titleColor" red="0.92941176469999998" green="0.18039215689999999" blue="0.050980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -6608,6 +6609,7 @@ Este é o token gerado através da Intranet UFRJ</string>
     <resources>
         <image name="AuthBackground" width="358" height="258"/>
         <image name="ButtonColor" width="100" height="42"/>
+        <image name="ButtonSignout" width="71" height="28"/>
         <image name="CalendarIcon" width="17" height="16"/>
         <image name="ClockIcon" width="16" height="15"/>
         <image name="DrivesIcon" width="27" height="15"/>
