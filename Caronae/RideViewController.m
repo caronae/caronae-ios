@@ -15,6 +15,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *friendsInCommonLabel;
 @property (weak, nonatomic) IBOutlet UILabel *driverMessageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *routeLabel;
+@property (weak, nonatomic) IBOutlet UIView *carDetailsView;
+@property (weak, nonatomic) IBOutlet UILabel *carPlateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *carModelLabel;
+@property (weak, nonatomic) IBOutlet UILabel *carColorLabel;
 @property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
 @property (weak, nonatomic) IBOutlet UITableView *requestsTable;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *requestsTableHeight;
@@ -54,15 +58,28 @@
     if ([self userIsDriver]) {
         [self searchForJoinRequests];
         [self.requestRideButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        
+        // Car details
+        NSDictionary *user = [CaronaeDefaults defaults].user;
+        _carPlateLabel.text = user[@"car_plate"];
+        _carModelLabel.text = user[@"car_model"];
+        _carColorLabel.text = user[@"car_color"];
     }
     // If the user is already a rider, hide 'join' button
     else if ([self userIsRider]) {
         [self.requestRideButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.cancelButton setTitle:@"DESISTIR" forState:UIControlStateNormal];
+        
+        // Car details
+        NSDictionary *user = _ride.users[0];
+        _carPlateLabel.text = user[@"car_plate"];
+        _carModelLabel.text = user[@"car_model"];
+        _carColorLabel.text = user[@"car_color"];
     }
-    // If the user is not related to the ride, hide 'cancel' button
+    // If the user is not related to the ride, hide 'cancel' button and car details view
     else {
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [self.carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
 }
 
