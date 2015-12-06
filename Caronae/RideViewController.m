@@ -55,13 +55,28 @@
         [self searchForJoinRequests];
         [self.requestRideButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
+    // If the user is already a rider, hide 'join' button
+    else if ([self userIsRider]) {
+        [self.requestRideButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [self.cancelButton setTitle:@"DESISTIR" forState:UIControlStateNormal];
+    }
+    // If the user is not related to the ride, hide 'cancel' button
     else {
-        [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];        
+        [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
 }
 
 - (BOOL)userIsDriver {
     return [[CaronaeDefaults defaults].user[@"id"] isEqual:_ride.driverID];
+}
+
+- (BOOL)userIsRider {
+    for (NSDictionary *user in _ride.users) {
+        if ([user[@"id"] isEqual:[CaronaeDefaults defaults].user[@"id"]]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 
@@ -89,7 +104,7 @@
     
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Done requesting ride.");
-        [_requestRideButton setTitle:@"CARONA SOLICITADA" forState:UIControlStateNormal];
+        [_requestRideButton setTitle:@" AGUARDANDO AUTORIZAÇÃO " forState:UIControlStateNormal];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.description);
         _requestRideButton.enabled = YES;
@@ -103,16 +118,17 @@
 
 - (IBAction)didTapCancelRide:(id)sender {
     // TODO: Add confirmation dialog
-    NSLog(@"Requesting to cancel ride %ld", _ride.rideID);
+    NSLog(@"Requesting to leave ride %ld", _ride.rideID);
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    NSDictionary *params = @{@"rideId": @(_ride.rideID)};
     
     _cancelButton.enabled = NO;
     
-    [manager DELETE:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/%ld", _ride.rideID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Ride was deleted.");
+    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/leaveRide"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"User left the ride. (Message: %@)", responseObject[@"message"]);
         
         if ([_delegate respondsToSelector:@selector(didDeleteRide:)]) {
             [_delegate didDeleteRide:_ride];

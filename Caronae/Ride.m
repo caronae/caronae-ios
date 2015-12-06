@@ -29,6 +29,15 @@ static NSDateFormatter *otherDateParserFormatter;
     return self;
 }
 
+- (void)setUsers:(NSArray *)users {
+    _users = users;
+    
+    NSDictionary *driver = users[0];
+    _driverID = driver[@"id"];
+    _driverName = driver[@"name"];
+    _driverCourse = driver[@"course"];
+}
+
 /**
  *  Parse date/time string to a NSDate object. The seconds are optional.
  *

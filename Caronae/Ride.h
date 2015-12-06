@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Ride : NSObject
+
 - (instancetype)initWithDictionary:(NSDictionary *)ride;
 
 @property (nonatomic) NSString *driverName;
@@ -16,4 +17,5 @@
 @property (nonatomic) BOOL going;
 @property (nonatomic) long rideID;
 @property (nonatomic) NSNumber *driverID;
+@property (nonatomic) NSArray *users;
 @end

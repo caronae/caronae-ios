@@ -48,18 +48,45 @@
         NSLog(@"Active rides results are back.");
         
         NSError *responseError;
-        NSArray *rides = responseObject;
+        NSArray *rides = [ActiveRidesViewController parseResultsFromResponse:responseObject withError:&responseError];
         if (!responseError) {
             NSLog(@"Active rides returned %lu rides.", (unsigned long)rides.count);
             self.rides = rides;
             [self.tableView reloadData];
         }
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //        [self showLoadingHUD:NO];
         NSLog(@"Error: %@", error.description);
     }];
 }
+
+
++ (NSArray *)parseResultsFromResponse:(id)responseObject withError:(NSError *__autoreleasing *)err {
+    // Check if we received an array of the rides
+    if ([responseObject isKindOfClass:NSArray.class]) {
+        NSMutableArray *rides = [NSMutableArray arrayWithCapacity:((NSArray*)responseObject).count];
+        for (NSDictionary *result in responseObject) {
+            NSDictionary *rideDictionary = result[@"ride"];
+            NSArray *rideUsers = result[@"users"];
+            Ride *ride = [[Ride alloc] initWithDictionary:rideDictionary];
+            [ride setUsers:rideUsers];
+            [rides addObject:ride];
+        }
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+        return [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
+    }
+    else {
+        if (err) {
+            NSDictionary *errorInfo = @{
+                                        NSLocalizedDescriptionKey: NSLocalizedString(@"Unexpected server response.", nil)
+                                        };
+            *err = [NSError errorWithDomain:CaronaeErrorDomain code:CaronaeErrorInvalidResponse userInfo:errorInfo];
+        }
+    }
+    
+    return nil;
+}
+
 
 
 #pragma mark - Navigation
