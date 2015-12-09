@@ -4,7 +4,7 @@
 #import "ProfileViewController.h"
 #import "Ride.h"
 
-@interface RideViewController () <UITableViewDelegate, UITableViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
+@interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *driverPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *slotsLabel;
@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *carPlateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *carModelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *carColorLabel;
+@property (weak, nonatomic) IBOutlet UIView *ridersView;
 @property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
 @property (weak, nonatomic) IBOutlet UITableView *requestsTable;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *requestsTableHeight;
@@ -76,10 +77,11 @@
         _carModelLabel.text = user[@"car_model"];
         _carColorLabel.text = user[@"car_color"];
     }
-    // If the user is not related to the ride, hide 'cancel' button and car details view
+    // If the user is not related to the ride, hide 'cancel' button, car details view and riders view
     else {
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [self.ridersView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
 }
 
@@ -271,6 +273,23 @@
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
     }];
+}
+
+
+#pragma mark - Collection methods (Riders)
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 3;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Rider Cell" forIndexPath:indexPath];
+    
+    return cell;
 }
 
 @end
