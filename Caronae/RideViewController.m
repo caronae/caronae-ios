@@ -3,6 +3,7 @@
 #import "CaronaeJoinRequestCell.h"
 #import "ProfileViewController.h"
 #import "Ride.h"
+#import "CaronaeRiderCell.h"
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -287,13 +288,29 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 3;
+    // Users minus one because we are not interested in the driver
+    return _ride.users.count - 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Rider Cell" forIndexPath:indexPath];
+    NSDictionary *user = _ride.users[indexPath.row + 1];
+    NSString *firstName = [user[@"name"] componentsSeparatedByString:@" "].firstObject;
+    
+    CaronaeRiderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Rider Cell" forIndexPath:indexPath];
+    
+    cell.user = user;
+    cell.nameLabel.text = firstName;
     
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    
+    CaronaeRiderCell *cell = (CaronaeRiderCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    self.selectedUser = cell.user;
+    
+    [self performSegueWithIdentifier:@"ViewProfile" sender:self];
 }
 
 @end
