@@ -1,4 +1,5 @@
 #import <AFNetworking/AFNetworking.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "NSDictionary+dictionaryWithoutNulls.h"
 #import "CaronaeAlertController.h"
 #import "TokenViewController.h"
@@ -18,12 +19,15 @@
 - (void)authenticate {
     _authButton.enabled = NO;
     [_authTextField resignFirstResponder];
+    [SVProgressHUD show];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString *userToken = _tokenTextField.text;
     NSDictionary *parameters = @{@"token": userToken};
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/user/login"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        
         // Check if the authentication was ok if we received an user object
         if (responseObject[@"user"]) {
             // Save user's profile
@@ -48,6 +52,7 @@
             _authButton.enabled = YES;
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         NSLog(@"Error: %@", error.localizedDescription);
         
         NSString *errorMsg;
@@ -61,7 +66,6 @@
         [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível autenticar." message:errorMsg];
         _authButton.enabled = YES;
     }];
-
 }
 
 - (IBAction)didTapAuthenticateButton:(UIButton *)sender {

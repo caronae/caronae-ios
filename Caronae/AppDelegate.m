@@ -1,3 +1,4 @@
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -13,6 +14,9 @@
         self.window.rootViewController = tokenViewController;
         [self.window makeKeyAndVisible];
     }
+    
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.75f]];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     
     return YES;
 }
