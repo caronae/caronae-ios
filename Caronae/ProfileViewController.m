@@ -1,4 +1,5 @@
 #import "ProfileViewController.h"
+#import "CaronaeAlertController.h"
 
 @interface ProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
@@ -53,9 +54,15 @@
 #pragma mark - IBActions
 
 - (IBAction)didTapLogoutButton:(id)sender {
-    // TODO: Add confirmation dialog
-    [self performSegueWithIdentifier:@"AuthScreen" sender:self];
-    [CaronaeDefaults defaults].user = nil;
+    CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Você deseja mesmo sair da sua conta?"
+                                                                             message:@"Para entrar novamente você precisará do token de autorização gerado pelo SIGA."
+                                                                      preferredStyle:SDCAlertControllerStyleAlert];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Sair" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
+        [CaronaeDefaults defaults].user = nil;
+        [self performSegueWithIdentifier:@"AuthScreen" sender:self];
+    }]];
+    [alert presentWithCompletion:nil];
 }
 
 
