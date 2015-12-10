@@ -1,4 +1,5 @@
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -17,6 +18,8 @@
     
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.75f]];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
     return YES;
 }

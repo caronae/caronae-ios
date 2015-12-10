@@ -3,6 +3,7 @@
 #import "NSDictionary+dictionaryWithoutNulls.h"
 #import "ZoneSelectionViewController.h"
 #import <AFNetworking/AFNetworking.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import <ActionSheetDatePicker.h>
 #import <ActionSheetStringPicker.h>
 
@@ -123,10 +124,14 @@
     ride = [self generateRideDictionaryFromView];
     NSLog(@"%@", ride);
     
+    [SVProgressHUD show];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride"] parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        
         NSLog(@"Response JSON: %@", responseObject);
         NSError *responseError;
         NSArray *createdRides = [CreateRideViewController parseCreateRidesFromResponse:responseObject withError:&responseError];
@@ -148,8 +153,9 @@
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+
         NSLog(@"Error: %@", error.description);
-//        NSLog(@"body: %@", operation.responseString);
     }];
 
 }

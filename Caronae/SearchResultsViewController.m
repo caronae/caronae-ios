@@ -1,4 +1,5 @@
 #import <AFNetworking/AFNetworking.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeRideCell.h"
 #import "SearchRideViewController.h"
 #import "Ride.h"
@@ -67,10 +68,10 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
-    //    [self showLoadingHUD:YES];
+    [SVProgressHUD show];
     
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/listFiltered"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //        [self showLoadingHUD:NO];
+        [SVProgressHUD dismiss];
         
         NSLog(@"Search results are back.");
         
@@ -83,7 +84,7 @@
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //        [self showLoadingHUD:NO];
+        [SVProgressHUD dismiss];
         NSLog(@"Error: %@", error.description);
     }];
     

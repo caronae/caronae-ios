@@ -1,4 +1,5 @@
 #import <AFNetworking/AFNetworking.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "ActiveRidesViewController.h"
 #import "CaronaeRideCell.h"
 #import "SearchRideViewController.h"
@@ -40,11 +41,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
-    //    [self showLoadingHUD:YES];
-    
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/getMyActiveRides"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //        [self showLoadingHUD:NO];
-        
         NSLog(@"Active rides results are back.");
         
         NSError *responseError;
@@ -55,7 +52,6 @@
             [self.tableView reloadData];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //        [self showLoadingHUD:NO];
         NSLog(@"Error: %@", error.description);
     }];
 }
@@ -86,7 +82,6 @@
     
     return nil;
 }
-
 
 
 #pragma mark - Navigation
