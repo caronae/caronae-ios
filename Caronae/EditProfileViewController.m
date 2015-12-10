@@ -1,4 +1,5 @@
 #import <AFNetworking/AFNetworking.h>
+#import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
 #import "ZoneSelectionViewController.h"
 
@@ -23,7 +24,14 @@
 }
 
 - (IBAction)didTapCancelButton:(id)sender {
-     [self dismissViewControllerAnimated:YES completion:nil];
+    CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar edição do perfil?"
+                                                                             message:@"Quaisquer mudanças não salvas serão perdidas."
+                                                                      preferredStyle:SDCAlertControllerStyleAlert];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Não" style:SDCAlertActionStyleCancel handler:nil]];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    [alert presentWithCompletion:nil];
 }
 
 - (void)updateProfileFields {
