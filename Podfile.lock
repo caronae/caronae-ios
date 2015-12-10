@@ -21,16 +21,25 @@ PODS:
   - AFNetworking/UIKit (2.6.2):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - RBBAnimation (0.4.0)
+  - SDCAlertView (2.5.4):
+    - RBBAnimation (~> 0.3)
+    - SDCAutoLayout (~> 2.0)
+  - SDCAutoLayout (2.0.3)
   - TPKeyboardAvoiding (1.2.10)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.0.3)
   - AFNetworking (~> 2.0)
+  - SDCAlertView (= 2.5.4)
   - TPKeyboardAvoiding (~> 1.2.10)
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 11f2053085d3088dc1ef9d38a9f11c18b528dd9e
   AFNetworking: 7f317038a9710cabfa43ec56396b307b45df72ab
+  RBBAnimation: 4b2d66f6d993febce63cd564da934985313b9c59
+  SDCAlertView: 2e2b0ecc5f1ec367e45d83efa2e512688ca7fa55
+  SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
   TPKeyboardAvoiding: 614ebec846ec28b83d548769297fa5fb56468904
 
 COCOAPODS: 0.39.0

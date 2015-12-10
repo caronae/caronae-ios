@@ -1,5 +1,6 @@
 #import <AFNetworking/AFNetworking.h>
 #import "NSDictionary+dictionaryWithoutNulls.h"
+#import "CaronaeAlertController.h"
 #import "TokenViewController.h"
 
 @interface TokenViewController () <UITextFieldDelegate>
@@ -11,13 +12,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _authButton.enabled = NO;
 }
 
 - (void)authenticate {
-    self.authButton.enabled = NO;
+    _authButton.enabled = NO;
+    [_authTextField resignFirstResponder];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    NSString *userToken = self.tokenTextField.text;
+    NSString *userToken = _tokenTextField.text;
     NSDictionary *parameters = @{@"token": userToken};
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/user/login"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -38,16 +41,25 @@
             // Save user's token
             [CaronaeDefaults defaults].userToken = userToken;
             
-            [self.authTextField resignFirstResponder];
             [self performSegueWithIdentifier:@"tokenValidated" sender:self];
         }
         else {
             NSLog(@"Error authenticating");
-            self.authButton.enabled = YES;
+            _authButton.enabled = YES;
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.description);
-        self.authButton.enabled = YES;
+        NSLog(@"Error: %@", error.localizedDescription);
+        
+        NSString *errorMsg;
+        if (operation.response.statusCode == 403) {
+            errorMsg = @"Token não autorizado. Verifique se o mesmo foi digitado corretamente e tente de novo.";
+        }
+        else {
+            errorMsg = [NSString stringWithFormat:@"Ocorreu um erro autenticando com o servidor do Caronaê. Tente novamente.\n(%@)", error.localizedDescription];
+        }
+        
+        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível autenticar." message:errorMsg];
+        _authButton.enabled = YES;
     }];
 
 }
@@ -56,10 +68,25 @@
     [self authenticate];
 }
 
+
+#pragma mark Text field methods
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField == self.authTextField) {
+    if (textField == _authTextField) {
         [self authenticate];
         return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if ([text isEqualToString:@""]) {
+        _authButton.enabled = NO;
+    }
+    else {
+        _authButton.enabled = YES;
     }
     
     return YES;

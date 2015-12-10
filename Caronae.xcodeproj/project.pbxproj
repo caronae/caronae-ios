@@ -23,6 +23,7 @@
 		A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C61BF01B9A005BA311 /* MenuViewController.m */; };
 		A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C91BF01C1D005BA311 /* ProfileViewController.m */; };
 		A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312CC1BF01C26005BA311 /* EditProfileViewController.m */; };
+		A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
 		A38F1D4D1C0398B500DEF6B1 /* CaronaeRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F1D4C1C0398B500DEF6B1 /* CaronaeRideCell.m */; };
 		A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */; };
 		A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */; };
@@ -91,6 +92,8 @@
 		A34312C91BF01C1D005BA311 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		A34312CB1BF01C26005BA311 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		A34312CC1BF01C26005BA311 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		A375D2F91C19175A00795CAE /* CaronaeAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeAlertController.h; sourceTree = "<group>"; };
+		A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeAlertController.m; sourceTree = "<group>"; };
 		A38F1D4B1C0398B500DEF6B1 /* CaronaeRideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeRideCell.h; sourceTree = "<group>"; };
 		A38F1D4C1C0398B500DEF6B1 /* CaronaeRideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeRideCell.m; sourceTree = "<group>"; };
 		A3996D2B1C13AC0900D2E890 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
@@ -267,15 +270,17 @@
 				A39BBD041C06AB9D00EF9EBD /* CaronaeRideCell.xib */,
 				A38F1D4B1C0398B500DEF6B1 /* CaronaeRideCell.h */,
 				A38F1D4C1C0398B500DEF6B1 /* CaronaeRideCell.m */,
+				A325DA6F1C0CAFD700B9124E /* CaronaeJoinRequestCell.xib */,
 				A325DA6D1C0CAFD700B9124E /* CaronaeJoinRequestCell.h */,
 				A325DA6E1C0CAFD700B9124E /* CaronaeJoinRequestCell.m */,
-				A325DA6F1C0CAFD700B9124E /* CaronaeJoinRequestCell.xib */,
 				A3F30EEB1C0890C10024BE37 /* CaronaeZoneCell.h */,
 				A3F30EEC1C0890C10024BE37 /* CaronaeZoneCell.m */,
 				A3169CC91BED893F00A0D428 /* CaronaeTextField.h */,
 				A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */,
 				A3EE026A1C17D01000A8407E /* CaronaeRiderCell.h */,
 				A3EE026B1C17D01000A8407E /* CaronaeRiderCell.m */,
+				A375D2F91C19175A00795CAE /* CaronaeAlertController.h */,
+				A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */,
 			);
 			name = "Custom views";
 			sourceTree = "<group>";
@@ -503,6 +508,7 @@
 				A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */,
 				A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */,
 				A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */,
+				A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */,
 				A3B5AEFF1BF1AAC10026A889 /* CaronaeDefaults.m in Sources */,
 				A38F1D4D1C0398B500DEF6B1 /* CaronaeRideCell.m in Sources */,
 				A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */,
