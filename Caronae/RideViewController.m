@@ -4,6 +4,7 @@
 #import "ProfileViewController.h"
 #import "Ride.h"
 #import "CaronaeRiderCell.h"
+#import "CaronaeAlertController.h"
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -117,22 +118,7 @@
 #pragma mark - IBActions
 
 - (IBAction)didTapRequestRide:(UIButton *)sender {
-    NSLog(@"Requesting to join ride %ld", _ride.rideID);
-    NSDictionary *params = @{@"rideId": @(_ride.rideID)};
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
-    
-    _requestRideButton.enabled = NO;
-    
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Done requesting ride.");
-        [_requestRideButton setTitle:@" AGUARDANDO AUTORIZAÇÃO " forState:UIControlStateNormal];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.description);
-        _requestRideButton.enabled = YES;
-    }];
+    [self requestJoinRide];
 }
 
 - (IBAction)viewUserProfile:(id)sender {
@@ -141,7 +127,20 @@
 }
 
 - (IBAction)didTapCancelRide:(id)sender {
-    // TODO: Add confirmation dialog
+    CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Deseja mesmo desistir da carona?"
+                                                                             message:@"Você é livre para cancelar caronas caso não possa participar, mas é importante fazer isso com responsabilidade. Os outros usuários da carona serão notificados."
+                                                                      preferredStyle:SDCAlertControllerStyleAlert];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Desistir" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
+        [self cancelRide];
+    }]];
+    [alert presentWithCompletion:nil];
+}
+
+
+#pragma mark - Cancel ride methods
+
+- (void)cancelRide {
     NSLog(@"Requesting to leave ride %ld", _ride.rideID);
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -165,7 +164,27 @@
     }];
 }
 
+
 #pragma mark - Join request methods
+
+- (void)requestJoinRide {
+    NSLog(@"Requesting to join ride %ld", _ride.rideID);
+    NSDictionary *params = @{@"rideId": @(_ride.rideID)};
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    
+    _requestRideButton.enabled = NO;
+    
+    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Done requesting ride.");
+        [_requestRideButton setTitle:@"    AGUARDANDO AUTORIZAÇÃO    " forState:UIControlStateNormal];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.description);
+        _requestRideButton.enabled = YES;
+    }];
+}
 
 - (void)searchForJoinRequests {
     long rideID = _ride.rideID;
