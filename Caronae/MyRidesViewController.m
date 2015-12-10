@@ -29,36 +29,39 @@
     [self updateRides];
 }
 
-- (void)updateRides {
-    // TODO: Add to secondary thread?
-    NSArray *rideArchive = [[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"];
-    NSMutableArray *rides = [[NSMutableArray alloc] initWithCapacity:rideArchive.count];
-    for (id rideDictionary in rideArchive) {
-        Ride *ride = [[Ride alloc] initWithDictionary:rideDictionary];
-        
-        // Skip rides in the past
-        if ([ride.date compare:[NSDate date]] == NSOrderedAscending) {
-            continue;
-        }
-        
-        ride.driverID = self.user[@"id"];
-        ride.driverName = self.user[@"name"];
-        ride.driverCourse = self.user[@"course"];
-        [rides addObject:ride];
-    }
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-    _rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
-}
-
 - (void)didReceiveNotification:(NSNotification *)notification {
     if ([notification.name isEqualToString:CaronaeUserRidesUpdatedNotification]) {
         [self updateRides];
-        [self.tableView reloadData];
     }
 }
 
+
 #pragma mark - Ride methods
+
+- (void)updateRides {
+    // Run in secondary thread so it won't affect UI
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSArray *rideArchive = [[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"];
+        NSMutableArray *rides = [[NSMutableArray alloc] initWithCapacity:rideArchive.count];
+        for (id rideDictionary in rideArchive) {
+            Ride *ride = [[Ride alloc] initWithDictionary:rideDictionary];
+            
+            // Skip rides in the past
+            if ([ride.date compare:[NSDate date]] == NSOrderedAscending) {
+                continue;
+            }
+            
+            ride.driverID = self.user[@"id"];
+            ride.driverName = self.user[@"name"];
+            ride.driverCourse = self.user[@"course"];
+            [rides addObject:ride];
+        }
+        
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+        _rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
+        [self.tableView reloadData];
+    });
+}
 
 - (void)didDeleteRide:(Ride *)ride {
     NSLog(@"User has deleted ride with id %ld", ride.rideID);

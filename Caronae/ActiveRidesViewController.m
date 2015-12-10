@@ -49,6 +49,7 @@
         if (!responseError) {
             NSLog(@"Active rides returned %lu rides.", (unsigned long)rides.count);
             self.rides = rides;
+            // TODO: save this on cache?
             [self.tableView reloadData];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
