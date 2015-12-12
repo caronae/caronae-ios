@@ -1,3 +1,4 @@
+#import <AFNetworking/AFNetworking.h>
 #import "ProfileViewController.h"
 #import "CaronaeAlertController.h"
 
@@ -38,16 +39,38 @@
         self.navigationItem.rightBarButtonItem = nil;
     }
     
-    NSDateFormatter *joinedDateParser = [[NSDateFormatter alloc] init];
-    joinedDateParser.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    NSDate *joinedDate = [joinedDateParser dateFromString:_user[@"created_at"]];
-    _joinedDateFormatter = [[NSDateFormatter alloc] init];
-    _joinedDateFormatter.dateFormat = @"MM/yyyy";
+    if (_user[@"created_at"]) {
+        NSDateFormatter *joinedDateParser = [[NSDateFormatter alloc] init];
+        joinedDateParser.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        NSDate *joinedDate = [joinedDateParser dateFromString:_user[@"created_at"]];
+        _joinedDateFormatter = [[NSDateFormatter alloc] init];
+        _joinedDateFormatter.dateFormat = @"MM/yyyy";
+        _joinedDateLabel.text = [self.joinedDateFormatter stringFromDate:joinedDate];
+    }
     
     _nameLabel.text = _user[@"name"];
     _courseLabel.text = _user[@"course"];
     
-    _joinedDateLabel.text = [self.joinedDateFormatter stringFromDate:joinedDate];
+    [self updateRidesOfferedCount];
+}
+
+- (void)updateRidesOfferedCount {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    
+    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/getRidesHistoryCount/%@", _user[@"id"]]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSInteger numDrives = [responseObject[@"offeredCount"] integerValue];
+        NSInteger numRides = [responseObject[@"takenCount"] integerValue];
+        
+        NSLog(@"User has offered %ld and taken %ld rides.", numDrives, numRides);
+        
+        _numDrivesLabel.text = [NSString stringWithFormat:@"%ld", numDrives];
+        _numRidesLabel.text = [NSString stringWithFormat:@"%ld", numRides];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error reading history count for user: %@", error.localizedDescription);
+    }];
+
 }
 
 

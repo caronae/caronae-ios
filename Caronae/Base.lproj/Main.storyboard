@@ -1798,7 +1798,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbD-NA-ch3" userLabel="Joined">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02/2014" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgn-kJ-4Ss" userLabel="Joined date">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--/----" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgn-kJ-4Ss" userLabel="Joined date">
                                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1874,7 +1874,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4v7-IQ-WIH" userLabel="Drives">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dC-bx-97n">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dC-bx-97n">
                                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1979,7 +1979,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7LV-WC-GgG">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7LV-WC-GgG">
                                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2043,11 +2043,13 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Akp-DE-6fa" userLabel="Likes">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="3fF-Oe-wYp">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LikesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="3fF-Oe-wYp">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="GxS-oY-8BY"/>
-                                                                    <constraint firstAttribute="height" constant="16" id="L7w-P4-C3K"/>
+                                                                    <constraint firstAttribute="height" constant="16" id="L7w-P4-C3K">
+                                                                        <variation key="widthClass=compact" constant="15"/>
+                                                                    </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
@@ -2062,7 +2064,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NE9-M6-rPZ" userLabel="Num Likes">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NE9-M6-rPZ" userLabel="Num Likes">
                                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2636,8 +2638,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                         <exclude reference="rtV-71-yGf"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="656"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="Kiw-qC-kJK"/>
                                         <include reference="T1v-DT-0Ay"/>
@@ -3937,8 +3938,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="P6w-KE-6u5"/>
-                                                        <exclude reference="jp2-gW-hIE"/>
-                                                        <exclude reference="kLb-Yh-Ba3"/>
                                                         <exclude reference="3Hv-qL-ANI"/>
                                                         <exclude reference="bu4-3a-oK5"/>
                                                         <exclude reference="eek-M2-hND"/>
@@ -3947,27 +3946,29 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <exclude reference="9kd-Xa-buk"/>
                                                         <exclude reference="AJL-Y1-pDx"/>
                                                         <exclude reference="o4y-rF-LeM"/>
-                                                        <exclude reference="TpI-Y4-qNh"/>
-                                                        <exclude reference="jMt-KR-eRa"/>
-                                                        <exclude reference="lgz-1r-ytK"/>
-                                                        <exclude reference="vdz-D1-bcv"/>
-                                                        <exclude reference="xEf-z0-zZP"/>
                                                         <exclude reference="2b8-Sr-ItU"/>
                                                         <exclude reference="Jyf-Mo-KOp"/>
                                                         <exclude reference="Wjo-g7-kgu"/>
                                                         <exclude reference="wNK-zQ-Fvx"/>
                                                         <exclude reference="xWK-Ue-tMh"/>
-                                                        <exclude reference="CpV-iF-BOA"/>
-                                                        <exclude reference="N3T-GG-QBW"/>
                                                         <exclude reference="90V-ob-lKK"/>
                                                         <exclude reference="Dbn-jd-lsN"/>
                                                         <exclude reference="jlN-LD-eRn"/>
                                                         <exclude reference="kaN-W4-vbR"/>
                                                         <exclude reference="uw7-sB-eDs"/>
                                                         <exclude reference="wbm-Tr-SFx"/>
+                                                        <exclude reference="jp2-gW-hIE"/>
+                                                        <exclude reference="kLb-Yh-Ba3"/>
                                                         <exclude reference="9DY-QI-bO2"/>
                                                         <exclude reference="QsC-U5-GTe"/>
                                                         <exclude reference="rjG-HV-tQ6"/>
+                                                        <exclude reference="CpV-iF-BOA"/>
+                                                        <exclude reference="N3T-GG-QBW"/>
+                                                        <exclude reference="TpI-Y4-qNh"/>
+                                                        <exclude reference="jMt-KR-eRa"/>
+                                                        <exclude reference="lgz-1r-ytK"/>
+                                                        <exclude reference="vdz-D1-bcv"/>
+                                                        <exclude reference="xEf-z0-zZP"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
@@ -3984,8 +3985,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="P6w-KE-6u5"/>
-                                                        <include reference="jp2-gW-hIE"/>
-                                                        <include reference="kLb-Yh-Ba3"/>
                                                         <include reference="3Hv-qL-ANI"/>
                                                         <include reference="bu4-3a-oK5"/>
                                                         <include reference="eek-M2-hND"/>
@@ -3994,27 +3993,29 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <exclude reference="9kd-Xa-buk"/>
                                                         <include reference="AJL-Y1-pDx"/>
                                                         <exclude reference="o4y-rF-LeM"/>
-                                                        <exclude reference="TpI-Y4-qNh"/>
-                                                        <exclude reference="jMt-KR-eRa"/>
-                                                        <include reference="lgz-1r-ytK"/>
-                                                        <include reference="vdz-D1-bcv"/>
-                                                        <include reference="xEf-z0-zZP"/>
                                                         <include reference="2b8-Sr-ItU"/>
                                                         <include reference="Jyf-Mo-KOp"/>
                                                         <exclude reference="Wjo-g7-kgu"/>
                                                         <include reference="wNK-zQ-Fvx"/>
                                                         <exclude reference="xWK-Ue-tMh"/>
-                                                        <exclude reference="CpV-iF-BOA"/>
-                                                        <include reference="N3T-GG-QBW"/>
                                                         <include reference="90V-ob-lKK"/>
                                                         <include reference="Dbn-jd-lsN"/>
                                                         <exclude reference="jlN-LD-eRn"/>
                                                         <include reference="kaN-W4-vbR"/>
                                                         <include reference="uw7-sB-eDs"/>
                                                         <include reference="wbm-Tr-SFx"/>
+                                                        <include reference="jp2-gW-hIE"/>
+                                                        <include reference="kLb-Yh-Ba3"/>
                                                         <exclude reference="9DY-QI-bO2"/>
                                                         <include reference="QsC-U5-GTe"/>
                                                         <include reference="rjG-HV-tQ6"/>
+                                                        <exclude reference="CpV-iF-BOA"/>
+                                                        <include reference="N3T-GG-QBW"/>
+                                                        <exclude reference="TpI-Y4-qNh"/>
+                                                        <exclude reference="jMt-KR-eRa"/>
+                                                        <include reference="lgz-1r-ytK"/>
+                                                        <include reference="vdz-D1-bcv"/>
+                                                        <include reference="xEf-z0-zZP"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -6555,6 +6556,7 @@ Este é o token gerado através da Intranet UFRJ</string>
         <image name="CalendarIcon" width="17" height="16"/>
         <image name="ClockIcon" width="16" height="15"/>
         <image name="DrivesIcon" width="27" height="15"/>
+        <image name="LikesIcon" width="15" height="15"/>
         <image name="LocationIcon" width="16" height="15"/>
         <image name="LogoLarge" width="205" height="53"/>
         <image name="NewRide" width="29" height="24"/>
