@@ -11,6 +11,7 @@ extern const NSInteger CaronaeErrorNoRidesCreated;
 @interface CaronaeDefaults : NSObject
 
 + (instancetype)defaults;
++ (UIColor *)colorForZone:(NSString *)zone;
 
 @property (nonatomic, readonly) NSArray *centers;
 @property (nonatomic, readonly) NSArray *hubs;

@@ -3,12 +3,6 @@
 
 @implementation CaronaeRideCell
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 - (void)configureCellWithRide:(Ride *)ride {
     _ride = ride;
     
@@ -23,6 +17,15 @@
     }
     _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Chegando às %@", [dateFormatter stringFromDate:ride.date]];
     _slotsLabel.text = [NSString stringWithFormat:@"%d %@", ride.slots, ride.slots == 1 ? @"vaga" : @"vagas"];
+    
+    self.color = [CaronaeDefaults colorForZone:_ride.zone];
+}
+
+- (void)setColor:(UIColor *)color {
+    _color = color;
+    _titleLabel.textColor = color;
+    _arrivalDateTimeLabel.textColor = color;
+    _slotsLabel.textColor = color;
 }
 
 @end

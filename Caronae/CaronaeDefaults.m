@@ -35,6 +35,10 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
     return sharedMyManager;
 }
 
++ (UIColor *)colorForZone:(NSString *)zone {
+    return [CaronaeDefaults defaults].zoneColors[zone];
+}
+
 - (NSArray *)centers {
     if (!_centers) {
         _centers = @[@"CT", @"CCMN", @"CCS", @"EEFD", @"Reitoria", @"Letras"];
