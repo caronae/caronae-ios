@@ -3861,6 +3861,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstItem="59v-69-H2d" firstAttribute="leading" secondItem="q8t-lO-Jqk" secondAttribute="leading" id="3Hv-qL-ANI"/>
                                                     <constraint firstItem="ZA1-8O-6ah" firstAttribute="leading" secondItem="oTl-se-EDm" secondAttribute="trailing" constant="10" id="465-2m-qSg"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZA1-8O-6ah" secondAttribute="trailing" id="7je-NW-87U"/>
+                                                    <constraint firstItem="eDe-Qb-t67" firstAttribute="leading" secondItem="ZA1-8O-6ah" secondAttribute="leading" id="90V-ob-lKK"/>
                                                     <constraint firstItem="7cO-dW-lj8" firstAttribute="top" secondItem="aA3-hm-80U" secondAttribute="bottom" constant="10" id="9DY-QI-bO2">
                                                         <variation key="widthClass=compact" constant="5"/>
                                                     </constraint>
@@ -3917,6 +3918,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstItem="ack-vy-A7z" firstAttribute="top" secondItem="ZA1-8O-6ah" secondAttribute="bottom" constant="5" id="wNK-zQ-Fvx">
                                                         <variation key="widthClass=compact" constant="15"/>
                                                     </constraint>
+                                                    <constraint firstItem="eDe-Qb-t67" firstAttribute="width" secondItem="ZA1-8O-6ah" secondAttribute="width" id="wbm-Tr-SFx"/>
                                                     <constraint firstItem="oTl-se-EDm" firstAttribute="leading" secondItem="UQY-BS-Gqj" secondAttribute="leading" id="xEf-z0-zZP">
                                                         <variation key="widthClass=compact" constant="0.0"/>
                                                     </constraint>
@@ -3935,6 +3937,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="P6w-KE-6u5"/>
+                                                        <exclude reference="jp2-gW-hIE"/>
+                                                        <exclude reference="kLb-Yh-Ba3"/>
                                                         <exclude reference="3Hv-qL-ANI"/>
                                                         <exclude reference="bu4-3a-oK5"/>
                                                         <exclude reference="eek-M2-hND"/>
@@ -3943,27 +3947,27 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <exclude reference="9kd-Xa-buk"/>
                                                         <exclude reference="AJL-Y1-pDx"/>
                                                         <exclude reference="o4y-rF-LeM"/>
-                                                        <exclude reference="2b8-Sr-ItU"/>
-                                                        <exclude reference="Jyf-Mo-KOp"/>
-                                                        <exclude reference="Wjo-g7-kgu"/>
-                                                        <exclude reference="wNK-zQ-Fvx"/>
-                                                        <exclude reference="xWK-Ue-tMh"/>
-                                                        <exclude reference="Dbn-jd-lsN"/>
-                                                        <exclude reference="jlN-LD-eRn"/>
-                                                        <exclude reference="kaN-W4-vbR"/>
-                                                        <exclude reference="uw7-sB-eDs"/>
-                                                        <exclude reference="jp2-gW-hIE"/>
-                                                        <exclude reference="kLb-Yh-Ba3"/>
-                                                        <exclude reference="9DY-QI-bO2"/>
-                                                        <exclude reference="QsC-U5-GTe"/>
-                                                        <exclude reference="rjG-HV-tQ6"/>
-                                                        <exclude reference="CpV-iF-BOA"/>
-                                                        <exclude reference="N3T-GG-QBW"/>
                                                         <exclude reference="TpI-Y4-qNh"/>
                                                         <exclude reference="jMt-KR-eRa"/>
                                                         <exclude reference="lgz-1r-ytK"/>
                                                         <exclude reference="vdz-D1-bcv"/>
                                                         <exclude reference="xEf-z0-zZP"/>
+                                                        <exclude reference="2b8-Sr-ItU"/>
+                                                        <exclude reference="Jyf-Mo-KOp"/>
+                                                        <exclude reference="Wjo-g7-kgu"/>
+                                                        <exclude reference="wNK-zQ-Fvx"/>
+                                                        <exclude reference="xWK-Ue-tMh"/>
+                                                        <exclude reference="CpV-iF-BOA"/>
+                                                        <exclude reference="N3T-GG-QBW"/>
+                                                        <exclude reference="90V-ob-lKK"/>
+                                                        <exclude reference="Dbn-jd-lsN"/>
+                                                        <exclude reference="jlN-LD-eRn"/>
+                                                        <exclude reference="kaN-W4-vbR"/>
+                                                        <exclude reference="uw7-sB-eDs"/>
+                                                        <exclude reference="wbm-Tr-SFx"/>
+                                                        <exclude reference="9DY-QI-bO2"/>
+                                                        <exclude reference="QsC-U5-GTe"/>
+                                                        <exclude reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
@@ -3980,6 +3984,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="P6w-KE-6u5"/>
+                                                        <include reference="jp2-gW-hIE"/>
+                                                        <include reference="kLb-Yh-Ba3"/>
                                                         <include reference="3Hv-qL-ANI"/>
                                                         <include reference="bu4-3a-oK5"/>
                                                         <include reference="eek-M2-hND"/>
@@ -3988,27 +3994,27 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <exclude reference="9kd-Xa-buk"/>
                                                         <include reference="AJL-Y1-pDx"/>
                                                         <exclude reference="o4y-rF-LeM"/>
-                                                        <include reference="2b8-Sr-ItU"/>
-                                                        <include reference="Jyf-Mo-KOp"/>
-                                                        <exclude reference="Wjo-g7-kgu"/>
-                                                        <include reference="wNK-zQ-Fvx"/>
-                                                        <exclude reference="xWK-Ue-tMh"/>
-                                                        <include reference="Dbn-jd-lsN"/>
-                                                        <exclude reference="jlN-LD-eRn"/>
-                                                        <include reference="kaN-W4-vbR"/>
-                                                        <include reference="uw7-sB-eDs"/>
-                                                        <include reference="jp2-gW-hIE"/>
-                                                        <include reference="kLb-Yh-Ba3"/>
-                                                        <exclude reference="9DY-QI-bO2"/>
-                                                        <include reference="QsC-U5-GTe"/>
-                                                        <include reference="rjG-HV-tQ6"/>
-                                                        <exclude reference="CpV-iF-BOA"/>
-                                                        <include reference="N3T-GG-QBW"/>
                                                         <exclude reference="TpI-Y4-qNh"/>
                                                         <exclude reference="jMt-KR-eRa"/>
                                                         <include reference="lgz-1r-ytK"/>
                                                         <include reference="vdz-D1-bcv"/>
                                                         <include reference="xEf-z0-zZP"/>
+                                                        <include reference="2b8-Sr-ItU"/>
+                                                        <include reference="Jyf-Mo-KOp"/>
+                                                        <exclude reference="Wjo-g7-kgu"/>
+                                                        <include reference="wNK-zQ-Fvx"/>
+                                                        <exclude reference="xWK-Ue-tMh"/>
+                                                        <exclude reference="CpV-iF-BOA"/>
+                                                        <include reference="N3T-GG-QBW"/>
+                                                        <include reference="90V-ob-lKK"/>
+                                                        <include reference="Dbn-jd-lsN"/>
+                                                        <exclude reference="jlN-LD-eRn"/>
+                                                        <include reference="kaN-W4-vbR"/>
+                                                        <include reference="uw7-sB-eDs"/>
+                                                        <include reference="wbm-Tr-SFx"/>
+                                                        <exclude reference="9DY-QI-bO2"/>
+                                                        <include reference="QsC-U5-GTe"/>
+                                                        <include reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                             </view>
