@@ -61,7 +61,7 @@
     _driverCourseLabel.text = _ride.driverCourse;
     _friendsInCommonLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", 0];
     _driverMessageLabel.text = _ride.notes;
-    _routeLabel.text = _ride.route;
+    _routeLabel.text = [[_ride.route stringByReplacingOccurrencesOfString:@", " withString:@"\n"] stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
     self.color = [CaronaeDefaults colorForZone:_ride.zone];
     
     UINib *cellNib = [UINib nibWithNibName:@"CaronaeJoinRequestCell" bundle:nil];

@@ -1,6 +1,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "ActiveRidesViewController.h"
+#import "NSDictionary+dictionaryWithoutNulls.h"
 #import "CaronaeRideCell.h"
 #import "SearchRideViewController.h"
 #import "Ride.h"
@@ -29,7 +30,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     [self loadActiveRides];
 }
 
@@ -47,14 +47,12 @@
         if (!responseError) {
             NSLog(@"Active rides returned %lu rides.", (unsigned long)rides.count);
             self.rides = rides;
-            // TODO: save this on cache?
             [self.tableView reloadData];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.description);
     }];
 }
-
 
 + (NSArray *)parseResultsFromResponse:(id)responseObject withError:(NSError *__autoreleasing *)err {
     // Check if we received an array of the rides
