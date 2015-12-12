@@ -3255,7 +3255,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxD-8o-v5s" userLabel="Facebook">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                                <color key="backgroundColor" red="0.3558223626" green="0.42967134239999999" blue="0.75437973479999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="e3c-Gv-7Nf"/>
                                                 </constraints>
@@ -4254,6 +4253,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <outlet property="carPlateTextField" destination="ZA1-8O-6ah" id="yYs-sS-K95"/>
                         <outlet property="courseLabel" destination="aF0-j7-A42" id="Bq8-h5-DNr"/>
                         <outlet property="emailTextField" destination="nyH-l3-oLF" id="LHB-Vx-8ze"/>
+                        <outlet property="fbButtonView" destination="lxD-8o-v5s" id="xMe-XG-Q8r"/>
                         <outlet property="hasCarSwitch" destination="P3j-hD-d2F" id="3Fe-Bs-JIY"/>
                         <outlet property="joinedDateLabel" destination="d10-91-ta5" id="Wd4-91-gne"/>
                         <outlet property="nameLabel" destination="SSR-N1-9qq" id="eRy-Yi-5Zh"/>

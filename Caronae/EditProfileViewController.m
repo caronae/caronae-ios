@@ -1,4 +1,6 @@
 #import <AFNetworking/AFNetworking.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
 #import "ZoneSelectionViewController.h"
@@ -8,12 +10,18 @@
 @property (nonatomic) NSDateFormatter *joinedDateFormatter;
 @property (nonatomic) UIBarButtonItem *loadingButton;
 @property (nonatomic) NSString *neighborhood;
+@property (weak, nonatomic) IBOutlet UIView *fbButtonView;
 @end
 
 @implementation EditProfileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if ([FBSDKAccessToken currentAccessToken]) {
+        // User is logged in, do work such as go to next view controller.
+        FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
+        NSLog(@"User is logged in on Facebook with ID %@", token.userID);
+    }
     
     [self updateProfileFields];
     
@@ -21,6 +29,14 @@
                                         initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [spinner startAnimating];
     self.loadingButton = [[UIBarButtonItem alloc] initWithCustomView:spinner];
+    
+    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    [self.fbButtonView addSubview:loginButton];
+    loginButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.fbButtonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[loginButton]|" options:NSLayoutFormatAlignAllTop metrics:nil views:NSDictionaryOfVariableBindings(loginButton)]];
+    [self.fbButtonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[loginButton]|" options:NSLayoutFormatAlignAllTop metrics:nil views:NSDictionaryOfVariableBindings(loginButton)]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(FBTokenChanged:) name:FBSDKAccessTokenDidChangeNotification object:nil];
 }
 
 - (IBAction)didTapCancelButton:(id)sender {
@@ -148,5 +164,50 @@
         self.navigationItem.rightBarButtonItem = self.loadingButton;
     }
 }
+
+
+#pragma mark - Facebook integration
+
+- (void)FBTokenChanged:(NSNotification *)notification {
+    FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
+    NSLog(@"Facebook Access Token did change. New access token is %@", token.tokenString);
+    
+    if (notification.userInfo[FBSDKAccessTokenDidChangeUserID]) {
+        id fbID;
+        if (token.userID) {
+            NSLog(@"Facebook has loogged in with Facebook ID %@.", token.userID);
+            fbID = token.userID;
+        }
+        else {
+            NSLog(@"User has logged out from Facebook.");
+            fbID = [NSNull null];
+        }
+        
+        [self updateUsersFacebookID:fbID success:^(id responseObject) {
+            NSLog(@"Updated user's Facebook ID on server.");
+        } failure:^(NSError *error) {
+            NSLog(@"Error updating user's Facebook ID on server: %@", error.localizedDescription);
+        } tries:3];
+    }
+}
+
+- (void)updateUsersFacebookID:(id)fbID success:(void (^)(id responseObject))success                       failure:(void (^)(NSError *error))failure tries:(NSUInteger)times {
+    if (times <= 0) {
+        failure([NSError errorWithDomain:CaronaeErrorDomain code:3 userInfo:@{@"localizedDescription":@"Failed updating user's Facebook ID remotely."}]);
+    }
+    else {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+        
+        [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user/saveFaceId"] parameters:@{@"id": fbID} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            success(operation);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self updateUsersFacebookID:fbID success:success failure:failure tries:times-1];
+        }];
+    }
+
+}
+
 
 @end

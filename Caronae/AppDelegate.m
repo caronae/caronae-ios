@@ -1,5 +1,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -9,6 +10,9 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
+    
     if (![CaronaeDefaults defaults].user) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         UIViewController *tokenViewController = [storyboard instantiateViewControllerWithIdentifier:@"InitialTokenScreen"];
@@ -46,6 +50,14 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation
+            ];
 }
 
 #pragma mark - Core Data stack

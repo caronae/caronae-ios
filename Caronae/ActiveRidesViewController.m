@@ -42,8 +42,6 @@
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/getMyActiveRides"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Active rides results are back.");
-        
         NSError *responseError;
         NSArray *rides = [ActiveRidesViewController parseResultsFromResponse:responseObject withError:&responseError];
         if (!responseError) {
