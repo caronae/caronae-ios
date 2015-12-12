@@ -36,7 +36,9 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
 }
 
 + (UIColor *)colorForZone:(NSString *)zone {
-    return [CaronaeDefaults defaults].zoneColors[zone];
+    UIColor *color = [CaronaeDefaults defaults].zoneColors[zone];
+    if (!color) color = [UIColor darkTextColor];
+    return color;
 }
 
 - (NSArray *)centers {

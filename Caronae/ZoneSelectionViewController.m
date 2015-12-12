@@ -36,15 +36,14 @@
     CaronaeZoneCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Zone Cell" forIndexPath:indexPath];
     
     NSString *zone = self.zones[indexPath.row];
-    NSDictionary *zoneColors = [CaronaeDefaults defaults].zoneColors;
     UIColor *cellColor;
     
     if (self.type == ZoneSelectionZone) {
-        cellColor = zoneColors[zone];
+        cellColor = [CaronaeDefaults colorForZone:zone];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     else {
-        cellColor = zoneColors[self.selectedZone];
+        cellColor = [CaronaeDefaults colorForZone:self.selectedZone];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
