@@ -7,6 +7,9 @@
 #import "CaronaeAlertController.h"
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
+@property (nonatomic) UIColor *color;
+
+// Ride info
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *driverPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *slotsLabel;
@@ -21,13 +24,23 @@
 @property (weak, nonatomic) IBOutlet UILabel *carPlateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *carModelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *carColorLabel;
+
+// Assets
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *ridersView;
-@property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
+@property (weak, nonatomic) IBOutlet UIImageView *clockIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *carIconPlate;
+@property (weak, nonatomic) IBOutlet UIImageView *carIconModel;
+@property (weak, nonatomic) IBOutlet UIImageView *carIconColor;
 @property (weak, nonatomic) IBOutlet UITableView *requestsTable;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *requestsTableHeight;
+
+// Buttons
+@property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+
 @property (nonatomic) NSArray *joinRequests;
 @property (nonatomic) NSDictionary *selectedUser;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @end
 
 @implementation RideViewController
@@ -49,6 +62,7 @@
     _friendsInCommonLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", 0];
     _driverMessageLabel.text = _ride.notes;
     _routeLabel.text = _ride.route;
+    self.color = [CaronaeDefaults colorForZone:_ride.zone];
     
     UINib *cellNib = [UINib nibWithNibName:@"CaronaeJoinRequestCell" bundle:nil];
     [self.requestsTable registerNib:cellNib forCellReuseIdentifier:@"Request Cell"];
@@ -85,10 +99,21 @@
         [self.carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
     
-    // If the riders aren't provided than hide the riders view
+    // If the riders aren't provided then hide the riders view
     if (!_ride.users) {
         [self.ridersView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
+}
+
+- (void)setColor:(UIColor *)color {
+    _color = color;
+    _headerView.backgroundColor = color;
+    _clockIcon.tintColor = color;
+    _dateLabel.textColor = color;
+    _driverPhoto.layer.borderColor = color.CGColor;
+    _carIconPlate.tintColor = color;
+    _carIconModel.tintColor = color;
+    _carIconColor.tintColor = color;
 }
 
 - (BOOL)userIsDriver {

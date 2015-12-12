@@ -6347,8 +6347,12 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <outlet property="cancelButton" destination="FCq-V2-p1d" id="vXo-d2-MoC"/>
                         <outlet property="carColorLabel" destination="uJJ-2B-yFq" id="qxe-Lo-NpL"/>
                         <outlet property="carDetailsView" destination="13z-QP-0ab" id="krQ-Kh-bwW"/>
+                        <outlet property="carIconColor" destination="GxK-i7-MIc" id="h6Z-DV-xD5"/>
+                        <outlet property="carIconModel" destination="CEp-6Y-hUr" id="UaV-Hp-pJM"/>
+                        <outlet property="carIconPlate" destination="bbT-SR-WbA" id="2Tt-c9-Khb"/>
                         <outlet property="carModelLabel" destination="e2a-uF-8Ry" id="wCe-Gu-LRX"/>
                         <outlet property="carPlateLabel" destination="aCx-nb-Rrv" id="gLG-TY-04z"/>
+                        <outlet property="clockIcon" destination="fQj-VC-R47" id="NL0-NS-oDg"/>
                         <outlet property="dateLabel" destination="1UZ-co-mpB" id="WHY-Lm-nng"/>
                         <outlet property="descriptionLabel" destination="7fD-gY-dO4" id="mSy-Zn-Sza"/>
                         <outlet property="driverCourseLabel" destination="sBT-DZ-1c3" id="ise-lJ-Xnq"/>
@@ -6356,6 +6360,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <outlet property="driverNameLabel" destination="iZ9-2r-k89" id="vvT-am-Ivw"/>
                         <outlet property="driverPhoto" destination="C3d-pJ-uoK" id="JCU-Jd-aWQ"/>
                         <outlet property="friendsInCommonLabel" destination="5vV-zN-OD0" id="Y8Q-zl-CH7"/>
+                        <outlet property="headerView" destination="hmH-vg-yLk" id="vyJ-Wc-ftD"/>
                         <outlet property="requestRideButton" destination="5qc-Bw-Oem" id="wvL-gp-HTh"/>
                         <outlet property="requestsTable" destination="DcQ-Df-dgu" id="N0W-3H-ngf"/>
                         <outlet property="requestsTableHeight" destination="48A-Iu-cEZ" id="opv-J5-VpT"/>
@@ -6564,11 +6569,11 @@ Este é o token gerado através da Intranet UFRJ</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AOI-Sr-h8h"/>
         <segue reference="H8O-Mc-OH3"/>
-        <segue reference="GWy-OD-WPe"/>
-        <segue reference="7VR-Dw-svl"/>
+        <segue reference="TRe-kz-qy8"/>
         <segue reference="VGz-uS-yQa"/>
+        <segue reference="9kE-zS-Odm"/>
+        <segue reference="7VR-Dw-svl"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>
