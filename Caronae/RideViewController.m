@@ -28,6 +28,7 @@
 // Assets
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *ridersView;
+@property (weak, nonatomic) IBOutlet UIView *finishRideView;
 @property (weak, nonatomic) IBOutlet UIImageView *clockIcon;
 @property (weak, nonatomic) IBOutlet UIImageView *carIconPlate;
 @property (weak, nonatomic) IBOutlet UIImageView *carIconModel;
@@ -38,6 +39,7 @@
 // Buttons
 @property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *finishRideButton;
 
 @property (nonatomic) NSArray *joinRequests;
 @property (nonatomic) NSDictionary *selectedUser;
@@ -85,6 +87,7 @@
     // If the user is already a rider, hide 'join' button
     else if ([self userIsRider]) {
         [self.requestRideButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [self.finishRideView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.cancelButton setTitle:@"DESISTIR" forState:UIControlStateNormal];
         
         // Car details
@@ -97,6 +100,7 @@
     else {
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [self.finishRideView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
     
     // If the riders aren't provided then hide the riders view
@@ -162,8 +166,19 @@
     [alert presentWithCompletion:nil];
 }
 
+- (IBAction)didTapFinishRide:(id)sender {
+    CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Concluir carona"
+                                                                             message:@"E aí? Correu tudo bem? Deseja mesmo concluir a carona?"
+                                                                      preferredStyle:SDCAlertControllerStyleAlert];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Concluir" style:SDCAlertActionStyleDefault handler:^(SDCAlertAction *action){
+        [self finishRide];
+    }]];
+    [alert presentWithCompletion:nil];
+}
 
-#pragma mark - Cancel ride methods
+
+#pragma mark - Ride operations
 
 - (void)cancelRide {
     NSLog(@"Requesting to leave ride %ld", _ride.rideID);
@@ -186,6 +201,27 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.description);
         _cancelButton.enabled = YES;
+    }];
+}
+
+- (void)finishRide {
+    NSLog(@"Requesting to finish ride %ld", _ride.rideID);
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    NSDictionary *params = @{@"rideId": @(_ride.rideID)};
+    
+    _finishRideButton.enabled = NO;
+    
+    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/finishRide"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"User finished the ride. (Message: %@)", responseObject[@"message"]);
+        
+        [_finishRideButton setTitle:@"  Carona concluída" forState:UIControlStateNormal];
+        [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error.description);
+        _finishRideButton.enabled = YES;
     }];
 }
 
