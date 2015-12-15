@@ -26,6 +26,7 @@
     _titleLabel.textColor = color;
     _arrivalDateTimeLabel.textColor = color;
     _slotsLabel.textColor = color;
+    _photo.layer.borderColor = color.CGColor;
 }
 
 @end
