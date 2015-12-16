@@ -92,8 +92,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CaronaeRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Ride Cell" forIndexPath:indexPath];
 
-    [cell configureCellWithRide:self.rides[indexPath.row]];
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    [cell configureHistoryCellWithRide:self.rides[indexPath.row]];
     return cell;
 }
 

@@ -7,25 +7,50 @@
 - (void)configureCellWithRide:(Ride *)ride {
     _ride = ride;
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"HH:mm | dd/MM";
+    [self updateTitleLabel];
+    [self updateTimeLabel];
+    [self updatePhoto];
     
-    if (ride.going) {
-        _titleLabel.text = [[NSString stringWithFormat:@"%@ → %@", ride.neighborhood, ride.hub] uppercaseString];
-    }
-    else {
-        _titleLabel.text = [[NSString stringWithFormat:@"%@ → %@", ride.hub, ride.neighborhood] uppercaseString];
-    }
-    _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Chegando às %@", [dateFormatter stringFromDate:ride.date]];
     _slotsLabel.text = [NSString stringWithFormat:@"%d %@", ride.slots, ride.slots == 1 ? @"vaga" : @"vagas"];
     
+    self.color = [CaronaeDefaults colorForZone:_ride.zone];
+}
+
+
+- (void)configureHistoryCellWithRide:(Ride *)ride {
+    _ride = ride;
+    
+    [self updateTitleLabel];
+    [self updateTimeLabel];
+    [self updatePhoto];
+    
+    _slotsLabel.text = [NSString stringWithFormat:@"%lu %@", (unsigned long)ride.users.count, ride.users.count == 1 ? @"caronista" : @"caronistas"];
+    
+    self.accessoryType = UITableViewCellAccessoryNone;    
+    self.color = [CaronaeDefaults colorForZone:_ride.zone];
+}
+
+- (void)updateTitleLabel {
+    if (_ride.going) {
+        _titleLabel.text = [[NSString stringWithFormat:@"%@ → %@", _ride.neighborhood, _ride.hub] uppercaseString];
+    }
+    else {
+        _titleLabel.text = [[NSString stringWithFormat:@"%@ → %@", _ride.hub, _ride.neighborhood] uppercaseString];
+    }
+}
+
+- (void)updateTimeLabel {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"HH:mm | dd/MM";
+    _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Chegou às %@", [dateFormatter stringFromDate:_ride.date]];
+}
+
+- (void)updatePhoto {
     if (_ride.driver[@"profile_pic_url"] && ![_ride.driver[@"profile_pic_url"] isEqualToString:@""]) {
         [_photo sd_setImageWithURL:[NSURL URLWithString:_ride.driver[@"profile_pic_url"]]
-                             placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                                      options:SDWebImageRefreshCached];
+                  placeholderImage:[UIImage imageNamed:@"Profile Picture"]
+                           options:SDWebImageRefreshCached];
     }
-    
-    self.color = [CaronaeDefaults colorForZone:_ride.zone];
 }
 
 - (void)setColor:(UIColor *)color {
