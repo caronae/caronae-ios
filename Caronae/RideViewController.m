@@ -59,8 +59,8 @@
     _titleLabel.text = [rideTitle uppercaseString];
     _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", [dateFormatter stringFromDate:_ride.date]];
     _slotsLabel.text = [NSString stringWithFormat:@"%d %@", _ride.slots, _ride.slots == 1 ? @"vaga" : @"vagas"];
-    _driverNameLabel.text = _ride.driverName;
-    _driverCourseLabel.text = _ride.driverCourse;
+    _driverNameLabel.text = _ride.driver[@"name"];
+    _driverCourseLabel.text = _ride.driver[@"course"];
     _friendsInCommonLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", 0];
     _driverMessageLabel.text = _ride.notes;
     _routeLabel.text = [[_ride.route stringByReplacingOccurrencesOfString:@", " withString:@"\n"] stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
@@ -121,7 +121,7 @@
 }
 
 - (BOOL)userIsDriver {
-    return [[CaronaeDefaults defaults].user[@"id"] isEqual:_ride.driverID];
+    return [[CaronaeDefaults defaults].user[@"id"] isEqual:_ride.driver[@"id"]];
 }
 
 - (BOOL)userIsRider {
@@ -151,7 +151,7 @@
 }
 
 - (IBAction)viewUserProfile:(id)sender {
-    self.selectedUser = @{@"name": _ride.driverName, @"course": _ride.driverCourse, @"id": _ride.driverID};
+    self.selectedUser = _ride.driver;
     [self performSegueWithIdentifier:@"ViewProfile" sender:self];
 }
 

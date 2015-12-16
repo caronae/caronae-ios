@@ -10,8 +10,6 @@ static NSDateFormatter *otherDateParserFormatter;
     if (self) {
         NSString *dateTimeString = [NSString stringWithFormat:@"%@ %@", ride[@"mydate"], ride[@"mytime"]];
         _date = [Ride dateFromString:dateTimeString];
-        _driverName = ride[@"driverName"];
-        _driverCourse = ride[@"course"];
         _neighborhood = ride[@"neighborhood"];
         _place = ride[@"place"];
         _route = ride[@"route"];
@@ -24,18 +22,16 @@ static NSDateFormatter *otherDateParserFormatter;
         if (_rideID == 0) {
             _rideID = [ride[@"id"] longValue];
         }
-        _driverID = ride[@"driverId"];
+        
+        if (ride[@"driver"]) {
+            _driver = ride[@"driver"];
+        }
+        
+        if (ride[@"riders"]) {
+            _users = ride[@"riders"];
+        }
     }
     return self;
-}
-
-- (void)setUsers:(NSArray *)users {
-    _users = users;
-    
-    NSDictionary *driver = users[0];
-    _driverID = driver[@"id"];
-    _driverName = driver[@"name"];
-    _driverCourse = driver[@"course"];
 }
 
 /**

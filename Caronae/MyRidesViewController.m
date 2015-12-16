@@ -51,15 +51,16 @@
                 continue;
             }
             
-            ride.driverID = self.user[@"id"];
-            ride.driverName = self.user[@"name"];
-            ride.driverCourse = self.user[@"course"];
+            ride.driver = self.user;
             [rides addObject:ride];
         }
         
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
         _rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
-        [self.tableView reloadData];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     });
 }
 
@@ -84,11 +85,6 @@
     }
 
     [self updateRides];
-    
-    // Update view
-    [self.tableView beginUpdates];
-    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:deletedIndex inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView endUpdates];
 }
 
 

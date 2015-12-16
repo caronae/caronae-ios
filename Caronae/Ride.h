@@ -4,8 +4,6 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)ride;
 
-@property (nonatomic) NSString *driverName;
-@property (nonatomic) NSString *driverCourse;
 @property (nonatomic) NSString *neighborhood;
 @property (nonatomic) NSString *place;
 @property (nonatomic) NSString *route;
@@ -16,6 +14,6 @@
 @property (nonatomic) NSString *hub;
 @property (nonatomic) BOOL going;
 @property (nonatomic) long rideID;
-@property (nonatomic) NSNumber *driverID;
+@property (nonatomic) NSDictionary *driver;
 @property (nonatomic) NSArray *users;
 @end
