@@ -1,4 +1,5 @@
 #import <AFNetworking/AFNetworking.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "ProfileViewController.h"
 #import "CaronaeAlertController.h"
 
@@ -50,6 +51,12 @@
     
     _nameLabel.text = _user[@"name"];
     _courseLabel.text = _user[@"course"];
+    
+    if (_user[@"profile_pic_url"] && ![_user[@"profile_pic_url"] isEqualToString:@""]) {
+        [self.profileImage sd_setImageWithURL:[NSURL URLWithString:_user[@"profile_pic_url"]]
+                      placeholderImage:[UIImage imageNamed:@"Profile Picture"]
+                               options:SDWebImageRefreshCached];
+    }
     
     [self updateRidesOfferedCount];
 }

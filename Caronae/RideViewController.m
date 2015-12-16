@@ -1,4 +1,5 @@
 #import <AFNetworking/AFNetworking.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "RideViewController.h"
 #import "CaronaeJoinRequestCell.h"
 #import "ProfileViewController.h"
@@ -64,6 +65,13 @@
     _friendsInCommonLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", 0];
     _driverMessageLabel.text = _ride.notes;
     _routeLabel.text = [[_ride.route stringByReplacingOccurrencesOfString:@", " withString:@"\n"] stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
+    
+    if (_ride.driver[@"profile_pic_url"] && ![_ride.driver[@"profile_pic_url"] isEqualToString:@""]) {
+        [_driverPhoto sd_setImageWithURL:[NSURL URLWithString:_ride.driver[@"profile_pic_url"]]
+                  placeholderImage:[UIImage imageNamed:@"Profile Picture"]
+                           options:SDWebImageRefreshCached];
+    }
+    
     self.color = [CaronaeDefaults colorForZone:_ride.zone];
     
     UINib *cellNib = [UINib nibWithNibName:@"CaronaeJoinRequestCell" bundle:nil];
