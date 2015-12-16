@@ -1,3 +1,4 @@
+#import <FBSDKLoginKit/FBSDKLoginManager.h>
 #import "CaronaeDefaults.h"
 #import "AppDelegate.h"
 
@@ -38,6 +39,7 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
 
 + (void)signOut {
     [CaronaeDefaults defaults].user = nil;
+    [[[FBSDKLoginManager alloc] init] logOut];
 
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     UIViewController *topViewController = [appDelegate topViewController];
