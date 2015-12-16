@@ -368,12 +368,11 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    // Users minus one because we are not interested in the driver
-    return _ride.users.count - 1;
+    return _ride.users.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *user = _ride.users[indexPath.row + 1];
+    NSDictionary *user = _ride.users[indexPath.row];
     NSString *firstName = [user[@"name"] componentsSeparatedByString:@" "].firstObject;
     
     CaronaeRiderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Rider Cell" forIndexPath:indexPath];
