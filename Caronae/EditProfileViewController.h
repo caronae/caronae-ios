@@ -7,6 +7,7 @@
 @property (nonatomic) NSDictionary *user;
 
 // Profile
+@property (weak, nonatomic) IBOutlet UIImageView *photo;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *courseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *joinedDateLabel;

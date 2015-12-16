@@ -1,6 +1,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <SVProgressHUD/SVProgressHUD.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
 #import "ZoneSelectionViewController.h"
@@ -11,6 +13,7 @@
 @property (nonatomic) UIBarButtonItem *loadingButton;
 @property (nonatomic) NSString *neighborhood;
 @property (weak, nonatomic) IBOutlet UIView *fbButtonView;
+@property (nonatomic) NSString *photoURL;
 @end
 
 @implementation EditProfileViewController
@@ -81,6 +84,13 @@
     self.carPlateTextField.text = user[@"car_plate"];
     self.carModelTextField.text = user[@"car_model"];
     self.carColorTextField.text = user[@"car_color"];
+    
+    self.photoURL = user[@"profile_pic_url"];
+    if (self.photoURL) {
+        [self.photo sd_setImageWithURL:[NSURL URLWithString:self.photoURL]
+                     placeholderImage:[UIImage imageNamed:@"Profile Picture"]
+                              options:SDWebImageRefreshCached];
+    }
 }
 
 - (IBAction)didTapSaveButton:(id)sender {
@@ -106,6 +116,7 @@
         newUpdatedUser[@"car_plate"] = updatedUser[@"car_plate"];
         newUpdatedUser[@"car_color"] = updatedUser[@"car_color"];
         newUpdatedUser[@"location"] = updatedUser[@"location"];
+        newUpdatedUser[@"profile_pic_url"] = _photoURL ? _photoURL : @"";
         self.user = newUpdatedUser;
         
         [CaronaeDefaults defaults].user = newUpdatedUser;
@@ -114,6 +125,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showLoadingHUD:NO];
         NSLog(@"Error: %@", error.description);
+        [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando perfil" message:@"Ocorreu um erro salvando as alterações no seu perfil."];
     }];
 }
 
@@ -128,7 +140,8 @@
                                   @"car_model": self.carModelTextField.text,
                                   @"car_plate": self.carPlateTextField.text,
                                   @"car_color": self.carColorTextField.text,
-                                  @"location": self.neighborhood
+                                  @"location": self.neighborhood,
+                                  @"profile_pic_url": _photoURL ? _photoURL : @""
                                   };
     
     return updatedUser;
@@ -140,6 +153,24 @@
     NSLog(@"User has selected %@ in %@", neighborhood, zone);
     self.neighborhood = neighborhood;
     [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
+}
+
+
+#pragma mark - IBActions
+
+- (IBAction)didTapPhoto:(id)sender {
+    // TODO: support for iOS 7
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"De onde deseja importar sua foto?" preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancelar" style:UIAlertActionStyleCancel handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do Facebook" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self importPhotoFromFacebook];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Remover minha foto" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Remover foto");
+        // TODO: remover foto
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
@@ -206,7 +237,32 @@
             [self updateUsersFacebookID:fbID success:success failure:failure tries:times-1];
         }];
     }
+}
 
+- (void)importPhotoFromFacebook {
+    NSLog(@"Importing profile picture from Facebook...");
+    
+    [SVProgressHUD show];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:[NSString stringWithFormat:@"me/picture?type=large&redirect=false"]
+                                  parameters:nil
+                                  HTTPMethod:@"GET"];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
+                                          id result,
+                                          NSError *error) {
+        [SVProgressHUD dismiss];
+        if (!error) {
+            NSDictionary *data = result[@"data"];
+            _photoURL = data[@"url"];
+            NSURL *photoUrl = [NSURL URLWithString:_photoURL];
+            NSData *photoData = [NSData dataWithContentsOfURL:photoUrl];
+            _photo.image = [UIImage imageWithData:photoData];
+        }
+        else {
+            NSLog(@"result: %@", error.description);
+            [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível obter sua foto de perfil do Facebook."];
+        }
+    }];
 }
 
 
