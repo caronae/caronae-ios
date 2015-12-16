@@ -82,8 +82,7 @@
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Sair" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
-        [CaronaeDefaults defaults].user = nil;
-        [self performSegueWithIdentifier:@"AuthScreen" sender:self];
+        [CaronaeDefaults signOut];
     }]];
     [alert presentWithCompletion:nil];
 }

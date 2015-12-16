@@ -13,6 +13,11 @@ extern const NSInteger CaronaeErrorNoRidesCreated;
 + (instancetype)defaults;
 
 /**
+ *  Signs out current user and presents the authentication screen modally.
+ */
++ (void)signOut;
+
+/**
  *  Returns the color related to a specific zone according to the app's default color palette.
  *
  *  @param zone The zone name (Zona Norte, Zona Sul, Centro etc.)

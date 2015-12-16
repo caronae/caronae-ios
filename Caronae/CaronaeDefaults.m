@@ -1,4 +1,5 @@
 #import "CaronaeDefaults.h"
+#import "AppDelegate.h"
 
 #pragma mark - API settings
 
@@ -33,6 +34,16 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
         sharedMyManager = [[self alloc] init];
     });
     return sharedMyManager;
+}
+
++ (void)signOut {
+    [CaronaeDefaults defaults].user = nil;
+
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    UIViewController *topViewController = [appDelegate topViewController];
+    UIViewController *authViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"InitialTokenScreen"];
+    authViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [topViewController presentViewController:authViewController animated:YES completion:nil];
 }
 
 + (UIColor *)colorForZone:(NSString *)zone {

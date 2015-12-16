@@ -3,6 +3,8 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+- (UIViewController *)topViewController;
+
 @property (strong, nonatomic) UIWindow *window;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
