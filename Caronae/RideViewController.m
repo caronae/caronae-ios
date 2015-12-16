@@ -388,6 +388,12 @@
     cell.user = user;
     cell.nameLabel.text = firstName;
     
+    if (user[@"profile_pic_url"] && [user[@"profile_pic_url"] isKindOfClass:[NSString class]] && ![user[@"profile_pic_url"] isEqualToString:@""]) {
+        [cell.photo sd_setImageWithURL:[NSURL URLWithString:user[@"profile_pic_url"]]
+                        placeholderImage:[UIImage imageNamed:@"Profile Picture"]
+                                 options:SDWebImageRefreshCached];
+    }
+    
     return cell;
 }
 
