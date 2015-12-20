@@ -2,8 +2,10 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "ProfileViewController.h"
 #import "CaronaeAlertController.h"
+#import "EditProfileViewController.h"
+#import "MenuViewController.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <EditProfileDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *signoutButton;
 @property (nonatomic) NSDateFormatter *joinedDateFormatter;
@@ -13,16 +15,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
     [self updateProfileFields];
 }
 
 - (BOOL)isMyProfile {
-    return _user == [CaronaeDefaults defaults].user;
+    UINavigationController *navigationVC = self.navigationController;
+    if (navigationVC.viewControllers.count >= 2) {
+        UIViewController *previousVC = navigationVC.viewControllers[navigationVC.viewControllers.count - 2];
+        if ([previousVC isKindOfClass:[MenuViewController class]]) {
+            return true;
+        }
+    }
+    return false;
 }
 
 - (void)updateProfileFields {
@@ -36,7 +40,6 @@
         self.title = _user[@"name"];
         [_carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [_signoutButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-
         self.navigationItem.rightBarButtonItem = nil;
     }
     
@@ -77,7 +80,14 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error reading history count for user: %@", error.localizedDescription);
     }];
+}
 
+
+#pragma mark - Edit profile methods
+
+- (void)didUpdateUser:(NSDictionary *)newUser {
+    _user = newUser;
+    [self updateProfileFields];
 }
 
 
@@ -95,5 +105,13 @@
 }
 
 
+#pragma mark - Navigation
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"EditProfile"]) {
+        UINavigationController *navigationVC = segue.destinationViewController;
+        EditProfileViewController *vc = (EditProfileViewController *)navigationVC.topViewController;
+        vc.delegate = self;
+    }
+}
 @end

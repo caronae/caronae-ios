@@ -121,6 +121,10 @@
         
         [CaronaeDefaults defaults].user = newUpdatedUser;
         
+        if ([self.delegate respondsToSelector:@selector(didUpdateUser:)]) {
+            [self.delegate didUpdateUser:newUpdatedUser];
+        }
+        
         [self dismissViewControllerAnimated:YES completion:nil];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showLoadingHUD:NO];
@@ -166,8 +170,9 @@
         [self importPhotoFromFacebook];
     }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"Remover minha foto" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"Remover foto");
-        // TODO: remover foto
+        NSLog(@"Removendo foto...");
+        _photoURL = nil;
+        _photo.image = [UIImage imageNamed:@"Profile Picture"];
     }]];
     
     [self presentViewController:alert animated:YES completion:nil];
@@ -254,9 +259,9 @@
         if (!error) {
             NSDictionary *data = result[@"data"];
             _photoURL = data[@"url"];
-            NSURL *photoUrl = [NSURL URLWithString:_photoURL];
-            NSData *photoData = [NSData dataWithContentsOfURL:photoUrl];
-            _photo.image = [UIImage imageWithData:photoData];
+            [_photo sd_setImageWithURL:[NSURL URLWithString:_photoURL]
+                          placeholderImage:[UIImage imageNamed:@"Profile Picture"]
+                                   options:SDWebImageRefreshCached];
         }
         else {
             NSLog(@"result: %@", error.description);

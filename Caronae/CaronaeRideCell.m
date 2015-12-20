@@ -26,7 +26,7 @@
     
     _slotsLabel.text = [NSString stringWithFormat:@"%lu %@", (unsigned long)ride.users.count, ride.users.count == 1 ? @"caronista" : @"caronistas"];
     
-    self.accessoryType = UITableViewCellAccessoryNone;    
+    self.accessoryType = UITableViewCellAccessoryNone;
     self.color = [CaronaeDefaults colorForZone:_ride.zone];
 }
 
@@ -59,6 +59,7 @@
     _arrivalDateTimeLabel.textColor = color;
     _slotsLabel.textColor = color;
     _photo.layer.borderColor = color.CGColor;
+    self.tintColor = color;
 }
 
 @end

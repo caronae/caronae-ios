@@ -1,10 +1,17 @@
 #import <UIKit/UIKit.h>
 
+@protocol EditProfileDelegate <NSObject>
+
+- (void)didUpdateUser:(NSDictionary *)newUser;
+
+@end
+
 @interface EditProfileViewController : UIViewController
 
 - (NSDictionary *)generateUserDictionaryFromView;
 
 @property (nonatomic) NSDictionary *user;
+@property id<EditProfileDelegate> delegate;
 
 // Profile
 @property (weak, nonatomic) IBOutlet UIImageView *photo;

@@ -2710,7 +2710,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                     <navigationItem key="navigationItem" title="Meu Perfil" id="5Ao-4y-HOG">
                         <barButtonItem key="rightBarButtonItem" title="Editar" id="dfm-uL-SYV">
                             <connections>
-                                <segue destination="NVj-Xk-m80" kind="presentation" id="yIa-C3-QN8"/>
+                                <segue destination="NVj-Xk-m80" kind="presentation" identifier="EditProfile" id="yIa-C3-QN8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
