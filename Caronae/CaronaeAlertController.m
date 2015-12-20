@@ -19,10 +19,14 @@ static UIImageView *_separatorView;
 }
 
 + (instancetype)presentOkAlertWithTitle:(NSString *)title message:(NSString *)message {
+    return [CaronaeAlertController presentOkAlertWithTitle:title message:message handler:nil];
+}
+
++ (instancetype)presentOkAlertWithTitle:(NSString *)title message:(NSString *)message handler:(void(^)())handler {
     CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:title
                                                                              message:message
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
-    [alert addAction:[SDCAlertAction actionWithTitle:@"OK" style:SDCAlertActionStyleDefault handler:nil]];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"OK" style:SDCAlertActionStyleDefault handler:handler]];
     [alert presentWithCompletion:nil];
     return alert;
 }

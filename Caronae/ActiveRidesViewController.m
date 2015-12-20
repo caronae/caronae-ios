@@ -50,10 +50,13 @@
             [self.tableView reloadData];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.description);
         if (operation.response.statusCode == 403) {
-            [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Seu token pode ter sido suspenso ou expirado."];
-            [CaronaeDefaults signOut];
+            [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Seu token pode ter sido suspenso ou expirado." handler:^{
+                [CaronaeDefaults signOut];
+            }];
+        }
+        else {
+            NSLog(@"Error: %@", error.description);
         }
     }];
 }
