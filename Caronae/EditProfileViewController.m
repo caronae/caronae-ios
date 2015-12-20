@@ -250,7 +250,7 @@
     [SVProgressHUD show];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:[NSString stringWithFormat:@"me/picture?type=large&redirect=false"]
-                                  parameters:nil
+                                  parameters:@{@"fields": @"url"}
                                   HTTPMethod:@"GET"];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
                                           id result,
