@@ -11,6 +11,7 @@
 @property (nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic) NSDateFormatter *joinedDateFormatter;
 @property (nonatomic) UIBarButtonItem *loadingButton;
+@property (weak, nonatomic) IBOutlet UIButton *changePhotoButton;
 @property (nonatomic) NSString *neighborhood;
 @property (weak, nonatomic) IBOutlet UIView *fbButtonView;
 @property (nonatomic) NSString *photoURL;
@@ -38,6 +39,8 @@
     loginButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.fbButtonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[loginButton]|" options:NSLayoutFormatAlignAllTop metrics:nil views:NSDictionaryOfVariableBindings(loginButton)]];
     [self.fbButtonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[loginButton]|" options:NSLayoutFormatAlignAllTop metrics:nil views:NSDictionaryOfVariableBindings(loginButton)]];
+    
+    self.changePhotoButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(FBTokenChanged:) name:FBSDKAccessTokenDidChangeNotification object:nil];
 }

@@ -2804,10 +2804,25 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <include reference="Qpo-VN-rLJ"/>
                                                             </mask>
                                                         </variation>
-                                                        <connections>
-                                                            <outletCollection property="gestureRecognizers" destination="Go5-bb-EBH" appends="YES" id="cb8-eg-tOK"/>
-                                                        </connections>
                                                     </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="GaK-Pi-DSg">
+                                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                        <color key="backgroundColor" red="0.19607843137254902" green="0.33725490196078434" blue="0.34509803921568627" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                        <state key="normal">
+                                                            <string key="title">MUDAR
+FOTO</string>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="35"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="didTapPhoto:" destination="rv3-vJ-1pf" eventType="touchUpInside" id="1Sg-O4-wnt"/>
+                                                        </connections>
+                                                    </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Renan Souza" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSR-N1-9qq" userLabel="Name">
                                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -2823,6 +2838,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="0R8-uQ-11f" firstAttribute="leading" secondItem="wC6-CD-nF5" secondAttribute="leading" constant="5" id="38O-Kc-etc"/>
+                                                    <constraint firstItem="GaK-Pi-DSg" firstAttribute="width" secondItem="0R8-uQ-11f" secondAttribute="width" id="Ewp-Xc-1QO"/>
                                                     <constraint firstItem="SSR-N1-9qq" firstAttribute="leading" secondItem="0R8-uQ-11f" secondAttribute="trailing" constant="10" id="GFM-wh-4fI">
                                                         <variation key="widthClass=compact" constant="20"/>
                                                     </constraint>
@@ -2834,47 +2850,60 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstItem="SSR-N1-9qq" firstAttribute="top" secondItem="wC6-CD-nF5" secondAttribute="top" constant="15" id="STZ-De-APh">
                                                         <variation key="widthClass=compact" constant="20"/>
                                                     </constraint>
+                                                    <constraint firstItem="GaK-Pi-DSg" firstAttribute="height" secondItem="0R8-uQ-11f" secondAttribute="height" id="TTD-jB-cU2"/>
                                                     <constraint firstItem="SSR-N1-9qq" firstAttribute="leading" secondItem="aF0-j7-A42" secondAttribute="leading" id="Uxr-7K-uNS"/>
+                                                    <constraint firstItem="GaK-Pi-DSg" firstAttribute="leading" secondItem="0R8-uQ-11f" secondAttribute="leading" id="ZoM-Hv-o0S"/>
                                                     <constraint firstAttribute="bottom" secondItem="0R8-uQ-11f" secondAttribute="bottom" constant="5" id="cnt-qg-8mu"/>
                                                     <constraint firstItem="SSR-N1-9qq" firstAttribute="width" secondItem="aF0-j7-A42" secondAttribute="width" id="d07-7w-5IE"/>
                                                     <constraint firstAttribute="bottom" secondItem="aF0-j7-A42" secondAttribute="bottom" constant="20" id="rky-ec-UnP"/>
+                                                    <constraint firstItem="GaK-Pi-DSg" firstAttribute="top" secondItem="0R8-uQ-11f" secondAttribute="top" id="ylf-8a-NbV"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="subviews">
                                                         <exclude reference="0R8-uQ-11f"/>
+                                                        <exclude reference="GaK-Pi-DSg"/>
                                                         <exclude reference="SSR-N1-9qq"/>
                                                         <exclude reference="aF0-j7-A42"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="GVf-5R-kTp"/>
+                                                        <exclude reference="38O-Kc-etc"/>
+                                                        <exclude reference="LY5-Cv-ygi"/>
+                                                        <exclude reference="cnt-qg-8mu"/>
+                                                        <exclude reference="Ewp-Xc-1QO"/>
+                                                        <exclude reference="TTD-jB-cU2"/>
+                                                        <exclude reference="ZoM-Hv-o0S"/>
+                                                        <exclude reference="ylf-8a-NbV"/>
                                                         <exclude reference="GFM-wh-4fI"/>
                                                         <exclude reference="OIH-cn-tpB"/>
                                                         <exclude reference="STZ-De-APh"/>
                                                         <exclude reference="Uxr-7K-uNS"/>
                                                         <exclude reference="d07-7w-5IE"/>
                                                         <exclude reference="rky-ec-UnP"/>
-                                                        <exclude reference="38O-Kc-etc"/>
-                                                        <exclude reference="LY5-Cv-ygi"/>
-                                                        <exclude reference="cnt-qg-8mu"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
                                                     <mask key="subviews">
                                                         <include reference="0R8-uQ-11f"/>
+                                                        <include reference="GaK-Pi-DSg"/>
                                                         <include reference="SSR-N1-9qq"/>
                                                         <include reference="aF0-j7-A42"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="GVf-5R-kTp"/>
+                                                        <include reference="38O-Kc-etc"/>
+                                                        <include reference="LY5-Cv-ygi"/>
+                                                        <include reference="cnt-qg-8mu"/>
+                                                        <include reference="Ewp-Xc-1QO"/>
+                                                        <include reference="TTD-jB-cU2"/>
+                                                        <include reference="ZoM-Hv-o0S"/>
+                                                        <include reference="ylf-8a-NbV"/>
                                                         <include reference="GFM-wh-4fI"/>
                                                         <exclude reference="OIH-cn-tpB"/>
                                                         <include reference="STZ-De-APh"/>
                                                         <include reference="Uxr-7K-uNS"/>
                                                         <include reference="d07-7w-5IE"/>
                                                         <include reference="rky-ec-UnP"/>
-                                                        <include reference="38O-Kc-etc"/>
-                                                        <include reference="LY5-Cv-ygi"/>
-                                                        <include reference="cnt-qg-8mu"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -4292,6 +4321,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <outlet property="carColorTextField" destination="eDe-Qb-t67" id="ZRm-Gg-Bma"/>
                         <outlet property="carModelTextField" destination="ack-vy-A7z" id="Lzv-DU-c22"/>
                         <outlet property="carPlateTextField" destination="ZA1-8O-6ah" id="yYs-sS-K95"/>
+                        <outlet property="changePhotoButton" destination="GaK-Pi-DSg" id="QUq-Xj-gc0"/>
                         <outlet property="courseLabel" destination="aF0-j7-A42" id="Bq8-h5-DNr"/>
                         <outlet property="emailTextField" destination="nyH-l3-oLF" id="LHB-Vx-8ze"/>
                         <outlet property="fbButtonView" destination="lxD-8o-v5s" id="xMe-XG-Q8r"/>
@@ -4309,11 +4339,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssv-9e-mXa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Go5-bb-EBH" userLabel="Photo Tap Gesture Recognizer">
-                    <connections>
-                        <action selector="didTapPhoto:" destination="rv3-vJ-1pf" id="dgx-Wu-TtX"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="5085" y="1533"/>
         </scene>
