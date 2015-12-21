@@ -86,22 +86,16 @@
 }
 
 - (void)updateMutualFriends {
-    NSString *facebookID = _user[@"face_id"];
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", facebookID]
-                                  parameters:@{@"fields": @"context.fields(mutual_friends)"}
-                                  HTTPMethod:@"GET"];
-    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
-                                          id result,
-                                          NSError *error) {
-        if (!error) {
-            NSArray *friends = result[@"context"][@"mutual_friends"][@"data"];
-            NSLog(@"%@", friends);
-            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %lu", friends.count];
-        }
-        else {
-            NSLog(@"Error updating friends in common: %@", error.description);
-        }
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    
+    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _user[@"id"]]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *mutualFriends = responseObject;
+        
+        _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %ld", mutualFriends.count];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
     }];
 }
 
