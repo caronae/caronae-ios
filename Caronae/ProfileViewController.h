@@ -11,6 +11,7 @@
 
 // Mutual friends
 @property (weak, nonatomic) IBOutlet UIView *mutualFriendsView;
+@property (weak, nonatomic) IBOutlet UICollectionView *mutualFriendsCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *mutualFriendsLabel;
 
 

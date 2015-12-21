@@ -4,12 +4,14 @@
 #import "ProfileViewController.h"
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
+#import "CaronaeRiderCell.h"
 #import "MenuViewController.h"
 
-@interface ProfileViewController () <EditProfileDelegate>
+@interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *signoutButton;
 @property (nonatomic) NSDateFormatter *joinedDateFormatter;
+@property (nonatomic) NSArray *mutualFriends;
 @end
 
 @implementation ProfileViewController
@@ -92,7 +94,8 @@
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _user[@"id"]]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *mutualFriends = responseObject;
-        
+        _mutualFriends = mutualFriends;
+        [_mutualFriendsCollectionView reloadData];
         _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %ld", mutualFriends.count];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
@@ -131,4 +134,34 @@
         vc.delegate = self;
     }
 }
+
+
+#pragma mark - Collection methods (Mutual friends)
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return _mutualFriends.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *user = _mutualFriends[indexPath.row];
+    NSString *firstName = [user[@"name"] componentsSeparatedByString:@" "].firstObject;
+    
+    CaronaeRiderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Friend Cell" forIndexPath:indexPath];
+    
+    cell.user = user;
+    cell.nameLabel.text = firstName;
+    
+    if (user[@"profile_pic_url"] && [user[@"profile_pic_url"] isKindOfClass:[NSString class]] && ![user[@"profile_pic_url"] isEqualToString:@""]) {
+        [cell.photo sd_setImageWithURL:[NSURL URLWithString:user[@"profile_pic_url"]]
+                      placeholderImage:[UIImage imageNamed:@"Profile Picture"]
+                               options:SDWebImageRefreshCached];
+    }
+    
+    return cell;
+}
+
 @end
