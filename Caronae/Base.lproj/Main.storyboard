@@ -2596,21 +2596,22 @@ Este é o token gerado através da Intranet UFRJ</string>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="dAI-e5-Rkq" secondAttribute="bottom" constant="20" id="2gs-U4-Ytm"/>
+                                            <constraint firstItem="dAI-e5-Rkq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uWW-QB-xp0" secondAttribute="bottom" constant="20" id="4Cr-CP-PbG"/>
                                             <constraint firstItem="ATU-TR-4v1" firstAttribute="leading" secondItem="OPY-Ou-4A7" secondAttribute="leading" id="B26-Is-9NP"/>
                                             <constraint firstItem="dAI-e5-Rkq" firstAttribute="top" secondItem="Dux-0O-fyC" secondAttribute="bottom" constant="31" id="DZi-K6-kKe"/>
                                             <constraint firstItem="Dux-0O-fyC" firstAttribute="leading" secondItem="uWW-QB-xp0" secondAttribute="leading" id="E07-nu-ZbP"/>
-                                            <constraint firstItem="dAI-e5-Rkq" firstAttribute="leading" secondItem="Dux-0O-fyC" secondAttribute="leading" id="OJG-8z-mrH"/>
                                             <constraint firstItem="ATU-TR-4v1" firstAttribute="width" secondItem="OPY-Ou-4A7" secondAttribute="width" id="QQt-d9-Rru"/>
                                             <constraint firstItem="uWW-QB-xp0" firstAttribute="top" secondItem="ATU-TR-4v1" secondAttribute="bottom" constant="5" id="SKe-my-7RL"/>
                                             <constraint firstItem="OPY-Ou-4A7" firstAttribute="top" secondItem="b4Y-FM-tR4" secondAttribute="top" constant="20" id="Vqb-MZ-rVU"/>
+                                            <constraint firstItem="dAI-e5-Rkq" firstAttribute="leading" secondItem="uWW-QB-xp0" secondAttribute="leading" id="W7I-uC-XEb"/>
                                             <constraint firstItem="Dux-0O-fyC" firstAttribute="top" secondItem="uWW-QB-xp0" secondAttribute="bottom" constant="20" id="WK3-8v-CYQ"/>
+                                            <constraint firstItem="dAI-e5-Rkq" firstAttribute="width" secondItem="uWW-QB-xp0" secondAttribute="width" id="cgm-M9-bp4"/>
                                             <constraint firstItem="uWW-QB-xp0" firstAttribute="leading" secondItem="ATU-TR-4v1" secondAttribute="leading" id="knt-0o-mfo"/>
                                             <constraint firstAttribute="trailing" secondItem="OPY-Ou-4A7" secondAttribute="trailing" constant="20" id="ppZ-Ei-fce"/>
                                             <constraint firstItem="OPY-Ou-4A7" firstAttribute="leading" secondItem="b4Y-FM-tR4" secondAttribute="leading" constant="20" id="sNu-eo-TN2"/>
                                             <constraint firstItem="Dux-0O-fyC" firstAttribute="width" secondItem="uWW-QB-xp0" secondAttribute="width" id="tRt-sn-rjW"/>
                                             <constraint firstItem="ATU-TR-4v1" firstAttribute="top" secondItem="OPY-Ou-4A7" secondAttribute="bottom" constant="10" id="udh-ER-KpV"/>
                                             <constraint firstItem="uWW-QB-xp0" firstAttribute="width" secondItem="ATU-TR-4v1" secondAttribute="width" id="vbc-Hv-jVd"/>
-                                            <constraint firstItem="dAI-e5-Rkq" firstAttribute="width" secondItem="Dux-0O-fyC" secondAttribute="width" id="wA5-x1-gp5"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -2627,9 +2628,10 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <exclude reference="WK3-8v-CYQ"/>
                                                 <exclude reference="tRt-sn-rjW"/>
                                                 <exclude reference="2gs-U4-Ytm"/>
+                                                <exclude reference="4Cr-CP-PbG"/>
                                                 <exclude reference="DZi-K6-kKe"/>
-                                                <exclude reference="OJG-8z-mrH"/>
-                                                <exclude reference="wA5-x1-gp5"/>
+                                                <exclude reference="W7I-uC-XEb"/>
+                                                <exclude reference="cgm-M9-bp4"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
@@ -2647,9 +2649,10 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <include reference="WK3-8v-CYQ"/>
                                                 <include reference="tRt-sn-rjW"/>
                                                 <include reference="2gs-U4-Ytm"/>
+                                                <include reference="4Cr-CP-PbG"/>
                                                 <include reference="DZi-K6-kKe"/>
-                                                <include reference="OJG-8z-mrH"/>
-                                                <include reference="wA5-x1-gp5"/>
+                                                <include reference="W7I-uC-XEb"/>
+                                                <include reference="cgm-M9-bp4"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -2724,6 +2727,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <outlet property="courseLabel" destination="Zrg-TJ-yD0" id="fuh-7x-iR1"/>
                         <outlet property="editButton" destination="dfm-uL-SYV" id="Ar5-gv-pE4"/>
                         <outlet property="joinedDateLabel" destination="jgn-kJ-4Ss" id="eQ2-gf-Bdj"/>
+                        <outlet property="mutualFriendsLabel" destination="MmR-2o-zB8" id="a2e-Q8-Ngd"/>
+                        <outlet property="mutualFriendsView" destination="Dux-0O-fyC" id="NRR-Au-UjA"/>
                         <outlet property="nameLabel" destination="eBR-ef-vDK" id="lvz-ZA-IQP"/>
                         <outlet property="numDrivesLabel" destination="6dC-bx-97n" id="FXY-5V-tht"/>
                         <outlet property="numLikesLabel" destination="NE9-M6-rPZ" id="rRb-yJ-oC3"/>
@@ -2867,19 +2872,19 @@ FOTO</string>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="GVf-5R-kTp"/>
-                                                        <exclude reference="38O-Kc-etc"/>
-                                                        <exclude reference="LY5-Cv-ygi"/>
-                                                        <exclude reference="cnt-qg-8mu"/>
-                                                        <exclude reference="Ewp-Xc-1QO"/>
-                                                        <exclude reference="TTD-jB-cU2"/>
-                                                        <exclude reference="ZoM-Hv-o0S"/>
-                                                        <exclude reference="ylf-8a-NbV"/>
                                                         <exclude reference="GFM-wh-4fI"/>
                                                         <exclude reference="OIH-cn-tpB"/>
                                                         <exclude reference="STZ-De-APh"/>
                                                         <exclude reference="Uxr-7K-uNS"/>
                                                         <exclude reference="d07-7w-5IE"/>
                                                         <exclude reference="rky-ec-UnP"/>
+                                                        <exclude reference="Ewp-Xc-1QO"/>
+                                                        <exclude reference="TTD-jB-cU2"/>
+                                                        <exclude reference="ZoM-Hv-o0S"/>
+                                                        <exclude reference="ylf-8a-NbV"/>
+                                                        <exclude reference="38O-Kc-etc"/>
+                                                        <exclude reference="LY5-Cv-ygi"/>
+                                                        <exclude reference="cnt-qg-8mu"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
@@ -2891,19 +2896,19 @@ FOTO</string>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="GVf-5R-kTp"/>
-                                                        <include reference="38O-Kc-etc"/>
-                                                        <include reference="LY5-Cv-ygi"/>
-                                                        <include reference="cnt-qg-8mu"/>
-                                                        <include reference="Ewp-Xc-1QO"/>
-                                                        <include reference="TTD-jB-cU2"/>
-                                                        <include reference="ZoM-Hv-o0S"/>
-                                                        <include reference="ylf-8a-NbV"/>
                                                         <include reference="GFM-wh-4fI"/>
                                                         <exclude reference="OIH-cn-tpB"/>
                                                         <include reference="STZ-De-APh"/>
                                                         <include reference="Uxr-7K-uNS"/>
                                                         <include reference="d07-7w-5IE"/>
                                                         <include reference="rky-ec-UnP"/>
+                                                        <include reference="Ewp-Xc-1QO"/>
+                                                        <include reference="TTD-jB-cU2"/>
+                                                        <include reference="ZoM-Hv-o0S"/>
+                                                        <include reference="ylf-8a-NbV"/>
+                                                        <include reference="38O-Kc-etc"/>
+                                                        <include reference="LY5-Cv-ygi"/>
+                                                        <include reference="cnt-qg-8mu"/>
                                                     </mask>
                                                 </variation>
                                             </view>

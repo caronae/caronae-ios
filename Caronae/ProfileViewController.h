@@ -9,6 +9,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *courseLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 
+// Mutual friends
+@property (weak, nonatomic) IBOutlet UIView *mutualFriendsView;
+@property (weak, nonatomic) IBOutlet UILabel *mutualFriendsLabel;
+
+
 // Numbers
 @property (weak, nonatomic) IBOutlet UILabel *joinedDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numDrivesLabel;

@@ -35,6 +35,7 @@
     self.loadingButton = [[UIBarButtonItem alloc] initWithCustomView:spinner];
     
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    loginButton.readPermissions = @[@"public_profile", @"user_friends"];
     [self.fbButtonView addSubview:loginButton];
     loginButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.fbButtonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[loginButton]|" options:NSLayoutFormatAlignAllTop metrics:nil views:NSDictionaryOfVariableBindings(loginButton)]];
@@ -252,7 +253,7 @@
     
     [SVProgressHUD show];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:[NSString stringWithFormat:@"me/picture?type=large&redirect=false"]
+                                  initWithGraphPath:@"me/picture?type=large&redirect=false"
                                   parameters:@{@"fields": @"url"}
                                   HTTPMethod:@"GET"];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,

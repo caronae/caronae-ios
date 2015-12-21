@@ -1,5 +1,6 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "ProfileViewController.h"
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
@@ -35,12 +36,14 @@
         _carPlateLabel.text = _user[@"car_plate"];
         _carModelLabel.text = _user[@"car_model"];
         _carColorLabel.text = _user[@"car_color"];
+        [_mutualFriendsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
     else {
         self.title = _user[@"name"];
         [_carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [_signoutButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         self.navigationItem.rightBarButtonItem = nil;
+        [self updateMutualFriends];
     }
     
     if (_user[@"created_at"]) {
@@ -79,6 +82,26 @@
         _numRidesLabel.text = [NSString stringWithFormat:@"%ld", numRides];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error reading history count for user: %@", error.localizedDescription);
+    }];
+}
+
+- (void)updateMutualFriends {
+    NSString *facebookID = _user[@"face_id"];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", facebookID]
+                                  parameters:@{@"fields": @"context.fields(mutual_friends)"}
+                                  HTTPMethod:@"GET"];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
+                                          id result,
+                                          NSError *error) {
+        if (!error) {
+            NSArray *friends = result[@"context"][@"mutual_friends"][@"data"];
+            NSLog(@"%@", friends);
+            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %lu", friends.count];
+        }
+        else {
+            NSLog(@"Error updating friends in common: %@", error.description);
+        }
     }];
 }
 
