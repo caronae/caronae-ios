@@ -212,8 +212,16 @@
     FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
     NSLog(@"Facebook Access Token did change. New access token is %@", token.tokenString);
     
+    id fbToken;
+    if (token.tokenString) {
+        fbToken = token.tokenString;
+    }
+    else {
+        fbToken = [NSNull null];
+    }
+    
+    id fbID;
     if (notification.userInfo[FBSDKAccessTokenDidChangeUserID]) {
-        id fbID;
         if (token.userID) {
             NSLog(@"Facebook has loogged in with Facebook ID %@.", token.userID);
             fbID = token.userID;
@@ -222,16 +230,16 @@
             NSLog(@"User has logged out from Facebook.");
             fbID = [NSNull null];
         }
-        
-        [self updateUsersFacebookID:fbID success:^(id responseObject) {
-            NSLog(@"Updated user's Facebook ID on server.");
-        } failure:^(NSError *error) {
-            NSLog(@"Error updating user's Facebook ID on server: %@", error.localizedDescription);
-        } tries:3];
     }
+    
+    [self updateUsersFacebookID:fbID token:fbToken success:^(id responseObject) {
+        NSLog(@"Updated user's Facebook credentials on server.");
+    } failure:^(NSError *error) {
+        NSLog(@"Error updating user's Facebook credentials on server: %@", error.localizedDescription);
+    } tries:3];
 }
 
-- (void)updateUsersFacebookID:(id)fbID success:(void (^)(id responseObject))success                       failure:(void (^)(NSError *error))failure tries:(NSUInteger)times {
+- (void)updateUsersFacebookID:(id)fbID token:(id)token success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure tries:(NSUInteger)times {
     if (times <= 0) {
         failure([NSError errorWithDomain:CaronaeErrorDomain code:3 userInfo:@{@"localizedDescription":@"Failed updating user's Facebook ID remotely."}]);
     }
@@ -240,10 +248,18 @@
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
         [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
         
-        [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user/saveFaceId"] parameters:@{@"id": fbID} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *params;
+        if (fbID) {
+            params = @{@"id": fbID, @"token": token};
+        }
+        else {
+            params = @{@"token": token};
+        }
+        
+        [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user/saveFaceId"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
             success(operation);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self updateUsersFacebookID:fbID success:success failure:failure tries:times-1];
+            [self updateUsersFacebookID:fbID token:token success:success failure:failure tries:times-1];
         }];
     }
 }
