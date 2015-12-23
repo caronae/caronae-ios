@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *ridersView;
 @property (weak, nonatomic) IBOutlet UIView *mutualFriendsView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mutualFriendsCollectionHeight;
 @property (weak, nonatomic) IBOutlet UIView *finishRideView;
 @property (weak, nonatomic) IBOutlet UICollectionView *ridersCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *mutualFriendsCollectionView;
@@ -103,10 +104,9 @@
         [self.cancelButton setTitle:@"DESISTIR" forState:UIControlStateNormal];
         
         // Car details
-        NSDictionary *user = _ride.users[0];
-        _carPlateLabel.text = user[@"car_plate"];
-        _carModelLabel.text = user[@"car_model"];
-        _carColorLabel.text = user[@"car_color"];
+        _carPlateLabel.text = _ride.driver[@"car_plate"];
+        _carModelLabel.text = _ride.driver[@"car_model"];
+        _carColorLabel.text = _ride.driver[@"car_color"];
         
         [self updateMutualFriends];
     }
@@ -156,8 +156,15 @@
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _ride.driver[@"id"]]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *mutualFriends = responseObject;
-        _mutualFriends = mutualFriends;
-        [_mutualFriendsCollectionView reloadData];
+        if (mutualFriends.count > 0) {
+            [_mutualFriendsView layoutIfNeeded];
+            _mutualFriendsCollectionHeight.constant = 40.0f;
+            [UIView animateWithDuration:0.5 animations:^{
+                [_mutualFriendsView layoutIfNeeded];
+            }];
+            _mutualFriends = mutualFriends;
+            [_mutualFriendsCollectionView reloadData];
+        }
         _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %ld", mutualFriends.count];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);

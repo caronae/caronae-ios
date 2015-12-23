@@ -5860,9 +5860,7 @@ FOTO</string>
                                                                 <rect key="frame" x="20" y="45" width="350" height="40"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="82" id="S1C-Ma-dGD">
-                                                                        <variation key="widthClass=compact" constant="40"/>
-                                                                    </constraint>
+                                                                    <constraint firstAttribute="height" id="S1C-Ma-dGD"/>
                                                                 </constraints>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="20" id="Jgv-9Q-5L0">
                                                                     <size key="itemSize" width="50" height="40"/>
@@ -5939,7 +5937,8 @@ FOTO</string>
                                                                         <exclude reference="S1C-Ma-dGD"/>
                                                                     </mask>
                                                                 </variation>
-                                                                <variation key="widthClass=compact">
+                                                                <variation key="widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="25" y="23" width="350" height="40"/>
                                                                     <mask key="constraints">
                                                                         <include reference="S1C-Ma-dGD"/>
                                                                     </mask>
@@ -5968,7 +5967,8 @@ FOTO</string>
                                                                 <exclude reference="z0q-Yd-evR"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="105" width="400" height="63"/>
                                                             <mask key="constraints">
                                                                 <include reference="Kxx-eR-Szl"/>
                                                                 <include reference="sY1-9z-dnk"/>
@@ -6083,7 +6083,8 @@ FOTO</string>
                                                                 <exclude reference="jar-nM-w79"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="178" width="400" height="151"/>
                                                             <mask key="subviews">
                                                                 <include reference="iQb-4h-7CT"/>
                                                                 <include reference="aGC-vs-gc5"/>
@@ -6201,7 +6202,8 @@ FOTO</string>
                                                                 <exclude reference="YO3-Yr-eXK"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="329" width="400" height="112"/>
                                                             <mask key="subviews">
                                                                 <include reference="0KW-WR-0iS"/>
                                                                 <include reference="aCx-nb-Rrv"/>
@@ -6389,7 +6391,8 @@ FOTO</string>
                                                                 <exclude reference="m90-Fb-5LE"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="441" width="400" height="117"/>
                                                             <mask key="subviews">
                                                                 <include reference="aVU-XC-1u2"/>
                                                                 <include reference="6Uk-jm-OgE"/>
@@ -6463,7 +6466,8 @@ FOTO</string>
                                                                 <exclude reference="rm0-Wb-2Ca"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="568" width="400" height="65"/>
                                                             <mask key="constraints">
                                                                 <include reference="OSZ-7g-iuC"/>
                                                                 <include reference="e4h-Jj-b9X"/>
@@ -6545,7 +6549,8 @@ FOTO</string>
                                                         <exclude reference="mY4-Ly-jVI"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="285" width="400" height="633"/>
                                                     <mask key="subviews">
                                                         <include reference="gKN-I8-wX4"/>
                                                         <include reference="13z-QP-0ab"/>
@@ -6630,7 +6635,8 @@ FOTO</string>
                                                 <exclude reference="owB-Ey-xfn"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact">
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="918"/>
                                             <mask key="subviews">
                                                 <include reference="rm7-4R-FPm"/>
                                                 <include reference="DcQ-Df-dgu"/>
@@ -6728,6 +6734,7 @@ FOTO</string>
                         <outlet property="finishRideButton" destination="4ue-I8-X9c" id="WEa-q2-Q1U"/>
                         <outlet property="finishRideView" destination="rm7-4R-FPm" id="tgN-hq-epu"/>
                         <outlet property="headerView" destination="hmH-vg-yLk" id="vyJ-Wc-ftD"/>
+                        <outlet property="mutualFriendsCollectionHeight" destination="S1C-Ma-dGD" id="G03-B4-H78"/>
                         <outlet property="mutualFriendsCollectionView" destination="ftH-lv-bWG" id="JGn-xi-JNz"/>
                         <outlet property="mutualFriendsLabel" destination="5vV-zN-OD0" id="ua9-Qi-gmB"/>
                         <outlet property="mutualFriendsView" destination="gKN-I8-wX4" id="7vI-tv-q5i"/>
