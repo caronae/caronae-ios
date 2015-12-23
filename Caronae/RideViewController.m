@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *driverNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *driverCourseLabel;
-@property (weak, nonatomic) IBOutlet UILabel *friendsInCommonLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mutualFriendsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *driverMessageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *routeLabel;
 @property (weak, nonatomic) IBOutlet UIView *carDetailsView;
@@ -29,7 +29,10 @@
 // Assets
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIView *ridersView;
+@property (weak, nonatomic) IBOutlet UIView *mutualFriendsView;
 @property (weak, nonatomic) IBOutlet UIView *finishRideView;
+@property (weak, nonatomic) IBOutlet UICollectionView *ridersCollectionView;
+@property (weak, nonatomic) IBOutlet UICollectionView *mutualFriendsCollectionView;
 @property (weak, nonatomic) IBOutlet UIImageView *clockIcon;
 @property (weak, nonatomic) IBOutlet UIImageView *carIconPlate;
 @property (weak, nonatomic) IBOutlet UIImageView *carIconModel;
@@ -44,6 +47,7 @@
 
 @property (nonatomic) NSArray *joinRequests;
 @property (nonatomic) NSDictionary *selectedUser;
+@property (nonatomic) NSArray *mutualFriends;
 @end
 
 @implementation RideViewController
@@ -62,7 +66,6 @@
     _slotsLabel.text = [NSString stringWithFormat:@"%d %@", _ride.slots, _ride.slots == 1 ? @"vaga" : @"vagas"];
     _driverNameLabel.text = _ride.driver[@"name"];
     _driverCourseLabel.text = _ride.driver[@"course"];
-    _friendsInCommonLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", 0];
     _driverMessageLabel.text = _ride.notes;
     _routeLabel.text = [[_ride.route stringByReplacingOccurrencesOfString:@", " withString:@"\n"] stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
     
@@ -85,6 +88,7 @@
     if ([self userIsDriver]) {
         [self searchForJoinRequests];
         [self.requestRideButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [self.mutualFriendsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         
         // Car details
         NSDictionary *user = [CaronaeDefaults defaults].user;
@@ -103,12 +107,16 @@
         _carPlateLabel.text = user[@"car_plate"];
         _carModelLabel.text = user[@"car_model"];
         _carColorLabel.text = user[@"car_color"];
+        
+        [self updateMutualFriends];
     }
     // If the user is not related to the ride, hide 'cancel' button, car details view and riders view
     else {
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.finishRideView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        
+        [self updateMutualFriends];
     }
     
     // If the riders aren't provided then hide the riders view
@@ -139,6 +147,21 @@
         }
     }
     return NO;
+}
+
+- (void)updateMutualFriends {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    
+    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _ride.driver[@"id"]]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *mutualFriends = responseObject;
+        _mutualFriends = mutualFriends;
+        [_mutualFriendsCollectionView reloadData];
+        _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %ld", mutualFriends.count];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
+    }];
 }
 
 
@@ -376,22 +399,36 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _ride.users.count;
+    if (collectionView == _ridersCollectionView) {
+        return _ride.users.count;
+    }
+    else {
+        return _mutualFriends.count;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *user = _ride.users[indexPath.row];
+    CaronaeRiderCell *cell;
+    NSDictionary *user;
+    
+    if (collectionView == _ridersCollectionView) {
+        user = _ride.users[indexPath.row];
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Rider Cell" forIndexPath:indexPath];
+    }
+    else {
+        user = _mutualFriends[indexPath.row];
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Friend Cell" forIndexPath:indexPath];
+        
+    }
+    
     NSString *firstName = [user[@"name"] componentsSeparatedByString:@" "].firstObject;
-    
-    CaronaeRiderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Rider Cell" forIndexPath:indexPath];
-    
     cell.user = user;
     cell.nameLabel.text = firstName;
     
     if (user[@"profile_pic_url"] && [user[@"profile_pic_url"] isKindOfClass:[NSString class]] && ![user[@"profile_pic_url"] isEqualToString:@""]) {
         [cell.photo sd_setImageWithURL:[NSURL URLWithString:user[@"profile_pic_url"]]
-                        placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                                 options:SDWebImageRefreshCached];
+                      placeholderImage:[UIImage imageNamed:@"Profile Picture"]
+                               options:SDWebImageRefreshCached];
     }
     
     return cell;
@@ -400,10 +437,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
-    CaronaeRiderCell *cell = (CaronaeRiderCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    self.selectedUser = cell.user;
-    
-    [self performSegueWithIdentifier:@"ViewProfile" sender:self];
+    if (collectionView == _ridersCollectionView) {
+        CaronaeRiderCell *cell = (CaronaeRiderCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        self.selectedUser = cell.user;
+        
+        [self performSegueWithIdentifier:@"ViewProfile" sender:self];
+    }
 }
 
 @end
