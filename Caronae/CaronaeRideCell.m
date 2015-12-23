@@ -8,8 +8,11 @@
     _ride = ride;
     
     [self updateTitleLabel];
-    [self updateTimeLabel];
     [self updatePhoto];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"HH:mm | dd/MM";
+    _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Chegando às %@", [dateFormatter stringFromDate:_ride.date]];
     
     _slotsLabel.text = [NSString stringWithFormat:@"%d %@", ride.slots, ride.slots == 1 ? @"vaga" : @"vagas"];
     
@@ -21,8 +24,11 @@
     _ride = ride;
     
     [self updateTitleLabel];
-    [self updateTimeLabel];
     [self updatePhoto];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"HH:mm | dd/MM";
+    _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Chegou às %@", [dateFormatter stringFromDate:_ride.date]];
     
     _slotsLabel.text = [NSString stringWithFormat:@"%lu %@", (unsigned long)ride.users.count, ride.users.count == 1 ? @"caronista" : @"caronistas"];
     
@@ -37,12 +43,6 @@
     else {
         _titleLabel.text = [[NSString stringWithFormat:@"%@ → %@", _ride.hub, _ride.neighborhood] uppercaseString];
     }
-}
-
-- (void)updateTimeLabel {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"HH:mm | dd/MM";
-    _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Chegou às %@", [dateFormatter stringFromDate:_ride.date]];
 }
 
 - (void)updatePhoto {
