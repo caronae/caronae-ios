@@ -1839,6 +1839,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                     </navigationItem>
                     <connections>
                         <outlet property="messageTextView" destination="Ysw-F7-F0j" id="jn4-6X-MtR"/>
+                        <outlet property="sendButton" destination="kPk-5d-q0h" id="dJV-OO-YLu"/>
                         <outlet property="subjectTextField" destination="bPu-xJ-teJ" id="GLo-pX-g7h"/>
                         <outlet property="typeButton" destination="UT6-Tu-ZGj" id="lI4-bF-4w8"/>
                     </connections>
