@@ -16,7 +16,7 @@
     NSDictionary *user = [CaronaeDefaults defaults].user;
     self.profileNameLabel.text = user[@"name"];
     self.profileCourseLabel.text = user[@"course"];
-    if (user[@"profile_pic_url"] && ![user[@"profile_pic_url"] isEqualToString:@""]) {
+    if (user[@"profile_pic_url"] && [user[@"profile_pic_url"] isKindOfClass:[NSString class]] && ![user[@"profile_pic_url"] isEqualToString:@""]) {
         [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:user[@"profile_pic_url"]]
                              placeholderImage:[UIImage imageNamed:@"Profile Picture"]
                                       options:SDWebImageRefreshCached];
