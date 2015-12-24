@@ -12,7 +12,9 @@
 @property (nonatomic) NSString *messagePlaceholder;
 @property (nonatomic) UIColor *messageTextColor;
 @property (nonatomic) NSString *selectedType;
+@property (nonatomic) int selectedTypeInitialIndex;
 @property (nonatomic) NSArray *messageTypes;
+@property (nonatomic) NSDictionary *reportedUser;
 @end
 
 @implementation FalaeViewController
@@ -27,12 +29,26 @@
     _messageTextColor =  _messageTextView.textColor;
     _messageTextView.textColor = [UIColor lightGrayColor];
     
-    if (!_selectedType) _selectedType = @"complaint";
+    if (_reportedUser) {
+        _selectedType = @"report";
+        _selectedTypeInitialIndex = 3;
+        [_typeButton setTitle:@"Denúncia" forState:UIControlStateNormal];
+        _subjectTextField.text = [NSString stringWithFormat:@"Denúncia sobre usuário %@ (id: %d)", _reportedUser[@"name"], [_reportedUser[@"id"] intValue]];
+        _subjectTextField.enabled = NO;
+    }
+    else {
+        _selectedTypeInitialIndex = 0;
+        _selectedType = @"complaint";
+    }
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
                                         initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [spinner startAnimating];
     _loadingButton = [[UIBarButtonItem alloc] initWithCustomView:spinner];
+}
+
+- (void)setReport:(NSDictionary *)user {
+    _reportedUser = user;
 }
 
 - (void)sendMessage:(NSDictionary *)message {
@@ -61,7 +77,7 @@
 - (IBAction)didTapSelectTypeButton:(id)sender {
     [self.view endEditing:YES];
     [ActionSheetStringPicker showPickerWithTitle:@"Qual o motivo do seu contato?"
-                                            rows:_messageTypes                                                          initialSelection:[_messageTypes indexOfObject:_selectedType]
+                                            rows:_messageTypes                                                          initialSelection:_selectedTypeInitialIndex
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            if ([selectedValue isEqualToString:@"Reclamação"]) {
                                                _selectedType = @"complaint";

@@ -202,8 +202,6 @@
 		A3169C921BED842D00A0D428 /* Caronae */ = {
 			isa = PBXGroup;
 			children = (
-				A32B80B41C2C6EBE00FC370A /* FalaeViewController.h */,
-				A32B80B51C2C6EBE00FC370A /* FalaeViewController.m */,
 				A3B5AF121BF2F1050026A889 /* Categories */,
 				A39BBD001C0629E100EF9EBD /* Model */,
 				A3AD19C71BED96DC003EDA17 /* Custom views */,
@@ -236,6 +234,8 @@
 				A34312CC1BF01C26005BA311 /* EditProfileViewController.m */,
 				A3F30EEE1C0891520024BE37 /* ZoneSelectionViewController.h */,
 				A3F30EEF1C0891520024BE37 /* ZoneSelectionViewController.m */,
+				A32B80B41C2C6EBE00FC370A /* FalaeViewController.h */,
+				A32B80B51C2C6EBE00FC370A /* FalaeViewController.m */,
 				A3169CA21BED842D00A0D428 /* Assets.xcassets */,
 				A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */,
 				A3169CA71BED842D00A0D428 /* Info.plist */,
