@@ -1665,7 +1665,7 @@ Este é o token gerado através da Intranet UFRJ</string>
         <!--Falaê-->
         <scene sceneID="dO1-ON-W0Z">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="SUh-3J-VXI" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="SUh-3J-VXI" customClass="FalaeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zhm-FT-3CJ"/>
                         <viewControllerLayoutGuide type="bottom" id="Xzi-Wl-Bdn"/>
@@ -1700,6 +1700,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                                             <rect key="frame" x="0.0" y="33" width="370" height="30"/>
                                                         </variation>
+                                                        <connections>
+                                                            <action selector="didTapSelectTypeButton:" destination="SUh-3J-VXI" eventType="touchUpInside" id="0zk-jd-WTM"/>
+                                                        </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="232-k3-TQZ" userLabel="Separator">
                                                         <rect key="frame" x="0.0" y="52" width="560" height="1"/>
@@ -1724,8 +1727,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstAttribute="bottom" secondItem="232-k3-TQZ" secondAttribute="bottom" constant="10" id="stt-5t-G4O"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RWO-JP-mny" userLabel="Assunto">
-                                                <rect key="frame" x="20" y="83" width="560" height="52"/>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RWO-JP-mny" userLabel="Assunto">
+                                                <rect key="frame" x="20" y="83" width="560" height="67"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASSUNTO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E20-6x-IkA">
                                                         <rect key="frame" x="0.0" y="10" width="68.5" height="17"/>
@@ -1734,7 +1737,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Assunto" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bPu-xJ-teJ" customClass="CaronaeTextField">
-                                                        <rect key="frame" x="0.0" y="29" width="560" height="32"/>
+                                                        <rect key="frame" x="0.0" y="32" width="560" height="30"/>
                                                         <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1744,13 +1747,13 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstAttribute="bottom" secondItem="bPu-xJ-teJ" secondAttribute="bottom" constant="5" id="26c-av-pvW"/>
                                                     <constraint firstAttribute="trailing" secondItem="bPu-xJ-teJ" secondAttribute="trailing" id="408-FN-ZDI"/>
                                                     <constraint firstItem="bPu-xJ-teJ" firstAttribute="leading" secondItem="E20-6x-IkA" secondAttribute="leading" id="HVV-o0-7HL"/>
-                                                    <constraint firstItem="bPu-xJ-teJ" firstAttribute="top" secondItem="E20-6x-IkA" secondAttribute="bottom" constant="2" id="Hne-ca-2DZ"/>
+                                                    <constraint firstItem="bPu-xJ-teJ" firstAttribute="top" secondItem="E20-6x-IkA" secondAttribute="bottom" constant="5" id="Hne-ca-2DZ"/>
                                                     <constraint firstItem="E20-6x-IkA" firstAttribute="leading" secondItem="RWO-JP-mny" secondAttribute="leading" id="XAx-HA-G1x"/>
                                                     <constraint firstItem="E20-6x-IkA" firstAttribute="top" secondItem="RWO-JP-mny" secondAttribute="top" constant="10" id="Zgj-mx-c5u"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niF-RV-GOB" userLabel="Mensagem">
-                                                <rect key="frame" x="20" y="150" width="560" height="332"/>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="niF-RV-GOB" userLabel="Mensagem">
+                                                <rect key="frame" x="20" y="165" width="560" height="317"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MENSAGEM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXm-bY-nhq">
                                                         <rect key="frame" x="0.0" y="10" width="81.5" height="17"/>
@@ -1758,8 +1761,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Sua mensagem" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ysw-F7-F0j">
-                                                        <rect key="frame" x="0.0" y="32" width="560" height="295"/>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="O que deseja dizer para a equipe do Caronaê?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ysw-F7-F0j">
+                                                        <rect key="frame" x="0.0" y="32" width="560" height="280"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="mS0-3w-NhH"/>
@@ -1828,8 +1831,17 @@ Este é o token gerado através da Intranet UFRJ</string>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Falaê" id="RFf-Qh-Abf">
-                        <barButtonItem key="rightBarButtonItem" title="Enviar" id="kPk-5d-q0h"/>
+                        <barButtonItem key="rightBarButtonItem" title="Enviar" id="kPk-5d-q0h">
+                            <connections>
+                                <action selector="didTapSendButton:" destination="SUh-3J-VXI" id="k62-N4-Pq1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="messageTextView" destination="Ysw-F7-F0j" id="jn4-6X-MtR"/>
+                        <outlet property="subjectTextField" destination="bPu-xJ-teJ" id="GLo-pX-g7h"/>
+                        <outlet property="typeButton" destination="UT6-Tu-ZGj" id="lI4-bF-4w8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rw0-JZ-dgX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
