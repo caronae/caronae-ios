@@ -205,33 +205,15 @@
 				A3B5AF121BF2F1050026A889 /* Categories */,
 				A39BBD001C0629E100EF9EBD /* Model */,
 				A3AD19C71BED96DC003EDA17 /* Custom views */,
+				A32B80B81C2E075000FC370A /* Ride Controllers */,
+				A32B80B71C2E073000FC370A /* User Controllers */,
+				A3169C9C1BED842D00A0D428 /* Main.storyboard */,
 				A3B5AEFD1BF1AAC10026A889 /* CaronaeDefaults.h */,
 				A3B5AEFE1BF1AAC10026A889 /* CaronaeDefaults.m */,
 				A3169C961BED842D00A0D428 /* AppDelegate.h */,
 				A3169C971BED842D00A0D428 /* AppDelegate.m */,
-				A3169C991BED842D00A0D428 /* TokenViewController.h */,
-				A3169C9A1BED842D00A0D428 /* TokenViewController.m */,
-				A3169C9C1BED842D00A0D428 /* Main.storyboard */,
 				A34312C51BF01B9A005BA311 /* MenuViewController.h */,
 				A34312C61BF01B9A005BA311 /* MenuViewController.m */,
-				A33FABE81BEE8E93008B4F51 /* CreateRideViewController.h */,
-				A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */,
-				A39BBCF41C048E4D00EF9EBD /* SearchRideViewController.h */,
-				A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */,
-				A3996D2B1C13AC0900D2E890 /* SearchResultsViewController.h */,
-				A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */,
-				A3AD19C81BED9BFB003EDA17 /* ActiveRidesViewController.h */,
-				A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */,
-				A3B5AF041BF1ADF30026A889 /* MyRidesViewController.h */,
-				A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */,
-				A35D47291C2092A300501647 /* RidesHistoryViewController.h */,
-				A35D472A1C2092A300501647 /* RidesHistoryViewController.m */,
-				A39BBD091C06B94E00EF9EBD /* RideViewController.h */,
-				A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */,
-				A34312C81BF01C1D005BA311 /* ProfileViewController.h */,
-				A34312C91BF01C1D005BA311 /* ProfileViewController.m */,
-				A34312CB1BF01C26005BA311 /* EditProfileViewController.h */,
-				A34312CC1BF01C26005BA311 /* EditProfileViewController.m */,
 				A3F30EEE1C0891520024BE37 /* ZoneSelectionViewController.h */,
 				A3F30EEF1C0891520024BE37 /* ZoneSelectionViewController.m */,
 				A32B80B41C2C6EBE00FC370A /* FalaeViewController.h */,
@@ -271,6 +253,40 @@
 				A3169CBD1BED842D00A0D428 /* Info.plist */,
 			);
 			path = CaronaeUITests;
+			sourceTree = "<group>";
+		};
+		A32B80B71C2E073000FC370A /* User Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A3169C991BED842D00A0D428 /* TokenViewController.h */,
+				A3169C9A1BED842D00A0D428 /* TokenViewController.m */,
+				A34312C81BF01C1D005BA311 /* ProfileViewController.h */,
+				A34312C91BF01C1D005BA311 /* ProfileViewController.m */,
+				A34312CB1BF01C26005BA311 /* EditProfileViewController.h */,
+				A34312CC1BF01C26005BA311 /* EditProfileViewController.m */,
+			);
+			name = "User Controllers";
+			sourceTree = "<group>";
+		};
+		A32B80B81C2E075000FC370A /* Ride Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A33FABE81BEE8E93008B4F51 /* CreateRideViewController.h */,
+				A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */,
+				A39BBCF41C048E4D00EF9EBD /* SearchRideViewController.h */,
+				A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */,
+				A3996D2B1C13AC0900D2E890 /* SearchResultsViewController.h */,
+				A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */,
+				A3AD19C81BED9BFB003EDA17 /* ActiveRidesViewController.h */,
+				A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */,
+				A3B5AF041BF1ADF30026A889 /* MyRidesViewController.h */,
+				A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */,
+				A35D47291C2092A300501647 /* RidesHistoryViewController.h */,
+				A35D472A1C2092A300501647 /* RidesHistoryViewController.m */,
+				A39BBD091C06B94E00EF9EBD /* RideViewController.h */,
+				A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */,
+			);
+			name = "Ride Controllers";
 			sourceTree = "<group>";
 		};
 		A39BBD001C0629E100EF9EBD /* Model */ = {
