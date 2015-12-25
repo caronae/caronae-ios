@@ -48,10 +48,10 @@
 
 - (IBAction)didTapCancelButton:(id)sender {
     CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar edição do perfil?"
-                                                                             message:@"Quaisquer mudanças não salvas serão perdidas."
+                                                                             message:@"Quaisquer mudanças serão descartadas."
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
-    [alert addAction:[SDCAlertAction actionWithTitle:@"Não" style:SDCAlertActionStyleCancel handler:nil]];
-    [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Cont. editando" style:SDCAlertActionStyleCancel handler:nil]];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Descartar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
     [alert presentWithCompletion:nil];

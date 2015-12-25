@@ -122,7 +122,6 @@
 - (IBAction)createRide:(id)sender {
     NSDictionary *ride;
     ride = [self generateRideDictionaryFromView];
-    NSLog(@"%@", ride);
     
     [SVProgressHUD show];
     

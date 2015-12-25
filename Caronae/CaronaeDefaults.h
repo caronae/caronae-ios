@@ -18,6 +18,13 @@ extern const NSInteger CaronaeErrorNoRidesCreated;
 + (void)signOut;
 
 /**
+ *  Returns the user's Facebook access token.
+ *
+ *  @return A string containing the user's FB access token or `nil` if user is not connected with Facebook.
+ */
++ (NSString *)userFBToken;
+
+/**
  *  Returns the color related to a specific zone according to the app's default color palette.
  *
  *  @param zone The zone name (Zona Norte, Zona Sul, Centro etc.)

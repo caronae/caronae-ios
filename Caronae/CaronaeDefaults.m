@@ -1,11 +1,12 @@
 #import <FBSDKLoginKit/FBSDKLoginManager.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "CaronaeDefaults.h"
 #import "AppDelegate.h"
 
 #pragma mark - API settings
 
-//NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
-NSString *const CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
+NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
+//NSString *const CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
 //NSString *const CaronaeAPIBaseURL = @"http://localhost:8000";
 
 #pragma mark - Notifications
@@ -46,6 +47,11 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
     UIViewController *authViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"InitialTokenScreen"];
     authViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [topViewController presentViewController:authViewController animated:YES completion:nil];
+}
+
++ (NSString *)userFBToken {
+    FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
+    return token.tokenString;
 }
 
 + (UIColor *)colorForZone:(NSString *)zone {

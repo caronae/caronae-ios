@@ -88,15 +88,21 @@
 }
 
 - (void)updateMutualFriends {
+    // Abort if the Facebook accounts are not connected.
+    if (![CaronaeDefaults userFBToken] || ![_user[@"face_id"] isKindOfClass:[NSString class]] || [_user[@"face_id"] isEqualToString:@""]) {
+        return;
+    }
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[CaronaeDefaults userFBToken] forHTTPHeaderField:@"Facebook-Token"];
     
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _user[@"id"]]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *mutualFriends = responseObject;
+    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _user[@"face_id"]]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *mutualFriends = responseObject[@"mutual_friends"];
         _mutualFriends = mutualFriends;
         [_mutualFriendsCollectionView reloadData];
-        _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %ld", mutualFriends.count];
+        _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", [responseObject[@"total_count"] intValue]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
     }];
