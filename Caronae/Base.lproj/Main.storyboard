@@ -1727,7 +1727,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstAttribute="bottom" secondItem="232-k3-TQZ" secondAttribute="bottom" constant="10" id="stt-5t-G4O"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RWO-JP-mny" userLabel="Assunto">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RWO-JP-mny" userLabel="Assunto">
                                                 <rect key="frame" x="20" y="83" width="560" height="67"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASSUNTO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E20-6x-IkA">
@@ -1751,8 +1751,11 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstItem="E20-6x-IkA" firstAttribute="leading" secondItem="RWO-JP-mny" secondAttribute="leading" id="XAx-HA-G1x"/>
                                                     <constraint firstItem="E20-6x-IkA" firstAttribute="top" secondItem="RWO-JP-mny" secondAttribute="top" constant="10" id="Zgj-mx-c5u"/>
                                                 </constraints>
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="20" y="83" width="360" height="67"/>
+                                                </variation>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="niF-RV-GOB" userLabel="Mensagem">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niF-RV-GOB" userLabel="Mensagem">
                                                 <rect key="frame" x="20" y="165" width="560" height="317"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MENSAGEM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXm-bY-nhq">
@@ -1761,7 +1764,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="O que deseja dizer para a equipe do Caronaê?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ysw-F7-F0j">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="O que deseja dizer para a equipe do Caronaê?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ysw-F7-F0j">
                                                         <rect key="frame" x="0.0" y="32" width="560" height="280"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -1788,6 +1791,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstItem="aXm-bY-nhq" firstAttribute="leading" secondItem="niF-RV-GOB" secondAttribute="leading" id="nvG-xL-6as"/>
                                                     <constraint firstItem="Ysw-F7-F0j" firstAttribute="leading" secondItem="aXm-bY-nhq" secondAttribute="leading" id="zGI-aD-Fkr"/>
                                                 </constraints>
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="20" y="165" width="360" height="317"/>
+                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1803,6 +1809,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <constraint firstAttribute="trailing" secondItem="HDx-Di-YZG" secondAttribute="trailing" constant="20" id="eiZ-Od-mRF"/>
                                             <constraint firstItem="RWO-JP-mny" firstAttribute="width" secondItem="HDx-Di-YZG" secondAttribute="width" id="gdC-vi-OpI"/>
                                         </constraints>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="487"/>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -1812,6 +1821,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                     <constraint firstAttribute="bottom" secondItem="x5A-6B-eNz" secondAttribute="bottom" id="Vv6-b1-6e0"/>
                                     <constraint firstAttribute="trailing" secondItem="x5A-6B-eNz" secondAttribute="trailing" id="nyX-Fo-UHq"/>
                                 </constraints>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="487"/>
+                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1872,7 +1884,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OPY-Ou-4A7" userLabel="ID">
                                                 <rect key="frame" x="20" y="20" width="360" height="80"/>
                                                 <subviews>
-                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="Ejx-Yf-BBH" userLabel="Photo">
+                                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="Ejx-Yf-BBH" userLabel="Photo">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
@@ -2438,11 +2450,14 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dux-0O-fyC" userLabel="Friends">
                                                 <rect key="frame" x="30" y="169" width="340" height="50"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amigos em comum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MmR-2o-zB8">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amigos em comum: -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MmR-2o-zB8">
                                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
+                                                        <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="0.0" width="156" height="17"/>
+                                                        </variation>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jAg-XN-udr" userLabel="Mutual Friends Collection View">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -2466,7 +2481,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="BwN-Em-uzF" userLabel="Rider photo">
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="BwN-Em-uzF" userLabel="Rider photo">
                                                                             <rect key="frame" x="20" y="20" width="50" height="50"/>
                                                                             <gestureRecognizers/>
                                                                             <constraints>
@@ -2527,7 +2542,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <exclude reference="GaO-a8-cN1"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="20" width="360" height="40"/>
                                                             <mask key="constraints">
                                                                 <include reference="GaO-a8-cN1"/>
                                                             </mask>
@@ -2543,7 +2559,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstAttribute="trailing" secondItem="jAg-XN-udr" secondAttribute="trailing" id="7Pi-4o-0aK"/>
                                                     <constraint firstItem="jAg-XN-udr" firstAttribute="leading" secondItem="MmR-2o-zB8" secondAttribute="leading" id="864-Wf-fa3"/>
                                                     <constraint firstItem="jAg-XN-udr" firstAttribute="top" secondItem="MmR-2o-zB8" secondAttribute="bottom" constant="8" id="k9S-Em-Q6c"/>
-                                                    <constraint firstAttribute="height" constant="100" id="swz-wp-Ctk"/>
+                                                    <constraint firstAttribute="height" constant="60" id="swz-wp-Ctk"/>
                                                     <constraint firstItem="MmR-2o-zB8" firstAttribute="leading" secondItem="Dux-0O-fyC" secondAttribute="leading" id="vTm-NL-FFL"/>
                                                 </constraints>
                                                 <variation key="default">
@@ -2572,6 +2588,58 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <include reference="7Pi-4o-0aK"/>
                                                         <include reference="864-Wf-fa3"/>
                                                         <include reference="k9S-Em-Q6c"/>
+                                                    </mask>
+                                                </variation>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kvy-uv-slh" userLabel="Report View">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hS6-gr-lDK">
+                                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                        <state key="normal" title="      REPORTAR      ">
+                                                            <color key="titleColor" red="0.92941176891326904" green="0.18039216101169586" blue="0.050980392843484879" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                                <integer key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                                <color key="value" red="0.92941176891326904" green="0.18039216101169586" blue="0.050980392843484879" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <segue destination="SUh-3J-VXI" kind="show" identifier="ReportUser" id="ugX-qh-OjL"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="hS6-gr-lDK" secondAttribute="trailing" constant="5" id="FPJ-aa-1JO"/>
+                                                    <constraint firstAttribute="height" constant="34" id="GKY-pT-bDW"/>
+                                                    <constraint firstItem="hS6-gr-lDK" firstAttribute="centerY" secondItem="Kvy-uv-slh" secondAttribute="centerY" id="eOd-ta-aTx"/>
+                                                </constraints>
+                                                <variation key="default">
+                                                    <mask key="subviews">
+                                                        <exclude reference="hS6-gr-lDK"/>
+                                                    </mask>
+                                                    <mask key="constraints">
+                                                        <exclude reference="GKY-pT-bDW"/>
+                                                        <exclude reference="FPJ-aa-1JO"/>
+                                                        <exclude reference="eOd-ta-aTx"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="widthClass=compact">
+                                                    <mask key="subviews">
+                                                        <include reference="hS6-gr-lDK"/>
+                                                    </mask>
+                                                    <mask key="constraints">
+                                                        <include reference="GKY-pT-bDW"/>
+                                                        <include reference="FPJ-aa-1JO"/>
+                                                        <include reference="eOd-ta-aTx"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -2617,7 +2685,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="ukp-LD-rXY" firstAttribute="leading" secondItem="cE3-2w-Ugm" secondAttribute="trailing" constant="6" id="53J-Ey-uJK">
                                                                 <variation key="widthClass=compact" constant="10"/>
@@ -2687,7 +2754,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="h07-4L-BDZ" firstAttribute="leading" secondItem="5g7-J4-yh1" secondAttribute="trailing" constant="8" id="Lx3-IW-UoC">
                                                                 <variation key="widthClass=compact" constant="10"/>
@@ -2763,7 +2829,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="QJW-Jg-fNl" firstAttribute="centerY" secondItem="JzR-1j-Wcm" secondAttribute="centerY" id="MwX-Mf-3ne"/>
                                                             <constraint firstItem="wMG-kW-a5r" firstAttribute="leading" secondItem="QJW-Jg-fNl" secondAttribute="trailing" constant="8" id="TGz-3h-sbz">
@@ -2883,16 +2948,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hS6-gr-lDK">
-                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                                                <state key="normal" title="REPORTAR">
-                                                    <color key="titleColor" red="0.92941176891326904" green="0.18039216101169586" blue="0.050980392843484879" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="285" y="148" width="76" height="30"/>
-                                                </variation>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -2906,17 +2961,21 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <constraint firstItem="OPY-Ou-4A7" firstAttribute="top" secondItem="b4Y-FM-tR4" secondAttribute="top" constant="20" id="Vqb-MZ-rVU"/>
                                             <constraint firstItem="dAI-e5-Rkq" firstAttribute="leading" secondItem="uWW-QB-xp0" secondAttribute="leading" id="W7I-uC-XEb"/>
                                             <constraint firstItem="Dux-0O-fyC" firstAttribute="top" secondItem="uWW-QB-xp0" secondAttribute="bottom" constant="20" id="WK3-8v-CYQ"/>
+                                            <constraint firstItem="Kvy-uv-slh" firstAttribute="leading" secondItem="uWW-QB-xp0" secondAttribute="leading" id="aTZ-u4-bir"/>
                                             <constraint firstItem="dAI-e5-Rkq" firstAttribute="width" secondItem="uWW-QB-xp0" secondAttribute="width" id="cgm-M9-bp4"/>
                                             <constraint firstItem="uWW-QB-xp0" firstAttribute="leading" secondItem="ATU-TR-4v1" secondAttribute="leading" id="knt-0o-mfo"/>
                                             <constraint firstAttribute="trailing" secondItem="OPY-Ou-4A7" secondAttribute="trailing" constant="20" id="ppZ-Ei-fce"/>
                                             <constraint firstItem="OPY-Ou-4A7" firstAttribute="leading" secondItem="b4Y-FM-tR4" secondAttribute="leading" constant="20" id="sNu-eo-TN2"/>
                                             <constraint firstItem="Dux-0O-fyC" firstAttribute="width" secondItem="uWW-QB-xp0" secondAttribute="width" id="tRt-sn-rjW"/>
                                             <constraint firstItem="ATU-TR-4v1" firstAttribute="top" secondItem="OPY-Ou-4A7" secondAttribute="bottom" constant="10" id="udh-ER-KpV"/>
+                                            <constraint firstItem="Kvy-uv-slh" firstAttribute="top" secondItem="Dux-0O-fyC" secondAttribute="bottom" constant="10" id="uuV-HF-Lrr"/>
                                             <constraint firstItem="uWW-QB-xp0" firstAttribute="width" secondItem="ATU-TR-4v1" secondAttribute="width" id="vbc-Hv-jVd"/>
+                                            <constraint firstItem="Kvy-uv-slh" firstAttribute="width" secondItem="uWW-QB-xp0" secondAttribute="width" id="yXx-dP-xb1"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Kvy-uv-slh" secondAttribute="bottom" constant="15" id="zMD-gu-BBv"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
-                                                <exclude reference="hS6-gr-lDK"/>
+                                                <exclude reference="Kvy-uv-slh"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <exclude reference="Vqb-MZ-rVU"/>
@@ -2931,6 +2990,10 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <exclude reference="E07-nu-ZbP"/>
                                                 <exclude reference="WK3-8v-CYQ"/>
                                                 <exclude reference="tRt-sn-rjW"/>
+                                                <exclude reference="aTZ-u4-bir"/>
+                                                <exclude reference="uuV-HF-Lrr"/>
+                                                <exclude reference="yXx-dP-xb1"/>
+                                                <exclude reference="zMD-gu-BBv"/>
                                                 <exclude reference="2gs-U4-Ytm"/>
                                                 <exclude reference="4Cr-CP-PbG"/>
                                                 <exclude reference="DZi-K6-kKe"/>
@@ -2940,7 +3003,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                         </variation>
                                         <variation key="widthClass=compact">
                                             <mask key="subviews">
-                                                <include reference="hS6-gr-lDK"/>
+                                                <include reference="Kvy-uv-slh"/>
                                             </mask>
                                             <mask key="constraints">
                                                 <include reference="Vqb-MZ-rVU"/>
@@ -2955,6 +3018,10 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <include reference="E07-nu-ZbP"/>
                                                 <include reference="WK3-8v-CYQ"/>
                                                 <include reference="tRt-sn-rjW"/>
+                                                <include reference="aTZ-u4-bir"/>
+                                                <include reference="uuV-HF-Lrr"/>
+                                                <include reference="yXx-dP-xb1"/>
+                                                <include reference="zMD-gu-BBv"/>
                                                 <include reference="2gs-U4-Ytm"/>
                                                 <include reference="4Cr-CP-PbG"/>
                                                 <include reference="DZi-K6-kKe"/>
@@ -2978,7 +3045,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                                         <exclude reference="rtV-71-yGf"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="587"/>
                                     <mask key="constraints">
                                         <include reference="Kiw-qC-kJK"/>
                                         <include reference="T1v-DT-0Ay"/>
@@ -3041,6 +3109,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <outlet property="numLikesLabel" destination="NE9-M6-rPZ" id="rRb-yJ-oC3"/>
                         <outlet property="numRidesLabel" destination="7LV-WC-GgG" id="Dx5-rZ-Mnn"/>
                         <outlet property="profileImage" destination="Ejx-Yf-BBH" id="nIB-rP-cF0"/>
+                        <outlet property="reportView" destination="Kvy-uv-slh" id="CPE-aP-QgP"/>
                         <outlet property="signoutButton" destination="UD9-3b-3BN" id="YH6-Bg-aMD"/>
                     </connections>
                 </viewController>
@@ -3086,7 +3155,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wC6-CD-nF5" userLabel="ID">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                 <subviews>
-                                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="0R8-uQ-11f" userLabel="Photo">
+                                                    <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="0R8-uQ-11f" userLabel="Photo">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
@@ -4085,7 +4154,8 @@ FOTO</string>
                                                         <exclude reference="P60-OE-cll"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="15" y="517" width="370" height="50"/>
                                                     <mask key="subviews">
                                                         <include reference="K8h-kP-2X5"/>
                                                         <include reference="P3j-hD-d2F"/>
@@ -4347,7 +4417,7 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="577" width="370" height="195.5"/>
+                                                    <rect key="frame" x="15" y="576" width="370" height="196"/>
                                                     <mask key="subviews">
                                                         <include reference="q8t-lO-Jqk"/>
                                                         <include reference="ZA1-8O-6ah"/>
@@ -4502,7 +4572,7 @@ FOTO</string>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="787.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="787"/>
                                             <mask key="subviews">
                                                 <include reference="wC6-CD-nF5"/>
                                                 <include reference="NpW-3h-cia"/>
@@ -4686,7 +4756,7 @@ FOTO</string>
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="IhH-eB-lWM" userLabel="Photo">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="IhH-eB-lWM" userLabel="Photo">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="IhH-eB-lWM" secondAttribute="height" multiplier="1:1" id="Ffx-CC-hQG"/>
@@ -5952,7 +6022,7 @@ FOTO</string>
                                                                     <outletCollection property="gestureRecognizers" destination="Xz9-we-zza" appends="YES" id="JtL-eE-PlB"/>
                                                                 </connections>
                                                             </label>
-                                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="C3d-pJ-uoK" userLabel="Driver photo">
+                                                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="C3d-pJ-uoK" userLabel="Driver photo">
                                                                 <rect key="frame" x="20" y="20" width="50" height="50"/>
                                                                 <gestureRecognizers/>
                                                                 <constraints>
@@ -6102,7 +6172,8 @@ FOTO</string>
                                                                                             <exclude reference="usE-UZ-yyp"/>
                                                                                         </mask>
                                                                                     </variation>
-                                                                                    <variation key="widthClass=compact">
+                                                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                                                        <rect key="frame" x="5" y="0.0" width="40" height="40"/>
                                                                                         <mask key="constraints">
                                                                                             <include reference="Pyu-eX-zyw"/>
                                                                                             <include reference="usE-UZ-yyp"/>
@@ -6466,7 +6537,7 @@ FOTO</string>
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
-                                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="VGO-Kz-25w" userLabel="Rider photo">
+                                                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="VGO-Kz-25w" userLabel="Rider photo">
                                                                                     <rect key="frame" x="20" y="20" width="50" height="50"/>
                                                                                     <gestureRecognizers/>
                                                                                     <constraints>
@@ -7148,10 +7219,11 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tug-g2-rGR"/>
-        <segue reference="iap-vV-xAI"/>
         <segue reference="AOI-Sr-h8h"/>
-        <segue reference="kXd-xG-sw3"/>
+        <segue reference="iap-vV-xAI"/>
+        <segue reference="tug-g2-rGR"/>
+        <segue reference="H8O-Mc-OH3"/>
+        <segue reference="ugX-qh-OjL"/>
         <segue reference="7VR-Dw-svl"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>

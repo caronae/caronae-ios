@@ -4,12 +4,14 @@
 #import "ProfileViewController.h"
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
+#import "FalaeViewController.h"
 #import "CaronaeRiderCell.h"
 #import "MenuViewController.h"
 
 @interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *signoutButton;
+@property (weak, nonatomic) IBOutlet UIView *reportView;
 @property (nonatomic) NSDateFormatter *joinedDateFormatter;
 @property (nonatomic) NSArray *mutualFriends;
 @end
@@ -39,6 +41,7 @@
         _carModelLabel.text = _user[@"car_model"];
         _carColorLabel.text = _user[@"car_color"];
         [_mutualFriendsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [_reportView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
     else {
         self.title = _user[@"name"];
@@ -138,6 +141,10 @@
         UINavigationController *navigationVC = segue.destinationViewController;
         EditProfileViewController *vc = (EditProfileViewController *)navigationVC.topViewController;
         vc.delegate = self;
+    }
+    else if ([segue.identifier isEqualToString:@"ReportUser"]) {
+        FalaeViewController *vc = segue.destinationViewController;
+        [vc setReport:_user];
     }
 }
 

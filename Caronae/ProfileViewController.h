@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *mutualFriendsCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *mutualFriendsLabel;
 
-
 // Numbers
 @property (weak, nonatomic) IBOutlet UILabel *joinedDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numDrivesLabel;
