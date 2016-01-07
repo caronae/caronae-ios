@@ -2,6 +2,7 @@
 #import "NSDate+nextHour.h"
 #import "NSDictionary+dictionaryWithoutNulls.h"
 #import "ZoneSelectionViewController.h"
+#import "CaronaeAlertController.h"
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <ActionSheetDatePicker.h>
@@ -98,7 +99,7 @@
         if (createdRides.count == 0) {
             if (err) {
                 NSDictionary *errorInfo = @{
-                                           NSLocalizedDescriptionKey: NSLocalizedString(@"No rides were created.", nil)
+                                           NSLocalizedDescriptionKey: NSLocalizedString(@"Nenhuma carona foi criada.", nil)
                                            };
                 *err = [NSError errorWithDomain:CaronaeErrorDomain code:CaronaeErrorNoRidesCreated userInfo:errorInfo];
             }
@@ -110,7 +111,7 @@
     else {
         if (err) {
             NSDictionary *errorInfo = @{
-                                        NSLocalizedDescriptionKey: NSLocalizedString(@"Unexpected server response.", nil)
+                                        NSLocalizedDescriptionKey: NSLocalizedString(@"Resposta inesperada do servidor.", nil)
                                         };
             *err = [NSError errorWithDomain:CaronaeErrorDomain code:CaronaeErrorInvalidResponse userInfo:errorInfo];
         }
@@ -120,8 +121,12 @@
 }
 
 - (IBAction)createRide:(id)sender {
-    NSDictionary *ride;
-    ride = [self generateRideDictionaryFromView];
+    if (!_zone || _neighborhood) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que você esqueceu de preencher o local da sua carona."];
+        return;
+    }
+    
+    NSDictionary *ride = [self generateRideDictionaryFromView];
     
     [SVProgressHUD show];
     
@@ -135,7 +140,8 @@
         NSError *responseError;
         NSArray *createdRides = [CreateRideViewController parseCreateRidesFromResponse:responseObject withError:&responseError];
         if (responseError) {
-            NSLog(@"Response error: %@", responseError.description);
+            NSLog(@"Response error: %@", responseError.localizedDescription);
+            [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:responseError.localizedDescription];
         }
         else {
             NSLog(@"%lu rides created.", (unsigned long)createdRides.count);
@@ -155,6 +161,8 @@
         [SVProgressHUD dismiss];
 
         NSLog(@"Error: %@", error.description);
+        
+        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:error.localizedDescription];
     }];
 
 }
