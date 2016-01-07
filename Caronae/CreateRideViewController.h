@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *slotsLabel;
 @property (weak, nonatomic) IBOutlet UITextView *notes;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UIButton *createRideButton;
 
 @property (weak, nonatomic) IBOutlet UIView *routinePatternView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *routinePatternHeight;

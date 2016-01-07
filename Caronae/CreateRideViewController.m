@@ -28,6 +28,21 @@
     self.hubs = [CaronaeDefaults defaults].centers;
     self.selectedHub = self.hubs[0];
     
+    NSDictionary *lastRideLocation = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
+    if (lastRideLocation) {
+        self.zone = lastRideLocation[@"zone"];
+        self.neighborhood = lastRideLocation[@"neighborhood"];
+        if (self.neighborhood) {
+            [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
+        }
+        if (lastRideLocation[@"place"]) self.reference.text = lastRideLocation[@"place"];
+        if (lastRideLocation[@"route"]) self.route.text = lastRideLocation[@"route"];
+        if (lastRideLocation[@"hub"]) {
+            self.selectedHub = lastRideLocation[@"hub"];
+            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
+        }
+    }
+    
     self.rideDate = [NSDate nextHour];
     self.weekDays = [NSMutableArray arrayWithCapacity:7];
     self.routineDurationMonths = 2;
@@ -56,6 +71,7 @@
 }
 
 - (IBAction)goBack:(id)sender {
+    [SVProgressHUD dismiss];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -91,6 +107,11 @@
     return ride;
 }
 
+- (void)savePresetLocationZone:(NSString *)zone neighborhood:(NSString *)neighborhood place:(NSString *)place route:(NSString *)route hub:(NSString *)hub {
+    NSDictionary *location = NSDictionaryOfVariableBindings(zone, neighborhood, place, route, hub);
+    [[NSUserDefaults standardUserDefaults] setObject:location forKey:@"lastOfferedRideLocation"];
+}
+
 + (NSArray *)parseCreateRidesFromResponse:(id)responseObject withError:(NSError *__autoreleasing *)err {
     // Check if we received an array of the created rides
     if ([responseObject isKindOfClass:NSArray.class]) {
@@ -121,14 +142,16 @@
 }
 
 - (IBAction)createRide:(id)sender {
-    if (!_zone || _neighborhood) {
+    if (!self.zone || !self.neighborhood || !self.selectedHub) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que você esqueceu de preencher o local da sua carona."];
         return;
     }
     
     NSDictionary *ride = [self generateRideDictionaryFromView];
+    [self savePresetLocationZone:ride[@"myzone"] neighborhood:ride[@"neighborhood"] place:ride[@"place"] route:ride[@"route"] hub:ride[@"hub"]];
     
     [SVProgressHUD show];
+    self.createRideButton.enabled = NO;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -140,6 +163,7 @@
         NSError *responseError;
         NSArray *createdRides = [CreateRideViewController parseCreateRidesFromResponse:responseObject withError:&responseError];
         if (responseError) {
+            self.createRideButton.enabled = YES;
             NSLog(@"Response error: %@", responseError.localizedDescription);
             [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:responseError.localizedDescription];
         }
@@ -159,6 +183,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
+        self.createRideButton.enabled = YES;
 
         NSLog(@"Error: %@", error.description);
         
@@ -318,7 +343,7 @@
     [self.view endEditing:YES];
     [ActionSheetStringPicker showPickerWithTitle:@"Selecione um centro"
                                             rows:self.hubs
-                                initialSelection:0
+                                initialSelection:[self.hubs indexOfObject:self.selectedHub]
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            self.selectedHub = selectedValue;
                                            [self.center setTitle:selectedValue forState:UIControlStateNormal];
