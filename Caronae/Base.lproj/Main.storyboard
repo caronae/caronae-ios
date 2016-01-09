@@ -5201,7 +5201,7 @@ FOTO</string>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mm-CF-Oik" userLabel="Neighborhood Button">
                                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                        <state key="normal" title="Bairro">
+                                                        <state key="normal" title="Selecione os bairros">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
@@ -7171,8 +7171,8 @@ FOTO</string>
         <segue reference="iap-vV-xAI"/>
         <segue reference="tug-g2-rGR"/>
         <segue reference="AOI-Sr-h8h"/>
+        <segue reference="CEp-XF-lJK"/>
         <segue reference="U3D-Zh-YLa"/>
-        <segue reference="7VR-Dw-svl"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -2,6 +2,7 @@
 #import <ActionSheetStringPicker.h>
 #import "NSDate+nextHour.h"
 #import "ZoneSelectionViewController.h"
+#import "CaronaeAlertController.h"
 #import "SearchRideViewController.h"
 
 @interface SearchRideViewController () <ZoneSelectionDelegate>
@@ -74,11 +75,14 @@
     BOOL going = (self.directionControl.selectedSegmentIndex == 0);
     
     // Test if user has selected a neighborhood
-    if (self.neighborhoods) {
+    if (self.neighborhoods && self.neighborhoods.count > 0) {
         [[NSUserDefaults standardUserDefaults] setObject:self.neighborhoods forKey:@"lastSearchedNeighborhoods"];
         [[NSUserDefaults standardUserDefaults] setObject:self.selectedHub forKey:@"lastSearchedCenter"];
         [self.delegate searchedForRideWithCenter:self.selectedHub andNeighborhoods:self.neighborhoods onDate:self.searchedDate going:going];
         [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Nenhum bairro selecionado" message:@"Ops! Parece que você esqueceu de selecionar em quais bairros está pesquisando a carona."];
     }
 }
 
