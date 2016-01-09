@@ -314,9 +314,10 @@
     }
 }
 
-- (IBAction)routineSelectDateTapped:(id)sender {
+- (IBAction)selectDateTapped:(id)sender {
     [self.view endEditing:YES];
     ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Chegada ao destino" datePickerMode:UIDatePickerModeDateAndTime selectedDate:self.rideDate target:self action:@selector(timeWasSelected:element:) origin:sender];
+    ((UIDatePicker *)datePicker).minimumDate = [NSDate currentHour];
     [datePicker showActionSheetPicker];
 }
 
