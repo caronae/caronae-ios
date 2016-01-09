@@ -69,7 +69,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", [dateFormatter stringFromDate:_ride.date]];
     _slotsLabel.text = [NSString stringWithFormat:@"%d %@", _ride.slots, _ride.slots == 1 ? @"vaga" : @"vagas"];
     _driverNameLabel.text = _ride.driver[@"name"];
-    _driverCourseLabel.text = _ride.driver[@"course"];
+    _driverCourseLabel.text = [NSString stringWithFormat:@"%@ | %@", _ride.driver[@"profile"], _ride.driver[@"course"]];
     _routeLabel.text = [[_ride.route stringByReplacingOccurrencesOfString:@", " withString:@"\n"] stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
     
     if ([_ride.notes isKindOfClass:[NSString class]] && [_ride.notes isEqualToString:@""]) {

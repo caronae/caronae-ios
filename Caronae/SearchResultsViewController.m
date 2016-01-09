@@ -45,7 +45,7 @@
 
 #pragma mark - Search methods
 
-- (void)searchedForRideWithCenter:(NSString *)center andNeighborhood:(NSString *)neighborhood onDate:(NSDate *)date going:(BOOL)going {
+- (void)searchedForRideWithCenter:(NSString *)center andNeighborhoods:(NSArray *)neighborhoods onDate:(NSDate *)date going:(BOOL)going {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyy-MM-dd";
     NSString *dateString = [dateFormatter stringFromDate:date];
@@ -54,7 +54,7 @@
     NSString *timeString = [timeFormatter stringFromDate:date];
     
     self.searchParams = @{@"center": center,
-                          @"location": neighborhood,
+                          @"location": [neighborhoods componentsJoinedByString:@", "],
                           @"date": dateString,
                           @"time": timeString,
                           @"go": @(going)

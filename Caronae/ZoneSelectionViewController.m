@@ -3,7 +3,8 @@
 
 @interface ZoneSelectionViewController ()
 @property (nonatomic) NSString *selectedZone;
-@property (nonatomic) NSString *selectedNeighborhood;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (nonatomic) NSMutableArray *selectedNeighborhoods;
 @end
 
 @implementation ZoneSelectionViewController
@@ -18,7 +19,22 @@
     else {
         self.title = self.selectedZone;
         self.zones = [CaronaeDefaults defaults].neighborhoods[self.selectedZone];
+        self.selectedNeighborhoods = [[NSMutableArray alloc] init];
     }
+}
+
+- (void)finishSelection {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    if (self.neighborhoodSelectionType == NeighborhoodSelectionMany && [self.delegate respondsToSelector:@selector(hasSelectedNeighborhoods:inZone:)]) {
+        [self.delegate hasSelectedNeighborhoods:self.selectedNeighborhoods inZone:self.selectedZone];
+    }
+    else if (self.neighborhoodSelectionType == NeighborhoodSelectionOne && [self.delegate respondsToSelector:@selector(hasSelectedNeighborhood:inZone:)]) {
+        [self.delegate hasSelectedNeighborhood:self.selectedNeighborhoods.firstObject inZone:self.selectedZone];
+    }
+}
+
+- (IBAction)didTapDoneButton:(id)sender {
+    [self finishSelection];
 }
 
 #pragma mark - Table view data source
@@ -54,19 +70,34 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     if (self.type == ZoneSelectionZone) {
         self.selectedZone = self.zones[indexPath.row];
         [self performSegueWithIdentifier:@"ViewNeighborhoods" sender:self];
     }
     else {
-        self.selectedNeighborhood = self.zones[indexPath.row];
-        [self.navigationController popToRootViewControllerAnimated:YES];
-        [self.delegate hasSelectedNeighborhood:self.selectedNeighborhood inZone:self.selectedZone];
+        NSString *selectedNeighborhood = self.zones[indexPath.row];
+        [self.selectedNeighborhoods addObject:selectedNeighborhood];
+        
+        if (self.neighborhoodSelectionType == NeighborhoodSelectionOne) {
+            [self finishSelection];
+        }
+        else if (self.neighborhoodSelectionType == NeighborhoodSelectionMany) {
+            UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            self.doneButton.enabled = (self.selectedNeighborhoods.count > 0);
+        }
     }
 }
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    
+    NSString *selectedNeighborhood = self.zones[indexPath.row];
+    [self.selectedNeighborhoods removeObject:selectedNeighborhood];
+    
+    self.doneButton.enabled = (self.selectedNeighborhoods.count > 0);
+}
 
 #pragma mark - Navigation
 
@@ -74,6 +105,7 @@
     if ([segue.identifier isEqualToString:@"ViewNeighborhoods"]) {
         ZoneSelectionViewController *vc = segue.destinationViewController;
         vc.type = ZoneSelectionNeighborhood;
+        vc.neighborhoodSelectionType = self.neighborhoodSelectionType;
         vc.selectedZone = self.selectedZone;
         vc.delegate = self.delegate;
     }

@@ -6,7 +6,7 @@
 
 @interface SearchRideViewController () <ZoneSelectionDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *directionControl;
-@property (nonatomic) NSString *neighborhood;
+@property (nonatomic) NSArray *neighborhoods;
 @property (nonatomic) NSString *zone;
 @property (nonatomic) NSDate *searchedDate;
 @property (nonatomic) NSString *selectedHub;
@@ -22,10 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSString *lastSearchedNeighborhood = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearchedNeighborhood"];
-    if (lastSearchedNeighborhood) {
-        self.neighborhood = lastSearchedNeighborhood;
-        [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
+    NSArray *lastSearchedNeighborhoods = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearchedNeighborhoods"];
+    if (lastSearchedNeighborhoods) {
+        self.neighborhoods = lastSearchedNeighborhoods;
     }
     
     NSString *lastSearchedCenter = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearchedCenter"];
@@ -49,6 +48,24 @@
     self.directionControl.layer.masksToBounds = YES;
 }
 
+- (void)setNeighborhoods:(NSArray *)neighborhoods {
+    _neighborhoods = neighborhoods;
+    
+    NSString *buttonTitle = @"";
+    for (unsigned int i = 0; i < neighborhoods.count; i++) {
+        if (i > 2) {
+            buttonTitle = [buttonTitle stringByAppendingString:@"..."];
+            break;
+        }
+        buttonTitle = [buttonTitle stringByAppendingString:neighborhoods[i]];
+        if (i < neighborhoods.count - 1) {
+            buttonTitle = [buttonTitle stringByAppendingString:@", "];
+        }
+    }
+    
+    [self.neighborhoodButton setTitle:buttonTitle forState:UIControlStateNormal];
+}
+
 - (IBAction)didTapCancelButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -57,10 +74,10 @@
     BOOL going = (self.directionControl.selectedSegmentIndex == 0);
     
     // Test if user has selected a neighborhood
-    if (self.neighborhood) {
-        [[NSUserDefaults standardUserDefaults] setObject:self.neighborhood forKey:@"lastSearchedNeighborhood"];
+    if (self.neighborhoods) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.neighborhoods forKey:@"lastSearchedNeighborhoods"];
         [[NSUserDefaults standardUserDefaults] setObject:self.selectedHub forKey:@"lastSearchedCenter"];
-        [self.delegate searchedForRideWithCenter:self.selectedHub andNeighborhood:self.neighborhood onDate:self.searchedDate going:going];
+        [self.delegate searchedForRideWithCenter:self.selectedHub andNeighborhoods:self.neighborhoods onDate:self.searchedDate going:going];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -91,11 +108,10 @@
                                      cancelBlock:nil origin:sender];
 }
 
-- (void)hasSelectedNeighborhood:(NSString *)neighborhood inZone:(NSString *)zone {
-    NSLog(@"User has selected %@ in %@", neighborhood, zone);
+- (void)hasSelectedNeighborhoods:(NSArray *)neighborhoods inZone:(NSString *)zone {
+    NSLog(@"User has selected %@ in %@", neighborhoods, zone);
     self.zone = zone;
-    self.neighborhood = neighborhood;
-    [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
+    self.neighborhoods = neighborhoods;
 }
 
 
@@ -105,6 +121,7 @@
     if ([segue.identifier isEqualToString:@"ViewZones"]) {
         ZoneSelectionViewController *vc = segue.destinationViewController;
         vc.type = ZoneSelectionZone;
+        vc.neighborhoodSelectionType = NeighborhoodSelectionMany;
         vc.delegate = self;
     }
 }

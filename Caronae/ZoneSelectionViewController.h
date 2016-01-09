@@ -5,9 +5,18 @@ typedef enum {
     ZoneSelectionNeighborhood
 } ZoneSelectionType;
 
+typedef enum {
+    NeighborhoodSelectionOne,
+    NeighborhoodSelectionMany
+} NeighborhoodSelectionType;
+
 @protocol ZoneSelectionDelegate <NSObject>
 
+@optional
 - (void)hasSelectedNeighborhood:(NSString *)neighborhood inZone:(NSString *)zone;
+
+@optional
+- (void)hasSelectedNeighborhoods:(NSArray *)neighborhoods inZone:(NSString *)zone;
 
 @end
 
@@ -15,6 +24,7 @@ typedef enum {
 
 @property (nonatomic) NSArray *zones;
 @property (nonatomic) ZoneSelectionType type;
+@property (nonatomic) NeighborhoodSelectionType neighborhoodSelectionType;
 @property (nonatomic, assign) id<ZoneSelectionDelegate> delegate;
 
 @end
