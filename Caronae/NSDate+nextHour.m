@@ -10,4 +10,11 @@
     return [calendar dateFromComponents:components];
 }
 
++ (NSDate *)currentHour {
+    NSDate *now = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour fromDate:now];
+    return [calendar dateFromComponents:components];
+}
+
 @end

@@ -69,6 +69,7 @@
     [self.view endEditing:YES];
     ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Hora" datePickerMode:UIDatePickerModeDateAndTime selectedDate:self.searchedDate target:self action:@selector(timeWasSelected:element:) origin:sender];
     ((UIDatePicker *)datePicker).minuteInterval = 30;
+    ((UIDatePicker *)datePicker).minimumDate = [NSDate currentHour];
     [datePicker showActionSheetPicker];
 }
 
