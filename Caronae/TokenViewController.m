@@ -30,10 +30,6 @@
         
         // Check if the authentication was ok if we received an user object
         if (responseObject[@"user"]) {
-            // Save user's profile
-            NSDictionary *userProfile = [responseObject[@"user"] dictionaryWithoutNulls];
-            [CaronaeDefaults defaults].user = userProfile;
-            
             // Save user's created rides
             NSArray *rides = responseObject[@"rides"];
             NSMutableArray *filteredRides = [NSMutableArray arrayWithCapacity:rides.count];
@@ -42,9 +38,14 @@
             }
             [[NSUserDefaults standardUserDefaults] setObject:filteredRides forKey:@"userCreatedRides"];
             
+            // Save user's profile
+            NSDictionary *userProfile = [responseObject[@"user"] dictionaryWithoutNulls];
+            [CaronaeDefaults defaults].user = userProfile;
+            
             // Save user's token
             [CaronaeDefaults defaults].userToken = userToken;
             
+            // Go to app
             [self performSegueWithIdentifier:@"tokenValidated" sender:self];
         }
         else {
