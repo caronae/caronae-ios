@@ -15,6 +15,7 @@
 @property (nonatomic) NSString *neighborhood;
 @property (weak, nonatomic) IBOutlet UIView *fbButtonView;
 @property (nonatomic) NSString *photoURL;
+@property (nonatomic) CGFloat carDetailsHeightOriginal;
 @end
 
 @implementation EditProfileViewController
@@ -46,17 +47,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(FBTokenChanged:) name:FBSDKAccessTokenDidChangeNotification object:nil];
 }
 
-- (IBAction)didTapCancelButton:(id)sender {
-    CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar edição do perfil?"
-                                                                             message:@"Quaisquer mudanças serão descartadas."
-                                                                      preferredStyle:SDCAlertControllerStyleAlert];
-    [alert addAction:[SDCAlertAction actionWithTitle:@"Cont. editando" style:SDCAlertActionStyleCancel handler:nil]];
-    [alert addAction:[SDCAlertAction actionWithTitle:@"Descartar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }]];
-    [alert presentWithCompletion:nil];
-}
-
 - (void)updateProfileFields {
     NSDictionary *user = [CaronaeDefaults defaults].user;
     self.user = user;
@@ -84,6 +74,11 @@
     }
     
     self.hasCarSwitch.on = [user[@"car_owner"] isEqual:@(YES)];
+    if (!self.hasCarSwitch.on) {
+        _carDetailsHeightOriginal = _carDetailsHeight.constant;
+        _carDetailsHeight.constant = 0;
+        _carDetailsView.alpha = 0.0f;
+    }
     
     self.carPlateTextField.text = user[@"car_plate"];
     self.carModelTextField.text = user[@"car_model"];
@@ -97,14 +92,32 @@
     }
 }
 
-- (IBAction)didTapSaveButton:(id)sender {
+- (NSDictionary *)generateUserDictionaryFromView {
+    NSDictionary *updatedUser = @{
+                                  @"name": self.user[@"name"],
+                                  @"profile": self.user[@"profile"],
+                                  @"course": self.user[@"course"],
+                                  @"phone_number": self.phoneTextField.text,
+                                  @"email": self.emailTextField.text,
+                                  @"car_owner": @(self.hasCarSwitch.on),
+                                  @"car_model": self.carModelTextField.text,
+                                  @"car_plate": self.carPlateTextField.text,
+                                  @"car_color": self.carColorTextField.text,
+                                  @"location": self.neighborhood,
+                                  @"profile_pic_url": _photoURL ? _photoURL : @""
+                                  };
+    
+    return updatedUser;
+}
+
+- (void)saveProfile {
     NSDictionary *updatedUser = [self generateUserDictionaryFromView];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
     [self showLoadingHUD:YES];
-
+    
     [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user"] parameters:updatedUser success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self showLoadingHUD:NO];
         
@@ -137,24 +150,6 @@
     }];
 }
 
-- (NSDictionary *)generateUserDictionaryFromView {
-    NSDictionary *updatedUser = @{
-                                  @"name": self.user[@"name"],
-                                  @"profile": self.user[@"profile"],
-                                  @"course": self.user[@"course"],
-                                  @"phone_number": self.phoneTextField.text,
-                                  @"email": self.emailTextField.text,
-                                  @"car_owner": @(self.hasCarSwitch.on),
-                                  @"car_model": self.carModelTextField.text,
-                                  @"car_plate": self.carPlateTextField.text,
-                                  @"car_color": self.carColorTextField.text,
-                                  @"location": self.neighborhood,
-                                  @"profile_pic_url": _photoURL ? _photoURL : @""
-                                  };
-    
-    return updatedUser;
-}
-
 #pragma mark - Zone selection methods
 
 - (void)hasSelectedNeighborhood:(NSString *)neighborhood inZone:(NSString *)zone {
@@ -165,6 +160,21 @@
 
 
 #pragma mark - IBActions
+
+- (IBAction)didTapSaveButton:(id)sender {
+    [self saveProfile];
+}
+
+- (IBAction)didTapCancelButton:(id)sender {
+    CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar edição do perfil?"
+                                                                             message:@"Quaisquer mudanças serão descartadas."
+                                                                      preferredStyle:SDCAlertControllerStyleAlert];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Cont. editando" style:SDCAlertActionStyleCancel handler:nil]];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Descartar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    [alert presentWithCompletion:nil];
+}
 
 - (IBAction)didTapPhoto:(id)sender {
     // TODO: support for iOS 7
@@ -180,6 +190,29 @@
     }]];
     
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (IBAction)hasCarSwitchChanged:(UISwitch *)sender {
+    [self.view endEditing:YES];
+    if (sender.on) {
+        [self.view layoutIfNeeded];
+        _carDetailsHeight.constant = _carDetailsHeightOriginal;
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.view layoutIfNeeded];
+            _carDetailsView.alpha = 1.0f;
+        }];
+        // Scroll to bottom
+        [self.scrollView scrollRectToVisible:CGRectMake(self.scrollView.contentSize.width - 1, self.scrollView.contentSize.height - 1, 1, 1) animated:YES];
+    }
+    else {
+        [self.view layoutIfNeeded];
+        _carDetailsHeightOriginal = _carDetailsHeight.constant;
+        _carDetailsHeight.constant = 0;
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.view layoutIfNeeded];
+            _carDetailsView.alpha = 0.0f;
+        }];
+    }
 }
 
 

@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *numLikesLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *notificationsSwitch;
 
-
 // Contacts
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
@@ -31,11 +30,14 @@
 // Locale
 @property (weak, nonatomic) IBOutlet UIButton *neighborhoodButton;
 
-
 // Car details
+@property (weak, nonatomic) IBOutlet UIView *carDetailsView;
 @property (weak, nonatomic) IBOutlet UISwitch *hasCarSwitch;
 @property (weak, nonatomic) IBOutlet UITextField *carPlateTextField;
 @property (weak, nonatomic) IBOutlet UITextField *carModelTextField;
 @property (weak, nonatomic) IBOutlet UITextField *carColorTextField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *carDetailsHeight;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
