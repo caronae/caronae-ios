@@ -1,5 +1,7 @@
 #import <UIKit/UIKit.h>
 
+@class Ride;
+
 extern NSString *const CaronaeAPIBaseURL;
 
 extern NSString *const CaronaeUserRidesUpdatedNotification;
@@ -25,6 +27,19 @@ extern const NSInteger CaronaeErrorNoRidesCreated;
 + (NSString *)userFBToken;
 
 /**
+ *  Check if the user has already requested to join a Ride.
+ *  @param ride The ride of the query.
+ *  @return `true` if the use has already requested to join the ride, `false` otherwise.
+ */
++ (BOOL)hasUserAlreadyRequestedJoin:(Ride *)RIDE;
+
+/**
+ *  Adds a Ride to the join requests cache.
+ * @param ride The ride the user has requested to join.
+ */
++ (void)addToCachedJoinRequests:(Ride *)ride;
+
+/**
  *  Returns the color related to a specific zone according to the app's default color palette.
  *
  *  @param zone The zone name (Zona Norte, Zona Sul, Centro etc.)
@@ -40,5 +55,6 @@ extern const NSInteger CaronaeErrorNoRidesCreated;
 @property (nonatomic, readonly) NSDictionary *neighborhoods;
 @property (nonatomic, readwrite) NSDictionary *user;
 @property (nonatomic, readwrite) NSString *userToken;
+@property (nonatomic, readwrite) NSArray *cachedJoinRequests;
 
 @end

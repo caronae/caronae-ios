@@ -531,6 +531,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="5" width="360" height="30"/>
+                                                        </variation>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -572,6 +575,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="5" width="360" height="30"/>
+                                                        </variation>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4187,6 +4193,9 @@ FOTO</string>
                                                     </textField>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="oTl-se-EDm" userLabel="Car Icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="71" width="27" height="15"/>
+                                                        </variation>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="aA3-hm-80U" userLabel="Car Icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -4204,7 +4213,8 @@ FOTO</string>
                                                                 <exclude reference="pCi-86-yhh"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="116" width="27" height="15"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="mrX-gz-9pd"/>
                                                                 <exclude reference="pCi-86-yhh"/>
@@ -4224,7 +4234,8 @@ FOTO</string>
                                                                 <exclude reference="QeR-UZ-a3h"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="37" y="101" width="333" height="30"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="QeR-UZ-a3h"/>
                                                             </mask>
@@ -4252,7 +4263,8 @@ FOTO</string>
                                                                 <exclude reference="lOH-zk-dNU"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="161" width="27" height="15"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="f8y-eS-b9V"/>
                                                                 <exclude reference="lOH-zk-dNU"/>
@@ -4274,7 +4286,8 @@ FOTO</string>
                                                                 <exclude reference="tf4-Lm-ctF"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="37" y="146" width="333" height="30"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="JsV-ht-chF"/>
                                                                 <exclude reference="tf4-Lm-ctF"/>
@@ -4396,7 +4409,8 @@ FOTO</string>
                                                         <exclude reference="xEf-z0-zZP"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="15" y="578" width="370" height="196"/>
                                                     <mask key="subviews">
                                                         <include reference="q8t-lO-Jqk"/>
                                                         <include reference="ZA1-8O-6ah"/>
@@ -4550,7 +4564,8 @@ FOTO</string>
                                                 <exclude reference="vqv-Ea-ive"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact">
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="789"/>
                                             <mask key="subviews">
                                                 <include reference="wC6-CD-nF5"/>
                                                 <include reference="NpW-3h-cia"/>

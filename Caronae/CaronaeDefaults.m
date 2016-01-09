@@ -1,6 +1,7 @@
 #import <FBSDKLoginKit/FBSDKLoginManager.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "CaronaeDefaults.h"
+#import "Ride.h"
 #import "AppDelegate.h"
 
 #pragma mark - API settings
@@ -40,6 +41,7 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
 
 + (void)signOut {
     [CaronaeDefaults defaults].user = nil;
+    [CaronaeDefaults defaults].cachedJoinRequests = nil;
     [[[FBSDKLoginManager alloc] init] logOut];
 
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
@@ -52,6 +54,22 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
 + (NSString *)userFBToken {
     FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
     return token.tokenString;
+}
+
++ (BOOL)hasUserAlreadyRequestedJoin:(Ride *)ride {
+    NSArray *requested = [CaronaeDefaults defaults].cachedJoinRequests;
+    NSNumber *rideID = @(ride.rideID);
+    if ([requested indexOfObject:rideID] != NSNotFound) {
+        return YES;
+    }
+    return NO;
+}
+
++ (void)addToCachedJoinRequests:(Ride *)ride {
+    NSMutableArray *requested = [CaronaeDefaults defaults].cachedJoinRequests.mutableCopy;
+    NSNumber *rideID = @(ride.rideID);
+    [requested addObject:rideID];
+    [CaronaeDefaults defaults].cachedJoinRequests = requested;
 }
 
 + (UIColor *)colorForZone:(NSString *)zone {
@@ -140,6 +158,21 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
 
 - (void)setUserToken:(NSString *)userToken {
     [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"token"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSArray *)cachedJoinRequests {
+    id saved = [[NSUserDefaults standardUserDefaults] objectForKey:@"cachedJoinRequests"];
+    // Create empty dictionary if an old one wasn't found
+    if (!saved || ![saved isKindOfClass:[NSArray class]]) {
+        saved = [[NSArray alloc] init];
+        [self setCachedJoinRequests:saved];
+    }
+    return saved;
+}
+
+- (void)setCachedJoinRequests:(NSArray *)cachedJoinRequests {
+    [[NSUserDefaults standardUserDefaults] setObject:cachedJoinRequests forKey:@"cachedJoinRequests"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

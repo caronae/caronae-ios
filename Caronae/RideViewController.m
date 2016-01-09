@@ -53,6 +53,9 @@
 
 @implementation RideViewController
 
+static NSString *CaronaeRequestButtonStateNew              = @"PEGAR CARONA";
+static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AUTORIZAÇÃO    ";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -121,6 +124,16 @@
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.finishRideView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        
+        // Update the state of the join request button if the user has already requested to join
+        if ([CaronaeDefaults hasUserAlreadyRequestedJoin:_ride]) {
+            _requestRideButton.enabled = NO;
+            [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
+        }
+        else {
+            _requestRideButton.enabled = YES;
+            [_requestRideButton setTitle:CaronaeRequestButtonStateNew forState:UIControlStateNormal];
+        }
         
         [self updateMutualFriends];
     }
@@ -290,7 +303,8 @@
     
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Done requesting ride.");
-        [_requestRideButton setTitle:@"    AGUARDANDO AUTORIZAÇÃO    " forState:UIControlStateNormal];
+        [CaronaeDefaults addToCachedJoinRequests:_ride];
+        [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error.description);
         _requestRideButton.enabled = YES;
