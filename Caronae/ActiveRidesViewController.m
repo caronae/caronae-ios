@@ -28,6 +28,13 @@
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor colorWithWhite:0.98f alpha:1.0f];
+    self.refreshControl.tintColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+    [self.refreshControl addTarget:self
+                            action:@selector(loadActiveRides)
+                  forControlEvents:UIControlEventValueChanged];
+    
     // Display a message when the table is empty
     _emptyTableLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     
@@ -45,10 +52,7 @@
     [_emptyTableLabel sizeToFit];
     
     self.tableView.backgroundView = _emptyTableLabel;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    
     [self loadActiveRides];
 }
 
@@ -73,8 +77,10 @@
                 self.tableView.backgroundView = _emptyTableLabel;
             }
             [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self.refreshControl endRefreshing];
         if (operation.response.statusCode == 403) {
             [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Seu token pode ter sido suspenso ou expirado." handler:^{
                 [CaronaeDefaults signOut];
@@ -153,11 +159,7 @@
 #pragma mark - Table methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (self.rides && self.rides.count > 0) {
-        return 1;
-    }
-    
-    return 0;
+    return (self.rides && self.rides.count > 0) ? 1 : 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
