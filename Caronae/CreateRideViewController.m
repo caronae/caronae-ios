@@ -152,6 +152,7 @@
 }
 
 - (IBAction)createRide:(id)sender {
+    // Check if the user selected the location and hub
     if (!self.zone || !self.neighborhood || !self.selectedHub) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que você esqueceu de preencher o local da sua carona."];
         return;
@@ -159,6 +160,12 @@
     
     NSDictionary *ride = [self generateRideDictionaryFromView];
     [self savePresetLocationZone:ride[@"myzone"] neighborhood:ride[@"neighborhood"] place:ride[@"place"] route:ride[@"route"] hub:ride[@"hub"]];
+    
+    // Check if the user has selected the routine details
+    if (![ride[@"repeats_until"] isKindOfClass:[NSNull class]] && [ride[@"week_days"] isEqualToString:@""]) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que você esqueceu de marcar os dias da rotina."];
+        return;
+    }
     
     [SVProgressHUD show];
     self.createRideButton.enabled = NO;
