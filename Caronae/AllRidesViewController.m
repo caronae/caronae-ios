@@ -83,11 +83,11 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/getMyActiveRides"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/all"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *responseError;
         NSArray *rides = [AllRidesViewController parseResultsFromResponse:responseObject withError:&responseError];
         if (!responseError) {
-            NSLog(@"All rides returned %lu rides.", (unsigned long)rides.count);
+//            NSLog(@"All rides returned %lu rides.", (unsigned long)rides.count);
             self.rides = rides;
             if (self.rides.count > 0) {
                 self.tableView.backgroundView = nil;
