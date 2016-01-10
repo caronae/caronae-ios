@@ -25,6 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self checkIfUserHasCar];
+    
     self.hubs = [CaronaeDefaults defaults].centers;
     self.selectedHub = self.hubs[0];
     
@@ -68,6 +70,14 @@
     
     // Dismiss keyboard when tapping the view
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
+}
+
+- (void)checkIfUserHasCar {
+    if ([[CaronaeDefaults defaults].user[@"car_owner"] isEqual:@(NO)]) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Você possui carro?" message:@"Parece que você marcou no seu perfil que não possui um carro.\n\nPara criar uma carona, preencha os dados do seu carro no seu perfil." handler:^{
+            [self goBack:nil];
+        }];
+    }
 }
 
 - (IBAction)goBack:(id)sender {
@@ -313,6 +323,9 @@
         self.routineDuration3MonthsButton.selected = NO;
     }
 }
+
+
+#pragma mark - Other actions
 
 - (IBAction)selectDateTapped:(id)sender {
     [self.view endEditing:YES];
