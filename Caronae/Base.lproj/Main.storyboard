@@ -5128,12 +5128,17 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                     </view>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="SoF-Bd-YaS" userLabel="Location Icon">
+                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstItem="NrO-mC-qNO" firstAttribute="leading" secondItem="SoF-Bd-YaS" secondAttribute="trailing" constant="8" id="KPD-fV-50G"/>
                                                     <constraint firstAttribute="centerY" secondItem="NrO-mC-qNO" secondAttribute="centerY" id="LOM-Fy-S3m"/>
                                                     <constraint firstItem="qQE-GK-Rab" firstAttribute="width" secondItem="8Kk-3k-hQd" secondAttribute="width" id="Mr9-pZ-mqE"/>
-                                                    <constraint firstItem="NrO-mC-qNO" firstAttribute="leading" secondItem="8Kk-3k-hQd" secondAttribute="leading" id="T8M-19-4lj"/>
+                                                    <constraint firstItem="SoF-Bd-YaS" firstAttribute="centerY" secondItem="NrO-mC-qNO" secondAttribute="centerY" id="Tzv-rc-ajn"/>
+                                                    <constraint firstItem="SoF-Bd-YaS" firstAttribute="leading" secondItem="8Kk-3k-hQd" secondAttribute="leading" id="YXx-O9-AgB"/>
                                                     <constraint firstAttribute="trailing" secondItem="NrO-mC-qNO" secondAttribute="trailing" id="fL1-RD-xjZ"/>
                                                     <constraint firstAttribute="height" constant="40" id="gxS-k9-xGB"/>
                                                     <constraint firstAttribute="trailing" secondItem="qQE-GK-Rab" secondAttribute="trailing" constant="96" id="kK1-Cf-Cty">
@@ -5150,11 +5155,14 @@ FOTO</string>
                                                     <mask key="subviews">
                                                         <exclude reference="NrO-mC-qNO"/>
                                                         <exclude reference="qQE-GK-Rab"/>
+                                                        <exclude reference="SoF-Bd-YaS"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="gxS-k9-xGB"/>
+                                                        <exclude reference="Tzv-rc-ajn"/>
+                                                        <exclude reference="YXx-O9-AgB"/>
+                                                        <exclude reference="KPD-fV-50G"/>
                                                         <exclude reference="LOM-Fy-S3m"/>
-                                                        <exclude reference="T8M-19-4lj"/>
                                                         <exclude reference="fL1-RD-xjZ"/>
                                                         <exclude reference="Mr9-pZ-mqE"/>
                                                         <exclude reference="kK1-Cf-Cty"/>
@@ -5166,11 +5174,14 @@ FOTO</string>
                                                     <mask key="subviews">
                                                         <include reference="NrO-mC-qNO"/>
                                                         <include reference="qQE-GK-Rab"/>
+                                                        <include reference="SoF-Bd-YaS"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="gxS-k9-xGB"/>
+                                                        <include reference="Tzv-rc-ajn"/>
+                                                        <include reference="YXx-O9-AgB"/>
+                                                        <include reference="KPD-fV-50G"/>
                                                         <include reference="LOM-Fy-S3m"/>
-                                                        <include reference="T8M-19-4lj"/>
                                                         <include reference="fL1-RD-xjZ"/>
                                                         <include reference="Mr9-pZ-mqE"/>
                                                         <include reference="kK1-Cf-Cty"/>
@@ -5209,51 +5220,56 @@ FOTO</string>
                                                             <segue destination="m4b-ln-3hN" kind="show" identifier="ViewZones" id="CEp-XF-lJK"/>
                                                         </connections>
                                                     </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="u2P-te-zHD" userLabel="Location Icon">
+                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="VOp-vf-HW9" secondAttribute="bottom" id="261-pt-cLc"/>
+                                                    <constraint firstItem="u2P-te-zHD" firstAttribute="leading" secondItem="S49-x1-088" secondAttribute="leading" id="3pu-p2-Cdn"/>
+                                                    <constraint firstItem="u2P-te-zHD" firstAttribute="centerY" secondItem="4mm-CF-Oik" secondAttribute="centerY" id="5G6-Nc-hYw"/>
+                                                    <constraint firstItem="4mm-CF-Oik" firstAttribute="leading" secondItem="u2P-te-zHD" secondAttribute="trailing" constant="8" id="9Yd-7p-sHC"/>
                                                     <constraint firstItem="VOp-vf-HW9" firstAttribute="leading" secondItem="S49-x1-088" secondAttribute="leading" id="Buw-kV-Mzz"/>
-                                                    <constraint firstItem="4mm-CF-Oik" firstAttribute="top" secondItem="S49-x1-088" secondAttribute="top" constant="5" id="MP7-Pe-N4A"/>
                                                     <constraint firstAttribute="trailing" secondItem="4mm-CF-Oik" secondAttribute="trailing" id="PQu-0M-aFh"/>
                                                     <constraint firstItem="4mm-CF-Oik" firstAttribute="centerY" secondItem="S49-x1-088" secondAttribute="centerY" id="S1m-tI-vVF"/>
                                                     <constraint firstAttribute="height" constant="40" id="XQL-Dk-cP2"/>
                                                     <constraint firstAttribute="trailing" secondItem="VOp-vf-HW9" secondAttribute="trailing" id="blf-QI-aPO"/>
-                                                    <constraint firstItem="4mm-CF-Oik" firstAttribute="leading" secondItem="S49-x1-088" secondAttribute="leading" id="hru-d2-OGC"/>
-                                                    <constraint firstItem="VOp-vf-HW9" firstAttribute="centerX" secondItem="S49-x1-088" secondAttribute="centerX" id="nxf-1h-iyo"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="subviews">
                                                         <exclude reference="VOp-vf-HW9"/>
                                                         <exclude reference="4mm-CF-Oik"/>
+                                                        <exclude reference="u2P-te-zHD"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="XQL-Dk-cP2"/>
-                                                        <exclude reference="MP7-Pe-N4A"/>
+                                                        <exclude reference="3pu-p2-Cdn"/>
+                                                        <exclude reference="5G6-Nc-hYw"/>
+                                                        <exclude reference="9Yd-7p-sHC"/>
                                                         <exclude reference="PQu-0M-aFh"/>
                                                         <exclude reference="S1m-tI-vVF"/>
-                                                        <exclude reference="hru-d2-OGC"/>
                                                         <exclude reference="261-pt-cLc"/>
                                                         <exclude reference="Buw-kV-Mzz"/>
                                                         <exclude reference="blf-QI-aPO"/>
-                                                        <exclude reference="nxf-1h-iyo"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
                                                     <mask key="subviews">
                                                         <include reference="VOp-vf-HW9"/>
                                                         <include reference="4mm-CF-Oik"/>
+                                                        <include reference="u2P-te-zHD"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="XQL-Dk-cP2"/>
-                                                        <exclude reference="MP7-Pe-N4A"/>
+                                                        <include reference="3pu-p2-Cdn"/>
+                                                        <include reference="5G6-Nc-hYw"/>
+                                                        <include reference="9Yd-7p-sHC"/>
                                                         <include reference="PQu-0M-aFh"/>
                                                         <include reference="S1m-tI-vVF"/>
-                                                        <include reference="hru-d2-OGC"/>
                                                         <include reference="261-pt-cLc"/>
                                                         <include reference="Buw-kV-Mzz"/>
                                                         <include reference="blf-QI-aPO"/>
-                                                        <exclude reference="nxf-1h-iyo"/>
                                                     </mask>
                                                 </variation>
                                             </view>
