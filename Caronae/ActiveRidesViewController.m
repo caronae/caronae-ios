@@ -12,6 +12,7 @@
 @property (nonatomic) NSArray *rides;
 @property (nonatomic) Ride *selectedRide;
 @property (nonatomic) NSDictionary *searchParams;
+@property (nonatomic) UILabel *emptyTableLabel;
 @end
 
 @implementation ActiveRidesViewController
@@ -28,23 +29,22 @@
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
     
     // Display a message when the table is empty
-    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    _emptyTableLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     
-    messageLabel.text = @"Você não possui caronas\nativas no momento.";
-    messageLabel.textColor = [UIColor grayColor];
-    messageLabel.numberOfLines = 0;
-    messageLabel.textAlignment = NSTextAlignmentCenter;
+    _emptyTableLabel.text = @"Você não possui caronas\nativas no momento.";
+    _emptyTableLabel.textColor = [UIColor grayColor];
+    _emptyTableLabel.numberOfLines = 0;
+    _emptyTableLabel.textAlignment = NSTextAlignmentCenter;
     // systemFontOfSize:weight: was only introduced in iOS 8.2
     if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
-        messageLabel.font = [UIFont systemFontOfSize:25.0f weight:UIFontWeightUltraLight];
+        _emptyTableLabel.font = [UIFont systemFontOfSize:25.0f weight:UIFontWeightUltraLight];
     }
     else {
-        messageLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0f];
+        _emptyTableLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0f];
     }
-    [messageLabel sizeToFit];
+    [_emptyTableLabel sizeToFit];
     
-    self.tableView.backgroundView = messageLabel;
-
+    self.tableView.backgroundView = _emptyTableLabel;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -66,6 +66,12 @@
         if (!responseError) {
             NSLog(@"Active rides returned %lu rides.", (unsigned long)rides.count);
             self.rides = rides;
+            if (self.rides.count > 0) {
+                self.tableView.backgroundView = nil;
+            }
+            else {
+                self.tableView.backgroundView = _emptyTableLabel;
+            }
             [self.tableView reloadData];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
