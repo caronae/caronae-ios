@@ -2,16 +2,13 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
 #import "ActiveRidesViewController.h"
-#import "SearchResultsViewController.h"
 #import "CaronaeRideCell.h"
-#import "SearchRideViewController.h"
 #import "RideViewController.h"
 #import "Ride.h"
 
-@interface ActiveRidesViewController () <SeachRideDelegate>
+@interface ActiveRidesViewController ()
 @property (nonatomic) NSArray *rides;
 @property (nonatomic) Ride *selectedRide;
-@property (nonatomic) NSDictionary *searchParams;
 @property (nonatomic) UILabel *emptyTableLabel;
 @property (nonatomic) UILabel *loadingLabel;
 @end
@@ -140,40 +137,10 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"SearchRide"]) {
-        UINavigationController *searchNavController = segue.destinationViewController;
-        SearchRideViewController *searchVC = searchNavController.viewControllers.firstObject;
-        searchVC.delegate = self;
-    }
-    else if ([segue.identifier isEqualToString:@"ViewRideDetails"]) {
+    if ([segue.identifier isEqualToString:@"ViewRideDetails"]) {
         RideViewController *vc = segue.destinationViewController;
         vc.ride = self.selectedRide;
     }
-    else if ([segue.identifier isEqualToString:@"ViewSearchResults"]) {
-        SearchResultsViewController *vc = segue.destinationViewController;
-        vc.searchParams = self.searchParams;
-    }
-}
-
-
-#pragma mark - Search methods
-
-- (void)searchedForRideWithCenter:(NSString *)center andNeighborhoods:(NSArray *)neighborhoods onDate:(NSDate *)date going:(BOOL)going {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd";
-    NSString *dateString = [dateFormatter stringFromDate:date];
-    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    timeFormatter.dateFormat = @"HH:mm";
-    NSString *timeString = [timeFormatter stringFromDate:date];
-    
-    self.searchParams = @{@"center": center,
-                          @"location": [neighborhoods componentsJoinedByString:@", "],
-                          @"date": dateString,
-                          @"time": timeString,
-                          @"go": @(going)
-                          };
-    
-    [self performSegueWithIdentifier:@"ViewSearchResults" sender:self];
 }
 
 

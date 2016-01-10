@@ -333,20 +333,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Ativas" id="3Xy-Gf-p9D">
-                        <rightBarButtonItems>
-                            <barButtonItem image="SearchRide" id="83b-gJ-Qes">
-                                <connections>
-                                    <segue destination="K5N-ci-Dp7" kind="presentation" identifier="SearchRide" id="AOI-Sr-h8h"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="NewRide" id="4ju-ql-cEA">
-                                <connections>
-                                    <segue destination="CoL-uf-tJY" kind="presentation" identifier="CreateRide" id="VGz-uS-yQa"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Ativas" id="3Xy-Gf-p9D"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="63o-N6-NEe" kind="show" identifier="ViewSearchResults" id="gns-F9-8s8"/>
@@ -1627,10 +1614,10 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="5136" y="-715"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Criar Carona Navigation-->
         <scene sceneID="cU0-0I-ABL">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CoL-uf-tJY" sceneMemberID="viewController">
+                <navigationController title="Criar Carona Navigation" automaticallyAdjustsScrollViewInsets="NO" id="CoL-uf-tJY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mcl-ue-tDU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1818,6 +1805,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <constraint firstAttribute="trailing" secondItem="HDx-Di-YZG" secondAttribute="trailing" constant="20" id="eiZ-Od-mRF"/>
                                             <constraint firstItem="RWO-JP-mny" firstAttribute="width" secondItem="HDx-Di-YZG" secondAttribute="width" id="gdC-vi-OpI"/>
                                         </constraints>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="487"/>
+                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -1827,6 +1817,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                     <constraint firstAttribute="bottom" secondItem="x5A-6B-eNz" secondAttribute="bottom" id="Vv6-b1-6e0"/>
                                     <constraint firstAttribute="trailing" secondItem="x5A-6B-eNz" secondAttribute="trailing" id="nyX-Fo-UHq"/>
                                 </constraints>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="487"/>
+                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3116,10 +3109,10 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="3510" y="1533"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Editar Perfil Navigation-->
         <scene sceneID="Nh4-Y4-Uii">
             <objects>
-                <navigationController id="NVj-Xk-m80" sceneMemberID="viewController">
+                <navigationController title="Editar Perfil Navigation" id="NVj-Xk-m80" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WWW-RN-DPY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -6537,6 +6530,7 @@ FOTO</string>
                                                                                     <rect key="frame" x="20" y="20" width="183" height="15"/>
                                                                                     <gestureRecognizers/>
                                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
+                                                                                    <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                             </subviews>
@@ -6997,10 +6991,10 @@ FOTO</string>
             </objects>
             <point key="canvasLocation" x="3510" y="-204"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Buscar Carona Navigation-->
         <scene sceneID="PyB-E5-Kff">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K5N-ci-Dp7" sceneMemberID="viewController">
+                <navigationController title="Buscar Carona Navigation" automaticallyAdjustsScrollViewInsets="NO" id="K5N-ci-Dp7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gSK-1k-0ZJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -7198,11 +7192,23 @@ FOTO</string>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Todas" id="CNc-Ib-teV">
                         <rightBarButtonItems>
-                            <barButtonItem image="SearchRide" id="Wnj-W3-pat"/>
-                            <barButtonItem image="NewRide" id="EqP-QJ-QLc"/>
+                            <barButtonItem image="SearchRide" id="Wnj-W3-pat">
+                                <connections>
+                                    <segue destination="K5N-ci-Dp7" kind="presentation" identifier="SearchRide" id="jes-ZV-WH9"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="NewRide" id="EqP-QJ-QLc">
+                                <connections>
+                                    <segue destination="CoL-uf-tJY" kind="presentation" identifier="CreateRide" id="kg1-V2-ucx"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="63o-N6-NEe" kind="show" identifier="ViewSearchResults" id="END-TH-0iJ"/>
+                        <segue destination="SRb-hM-LXF" kind="show" identifier="ViewRideDetails" id="dT3-Fo-MhL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUv-jr-elo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -7254,10 +7260,11 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jF8-dz-c1W"/>
-        <segue reference="VGz-uS-yQa"/>
-        <segue reference="9kE-zS-Odm"/>
-        <segue reference="TRe-kz-qy8"/>
+        <segue reference="H8O-Mc-OH3"/>
+        <segue reference="GWy-OD-WPe"/>
+        <segue reference="END-TH-0iJ"/>
+        <segue reference="kg1-V2-ucx"/>
+        <segue reference="jes-ZV-WH9"/>
         <segue reference="ugX-qh-OjL"/>
         <segue reference="7VR-Dw-svl"/>
     </inferredMetricsTieBreakers>
