@@ -391,7 +391,7 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="1815" y="5"/>
         </scene>
-        <!--Criar Carona-->
+        <!--Criar carona-->
         <scene sceneID="SI7-YK-2jS">
             <objects>
                 <viewController storyboardIdentifier="CreateRide" automaticallyAdjustsScrollViewInsets="NO" id="Frl-vE-K7W" customClass="CreateRideViewController" sceneMemberID="viewController">
@@ -1574,7 +1574,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Criar Carona" id="gT8-2O-S5n">
+                    <navigationItem key="navigationItem" title="Criar carona" id="gT8-2O-S5n">
                         <barButtonItem key="leftBarButtonItem" title="Cancelar" id="oHO-Oe-5U4">
                             <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -1952,9 +1952,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="eBR-ef-vDK" firstAttribute="leading" secondItem="Zrg-TJ-yD0" secondAttribute="leading" id="0Ue-LV-YDi"/>
-                                                    <constraint firstItem="UD9-3b-3BN" firstAttribute="leading" secondItem="eBR-ef-vDK" secondAttribute="trailing" constant="5" id="2Xp-Cn-dTS">
-                                                        <variation key="widthClass=compact" constant="0.0"/>
-                                                    </constraint>
+                                                    <constraint firstItem="UD9-3b-3BN" firstAttribute="leading" secondItem="eBR-ef-vDK" secondAttribute="trailing" constant="5" id="2Xp-Cn-dTS"/>
                                                     <constraint firstItem="eBR-ef-vDK" firstAttribute="top" secondItem="OPY-Ou-4A7" secondAttribute="top" constant="15" id="6aS-Bu-1F4">
                                                         <variation key="widthClass=compact" constant="20"/>
                                                     </constraint>
@@ -2782,7 +2780,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                             </mask>
                                                         </variation>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Essas informações também só aparecem para os usuários que estiverem na mesma carona que você!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKb-IG-3Tn">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Essas informações só aparecem para os usuários que estiverem na mesma carona que você." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKb-IG-3Tn">
                                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.57647061347961426" green="0.58039218187332153" blue="0.57647061347961426" alpha="1" colorSpace="calibratedRGB"/>
@@ -3037,8 +3035,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                         <exclude reference="rtV-71-yGf"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="64" width="400" height="587"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="Kiw-qC-kJK"/>
                                         <include reference="T1v-DT-0Ay"/>
@@ -5062,7 +5059,7 @@ FOTO</string>
             </objects>
             <point key="canvasLocation" x="1815" y="759"/>
         </scene>
-        <!--Buscar Carona-->
+        <!--Buscar carona-->
         <scene sceneID="LSF-Pe-Bnb">
             <objects>
                 <viewController storyboardIdentifier="SearchRide" automaticallyAdjustsScrollViewInsets="NO" id="ygN-Ct-tDz" customClass="SearchRideViewController" sceneMemberID="viewController">
@@ -5548,7 +5545,7 @@ FOTO</string>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Buscar Carona" id="cr5-on-Tdt">
+                    <navigationItem key="navigationItem" title="Buscar carona" id="cr5-on-Tdt">
                         <barButtonItem key="leftBarButtonItem" title="Cancelar" id="T5F-y9-QJ8">
                             <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -7265,8 +7262,8 @@ FOTO</string>
         <segue reference="END-TH-0iJ"/>
         <segue reference="kg1-V2-ucx"/>
         <segue reference="jes-ZV-WH9"/>
+        <segue reference="tvA-Ui-5Q1"/>
         <segue reference="ugX-qh-OjL"/>
-        <segue reference="7VR-Dw-svl"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>

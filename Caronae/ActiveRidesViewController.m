@@ -66,6 +66,11 @@
     [self loadActiveRides];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self loadActiveRides];
+}
+
 - (void)refreshTable:(id)sender {
     if (self.refreshControl.refreshing) {
         [self loadActiveRides];

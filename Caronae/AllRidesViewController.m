@@ -38,7 +38,7 @@
     
     // Display a message when the table is empty
     _emptyTableLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-    _emptyTableLabel.text = @"Nenhuma carona encontrada.";
+    _emptyTableLabel.text = @"Nenhuma carona\nencontrada.";
     _emptyTableLabel.textColor = [UIColor grayColor];
     _emptyTableLabel.numberOfLines = 0;
     _emptyTableLabel.textAlignment = NSTextAlignmentCenter;
