@@ -26,6 +26,25 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
+    
+    // Display a message when the table is empty
+    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    
+    messageLabel.text = @"Você não possui caronas\nativas no momento.";
+    messageLabel.textColor = [UIColor grayColor];
+    messageLabel.numberOfLines = 0;
+    messageLabel.textAlignment = NSTextAlignmentCenter;
+    // systemFontOfSize:weight: was only introduced in iOS 8.2
+    if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
+        messageLabel.font = [UIFont systemFontOfSize:25.0f weight:UIFontWeightUltraLight];
+    }
+    else {
+        messageLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0f];
+    }
+    [messageLabel sizeToFit];
+    
+    self.tableView.backgroundView = messageLabel;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -128,7 +147,11 @@
 #pragma mark - Table methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    if (self.rides && self.rides.count > 0) {
+        return 1;
+    }
+    
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
