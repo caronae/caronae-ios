@@ -1,14 +1,14 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
-#import "ActiveRidesViewController.h"
+#import "AllRidesViewController.h"
 #import "SearchResultsViewController.h"
 #import "CaronaeRideCell.h"
 #import "SearchRideViewController.h"
 #import "RideViewController.h"
 #import "Ride.h"
 
-@interface ActiveRidesViewController () <SeachRideDelegate>
+@interface AllRidesViewController () <SeachRideDelegate>
 @property (nonatomic) NSArray *rides;
 @property (nonatomic) Ride *selectedRide;
 @property (nonatomic) NSDictionary *searchParams;
@@ -16,7 +16,7 @@
 @property (nonatomic) UILabel *loadingLabel;
 @end
 
-@implementation ActiveRidesViewController
+@implementation AllRidesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,7 +38,7 @@
     
     // Display a message when the table is empty
     _emptyTableLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-    _emptyTableLabel.text = @"Você não possui caronas\nativas no momento.";
+    _emptyTableLabel.text = @"Nenhuma carona encontrada.";
     _emptyTableLabel.textColor = [UIColor grayColor];
     _emptyTableLabel.numberOfLines = 0;
     _emptyTableLabel.textAlignment = NSTextAlignmentCenter;
@@ -63,31 +63,31 @@
         _loadingLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0f];
     }
     [_loadingLabel sizeToFit];
-
+    
     self.tableView.backgroundView = _loadingLabel;
     
-    [self loadActiveRides];
+    [self loadAllRides];
 }
 
 - (void)refreshTable:(id)sender {
     if (self.refreshControl.refreshing) {
-        [self loadActiveRides];
+        [self loadAllRides];
     }
 }
 
 
 #pragma mark - Rides methods
 
-- (void)loadActiveRides {
+- (void)loadAllRides {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/getMyActiveRides"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *responseError;
-        NSArray *rides = [ActiveRidesViewController parseResultsFromResponse:responseObject withError:&responseError];
+        NSArray *rides = [AllRidesViewController parseResultsFromResponse:responseObject withError:&responseError];
         if (!responseError) {
-            NSLog(@"Active rides returned %lu rides.", (unsigned long)rides.count);
+            NSLog(@"All rides returned %lu rides.", (unsigned long)rides.count);
             self.rides = rides;
             if (self.rides.count > 0) {
                 self.tableView.backgroundView = nil;

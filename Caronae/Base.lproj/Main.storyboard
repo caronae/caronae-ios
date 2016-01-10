@@ -265,7 +265,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="228" y="429"/>
+            <point key="canvasLocation" x="-309" y="5"/>
         </scene>
         <!--Pesquisa-->
         <scene sceneID="86N-xC-KLU">
@@ -303,7 +303,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="936-oT-CHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2628" y="-1002"/>
+            <point key="canvasLocation" x="3549" y="-1202"/>
         </scene>
         <!--Ativas-->
         <scene sceneID="aEb-UJ-7dz">
@@ -354,7 +354,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MPm-iD-62t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2628" y="-202"/>
+            <point key="canvasLocation" x="2628" y="5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rql-kG-mhS">
@@ -373,6 +373,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
+                        <segue destination="ejH-pY-nFX" kind="relationship" relationship="viewControllers" id="ah1-Y9-L7u"/>
                         <segue destination="SI3-47-AYD" kind="relationship" relationship="viewControllers" id="62t-xN-hU7"/>
                         <segue destination="ESO-TG-2Ch" kind="relationship" relationship="viewControllers" id="9Du-so-X80"/>
                         <segue destination="xHs-1X-X6c" kind="relationship" relationship="viewControllers" id="Lg6-kn-BYf"/>
@@ -380,7 +381,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zo3-Hi-9nL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="996" y="429"/>
+            <point key="canvasLocation" x="459" y="5"/>
         </scene>
         <!--Ativas-->
         <scene sceneID="PW9-Sc-m7n">
@@ -401,7 +402,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bp6-0k-0sY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1815" y="-202"/>
+            <point key="canvasLocation" x="1815" y="5"/>
         </scene>
         <!--Criar Carona-->
         <scene sceneID="SI7-YK-2jS">
@@ -7170,6 +7171,64 @@ FOTO</string>
             </objects>
             <point key="canvasLocation" x="6961.5" y="-230"/>
         </scene>
+        <!--Todas-->
+        <scene sceneID="Xc9-LH-XMn">
+            <objects>
+                <tableViewController id="B4k-Rn-gi6" customClass="AllRidesViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" id="4ro-6k-saM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Ride Cell" rowHeight="453" id="Tza-7J-iV7">
+                                <rect key="frame" x="0.0" y="92" width="600" height="453"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tza-7J-iV7" id="VgU-XL-olW">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="453"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="B4k-Rn-gi6" id="R8h-i0-1zS"/>
+                            <outlet property="delegate" destination="B4k-Rn-gi6" id="Uw4-gc-kvM"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Todas" id="CNc-Ib-teV">
+                        <rightBarButtonItems>
+                            <barButtonItem image="SearchRide" id="Wnj-W3-pat"/>
+                            <barButtonItem image="NewRide" id="EqP-QJ-QLc"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HUv-jr-elo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2628" y="-760"/>
+        </scene>
+        <!--Todas-->
+        <scene sceneID="c6P-pN-fUr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ejH-pY-nFX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Todas" image="menu1" id="NTH-wW-phr"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bW7-lx-v5z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="B4k-Rn-gi6" kind="relationship" relationship="rootViewController" id="Iu1-Qk-dqG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6XD-md-C6D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1815" y="-760"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AuthBackground" width="358" height="258"/>
@@ -7189,15 +7248,16 @@ FOTO</string>
         <image name="RidesIcon" width="11" height="16"/>
         <image name="SearchRide" width="20" height="20"/>
         <image name="SeparatorColor" width="308" height="4"/>
+        <image name="menu1" width="34" height="26"/>
         <image name="menu2" width="26" height="26"/>
         <image name="menu3" width="38" height="26"/>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jF8-dz-c1W"/>
-        <segue reference="GWy-OD-WPe"/>
         <segue reference="VGz-uS-yQa"/>
-        <segue reference="AOI-Sr-h8h"/>
+        <segue reference="9kE-zS-Odm"/>
+        <segue reference="TRe-kz-qy8"/>
         <segue reference="ugX-qh-OjL"/>
         <segue reference="7VR-Dw-svl"/>
     </inferredMetricsTieBreakers>

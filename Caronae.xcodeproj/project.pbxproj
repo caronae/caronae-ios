@@ -20,6 +20,7 @@
 		A325DA701C0CAFD700B9124E /* CaronaeJoinRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A325DA6E1C0CAFD700B9124E /* CaronaeJoinRequestCell.m */; };
 		A325DA711C0CAFD700B9124E /* CaronaeJoinRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A325DA6F1C0CAFD700B9124E /* CaronaeJoinRequestCell.xib */; };
 		A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A32B80B51C2C6EBE00FC370A /* FalaeViewController.m */; };
+		A32C77261C41EEE30098583B /* AllRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A32C77251C41EEE30098583B /* AllRidesViewController.m */; };
 		A33BC29E1C1C91840065BC03 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A33BC29D1C1C91840065BC03 /* FBSDKCoreKit.framework */; };
 		A33BC2A01C1C92810065BC03 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A33BC29F1C1C92810065BC03 /* FBSDKLoginKit.framework */; };
 		A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */; };
@@ -90,6 +91,8 @@
 		A325DA6F1C0CAFD700B9124E /* CaronaeJoinRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CaronaeJoinRequestCell.xib; sourceTree = "<group>"; };
 		A32B80B41C2C6EBE00FC370A /* FalaeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FalaeViewController.h; sourceTree = "<group>"; };
 		A32B80B51C2C6EBE00FC370A /* FalaeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FalaeViewController.m; sourceTree = "<group>"; };
+		A32C77241C41EEE30098583B /* AllRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllRidesViewController.h; sourceTree = "<group>"; };
+		A32C77251C41EEE30098583B /* AllRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllRidesViewController.m; sourceTree = "<group>"; };
 		A33BC29D1C1C91840065BC03 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		A33BC29F1C1C92810065BC03 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		A33FABE81BEE8E93008B4F51 /* CreateRideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRideViewController.h; sourceTree = "<group>"; };
@@ -277,6 +280,8 @@
 				A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */,
 				A3996D2B1C13AC0900D2E890 /* SearchResultsViewController.h */,
 				A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */,
+				A32C77241C41EEE30098583B /* AllRidesViewController.h */,
+				A32C77251C41EEE30098583B /* AllRidesViewController.m */,
 				A3AD19C81BED9BFB003EDA17 /* ActiveRidesViewController.h */,
 				A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */,
 				A3B5AF041BF1ADF30026A889 /* MyRidesViewController.h */,
@@ -540,6 +545,7 @@
 				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
 				A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */,
 				A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */,
+				A32C77261C41EEE30098583B /* AllRidesViewController.m in Sources */,
 				A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */,
 				A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */,
 				A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */,
