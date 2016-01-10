@@ -13,6 +13,7 @@
 @property (nonatomic) Ride *selectedRide;
 @property (nonatomic) NSDictionary *searchParams;
 @property (nonatomic) UILabel *emptyTableLabel;
+@property (nonatomic) UILabel *loadingLabel;
 @end
 
 @implementation ActiveRidesViewController
@@ -32,12 +33,11 @@
     self.refreshControl.backgroundColor = [UIColor colorWithWhite:0.98f alpha:1.0f];
     self.refreshControl.tintColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
     [self.refreshControl addTarget:self
-                            action:@selector(loadActiveRides)
+                            action:@selector(refreshTable:)
                   forControlEvents:UIControlEventValueChanged];
     
     // Display a message when the table is empty
     _emptyTableLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-    
     _emptyTableLabel.text = @"Você não possui caronas\nativas no momento.";
     _emptyTableLabel.textColor = [UIColor grayColor];
     _emptyTableLabel.numberOfLines = 0;
@@ -51,9 +51,30 @@
     }
     [_emptyTableLabel sizeToFit];
     
-    self.tableView.backgroundView = _emptyTableLabel;
+    // Display a message when the table is loading
+    _loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    _loadingLabel.text = @"Carregando...";
+    _loadingLabel.textColor = [UIColor grayColor];
+    _loadingLabel.numberOfLines = 0;
+    _loadingLabel.textAlignment = NSTextAlignmentCenter;
+    // systemFontOfSize:weight: was only introduced in iOS 8.2
+    if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
+        _loadingLabel.font = [UIFont systemFontOfSize:25.0f weight:UIFontWeightUltraLight];
+    }
+    else {
+        _loadingLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0f];
+    }
+    [_loadingLabel sizeToFit];
+
+    self.tableView.backgroundView = _loadingLabel;
     
     [self loadActiveRides];
+}
+
+- (void)refreshTable:(id)sender {
+    if (self.refreshControl.refreshing) {
+        [self loadActiveRides];
+    }
 }
 
 
@@ -77,10 +98,12 @@
                 self.tableView.backgroundView = _emptyTableLabel;
             }
             [self.tableView reloadData];
+            
             [self.refreshControl endRefreshing];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.refreshControl endRefreshing];
+        
         if (operation.response.statusCode == 403) {
             [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Seu token pode ter sido suspenso ou expirado." handler:^{
                 [CaronaeDefaults signOut];
