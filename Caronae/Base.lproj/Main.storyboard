@@ -2233,9 +2233,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstAttribute="trailing" secondItem="B9q-mC-pUr" secondAttribute="trailing" id="4K9-AY-1HO"/>
                                                     <constraint firstItem="hbD-NA-ch3" firstAttribute="leading" secondItem="ATU-TR-4v1" secondAttribute="leading" id="5zf-m7-WkU"/>
                                                     <constraint firstItem="4v7-IQ-WIH" firstAttribute="width" secondItem="ATU-TR-4v1" secondAttribute="width" multiplier="1:3" id="8A9-hf-20X"/>
-                                                    <constraint firstItem="4v7-IQ-WIH" firstAttribute="leading" secondItem="hbD-NA-ch3" secondAttribute="trailing" constant="15" id="GyO-Sq-62d">
-                                                        <variation key="widthClass=compact" constant="0.0"/>
-                                                    </constraint>
                                                     <constraint firstAttribute="bottom" secondItem="hbD-NA-ch3" secondAttribute="bottom" id="NVY-Vo-bLV"/>
                                                     <constraint firstAttribute="bottom" secondItem="4v7-IQ-WIH" secondAttribute="bottom" id="UOS-UT-bqh"/>
                                                     <constraint firstItem="4v7-IQ-WIH" firstAttribute="centerX" secondItem="ATU-TR-4v1" secondAttribute="centerX" id="Uql-Ie-ohx"/>
@@ -2259,7 +2256,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <exclude reference="NVY-Vo-bLV"/>
                                                         <exclude reference="YsS-HM-MTP"/>
                                                         <exclude reference="lj6-u0-hLg"/>
-                                                        <exclude reference="GyO-Sq-62d"/>
                                                         <exclude reference="UOS-UT-bqh"/>
                                                         <exclude reference="Uql-Ie-ohx"/>
                                                         <exclude reference="ixi-9m-BKf"/>
@@ -2281,7 +2277,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <include reference="NVY-Vo-bLV"/>
                                                         <include reference="YsS-HM-MTP"/>
                                                         <include reference="lj6-u0-hLg"/>
-                                                        <include reference="GyO-Sq-62d"/>
                                                         <include reference="UOS-UT-bqh"/>
                                                         <include reference="Uql-Ie-ohx"/>
                                                         <include reference="ixi-9m-BKf"/>
@@ -3860,9 +3855,6 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                     </textField>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="oTl-se-EDm" userLabel="Car Icon">
-                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="aA3-hm-80U" userLabel="Car Icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <constraints>
@@ -3911,7 +3903,7 @@ FOTO</string>
                                                         <color key="textColor" red="0.57647061349999995" green="0.58039218189999997" blue="0.57647061349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7cO-dW-lj8" userLabel="Car Icon">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ColorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7cO-dW-lj8" userLabel="Car Icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="15" id="f8y-eS-b9V">
@@ -3921,6 +3913,11 @@ FOTO</string>
                                                                 <variation key="widthClass=compact" constant="30"/>
                                                             </constraint>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="f8y-eS-b9V"/>
@@ -3956,6 +3953,9 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                     </textField>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="oTl-se-EDm" userLabel="Car Icon">
+                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    </imageView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="ack-vy-A7z" firstAttribute="width" secondItem="ZA1-8O-6ah" secondAttribute="width" id="2b8-Sr-ItU"/>
@@ -3971,7 +3971,7 @@ FOTO</string>
                                                     <constraint firstItem="aA3-hm-80U" firstAttribute="centerY" secondItem="ack-vy-A7z" secondAttribute="centerY" id="N3T-GG-QBW">
                                                         <variation key="widthClass=compact" constant="8"/>
                                                     </constraint>
-                                                    <constraint firstItem="7cO-dW-lj8" firstAttribute="leading" secondItem="aA3-hm-80U" secondAttribute="leading" id="QsC-U5-GTe"/>
+                                                    <constraint firstItem="7cO-dW-lj8" firstAttribute="leading" secondItem="aA3-hm-80U" secondAttribute="leading" constant="3" id="QsC-U5-GTe"/>
                                                     <constraint firstItem="59v-69-H2d" firstAttribute="top" secondItem="q8t-lO-Jqk" secondAttribute="bottom" constant="-4" id="bu4-3a-oK5">
                                                         <variation key="widthClass=compact" constant="2"/>
                                                     </constraint>
@@ -3980,13 +3980,11 @@ FOTO</string>
                                                     </constraint>
                                                     <constraint firstItem="q8t-lO-Jqk" firstAttribute="leading" secondItem="UQY-BS-Gqj" secondAttribute="leading" id="jp2-gW-hIE"/>
                                                     <constraint firstItem="q8t-lO-Jqk" firstAttribute="top" secondItem="UQY-BS-Gqj" secondAttribute="top" id="kLb-Yh-Ba3"/>
-                                                    <constraint firstItem="eDe-Qb-t67" firstAttribute="leading" secondItem="7cO-dW-lj8" secondAttribute="trailing" constant="10" id="kaN-W4-vbR"/>
+                                                    <constraint firstItem="eDe-Qb-t67" firstAttribute="leading" secondItem="7cO-dW-lj8" secondAttribute="trailing" constant="14" id="kaN-W4-vbR"/>
                                                     <constraint firstItem="oTl-se-EDm" firstAttribute="leading" secondItem="aA3-hm-80U" secondAttribute="leading" constant="-27" id="lgz-1r-ytK">
                                                         <variation key="widthClass=compact" constant="0.0"/>
                                                     </constraint>
-                                                    <constraint firstItem="7cO-dW-lj8" firstAttribute="centerY" secondItem="eDe-Qb-t67" secondAttribute="centerY" id="rjG-HV-tQ6">
-                                                        <variation key="widthClass=compact" constant="8"/>
-                                                    </constraint>
+                                                    <constraint firstItem="7cO-dW-lj8" firstAttribute="centerY" secondItem="eDe-Qb-t67" secondAttribute="centerY" constant="9" id="rjG-HV-tQ6"/>
                                                     <constraint firstItem="eDe-Qb-t67" firstAttribute="top" secondItem="ack-vy-A7z" secondAttribute="bottom" constant="8" id="uw7-sB-eDs">
                                                         <variation key="widthClass=compact" constant="15"/>
                                                     </constraint>
@@ -4005,12 +4003,12 @@ FOTO</string>
                                                     <mask key="subviews">
                                                         <exclude reference="q8t-lO-Jqk"/>
                                                         <exclude reference="ZA1-8O-6ah"/>
-                                                        <exclude reference="oTl-se-EDm"/>
                                                         <exclude reference="aA3-hm-80U"/>
                                                         <exclude reference="ack-vy-A7z"/>
                                                         <exclude reference="59v-69-H2d"/>
                                                         <exclude reference="7cO-dW-lj8"/>
                                                         <exclude reference="eDe-Qb-t67"/>
+                                                        <exclude reference="oTl-se-EDm"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="Hmd-OL-DGB"/>
@@ -4041,12 +4039,12 @@ FOTO</string>
                                                     <mask key="subviews">
                                                         <include reference="q8t-lO-Jqk"/>
                                                         <include reference="ZA1-8O-6ah"/>
-                                                        <include reference="oTl-se-EDm"/>
                                                         <include reference="aA3-hm-80U"/>
                                                         <include reference="ack-vy-A7z"/>
                                                         <include reference="59v-69-H2d"/>
                                                         <include reference="7cO-dW-lj8"/>
                                                         <include reference="eDe-Qb-t67"/>
+                                                        <include reference="oTl-se-EDm"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="Hmd-OL-DGB"/>
@@ -6915,6 +6913,7 @@ FOTO</string>
         <image name="ButtonSignout" width="71" height="28"/>
         <image name="CalendarIcon" width="17" height="16"/>
         <image name="ClockIcon" width="16" height="15"/>
+        <image name="ColorIcon" width="20" height="20"/>
         <image name="DrivesIcon" width="27" height="15"/>
         <image name="LocationIcon" width="16" height="15"/>
         <image name="LogoLarge" width="205" height="53"/>

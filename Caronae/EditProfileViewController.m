@@ -61,6 +61,8 @@
     self.courseLabel.text = [NSString stringWithFormat:@"%@ | %@", user[@"profile"], user[@"course"]];
     
     self.joinedDateLabel.text = [self.joinedDateFormatter stringFromDate:joinedDate];
+    self.numDrivesLabel.text = user[@"numDrives"] ? [NSString stringWithFormat:@"%ld", [user[@"numDrives"] integerValue]] : @"-";
+    self.numRidesLabel.text = user[@"numRides"] ? [NSString stringWithFormat:@"%ld", [user[@"numRides"] integerValue]] : @"-";
     
     self.emailTextField.text = user[@"email"];
     self.phoneTextField.text = user[@"phone_number"];
@@ -145,7 +147,7 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showLoadingHUD:NO];
-        NSLog(@"Error: %@", error.description);
+        NSLog(@"Error saving profile: %@", error.description);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando perfil" message:@"Ocorreu um erro salvando as alterações no seu perfil."];
     }];
 }

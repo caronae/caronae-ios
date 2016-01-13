@@ -273,7 +273,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.description);
+        NSLog(@"Error leaving/cancelling ride: %@", error.description);
         _cancelButton.enabled = YES;
     }];
 }
@@ -294,7 +294,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [_finishRideButton setTitle:@"  Carona concluída" forState:UIControlStateNormal];
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.description);
+        NSLog(@"Error finishing ride: %@", error.description);
         _finishRideButton.enabled = YES;
     }];
 }
@@ -317,7 +317,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [CaronaeDefaults addToCachedJoinRequests:_ride];
         [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.description);
+        NSLog(@"Error requesting to join ride: %@", error.description);
         _requestRideButton.enabled = YES;
     }];
 }
@@ -329,15 +329,12 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
-    //    [self showLoadingHUD:YES];
-    
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/getRequesters/%ld", rideID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //        [self showLoadingHUD:NO];
         
         NSError *responseError;
         NSArray *joinRequests = [RideViewController parseJoinRequestsFromResponse:responseObject withError:&responseError];
         if (!responseError) {
-            NSLog(@"Search returned %lu join requests.", (unsigned long)joinRequests.count);
+            NSLog(@"Ride %lu has %lu join requests.", rideID, (unsigned long)joinRequests.count);
             self.joinRequests = joinRequests;
             if (joinRequests.count > 0) {
                 [self.requestsTable reloadData];
@@ -346,8 +343,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //        [self showLoadingHUD:NO];
-        NSLog(@"Error: %@", error.description);
+        NSLog(@"Error loading join requests for ride %lu: %@", rideID, error.description);
     }];
     
 }
@@ -383,7 +379,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         NSLog(@"Answer to join request successfully sent.");
         [self removeJoinRequest:request];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.description);
+        NSLog(@"Error accepting join request: %@", error.description);
     }];
 }
 

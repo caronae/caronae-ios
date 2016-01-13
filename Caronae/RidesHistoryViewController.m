@@ -41,7 +41,7 @@
             [self.tableView reloadData];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error.description);
+        NSLog(@"Error loading rides history: %@", error.description);
     }];
 }
 

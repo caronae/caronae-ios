@@ -54,7 +54,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
-        NSLog(@"Error: %@", error.localizedDescription);
+        NSLog(@"Error trying to authenticate: %@", error.localizedDescription);
         
         NSString *errorMsg;
         if (operation.response.statusCode == 403) {

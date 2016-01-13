@@ -108,7 +108,7 @@
             }];
         }
         else {
-            NSLog(@"Error: %@", error.description);
+            NSLog(@"Error loading all rides: %@", error.description);
         }
     }];
 }

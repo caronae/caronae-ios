@@ -85,7 +85,7 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
-        NSLog(@"Error: %@", error.description);
+        NSLog(@"Error searching for ride: %@", error.description);
     }];
     
 }
