@@ -440,7 +440,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 
 - (void)adjustHeightOfTableview {
     [self.view layoutIfNeeded];
-    CGFloat height = self.requestsTable.contentSize.height;
+    CGFloat height = self.joinRequests.count > 0 ? self.requestsTable.contentSize.height : 0;
     self.requestsTableHeight.constant = height;
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
