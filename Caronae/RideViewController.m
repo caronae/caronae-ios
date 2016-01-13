@@ -153,6 +153,9 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     _carIconPlate.tintColor = color;
     _carIconModel.tintColor = color;
     _carIconColor.tintColor = color;
+    _finishRideButton.layer.borderColor = color.CGColor;
+    _finishRideButton.tintColor = color;
+    [_finishRideButton setTitleColor:color forState:UIControlStateNormal];
 }
 
 - (BOOL)userIsDriver {
@@ -411,6 +414,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     
     cell.delegate = self;
     [cell configureCellWithRequest:self.joinRequests[indexPath.row]];
+    [cell setColor:self.color];
     
     return cell;
 }

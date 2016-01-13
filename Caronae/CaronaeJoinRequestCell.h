@@ -16,5 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *userCourse;
 @property (weak, nonatomic) IBOutlet UIImageView *userPhoto;
+@property (weak, nonatomic) IBOutlet UIButton *acceptButton;
+@property (weak, nonatomic) IBOutlet UIButton *declineButton;
+@property (nonatomic) UIColor *color;
 
 @end

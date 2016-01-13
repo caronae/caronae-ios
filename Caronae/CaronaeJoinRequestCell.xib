@@ -50,9 +50,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNv-zp-m0j">
-                        <rect key="frame" x="16" y="66" width="113" height="25"/>
+                        <rect key="frame" x="16" y="66" width="113" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="tVz-4f-Q1V"/>
+                            <constraint firstAttribute="height" constant="22" id="tVz-4f-Q1V"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                         <state key="normal" title="    Remover pedido    ">
@@ -75,7 +75,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azp-fD-fsS">
-                        <rect key="frame" x="189" y="66" width="117" height="25"/>
+                        <rect key="frame" x="189" y="66" width="117" height="22"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                         <state key="normal" title="    Aceitar caronista    ">
                             <color key="titleColor" red="0.11372549086809158" green="0.65490198135375977" blue="0.364705890417099" alpha="1" colorSpace="calibratedRGB"/>
@@ -115,6 +115,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="acceptButton" destination="azp-fD-fsS" id="jAS-G8-cOH"/>
+                <outlet property="declineButton" destination="tNv-zp-m0j" id="B4V-Lt-g62"/>
                 <outlet property="userCourse" destination="3bo-c8-Br5" id="gaG-Hf-1yn"/>
                 <outlet property="userName" destination="0Nl-H4-CEK" id="JdR-Ak-MN0"/>
                 <outlet property="userPhoto" destination="1RG-CV-C0R" id="DGe-o3-Pon"/>

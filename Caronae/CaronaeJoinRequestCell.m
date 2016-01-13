@@ -18,6 +18,14 @@
     _userCourse.text = [NSString stringWithFormat:@"%@ | %@",request[@"profile"], request[@"course"]];
 }
 
+- (void)setColor:(UIColor *)color {
+    _color = color;
+    [_acceptButton setTitleColor:color forState:UIControlStateNormal];
+    _acceptButton.layer.borderColor = color.CGColor;
+    _userPhoto.layer.borderColor = color.CGColor;
+    self.tintColor = color;
+}
+
 
 #pragma mark - IBActions
 
