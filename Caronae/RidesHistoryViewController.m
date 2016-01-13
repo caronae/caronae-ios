@@ -18,8 +18,7 @@
     UINib *cellNib = [UINib nibWithNibName:@"CaronaeRideCell" bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"Ride Cell"];
     
-    self.tableView.estimatedRowHeight = 100.0;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.rowHeight = 85.0f;
     
     [self loadRidesHistory];
 }

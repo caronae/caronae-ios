@@ -1812,9 +1812,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <constraint firstAttribute="trailing" secondItem="HDx-Di-YZG" secondAttribute="trailing" constant="20" id="eiZ-Od-mRF"/>
                                             <constraint firstItem="RWO-JP-mny" firstAttribute="width" secondItem="HDx-Di-YZG" secondAttribute="width" id="gdC-vi-OpI"/>
                                         </constraints>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="487"/>
-                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -1824,9 +1821,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                     <constraint firstAttribute="bottom" secondItem="x5A-6B-eNz" secondAttribute="bottom" id="Vv6-b1-6e0"/>
                                     <constraint firstAttribute="trailing" secondItem="x5A-6B-eNz" secondAttribute="trailing" id="nyX-Fo-UHq"/>
                                 </constraints>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="64" width="400" height="487"/>
-                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2899,7 +2893,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                                         <exclude reference="rtV-71-yGf"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="592"/>
                                     <mask key="constraints">
                                         <include reference="Kiw-qC-kJK"/>
                                         <include reference="T1v-DT-0Ay"/>
@@ -6937,8 +6932,8 @@ FOTO</string>
         <segue reference="kg1-V2-ucx"/>
         <segue reference="END-TH-0iJ"/>
         <segue reference="jes-ZV-WH9"/>
-        <segue reference="H8O-Mc-OH3"/>
-        <segue reference="ugX-qh-OjL"/>
+        <segue reference="U3D-Zh-YLa"/>
+        <segue reference="kXd-xG-sw3"/>
         <segue reference="7VR-Dw-svl"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>

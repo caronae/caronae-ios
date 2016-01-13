@@ -24,8 +24,7 @@
     UINib *cellNib = [UINib nibWithNibName:@"CaronaeRideCell" bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"Ride Cell"];
     
-    self.tableView.estimatedRowHeight = 100.0;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.rowHeight = 85.0f;
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
     
@@ -87,7 +86,6 @@
         NSError *responseError;
         NSArray *rides = [AllRidesViewController parseResultsFromResponse:responseObject withError:&responseError];
         if (!responseError) {
-//            NSLog(@"All rides returned %lu rides.", (unsigned long)rides.count);
             self.rides = rides;
             if (self.rides.count > 0) {
                 self.tableView.backgroundView = nil;
