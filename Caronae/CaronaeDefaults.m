@@ -6,8 +6,8 @@
 
 #pragma mark - API settings
 
-NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
-//NSString *const CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
+//NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
+NSString *const CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
 //NSString *const CaronaeAPIBaseURL = @"http://localhost:8000";
 
 #pragma mark - Notifications
@@ -87,7 +87,7 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
 
 - (NSArray *)hubs {
     if (!_hubs) {
-        _hubs = @[@"CT Fundos Bloco I", @"CT Bloco D", @"CT Bloco H", @"CCMN Frente", @"CCMN Fundos", @"CCS Frente", @"CCS Saída HU", @"Reitoria", @"EEFD", @"Letras"];
+        _hubs = @[@"CT: Bloco A", @"CT: Bloco D", @"CT: Bloco H", @"CCMN: Frente", @"CCMN: Fundos", @"Letras", @"Reitoria", @"EEFD", @"CCS: Frente", @"CCS: HU"];
     }
     return _hubs;
 }
