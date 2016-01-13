@@ -6,6 +6,7 @@
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
@@ -2060,13 +2061,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="60" id="1no-AF-2i4">
-                                                                <variation key="widthClass=compact" constant="100"/>
-                                                            </constraint>
                                                             <constraint firstItem="50f-4C-Wei" firstAttribute="centerY" secondItem="hbD-NA-ch3" secondAttribute="centerY" id="ESL-YH-jbQ"/>
                                                             <constraint firstItem="jgn-kJ-4Ss" firstAttribute="top" secondItem="hbD-NA-ch3" secondAttribute="top" id="TMx-ea-Jzb"/>
                                                             <constraint firstAttribute="bottom" secondItem="jgn-kJ-4Ss" secondAttribute="bottom" id="WQM-Et-f08"/>
-                                                            <constraint firstAttribute="trailing" secondItem="jgn-kJ-4Ss" secondAttribute="trailing" id="dSS-LN-mia"/>
                                                             <constraint firstItem="50f-4C-Wei" firstAttribute="leading" secondItem="hbD-NA-ch3" secondAttribute="leading" id="g17-0B-CNo"/>
                                                             <constraint firstItem="jgn-kJ-4Ss" firstAttribute="leading" secondItem="50f-4C-Wei" secondAttribute="trailing" id="r9A-Cu-63F">
                                                                 <variation key="widthClass=compact" constant="5"/>
@@ -2078,10 +2075,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <exclude reference="50f-4C-Wei"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="1no-AF-2i4"/>
                                                                 <exclude reference="TMx-ea-Jzb"/>
                                                                 <exclude reference="WQM-Et-f08"/>
-                                                                <exclude reference="dSS-LN-mia"/>
                                                                 <exclude reference="r9A-Cu-63F"/>
                                                                 <exclude reference="ESL-YH-jbQ"/>
                                                                 <exclude reference="g17-0B-CNo"/>
@@ -2093,10 +2088,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <include reference="50f-4C-Wei"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <include reference="1no-AF-2i4"/>
                                                                 <include reference="TMx-ea-Jzb"/>
                                                                 <include reference="WQM-Et-f08"/>
-                                                                <exclude reference="dSS-LN-mia"/>
                                                                 <include reference="r9A-Cu-63F"/>
                                                                 <include reference="ESL-YH-jbQ"/>
                                                                 <include reference="g17-0B-CNo"/>
@@ -2118,20 +2111,15 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                     <constraint firstAttribute="height" constant="16" id="kvS-vl-Blq">
                                                                         <variation key="widthClass=compact" constant="15"/>
                                                                     </constraint>
-                                                                    <constraint firstAttribute="width" constant="30" id="mll-Rr-XuD">
-                                                                        <variation key="widthClass=compact" constant="16"/>
-                                                                    </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
                                                                         <exclude reference="kvS-vl-Blq"/>
-                                                                        <exclude reference="mll-Rr-XuD"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <variation key="widthClass=compact">
                                                                     <mask key="constraints">
                                                                         <include reference="kvS-vl-Blq"/>
-                                                                        <exclude reference="mll-Rr-XuD"/>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
@@ -2139,17 +2127,11 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="6dC-bx-97n" secondAttribute="bottom" id="3l2-9P-cDD"/>
-                                                            <constraint firstAttribute="width" constant="60" id="4Vv-qC-5es">
-                                                                <variation key="widthClass=compact" constant="70"/>
-                                                            </constraint>
-                                                            <constraint firstAttribute="trailing" secondItem="6dC-bx-97n" secondAttribute="trailing" id="4lQ-EH-xfE"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Z4E-3o-oLI" secondAttribute="bottom" id="9Ib-0H-aqs"/>
                                                             <constraint firstItem="Z4E-3o-oLI" firstAttribute="centerY" secondItem="4v7-IQ-WIH" secondAttribute="centerY" id="BmQ-2L-Qrh"/>
                                                             <constraint firstItem="6dC-bx-97n" firstAttribute="leading" secondItem="Z4E-3o-oLI" secondAttribute="trailing" id="DFZ-gK-KWu">
                                                                 <variation key="widthClass=compact" constant="5"/>
                                                             </constraint>
-                                                            <constraint firstItem="Z4E-3o-oLI" firstAttribute="top" secondItem="4v7-IQ-WIH" secondAttribute="top" id="DGa-Hn-arB"/>
-                                                            <constraint firstItem="Z4E-3o-oLI" firstAttribute="leading" secondItem="4v7-IQ-WIH" secondAttribute="leading" id="cCu-2h-I1T"/>
+                                                            <constraint firstItem="Z4E-3o-oLI" firstAttribute="centerX" secondItem="4v7-IQ-WIH" secondAttribute="centerX" id="egB-y0-V8k"/>
                                                             <constraint firstItem="6dC-bx-97n" firstAttribute="top" secondItem="4v7-IQ-WIH" secondAttribute="top" id="jrq-9P-2y6"/>
                                                         </constraints>
                                                         <variation key="default">
@@ -2158,15 +2140,11 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <exclude reference="Z4E-3o-oLI"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="4Vv-qC-5es"/>
+                                                                <exclude reference="BmQ-2L-Qrh"/>
+                                                                <exclude reference="egB-y0-V8k"/>
                                                                 <exclude reference="3l2-9P-cDD"/>
-                                                                <exclude reference="4lQ-EH-xfE"/>
                                                                 <exclude reference="DFZ-gK-KWu"/>
                                                                 <exclude reference="jrq-9P-2y6"/>
-                                                                <exclude reference="9Ib-0H-aqs"/>
-                                                                <exclude reference="BmQ-2L-Qrh"/>
-                                                                <exclude reference="DGa-Hn-arB"/>
-                                                                <exclude reference="cCu-2h-I1T"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -2175,15 +2153,11 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <include reference="Z4E-3o-oLI"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <include reference="4Vv-qC-5es"/>
+                                                                <include reference="BmQ-2L-Qrh"/>
+                                                                <include reference="egB-y0-V8k"/>
                                                                 <include reference="3l2-9P-cDD"/>
-                                                                <exclude reference="4lQ-EH-xfE"/>
                                                                 <include reference="DFZ-gK-KWu"/>
                                                                 <include reference="jrq-9P-2y6"/>
-                                                                <exclude reference="9Ib-0H-aqs"/>
-                                                                <include reference="BmQ-2L-Qrh"/>
-                                                                <exclude reference="DGa-Hn-arB"/>
-                                                                <include reference="cCu-2h-I1T"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -2224,16 +2198,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                             <constraint firstItem="7LV-WC-GgG" firstAttribute="leading" secondItem="bc4-ub-EWA" secondAttribute="trailing" constant="8" id="JTN-Qf-YXc">
                                                                 <variation key="widthClass=compact" constant="5"/>
                                                             </constraint>
-                                                            <constraint firstItem="bc4-ub-EWA" firstAttribute="top" secondItem="B9q-mC-pUr" secondAttribute="top" id="OG0-jd-lSQ"/>
                                                             <constraint firstAttribute="bottom" secondItem="7LV-WC-GgG" secondAttribute="bottom" id="Uxy-lW-qUv"/>
+                                                            <constraint firstAttribute="trailing" secondItem="7LV-WC-GgG" secondAttribute="trailing" id="YaP-Fm-zp5"/>
                                                             <constraint firstItem="7LV-WC-GgG" firstAttribute="top" secondItem="B9q-mC-pUr" secondAttribute="top" id="YrX-7u-LlO"/>
-                                                            <constraint firstAttribute="width" constant="60" id="dJL-Zv-HYP">
-                                                                <variation key="widthClass=compact" constant="50"/>
-                                                            </constraint>
-                                                            <constraint firstItem="7LV-WC-GgG" firstAttribute="leading" secondItem="bc4-ub-EWA" secondAttribute="trailing" id="dpg-ym-Z8K"/>
-                                                            <constraint firstAttribute="trailing" secondItem="7LV-WC-GgG" secondAttribute="trailing" id="hzK-QA-f8X"/>
-                                                            <constraint firstItem="bc4-ub-EWA" firstAttribute="leading" secondItem="B9q-mC-pUr" secondAttribute="leading" id="ltT-Nf-uaJ"/>
-                                                            <constraint firstAttribute="bottom" secondItem="bc4-ub-EWA" secondAttribute="bottom" id="wmQ-R0-Hzg"/>
                                                         </constraints>
                                                         <variation key="default">
                                                             <mask key="subviews">
@@ -2241,16 +2208,10 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <exclude reference="7LV-WC-GgG"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="dJL-Zv-HYP"/>
+                                                                <exclude reference="6sF-Ju-TbS"/>
                                                                 <exclude reference="JTN-Qf-YXc"/>
                                                                 <exclude reference="Uxy-lW-qUv"/>
                                                                 <exclude reference="YrX-7u-LlO"/>
-                                                                <exclude reference="dpg-ym-Z8K"/>
-                                                                <exclude reference="hzK-QA-f8X"/>
-                                                                <exclude reference="6sF-Ju-TbS"/>
-                                                                <exclude reference="OG0-jd-lSQ"/>
-                                                                <exclude reference="ltT-Nf-uaJ"/>
-                                                                <exclude reference="wmQ-R0-Hzg"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -2259,151 +2220,53 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <include reference="7LV-WC-GgG"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <include reference="dJL-Zv-HYP"/>
+                                                                <include reference="6sF-Ju-TbS"/>
                                                                 <include reference="JTN-Qf-YXc"/>
                                                                 <include reference="Uxy-lW-qUv"/>
+                                                                <include reference="YaP-Fm-zp5"/>
                                                                 <include reference="YrX-7u-LlO"/>
-                                                                <exclude reference="dpg-ym-Z8K"/>
-                                                                <exclude reference="hzK-QA-f8X"/>
-                                                                <include reference="6sF-Ju-TbS"/>
-                                                                <exclude reference="OG0-jd-lSQ"/>
-                                                                <include reference="ltT-Nf-uaJ"/>
-                                                                <exclude reference="wmQ-R0-Hzg"/>
-                                                            </mask>
-                                                        </variation>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Akp-DE-6fa" userLabel="Likes">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                                        <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LikesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="3fF-Oe-wYp">
-                                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" constant="30" id="GxS-oY-8BY"/>
-                                                                    <constraint firstAttribute="height" constant="16" id="L7w-P4-C3K">
-                                                                        <variation key="widthClass=compact" constant="15"/>
-                                                                    </constraint>
-                                                                </constraints>
-                                                                <variation key="default">
-                                                                    <mask key="constraints">
-                                                                        <exclude reference="GxS-oY-8BY"/>
-                                                                        <exclude reference="L7w-P4-C3K"/>
-                                                                    </mask>
-                                                                </variation>
-                                                                <variation key="widthClass=compact">
-                                                                    <mask key="constraints">
-                                                                        <exclude reference="GxS-oY-8BY"/>
-                                                                        <include reference="L7w-P4-C3K"/>
-                                                                    </mask>
-                                                                </variation>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NE9-M6-rPZ" userLabel="Num Likes">
-                                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstItem="3fF-Oe-wYp" firstAttribute="centerY" secondItem="Akp-DE-6fa" secondAttribute="centerY" id="4F1-RK-NHV">
-                                                                <variation key="widthClass=compact" constant="0.0"/>
-                                                            </constraint>
-                                                            <constraint firstItem="NE9-M6-rPZ" firstAttribute="leading" secondItem="3fF-Oe-wYp" secondAttribute="trailing" id="A1P-Cl-JzM">
-                                                                <variation key="widthClass=compact" constant="5"/>
-                                                            </constraint>
-                                                            <constraint firstAttribute="bottom" secondItem="NE9-M6-rPZ" secondAttribute="bottom" id="A8N-FO-v4N"/>
-                                                            <constraint firstItem="NE9-M6-rPZ" firstAttribute="top" secondItem="Akp-DE-6fa" secondAttribute="top" id="BtT-Nq-RIU"/>
-                                                            <constraint firstAttribute="width" constant="60" id="Imd-vK-1LF">
-                                                                <variation key="widthClass=compact" constant="60"/>
-                                                            </constraint>
-                                                            <constraint firstItem="3fF-Oe-wYp" firstAttribute="leading" secondItem="Akp-DE-6fa" secondAttribute="leading" id="PfR-BO-b8d"/>
-                                                            <constraint firstItem="3fF-Oe-wYp" firstAttribute="top" secondItem="Akp-DE-6fa" secondAttribute="top" id="S74-3S-ouw"/>
-                                                            <constraint firstItem="NE9-M6-rPZ" firstAttribute="leading" secondItem="3fF-Oe-wYp" secondAttribute="trailing" constant="19" id="Vg7-pB-qHy">
-                                                                <variation key="widthClass=compact" constant="5"/>
-                                                            </constraint>
-                                                            <constraint firstAttribute="bottom" secondItem="3fF-Oe-wYp" secondAttribute="bottom" id="ovC-Tf-rUo"/>
-                                                            <constraint firstAttribute="trailing" secondItem="NE9-M6-rPZ" secondAttribute="trailing" id="rLa-FW-ZkD"/>
-                                                        </constraints>
-                                                        <variation key="default">
-                                                            <mask key="subviews">
-                                                                <exclude reference="3fF-Oe-wYp"/>
-                                                                <exclude reference="NE9-M6-rPZ"/>
-                                                            </mask>
-                                                            <mask key="constraints">
-                                                                <exclude reference="Imd-vK-1LF"/>
-                                                                <exclude reference="A1P-Cl-JzM"/>
-                                                                <exclude reference="A8N-FO-v4N"/>
-                                                                <exclude reference="BtT-Nq-RIU"/>
-                                                                <exclude reference="Vg7-pB-qHy"/>
-                                                                <exclude reference="rLa-FW-ZkD"/>
-                                                                <exclude reference="4F1-RK-NHV"/>
-                                                                <exclude reference="PfR-BO-b8d"/>
-                                                                <exclude reference="S74-3S-ouw"/>
-                                                                <exclude reference="ovC-Tf-rUo"/>
-                                                            </mask>
-                                                        </variation>
-                                                        <variation key="widthClass=compact">
-                                                            <mask key="subviews">
-                                                                <include reference="3fF-Oe-wYp"/>
-                                                                <include reference="NE9-M6-rPZ"/>
-                                                            </mask>
-                                                            <mask key="constraints">
-                                                                <include reference="Imd-vK-1LF"/>
-                                                                <exclude reference="A1P-Cl-JzM"/>
-                                                                <include reference="A8N-FO-v4N"/>
-                                                                <include reference="BtT-Nq-RIU"/>
-                                                                <include reference="Vg7-pB-qHy"/>
-                                                                <include reference="rLa-FW-ZkD"/>
-                                                                <include reference="4F1-RK-NHV"/>
-                                                                <exclude reference="PfR-BO-b8d"/>
-                                                                <exclude reference="S74-3S-ouw"/>
-                                                                <exclude reference="ovC-Tf-rUo"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="B9q-mC-pUr" secondAttribute="trailing" id="4K9-AY-1HO"/>
                                                     <constraint firstItem="hbD-NA-ch3" firstAttribute="leading" secondItem="ATU-TR-4v1" secondAttribute="leading" id="5zf-m7-WkU"/>
-                                                    <constraint firstItem="Akp-DE-6fa" firstAttribute="top" secondItem="ATU-TR-4v1" secondAttribute="top" id="7vd-vK-wXf"/>
+                                                    <constraint firstItem="4v7-IQ-WIH" firstAttribute="width" secondItem="ATU-TR-4v1" secondAttribute="width" multiplier="1:3" id="8A9-hf-20X"/>
                                                     <constraint firstItem="4v7-IQ-WIH" firstAttribute="leading" secondItem="hbD-NA-ch3" secondAttribute="trailing" constant="15" id="GyO-Sq-62d">
                                                         <variation key="widthClass=compact" constant="0.0"/>
                                                     </constraint>
                                                     <constraint firstAttribute="bottom" secondItem="hbD-NA-ch3" secondAttribute="bottom" id="NVY-Vo-bLV"/>
                                                     <constraint firstAttribute="bottom" secondItem="4v7-IQ-WIH" secondAttribute="bottom" id="UOS-UT-bqh"/>
-                                                    <constraint firstItem="Akp-DE-6fa" firstAttribute="leading" secondItem="B9q-mC-pUr" secondAttribute="trailing" constant="22" id="W73-78-SF0">
-                                                        <variation key="widthClass=compact" constant="0.0"/>
-                                                    </constraint>
+                                                    <constraint firstItem="4v7-IQ-WIH" firstAttribute="centerX" secondItem="ATU-TR-4v1" secondAttribute="centerX" id="Uql-Ie-ohx"/>
+                                                    <constraint firstItem="hbD-NA-ch3" firstAttribute="width" secondItem="ATU-TR-4v1" secondAttribute="width" multiplier="1:3" id="YsS-HM-MTP"/>
                                                     <constraint firstItem="B9q-mC-pUr" firstAttribute="top" secondItem="ATU-TR-4v1" secondAttribute="top" id="c0z-tI-S8p"/>
                                                     <constraint firstAttribute="bottom" secondItem="B9q-mC-pUr" secondAttribute="bottom" id="eRM-n1-fKR"/>
                                                     <constraint firstItem="4v7-IQ-WIH" firstAttribute="top" secondItem="ATU-TR-4v1" secondAttribute="top" id="ixi-9m-BKf"/>
                                                     <constraint firstAttribute="height" constant="30" id="jo0-0T-WnL"/>
                                                     <constraint firstItem="hbD-NA-ch3" firstAttribute="top" secondItem="ATU-TR-4v1" secondAttribute="top" id="lj6-u0-hLg"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Akp-DE-6fa" secondAttribute="bottom" id="swL-6s-adn"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Akp-DE-6fa" secondAttribute="trailing" constant="8" id="u1A-1r-wOz">
-                                                        <variation key="widthClass=compact" constant="0.0"/>
-                                                    </constraint>
+                                                    <constraint firstItem="B9q-mC-pUr" firstAttribute="width" secondItem="ATU-TR-4v1" secondAttribute="width" multiplier="1:3" id="nmw-zS-O1n"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="subviews">
                                                         <exclude reference="hbD-NA-ch3"/>
                                                         <exclude reference="4v7-IQ-WIH"/>
                                                         <exclude reference="B9q-mC-pUr"/>
-                                                        <exclude reference="Akp-DE-6fa"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="jo0-0T-WnL"/>
-                                                        <exclude reference="GyO-Sq-62d"/>
-                                                        <exclude reference="UOS-UT-bqh"/>
-                                                        <exclude reference="ixi-9m-BKf"/>
-                                                        <exclude reference="7vd-vK-wXf"/>
-                                                        <exclude reference="W73-78-SF0"/>
-                                                        <exclude reference="swL-6s-adn"/>
-                                                        <exclude reference="u1A-1r-wOz"/>
-                                                        <exclude reference="c0z-tI-S8p"/>
-                                                        <exclude reference="eRM-n1-fKR"/>
                                                         <exclude reference="5zf-m7-WkU"/>
                                                         <exclude reference="NVY-Vo-bLV"/>
+                                                        <exclude reference="YsS-HM-MTP"/>
                                                         <exclude reference="lj6-u0-hLg"/>
+                                                        <exclude reference="GyO-Sq-62d"/>
+                                                        <exclude reference="UOS-UT-bqh"/>
+                                                        <exclude reference="Uql-Ie-ohx"/>
+                                                        <exclude reference="ixi-9m-BKf"/>
+                                                        <exclude reference="4K9-AY-1HO"/>
+                                                        <exclude reference="c0z-tI-S8p"/>
+                                                        <exclude reference="eRM-n1-fKR"/>
+                                                        <exclude reference="nmw-zS-O1n"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
@@ -2411,22 +2274,21 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <include reference="hbD-NA-ch3"/>
                                                         <include reference="4v7-IQ-WIH"/>
                                                         <include reference="B9q-mC-pUr"/>
-                                                        <include reference="Akp-DE-6fa"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="jo0-0T-WnL"/>
-                                                        <include reference="GyO-Sq-62d"/>
-                                                        <include reference="UOS-UT-bqh"/>
-                                                        <include reference="ixi-9m-BKf"/>
-                                                        <include reference="7vd-vK-wXf"/>
-                                                        <include reference="W73-78-SF0"/>
-                                                        <include reference="swL-6s-adn"/>
-                                                        <include reference="u1A-1r-wOz"/>
-                                                        <include reference="c0z-tI-S8p"/>
-                                                        <include reference="eRM-n1-fKR"/>
                                                         <include reference="5zf-m7-WkU"/>
                                                         <include reference="NVY-Vo-bLV"/>
+                                                        <include reference="YsS-HM-MTP"/>
                                                         <include reference="lj6-u0-hLg"/>
+                                                        <include reference="GyO-Sq-62d"/>
+                                                        <include reference="UOS-UT-bqh"/>
+                                                        <include reference="Uql-Ie-ohx"/>
+                                                        <include reference="ixi-9m-BKf"/>
+                                                        <include reference="4K9-AY-1HO"/>
+                                                        <include reference="c0z-tI-S8p"/>
+                                                        <include reference="eRM-n1-fKR"/>
+                                                        <include reference="nmw-zS-O1n"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -2955,7 +2817,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <constraint firstItem="Dux-0O-fyC" firstAttribute="leading" secondItem="uWW-QB-xp0" secondAttribute="leading" id="E07-nu-ZbP"/>
                                             <constraint firstItem="ATU-TR-4v1" firstAttribute="width" secondItem="OPY-Ou-4A7" secondAttribute="width" id="QQt-d9-Rru"/>
                                             <constraint firstItem="uWW-QB-xp0" firstAttribute="top" secondItem="ATU-TR-4v1" secondAttribute="bottom" constant="5" id="SKe-my-7RL"/>
-                                            <constraint firstItem="OPY-Ou-4A7" firstAttribute="top" secondItem="b4Y-FM-tR4" secondAttribute="top" constant="20" id="Vqb-MZ-rVU"/>
+                                            <constraint firstItem="OPY-Ou-4A7" firstAttribute="top" secondItem="b4Y-FM-tR4" secondAttribute="top" constant="15" id="Vqb-MZ-rVU"/>
                                             <constraint firstItem="dAI-e5-Rkq" firstAttribute="leading" secondItem="uWW-QB-xp0" secondAttribute="leading" id="W7I-uC-XEb"/>
                                             <constraint firstItem="Dux-0O-fyC" firstAttribute="top" secondItem="uWW-QB-xp0" secondAttribute="bottom" constant="20" id="WK3-8v-CYQ"/>
                                             <constraint firstItem="Kvy-uv-slh" firstAttribute="leading" secondItem="uWW-QB-xp0" secondAttribute="leading" id="aTZ-u4-bir"/>
@@ -3102,7 +2964,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <outlet property="mutualFriendsView" destination="Dux-0O-fyC" id="NRR-Au-UjA"/>
                         <outlet property="nameLabel" destination="eBR-ef-vDK" id="lvz-ZA-IQP"/>
                         <outlet property="numDrivesLabel" destination="6dC-bx-97n" id="FXY-5V-tht"/>
-                        <outlet property="numLikesLabel" destination="NE9-M6-rPZ" id="rRb-yJ-oC3"/>
                         <outlet property="numRidesLabel" destination="7LV-WC-GgG" id="Dx5-rZ-Mnn"/>
                         <outlet property="profileImage" destination="Ejx-Yf-BBH" id="nIB-rP-cF0"/>
                         <outlet property="reportView" destination="Kvy-uv-slh" id="CPE-aP-QgP"/>
@@ -3297,18 +3158,15 @@ FOTO</string>
                                                                     <constraint firstAttribute="width" constant="30" id="Aww-wq-taD">
                                                                         <variation key="widthClass=compact" constant="16"/>
                                                                     </constraint>
-                                                                    <constraint firstAttribute="width" constant="30" id="EEz-tp-s8o"/>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
                                                                         <exclude reference="Aww-wq-taD"/>
-                                                                        <exclude reference="EEz-tp-s8o"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <variation key="widthClass=compact">
                                                                     <mask key="constraints">
                                                                         <include reference="Aww-wq-taD"/>
-                                                                        <exclude reference="EEz-tp-s8o"/>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
@@ -3325,12 +3183,8 @@ FOTO</string>
                                                             <constraint firstItem="d10-91-ta5" firstAttribute="leading" secondItem="9m4-Cj-dVM" secondAttribute="trailing" id="IeA-dB-ghs">
                                                                 <variation key="widthClass=compact" constant="5"/>
                                                             </constraint>
-                                                            <constraint firstAttribute="width" constant="60" id="e7M-f1-ST8">
-                                                                <variation key="widthClass=compact" constant="100"/>
-                                                            </constraint>
                                                             <constraint firstItem="d10-91-ta5" firstAttribute="top" secondItem="8kN-gp-Pr3" secondAttribute="top" id="hpO-Aj-dxz"/>
                                                             <constraint firstAttribute="bottom" secondItem="d10-91-ta5" secondAttribute="bottom" id="jAg-QK-waM"/>
-                                                            <constraint firstAttribute="trailing" secondItem="d10-91-ta5" secondAttribute="trailing" id="o3n-rU-ncQ"/>
                                                             <constraint firstItem="9m4-Cj-dVM" firstAttribute="centerY" secondItem="8kN-gp-Pr3" secondAttribute="centerY" id="uR7-5d-hpb"/>
                                                         </constraints>
                                                         <variation key="default">
@@ -3339,11 +3193,9 @@ FOTO</string>
                                                                 <exclude reference="d10-91-ta5"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="e7M-f1-ST8"/>
                                                                 <exclude reference="IeA-dB-ghs"/>
                                                                 <exclude reference="hpO-Aj-dxz"/>
                                                                 <exclude reference="jAg-QK-waM"/>
-                                                                <exclude reference="o3n-rU-ncQ"/>
                                                                 <exclude reference="78i-GL-6Vn"/>
                                                                 <exclude reference="uR7-5d-hpb"/>
                                                             </mask>
@@ -3354,11 +3206,9 @@ FOTO</string>
                                                                 <include reference="d10-91-ta5"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <include reference="e7M-f1-ST8"/>
                                                                 <include reference="IeA-dB-ghs"/>
                                                                 <include reference="hpO-Aj-dxz"/>
                                                                 <include reference="jAg-QK-waM"/>
-                                                                <exclude reference="o3n-rU-ncQ"/>
                                                                 <include reference="78i-GL-6Vn"/>
                                                                 <include reference="uR7-5d-hpb"/>
                                                             </mask>
@@ -3376,22 +3226,17 @@ FOTO</string>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Uxs-ti-wdp">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="30" id="53C-dR-gTf">
-                                                                        <variation key="widthClass=compact" constant="16"/>
-                                                                    </constraint>
                                                                     <constraint firstAttribute="height" constant="16" id="Ges-wl-Nqa">
                                                                         <variation key="widthClass=compact" constant="15"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
-                                                                        <exclude reference="53C-dR-gTf"/>
                                                                         <exclude reference="Ges-wl-Nqa"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <variation key="widthClass=compact">
                                                                     <mask key="constraints">
-                                                                        <exclude reference="53C-dR-gTf"/>
                                                                         <include reference="Ges-wl-Nqa"/>
                                                                     </mask>
                                                                 </variation>
@@ -3404,14 +3249,8 @@ FOTO</string>
                                                             <constraint firstItem="mOs-7S-hSM" firstAttribute="leading" secondItem="Uxs-ti-wdp" secondAttribute="trailing" id="Sql-i9-y1V">
                                                                 <variation key="widthClass=compact" constant="5"/>
                                                             </constraint>
-                                                            <constraint firstAttribute="width" constant="60" id="cCC-K5-yAO">
-                                                                <variation key="widthClass=compact" constant="70"/>
-                                                            </constraint>
-                                                            <constraint firstAttribute="trailing" secondItem="mOs-7S-hSM" secondAttribute="trailing" id="fnC-fc-SGq"/>
-                                                            <constraint firstItem="Uxs-ti-wdp" firstAttribute="leading" secondItem="d8H-sa-84f" secondAttribute="leading" id="gHv-dQ-ECC"/>
+                                                            <constraint firstItem="Uxs-ti-wdp" firstAttribute="centerX" secondItem="d8H-sa-84f" secondAttribute="centerX" id="hVZ-xR-3TN"/>
                                                             <constraint firstItem="Uxs-ti-wdp" firstAttribute="centerY" secondItem="d8H-sa-84f" secondAttribute="centerY" id="hgA-Cm-O70"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Uxs-ti-wdp" secondAttribute="bottom" id="oKb-Ic-1wv"/>
-                                                            <constraint firstItem="Uxs-ti-wdp" firstAttribute="top" secondItem="d8H-sa-84f" secondAttribute="top" id="yej-1k-Uk2"/>
                                                         </constraints>
                                                         <variation key="default">
                                                             <mask key="subviews">
@@ -3419,15 +3258,11 @@ FOTO</string>
                                                                 <exclude reference="Uxs-ti-wdp"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="cCC-K5-yAO"/>
+                                                                <exclude reference="hVZ-xR-3TN"/>
+                                                                <exclude reference="hgA-Cm-O70"/>
                                                                 <exclude reference="2H5-f7-H6u"/>
                                                                 <exclude reference="By6-hM-kfF"/>
                                                                 <exclude reference="Sql-i9-y1V"/>
-                                                                <exclude reference="fnC-fc-SGq"/>
-                                                                <exclude reference="gHv-dQ-ECC"/>
-                                                                <exclude reference="hgA-Cm-O70"/>
-                                                                <exclude reference="oKb-Ic-1wv"/>
-                                                                <exclude reference="yej-1k-Uk2"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -3436,15 +3271,11 @@ FOTO</string>
                                                                 <include reference="Uxs-ti-wdp"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <include reference="cCC-K5-yAO"/>
+                                                                <include reference="hVZ-xR-3TN"/>
+                                                                <include reference="hgA-Cm-O70"/>
                                                                 <include reference="2H5-f7-H6u"/>
                                                                 <include reference="By6-hM-kfF"/>
                                                                 <include reference="Sql-i9-y1V"/>
-                                                                <exclude reference="fnC-fc-SGq"/>
-                                                                <include reference="gHv-dQ-ECC"/>
-                                                                <include reference="hgA-Cm-O70"/>
-                                                                <exclude reference="oKb-Ic-1wv"/>
-                                                                <exclude reference="yej-1k-Uk2"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -3454,20 +3285,17 @@ FOTO</string>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RidesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="VLN-hu-yZt">
                                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="30" id="RAh-od-fNy"/>
                                                                     <constraint firstAttribute="height" constant="30" id="XR7-L0-E1T">
                                                                         <variation key="widthClass=compact" constant="16"/>
                                                                     </constraint>
                                                                 </constraints>
                                                                 <variation key="default">
                                                                     <mask key="constraints">
-                                                                        <exclude reference="RAh-od-fNy"/>
                                                                         <exclude reference="XR7-L0-E1T"/>
                                                                     </mask>
                                                                 </variation>
                                                                 <variation key="widthClass=compact">
                                                                     <mask key="constraints">
-                                                                        <exclude reference="RAh-od-fNy"/>
                                                                         <include reference="XR7-L0-E1T"/>
                                                                     </mask>
                                                                 </variation>
@@ -3484,13 +3312,10 @@ FOTO</string>
                                                             <constraint firstItem="PkB-Rm-KZu" firstAttribute="leading" secondItem="VLN-hu-yZt" secondAttribute="trailing" constant="8" id="0RL-Up-dW0">
                                                                 <variation key="widthClass=compact" constant="5"/>
                                                             </constraint>
-                                                            <constraint firstAttribute="width" constant="60" id="F9T-7C-N6V">
-                                                                <variation key="widthClass=compact" constant="50"/>
-                                                            </constraint>
                                                             <constraint firstAttribute="bottom" secondItem="PkB-Rm-KZu" secondAttribute="bottom" id="O2U-l5-cRJ"/>
                                                             <constraint firstItem="VLN-hu-yZt" firstAttribute="centerY" secondItem="Iwn-cp-VMy" secondAttribute="centerY" id="WX5-8p-2vA"/>
                                                             <constraint firstItem="PkB-Rm-KZu" firstAttribute="top" secondItem="Iwn-cp-VMy" secondAttribute="top" id="fzX-yS-c8r"/>
-                                                            <constraint firstItem="VLN-hu-yZt" firstAttribute="leading" secondItem="Iwn-cp-VMy" secondAttribute="leading" id="q7y-ss-9Ar"/>
+                                                            <constraint firstAttribute="trailing" secondItem="PkB-Rm-KZu" secondAttribute="trailing" id="h1h-qm-uK7"/>
                                                         </constraints>
                                                         <variation key="default">
                                                             <mask key="subviews">
@@ -3498,12 +3323,10 @@ FOTO</string>
                                                                 <exclude reference="PkB-Rm-KZu"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="F9T-7C-N6V"/>
+                                                                <exclude reference="WX5-8p-2vA"/>
                                                                 <exclude reference="0RL-Up-dW0"/>
                                                                 <exclude reference="O2U-l5-cRJ"/>
                                                                 <exclude reference="fzX-yS-c8r"/>
-                                                                <exclude reference="WX5-8p-2vA"/>
-                                                                <exclude reference="q7y-ss-9Ar"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -3512,145 +3335,46 @@ FOTO</string>
                                                                 <include reference="PkB-Rm-KZu"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <include reference="F9T-7C-N6V"/>
+                                                                <include reference="WX5-8p-2vA"/>
                                                                 <include reference="0RL-Up-dW0"/>
                                                                 <include reference="O2U-l5-cRJ"/>
                                                                 <include reference="fzX-yS-c8r"/>
-                                                                <include reference="WX5-8p-2vA"/>
-                                                                <include reference="q7y-ss-9Ar"/>
-                                                            </mask>
-                                                        </variation>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7D-yi-zFP" userLabel="Likes">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                                        <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="erb-ZQ-lUK">
-                                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="16" id="IN9-gt-PZE"/>
-                                                                    <constraint firstAttribute="width" constant="30" id="io7-dP-ukw"/>
-                                                                </constraints>
-                                                                <variation key="default">
-                                                                    <mask key="constraints">
-                                                                        <exclude reference="IN9-gt-PZE"/>
-                                                                        <exclude reference="io7-dP-ukw"/>
-                                                                    </mask>
-                                                                </variation>
-                                                                <variation key="widthClass=compact">
-                                                                    <mask key="constraints">
-                                                                        <include reference="IN9-gt-PZE"/>
-                                                                        <exclude reference="io7-dP-ukw"/>
-                                                                    </mask>
-                                                                </variation>
-                                                            </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQB-Qe-DUO" userLabel="Num Likes">
-                                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="60" id="0Bi-92-Tqe">
-                                                                <variation key="widthClass=compact" constant="60"/>
-                                                            </constraint>
-                                                            <constraint firstItem="erb-ZQ-lUK" firstAttribute="centerY" secondItem="D7D-yi-zFP" secondAttribute="centerY" id="2BM-kQ-SEV">
-                                                                <variation key="widthClass=compact" constant="0.0"/>
-                                                            </constraint>
-                                                            <constraint firstItem="erb-ZQ-lUK" firstAttribute="leading" secondItem="D7D-yi-zFP" secondAttribute="leading" id="56n-Ra-D8x"/>
-                                                            <constraint firstItem="sQB-Qe-DUO" firstAttribute="top" secondItem="D7D-yi-zFP" secondAttribute="top" id="EJ6-xc-rdS"/>
-                                                            <constraint firstItem="sQB-Qe-DUO" firstAttribute="leading" secondItem="erb-ZQ-lUK" secondAttribute="trailing" constant="19" id="R4o-18-82Y">
-                                                                <variation key="widthClass=compact" constant="5"/>
-                                                            </constraint>
-                                                            <constraint firstAttribute="trailing" secondItem="sQB-Qe-DUO" secondAttribute="trailing" id="SGz-0X-WfK"/>
-                                                            <constraint firstItem="erb-ZQ-lUK" firstAttribute="top" secondItem="D7D-yi-zFP" secondAttribute="top" id="X6s-GI-YfN"/>
-                                                            <constraint firstAttribute="bottom" secondItem="sQB-Qe-DUO" secondAttribute="bottom" id="Zva-xK-6gY"/>
-                                                            <constraint firstItem="sQB-Qe-DUO" firstAttribute="leading" secondItem="erb-ZQ-lUK" secondAttribute="trailing" id="bhm-oX-3xQ">
-                                                                <variation key="widthClass=compact" constant="5"/>
-                                                            </constraint>
-                                                            <constraint firstAttribute="bottom" secondItem="erb-ZQ-lUK" secondAttribute="bottom" id="gPl-Pn-Goz"/>
-                                                        </constraints>
-                                                        <variation key="default">
-                                                            <mask key="subviews">
-                                                                <exclude reference="erb-ZQ-lUK"/>
-                                                                <exclude reference="sQB-Qe-DUO"/>
-                                                            </mask>
-                                                            <mask key="constraints">
-                                                                <exclude reference="0Bi-92-Tqe"/>
-                                                                <exclude reference="EJ6-xc-rdS"/>
-                                                                <exclude reference="R4o-18-82Y"/>
-                                                                <exclude reference="SGz-0X-WfK"/>
-                                                                <exclude reference="Zva-xK-6gY"/>
-                                                                <exclude reference="bhm-oX-3xQ"/>
-                                                                <exclude reference="2BM-kQ-SEV"/>
-                                                                <exclude reference="56n-Ra-D8x"/>
-                                                                <exclude reference="X6s-GI-YfN"/>
-                                                                <exclude reference="gPl-Pn-Goz"/>
-                                                            </mask>
-                                                        </variation>
-                                                        <variation key="widthClass=compact">
-                                                            <mask key="subviews">
-                                                                <include reference="erb-ZQ-lUK"/>
-                                                                <include reference="sQB-Qe-DUO"/>
-                                                            </mask>
-                                                            <mask key="constraints">
-                                                                <include reference="0Bi-92-Tqe"/>
-                                                                <include reference="EJ6-xc-rdS"/>
-                                                                <include reference="R4o-18-82Y"/>
-                                                                <include reference="SGz-0X-WfK"/>
-                                                                <include reference="Zva-xK-6gY"/>
-                                                                <exclude reference="bhm-oX-3xQ"/>
-                                                                <include reference="2BM-kQ-SEV"/>
-                                                                <exclude reference="56n-Ra-D8x"/>
-                                                                <exclude reference="X6s-GI-YfN"/>
-                                                                <exclude reference="gPl-Pn-Goz"/>
+                                                                <include reference="h1h-qm-uK7"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="D7D-yi-zFP" firstAttribute="top" secondItem="NpW-3h-cia" secondAttribute="top" id="58b-vW-ydk"/>
-                                                    <constraint firstAttribute="bottom" secondItem="D7D-yi-zFP" secondAttribute="bottom" id="KhN-Wk-liM"/>
-                                                    <constraint firstItem="D7D-yi-zFP" firstAttribute="leading" secondItem="Iwn-cp-VMy" secondAttribute="trailing" constant="22" id="Pgd-RW-I34">
-                                                        <variation key="widthClass=compact" constant="0.0"/>
-                                                    </constraint>
-                                                    <constraint firstItem="d8H-sa-84f" firstAttribute="leading" secondItem="8kN-gp-Pr3" secondAttribute="trailing" constant="15" id="PsZ-Aj-Vam">
-                                                        <variation key="widthClass=compact" constant="0.0"/>
-                                                    </constraint>
+                                                    <constraint firstItem="d8H-sa-84f" firstAttribute="centerX" secondItem="NpW-3h-cia" secondAttribute="centerX" id="3zS-7K-1lF"/>
                                                     <constraint firstAttribute="bottom" secondItem="Iwn-cp-VMy" secondAttribute="bottom" id="QGW-q9-rbq"/>
+                                                    <constraint firstItem="Iwn-cp-VMy" firstAttribute="width" secondItem="NpW-3h-cia" secondAttribute="width" multiplier="1:3" id="Rlc-gf-jVM"/>
                                                     <constraint firstItem="d8H-sa-84f" firstAttribute="top" secondItem="NpW-3h-cia" secondAttribute="top" id="UdW-0G-8f3"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Iwn-cp-VMy" secondAttribute="trailing" id="Zes-Vx-OlI"/>
                                                     <constraint firstItem="8kN-gp-Pr3" firstAttribute="leading" secondItem="NpW-3h-cia" secondAttribute="leading" id="d5M-Mg-7hA"/>
-                                                    <constraint firstAttribute="trailing" secondItem="D7D-yi-zFP" secondAttribute="trailing" constant="8" id="dMZ-oE-m75">
-                                                        <variation key="widthClass=compact" constant="0.0"/>
-                                                    </constraint>
                                                     <constraint firstItem="Iwn-cp-VMy" firstAttribute="top" secondItem="NpW-3h-cia" secondAttribute="top" id="dnT-Oh-pyU"/>
+                                                    <constraint firstItem="d8H-sa-84f" firstAttribute="width" secondItem="NpW-3h-cia" secondAttribute="width" multiplier="1:3" id="eAX-ix-hfn"/>
                                                     <constraint firstAttribute="bottom" secondItem="d8H-sa-84f" secondAttribute="bottom" id="nON-08-wbo"/>
                                                     <constraint firstItem="8kN-gp-Pr3" firstAttribute="top" secondItem="NpW-3h-cia" secondAttribute="top" id="sOF-A2-Qma"/>
                                                     <constraint firstAttribute="height" constant="30" id="thI-GD-FlY"/>
                                                     <constraint firstAttribute="bottom" secondItem="8kN-gp-Pr3" secondAttribute="bottom" id="xA0-oC-bAZ"/>
+                                                    <constraint firstItem="8kN-gp-Pr3" firstAttribute="width" secondItem="NpW-3h-cia" secondAttribute="width" multiplier="1:3" id="zw1-26-Ywe"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="subviews">
                                                         <exclude reference="8kN-gp-Pr3"/>
                                                         <exclude reference="d8H-sa-84f"/>
                                                         <exclude reference="Iwn-cp-VMy"/>
-                                                        <exclude reference="D7D-yi-zFP"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="thI-GD-FlY"/>
                                                         <exclude reference="d5M-Mg-7hA"/>
                                                         <exclude reference="sOF-A2-Qma"/>
                                                         <exclude reference="xA0-oC-bAZ"/>
-                                                        <exclude reference="58b-vW-ydk"/>
-                                                        <exclude reference="KhN-Wk-liM"/>
-                                                        <exclude reference="Pgd-RW-I34"/>
-                                                        <exclude reference="dMZ-oE-m75"/>
-                                                        <exclude reference="QGW-q9-rbq"/>
-                                                        <exclude reference="dnT-Oh-pyU"/>
-                                                        <exclude reference="PsZ-Aj-Vam"/>
+                                                        <exclude reference="3zS-7K-1lF"/>
                                                         <exclude reference="UdW-0G-8f3"/>
                                                         <exclude reference="nON-08-wbo"/>
+                                                        <exclude reference="QGW-q9-rbq"/>
+                                                        <exclude reference="dnT-Oh-pyU"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
@@ -3658,22 +3382,21 @@ FOTO</string>
                                                         <include reference="8kN-gp-Pr3"/>
                                                         <include reference="d8H-sa-84f"/>
                                                         <include reference="Iwn-cp-VMy"/>
-                                                        <include reference="D7D-yi-zFP"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="thI-GD-FlY"/>
                                                         <include reference="d5M-Mg-7hA"/>
                                                         <include reference="sOF-A2-Qma"/>
                                                         <include reference="xA0-oC-bAZ"/>
-                                                        <include reference="58b-vW-ydk"/>
-                                                        <include reference="KhN-Wk-liM"/>
-                                                        <include reference="Pgd-RW-I34"/>
-                                                        <include reference="dMZ-oE-m75"/>
-                                                        <include reference="QGW-q9-rbq"/>
-                                                        <include reference="dnT-Oh-pyU"/>
-                                                        <include reference="PsZ-Aj-Vam"/>
+                                                        <include reference="zw1-26-Ywe"/>
+                                                        <include reference="3zS-7K-1lF"/>
                                                         <include reference="UdW-0G-8f3"/>
+                                                        <include reference="eAX-ix-hfn"/>
                                                         <include reference="nON-08-wbo"/>
+                                                        <include reference="QGW-q9-rbq"/>
+                                                        <include reference="Rlc-gf-jVM"/>
+                                                        <include reference="Zes-Vx-OlI"/>
+                                                        <include reference="dnT-Oh-pyU"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -4591,7 +4314,6 @@ FOTO</string>
                         <outlet property="neighborhoodButton" destination="W4u-AX-cDq" id="sHq-hZ-xbu"/>
                         <outlet property="notificationsSwitch" destination="mar-jU-UOC" id="LFp-NL-UiV"/>
                         <outlet property="numDrivesLabel" destination="mOs-7S-hSM" id="mKq-iH-kcE"/>
-                        <outlet property="numLikesLabel" destination="sQB-Qe-DUO" id="v6M-hl-bvk"/>
                         <outlet property="numRidesLabel" destination="PkB-Rm-KZu" id="45n-cY-Ha8"/>
                         <outlet property="phoneTextField" destination="cCO-zR-zbO" id="Rke-nD-BJR"/>
                         <outlet property="photo" destination="0R8-uQ-11f" id="gFC-t4-wsL"/>
@@ -7194,7 +6916,6 @@ FOTO</string>
         <image name="CalendarIcon" width="17" height="16"/>
         <image name="ClockIcon" width="16" height="15"/>
         <image name="DrivesIcon" width="27" height="15"/>
-        <image name="LikesIcon" width="15" height="15"/>
         <image name="LocationIcon" width="16" height="15"/>
         <image name="LogoLarge" width="205" height="53"/>
         <image name="MailIcon" width="17" height="16"/>
