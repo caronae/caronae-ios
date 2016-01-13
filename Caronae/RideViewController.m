@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mutualFriendsCollectionHeight;
 @property (weak, nonatomic) IBOutlet UIView *finishRideView;
 @property (weak, nonatomic) IBOutlet UICollectionView *ridersCollectionView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ridersCollectionViewHeight;
 @property (weak, nonatomic) IBOutlet UICollectionView *mutualFriendsCollectionView;
 @property (weak, nonatomic) IBOutlet UIImageView *clockIcon;
 @property (weak, nonatomic) IBOutlet UIImageView *carIconPlate;
@@ -124,6 +125,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.finishRideView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [self.ridersView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         
         // Update the state of the join request button if the user has already requested to join
         if ([CaronaeDefaults hasUserAlreadyRequestedJoin:_ride]) {
@@ -140,7 +142,13 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     
     // If the riders aren't provided then hide the riders view
     if (!_ride.users) {
-        [self.ridersView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        UILabel *noRidersLabel = [[UILabel alloc] init];
+        noRidersLabel.text = @"Não há caronistas aprovados.\n\n\n\n\n";
+        noRidersLabel.numberOfLines = 0;
+        noRidersLabel.font = [UIFont systemFontOfSize:11.0f];
+        noRidersLabel.textColor = [UIColor lightGrayColor];
+        [noRidersLabel sizeToFit];
+        self.ridersCollectionView.backgroundView = noRidersLabel;
     }
 }
 
