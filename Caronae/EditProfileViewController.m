@@ -164,10 +164,13 @@
 #pragma mark - IBActions
 
 - (IBAction)didTapSaveButton:(id)sender {
+    [self.view endEditing:YES];
     [self saveProfile];
 }
 
 - (IBAction)didTapCancelButton:(id)sender {
+    [self.view endEditing:YES];
+    
     CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar edição do perfil?"
                                                                              message:@"Quaisquer mudanças serão descartadas."
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
