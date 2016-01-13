@@ -15,7 +15,7 @@
 - (void)configureCellWithRequest:(NSDictionary *)request {
     _request = request;
     _userName.text = request[@"name"];
-    _userCourse.text = request[@"course"];
+    _userCourse.text = [NSString stringWithFormat:@"%@ | %@",request[@"profile"], request[@"course"]];
 }
 
 

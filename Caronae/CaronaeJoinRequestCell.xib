@@ -13,11 +13,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Renan Souza" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nl-H4-CEK" userLabel="Driver name">
-                        <rect key="frame" x="81" y="14" width="113" height="18"/>
+                        <rect key="frame" x="76" y="14" width="231" height="18"/>
                         <gestureRecognizers/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,8 +43,8 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eng. Mecatrônica" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bo-c8-Br5" userLabel="Course">
-                        <rect key="frame" x="81" y="34" width="113" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aluno | Engenharia Mecatrônica" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="3bo-c8-Br5" userLabel="Course">
+                        <rect key="frame" x="76" y="34" width="231" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -78,13 +78,14 @@
                     <constraint firstItem="tNv-zp-m0j" firstAttribute="top" secondItem="1RG-CV-C0R" secondAttribute="bottom" constant="5" id="4dO-aq-Ief"/>
                     <constraint firstItem="0Nl-H4-CEK" firstAttribute="top" secondItem="1RG-CV-C0R" secondAttribute="top" constant="6" id="69e-sF-VTb"/>
                     <constraint firstAttribute="topMargin" secondItem="1RG-CV-C0R" secondAttribute="top" id="Ctp-NZ-78c"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="0Nl-H4-CEK" secondAttribute="trailing" constant="5" id="DKB-kg-EER"/>
                     <constraint firstItem="tNv-zp-m0j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="JHg-Yl-LBe"/>
                     <constraint firstItem="3bo-c8-Br5" firstAttribute="leading" secondItem="0Nl-H4-CEK" secondAttribute="leading" id="PaZ-XY-ER7"/>
                     <constraint firstItem="azp-fD-fsS" firstAttribute="height" secondItem="tNv-zp-m0j" secondAttribute="height" id="TJA-Ph-a90"/>
                     <constraint firstItem="3bo-c8-Br5" firstAttribute="top" secondItem="0Nl-H4-CEK" secondAttribute="bottom" constant="2" id="TeK-Za-yXH"/>
                     <constraint firstAttribute="trailingMargin" secondItem="azp-fD-fsS" secondAttribute="trailing" constant="6" id="Zsl-lU-bLR"/>
                     <constraint firstItem="azp-fD-fsS" firstAttribute="top" secondItem="tNv-zp-m0j" secondAttribute="top" id="f0t-RW-KCb"/>
-                    <constraint firstItem="0Nl-H4-CEK" firstAttribute="leading" secondItem="1RG-CV-C0R" secondAttribute="trailing" constant="15" id="hsN-b6-S3k"/>
+                    <constraint firstItem="0Nl-H4-CEK" firstAttribute="leading" secondItem="1RG-CV-C0R" secondAttribute="trailing" constant="10" id="hsN-b6-S3k"/>
                     <constraint firstItem="3bo-c8-Br5" firstAttribute="width" secondItem="0Nl-H4-CEK" secondAttribute="width" id="ptw-Qk-yPl"/>
                     <constraint firstItem="1RG-CV-C0R" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="vCl-wn-uYi"/>
                 </constraints>

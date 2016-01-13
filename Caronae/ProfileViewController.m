@@ -61,7 +61,7 @@
     }
     
     _nameLabel.text = _user[@"name"];
-    _courseLabel.text = _user[@"course"];
+    _courseLabel.text = [NSString stringWithFormat:@"%@ | %@", _user[@"profile"], _user[@"course"]];
     
     if (_user[@"profile_pic_url"] && [_user[@"profile_pic_url"] isKindOfClass:[NSString class]] && ![_user[@"profile_pic_url"] isEqualToString:@""]) {
         [self.profileImage sd_setImageWithURL:[NSURL URLWithString:_user[@"profile_pic_url"]]

@@ -58,7 +58,7 @@
     self.joinedDateFormatter.dateFormat = @"MM/yyyy";
     
     self.nameLabel.text = user[@"name"];
-    self.courseLabel.text = user[@"course"];
+    self.courseLabel.text = [NSString stringWithFormat:@"%@ | %@", user[@"profile"], user[@"course"]];
     
     self.joinedDateLabel.text = [self.joinedDateFormatter stringFromDate:joinedDate];
     
