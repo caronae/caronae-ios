@@ -55,11 +55,11 @@
     NSString *buttonTitle = @"";
     for (unsigned int i = 0; i < neighborhoods.count; i++) {
         if (i > 2) {
-            buttonTitle = [buttonTitle stringByAppendingString:@"..."];
+            buttonTitle = [NSString stringWithFormat:@"%@ + %lu", buttonTitle, neighborhoods.count-i];
             break;
         }
         buttonTitle = [buttonTitle stringByAppendingString:neighborhoods[i]];
-        if (i < neighborhoods.count - 1) {
+        if (i < neighborhoods.count - 1 && i < 2) {
             buttonTitle = [buttonTitle stringByAppendingString:@", "];
         }
     }

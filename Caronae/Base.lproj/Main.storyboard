@@ -5233,6 +5233,9 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                     </view>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="u2P-te-zHD" userLabel="Location Icon">
+                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mm-CF-Oik" userLabel="Neighborhood Button">
                                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                         <state key="normal" title="Selecione os bairros">
@@ -5243,9 +5246,6 @@ FOTO</string>
                                                             <segue destination="m4b-ln-3hN" kind="show" identifier="ViewZones" id="CEp-XF-lJK"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="u2P-te-zHD" userLabel="Location Icon">
-                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -5254,6 +5254,7 @@ FOTO</string>
                                                     <constraint firstItem="u2P-te-zHD" firstAttribute="centerY" secondItem="4mm-CF-Oik" secondAttribute="centerY" id="5G6-Nc-hYw"/>
                                                     <constraint firstItem="4mm-CF-Oik" firstAttribute="leading" secondItem="u2P-te-zHD" secondAttribute="trailing" constant="8" id="9Yd-7p-sHC"/>
                                                     <constraint firstItem="VOp-vf-HW9" firstAttribute="leading" secondItem="S49-x1-088" secondAttribute="leading" id="Buw-kV-Mzz"/>
+                                                    <constraint firstItem="4mm-CF-Oik" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="S49-x1-088" secondAttribute="leading" constant="24" id="F65-DR-IaB"/>
                                                     <constraint firstAttribute="trailing" secondItem="4mm-CF-Oik" secondAttribute="trailing" id="PQu-0M-aFh"/>
                                                     <constraint firstItem="4mm-CF-Oik" firstAttribute="centerY" secondItem="S49-x1-088" secondAttribute="centerY" id="S1m-tI-vVF"/>
                                                     <constraint firstAttribute="height" constant="40" id="XQL-Dk-cP2"/>
@@ -5262,37 +5263,39 @@ FOTO</string>
                                                 <variation key="default">
                                                     <mask key="subviews">
                                                         <exclude reference="VOp-vf-HW9"/>
-                                                        <exclude reference="4mm-CF-Oik"/>
                                                         <exclude reference="u2P-te-zHD"/>
+                                                        <exclude reference="4mm-CF-Oik"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="XQL-Dk-cP2"/>
+                                                        <exclude reference="3pu-p2-Cdn"/>
+                                                        <exclude reference="5G6-Nc-hYw"/>
                                                         <exclude reference="9Yd-7p-sHC"/>
+                                                        <exclude reference="F65-DR-IaB"/>
                                                         <exclude reference="PQu-0M-aFh"/>
                                                         <exclude reference="S1m-tI-vVF"/>
                                                         <exclude reference="261-pt-cLc"/>
                                                         <exclude reference="Buw-kV-Mzz"/>
                                                         <exclude reference="blf-QI-aPO"/>
-                                                        <exclude reference="3pu-p2-Cdn"/>
-                                                        <exclude reference="5G6-Nc-hYw"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
                                                     <mask key="subviews">
                                                         <include reference="VOp-vf-HW9"/>
-                                                        <include reference="4mm-CF-Oik"/>
                                                         <include reference="u2P-te-zHD"/>
+                                                        <include reference="4mm-CF-Oik"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="XQL-Dk-cP2"/>
+                                                        <include reference="3pu-p2-Cdn"/>
+                                                        <include reference="5G6-Nc-hYw"/>
                                                         <include reference="9Yd-7p-sHC"/>
+                                                        <include reference="F65-DR-IaB"/>
                                                         <include reference="PQu-0M-aFh"/>
                                                         <include reference="S1m-tI-vVF"/>
                                                         <include reference="261-pt-cLc"/>
                                                         <include reference="Buw-kV-Mzz"/>
                                                         <include reference="blf-QI-aPO"/>
-                                                        <include reference="3pu-p2-Cdn"/>
-                                                        <include reference="5G6-Nc-hYw"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -7282,9 +7285,9 @@ FOTO</string>
         <segue reference="kg1-V2-ucx"/>
         <segue reference="END-TH-0iJ"/>
         <segue reference="jes-ZV-WH9"/>
+        <segue reference="CEp-XF-lJK"/>
         <segue reference="H8O-Mc-OH3"/>
         <segue reference="ugX-qh-OjL"/>
-        <segue reference="7VR-Dw-svl"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>
