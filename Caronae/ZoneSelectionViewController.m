@@ -72,7 +72,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.type == ZoneSelectionZone) {
         self.selectedZone = self.zones[indexPath.row];
-        [self performSegueWithIdentifier:@"ViewNeighborhoods" sender:self];
+        if (![self.selectedZone isEqualToString:@"Outra"]) {
+            [self performSegueWithIdentifier:@"ViewNeighborhoods" sender:self];
+        }
+        else {
+            self.selectedNeighborhoods = [NSMutableArray arrayWithObject:@"Outra"];
+            [self finishSelection];
+        }
     }
     else {
         NSString *selectedNeighborhood = self.zones[indexPath.row];
