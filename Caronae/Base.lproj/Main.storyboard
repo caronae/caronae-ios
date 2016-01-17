@@ -366,6 +366,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <segue destination="SI3-47-AYD" kind="relationship" relationship="viewControllers" id="62t-xN-hU7"/>
                         <segue destination="ESO-TG-2Ch" kind="relationship" relationship="viewControllers" id="9Du-so-X80"/>
                         <segue destination="xHs-1X-X6c" kind="relationship" relationship="viewControllers" id="Lg6-kn-BYf"/>
+                        <segue destination="NVj-Xk-m80" kind="presentation" identifier="CompleteProfile" id="emk-CJ-38Y"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zo3-Hi-9nL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4308,6 +4309,7 @@ FOTO</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="900"/>
                     <connections>
+                        <outlet property="cancelButton" destination="xEk-lK-AlH" id="us0-AW-lqX"/>
                         <outlet property="carColorTextField" destination="eDe-Qb-t67" id="ZRm-Gg-Bma"/>
                         <outlet property="carDetailsHeight" destination="Hmd-OL-DGB" id="8tf-Li-lcm"/>
                         <outlet property="carDetailsView" destination="UQY-BS-Gqj" id="LoV-uR-e3H"/>
@@ -6870,6 +6872,9 @@ FOTO</string>
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="453"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="NVj-Xk-m80" kind="presentation" identifier="CompleteProfile" id="UB7-0r-mJG"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -6951,12 +6956,12 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VJh-c3-WKd"/>
+        <segue reference="UB7-0r-mJG"/>
+        <segue reference="END-TH-0iJ"/>
         <segue reference="jes-ZV-WH9"/>
+        <segue reference="dT3-Fo-MhL"/>
         <segue reference="kg1-V2-ucx"/>
-        <segue reference="tvA-Ui-5Q1"/>
-        <segue reference="gns-F9-8s8"/>
-        <segue reference="GWy-OD-WPe"/>
+        <segue reference="7VR-Dw-svl"/>
         <segue reference="H8O-Mc-OH3"/>
         <segue reference="ugX-qh-OjL"/>
     </inferredMetricsTieBreakers>

@@ -27,6 +27,16 @@ extern const NSInteger CaronaeErrorNoRidesCreated;
 + (NSString *)userFBToken;
 
 /**
+ *  Check if the user profile is incomplete (with any fields left blank).
+ *  Should be called to check if the user needs to be prompted with the screen
+ *  to complete their profile.
+ *
+ *  @return YES if the user has any mandatory profile fields left blank. NO if
+ *  the user has already completed his profile.
+ */
++ (BOOL)userProfileIsIncomplete;
+
+/**
  *  Check if the user has already requested to join a Ride.
  *  @param ride The ride of the query.
  *  @return `true` if the use has already requested to join the ride, `false` otherwise.

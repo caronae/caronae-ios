@@ -5,6 +5,7 @@
 #import "SearchResultsViewController.h"
 #import "CaronaeRideCell.h"
 #import "SearchRideViewController.h"
+#import "EditProfileViewController.h"
 #import "RideViewController.h"
 #import "Ride.h"
 
@@ -20,6 +21,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if ([CaronaeDefaults userProfileIsIncomplete]) {
+        [self performSelector:@selector(performSegueWithIdentifier:sender:) withObject:@"CompleteProfile" afterDelay:0.0];
+    }
     
     UINib *cellNib = [UINib nibWithNibName:@"CaronaeRideCell" bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"Ride Cell"];
@@ -150,6 +155,11 @@
     else if ([segue.identifier isEqualToString:@"ViewSearchResults"]) {
         SearchResultsViewController *vc = segue.destinationViewController;
         vc.searchParams = self.searchParams;
+    }
+    else if ([segue.identifier isEqualToString:@"CompleteProfile"]) {
+        UINavigationController *editProfileNavController = segue.destinationViewController;
+        EditProfileViewController *vc = editProfileNavController.viewControllers.firstObject;
+        vc.completeProfileMode = YES;
     }
 }
 

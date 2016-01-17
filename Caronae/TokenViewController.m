@@ -47,7 +47,7 @@
             [CaronaeDefaults defaults].userToken = userToken;
             
             // Go to app or to profile screen to complete registration
-            if ([self userProfileIsIncomplete:userProfile]) {
+            if ([CaronaeDefaults userProfileIsIncomplete]) {
                 [self performSegueWithIdentifier:@"CompleteProfile" sender:self];
             } else {
                 [self performSegueWithIdentifier:@"ViewHome" sender:self];
@@ -72,10 +72,6 @@
         [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível autenticar." message:errorMsg];
         _authButton.enabled = YES;
     }];
-}
-
-- (BOOL)userProfileIsIncomplete:(NSDictionary *)user {
-    return [user[@"phone_number"] isEqualToString:@""] || [user[@"email"] isEqualToString:@""] || [user[@"location"] isEqualToString:@""];
 }
 
 

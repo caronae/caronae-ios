@@ -56,6 +56,11 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
     return token.tokenString;
 }
 
++ (BOOL)userProfileIsIncomplete {
+    NSDictionary *user = [CaronaeDefaults defaults].user;
+    return [user[@"phone_number"] isEqualToString:@""] || [user[@"email"] isEqualToString:@""] || [user[@"location"] isEqualToString:@""];
+}
+
 + (BOOL)hasUserAlreadyRequestedJoin:(Ride *)ride {
     NSArray *requested = [CaronaeDefaults defaults].cachedJoinRequests;
     NSNumber *rideID = @(ride.rideID);

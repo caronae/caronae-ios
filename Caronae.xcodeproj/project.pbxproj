@@ -274,12 +274,6 @@
 		A32B80B81C2E075000FC370A /* Ride Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A33FABE81BEE8E93008B4F51 /* CreateRideViewController.h */,
-				A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */,
-				A39BBCF41C048E4D00EF9EBD /* SearchRideViewController.h */,
-				A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */,
-				A3996D2B1C13AC0900D2E890 /* SearchResultsViewController.h */,
-				A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */,
 				A32C77241C41EEE30098583B /* AllRidesViewController.h */,
 				A32C77251C41EEE30098583B /* AllRidesViewController.m */,
 				A3AD19C81BED9BFB003EDA17 /* ActiveRidesViewController.h */,
@@ -290,6 +284,12 @@
 				A35D472A1C2092A300501647 /* RidesHistoryViewController.m */,
 				A39BBD091C06B94E00EF9EBD /* RideViewController.h */,
 				A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */,
+				A33FABE81BEE8E93008B4F51 /* CreateRideViewController.h */,
+				A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */,
+				A39BBCF41C048E4D00EF9EBD /* SearchRideViewController.h */,
+				A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */,
+				A3996D2B1C13AC0900D2E890 /* SearchResultsViewController.h */,
+				A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */,
 			);
 			name = "Ride Controllers";
 			sourceTree = "<group>";

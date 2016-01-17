@@ -10,6 +10,7 @@
 @interface EditProfileViewController () <ZoneSelectionDelegate>
 @property (nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic) NSDateFormatter *joinedDateFormatter;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @property (nonatomic) UIBarButtonItem *loadingButton;
 @property (weak, nonatomic) IBOutlet UIButton *changePhotoButton;
 @property (nonatomic) NSString *neighborhood;
@@ -28,18 +29,12 @@
     }
     
     [self updateProfileFields];
+    [self configureFacebookLoginButton];
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
                                         initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [spinner startAnimating];
     self.loadingButton = [[UIBarButtonItem alloc] initWithCustomView:spinner];
-    
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    loginButton.readPermissions = @[@"public_profile", @"user_friends"];
-    [self.fbButtonView addSubview:loginButton];
-    loginButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.fbButtonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[loginButton]|" options:NSLayoutFormatAlignAllTop metrics:nil views:NSDictionaryOfVariableBindings(loginButton)]];
-    [self.fbButtonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[loginButton]|" options:NSLayoutFormatAlignAllTop metrics:nil views:NSDictionaryOfVariableBindings(loginButton)]];
     
     self.changePhotoButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -47,7 +42,17 @@
     
     if (self.completeProfileMode) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Olá!" message:@"Parece que esta é sua primeira vez usando o Caronaê. Por favor, complete seu perfil para continuar."];
+        self.navigationItem.leftBarButtonItem = nil;
     }
+}
+
+- (void)configureFacebookLoginButton {
+    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    loginButton.readPermissions = @[@"public_profile", @"user_friends"];
+    [self.fbButtonView addSubview:loginButton];
+    loginButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.fbButtonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[loginButton]|" options:NSLayoutFormatAlignAllTop metrics:nil views:NSDictionaryOfVariableBindings(loginButton)]];
+    [self.fbButtonView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[loginButton]|" options:NSLayoutFormatAlignAllTop metrics:nil views:NSDictionaryOfVariableBindings(loginButton)]];
 }
 
 - (void)updateProfileFields {
