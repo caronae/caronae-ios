@@ -12,6 +12,7 @@
 
 @property (nonatomic) NSDictionary *user;
 @property id<EditProfileDelegate> delegate;
+@property (nonatomic) BOOL completeProfileMode;
 
 // Profile
 @property (weak, nonatomic) IBOutlet UIImageView *photo;

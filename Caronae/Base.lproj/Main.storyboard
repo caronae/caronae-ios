@@ -261,12 +261,13 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <outlet property="authTextField" destination="nW8-HP-hhp" id="3N6-CB-VYr"/>
                         <outlet property="authenticateButton" destination="GdC-RO-82W" id="Due-qn-Ay7"/>
                         <outlet property="tokenTextField" destination="nW8-HP-hhp" id="nbL-Gr-mxx"/>
-                        <segue destination="Grf-xD-SWT" kind="show" identifier="tokenValidated" id="WCN-l5-gUT"/>
+                        <segue destination="Grf-xD-SWT" kind="show" identifier="ViewHome" id="WCN-l5-gUT"/>
+                        <segue destination="NVj-Xk-m80" kind="presentation" identifier="CompleteProfile" id="VJh-c3-WKd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-309" y="5"/>
+            <point key="canvasLocation" x="-349.5" y="5"/>
         </scene>
         <!--Pesquisa-->
         <scene sceneID="86N-xC-KLU">
@@ -3489,13 +3490,13 @@ FOTO</string>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Gfe-eh-A7H" userLabel="Email icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="70" width="17" height="16"/>
+                                                            <rect key="frame" x="0.0" y="69" width="17" height="16"/>
                                                         </variation>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Mds-A1-ZMf" userLabel="Phone icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="118" width="16" height="20"/>
+                                                            <rect key="frame" x="0.0" y="117" width="16" height="20"/>
                                                         </variation>
                                                     </imageView>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21 99875-5678" borderStyle="roundedRect" placeholder="Telefone celular" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-zR-zbO" userLabel="Phone" customClass="CaronaeTextField">
@@ -3512,7 +3513,7 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="27" y="106" width="343" height="30"/>
+                                                            <rect key="frame" x="27" y="105" width="343" height="30"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="Hvq-Jb-OBD"/>
                                                             </mask>
@@ -3605,7 +3606,7 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="267" width="370" height="151"/>
+                                                    <rect key="frame" x="15" y="267" width="370" height="150.5"/>
                                                     <mask key="subviews">
                                                         <include reference="qjM-je-3ke"/>
                                                         <include reference="Gfe-eh-A7H"/>
@@ -3749,7 +3750,7 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="443" width="370" height="85"/>
+                                                    <rect key="frame" x="15" y="442.5" width="370" height="84"/>
                                                     <mask key="subviews">
                                                         <include reference="ftJ-lK-bEs"/>
                                                         <include reference="1W7-OK-GJ3"/>
@@ -3817,7 +3818,7 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="533" width="370" height="50"/>
+                                                    <rect key="frame" x="15" y="531.5" width="370" height="50"/>
                                                     <mask key="subviews">
                                                         <include reference="K8h-kP-2X5"/>
                                                         <include reference="P3j-hD-d2F"/>
@@ -3877,7 +3878,7 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="121" width="27" height="15"/>
+                                                            <rect key="frame" x="0.0" y="120" width="27" height="15"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="mrX-gz-9pd"/>
                                                                 <exclude reference="pCi-86-yhh"/>
@@ -3898,7 +3899,7 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="37" y="106" width="333" height="30"/>
+                                                            <rect key="frame" x="37" y="105" width="333" height="30"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="QeR-UZ-a3h"/>
                                                             </mask>
@@ -3932,7 +3933,7 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="3" y="170" width="20" height="20"/>
+                                                            <rect key="frame" x="3" y="169" width="20" height="20"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="f8y-eS-b9V"/>
                                                                 <exclude reference="lOH-zk-dNU"/>
@@ -3955,7 +3956,7 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="37" y="156" width="333" height="30"/>
+                                                            <rect key="frame" x="37" y="155" width="333" height="30"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="JsV-ht-chF"/>
                                                                 <exclude reference="tf4-Lm-ctF"/>
@@ -4044,7 +4045,7 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="593" width="370" height="165"/>
+                                                    <rect key="frame" x="15" y="591.5" width="370" height="165"/>
                                                     <mask key="subviews">
                                                         <include reference="q8t-lO-Jqk"/>
                                                         <include reference="ZA1-8O-6ah"/>
@@ -4181,7 +4182,7 @@ FOTO</string>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="773"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="771.5"/>
                                             <mask key="subviews">
                                                 <include reference="wC6-CD-nF5"/>
                                                 <include reference="NpW-3h-cia"/>
@@ -6950,11 +6951,12 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gns-F9-8s8"/>
-        <segue reference="kg1-V2-ucx"/>
+        <segue reference="VJh-c3-WKd"/>
         <segue reference="jes-ZV-WH9"/>
+        <segue reference="kg1-V2-ucx"/>
         <segue reference="tvA-Ui-5Q1"/>
-        <segue reference="tug-g2-rGR"/>
+        <segue reference="gns-F9-8s8"/>
+        <segue reference="GWy-OD-WPe"/>
         <segue reference="H8O-Mc-OH3"/>
         <segue reference="ugX-qh-OjL"/>
     </inferredMetricsTieBreakers>

@@ -23,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if ([FBSDKAccessToken currentAccessToken]) {
-        // User is logged in, do work such as go to next view controller.
         FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
         NSLog(@"User is logged in on Facebook with ID %@", token.userID);
     }
@@ -45,6 +44,10 @@
     self.changePhotoButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(FBTokenChanged:) name:FBSDKAccessTokenDidChangeNotification object:nil];
+    
+    if (self.completeProfileMode) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Olá!" message:@"Parece que esta é sua primeira vez usando o Caronaê. Por favor, complete seu perfil para continuar."];
+    }
 }
 
 - (void)updateProfileFields {

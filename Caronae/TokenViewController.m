@@ -2,6 +2,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "NSDictionary+dictionaryWithoutNulls.h"
 #import "CaronaeAlertController.h"
+#import "EditProfileViewController.h"
 #import "TokenViewController.h"
 
 @interface TokenViewController () <UITextFieldDelegate>
@@ -45,8 +46,12 @@
             // Save user's token
             [CaronaeDefaults defaults].userToken = userToken;
             
-            // Go to app
-            [self performSegueWithIdentifier:@"tokenValidated" sender:self];
+            // Go to app or to profile screen to complete registration
+            if ([self userProfileIsIncomplete:userProfile]) {
+                [self performSegueWithIdentifier:@"CompleteProfile" sender:self];
+            } else {
+                [self performSegueWithIdentifier:@"ViewHome" sender:self];
+            }
         }
         else {
             NSLog(@"Error authenticating");
@@ -68,6 +73,23 @@
         _authButton.enabled = YES;
     }];
 }
+
+- (BOOL)userProfileIsIncomplete:(NSDictionary *)user {
+    return [user[@"phone_number"] isEqualToString:@""] || [user[@"email"] isEqualToString:@""] || [user[@"location"] isEqualToString:@""];
+}
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"CompleteProfile"]) {
+        UINavigationController *editProfileNavController = segue.destinationViewController;
+        EditProfileViewController *vc = editProfileNavController.viewControllers.firstObject;
+        vc.completeProfileMode = YES;
+    }
+}
+
+#pragma mark - IBActions
 
 - (IBAction)didTapAuthenticateButton:(UIButton *)sender {
     [self authenticate];
