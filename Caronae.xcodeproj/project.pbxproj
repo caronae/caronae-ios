@@ -36,7 +36,7 @@
 		A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBD021C06378E00EF9EBD /* NSDate+nextHour.m */; };
 		A39BBD051C06AB9D00EF9EBD /* CaronaeRideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39BBD041C06AB9D00EF9EBD /* CaronaeRideCell.xib */; };
 		A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */; };
-		A3A4A4AF1C4C695800CF4CB2 /* NSString+emailValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4A4AE1C4C695800CF4CB2 /* NSString+emailValidation.m */; };
+		A3A4A4AF1C4C695800CF4CB2 /* NSString+validation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */; };
 		A3AD19CA1BED9BFB003EDA17 /* ActiveRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */; };
 		A3B5AEFF1BF1AAC10026A889 /* CaronaeDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AEFE1BF1AAC10026A889 /* CaronaeDefaults.m */; };
 		A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */; };
@@ -121,8 +121,8 @@
 		A39BBD041C06AB9D00EF9EBD /* CaronaeRideCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CaronaeRideCell.xib; sourceTree = "<group>"; };
 		A39BBD091C06B94E00EF9EBD /* RideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideViewController.h; sourceTree = "<group>"; };
 		A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideViewController.m; sourceTree = "<group>"; };
-		A3A4A4AD1C4C695800CF4CB2 /* NSString+emailValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+emailValidation.h"; sourceTree = "<group>"; };
-		A3A4A4AE1C4C695800CF4CB2 /* NSString+emailValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+emailValidation.m"; sourceTree = "<group>"; };
+		A3A4A4AD1C4C695800CF4CB2 /* NSString+validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+validation.h"; sourceTree = "<group>"; };
+		A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+validation.m"; sourceTree = "<group>"; };
 		A3AD19C81BED9BFB003EDA17 /* ActiveRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveRidesViewController.h; sourceTree = "<group>"; };
 		A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveRidesViewController.m; sourceTree = "<group>"; };
 		A3B5AEFD1BF1AAC10026A889 /* CaronaeDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeDefaults.h; sourceTree = "<group>"; };
@@ -336,8 +336,8 @@
 				A39BBD021C06378E00EF9EBD /* NSDate+nextHour.m */,
 				A3F30EE71C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.h */,
 				A3F30EE81C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m */,
-				A3A4A4AD1C4C695800CF4CB2 /* NSString+emailValidation.h */,
-				A3A4A4AE1C4C695800CF4CB2 /* NSString+emailValidation.m */,
+				A3A4A4AD1C4C695800CF4CB2 /* NSString+validation.h */,
+				A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -546,7 +546,7 @@
 				A3F30EED1C0890C10024BE37 /* CaronaeZoneCell.m in Sources */,
 				A3169C9B1BED842D00A0D428 /* TokenViewController.m in Sources */,
 				A325DA701C0CAFD700B9124E /* CaronaeJoinRequestCell.m in Sources */,
-				A3A4A4AF1C4C695800CF4CB2 /* NSString+emailValidation.m in Sources */,
+				A3A4A4AF1C4C695800CF4CB2 /* NSString+validation.m in Sources */,
 				A39BBCFF1C06296200EF9EBD /* Ride.m in Sources */,
 				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
 				A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */,

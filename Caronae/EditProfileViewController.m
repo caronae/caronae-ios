@@ -4,7 +4,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CaronaeTextField.h"
-#import "NSString+emailValidation.h"
+#import "NSString+validation.h"
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
 #import "ZoneSelectionViewController.h"
@@ -186,6 +186,11 @@
     
     if (self.hasCarSwitch.on && ([self.carModelTextField.text isEqualToString:@""] ||  [self.carPlateTextField.text isEqualToString:@""] ||  [self.carColorTextField.text isEqualToString:@""])) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que você marcou que tem um carro mas não preencheu os dados dele."];
+        return NO;
+    }
+    
+    if (self.hasCarSwitch.on && ![self.carPlateTextField.text isValidCarPlate]) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que preencheu incorretamente a placa do seu carro. Verifique se a preencheu no formato \"ABC-1234\"."];
         return NO;
     }
     

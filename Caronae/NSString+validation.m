@@ -1,6 +1,6 @@
-#import "NSString+emailValidation.h"
+#import "NSString+validation.h"
 
-@implementation NSString (emailValidation)
+@implementation NSString (validation)
 
 - (BOOL)isValidEmail {
     BOOL stricterFilter = NO;
@@ -9,6 +9,12 @@
     NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:self];
+}
+
+- (BOOL)isValidCarPlate {
+    NSString *plateRegex = @"^[a-zA-Z]{3}-[0-9]{4}$";
+    NSPredicate *plateTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", plateRegex];
+    return [plateTest evaluateWithObject:self];
 }
 
 @end

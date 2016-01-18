@@ -1,7 +1,8 @@
 #import <Foundation/Foundation.h>
 
-@interface NSString (emailValidation)
+@interface NSString (validation)
 
 - (BOOL)isValidEmail;
+- (BOOL)isValidCarPlate;
 
 @end
