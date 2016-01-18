@@ -22,7 +22,7 @@ typedef enum {
 
 @interface ZoneSelectionViewController : UITableViewController
 
-@property (nonatomic) NSArray *zones;
+@property (nonatomic) NSString *selectedZone;
 @property (nonatomic) ZoneSelectionType type;
 @property (nonatomic) NeighborhoodSelectionType neighborhoodSelectionType;
 @property (nonatomic, assign) id<ZoneSelectionDelegate> delegate;

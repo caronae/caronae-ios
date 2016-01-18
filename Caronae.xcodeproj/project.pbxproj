@@ -28,6 +28,7 @@
 		A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C91BF01C1D005BA311 /* ProfileViewController.m */; };
 		A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312CC1BF01C26005BA311 /* EditProfileViewController.m */; };
 		A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35D472A1C2092A300501647 /* RidesHistoryViewController.m */; };
+		A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */; };
 		A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
 		A38F1D4D1C0398B500DEF6B1 /* CaronaeRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F1D4C1C0398B500DEF6B1 /* CaronaeRideCell.m */; };
 		A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */; };
@@ -106,6 +107,8 @@
 		A34312CC1BF01C26005BA311 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		A35D47291C2092A300501647 /* RidesHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RidesHistoryViewController.h; sourceTree = "<group>"; };
 		A35D472A1C2092A300501647 /* RidesHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RidesHistoryViewController.m; sourceTree = "<group>"; };
+		A374623D1C4D7B59000B802C /* ZoneSelectionInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoneSelectionInputViewController.h; sourceTree = "<group>"; };
+		A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoneSelectionInputViewController.m; sourceTree = "<group>"; };
 		A375D2F91C19175A00795CAE /* CaronaeAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeAlertController.h; sourceTree = "<group>"; };
 		A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeAlertController.m; sourceTree = "<group>"; };
 		A38F1D4B1C0398B500DEF6B1 /* CaronaeRideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeRideCell.h; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 				A34312C61BF01B9A005BA311 /* MenuViewController.m */,
 				A3F30EEE1C0891520024BE37 /* ZoneSelectionViewController.h */,
 				A3F30EEF1C0891520024BE37 /* ZoneSelectionViewController.m */,
+				A374623D1C4D7B59000B802C /* ZoneSelectionInputViewController.h */,
+				A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */,
 				A32B80B41C2C6EBE00FC370A /* FalaeViewController.h */,
 				A32B80B51C2C6EBE00FC370A /* FalaeViewController.m */,
 				A3169CA21BED842D00A0D428 /* Assets.xcassets */,
@@ -556,6 +561,7 @@
 				A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */,
 				A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */,
 				A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */,
+				A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */,
 				A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */,
 				A3B5AEFF1BF1AAC10026A889 /* CaronaeDefaults.m in Sources */,
 				A38F1D4D1C0398B500DEF6B1 /* CaronaeRideCell.m in Sources */,

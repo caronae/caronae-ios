@@ -1,8 +1,9 @@
 #import "ZoneSelectionViewController.h"
+#import "ZoneSelectionInputViewController.h"
 #import "CaronaeZoneCell.h"
 
 @interface ZoneSelectionViewController ()
-@property (nonatomic) NSString *selectedZone;
+@property (nonatomic) NSArray *zones;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (nonatomic) NSMutableArray *selectedNeighborhoods;
 @end
@@ -71,13 +72,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.type == ZoneSelectionZone) {
-        self.selectedZone = self.zones[indexPath.row];
-        if (![self.selectedZone isEqualToString:@"Outra"]) {
+        if (![self.zones[indexPath.row] isEqualToString:@"Outra"]) {
+            self.selectedZone = self.zones[indexPath.row];
             [self performSegueWithIdentifier:@"ViewNeighborhoods" sender:self];
         }
         else {
-            self.selectedNeighborhoods = [NSMutableArray arrayWithObject:@"Outra"];
-            [self finishSelection];
+            self.selectedZone = @"Outros";
+            if (self.neighborhoodSelectionType == NeighborhoodSelectionOne) {
+                [self performSegueWithIdentifier:@"OtherNeighborhood" sender:self];
+            }
+            else if (self.neighborhoodSelectionType == NeighborhoodSelectionMany) {
+                self.selectedNeighborhoods = [NSMutableArray arrayWithObject:@"Outros"];
+                [self finishSelection];
+            }
         }
     }
     else {
@@ -113,6 +120,11 @@
         vc.type = ZoneSelectionNeighborhood;
         vc.neighborhoodSelectionType = self.neighborhoodSelectionType;
         vc.selectedZone = self.selectedZone;
+        vc.delegate = self.delegate;
+    }
+    else if ([segue.identifier isEqualToString:@"OtherNeighborhood"]) {
+        ZoneSelectionInputViewController *vc = segue.destinationViewController;
+        vc.neighborhoodSelectionType = self.neighborhoodSelectionType;
         vc.delegate = self.delegate;
     }
 }
