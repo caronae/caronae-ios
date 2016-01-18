@@ -6,4 +6,4 @@ pod 'TPKeyboardAvoiding', '~> 1.2.10'
 pod 'SDCAlertView', '2.5.4'
 pod 'SVProgressHUD'
 pod 'SDWebImage', '~>3.7'
-
+pod 'SHSPhoneComponent'

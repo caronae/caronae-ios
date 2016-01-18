@@ -29,6 +29,7 @@ PODS:
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
+  - SHSPhoneComponent (2.15)
   - SVProgressHUD (1.1.3)
   - TPKeyboardAvoiding (1.2.10)
 
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - SDCAlertView (= 2.5.4)
   - SDWebImage (~> 3.7)
+  - SHSPhoneComponent
   - SVProgressHUD
   - TPKeyboardAvoiding (~> 1.2.10)
 
@@ -47,6 +49,7 @@ SPEC CHECKSUMS:
   SDCAlertView: 2e2b0ecc5f1ec367e45d83efa2e512688ca7fa55
   SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SHSPhoneComponent: 4cec0653a150ad63cbc52b0c8b29ce2d3c9c26f0
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   TPKeyboardAvoiding: 614ebec846ec28b83d548769297fa5fb56468904
 

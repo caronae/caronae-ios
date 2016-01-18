@@ -3,6 +3,8 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "CaronaeTextField.h"
+#import "NSString+emailValidation.h"
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
 #import "ZoneSelectionViewController.h"
@@ -28,6 +30,7 @@
         NSLog(@"User is logged in on Facebook with ID %@", token.userID);
     }
     
+    [self.phoneTextField.formatter setDefaultOutputPattern:@"(##) #####-####"];
     [self updateProfileFields];
     [self configureFacebookLoginButton];
     
@@ -43,6 +46,8 @@
     if (self.completeProfileMode) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Olá!" message:@"Parece que esta é sua primeira vez usando o Caronaê. Por favor, complete seu perfil para continuar."];
         self.navigationItem.leftBarButtonItem = nil;
+        self.numDrivesLabel.text = @"0";
+        self.numRidesLabel.text = @"0";
     }
 }
 
@@ -73,7 +78,7 @@
     self.numRidesLabel.text = user[@"numRides"] ? [NSString stringWithFormat:@"%ld", [user[@"numRides"] integerValue]] : @"-";
     
     self.emailTextField.text = user[@"email"];
-    self.phoneTextField.text = user[@"phone_number"];
+    [self.phoneTextField setFormattedText:user[@"phone_number"]];
     
     self.neighborhood = user[@"location"];
     if (![self.neighborhood isEqualToString:@""]) {
@@ -107,7 +112,7 @@
                                   @"name": self.user[@"name"],
                                   @"profile": self.user[@"profile"],
                                   @"course": self.user[@"course"],
-                                  @"phone_number": self.phoneTextField.text,
+                                  @"phone_number": self.phoneTextField.phoneNumber,
                                   @"email": self.emailTextField.text,
                                   @"car_owner": @(self.hasCarSwitch.on),
                                   @"car_model": self.carModelTextField.text,
@@ -160,10 +165,36 @@
     }];
 }
 
+- (BOOL)userInputValid {
+    NSString *email = self.emailTextField.text;
+    
+    if (![email isValidEmail]) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que o endereço de email que você inseriu não é válido."];
+        return NO;
+    }
+    
+    NSString *phone = self.phoneTextField.phoneNumber;
+    if (phone.length != 11) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que o telefone que você inseriu não é válido."];
+        return NO;
+    }
+    
+    if (!self.neighborhood || [self.neighborhood isEqualToString:@""]) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que você esqueceu de preencher seu bairro."];
+        return NO;
+    }
+    
+    if (self.hasCarSwitch.on && ([self.carModelTextField.text isEqualToString:@""] ||  [self.carPlateTextField.text isEqualToString:@""] ||  [self.carColorTextField.text isEqualToString:@""])) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que você marcou que tem um carro mas não preencheu os dados dele."];
+        return NO;
+    }
+    
+    return YES;
+}
+
 #pragma mark - Zone selection methods
 
 - (void)hasSelectedNeighborhood:(NSString *)neighborhood inZone:(NSString *)zone {
-    NSLog(@"User has selected %@ in %@", neighborhood, zone);
     self.neighborhood = neighborhood;
     [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
 }
@@ -173,7 +204,10 @@
 
 - (IBAction)didTapSaveButton:(id)sender {
     [self.view endEditing:YES];
-    [self saveProfile];
+    
+    if ([self userInputValid]) {
+        [self saveProfile];
+    }
 }
 
 - (IBAction)didTapCancelButton:(id)sender {

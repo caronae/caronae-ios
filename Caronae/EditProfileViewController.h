@@ -1,5 +1,7 @@
 #import <UIKit/UIKit.h>
 
+@class CaronaePhoneTextField;
+
 @protocol EditProfileDelegate <NSObject>
 
 - (void)didUpdateUser:(NSDictionary *)newUser;
@@ -25,7 +27,7 @@
 
 // Contacts
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+@property (weak, nonatomic) IBOutlet CaronaePhoneTextField *phoneTextField;
 
 // Locale
 @property (weak, nonatomic) IBOutlet UIButton *neighborhoodButton;

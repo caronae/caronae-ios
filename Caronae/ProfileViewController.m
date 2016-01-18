@@ -37,9 +37,18 @@
 - (void)updateProfileFields {
     if ([self isMyProfile]) {
         self.title = @"Meu Perfil";
-        _carPlateLabel.text = _user[@"car_plate"];
-        _carModelLabel.text = _user[@"car_model"];
-        _carColorLabel.text = _user[@"car_color"];
+        
+        if ([_user[@"car_owner"] isEqual:@(YES)]) {
+            _carPlateLabel.text = _user[@"car_plate"];
+            _carModelLabel.text = _user[@"car_model"];
+            _carColorLabel.text = _user[@"car_color"];
+        }
+        else {
+            _carPlateLabel.text = @"-";
+            _carModelLabel.text = @"-";
+            _carColorLabel.text = @"-";
+        }
+        
         [_mutualFriendsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [_reportView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
