@@ -46,12 +46,7 @@
             // Save user's token
             [CaronaeDefaults defaults].userToken = userToken;
             
-            // Go to app or to profile screen to complete registration
-            if ([CaronaeDefaults userProfileIsIncomplete]) {
-                [self performSegueWithIdentifier:@"CompleteProfile" sender:self];
-            } else {
-                [self performSegueWithIdentifier:@"ViewHome" sender:self];
-            }
+            [self performSegueWithIdentifier:@"ViewHome" sender:self];
         }
         else {
             NSLog(@"Error authenticating");
