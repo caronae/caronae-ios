@@ -41,6 +41,7 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
 
 + (void)signOut {
     [CaronaeDefaults defaults].user = nil;
+    [CaronaeDefaults defaults].userToken = nil;
     [CaronaeDefaults defaults].cachedJoinRequests = nil;
     [[[FBSDKLoginManager alloc] init] logOut];
 
