@@ -7,6 +7,7 @@
 @property (nonatomic) NSArray *rides;
 @property (nonatomic) Ride *selectedRide;
 @property (nonatomic) NSDictionary *user;
+@property (nonatomic) UILabel *emptyTableLabel;
 @end
 
 @implementation MyRidesViewController
@@ -24,6 +25,20 @@
     self.user = [CaronaeDefaults defaults].user;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNotification:) name:CaronaeUserRidesUpdatedNotification object:nil];
+    
+    // Display a message when the table is empty
+    _emptyTableLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    _emptyTableLabel.text = @"Você ainda não criou\nnenhuma carona.";
+    _emptyTableLabel.textColor = [UIColor grayColor];
+    _emptyTableLabel.numberOfLines = 0;
+    _emptyTableLabel.textAlignment = NSTextAlignmentCenter;
+    if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
+        _emptyTableLabel.font = [UIFont systemFontOfSize:25.0f weight:UIFontWeightUltraLight];
+    }
+    else {
+        _emptyTableLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0f];
+    }
+    [_emptyTableLabel sizeToFit];
     
     [self updateRides];
 }
@@ -57,9 +72,18 @@
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
         _rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
+        if (_rides.count > 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.tableView.backgroundView = nil;
+                [self.tableView reloadData];
+            });
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.tableView.backgroundView = _emptyTableLabel;
+            });
+        }
+
     });
 }
 

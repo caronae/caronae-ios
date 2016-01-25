@@ -10,6 +10,7 @@
 @property (nonatomic) NSArray *rides;
 @property (nonatomic) Ride *selectedRide;
 @property (nonatomic) UILabel *emptyTableLabel;
+@property (nonatomic) UILabel *errorLabel;
 @property (nonatomic) UILabel *loadingLabel;
 @end
 
@@ -45,6 +46,20 @@
         _emptyTableLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0f];
     }
     [_emptyTableLabel sizeToFit];
+    
+    // Display a message when an error occurs
+    _errorLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    _errorLabel.text = @"Não foi possível\ncarregar as caronas.";
+    _errorLabel.textColor = [UIColor grayColor];
+    _errorLabel.numberOfLines = 0;
+    _errorLabel.textAlignment = NSTextAlignmentCenter;
+    if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
+        _errorLabel.font = [UIFont systemFontOfSize:25.0f weight:UIFontWeightUltraLight];
+    }
+    else {
+        _errorLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0f];
+    }
+    [_errorLabel sizeToFit];
     
     // Display a message when the table is loading
     _loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -83,6 +98,8 @@
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/getMyActiveRides"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self.refreshControl endRefreshing];
+        
         NSError *responseError;
         NSArray *rides = [ActiveRidesViewController parseResultsFromResponse:responseObject withError:&responseError];
         if (!responseError) {
@@ -95,11 +112,10 @@
                 self.tableView.backgroundView = _emptyTableLabel;
             }
             [self.tableView reloadData];
-            
-            [self.refreshControl endRefreshing];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.refreshControl endRefreshing];
+        self.tableView.backgroundView = _errorLabel;
         
         if (operation.response.statusCode == 403) {
             [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Seu token pode ter sido suspenso ou expirado." handler:^{
@@ -107,7 +123,7 @@
             }];
         }
         else {
-            NSLog(@"Error loading active rides: %@", error.description);
+            NSLog(@"Error loading active rides: %@", error.localizedDescription);
         }
     }];
 }
