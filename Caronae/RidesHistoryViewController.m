@@ -24,13 +24,6 @@
     
     self.tableView.rowHeight = 85.0f;
     
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor colorWithWhite:0.98f alpha:1.0f];
-    self.refreshControl.tintColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-    [self.refreshControl addTarget:self
-                            action:@selector(refreshTable:)
-                  forControlEvents:UIControlEventValueChanged];
-    
     // Display a message when the table is empty
     _emptyTableLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     _emptyTableLabel.text = @"Você ainda não concluiu\nnenhuma carona.";
@@ -78,12 +71,6 @@
     [self loadRidesHistory];
 }
 
-- (void)refreshTable:(id)sender {
-    if (self.refreshControl.refreshing) {
-        [self loadRidesHistory];
-    }
-}
-
 
 #pragma mark - Rides methods
 
@@ -93,8 +80,6 @@
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/getRidesHistory"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self.refreshControl endRefreshing];
-        
         NSError *responseError;
         NSArray *rides = [RidesHistoryViewController parseResultsFromResponse:responseObject withError:&responseError];
         if (!responseError) {
@@ -109,7 +94,6 @@
             [self.tableView reloadData];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self.refreshControl endRefreshing];
         self.tableView.backgroundView = _errorLabel;
         
         if (operation.response.statusCode == 403) {
