@@ -31,15 +31,16 @@
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"Ride Cell"];
     
     self.tableView.rowHeight = 85.0f;
+    self.tableView.contentInset = UIEdgeInsetsMake(45.0f, 0.0f, 0.0f, 0.0f);
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
     
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor colorWithWhite:0.98f alpha:1.0f];
-    self.refreshControl.tintColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-    [self.refreshControl addTarget:self
-                            action:@selector(refreshTable:)
-                  forControlEvents:UIControlEventValueChanged];
+//    self.refreshControl = [[UIRefreshControl alloc] init];
+//    self.refreshControl.backgroundColor = [UIColor colorWithWhite:0.98f alpha:1.0f];
+//    self.refreshControl.tintColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+//    [self.refreshControl addTarget:self
+//                            action:@selector(refreshTable:)
+//                  forControlEvents:UIControlEventValueChanged];
     
     // Display a message when the table is empty
     _emptyTableLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -88,11 +89,11 @@
     [self loadAllRides];
 }
 
-- (void)refreshTable:(id)sender {
-    if (self.refreshControl.refreshing) {
-        [self loadAllRides];
-    }
-}
+//- (void)refreshTable:(id)sender {
+//    if (self.refreshControl.refreshing) {
+//        [self loadAllRides];
+//    }
+//}
 
 
 #pragma mark - Rides methods
@@ -102,7 +103,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/all"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/all/0"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *responseError;
         NSArray *rides = [AllRidesViewController parseResultsFromResponse:responseObject withError:&responseError];
         if (!responseError) {
@@ -115,10 +116,10 @@
             }
             [self.tableView reloadData];
             
-            [self.refreshControl endRefreshing];
+//            [self.refreshControl endRefreshing];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self.refreshControl endRefreshing];
+//        [self.refreshControl endRefreshing];
         
         self.tableView.backgroundView = _errorLabel;
         

@@ -7,7 +7,6 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Token View Controller-->
@@ -122,6 +121,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdC-RO-82W">
                                                 <rect key="frame" x="146" y="313" width="67" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                 <state key="normal" title="ACESSAR" backgroundImage="ButtonColor">
                                                     <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
@@ -1777,9 +1777,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <exclude reference="mS0-3w-NhH"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="32" width="360" height="392"/>
-                                                        </variation>
                                                     </textView>
                                                 </subviews>
                                                 <constraints>
@@ -1790,9 +1787,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstItem="aXm-bY-nhq" firstAttribute="leading" secondItem="niF-RV-GOB" secondAttribute="leading" id="nvG-xL-6as"/>
                                                     <constraint firstItem="Ysw-F7-F0j" firstAttribute="leading" secondItem="aXm-bY-nhq" secondAttribute="leading" id="zGI-aD-Fkr"/>
                                                 </constraints>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="20" y="153" width="360" height="429"/>
-                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1808,9 +1802,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <constraint firstAttribute="trailing" secondItem="HDx-Di-YZG" secondAttribute="trailing" constant="20" id="eiZ-Od-mRF"/>
                                             <constraint firstItem="RWO-JP-mny" firstAttribute="width" secondItem="HDx-Di-YZG" secondAttribute="width" id="gdC-vi-OpI"/>
                                         </constraints>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="587"/>
-                                        </variation>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -1820,9 +1811,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                     <constraint firstAttribute="bottom" secondItem="x5A-6B-eNz" secondAttribute="bottom" id="Vv6-b1-6e0"/>
                                     <constraint firstAttribute="trailing" secondItem="x5A-6B-eNz" secondAttribute="trailing" id="nyX-Fo-UHq"/>
                                 </constraints>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="64" width="400" height="587"/>
-                                </variation>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2895,8 +2883,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                         <exclude reference="rtV-71-yGf"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="64" width="400" height="587"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="Kiw-qC-kJK"/>
                                         <include reference="T1v-DT-0Ay"/>
@@ -3491,13 +3478,13 @@ FOTO</string>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Gfe-eh-A7H" userLabel="Email icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="69" width="17" height="16"/>
+                                                            <rect key="frame" x="0.0" y="70" width="17" height="16"/>
                                                         </variation>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Mds-A1-ZMf" userLabel="Phone icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="117" width="16" height="20"/>
+                                                            <rect key="frame" x="0.0" y="118" width="16" height="20"/>
                                                         </variation>
                                                     </imageView>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21 99875-5678" borderStyle="roundedRect" placeholder="Telefone celular" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-zR-zbO" userLabel="Phone" customClass="CaronaePhoneTextField">
@@ -3514,7 +3501,7 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="27" y="105" width="343" height="30"/>
+                                                            <rect key="frame" x="27" y="106" width="343" height="30"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="Hvq-Jb-OBD"/>
                                                             </mask>
@@ -3751,7 +3738,7 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="442" width="370" height="84"/>
+                                                    <rect key="frame" x="15" y="443" width="370" height="85"/>
                                                     <mask key="subviews">
                                                         <include reference="ftJ-lK-bEs"/>
                                                         <include reference="1W7-OK-GJ3"/>
@@ -3819,7 +3806,7 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="531" width="370" height="50"/>
+                                                    <rect key="frame" x="15" y="533" width="370" height="50"/>
                                                     <mask key="subviews">
                                                         <include reference="K8h-kP-2X5"/>
                                                         <include reference="P3j-hD-d2F"/>
@@ -3879,7 +3866,7 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="120" width="27" height="15"/>
+                                                            <rect key="frame" x="0.0" y="121" width="27" height="15"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="mrX-gz-9pd"/>
                                                                 <exclude reference="pCi-86-yhh"/>
@@ -3900,7 +3887,7 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="37" y="105" width="333" height="30"/>
+                                                            <rect key="frame" x="37" y="106" width="333" height="30"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="QeR-UZ-a3h"/>
                                                             </mask>
@@ -3934,7 +3921,7 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="3" y="169" width="20" height="20"/>
+                                                            <rect key="frame" x="3" y="170" width="20" height="20"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="f8y-eS-b9V"/>
                                                                 <exclude reference="lOH-zk-dNU"/>
@@ -3957,7 +3944,7 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="37" y="155" width="333" height="30"/>
+                                                            <rect key="frame" x="37" y="156" width="333" height="30"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="JsV-ht-chF"/>
                                                                 <exclude reference="tf4-Lm-ctF"/>
@@ -4046,7 +4033,7 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="591" width="370" height="165"/>
+                                                    <rect key="frame" x="15" y="593" width="370" height="165"/>
                                                     <mask key="subviews">
                                                         <include reference="q8t-lO-Jqk"/>
                                                         <include reference="ZA1-8O-6ah"/>
@@ -4183,7 +4170,7 @@ FOTO</string>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="771.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="773"/>
                                             <mask key="subviews">
                                                 <include reference="wC6-CD-nF5"/>
                                                 <include reference="NpW-3h-cia"/>
@@ -4780,6 +4767,18 @@ FOTO</string>
                                                     <segment title="Volta"/>
                                                 </segments>
                                                 <color key="tintColor" red="0.57647061349999995" green="0.58039218189999997" blue="0.57647061349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                        <color key="value" white="0.68999999999999995" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="cyh-xu-vzE"/>
@@ -6595,7 +6594,8 @@ FOTO</string>
                                         <exclude reference="zJQ-na-4Sb"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact">
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="892"/>
                                     <mask key="constraints">
                                         <include reference="VCf-as-3Eo"/>
                                         <include reference="lgl-EX-gAv"/>
@@ -6866,6 +6866,7 @@ FOTO</string>
                         <viewControllerLayoutGuide type="bottom" id="pcA-fx-kaF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="27z-nz-vnk">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Digite o nome do bairro" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xyj-Wb-gUe" customClass="CaronaeTextField">
@@ -6880,8 +6881,7 @@ FOTO</string>
                                         <exclude reference="WI9-5m-6hu"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="85" width="360" height="40"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="WI9-5m-6hu"/>
                                     </mask>
@@ -6932,54 +6932,116 @@ FOTO</string>
             <point key="canvasLocation" x="6952.5" y="244"/>
         </scene>
         <!--Todas-->
-        <scene sceneID="Xc9-LH-XMn">
+        <scene sceneID="Rt6-sC-yON">
             <objects>
-                <tableViewController id="B4k-Rn-gi6" customClass="AllRidesViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" id="4ro-6k-saM">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="cgK-sI-zYQ" customClass="AllRidesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kbh-nR-EHh"/>
+                        <viewControllerLayoutGuide type="bottom" id="d9D-3Q-K6B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DAd-Qz-cSu">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PoX-dJ-IT3">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="cgK-sI-zYQ" id="6Ly-jh-MEq"/>
+                                    <outlet property="delegate" destination="cgK-sI-zYQ" id="ZaD-3Q-E5A"/>
+                                </connections>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="LcO-jW-xqN">
+                                <rect key="frame" x="-61" y="-14" width="123" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Cxf-AR-mcK">
+                                        <variation key="widthClass=compact" constant="220"/>
+                                    </constraint>
+                                </constraints>
+                                <segments>
+                                    <segment title="Ida"/>
+                                    <segment title="Volta"/>
+                                </segments>
+                                <color key="tintColor" red="0.57647061349999995" green="0.58039218189999997" blue="0.57647061349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                        <color key="value" white="0.68999999999999995" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Cxf-AR-mcK"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Cxf-AR-mcK"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="directionChanged:" destination="Frl-vE-K7W" eventType="valueChanged" id="jE2-zK-QDP"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Ride Cell" rowHeight="453" id="Tza-7J-iV7">
-                                <rect key="frame" x="0.0" y="92" width="600" height="453"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tza-7J-iV7" id="VgU-XL-olW">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="453"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="NVj-Xk-m80" kind="presentation" identifier="CompleteProfile" id="UB7-0r-mJG"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="B4k-Rn-gi6" id="R8h-i0-1zS"/>
-                            <outlet property="delegate" destination="B4k-Rn-gi6" id="Uw4-gc-kvM"/>
-                        </connections>
-                    </tableView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Todas" id="CNc-Ib-teV">
-                        <rightBarButtonItems>
-                            <barButtonItem image="SearchRide" id="Wnj-W3-pat">
-                                <connections>
-                                    <segue destination="K5N-ci-Dp7" kind="presentation" identifier="SearchRide" id="jes-ZV-WH9"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="NewRide" id="EqP-QJ-QLc">
-                                <connections>
-                                    <segue destination="CoL-uf-tJY" kind="presentation" identifier="CreateRide" id="kg1-V2-ucx"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <constraints>
+                            <constraint firstItem="LcO-jW-xqN" firstAttribute="centerX" secondItem="DAd-Qz-cSu" secondAttribute="centerX" id="2Bg-jb-uaQ"/>
+                            <constraint firstItem="LcO-jW-xqN" firstAttribute="top" secondItem="Kbh-nR-EHh" secondAttribute="bottom" constant="15" id="dXX-zY-W2E"/>
+                            <constraint firstItem="PoX-dJ-IT3" firstAttribute="top" secondItem="Kbh-nR-EHh" secondAttribute="bottom" id="mfx-sH-6LF"/>
+                            <constraint firstAttribute="trailing" secondItem="PoX-dJ-IT3" secondAttribute="trailing" id="osr-cK-Y3W"/>
+                            <constraint firstItem="d9D-3Q-K6B" firstAttribute="top" secondItem="PoX-dJ-IT3" secondAttribute="bottom" id="shW-Ho-hU9"/>
+                            <constraint firstItem="PoX-dJ-IT3" firstAttribute="leading" secondItem="DAd-Qz-cSu" secondAttribute="leading" id="xns-W2-Vn4"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="PoX-dJ-IT3"/>
+                                <exclude reference="LcO-jW-xqN"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="mfx-sH-6LF"/>
+                                <exclude reference="osr-cK-Y3W"/>
+                                <exclude reference="xns-W2-Vn4"/>
+                                <exclude reference="2Bg-jb-uaQ"/>
+                                <exclude reference="dXX-zY-W2E"/>
+                                <exclude reference="shW-Ho-hU9"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="PoX-dJ-IT3"/>
+                                <include reference="LcO-jW-xqN"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="mfx-sH-6LF"/>
+                                <include reference="osr-cK-Y3W"/>
+                                <include reference="xns-W2-Vn4"/>
+                                <include reference="2Bg-jb-uaQ"/>
+                                <include reference="dXX-zY-W2E"/>
+                                <include reference="shW-Ho-hU9"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Todas" id="g6m-K6-JjX">
+                        <barButtonItem key="rightBarButtonItem" image="SearchRide" id="yHa-PK-yef">
+                            <connections>
+                                <segue destination="K5N-ci-Dp7" kind="presentation" identifier="SearchRide" id="hM9-nM-k0Y"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="63o-N6-NEe" kind="show" identifier="ViewSearchResults" id="END-TH-0iJ"/>
-                        <segue destination="SRb-hM-LXF" kind="show" identifier="ViewRideDetails" id="dT3-Fo-MhL"/>
+                        <outlet property="tableView" destination="PoX-dJ-IT3" id="6cB-pY-wdl"/>
+                        <segue destination="63o-N6-NEe" kind="show" identifier="ViewSearchResults" id="DwZ-AK-niy"/>
+                        <segue destination="SRb-hM-LXF" kind="show" identifier="ViewRideDetails" id="X71-8k-4ET"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HUv-jr-elo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j1O-Py-9ht" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2628" y="-760"/>
         </scene>
@@ -6997,7 +7059,7 @@ FOTO</string>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="B4k-Rn-gi6" kind="relationship" relationship="rootViewController" id="Iu1-Qk-dqG"/>
+                        <segue destination="cgK-sI-zYQ" kind="relationship" relationship="rootViewController" id="Wcu-G8-X6g"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6XD-md-C6D" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -7031,14 +7093,13 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="VJh-c3-WKd"/>
+        <segue reference="X71-8k-4ET"/>
+        <segue reference="hM9-nM-k0Y"/>
+        <segue reference="DwZ-AK-niy"/>
         <segue reference="H8O-Mc-OH3"/>
-        <segue reference="dT3-Fo-MhL"/>
-        <segue reference="END-TH-0iJ"/>
-        <segue reference="kg1-V2-ucx"/>
-        <segue reference="jes-ZV-WH9"/>
         <segue reference="ugX-qh-OjL"/>
-        <segue reference="yIa-C3-QN8"/>
-        <segue reference="7VR-Dw-svl"/>
+        <segue reference="CEp-XF-lJK"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>
