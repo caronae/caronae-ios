@@ -29,6 +29,7 @@
 		A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312CC1BF01C26005BA311 /* EditProfileViewController.m */; };
 		A357EF331C56C5A100AC8096 /* CaronaeRideListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF311C56C5A100AC8096 /* CaronaeRideListController.m */; };
 		A357EF341C56C5A100AC8096 /* CaronaeRideListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A357EF321C56C5A100AC8096 /* CaronaeRideListController.xib */; };
+		A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF361C57168D00AC8096 /* SignupViewController.m */; };
 		A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35D472A1C2092A300501647 /* RidesHistoryViewController.m */; };
 		A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */; };
 		A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
@@ -110,6 +111,8 @@
 		A357EF301C56C5A100AC8096 /* CaronaeRideListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeRideListController.h; sourceTree = "<group>"; };
 		A357EF311C56C5A100AC8096 /* CaronaeRideListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeRideListController.m; sourceTree = "<group>"; };
 		A357EF321C56C5A100AC8096 /* CaronaeRideListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CaronaeRideListController.xib; sourceTree = "<group>"; };
+		A357EF351C57168D00AC8096 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		A357EF361C57168D00AC8096 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		A35D47291C2092A300501647 /* RidesHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RidesHistoryViewController.h; sourceTree = "<group>"; };
 		A35D472A1C2092A300501647 /* RidesHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RidesHistoryViewController.m; sourceTree = "<group>"; };
 		A374623D1C4D7B59000B802C /* ZoneSelectionInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoneSelectionInputViewController.h; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 				A34312C91BF01C1D005BA311 /* ProfileViewController.m */,
 				A34312CB1BF01C26005BA311 /* EditProfileViewController.h */,
 				A34312CC1BF01C26005BA311 /* EditProfileViewController.m */,
+				A357EF351C57168D00AC8096 /* SignupViewController.h */,
+				A357EF361C57168D00AC8096 /* SignupViewController.m */,
 			);
 			name = "User Controllers";
 			sourceTree = "<group>";
@@ -556,6 +561,7 @@
 				A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */,
 				A357EF331C56C5A100AC8096 /* CaronaeRideListController.m in Sources */,
 				A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */,
+				A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */,
 				A3EE026C1C17D01000A8407E /* CaronaeRiderCell.m in Sources */,
 				A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */,
 				A3F30EED1C0890C10024BE37 /* CaronaeZoneCell.m in Sources */,

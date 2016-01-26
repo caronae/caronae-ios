@@ -19,7 +19,7 @@
     [super viewDidLoad];
     
     if ([CaronaeDefaults userProfileIsIncomplete]) {
-        [self performSelector:@selector(performSegueWithIdentifier:sender:) withObject:@"CompleteProfile" afterDelay:0.0];
+        [self performSelector:@selector(presentFinishProfileScreen) withObject:nil afterDelay:0.0];
     }
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
@@ -31,6 +31,13 @@
     if (self.refreshControl.refreshing) {
         [self loadAllRides];
     }
+}
+
+- (void)presentFinishProfileScreen {
+    UINavigationController *editProfileNavController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"EditProfileNavigationController"];;
+    EditProfileViewController *vc = editProfileNavController.viewControllers.firstObject;
+    vc.completeProfileMode = YES;
+    [self presentViewController:editProfileNavController animated:YES completion:nil];
 }
 
 
@@ -108,11 +115,6 @@
     else if ([segue.identifier isEqualToString:@"ViewSearchResults"]) {
         SearchResultsViewController *vc = segue.destinationViewController;
         vc.searchParams = self.searchParams;
-    }
-    else if ([segue.identifier isEqualToString:@"CompleteProfile"]) {
-        UINavigationController *editProfileNavController = segue.destinationViewController;
-        EditProfileViewController *vc = editProfileNavController.viewControllers.firstObject;
-        vc.completeProfileMode = YES;
     }
 }
 

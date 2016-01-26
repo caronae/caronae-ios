@@ -85,7 +85,6 @@
     self.tableView.rowHeight = 85.0f;
     self.tableView.contentInset = UIEdgeInsetsMake(45.0f, 0.0f, 0.0f, 0.0f);
     
-    
     self.tableView.backgroundView = self.loadingLabel;
 }
 
@@ -103,7 +102,9 @@
 
 - (void)setRides:(NSArray *)rides {
     _rides = rides;
-    self.filteredRides = [CaronaeRideListController filterRides:_rides withDirectionGoing:self.ridesDirectionGoing];
+    if (_rides) {
+        self.filteredRides = [CaronaeRideListController filterRides:_rides withDirectionGoing:self.ridesDirectionGoing];
+    }
     self.selectedRide = nil;
 }
 
@@ -115,7 +116,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.filteredRides.count;
+    return (self.filteredRides && self.filteredRides.count > 0) ? self.filteredRides.count : 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
