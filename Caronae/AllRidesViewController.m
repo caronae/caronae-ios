@@ -9,7 +9,7 @@
 #import "RideViewController.h"
 #import "Ride.h"
 
-@interface AllRidesViewController () <SeachRideDelegate>
+@interface AllRidesViewController () <SearchRideDelegate>
 @property (nonatomic) NSDictionary *searchParams;
 @end
 
