@@ -2,6 +2,10 @@
 #import "CaronaeRideCell.h"
 #import "RideViewController.h"
 
+@interface CaronaeRideListController()<RideDelegate>
+
+@end
+
 @implementation CaronaeRideListController
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -10,6 +14,8 @@
         self.view = [[[NSBundle mainBundle] loadNibNamed:@"CaronaeRideListController"
                                                    owner:self
                                                  options:nil] objectAtIndex:0];
+        
+        self.historyTable = NO;
         
         self.refreshControl = [[UIRefreshControl alloc] init];
         self.refreshControl.tintColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
@@ -71,7 +77,12 @@
     
     self.tableView.rowHeight = 85.0f;
     self.tableView.contentInset = UIEdgeInsetsMake(45.0f, 0.0f, 0.0f, 0.0f);
-    [self.tableView addSubview:self.refreshControl];
+    
+    if (self.refreshControl) {
+        [self.tableView addSubview:self.refreshControl];
+    }
+    
+    self.tableView.backgroundView = self.loadingLabel;
 }
 
 
@@ -88,7 +99,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CaronaeRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Ride Cell" forIndexPath:indexPath];
     
-    [cell configureCellWithRide:self.rides[indexPath.row]];
+    if (!self.historyTable) {
+        [cell configureCellWithRide:self.rides[indexPath.row]];
+    }
+    else {
+        [cell configureHistoryCellWithRide:self.rides[indexPath.row]];
+    }
     
     return cell;
 }
@@ -96,12 +112,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    self.selectedRide = self.rides[indexPath.row];
-    
-    RideViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RideViewController"];
-    vc.ride = self.selectedRide;
-    
-    [self.navigationController pushViewController:vc animated:YES];
+    if (!self.historyTable) {
+        self.selectedRide = self.rides[indexPath.row];
+        
+        RideViewController *rideVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RideViewController"];
+        rideVC.ride = self.selectedRide;
+        rideVC.delegate = self;
+        
+        [self.navigationController pushViewController:rideVC animated:YES];
+    }
 }
 
 @end

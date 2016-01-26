@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
+#import "CaronaeRideListController.h"
 
-@interface SearchResultsViewController : UITableViewController
+@interface SearchResultsViewController : CaronaeRideListController
 
 @property (nonatomic) NSDictionary *searchParams;
 

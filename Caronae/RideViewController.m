@@ -271,7 +271,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/leaveRide"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"User left the ride. (Message: %@)", responseObject[@"message"]);
         
-        if ([_delegate respondsToSelector:@selector(didDeleteRide:)]) {
+        if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
             [_delegate didDeleteRide:_ride];
         }
         

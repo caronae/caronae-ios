@@ -3,11 +3,10 @@
 #import "CaronaeRideCell.h"
 #import "RideViewController.h"
 
-@interface MyRidesViewController () <RideDelegate>
-@property (nonatomic) NSArray *rides;
-@property (nonatomic) Ride *selectedRide;
+@interface MyRidesViewController ()
+
 @property (nonatomic) NSDictionary *user;
-@property (nonatomic) UILabel *emptyTableLabel;
+
 @end
 
 @implementation MyRidesViewController
@@ -15,30 +14,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UINib *cellNib = [UINib nibWithNibName:@"CaronaeRideCell" bundle:nil];
-    [self.tableView registerNib:cellNib forCellReuseIdentifier:@"Ride Cell"];
-    
-    self.tableView.rowHeight = 85.0f;
-    
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
+    
+    self.refreshControl = nil;
     
     self.user = [CaronaeDefaults defaults].user;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNotification:) name:CaronaeUserRidesUpdatedNotification object:nil];
-    
-    // Display a message when the table is empty
-    _emptyTableLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-    _emptyTableLabel.text = @"Você ainda não criou\nnenhuma carona.";
-    _emptyTableLabel.textColor = [UIColor grayColor];
-    _emptyTableLabel.numberOfLines = 0;
-    _emptyTableLabel.textAlignment = NSTextAlignmentCenter;
-    if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
-        _emptyTableLabel.font = [UIFont systemFontOfSize:25.0f weight:UIFontWeightUltraLight];
-    }
-    else {
-        _emptyTableLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0f];
-    }
-    [_emptyTableLabel sizeToFit];
     
     [self updateRides];
 }
@@ -70,9 +52,9 @@
         }
         
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-        _rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
+        self.rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
         
-        if (_rides.count > 0) {
+        if (self.rides.count > 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.tableView.backgroundView = nil;
                 [self.tableView reloadData];
@@ -80,7 +62,7 @@
         }
         else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.tableView.backgroundView = _emptyTableLabel;
+                self.tableView.backgroundView = self.emptyTableLabel;
             });
         }
 
@@ -101,50 +83,13 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:newRides forKey:@"userCreatedRides"];
     
-    NSInteger deletedIndex = [_rides indexOfObject:ride];
+    NSInteger deletedIndex = [self.rides indexOfObject:ride];
     if (deletedIndex == NSNotFound) {
         NSLog(@"Error: ride to be deleted was not found in user's rides");
         return;
     }
 
     [self updateRides];
-}
-
-
-#pragma mark - Table methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.rides.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CaronaeRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Ride Cell" forIndexPath:indexPath];
-    
-    [cell configureCellWithRide:self.rides[indexPath.row]];
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    self.selectedRide = self.rides[indexPath.row];
-    [self performSegueWithIdentifier:@"ViewRideDetails" sender:self];
-}
-
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ViewRideDetails"]) {
-        RideViewController *vc = segue.destinationViewController;
-        vc.ride = self.selectedRide;
-        vc.delegate = self;
-    }
 }
 
 @end

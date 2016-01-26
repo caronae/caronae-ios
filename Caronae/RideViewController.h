@@ -4,6 +4,7 @@
 
 @protocol RideDelegate <NSObject>
 
+@optional
 - (void)didDeleteRide:(Ride *)ride;
 
 @end

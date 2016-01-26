@@ -92,7 +92,8 @@ Cg
                                                         </attributes>
                                                     </fragment>
                                                     <fragment>
-                                                        <string key="content"> 
+                                                        <string key="content">
+
 </string>
                                                         <attributes>
                                                             <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -273,25 +274,6 @@ Este é o token gerado através da Intranet UFRJ</string>
         <scene sceneID="86N-xC-KLU">
             <objects>
                 <tableViewController title="Pesquisa" id="63o-N6-NEe" customClass="SearchResultsViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kno-Ub-h1N">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="MYU-FF-CyH">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MYU-FF-CyH" id="I25-tB-Fbm">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="63o-N6-NEe" id="esn-rj-JJD"/>
-                            <outlet property="delegate" destination="63o-N6-NEe" id="lx1-7C-dNb"/>
-                        </connections>
-                    </tableView>
                     <navigationItem key="navigationItem" title="Pesquisa" id="frv-QM-TF5">
                         <barButtonItem key="rightBarButtonItem" image="SearchRide" id="I4b-tM-lj5">
                             <connections>
@@ -305,35 +287,12 @@ Este é o token gerado através da Intranet UFRJ</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="936-oT-CHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3549" y="-1202"/>
+            <point key="canvasLocation" x="3510" y="-1202"/>
         </scene>
         <!--Ativas-->
         <scene sceneID="aEb-UJ-7dz">
             <objects>
                 <tableViewController id="qPf-v5-qZ8" customClass="ActiveRidesViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" id="3hV-yF-fyh">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Ride Cell" rowHeight="453" id="3fo-9s-yEB">
-                                <rect key="frame" x="0.0" y="92" width="600" height="453"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3fo-9s-yEB" id="nYC-YM-EcE">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="453"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="SRb-hM-LXF" kind="show" identifier="ViewRideDetails" id="GWy-OD-WPe"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="qPf-v5-qZ8" id="bc5-D2-b13"/>
-                            <outlet property="delegate" destination="qPf-v5-qZ8" id="6aP-sR-CVv"/>
-                        </connections>
-                    </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Ativas" id="3Xy-Gf-p9D"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -1645,26 +1604,10 @@ Este é o token gerado através da Intranet UFRJ</string>
         <scene sceneID="1WW-W3-O3d">
             <objects>
                 <tableViewController id="Gvm-Bo-rik" customClass="RidesHistoryViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="V13-p9-ST4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Ride Cell" id="0Qc-z6-Mtu">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Qc-z6-Mtu" id="jZD-Cs-Vsm">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Gvm-Bo-rik" id="8Kz-Ki-NzZ"/>
-                            <outlet property="delegate" destination="Gvm-Bo-rik" id="5bk-Ea-Hzl"/>
-                        </connections>
-                    </tableView>
                     <navigationItem key="navigationItem" title="Histórico" id="geR-VK-1Za"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="historyTable" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m5U-oa-23T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -5939,7 +5882,9 @@ FOTO</string>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CT Leopoldina Copacabana" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a3-ca-yPl" userLabel="Route">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CT
+Leopoldina
+Copacabana" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a3-ca-yPl" userLabel="Route">
                                                                 <rect key="frame" x="92" y="56" width="215" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="beY-Mg-PSi">
@@ -6704,30 +6649,8 @@ FOTO</string>
         <!--Minhas-->
         <scene sceneID="EZD-JH-uNB">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ejJ-kb-mqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="g3M-dt-arm" userLabel="Minhas" customClass="MyRidesViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" id="0qH-vX-hEU">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Ride Cell" rowHeight="453" id="h2w-t9-4oO">
-                                <rect key="frame" x="0.0" y="92" width="600" height="453"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h2w-t9-4oO" id="msA-e4-PG1">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="453"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="SRb-hM-LXF" kind="show" identifier="ViewRideDetails" id="tug-g2-rGR"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="g3M-dt-arm" id="LzP-wg-n2S"/>
-                            <outlet property="delegate" destination="g3M-dt-arm" id="65r-ra-0BM"/>
-                        </connections>
-                    </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Minhas" id="44K-G3-VjJ">
                         <barButtonItem key="rightBarButtonItem" image="NewRide" id="Zbp-D5-Dix">
@@ -6738,7 +6661,6 @@ FOTO</string>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ejJ-kb-mqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2628" y="759"/>
         </scene>
@@ -6944,7 +6866,6 @@ FOTO</string>
                     </navigationItem>
                     <connections>
                         <segue destination="63o-N6-NEe" kind="show" identifier="ViewSearchResults" id="DwZ-AK-niy"/>
-                        <segue destination="SRb-hM-LXF" kind="show" identifier="ViewRideDetails" id="X71-8k-4ET"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j1O-Py-9ht" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -6999,13 +6920,12 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tvA-Ui-5Q1"/>
-        <segue reference="DwZ-AK-niy"/>
-        <segue reference="X71-8k-4ET"/>
-        <segue reference="hM9-nM-k0Y"/>
-        <segue reference="H8O-Mc-OH3"/>
+        <segue reference="kXd-xG-sw3"/>
         <segue reference="ugX-qh-OjL"/>
         <segue reference="yIa-C3-QN8"/>
+        <segue reference="tvA-Ui-5Q1"/>
+        <segue reference="DwZ-AK-niy"/>
+        <segue reference="9kE-zS-Odm"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>

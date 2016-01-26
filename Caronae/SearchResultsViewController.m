@@ -1,25 +1,22 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "CaronaeRideCell.h"
 #import "SearchRideViewController.h"
 #import "Ride.h"
 #import "RideViewController.h"
 #import "SearchResultsViewController.h"
 
 @interface SearchResultsViewController () <SeachRideDelegate>
-@property (nonatomic) NSArray *rides;
-@property (nonatomic) Ride *selectedRide;
+
 @end
 
 @implementation SearchResultsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UINib *cellNib = [UINib nibWithNibName:@"CaronaeRideCell" bundle:nil];
-    [self.tableView registerNib:cellNib forCellReuseIdentifier:@"Ride Cell"];
-    
-    self.tableView.rowHeight = 85.0f;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     if (self.searchParams) {
         [self searchForRidesWithParameters:self.searchParams];
@@ -34,10 +31,6 @@
         UINavigationController *searchNavController = segue.destinationViewController;
         SearchRideViewController *searchVC = searchNavController.viewControllers.firstObject;
         searchVC.delegate = self;
-    }
-    else if ([segue.identifier isEqualToString:@"ViewRideDetails"]) {
-        RideViewController *vc = segue.destinationViewController;
-        vc.ride = self.selectedRide;
     }
 }
 
@@ -78,12 +71,23 @@
         NSArray *rides = [SearchResultsViewController parseSearchResultsFromResponse:responseObject withError:&responseError];
         if (!responseError) {
             NSLog(@"Search returned %lu rides.", (unsigned long)rides.count);
-            self.rides = rides;
-            [self.tableView reloadData];
+            
+            if (rides.count > 0) {
+                self.rides = rides;
+                [self.tableView reloadData];
+                self.tableView.backgroundView = nil;
+            }
+            else {
+                self.tableView.backgroundView = self.emptyTableLabel;
+            }
+        }
+        else {
+            self.tableView.backgroundView = self.errorLabel;
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
+        self.tableView.backgroundView = self.errorLabel;
         NSLog(@"Error searching for ride: %@", error.description);
     }];
     
@@ -111,32 +115,5 @@
     
     return nil;
 }
-
-
-#pragma mark - Table methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.rides.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CaronaeRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Ride Cell" forIndexPath:indexPath];
-    
-    [cell configureCellWithRide:self.rides[indexPath.row]];
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    self.selectedRide = self.rides[indexPath.row];
-    [self performSegueWithIdentifier:@"ViewRideDetails" sender:self];
-}
-
 
 @end

@@ -24,8 +24,6 @@
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
     
-    self.tableView.backgroundView = self.loadingLabel;
-    
     [self loadAllRides];
 }
 
