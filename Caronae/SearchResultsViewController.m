@@ -72,9 +72,9 @@
         if (!responseError) {
             NSLog(@"Search returned %lu rides.", (unsigned long)rides.count);
             
+            self.rides = rides;
+            [self.tableView reloadData];
             if (rides.count > 0) {
-                self.rides = rides;
-                [self.tableView reloadData];
                 self.tableView.backgroundView = nil;
             }
             else {

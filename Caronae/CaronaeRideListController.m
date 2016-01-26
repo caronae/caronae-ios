@@ -1,9 +1,10 @@
 #import "CaronaeRideListController.h"
 #import "CaronaeRideCell.h"
 #import "RideViewController.h"
+#import "Ride.h"
 
-@interface CaronaeRideListController()<RideDelegate>
-
+@interface CaronaeRideListController() <RideDelegate>
+@property (nonatomic) NSArray *filteredRides;
 @end
 
 @implementation CaronaeRideListController
@@ -16,6 +17,7 @@
                                                  options:nil] objectAtIndex:0];
         
         self.historyTable = NO;
+        self.ridesDirectionGoing = YES;
         
         self.refreshControl = [[UIRefreshControl alloc] init];
         self.refreshControl.tintColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
@@ -85,25 +87,42 @@
     self.tableView.backgroundView = self.loadingLabel;
 }
 
++ (NSArray *)filterRides:(NSArray *)rides withDirectionGoing:(BOOL)going {
+    NSMutableArray *filtered = [NSMutableArray arrayWithCapacity:rides.count];
+    
+    for (Ride *ride in rides) {
+        if (ride.going == going) {
+            [filtered addObject:ride];
+        }
+    }
+    
+    return filtered;
+}
+
+- (void)setRides:(NSArray *)rides {
+    _rides = rides;
+    self.filteredRides = [CaronaeRideListController filterRides:_rides withDirectionGoing:self.ridesDirectionGoing];
+    self.selectedRide = nil;
+}
 
 #pragma mark - Table methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return (self.rides && self.rides.count > 0) ? 1 : 0;
+    return (self.filteredRides && self.filteredRides.count > 0) ? 1 : 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.rides.count;
+    return self.filteredRides.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CaronaeRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Ride Cell" forIndexPath:indexPath];
     
     if (!self.historyTable) {
-        [cell configureCellWithRide:self.rides[indexPath.row]];
+        [cell configureCellWithRide:self.filteredRides[indexPath.row]];
     }
     else {
-        [cell configureHistoryCellWithRide:self.rides[indexPath.row]];
+        [cell configureHistoryCellWithRide:self.filteredRides[indexPath.row]];
     }
     
     return cell;
@@ -113,7 +132,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (!self.historyTable) {
-        self.selectedRide = self.rides[indexPath.row];
+        self.selectedRide = self.filteredRides[indexPath.row];
         
         RideViewController *rideVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RideViewController"];
         rideVC.ride = self.selectedRide;
@@ -121,6 +140,15 @@
         
         [self.navigationController pushViewController:rideVC animated:YES];
     }
+}
+
+
+#pragma mark - IBActions
+
+- (IBAction)didChangeDirection:(UISegmentedControl *)sender {
+    self.ridesDirectionGoing = (sender.selectedSegmentIndex == 0);
+    [self setRides:self.rides];
+    [self.tableView reloadData];
 }
 
 @end

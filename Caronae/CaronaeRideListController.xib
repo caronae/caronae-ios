@@ -27,14 +27,11 @@
                     </connections>
                 </tableView>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="EV6-FJ-bWI">
-                    <rect key="frame" x="190" y="83" width="220" height="29"/>
+                    <rect key="frame" x="177" y="83" width="247" height="29"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="220" id="uyp-6I-Y4n"/>
-                    </constraints>
                     <segments>
-                        <segment title="Ida"/>
-                        <segment title="Volta"/>
+                        <segment title="Chegando à UFRJ"/>
+                        <segment title="Saindo da UFRJ"/>
                     </segments>
                     <color key="tintColor" red="0.57647061349999995" green="0.58039218189999997" blue="0.57647061349999995" alpha="1" colorSpace="calibratedRGB"/>
                     <userDefinedRuntimeAttributes>
@@ -49,6 +46,9 @@
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="didChangeDirection:" destination="-1" eventType="valueChanged" id="jLV-93-OKd"/>
+                    </connections>
                 </segmentedControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -59,14 +59,8 @@
                 <constraint firstAttribute="bottom" secondItem="6Ac-hY-QKJ" secondAttribute="bottom" id="Qfk-bn-OKw"/>
                 <constraint firstItem="6Ac-hY-QKJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UMa-bL-jCs"/>
                 <constraint firstAttribute="trailing" secondItem="6Ac-hY-QKJ" secondAttribute="trailing" id="ayK-AH-gqw"/>
-                <constraint firstItem="EV6-FJ-bWI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="kSN-IR-Jzh"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="kSN-IR-Jzh"/>
-                </mask>
-            </variation>
         </view>
     </objects>
 </document>
