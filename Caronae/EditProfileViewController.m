@@ -45,7 +45,6 @@
     
     if (self.completeProfileMode) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Olá!" message:@"Parece que esta é sua primeira vez usando o Caronaê. Por favor, complete seu perfil para continuar."];
-        self.navigationItem.leftBarButtonItem = nil;
         self.numDrivesLabel.text = @"0";
         self.numRidesLabel.text = @"0";
     }
@@ -218,13 +217,27 @@
 - (IBAction)didTapCancelButton:(id)sender {
     [self.view endEditing:YES];
     
-    CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar edição do perfil?"
-                                                                             message:@"Quaisquer mudanças serão descartadas."
-                                                                      preferredStyle:SDCAlertControllerStyleAlert];
-    [alert addAction:[SDCAlertAction actionWithTitle:@"Cont. editando" style:SDCAlertActionStyleCancel handler:nil]];
-    [alert addAction:[SDCAlertAction actionWithTitle:@"Descartar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }]];
+    CaronaeAlertController *alert;
+    
+    if (!self.completeProfileMode) {
+        alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar edição do perfil?"
+                                                                                 message:@"Quaisquer mudanças serão descartadas."
+                                                                          preferredStyle:SDCAlertControllerStyleAlert];
+        [alert addAction:[SDCAlertAction actionWithTitle:@"Cont. editando" style:SDCAlertActionStyleCancel handler:nil]];
+        [alert addAction:[SDCAlertAction actionWithTitle:@"Descartar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }]];
+    }
+    else {
+        alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar criação do perfil?"
+                                                                                 message:@"Você será deslogado do aplicativo e precisará entrar novamente com o token."
+                                                                          preferredStyle:SDCAlertControllerStyleAlert];
+        [alert addAction:[SDCAlertAction actionWithTitle:@"Cont. editando" style:SDCAlertActionStyleCancel handler:nil]];
+        [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
+            [CaronaeDefaults signOut];
+        }]];
+    }
+    
     [alert presentWithCompletion:nil];
 }
 
