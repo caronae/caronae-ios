@@ -19,12 +19,17 @@
         self.historyTable = NO;
         self.ridesDirectionGoing = YES;
         
-        self.refreshControl = [[UIRefreshControl alloc] init];
-        self.refreshControl.tintColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-        [self.refreshControl addTarget:self
-                                action:@selector(refreshTable:)
-                      forControlEvents:UIControlEventValueChanged];
-        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+        if ([self respondsToSelector:@selector(refreshTable:)]) {
+            self.refreshControl = [[UIRefreshControl alloc] init];
+            self.refreshControl.tintColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+            [self.refreshControl addTarget:self
+                                    action:@selector(refreshTable:)
+                          forControlEvents:UIControlEventValueChanged];
+            [self.tableView addSubview:self.refreshControl];
+        }
+#pragma clang diagnostic pop
         
         // Background view when the table is empty
         _emptyTableLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -80,9 +85,6 @@
     self.tableView.rowHeight = 85.0f;
     self.tableView.contentInset = UIEdgeInsetsMake(45.0f, 0.0f, 0.0f, 0.0f);
     
-    if (self.refreshControl) {
-        [self.tableView addSubview:self.refreshControl];
-    }
     
     self.tableView.backgroundView = self.loadingLabel;
 }
@@ -104,6 +106,7 @@
     self.filteredRides = [CaronaeRideListController filterRides:_rides withDirectionGoing:self.ridesDirectionGoing];
     self.selectedRide = nil;
 }
+
 
 #pragma mark - Table methods
 

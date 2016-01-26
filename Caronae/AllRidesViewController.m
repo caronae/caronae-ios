@@ -41,18 +41,19 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/all/0"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/all"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *responseError;
         NSArray *rides = [AllRidesViewController parseResultsFromResponse:responseObject withError:&responseError];
         if (!responseError) {
             self.rides = rides;
+            [self.tableView reloadData];
+            
             if (self.rides.count > 0) {
                 self.tableView.backgroundView = nil;
             }
             else {
                 self.tableView.backgroundView = self.emptyTableLabel;
             }
-            [self.tableView reloadData];
             
             [self.refreshControl endRefreshing];
         }

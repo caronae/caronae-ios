@@ -43,15 +43,14 @@
         NSError *responseError;
         NSArray *rides = [ActiveRidesViewController parseResultsFromResponse:responseObject withError:&responseError];
         if (!responseError) {
-            NSLog(@"Active rides returned %lu rides.", (unsigned long)rides.count);
             self.rides = rides;
+            [self.tableView reloadData];
             if (self.rides.count > 0) {
                 self.tableView.backgroundView = nil;
             }
             else {
                 self.tableView.backgroundView = self.emptyTableLabel;
             }
-            [self.tableView reloadData];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.refreshControl endRefreshing];
