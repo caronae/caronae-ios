@@ -13,9 +13,9 @@
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
     
-    if (![CaronaeDefaults defaults].user) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        UIViewController *tokenViewController = [storyboard instantiateViewControllerWithIdentifier:@"InitialTokenScreen"];
+    if ([CaronaeDefaults defaults].user) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *tokenViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeTabViewController"];
         self.window.rootViewController = tokenViewController;
         [self.window makeKeyAndVisible];
     }

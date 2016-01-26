@@ -5,7 +5,7 @@
 #import "RideViewController.h"
 #import "SearchResultsViewController.h"
 
-@interface SearchResultsViewController () <SeachRideDelegate>
+@interface SearchResultsViewController () <SearchRideDelegate>
 
 @end
 
