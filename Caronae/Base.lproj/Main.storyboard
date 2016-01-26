@@ -1682,10 +1682,10 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <rect key="frame" x="0.0" y="0.0" width="400" height="700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NT2-m5-GvC" customClass="TPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NT2-m5-GvC" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="0.0" y="64" width="400" height="587"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x5A-6B-eNz">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5A-6B-eNz">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="587"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HDx-Di-YZG" userLabel="Motivo">
@@ -1754,7 +1754,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstItem="E20-6x-IkA" firstAttribute="top" secondItem="RWO-JP-mny" secondAttribute="top" constant="10" id="Zgj-mx-c5u"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="niF-RV-GOB" userLabel="Mensagem">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niF-RV-GOB" userLabel="Mensagem">
                                                 <rect key="frame" x="20" y="165" width="360" height="417"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MENSAGEM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXm-bY-nhq">
@@ -1763,7 +1763,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="O que deseja dizer para a equipe do Caronaê?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ysw-F7-F0j">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="O que deseja dizer para a equipe do Caronaê?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ysw-F7-F0j">
                                                         <rect key="frame" x="0.0" y="32" width="360" height="380"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -5262,15 +5262,15 @@ FOTO</string>
             <objects>
                 <tableViewController id="m4b-ln-3hN" customClass="ZoneSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VjV-fS-glM">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Zone Cell" id="igM-m5-EON" customClass="CaronaeZoneCell">
-                                <rect key="frame" x="0.0" y="92" width="400" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="igM-m5-EON" id="hkP-M9-PyM">
-                                    <rect key="frame" x="0.0" y="0.0" width="367" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ny-zh-u1W" userLabel="Color Detail">
@@ -5367,7 +5367,7 @@ FOTO</string>
         <!--Carona-->
         <scene sceneID="oUd-Hw-YXG">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="SRb-hM-LXF" customClass="RideViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RideViewController" automaticallyAdjustsScrollViewInsets="NO" id="SRb-hM-LXF" customClass="RideViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BVv-o5-mz8"/>
                         <viewControllerLayoutGuide type="bottom" id="GiZ-cY-BAp"/>
@@ -6747,15 +6747,15 @@ FOTO</string>
             <objects>
                 <tableViewController id="J0r-pk-iNO" customClass="ZoneSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="q3z-80-JGK">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="Zone Cell" id="fNt-ar-NHR" customClass="CaronaeZoneCell">
-                                <rect key="frame" x="0.0" y="92" width="400" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fNt-ar-NHR" id="wCF-CR-hFQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="361" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="561" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eS-e0-z0Y" userLabel="Color Detail">
@@ -6866,7 +6866,7 @@ FOTO</string>
                         <viewControllerLayoutGuide type="bottom" id="pcA-fx-kaF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="27z-nz-vnk">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Digite o nome do bairro" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xyj-Wb-gUe" customClass="CaronaeTextField">
@@ -6934,100 +6934,7 @@ FOTO</string>
         <!--Todas-->
         <scene sceneID="Rt6-sC-yON">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="cgK-sI-zYQ" customClass="AllRidesViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Kbh-nR-EHh"/>
-                        <viewControllerLayoutGuide type="bottom" id="d9D-3Q-K6B"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="DAd-Qz-cSu">
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PoX-dJ-IT3">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="cgK-sI-zYQ" id="6Ly-jh-MEq"/>
-                                    <outlet property="delegate" destination="cgK-sI-zYQ" id="ZaD-3Q-E5A"/>
-                                </connections>
-                            </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="LcO-jW-xqN">
-                                <rect key="frame" x="-61" y="-14" width="123" height="29"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="Cxf-AR-mcK">
-                                        <variation key="widthClass=compact" constant="220"/>
-                                    </constraint>
-                                </constraints>
-                                <segments>
-                                    <segment title="Ida"/>
-                                    <segment title="Volta"/>
-                                </segments>
-                                <color key="tintColor" red="0.57647061349999995" green="0.58039218189999997" blue="0.57647061349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
-                                        <color key="value" white="0.68999999999999995" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Cxf-AR-mcK"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="Cxf-AR-mcK"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="directionChanged:" destination="Frl-vE-K7W" eventType="valueChanged" id="jE2-zK-QDP"/>
-                                </connections>
-                            </segmentedControl>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="LcO-jW-xqN" firstAttribute="centerX" secondItem="DAd-Qz-cSu" secondAttribute="centerX" id="2Bg-jb-uaQ"/>
-                            <constraint firstItem="LcO-jW-xqN" firstAttribute="top" secondItem="Kbh-nR-EHh" secondAttribute="bottom" constant="15" id="dXX-zY-W2E"/>
-                            <constraint firstItem="PoX-dJ-IT3" firstAttribute="top" secondItem="Kbh-nR-EHh" secondAttribute="bottom" id="mfx-sH-6LF"/>
-                            <constraint firstAttribute="trailing" secondItem="PoX-dJ-IT3" secondAttribute="trailing" id="osr-cK-Y3W"/>
-                            <constraint firstItem="d9D-3Q-K6B" firstAttribute="top" secondItem="PoX-dJ-IT3" secondAttribute="bottom" id="shW-Ho-hU9"/>
-                            <constraint firstItem="PoX-dJ-IT3" firstAttribute="leading" secondItem="DAd-Qz-cSu" secondAttribute="leading" id="xns-W2-Vn4"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="PoX-dJ-IT3"/>
-                                <exclude reference="LcO-jW-xqN"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="mfx-sH-6LF"/>
-                                <exclude reference="osr-cK-Y3W"/>
-                                <exclude reference="xns-W2-Vn4"/>
-                                <exclude reference="2Bg-jb-uaQ"/>
-                                <exclude reference="dXX-zY-W2E"/>
-                                <exclude reference="shW-Ho-hU9"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="PoX-dJ-IT3"/>
-                                <include reference="LcO-jW-xqN"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="mfx-sH-6LF"/>
-                                <include reference="osr-cK-Y3W"/>
-                                <include reference="xns-W2-Vn4"/>
-                                <include reference="2Bg-jb-uaQ"/>
-                                <include reference="dXX-zY-W2E"/>
-                                <include reference="shW-Ho-hU9"/>
-                            </mask>
-                        </variation>
-                    </view>
+                <viewController id="cgK-sI-zYQ" customClass="AllRidesViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Todas" id="g6m-K6-JjX">
                         <barButtonItem key="rightBarButtonItem" image="SearchRide" id="yHa-PK-yef">
                             <connections>
@@ -7036,7 +6943,6 @@ FOTO</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="PoX-dJ-IT3" id="6cB-pY-wdl"/>
                         <segue destination="63o-N6-NEe" kind="show" identifier="ViewSearchResults" id="DwZ-AK-niy"/>
                         <segue destination="SRb-hM-LXF" kind="show" identifier="ViewRideDetails" id="X71-8k-4ET"/>
                     </connections>
@@ -7093,13 +6999,13 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VJh-c3-WKd"/>
+        <segue reference="tvA-Ui-5Q1"/>
+        <segue reference="DwZ-AK-niy"/>
         <segue reference="X71-8k-4ET"/>
         <segue reference="hM9-nM-k0Y"/>
-        <segue reference="DwZ-AK-niy"/>
         <segue reference="H8O-Mc-OH3"/>
         <segue reference="ugX-qh-OjL"/>
-        <segue reference="CEp-XF-lJK"/>
+        <segue reference="yIa-C3-QN8"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>
