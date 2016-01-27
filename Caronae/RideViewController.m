@@ -317,7 +317,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     _requestRideButton.enabled = NO;
     
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Done requesting ride.");
+        NSLog(@"Done requesting ride. (Message: %@)", responseObject[@"message"]);
         [CaronaeDefaults addToCachedJoinRequests:_ride];
         [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
