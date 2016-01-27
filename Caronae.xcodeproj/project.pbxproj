@@ -122,7 +122,7 @@
 		A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoneSelectionInputViewController.m; sourceTree = "<group>"; };
 		A375D2F91C19175A00795CAE /* CaronaeAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeAlertController.h; sourceTree = "<group>"; };
 		A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeAlertController.m; sourceTree = "<group>"; };
-		A389902B1C58734700C7CD2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A389902B1C58734700C7CD2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A38F1D4B1C0398B500DEF6B1 /* CaronaeRideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeRideCell.h; sourceTree = "<group>"; };
 		A38F1D4C1C0398B500DEF6B1 /* CaronaeRideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeRideCell.m; sourceTree = "<group>"; };
 		A3996D2B1C13AC0900D2E890 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
@@ -201,7 +201,6 @@
 		A3169C871BED842D00A0D428 = {
 			isa = PBXGroup;
 			children = (
-				A389902B1C58734700C7CD2D /* GoogleService-Info.plist */,
 				A3169C921BED842D00A0D428 /* Caronae */,
 				A3169CAF1BED842D00A0D428 /* CaronaeTests */,
 				A3169CBA1BED842D00A0D428 /* CaronaeUITests */,
@@ -245,6 +244,7 @@
 				A3169CA21BED842D00A0D428 /* Assets.xcassets */,
 				A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */,
 				A3169CA71BED842D00A0D428 /* Info.plist */,
+				A389902B1C58734700C7CD2D /* GoogleService-Info.plist */,
 				A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */,
 				A3169C931BED842D00A0D428 /* Supporting Files */,
 			);
