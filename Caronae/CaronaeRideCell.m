@@ -56,6 +56,9 @@
                   placeholderImage:[UIImage imageNamed:@"Profile Picture"]
                            options:SDWebImageRefreshCached];
     }
+    else {
+        _photo.image = [UIImage imageNamed:@"Profile Picture"];
+    }
 }
 
 - (void)setColor:(UIColor *)color {
