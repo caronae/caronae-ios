@@ -48,5 +48,17 @@ Carthage/Build
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the 
 # screenshots whenever they are needed.
 
+# fastlane specific
 fastlane/report.xml
+
+# deliver temporary files
+fastlane/Preview.html
+
+# snapshot generated screenshots
 fastlane/screenshots
+
+# scan temporary files
+fastlane/test_output
+
+**/*.dSYM.zip
+**/*.app

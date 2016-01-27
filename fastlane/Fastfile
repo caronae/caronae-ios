@@ -40,7 +40,7 @@ platform :ios do
   desc "This will also make sure the profile is up to date"
   lane :beta do
     sigh
-    gym # Build your app - more options available
+    gym(scheme: 'Caronae') # Build your app - more options available
     pilot
 
     # sh "your_script.sh"
@@ -51,7 +51,7 @@ platform :ios do
   lane :deploy do
     snapshot
     sigh
-    gym # Build your app - more options available
+    gym(scheme: 'Caronae') # Build your app - more options available
     # deliver(force: true)
     # frameit
   end
