@@ -7,8 +7,8 @@
 #pragma mark - API settings
 
 //NSString *const CaronaeAPIBaseURL = @"http://web1.tic.ufrj.br/caronae";
-NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90";
-//NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
+//NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90";
+NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
 //NSString *const CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
 //NSString *const CaronaeAPIBaseURL = @"http://localhost:8000";
 
@@ -24,6 +24,7 @@ NSString *const CaronaeErrorDomain = @"CaronaeError";
 const NSInteger CaronaeErrorInvalidResponse = 1;
 const NSInteger CaronaeErrorNoRidesCreated = 2;
 
+
 @interface CaronaeDefaults()
 @property (nonatomic, readwrite) NSArray *centers;
 @property (nonatomic, readwrite) NSArray *hubs;
@@ -32,8 +33,15 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
 @property (nonatomic, readwrite) NSDictionary *neighborhoods;
 @end
 
+static NSUserDefaults *userDefaults;
 
 @implementation CaronaeDefaults
+
+- (instancetype)init {
+    self = [super init];
+    userDefaults = [NSUserDefaults standardUserDefaults];
+    return self;
+}
 
 + (instancetype)defaults {
     static CaronaeDefaults *sharedMyManager = nil;
@@ -42,6 +50,29 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
         sharedMyManager = [[self alloc] init];
     });
     return sharedMyManager;
+}
+
++ (void)signIn:(NSDictionary *)userProfile token:(NSString *)userToken rides:(NSArray *)userRides {
+    [userDefaults setObject:userProfile forKey:@"user"];
+    [userDefaults setObject:userToken forKey:@"token"];
+    [userDefaults setObject:userRides forKey:@"userCreatedRides"];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (void)registerForNotifications {
+    // Register for remote notifications
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
+        // iOS 7.1 or earlier
+        UIRemoteNotificationType allNotificationTypes = (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge);
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:allNotificationTypes];
+    } else {
+        // iOS 8 or later
+        UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
 }
 
 + (void)signOut {

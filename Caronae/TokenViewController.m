@@ -37,14 +37,11 @@
             for (id rideDictionary in rides) {
                 [filteredRides addObject:[rideDictionary dictionaryWithoutNulls]];
             }
-            [[NSUserDefaults standardUserDefaults] setObject:filteredRides forKey:@"userCreatedRides"];
             
-            // Save user's profile
             NSDictionary *userProfile = [responseObject[@"user"] dictionaryWithoutNulls];
-            [CaronaeDefaults defaults].user = userProfile;
+            [CaronaeDefaults signIn:userProfile token:userToken rides:filteredRides];
             
-            // Save user's token
-            [CaronaeDefaults defaults].userToken = userToken;
+            [CaronaeDefaults registerForNotifications];
             
             [self performSegueWithIdentifier:@"ViewHome" sender:self];
         }

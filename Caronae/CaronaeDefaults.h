@@ -15,6 +15,20 @@ extern const NSInteger CaronaeErrorNoRidesCreated;
 + (instancetype)defaults;
 
 /**
+ *  Store the user object, token and previous rides internally.
+ *
+ *  @param userProfile A dictionary containing the signed in user profile.
+ *  @param userToken   The user's authentication token.
+ *  @param userRides   An array of ride dictionaries.
+ */
++ (void)signIn:(NSDictionary *)userProfile token:(NSString *)userToken rides:(NSArray *)userRides;
+
+/**
+ *  Register for push notifications with iOS if necessary.
+ */
++ (void)registerForNotifications;
+
+/**
  *  Signs out current user and presents the authentication screen modally.
  */
 + (void)signOut;
