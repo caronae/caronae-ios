@@ -133,7 +133,7 @@
     // token to enable reception of notifications
     [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
     _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
-                             kGGLInstanceIDAPNSServerTypeSandboxOption:@YES}; // FIXME
+                             kGGLInstanceIDAPNSServerTypeSandboxOption:@NO}; // FIXME
     [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
                                                         scope:kGGLInstanceIDScopeGCM
                                                       options:_registrationOptions
