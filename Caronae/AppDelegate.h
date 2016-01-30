@@ -4,6 +4,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 - (UIViewController *)topViewController;
+- (void)updateUserGCMToken:(NSString *)token;
 
 @property (strong, nonatomic) UIWindow *window;
 

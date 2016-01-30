@@ -186,7 +186,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
-    NSDictionary *params = @{@"token": token};
+    NSDictionary *params = @{@"token": token ? token : [NSNull null]};
     [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user/saveGcmToken"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"User's GCM token updated.");
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

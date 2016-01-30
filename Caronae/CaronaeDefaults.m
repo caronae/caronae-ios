@@ -76,16 +76,19 @@ static NSUserDefaults *userDefaults;
 }
 
 + (void)signOut {
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate updateUserGCMToken:nil];
+    
     [CaronaeDefaults defaults].user = nil;
     [CaronaeDefaults defaults].userToken = nil;
     [CaronaeDefaults defaults].cachedJoinRequests = nil;
     [[[FBSDKLoginManager alloc] init] logOut];
 
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     UIViewController *topViewController = [appDelegate topViewController];
     UIViewController *authViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"InitialTokenScreen"];
     authViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [topViewController presentViewController:authViewController animated:YES completion:nil];
+    
 }
 
 + (NSString *)userFBToken {
