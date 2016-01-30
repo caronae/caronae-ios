@@ -16,6 +16,8 @@ NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
 #pragma mark - Notifications
 
 NSString *const CaronaeUserRidesUpdatedNotification = @"CaronaeUserRidesUpdatedNotification";
+NSString *const CaronaeGCMTokenUpdatedNotification = @"CaronaeGCMTokenUpdatedNotification";
+NSString *const CaronaeGCMMessageReceivedNotification = @"CaronaeGCMMessageReceivedNotification";
 
 
 #pragma mark - Error types

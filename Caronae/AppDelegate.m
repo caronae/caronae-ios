@@ -8,7 +8,7 @@
 @interface AppDelegate () <GGLInstanceIDDelegate, GCMReceiverDelegate>
 @property(nonatomic, strong) void (^registrationHandler) (NSString *registrationToken, NSError *error);
 @property(nonatomic, assign) BOOL connectedToGCM;
-@property(nonatomic, strong) NSString* registrationToken;
+@property(nonatomic, strong) NSString *registrationToken;
 @property(nonatomic, assign) BOOL subscribedToTopic;
 @end
 
@@ -30,8 +30,6 @@
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
-    _registrationKey = @"onRegistrationCompleted";
-    _messageKey = @"onMessageReceived";
     // Configure the Google context: parses the GoogleService-Info.plist, and initializes
     // the services that have entries in the file
     NSError* configureError;
@@ -56,13 +54,13 @@
             }
             
             NSDictionary *userInfo = @{@"registrationToken": registrationToken};
-            [[NSNotificationCenter defaultCenter] postNotificationName:weakSelf.registrationKey
+            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
                                                                 object:nil
                                                               userInfo:userInfo];
         } else {
             NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
             NSDictionary *userInfo = @{@"error": error.localizedDescription};
-            [[NSNotificationCenter defaultCenter] postNotificationName:weakSelf.registrationKey
+            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
                                                                 object:nil
                                                               userInfo:userInfo];
         }
@@ -145,7 +143,7 @@
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSLog(@"Registration for remote notification failed with error: %@", error.localizedDescription);
     NSDictionary *userInfo = @{@"error": error.localizedDescription};
-    [[NSNotificationCenter defaultCenter] postNotificationName:_registrationKey
+    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
                                                         object:nil
                                                       userInfo:userInfo];
 }
@@ -155,7 +153,7 @@
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
     // Handle the received message
-    [[NSNotificationCenter defaultCenter] postNotificationName:_messageKey
+    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
                                                         object:nil
                                                       userInfo:userInfo];
 }
@@ -166,7 +164,7 @@
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
     // Handle the received message
     // Invoke the completion handler passing the appropriate UIBackgroundFetchResult value
-    [[NSNotificationCenter defaultCenter] postNotificationName:_messageKey
+    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
                                                         object:nil
                                                       userInfo:userInfo];
     handler(UIBackgroundFetchResultNoData);

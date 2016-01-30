@@ -5,6 +5,8 @@
 extern NSString *const CaronaeAPIBaseURL;
 
 extern NSString *const CaronaeUserRidesUpdatedNotification;
+extern NSString *const CaronaeGCMTokenUpdatedNotification;
+extern NSString *const CaronaeGCMMessageReceivedNotification;
 
 extern NSString *const CaronaeErrorDomain;
 extern const NSInteger CaronaeErrorInvalidResponse;
