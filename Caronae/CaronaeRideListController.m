@@ -3,7 +3,7 @@
 #import "RideViewController.h"
 #import "Ride.h"
 
-@interface CaronaeRideListController() <RideDelegate>
+@interface CaronaeRideListController() <RideDelegate, UIScrollViewDelegate>
 @property (nonatomic) NSArray *filteredRides;
 @end
 
@@ -154,5 +154,26 @@
     [self setRides:self.rides];
     [self.tableView reloadData];
 }
+
+
+#pragma mark - UIScrollView methods
+
+// TODO: fix case when table starts refreshing and contentInset changes top
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    CGFloat scrollY = -scrollView.contentOffset.y;
+//    NSLog(@"inset top: %f", scrollView.contentInset.top);
+//    
+//    CGFloat minY = self.tableView.contentInset.top - self.directionControl.frame.size.height - 5;
+//    CGFloat newY = MIN(minY, scrollY - self.directionControl.frame.size.height - 5);
+//    NSLog(@"new y: %f", newY);
+//    
+//    if (!self.refreshControl.refreshing) {
+//    self.directionControl.frame = CGRectMake(self.directionControl.frame.origin.x,
+//                                         newY,
+//                                         self.directionControl.frame.size.width,
+//                                         self.directionControl.frame.size.height);
+//    }
+//
+//}
 
 @end
