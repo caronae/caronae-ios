@@ -120,13 +120,17 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [notificationCenter addObserver:self selector:@selector(gcmDidReceiveMessage:) name:CaronaeGCMMessageReceivedNotification object:nil];
     
     [self loadChatMessages];
-    
     [self subscribeToTopic];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.tableView flashScrollIndicators];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self tableViewScrollToBottomAnimated:NO];
 }
 
 - (UIView *)inputAccessoryView {
