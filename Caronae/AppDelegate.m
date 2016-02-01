@@ -168,19 +168,30 @@
     if (userInfo[@"from"]) {
         NSArray *from = [userInfo[@"from"] componentsSeparatedByString:@"/"];
         if ([from[1] isEqualToString:@"topics"]) {
-            NSNumber *rideID = @([from[2] integerValue]);
-            NSLog(@"Received message for topic %@", rideID);
-            
-            NSManagedObjectContext *context = [self managedObjectContext];
-            Message *message = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
-            message.text = userInfo[@"message"];
-            message.incoming = @(YES);
-            message.sentDate = [NSDate date];
-            message.rideID = rideID;
-            
-            NSError *error;
-            if (![context save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            NSString *msgType = userInfo[@"msgType"];
+            // Handle chat messages
+            if (msgType && [msgType isEqualToString:@"chat"]) {
+                NSNumber *rideID = @([from[2] integerValue]);
+                NSLog(@"Received chat message for ride %@", rideID);
+                
+                int senderId = [userInfo[@"senderId"] intValue];
+                int currentUserId = [[CaronaeDefaults defaults].user[@"id"] intValue];
+                // We don't need to handle a message if it's from the logged user
+                if (senderId == currentUserId) {
+                    return;
+                }
+                
+                NSManagedObjectContext *context = [self managedObjectContext];
+                Message *message = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+                message.text = userInfo[@"message"];
+                message.incoming = @(YES);
+                message.sentDate = [NSDate date];
+                message.rideID = rideID;
+                
+                NSError *error;
+                if (![context save:&error]) {
+                    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                }
             }
         }
     }

@@ -1,3 +1,4 @@
+#import <AFNetworking/AFNetworking.h>
 #import <Google/CloudMessaging.h>
 #import "AppDelegate.h"
 #import "CaronaeDefaults.h"
@@ -208,8 +209,34 @@ static const CGFloat toolBarMinHeight = 44.0f;
     }
 }
 
-- (void)gcmSendMessage:(NSString *)text {
-    // TODO: send message to topic using GCM
+- (void)gcmSendMessage:(NSString *)message {
+    NSNumber *rideId = @(self.chat.ride.rideID);
+    NSString *msgType = @"chat";
+    
+    NSDictionary *sender = [CaronaeDefaults defaults].user;
+    NSString *senderName = sender[@"name"];
+    NSNumber *senderId = sender[@"id"];
+    
+    
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [NSDate date];
+    NSString *time = [dateFormatter stringFromDate:date];
+    NSDictionary *params = @{
+                             @"to": self.topicID,
+                             @"data": NSDictionaryOfVariableBindings(message, rideId, msgType, senderName, senderId, time)
+                             };
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:CaronaeGCMAPIKey forHTTPHeaderField:@"Authorization"];
+    
+    [manager POST:CaronaeGCMAPISendURL parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Message delivered using GCM. Reponse: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error sending message through GCM: %@", error.localizedDescription);
+    }];
+
 }
 
 #pragma mark - Table methods

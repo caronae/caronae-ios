@@ -12,6 +12,8 @@ NSString *const CaronaeAPIBaseURL = @"http://web1.tic.ufrj.br/caronae";
 //NSString *const CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
 //NSString *const CaronaeAPIBaseURL = @"http://localhost:8000";
 
+NSString *const CaronaeGCMAPISendURL = @"https://gcm-http.googleapis.com/gcm/send";
+NSString *const CaronaeGCMAPIKey = @"key=AIzaSyBtGz81bar_LcwtN_fpPTKRMBL5glp2T18";
 
 #pragma mark - Notifications
 

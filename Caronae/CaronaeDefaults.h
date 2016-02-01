@@ -3,6 +3,8 @@
 @class Ride;
 
 extern NSString *const CaronaeAPIBaseURL;
+extern NSString *const CaronaeGCMAPISendURL;
+extern NSString *const CaronaeGCMAPIKey;
 
 extern NSString *const CaronaeUserRidesUpdatedNotification;
 extern NSString *const CaronaeGCMTokenUpdatedNotification;
