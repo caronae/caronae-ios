@@ -1,4 +1,5 @@
 #import "MessageBubbleTableViewCell.h"
+#import "Message+CoreDataProperties.h"
 #import "Caronae-Swift.h"
 
 static const int incomingTag = 0;
@@ -56,12 +57,13 @@ static UIImage *bubbleImageOutgoing;
 
 - (void)configureWithMessage:(Message *)message {
     _messageLabel.text = message.text;
+    BOOL incoming = [message.incoming boolValue];
     
-    if (message.incoming != (self.tag == incomingTag)) {
+    if (incoming != (self.tag == incomingTag)) {
         NSLayoutAttribute layoutAttribute;
         CGFloat layoutConstant;
         
-        if (message.incoming) {
+        if (incoming) {
             self.tag = incomingTag;
             _bubbleImageView.image = bubbleImageIncoming;
             _messageLabel.textColor = [UIColor blackColor];

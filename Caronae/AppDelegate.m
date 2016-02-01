@@ -4,6 +4,8 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Google/CloudMessaging.h>
 #import "AppDelegate.h"
+#import "Message.h"
+#import "Message+CoreDataProperties.h"
 
 @interface AppDelegate () <GGLInstanceIDDelegate, GCMReceiverDelegate>
 @property(nonatomic, strong) void (^registrationHandler) (NSString *registrationToken, NSError *error);
@@ -159,17 +161,38 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"Notification received: %@", userInfo);
+    NSLog(@"Notification received 1: %@", userInfo);
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
     // Handle the received message
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
                                                         object:nil
                                                       userInfo:userInfo];
+    
+    
+    if (userInfo[@"from"]) {
+        NSArray *from = [userInfo[@"from"] componentsSeparatedByString:@"/"];
+        if ([from[1] isEqualToString:@"topics"]) {
+            NSNumber *rideID = @([from[2] integerValue]);
+            NSLog(@"Received message for topic %@", rideID);
+            
+            NSManagedObjectContext *context = [self managedObjectContext];
+            Message *message = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+            message.text = userInfo[@"message"];
+            message.incoming = @(YES);
+            message.sentDate = [NSDate date];
+            message.rideID = rideID;
+            
+            NSError *error;
+            if (![context save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            }
+        }
+    }
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
-    NSLog(@"Notification received: %@", userInfo);
+    NSLog(@"Notification received 2: %@", userInfo);
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
     // Handle the received message

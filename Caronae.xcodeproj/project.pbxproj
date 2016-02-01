@@ -53,6 +53,7 @@
 		A3B5AEFF1BF1AAC10026A889 /* CaronaeDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AEFE1BF1AAC10026A889 /* CaronaeDefaults.m */; };
 		A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */; };
 		A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */; };
+		A3C55BDA1C5FB19A00C84204 /* Message+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C55BD91C5FB19A00C84204 /* Message+CoreDataProperties.m */; };
 		A3EE026C1C17D01000A8407E /* CaronaeRiderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE026B1C17D01000A8407E /* CaronaeRiderCell.m */; };
 		A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F30EE81C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m */; };
 		A3F30EED1C0890C10024BE37 /* CaronaeZoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F30EEC1C0890C10024BE37 /* CaronaeZoneCell.m */; };
@@ -161,6 +162,8 @@
 		A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRidesViewController.m; sourceTree = "<group>"; };
 		A3B5AF0F1BF2F0560026A889 /* CALayer+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+UIColor.h"; sourceTree = "<group>"; };
 		A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+UIColor.m"; sourceTree = "<group>"; };
+		A3C55BD81C5FB19A00C84204 /* Message+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Message+CoreDataProperties.h"; sourceTree = "<group>"; };
+		A3C55BD91C5FB19A00C84204 /* Message+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Message+CoreDataProperties.m"; sourceTree = "<group>"; };
 		A3EE026A1C17D01000A8407E /* CaronaeRiderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeRiderCell.h; sourceTree = "<group>"; };
 		A3EE026B1C17D01000A8407E /* CaronaeRiderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeRiderCell.m; sourceTree = "<group>"; };
 		A3F30EE71C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+dictionaryWithoutNulls.h"; sourceTree = "<group>"; };
@@ -355,6 +358,8 @@
 				A37E80DD1C5F00D300683F27 /* Chat.m */,
 				A37E80DF1C5F011100683F27 /* Message.h */,
 				A37E80E01C5F011100683F27 /* Message.m */,
+				A3C55BD81C5FB19A00C84204 /* Message+CoreDataProperties.h */,
+				A3C55BD91C5FB19A00C84204 /* Message+CoreDataProperties.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -628,6 +633,7 @@
 				A32C77261C41EEE30098583B /* AllRidesViewController.m in Sources */,
 				A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */,
 				A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */,
+				A3C55BDA1C5FB19A00C84204 /* Message+CoreDataProperties.m in Sources */,
 				A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */,
 				A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */,
 				A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */,

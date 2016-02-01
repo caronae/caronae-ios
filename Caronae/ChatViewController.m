@@ -1,13 +1,16 @@
 #import <Google/CloudMessaging.h>
+#import "AppDelegate.h"
 #import "CaronaeDefaults.h"
 #import "ChatViewController.h"
 #import "MessageBubbleTableViewCell.h"
 #import "Message.h"
+#import "Message+CoreDataProperties.h"
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 
 @property (nonatomic) NSString *topicID;
 @property (nonatomic) BOOL subscribedToTopic;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -22,6 +25,9 @@ static const CGFloat toolBarMinHeight = 44.0f;
         self.title = [NSString stringWithFormat:@"Chat - Carona %lu", chat.ride.rideID];
         self.topicID = [NSString stringWithFormat:@"/topics/%lu", chat.ride.rideID];
         self.hidesBottomBarWhenPushed = YES;
+        
+        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        self.managedObjectContext = appDelegate.managedObjectContext;
     }
     return self;
 }
@@ -55,6 +61,16 @@ static const CGFloat toolBarMinHeight = 44.0f;
     }
 }
 
+- (void)appendMessage:(Message *)message {
+    self.chat.loadedMessages = [self.chat.loadedMessages arrayByAddingObject:message];
+    
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.chat.loadedMessages.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+    
+    [self tableViewScrollToBottomAnimated:YES];
+}
+
 
 #pragma mark - UIResponder methods
 
@@ -67,12 +83,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.chat.loadedMessages = @[
-                                 [[Message alloc] initWithIncoming:YES text:@"Mensagem que recebi!" sentDate:[NSDate dateWithTimeIntervalSinceNow:-60*60*24*2-60*60]],
-                                 [[Message alloc] initWithIncoming:NO text:@"Mensagem que enviei." sentDate:[NSDate dateWithTimeIntervalSinceNow:-60*60*24*2]],
-                                 [[Message alloc] initWithIncoming:NO text:@"o enable debug logging set the following application argument" sentDate:[NSDate dateWithTimeIntervalSinceNow:-60*60*24*2]],
-    ];
     
     self.view.backgroundColor = [UIColor whiteColor]; // smooths push animation
     
@@ -93,6 +103,20 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [notificationCenter addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [notificationCenter addObserver:self selector:@selector(gcmDidReceiveMessage:) name:CaronaeGCMMessageReceivedNotification object:nil];
     
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:self.managedObjectContext];
+    fetchRequest.entity = entity;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rideID == %@", @(self.chat.ride.rideID)];
+    fetchRequest.predicate = predicate;
+    NSError *error;
+    self.chat.loadedMessages = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        NSLog(@"Whoops, couldn't load: %@", [error localizedDescription]);
+    }
+    else {
+        NSLog(@"Loaded %lu messages in chat", self.chat.loadedMessages.count);
+    }
+    
     [self subscribeToTopic];
 }
 
@@ -104,6 +128,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
 - (UIView *)inputAccessoryView {
     if (!_toolBar) {
         _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 0, toolBarMinHeight - 0.5)];
+        _toolBar.backgroundColor = [UIColor whiteColor];
         
         _textView = [[UITextView alloc] initWithFrame:CGRectZero];
         _textView.backgroundColor = [UIColor colorWithWhite:250.0/255.0 alpha:1];
@@ -142,15 +167,23 @@ static const CGFloat toolBarMinHeight = 44.0f;
 #pragma mark - Actions
 
 - (void)sendAction:(id)sender {
-    Message *message = [[Message alloc] initWithIncoming:NO text:self.textView.text sentDate:[NSDate date]];
-    self.chat.loadedMessages = [self.chat.loadedMessages arrayByAddingObject:message];
+    NSString *messageText = self.textView.text;
     
+    NSManagedObjectContext *context = [self managedObjectContext];
+    Message *message = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+    message.text = messageText;
+    message.incoming = @(NO);
+    message.sentDate = [NSDate date];
+    message.rideID = @(self.chat.ride.rideID);
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    [self gcmSendMessage:messageText];
+    [self appendMessage:message];
     self.textView.text = @"";
-    [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.chat.loadedMessages.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView endUpdates];
-    
-    [self tableViewScrollToBottomAnimated:YES];
 }
 
 
@@ -160,23 +193,19 @@ static const CGFloat toolBarMinHeight = 44.0f;
     NSDictionary *userInfo = notification.userInfo;
     if ([userInfo[@"from"] isEqualToString:self.topicID]) {
         NSLog(@"Chat did receive message: %@", userInfo[@"message"]);
-        Message *message = [[Message alloc] initWithIncoming:YES text:userInfo[@"message"] sentDate:[NSDate date]];
-        self.chat.loadedMessages = [self.chat.loadedMessages arrayByAddingObject:message];
         
-        self.textView.text = @"";
-        [self.tableView beginUpdates];
-        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.chat.loadedMessages.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.tableView endUpdates];
-        
-        [self tableViewScrollToBottomAnimated:YES];
+//        Message *message = [[Message alloc] initWithIncoming:YES text:userInfo[@"message"] sentDate:[NSDate date]];
+//        [self appendMessage:message];
     }
 }
 
+- (void)gcmSendMessage:(NSString *)text {
+    
+}
 
 #pragma mark - Table methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return self.chat.loadedMessages.count;
     return 1;
 }
 
