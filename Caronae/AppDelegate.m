@@ -8,8 +8,6 @@
 @interface AppDelegate () <GGLInstanceIDDelegate, GCMReceiverDelegate>
 @property(nonatomic, strong) void (^registrationHandler) (NSString *registrationToken, NSError *error);
 @property(nonatomic, assign) BOOL connectedToGCM;
-@property(nonatomic, strong) NSString *registrationToken;
-@property(nonatomic, assign) BOOL subscribedToTopic;
 @end
 
 @implementation AppDelegate
@@ -46,7 +44,7 @@
     // Handler for registration token request
     _registrationHandler = ^(NSString *registrationToken, NSError *error){
         if (registrationToken != nil) {
-            weakSelf.registrationToken = registrationToken;
+            [CaronaeDefaults setUserGCMToken:registrationToken];
             NSLog(@"Registration Token: %@", registrationToken);
             
             if ([CaronaeDefaults defaults].user) {
@@ -75,8 +73,8 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[GCMService sharedInstance] disconnect];
+    _connectedToGCM = NO;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -84,7 +82,14 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
+        } else {
+            _connectedToGCM = true;
+            NSLog(@"Connected to GCM");
+        }
+    }];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

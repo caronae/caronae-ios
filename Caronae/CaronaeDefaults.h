@@ -43,6 +43,20 @@ extern const NSInteger CaronaeErrorNoRidesCreated;
 + (NSString *)userFBToken;
 
 /**
+ *  Return the user's GCM registration token.
+ *
+ *  @return A string containing the user's Google Cloud Messaging registration token or `nil` if there isn't one.
+ */
++ (NSString *)userGCMToken;
+
+/**
+ *  Update the user's GCM token.
+ *
+ *  @param gcmToken A string containing the user's GCM token or `nil` if there isn`t one.
+ */
++ (void)setUserGCMToken:(NSString *)gcmToken;
+
+/**
  *  Check if the user profile is incomplete (with any fields left blank).
  *  Should be called to check if the user needs to be prompted with the screen
  *  to complete their profile.

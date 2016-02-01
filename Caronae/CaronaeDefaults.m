@@ -98,6 +98,15 @@ static NSUserDefaults *userDefaults;
     return token.tokenString;
 }
 
++ (NSString *)userGCMToken {
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"gcmToken"];
+}
+
++ (void)setUserGCMToken:(NSString *)gcmToken {
+    [[NSUserDefaults standardUserDefaults] setObject:gcmToken forKey:@"gcmToken"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 + (BOOL)userProfileIsIncomplete {
     NSDictionary *user = [CaronaeDefaults defaults].user;
     return [user[@"phone_number"] isEqualToString:@""] || [user[@"email"] isEqualToString:@""] || [user[@"location"] isEqualToString:@""];

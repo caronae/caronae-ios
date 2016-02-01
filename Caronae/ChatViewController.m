@@ -1,8 +1,13 @@
+#import <Google/CloudMessaging.h>
+#import "CaronaeDefaults.h"
 #import "ChatViewController.h"
 #import "MessageBubbleTableViewCell.h"
 #import "Message.h"
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
+
+@property (nonatomic) NSString *topicID;
+@property (nonatomic) BOOL subscribedToTopic;
 
 @end
 
@@ -15,6 +20,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     if (self) {
         _chat = chat;
         self.title = [NSString stringWithFormat:@"Chat - Carona %lu", chat.ride.rideID];
+        self.topicID = [NSString stringWithFormat:@"/topics/%lu", chat.ride.rideID];
         self.hidesBottomBarWhenPushed = YES;
     }
     return self;
@@ -22,6 +28,31 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)subscribeToTopic {
+    NSString *registrationToken = [CaronaeDefaults userGCMToken];
+    if (registrationToken && !self.subscribedToTopic) {
+        [[GCMPubSub sharedInstance] subscribeWithToken:registrationToken
+                                                 topic:self.topicID
+                                               options:nil
+                                               handler:^(NSError *error) {
+                                                   if (error) {
+                                                       // Treat the "already subscribed" error more gently
+                                                       if (error.code == 3001) {
+                                                           NSLog(@"Already subscribed to %@",
+                                                                 self.topicID);
+                                                       } else {
+                                                           NSLog(@"Subscription failed: %@",
+                                                                 error.localizedDescription);
+                                                       }
+                                                   } else {
+                                                       self.subscribedToTopic = true;
+                                                       NSLog(@"Subscribed to %@", self.topicID);
+                                                   }
+                                               }];
+
+    }
 }
 
 
@@ -60,6 +91,9 @@ static const CGFloat toolBarMinHeight = 44.0f;
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [notificationCenter addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
+    [notificationCenter addObserver:self selector:@selector(gcmDidReceiveMessage:) name:CaronaeGCMMessageReceivedNotification object:nil];
+    
+    [self subscribeToTopic];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -117,6 +151,25 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [self.tableView endUpdates];
     
     [self tableViewScrollToBottomAnimated:YES];
+}
+
+
+#pragma mark - GCM methods
+
+- (void)gcmDidReceiveMessage:(NSNotification *)notification {
+    NSDictionary *userInfo = notification.userInfo;
+    if ([userInfo[@"from"] isEqualToString:self.topicID]) {
+        NSLog(@"Chat did receive message: %@", userInfo[@"message"]);
+        Message *message = [[Message alloc] initWithIncoming:YES text:userInfo[@"message"] sentDate:[NSDate date]];
+        self.chat.loadedMessages = [self.chat.loadedMessages arrayByAddingObject:message];
+        
+        self.textView.text = @"";
+        [self.tableView beginUpdates];
+        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.chat.loadedMessages.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
+        
+        [self tableViewScrollToBottomAnimated:YES];
+    }
 }
 
 
