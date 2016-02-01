@@ -1,4 +1,5 @@
 #import "ChatViewController.h"
+#import "MessageBubbleTableViewCell.h"
 #import "Message.h"
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
@@ -103,13 +104,14 @@ static const CGFloat toolBarMinHeight = 44.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Message Cell"];
+    NSString *cellIdentifier = NSStringFromClass(MessageBubbleTableViewCell.class);
+    MessageBubbleTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Message Cell"];
+        cell = [[MessageBubbleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     Message *message = self.chat.loadedMessages[indexPath.row];
-    cell.textLabel.text = message.text;
+    [cell configureWithMessage:message];
     
     return cell;
 }
