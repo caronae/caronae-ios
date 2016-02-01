@@ -40,8 +40,11 @@ static const CGFloat toolBarMinHeight = 44.0f;
     self.tableView.delegate = self;
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
     [self.view addSubview:self.tableView];
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [notificationCenter addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -88,7 +91,15 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 
 - (void)sendAction:(id)sender {
-    NSLog(@"Tap send");
+    Message *message = [[Message alloc] initWithIncoming:NO text:self.textView.text sentDate:[NSDate date]];
+    self.chat.loadedMessages = [self.chat.loadedMessages arrayByAddingObject:message];
+    
+    self.textView.text = @"";
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.chat.loadedMessages.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+    
+    [self tableViewScrollToBottomAnimated:YES];
 }
 
 
@@ -114,6 +125,66 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [cell configureWithMessage:message];
     
     return cell;
+}
+
+- (void)tableViewScrollToBottomAnimated:(BOOL)animated {
+    long int numberOfRows = [self.tableView numberOfRowsInSection:0];
+    if (numberOfRows > 0) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:numberOfRows-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+    }
+}
+
+
+#pragma mark - UIKeyboard notifications
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    NSDictionary *userInfo = notification.userInfo;
+    CGRect frameNew = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat insetNewBottom = [self.tableView convertRect:frameNew fromView:nil].size.height;
+    UIEdgeInsets insetOld = self.tableView.contentInset;
+    CGFloat insetChange = insetNewBottom - insetOld.bottom;
+    CGFloat overflow = self.tableView.contentSize.height - (self.tableView.frame.size.height - insetOld.top - insetOld.bottom);
+    
+    void (^animations)() = ^void() {
+        if (!(self.tableView.tracking || self.tableView.decelerating)) {
+            // Move content with keyboard
+            if (overflow > 0) { // scrollable before
+                self.tableView.contentOffset = CGPointMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y + insetChange);
+                if (self.tableView.contentOffset.y < -insetOld.top) {
+                    self.tableView.contentOffset = CGPointMake(self.tableView.contentOffset.x, - insetOld.top);
+                }
+            }
+            else if (insetChange > -overflow) { // scrollable after
+                self.tableView.contentOffset = CGPointMake(self.tableView.contentOffset.x, self.tableView.contentOffset.y + insetChange + overflow);
+            }
+        }
+    };
+    
+    double duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    if (duration > 0) {
+        UIViewAnimationCurve animationCurve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        [UIView animateWithDuration:duration delay:0.0 options:(animationCurve << 16) animations:animations completion:nil];
+    }
+    else {
+        animations();
+    }
+}
+
+- (void)keyboardDidShow:(NSNotification *)notification {
+    NSDictionary *userInfo = notification.userInfo;
+    CGRect frameNew = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat insetNewBottom = [self.tableView convertRect:frameNew fromView:nil].size.height;
+    
+    // Inset `tableView` with keyboard
+    CGFloat contentOffsetY = self.tableView.contentOffset.y;
+    self.tableView.contentInset = UIEdgeInsetsMake(self.tableView.contentInset.top, self.tableView.contentInset.left, insetNewBottom, self.tableView.contentInset.right);
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(self.tableView.scrollIndicatorInsets.top, self.tableView.scrollIndicatorInsets.left, insetNewBottom, self.tableView.scrollIndicatorInsets.right);
+    
+    // Prevents jump after keyboard dismissal
+    if (self.tableView.tracking || self.tableView.decelerating) {
+        self.tableView.contentOffset = CGPointMake(self.tableView.contentOffset.x, contentOffsetY);
+    }
+    
 }
 
 @end
