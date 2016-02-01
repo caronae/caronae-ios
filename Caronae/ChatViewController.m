@@ -36,6 +36,22 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)loadChatMessages {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:self.managedObjectContext];
+    fetchRequest.entity = entity;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rideID == %@", @(self.chat.ride.rideID)];
+    fetchRequest.predicate = predicate;
+    NSError *error;
+    self.chat.loadedMessages = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        NSLog(@"Whoops, couldn't load: %@", [error localizedDescription]);
+    }
+    else {
+        NSLog(@"Loaded %lu messages in chat", self.chat.loadedMessages.count);
+    }
+}
+
 - (void)subscribeToTopic {
     NSString *registrationToken = [CaronaeDefaults userGCMToken];
     if (registrationToken && !self.subscribedToTopic) {
@@ -103,19 +119,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [notificationCenter addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     [notificationCenter addObserver:self selector:@selector(gcmDidReceiveMessage:) name:CaronaeGCMMessageReceivedNotification object:nil];
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:self.managedObjectContext];
-    fetchRequest.entity = entity;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rideID == %@", @(self.chat.ride.rideID)];
-    fetchRequest.predicate = predicate;
-    NSError *error;
-    self.chat.loadedMessages = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (error) {
-        NSLog(@"Whoops, couldn't load: %@", [error localizedDescription]);
-    }
-    else {
-        NSLog(@"Loaded %lu messages in chat", self.chat.loadedMessages.count);
-    }
+    [self loadChatMessages];
     
     [self subscribeToTopic];
 }
@@ -194,8 +198,9 @@ static const CGFloat toolBarMinHeight = 44.0f;
     if ([userInfo[@"from"] isEqualToString:self.topicID]) {
         NSLog(@"Chat did receive message: %@", userInfo[@"message"]);
         
-//        Message *message = [[Message alloc] initWithIncoming:YES text:userInfo[@"message"] sentDate:[NSDate date]];
-//        [self appendMessage:message];
+        [self loadChatMessages];
+        [self.tableView reloadData];
+        [self tableViewScrollToBottomAnimated:YES];
     }
 }
 

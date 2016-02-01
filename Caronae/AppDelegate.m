@@ -164,11 +164,6 @@
     NSLog(@"Notification received 1: %@", userInfo);
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
-    // Handle the received message
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
-                                                        object:nil
-                                                      userInfo:userInfo];
-    
     
     if (userInfo[@"from"]) {
         NSArray *from = [userInfo[@"from"] componentsSeparatedByString:@"/"];
@@ -189,6 +184,11 @@
             }
         }
     }
+    
+    // Handle the received message
+    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
+                                                        object:nil
+                                                      userInfo:userInfo];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
