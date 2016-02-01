@@ -239,7 +239,6 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 }
 
 - (IBAction)didTapChatButton:(id)sender {
-    NSLog(@"Tapped chat button");
     Chat *chat = [[Chat alloc] init];
     chat.ride = _ride;
     
