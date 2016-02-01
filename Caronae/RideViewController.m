@@ -8,48 +8,12 @@
 #import "CaronaeAlertController.h"
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
-@property (nonatomic) UIColor *color;
-
-// Ride info
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *driverPhoto;
-@property (weak, nonatomic) IBOutlet UILabel *slotsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *driverNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *driverCourseLabel;
-@property (weak, nonatomic) IBOutlet UILabel *mutualFriendsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *driverMessageLabel;
-@property (weak, nonatomic) IBOutlet UILabel *routeLabel;
-@property (weak, nonatomic) IBOutlet UIView *carDetailsView;
-@property (weak, nonatomic) IBOutlet UILabel *carPlateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *carModelLabel;
-@property (weak, nonatomic) IBOutlet UILabel *carColorLabel;
-
-// Assets
-@property (weak, nonatomic) IBOutlet UIView *headerView;
-@property (weak, nonatomic) IBOutlet UIView *ridersView;
-@property (weak, nonatomic) IBOutlet UIView *mutualFriendsView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mutualFriendsCollectionHeight;
-@property (weak, nonatomic) IBOutlet UIView *finishRideView;
-@property (weak, nonatomic) IBOutlet UICollectionView *ridersCollectionView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ridersCollectionViewHeight;
-@property (weak, nonatomic) IBOutlet UICollectionView *mutualFriendsCollectionView;
-@property (weak, nonatomic) IBOutlet UIImageView *clockIcon;
-@property (weak, nonatomic) IBOutlet UIImageView *carIconPlate;
-@property (weak, nonatomic) IBOutlet UIImageView *carIconModel;
-@property (weak, nonatomic) IBOutlet UIImageView *carIconColor;
-@property (weak, nonatomic) IBOutlet UITableView *requestsTable;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *requestsTableHeight;
-
-// Buttons
-@property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-@property (weak, nonatomic) IBOutlet UIButton *finishRideButton;
 
 @property (nonatomic) NSArray *joinRequests;
 @property (nonatomic) NSDictionary *selectedUser;
 @property (nonatomic) NSArray *mutualFriends;
+@property (nonatomic) UIColor *color;
+
 @end
 
 @implementation RideViewController
@@ -71,11 +35,25 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     else {
         _titleLabel.text = [[NSString stringWithFormat:@"%@ → %@", _ride.hub, _ride.neighborhood] uppercaseString];
     }
+    
     _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", [dateFormatter stringFromDate:_ride.date]];
-    _slotsLabel.text = [NSString stringWithFormat:@"%d %@", _ride.slots, _ride.slots == 1 ? @"vaga" : @"vagas"];
+    
+    if ([_ride.place isKindOfClass:[NSString class]] && [_ride.place isEqualToString:@""]) {
+        _referenceLabel.text = @"---";
+    }
+    else {
+        _referenceLabel.text = _ride.place;
+    }
+
     _driverNameLabel.text = _ride.driver[@"name"];
     _driverCourseLabel.text = [NSString stringWithFormat:@"%@ | %@", _ride.driver[@"profile"], _ride.driver[@"course"]];
-    _routeLabel.text = [[_ride.route stringByReplacingOccurrencesOfString:@", " withString:@"\n"] stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
+    
+    if ([_ride.route isKindOfClass:[NSString class]] && [_ride.route isEqualToString:@""]) {
+        _routeLabel.text = @"---";
+    }
+    else {
+        _routeLabel.text = [[_ride.route stringByReplacingOccurrencesOfString:@", " withString:@"\n"] stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
+    }
     
     if ([_ride.notes isKindOfClass:[NSString class]] && [_ride.notes isEqualToString:@""]) {
         _driverMessageLabel.text = @"---";
