@@ -132,8 +132,13 @@
     // Start the GGLInstanceID shared instance with the that config and request a registration
     // token to enable reception of notifications
     [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
+#ifdef DEBUG
+    BOOL isBuiltDebug = YES;
+#else
+    BOOL isBuiltDebug = NO;
+#endif
     _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
-                             kGGLInstanceIDAPNSServerTypeSandboxOption:@NO}; // FIXME
+                             kGGLInstanceIDAPNSServerTypeSandboxOption:@(isBuiltDebug)}; // FIXME
     [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
                                                         scope:kGGLInstanceIDScopeGCM
                                                       options:_registrationOptions
