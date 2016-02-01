@@ -209,7 +209,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
 }
 
 - (void)gcmSendMessage:(NSString *)text {
-    
+    // TODO: send message to topic using GCM
 }
 
 #pragma mark - Table methods

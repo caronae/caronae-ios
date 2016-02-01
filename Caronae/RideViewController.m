@@ -180,11 +180,8 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _ride.driver[@"face_id"]]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *mutualFriends = responseObject[@"mutual_friends"];
         if (mutualFriends.count > 0) {
-            [_mutualFriendsView layoutIfNeeded];
             _mutualFriendsCollectionHeight.constant = 40.0f;
-            [UIView animateWithDuration:0.5 animations:^{
-                [_mutualFriendsView layoutIfNeeded];
-            }];
+            [_mutualFriendsView layoutIfNeeded];
             _mutualFriends = mutualFriends;
             [_mutualFriendsCollectionView reloadData];
         }
