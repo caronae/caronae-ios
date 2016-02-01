@@ -5,7 +5,7 @@
         <attribute name="rideID" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="senderId" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="senderName" attributeType="String" syncable="YES"/>
-        <attribute name="sentDate" attributeType="Date" syncable="YES"/>
+        <attribute name="sentDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="text" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Ride" representedClassName="Ride" syncable="YES">

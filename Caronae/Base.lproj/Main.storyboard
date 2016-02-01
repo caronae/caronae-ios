@@ -731,7 +731,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Referência Ex: Shopping Tijuca" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ah4-oz-Cgc" customClass="CaronaeTextField">
                                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <variation key="widthClass=compact" misplaced="YES">
                                                             <rect key="frame" x="0.0" y="5" width="360" height="30"/>
                                                         </variation>

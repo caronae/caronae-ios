@@ -43,6 +43,9 @@ static const CGFloat toolBarMinHeight = 44.0f;
     fetchRequest.entity = entity;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rideID == %@", @(self.chat.ride.rideID)];
     fetchRequest.predicate = predicate;
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sentDate" ascending:YES];
+    fetchRequest.sortDescriptors = @[sortDescriptor];
+    
     NSError *error;
     self.chat.loadedMessages = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
@@ -79,7 +82,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     self.chat.loadedMessages = [self.chat.loadedMessages arrayByAddingObject:message];
     
     [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.chat.loadedMessages.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.chat.loadedMessages.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
     
     [self tableViewScrollToBottomAnimated:YES];
