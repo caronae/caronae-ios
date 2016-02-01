@@ -26,10 +26,12 @@ static UIImage *bubbleImageOutgoing;
         
         _bubbleImageView = [[UIImageView alloc] initWithImage:bubbleImageIncoming];
         _bubbleImageView.tag = bubbleTag;
+        _bubbleImageView.userInteractionEnabled = NO;
         
         _messageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _messageLabel.font = [UIFont systemFontOfSize:17];
         _messageLabel.numberOfLines = 0;
+        _messageLabel.userInteractionEnabled = NO;
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -46,7 +48,7 @@ static UIImage *bubbleImageOutgoing;
         [_bubbleImageView addConstraint:[NSLayoutConstraint constraintWithItem:_messageLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_bubbleImageView attribute:NSLayoutAttributeCenterX multiplier:1 constant:3]];
         [_bubbleImageView addConstraint:[NSLayoutConstraint constraintWithItem:_messageLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_bubbleImageView attribute:NSLayoutAttributeCenterY multiplier:1 constant:-0.5]];
         _messageLabel.preferredMaxLayoutWidth = 218;
-        [_bubbleImageView addConstraint:[NSLayoutConstraint constraintWithItem:_messageLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_bubbleImageView attribute:NSLayoutAttributeHeight multiplier:1 constant:-15]];
+        [_bubbleImageView addConstraint:[NSLayoutConstraint constraintWithItem:_bubbleImageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_messageLabel attribute:NSLayoutAttributeHeight multiplier:1 constant:15]];
         
     }
     return self;
@@ -77,8 +79,7 @@ static UIImage *bubbleImageOutgoing;
         NSLayoutConstraint *layoutConstraint = _bubbleImageView.constraints[1]; // `messageLabel` CenterX
         layoutConstraint.constant = -layoutConstraint.constant;
         
-        NSArray *constraints = self.contentView.constraints;
-        for (NSLayoutConstraint *constraint in constraints) {
+        for (NSLayoutConstraint *constraint in self.contentView.constraints) {
             if (((UIView *)constraint.firstItem).tag == bubbleTag && (constraint.firstAttribute == NSLayoutAttributeLeft || constraint.firstAttribute == NSLayoutAttributeRight)) {
                 [self.contentView removeConstraint:constraint];
                 break;

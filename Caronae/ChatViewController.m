@@ -20,9 +20,19 @@ static const CGFloat toolBarMinHeight = 44.0f;
     return self;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+#pragma mark - UIResponder methods
+
 - (BOOL)canBecomeFirstResponder {
     return YES;
 }
+
+
+#pragma mark - UIViewController methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,7 +40,10 @@ static const CGFloat toolBarMinHeight = 44.0f;
     self.chat.loadedMessages = @[
                                  [[Message alloc] initWithIncoming:YES text:@"Mensagem que recebi!" sentDate:[NSDate dateWithTimeIntervalSinceNow:-60*60*24*2-60*60]],
                                  [[Message alloc] initWithIncoming:NO text:@"Mensagem que enviei." sentDate:[NSDate dateWithTimeIntervalSinceNow:-60*60*24*2]],
+                                 [[Message alloc] initWithIncoming:NO text:@"o enable debug logging set the following application argument" sentDate:[NSDate dateWithTimeIntervalSinceNow:-60*60*24*2]],
     ];
+    
+    self.view.backgroundColor = [UIColor whiteColor]; // smooths push animation
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -40,6 +53,8 @@ static const CGFloat toolBarMinHeight = 44.0f;
     self.tableView.delegate = self;
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 50.0f;
     [self.view addSubview:self.tableView];
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
@@ -68,7 +83,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
         [_toolBar addSubview:_textView];
         
         _sendButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _sendButton.enabled = YES;
+        _sendButton.enabled = NO;
         _sendButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
         [_sendButton setTitle:@"Enviar" forState:UIControlStateNormal];
         
@@ -89,6 +104,8 @@ static const CGFloat toolBarMinHeight = 44.0f;
     return _toolBar;
 }
 
+
+#pragma mark - Actions
 
 - (void)sendAction:(id)sender {
     Message *message = [[Message alloc] initWithIncoming:NO text:self.textView.text sentDate:[NSDate date]];
@@ -132,6 +149,13 @@ static const CGFloat toolBarMinHeight = 44.0f;
     if (numberOfRows > 0) {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:numberOfRows-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:animated];
     }
+}
+
+
+#pragma mark - UITextView methods
+
+- (void)textViewDidChange:(UITextView *)textView {
+    self.sendButton.enabled = [textView hasText];
 }
 
 
