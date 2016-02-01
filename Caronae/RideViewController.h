@@ -50,5 +50,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishRideButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *chatButton;
 
 @end

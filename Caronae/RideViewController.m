@@ -6,6 +6,8 @@
 #import "Ride.h"
 #import "CaronaeRiderCell.h"
 #import "CaronaeAlertController.h"
+#import "Chat.h"
+#import "ChatViewController.h"
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
 
@@ -102,12 +104,15 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         
         [self updateMutualFriends];
     }
-    // If the user is not related to the ride, hide 'cancel' button, car details view and riders view
+    // If the user is not related to the ride, hide 'cancel' button, car details view, riders view, chat button
     else {
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.finishRideView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.ridersView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        
+        // FIXME:
+//        self.navigationItem.rightBarButtonItem = nil;
         
         // Update the state of the join request button if the user has already requested to join
         if ([CaronaeDefaults hasUserAlreadyRequestedJoin:_ride]) {
@@ -231,6 +236,15 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [self finishRide];
     }]];
     [alert presentWithCompletion:nil];
+}
+
+- (IBAction)didTapChatButton:(id)sender {
+    NSLog(@"Tapped chat button");
+    Chat *chat = [[Chat alloc] init];
+    chat.ride = _ride;
+    
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithChat:chat];
+    [self.navigationController pushViewController:chatVC animated:YES];    
 }
 
 
