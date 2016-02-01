@@ -17,26 +17,35 @@ static const int bubbleTag = 8;
         
         _messageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _messageLabel.font = [UIFont systemFontOfSize:17];
-        _messageLabel.textColor = [UIColor darkTextColor];
         _messageLabel.numberOfLines = 0;
-        _messageLabel.userInteractionEnabled = NO;
+        
+        _senderLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _senderLabel.font = [UIFont systemFontOfSize:13];
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         [self.contentView addSubview:_bubbleView];
+        [_bubbleView addSubview:_senderLabel];
         [_bubbleView addSubview:_messageLabel];
         
         _bubbleView.translatesAutoresizingMaskIntoConstraints = NO;
         _messageLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        _senderLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_bubbleView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1 constant:10]];
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_bubbleView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTop multiplier:1 constant:4.5]];
         [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_bubbleView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_messageLabel attribute:NSLayoutAttributeWidth multiplier:1 constant:20]];
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_bubbleView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1 constant:-4.5]];
         
+        
+        [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_messageLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:_senderLabel attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+        [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_senderLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_bubbleView attribute:NSLayoutAttributeTop multiplier:1 constant:8]];
+        [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_senderLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:_messageLabel attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
+        
         [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_messageLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_bubbleView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
-        [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_messageLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_bubbleView attribute:NSLayoutAttributeCenterY multiplier:1 constant:-0.5]];
+        [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_messageLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_senderLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:4]];
         _messageLabel.preferredMaxLayoutWidth = 218;
-        [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_bubbleView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:_messageLabel attribute:NSLayoutAttributeHeight multiplier:1 constant:15]];
+        [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_bubbleView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_messageLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:8]];
         
     }
     return self;
@@ -44,20 +53,25 @@ static const int bubbleTag = 8;
 
 - (void)configureWithMessage:(Message *)message {
     _messageLabel.text = message.text;
+    _senderLabel.text = message.senderName;
+    
     BOOL incoming = [message.incoming boolValue];
-
     NSLayoutAttribute layoutAttribute;
     CGFloat layoutConstant;
     
     if (incoming) {
         self.tag = incomingTag;
         _bubbleView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
+        _messageLabel.textColor = [UIColor darkTextColor];
+        _senderLabel.textColor = [UIColor lightGrayColor];
         layoutAttribute = NSLayoutAttributeLeft;
         layoutConstant = 10;
     }
     else {
         self.tag = outgoingTag;
-        _bubbleView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+        _bubbleView.backgroundColor = [UIColor colorWithRed:43.0/255.0 green:119.0/255.0 blue:250.0/255.0 alpha:1];
+        _messageLabel.textColor = [UIColor whiteColor];
+        _senderLabel.textColor = [UIColor lightTextColor];
         layoutAttribute = NSLayoutAttributeRight;
         layoutConstant = -10;
     }

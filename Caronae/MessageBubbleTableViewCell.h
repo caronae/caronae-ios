@@ -7,5 +7,6 @@
 
 @property (nonatomic) UIView *bubbleView;
 @property (nonatomic) UILabel *messageLabel;
+@property (nonatomic) UILabel *senderLabel;
 
 @end

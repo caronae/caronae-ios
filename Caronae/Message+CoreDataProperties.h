@@ -15,10 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Message (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *text;
 @property (nullable, nonatomic, retain) NSNumber *incoming;
-@property (nullable, nonatomic, retain) NSDate *sentDate;
 @property (nullable, nonatomic, retain) NSNumber *rideID;
+@property (nullable, nonatomic, retain) NSDate *sentDate;
+@property (nullable, nonatomic, retain) NSString *text;
+@property (nullable, nonatomic, retain) NSString *senderName;
+@property (nullable, nonatomic, retain) NSNumber *senderId;
 
 @end
 

@@ -53,6 +53,15 @@
                 [weakSelf updateUserGCMToken:registrationToken];
             }
             
+            [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
+                if (error) {
+                    NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
+                } else {
+                    _connectedToGCM = true;
+                    NSLog(@"Connected to GCM");
+                }
+            }];
+            
             NSDictionary *userInfo = @{@"registrationToken": registrationToken};
             [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
                                                                 object:nil
@@ -172,7 +181,7 @@
             // Handle chat messages
             if (msgType && [msgType isEqualToString:@"chat"]) {
                 NSNumber *rideID = @([from[2] integerValue]);
-                NSLog(@"Received chat message for ride %@", rideID);
+                NSLog(@"Received chat message for topic of ride %@", rideID);
                 
                 int senderId = [userInfo[@"senderId"] intValue];
                 int currentUserId = [[CaronaeDefaults defaults].user[@"id"] intValue];
@@ -185,8 +194,12 @@
                 Message *message = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
                 message.text = userInfo[@"message"];
                 message.incoming = @(YES);
-                message.sentDate = [NSDate date];
-                message.rideID = rideID;
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                message.sentDate = [dateFormatter dateFromString:userInfo[@"time"]];
+                message.rideID = @([userInfo[@"rideId"] intValue]);
+                message.senderName = userInfo[@"senderName"];
+                message.senderId = @([userInfo[@"senderId"] intValue]);
                 
                 NSError *error;
                 if (![context save:&error]) {
@@ -268,9 +281,10 @@
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Caronae.sqlite"];
+    NSDictionary *optionsDictionary = @{NSMigratePersistentStoresAutomaticallyOption: @(YES)};
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:optionsDictionary error:&error]) {
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";

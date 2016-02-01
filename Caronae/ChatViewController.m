@@ -47,10 +47,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     self.chat.loadedMessages = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
         NSLog(@"Whoops, couldn't load: %@", [error localizedDescription]);
-    }
-    else {
-        NSLog(@"Loaded %lu messages in chat", self.chat.loadedMessages.count);
-    }
+    } 
 }
 
 - (void)subscribeToTopic {
@@ -177,6 +174,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 - (void)sendAction:(id)sender {
     NSString *messageText = self.textView.text;
+    NSDictionary *currentUser = [CaronaeDefaults defaults].user;
     
     NSManagedObjectContext *context = [self managedObjectContext];
     Message *message = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
@@ -184,6 +182,8 @@ static const CGFloat toolBarMinHeight = 44.0f;
     message.incoming = @(NO);
     message.sentDate = [NSDate date];
     message.rideID = @(self.chat.ride.rideID);
+    message.senderName = currentUser[@"name"];
+    message.senderId = currentUser[@"id"];
     
     NSError *error;
     if (![context save:&error]) {

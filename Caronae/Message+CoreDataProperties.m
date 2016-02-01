@@ -13,9 +13,11 @@
 
 @implementation Message (CoreDataProperties)
 
-@dynamic text;
 @dynamic incoming;
-@dynamic sentDate;
 @dynamic rideID;
+@dynamic sentDate;
+@dynamic text;
+@dynamic senderName;
+@dynamic senderId;
 
 @end

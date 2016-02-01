@@ -164,6 +164,7 @@
 		A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+UIColor.m"; sourceTree = "<group>"; };
 		A3C55BD81C5FB19A00C84204 /* Message+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Message+CoreDataProperties.h"; sourceTree = "<group>"; };
 		A3C55BD91C5FB19A00C84204 /* Message+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Message+CoreDataProperties.m"; sourceTree = "<group>"; };
+		A3C55BDB1C5FD1B700C84204 /* Caronae 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Caronae 2.xcdatamodel"; sourceTree = "<group>"; };
 		A3EE026A1C17D01000A8407E /* CaronaeRiderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeRiderCell.h; sourceTree = "<group>"; };
 		A3EE026B1C17D01000A8407E /* CaronaeRiderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeRiderCell.m; sourceTree = "<group>"; };
 		A3F30EE71C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+dictionaryWithoutNulls.h"; sourceTree = "<group>"; };
@@ -930,9 +931,10 @@
 		A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A3C55BDB1C5FD1B700C84204 /* Caronae 2.xcdatamodel */,
 				A3169CA01BED842D00A0D428 /* Caronae.xcdatamodel */,
 			);
-			currentVersion = A3169CA01BED842D00A0D428 /* Caronae.xcdatamodel */;
+			currentVersion = A3C55BDB1C5FD1B700C84204 /* Caronae 2.xcdatamodel */;
 			path = Caronae.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
