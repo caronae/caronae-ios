@@ -5,7 +5,7 @@
 
 - (void)configureWithMessage:(Message *)message;
 
-@property (nonatomic) UIImageView *bubbleImageView;
+@property (nonatomic) UIView *bubbleView;
 @property (nonatomic) UILabel *messageLabel;
 
 @end
