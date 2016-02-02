@@ -111,8 +111,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [self.finishRideView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.ridersView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         
-        // FIXME:
-//        self.navigationItem.rightBarButtonItem = nil;
+        self.navigationItem.rightBarButtonItem = nil;
         
         // Update the state of the join request button if the user has already requested to join
         if ([CaronaeDefaults hasUserAlreadyRequestedJoin:_ride]) {
