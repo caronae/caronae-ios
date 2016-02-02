@@ -27,7 +27,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @" - dd/MM - HH:mm";
         
-        self.title = [self.chat.ride.title stringByAppendingString:[dateFormatter stringFromDate:self.chat.ride.date]];
+        self.title = [chat.ride.title stringByAppendingString:[dateFormatter stringFromDate:chat.ride.date]];
         self.topicID = [NSString stringWithFormat:@"/topics/%lu", chat.ride.rideID];
         self.hidesBottomBarWhenPushed = YES;
         
@@ -156,6 +156,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
         _sendButton = [UIButton buttonWithType:UIButtonTypeSystem];
         _sendButton.enabled = NO;
         _sendButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+        _sendButton.tintColor = self.chat.color;
         [_sendButton setTitle:@"Enviar" forState:UIControlStateNormal];
         
         _sendButton.contentEdgeInsets = UIEdgeInsetsMake(6, 6, 6, 6);
@@ -260,6 +261,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     MessageBubbleTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[MessageBubbleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.tintColor = self.chat.color;
     }
     
     Message *message = self.chat.loadedMessages[indexPath.row];

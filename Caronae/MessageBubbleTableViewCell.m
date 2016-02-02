@@ -69,7 +69,7 @@ static const int bubbleTag = 8;
     }
     else {
         self.tag = outgoingTag;
-        _bubbleView.backgroundColor = [UIColor colorWithRed:43.0/255.0 green:119.0/255.0 blue:250.0/255.0 alpha:1];
+        _bubbleView.backgroundColor = self.tintColor;
         _messageLabel.textColor = [UIColor whiteColor];
         _senderLabel.textColor = [UIColor lightTextColor];
         layoutAttribute = NSLayoutAttributeRight;

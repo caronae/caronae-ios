@@ -231,6 +231,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 - (IBAction)didTapChatButton:(id)sender {
     Chat *chat = [[Chat alloc] init];
     chat.ride = _ride;
+    chat.color = _color;
     
     ChatViewController *chatVC = [[ChatViewController alloc] initWithChat:chat];
     [self.navigationController pushViewController:chatVC animated:YES];    
