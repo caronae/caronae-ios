@@ -156,7 +156,7 @@ static NSUserDefaults *userDefaults;
 
 - (NSDictionary *)zoneColors {
     if (!_zoneColors) {
-        _zoneColors = @{@"Baixada Fluminense": [UIColor colorWithRed:0.890 green:0.145 blue:0.165 alpha:1.000],
+        _zoneColors = @{@"Baixada": [UIColor colorWithRed:0.890 green:0.145 blue:0.165 alpha:1.000],
                         @"Centro":  [UIColor colorWithRed:0.906 green:0.424 blue:0.114 alpha:1.000],
                         @"Grande Niterói":  [UIColor colorWithRed:0.898 green:0.349 blue:0.620 alpha:1.000],
                         @"Zona Norte":  [UIColor colorWithRed:0.353 green:0.157 blue:0.094 alpha:1.000],
