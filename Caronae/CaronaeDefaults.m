@@ -117,10 +117,7 @@ static NSUserDefaults *userDefaults;
 + (BOOL)hasUserAlreadyRequestedJoin:(Ride *)ride {
     NSArray *requested = [CaronaeDefaults defaults].cachedJoinRequests;
     NSNumber *rideID = @(ride.rideID);
-    if ([requested indexOfObject:rideID] != NSNotFound) {
-        return YES;
-    }
-    return NO;
+    return [requested containsObject:rideID];
 }
 
 + (void)addToCachedJoinRequests:(Ride *)ride {

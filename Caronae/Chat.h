@@ -6,5 +6,6 @@
 @property (nonatomic) Ride *ride;
 @property (nonatomic) NSArray *loadedMessages;
 @property (nonatomic) UIColor *color;
+@property (nonatomic) BOOL subscribed;
 
 @end

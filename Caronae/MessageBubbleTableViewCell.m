@@ -76,9 +76,6 @@ static const int bubbleTag = 8;
         layoutConstant = -10;
     }
     
-    NSLayoutConstraint *layoutConstraint = _bubbleView.constraints[1]; // `messageLabel` CenterX
-    layoutConstraint.constant = -layoutConstraint.constant;
-    
     for (NSLayoutConstraint *constraint in self.contentView.constraints) {
         if (((UIView *)constraint.firstItem).tag == bubbleTag && (constraint.firstAttribute == NSLayoutAttributeLeft || constraint.firstAttribute == NSLayoutAttributeRight)) {
             [self.contentView removeConstraint:constraint];

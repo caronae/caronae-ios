@@ -10,7 +10,6 @@
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 
 @property (nonatomic) NSString *topicID;
-@property (nonatomic) BOOL subscribedToTopic;
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
@@ -59,7 +58,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 - (void)subscribeToTopic {
     NSString *registrationToken = [CaronaeDefaults userGCMToken];
-    if (registrationToken && !self.subscribedToTopic) {
+    if (registrationToken) {
         [[GCMPubSub sharedInstance] subscribeWithToken:registrationToken
                                                  topic:self.topicID
                                                options:nil
@@ -67,6 +66,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
                                                    if (error) {
                                                        // Treat the "already subscribed" error more gently
                                                        if (error.code == 3001) {
+                                                           self.chat.subscribed = YES;
                                                            NSLog(@"Already subscribed to %@",
                                                                  self.topicID);
                                                        } else {
@@ -74,7 +74,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
                                                                  error.localizedDescription);
                                                        }
                                                    } else {
-                                                       self.subscribedToTopic = true;
+                                                       self.chat.subscribed = YES;
                                                        NSLog(@"Subscribed to %@", self.topicID);
                                                    }
                                                }];
@@ -124,7 +124,10 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [notificationCenter addObserver:self selector:@selector(gcmDidReceiveMessage:) name:CaronaeGCMMessageReceivedNotification object:nil];
     
     [self loadChatMessages];
-    [self subscribeToTopic];
+    
+    if (!self.chat.subscribed) {
+        [self subscribeToTopic];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
