@@ -219,8 +219,10 @@ static const CGFloat toolBarMinHeight = 44.0f;
     // Handle chat messages
     if (msgType && [msgType isEqualToString:@"chat"]) {
         NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
+        NSNumber *senderID = @([userInfo[@"senderId"] intValue]);
+        NSNumber *currentUserId = [CaronaeDefaults defaults].user[@"id"];
 
-        if ([rideID isEqual:@(self.chat.ride.rideID)]) {
+        if ([rideID isEqual:@(self.chat.ride.rideID)] && ![senderID isEqual:currentUserId]) {
             NSLog(@"Chat window did receive message: %@", userInfo[@"message"]);
             
             [self loadChatMessages];
