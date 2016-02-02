@@ -31,13 +31,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"HH:mm | dd/MM";
     
-    if (_ride.going) {
-        _titleLabel.text = [[NSString stringWithFormat:@"%@ → %@", _ride.neighborhood, _ride.hub] uppercaseString];
-    }
-    else {
-        _titleLabel.text = [[NSString stringWithFormat:@"%@ → %@", _ride.hub, _ride.neighborhood] uppercaseString];
-    }
-    
+    _titleLabel.text = [_ride.title uppercaseString];   
     _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", [dateFormatter stringFromDate:_ride.date]];
     
     if ([_ride.place isKindOfClass:[NSString class]] && [_ride.place isEqualToString:@""]) {

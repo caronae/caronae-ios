@@ -23,7 +23,11 @@ static const CGFloat toolBarMinHeight = 44.0f;
     self = [super init];
     if (self) {
         _chat = chat;
-        self.title = [NSString stringWithFormat:@"Chat - Carona %lu", chat.ride.rideID];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @" - dd/MM - HH:mm";
+        
+        self.title = [self.chat.ride.title stringByAppendingString:[dateFormatter stringFromDate:self.chat.ride.date]];
         self.topicID = [NSString stringWithFormat:@"/topics/%lu", chat.ride.rideID];
         self.hidesBottomBarWhenPushed = YES;
         
@@ -99,8 +103,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
 #pragma mark - UIViewController methods
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
+    [super viewDidLoad];    
     self.view.backgroundColor = [UIColor whiteColor]; // smooths push animation
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
