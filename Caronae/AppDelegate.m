@@ -87,6 +87,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [[GCMService sharedInstance] disconnect];
+    NSLog(@"Disconnected from GCM");
     _connectedToGCM = NO;
 }
 
@@ -140,6 +141,43 @@
     }
 }
 
+- (BOOL)handleNotification:(NSDictionary *)userInfo {
+    NSString *msgType = userInfo[@"msgType"];
+    // Handle chat messages
+    if (msgType && [msgType isEqualToString:@"chat"]) {
+        
+        int senderId = [userInfo[@"senderId"] intValue];
+        int currentUserId = [[CaronaeDefaults defaults].user[@"id"] intValue];
+        // We don't need to handle a message if it's from the logged user
+        if (senderId == currentUserId) {
+            return NO;
+        }
+        
+        NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
+        NSLog(@"Received chat message for topic of ride %@", rideID);
+        
+        NSManagedObjectContext *context = [self managedObjectContext];
+        Message *message = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+        message.text = userInfo[@"message"];
+        message.incoming = @(YES);
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        message.sentDate = [dateFormatter dateFromString:userInfo[@"time"]];
+        message.rideID = rideID;
+        message.senderName = userInfo[@"senderName"];
+        message.senderId = @([userInfo[@"senderId"] intValue]);
+        
+        NSError *error;
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
 
 #pragma mark - Google Cloud Messaging (GCM)
 
@@ -176,43 +214,8 @@
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
     
-    if (userInfo[@"from"]) {
-        NSArray *from = [userInfo[@"from"] componentsSeparatedByString:@"/"];
-        if ([from[1] isEqualToString:@"topics"]) {
-            NSString *msgType = userInfo[@"msgType"];
-            // Handle chat messages
-            if (msgType && [msgType isEqualToString:@"chat"]) {
-                
-                int senderId = [userInfo[@"senderId"] intValue];
-                int currentUserId = [[CaronaeDefaults defaults].user[@"id"] intValue];
-                // We don't need to handle a message if it's from the logged user
-                if (senderId == currentUserId) {
-                    return;
-                }
-                
-                NSString *topicID = from[2];
-                NSLog(@"Received chat message for topic of ride %@", topicID);
-                
-                NSManagedObjectContext *context = [self managedObjectContext];
-                Message *message = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
-                message.text = userInfo[@"message"];
-                message.incoming = @(YES);
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-                message.sentDate = [dateFormatter dateFromString:userInfo[@"time"]];
-                message.rideID = @([userInfo[@"rideId"] intValue]);
-                message.senderName = userInfo[@"senderName"];
-                message.senderId = @([userInfo[@"senderId"] intValue]);
-                
-                NSError *error;
-                if (![context save:&error]) {
-                    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-                }
-            }
-        }
-    }
+    [self handleNotification:userInfo];
     
-    // Handle the received message
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
                                                         object:nil
                                                       userInfo:userInfo];
@@ -222,12 +225,28 @@
     NSLog(@"Notification received 2: %@", userInfo);
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
-    // Handle the received message
-    // Invoke the completion handler passing the appropriate UIBackgroundFetchResult value
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
-                                                        object:nil
-                                                      userInfo:userInfo];
-    handler(UIBackgroundFetchResultNoData);
+    
+    // If the application received the notification on the background or foreground
+    if (application.applicationState != UIApplicationStateInactive) {
+        if ([self handleNotification:userInfo]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
+                                                                object:nil
+                                                              userInfo:userInfo];
+            
+            handler(UIBackgroundFetchResultNewData);
+        }
+        else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
+                                                                object:nil
+                                                              userInfo:userInfo];
+            handler(UIBackgroundFetchResultNoData);
+        }
+    }
+    // If the application is opening through the notification
+    else {
+        // TODO: open view according to notification type
+        handler(UIBackgroundFetchResultNoData);
+    }
 }
 
 - (void)onTokenRefresh {

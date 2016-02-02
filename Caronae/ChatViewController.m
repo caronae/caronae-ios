@@ -210,12 +210,19 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 - (void)gcmDidReceiveMessage:(NSNotification *)notification {
     NSDictionary *userInfo = notification.userInfo;
-    if ([userInfo[@"from"] isEqualToString:self.topicID]) {
-        NSLog(@"Chat did receive message: %@", userInfo[@"message"]);
-        
-        [self loadChatMessages];
-        [self.tableView reloadData];
-        [self tableViewScrollToBottomAnimated:YES];
+    NSString *msgType = userInfo[@"msgType"];
+    
+    // Handle chat messages
+    if (msgType && [msgType isEqualToString:@"chat"]) {
+        NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
+
+        if ([rideID isEqual:@(self.chat.ride.rideID)]) {
+            NSLog(@"Chat window did receive message: %@", userInfo[@"message"]);
+            
+            [self loadChatMessages];
+            [self.tableView reloadData];
+            [self tableViewScrollToBottomAnimated:YES];
+        }
     }
 }
 
