@@ -6,6 +6,8 @@
 #import "Ride.h"
 #import "CaronaeRiderCell.h"
 #import "CaronaeAlertController.h"
+#import "Chat.h"
+#import "ChatViewController.h"
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
 
@@ -29,13 +31,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"HH:mm | dd/MM";
     
-    if (_ride.going) {
-        _titleLabel.text = [[NSString stringWithFormat:@"%@ → %@", _ride.neighborhood, _ride.hub] uppercaseString];
-    }
-    else {
-        _titleLabel.text = [[NSString stringWithFormat:@"%@ → %@", _ride.hub, _ride.neighborhood] uppercaseString];
-    }
-    
+    _titleLabel.text = [_ride.title uppercaseString];   
     _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", [dateFormatter stringFromDate:_ride.date]];
     
     if ([_ride.place isKindOfClass:[NSString class]] && [_ride.place isEqualToString:@""]) {
@@ -102,12 +98,14 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         
         [self updateMutualFriends];
     }
-    // If the user is not related to the ride, hide 'cancel' button, car details view and riders view
+    // If the user is not related to the ride, hide 'cancel' button, car details view, riders view, chat button
     else {
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.finishRideView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.ridersView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        
+        self.navigationItem.rightBarButtonItem = nil;
         
         // Update the state of the join request button if the user has already requested to join
         if ([CaronaeDefaults hasUserAlreadyRequestedJoin:_ride]) {
@@ -175,11 +173,8 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _ride.driver[@"face_id"]]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *mutualFriends = responseObject[@"mutual_friends"];
         if (mutualFriends.count > 0) {
-            [_mutualFriendsView layoutIfNeeded];
             _mutualFriendsCollectionHeight.constant = 40.0f;
-            [UIView animateWithDuration:0.5 animations:^{
-                [_mutualFriendsView layoutIfNeeded];
-            }];
+            [_mutualFriendsView layoutIfNeeded];
             _mutualFriends = mutualFriends;
             [_mutualFriendsCollectionView reloadData];
         }
@@ -231,6 +226,15 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [self finishRide];
     }]];
     [alert presentWithCompletion:nil];
+}
+
+- (IBAction)didTapChatButton:(id)sender {
+    Chat *chat = [[Chat alloc] init];
+    chat.ride = _ride;
+    chat.color = _color;
+    
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithChat:chat];
+    [self.navigationController pushViewController:chatVC animated:YES];    
 }
 
 

@@ -16,4 +16,7 @@
 @property (nonatomic) long rideID;
 @property (nonatomic) NSDictionary *driver;
 @property (nonatomic) NSArray *users;
+
+@property (nonatomic, readonly) NSString *title;
+
 @end

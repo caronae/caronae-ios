@@ -6,12 +6,14 @@
 
 #pragma mark - API settings
 
-NSString *const CaronaeAPIBaseURL = @"http://web1.tic.ufrj.br/caronae";
+NSString *const CaronaeAPIBaseURL = @"http://caronae.tic.ufrj.br";
 //NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90";
 //NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
 //NSString *const CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
 //NSString *const CaronaeAPIBaseURL = @"http://localhost:8000";
 
+NSString *const CaronaeGCMAPISendURL = @"https://gcm-http.googleapis.com/gcm/send";
+NSString *const CaronaeGCMAPIKey = @"key=AIzaSyBtGz81bar_LcwtN_fpPTKRMBL5glp2T18";
 
 #pragma mark - Notifications
 
@@ -98,6 +100,15 @@ static NSUserDefaults *userDefaults;
     return token.tokenString;
 }
 
++ (NSString *)userGCMToken {
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"gcmToken"];
+}
+
++ (void)setUserGCMToken:(NSString *)gcmToken {
+    [[NSUserDefaults standardUserDefaults] setObject:gcmToken forKey:@"gcmToken"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 + (BOOL)userProfileIsIncomplete {
     NSDictionary *user = [CaronaeDefaults defaults].user;
     return [user[@"phone_number"] isEqualToString:@""] || [user[@"email"] isEqualToString:@""] || [user[@"location"] isEqualToString:@""];
@@ -106,10 +117,7 @@ static NSUserDefaults *userDefaults;
 + (BOOL)hasUserAlreadyRequestedJoin:(Ride *)ride {
     NSArray *requested = [CaronaeDefaults defaults].cachedJoinRequests;
     NSNumber *rideID = @(ride.rideID);
-    if ([requested indexOfObject:rideID] != NSNotFound) {
-        return YES;
-    }
-    return NO;
+    return [requested containsObject:rideID];
 }
 
 + (void)addToCachedJoinRequests:(Ride *)ride {

@@ -731,7 +731,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Referência Ex: Shopping Tijuca" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ah4-oz-Cgc" customClass="CaronaeTextField">
                                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <variation key="widthClass=compact" misplaced="YES">
                                                             <rect key="frame" x="0.0" y="5" width="360" height="30"/>
                                                         </variation>
@@ -3918,7 +3918,7 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="443" width="370" height="84"/>
+                                                    <rect key="frame" x="15" y="443" width="370" height="85"/>
                                                     <mask key="subviews">
                                                         <include reference="ftJ-lK-bEs"/>
                                                         <include reference="1W7-OK-GJ3"/>
@@ -3986,7 +3986,7 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="532" width="370" height="50"/>
+                                                    <rect key="frame" x="15" y="533" width="370" height="50"/>
                                                     <mask key="subviews">
                                                         <include reference="K8h-kP-2X5"/>
                                                         <include reference="P3j-hD-d2F"/>
@@ -4213,7 +4213,7 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="15" y="592" width="370" height="165"/>
+                                                    <rect key="frame" x="15" y="593" width="370" height="165"/>
                                                     <mask key="subviews">
                                                         <include reference="q8t-lO-Jqk"/>
                                                         <include reference="ZA1-8O-6ah"/>
@@ -4350,7 +4350,7 @@ FOTO</string>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="772"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="773"/>
                                             <mask key="subviews">
                                                 <include reference="wC6-CD-nF5"/>
                                                 <include reference="NpW-3h-cia"/>
@@ -5553,7 +5553,7 @@ FOTO</string>
                         <viewControllerLayoutGuide type="bottom" id="GiZ-cY-BAp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yaI-7v-qLw">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T7m-fq-ERe">
@@ -5981,7 +5981,7 @@ FOTO</string>
                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
-                                                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="twK-5y-Mx5" userLabel="Friend photo">
+                                                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="twK-5y-Mx5" userLabel="Friend photo">
                                                                                     <rect key="frame" x="20" y="20" width="50" height="50"/>
                                                                                     <gestureRecognizers/>
                                                                                     <constraints>
@@ -6176,22 +6176,13 @@ FOTO</string>
                                                                 <variation key="widthClass=compact" constant="5"/>
                                                             </constraint>
                                                             <constraint firstItem="0a3-ca-yPl" firstAttribute="width" secondItem="aGC-vs-gc5" secondAttribute="width" id="4cF-tH-wVz"/>
-                                                            <constraint firstItem="iQb-4h-7CT" firstAttribute="top" secondItem="RX5-Kp-EcW" secondAttribute="top" constant="8" id="9Eh-Cu-ZLq">
-                                                                <variation key="widthClass=compact" constant="10"/>
-                                                            </constraint>
                                                             <constraint firstItem="iQb-4h-7CT" firstAttribute="top" secondItem="lz2-Z4-QpW" secondAttribute="bottom" constant="15" id="B4B-6I-dh9"/>
                                                             <constraint firstItem="xVk-8T-Xcd" firstAttribute="leading" secondItem="0a3-ca-yPl" secondAttribute="leading" id="Ey1-gf-4Yl"/>
                                                             <constraint firstItem="aGC-vs-gc5" firstAttribute="leading" secondItem="iQb-4h-7CT" secondAttribute="leading" id="JOL-B5-4bw"/>
-                                                            <constraint firstAttribute="bottom" secondItem="0a3-ca-yPl" secondAttribute="bottom" constant="8" id="Jyd-vx-tK3">
-                                                                <variation key="widthClass=compact" constant="10"/>
-                                                            </constraint>
                                                             <constraint firstItem="gJz-Ez-OqI" firstAttribute="top" secondItem="RX5-Kp-EcW" secondAttribute="top" constant="10" id="NV5-gX-TCs"/>
                                                             <constraint firstItem="lz2-Z4-QpW" firstAttribute="top" secondItem="xVk-8T-Xcd" secondAttribute="bottom" constant="5" id="Nda-Bi-o77"/>
                                                             <constraint firstItem="lz2-Z4-QpW" firstAttribute="width" secondItem="0a3-ca-yPl" secondAttribute="width" id="Tio-Jg-UFr"/>
                                                             <constraint firstItem="xVk-8T-Xcd" firstAttribute="top" secondItem="0a3-ca-yPl" secondAttribute="bottom" constant="15" id="VSW-0c-Hbi"/>
-                                                            <constraint firstItem="gJz-Ez-OqI" firstAttribute="top" secondItem="aGC-vs-gc5" secondAttribute="bottom" constant="8" id="ZdQ-GD-jqM">
-                                                                <variation key="widthClass=compact" constant="15"/>
-                                                            </constraint>
                                                             <constraint firstItem="0a3-ca-yPl" firstAttribute="leading" secondItem="iQb-4h-7CT" secondAttribute="leading" id="aXV-Uf-gVS"/>
                                                             <constraint firstItem="gJz-Ez-OqI" firstAttribute="leading" secondItem="iQb-4h-7CT" secondAttribute="leading" id="dhk-Xv-kU5"/>
                                                             <constraint firstAttribute="trailing" secondItem="aGC-vs-gc5" secondAttribute="trailing" constant="-36.5" id="eRZ-r5-TgB">
@@ -6213,25 +6204,22 @@ FOTO</string>
                                                                 <exclude reference="aGC-vs-gc5"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="NV5-gX-TCs"/>
-                                                                <exclude reference="ZdQ-GD-jqM"/>
-                                                                <exclude reference="dhk-Xv-kU5"/>
                                                                 <exclude reference="3P1-m2-pOk"/>
                                                                 <exclude reference="4cF-tH-wVz"/>
-                                                                <exclude reference="Jyd-vx-tK3"/>
                                                                 <exclude reference="aXV-Uf-gVS"/>
-                                                                <exclude reference="Ey1-gf-4Yl"/>
-                                                                <exclude reference="VSW-0c-Hbi"/>
-                                                                <exclude reference="Nda-Bi-o77"/>
-                                                                <exclude reference="Tio-Jg-UFr"/>
-                                                                <exclude reference="fJ0-Yg-MhY"/>
-                                                                <exclude reference="9Eh-Cu-ZLq"/>
-                                                                <exclude reference="B4B-6I-dh9"/>
-                                                                <exclude reference="jar-nM-w79"/>
                                                                 <exclude reference="1Tj-eD-gVU"/>
                                                                 <exclude reference="JOL-B5-4bw"/>
                                                                 <exclude reference="eRZ-r5-TgB"/>
                                                                 <exclude reference="yTY-ld-iTm"/>
+                                                                <exclude reference="NV5-gX-TCs"/>
+                                                                <exclude reference="dhk-Xv-kU5"/>
+                                                                <exclude reference="B4B-6I-dh9"/>
+                                                                <exclude reference="jar-nM-w79"/>
+                                                                <exclude reference="Nda-Bi-o77"/>
+                                                                <exclude reference="Tio-Jg-UFr"/>
+                                                                <exclude reference="fJ0-Yg-MhY"/>
+                                                                <exclude reference="Ey1-gf-4Yl"/>
+                                                                <exclude reference="VSW-0c-Hbi"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -6244,25 +6232,22 @@ FOTO</string>
                                                                 <include reference="aGC-vs-gc5"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <include reference="NV5-gX-TCs"/>
-                                                                <exclude reference="ZdQ-GD-jqM"/>
-                                                                <include reference="dhk-Xv-kU5"/>
                                                                 <include reference="3P1-m2-pOk"/>
                                                                 <include reference="4cF-tH-wVz"/>
-                                                                <exclude reference="Jyd-vx-tK3"/>
                                                                 <include reference="aXV-Uf-gVS"/>
-                                                                <include reference="Ey1-gf-4Yl"/>
-                                                                <include reference="VSW-0c-Hbi"/>
-                                                                <include reference="Nda-Bi-o77"/>
-                                                                <include reference="Tio-Jg-UFr"/>
-                                                                <include reference="fJ0-Yg-MhY"/>
-                                                                <exclude reference="9Eh-Cu-ZLq"/>
-                                                                <include reference="B4B-6I-dh9"/>
-                                                                <include reference="jar-nM-w79"/>
                                                                 <include reference="1Tj-eD-gVU"/>
                                                                 <include reference="JOL-B5-4bw"/>
                                                                 <include reference="eRZ-r5-TgB"/>
                                                                 <include reference="yTY-ld-iTm"/>
+                                                                <include reference="NV5-gX-TCs"/>
+                                                                <include reference="dhk-Xv-kU5"/>
+                                                                <include reference="B4B-6I-dh9"/>
+                                                                <include reference="jar-nM-w79"/>
+                                                                <include reference="Nda-Bi-o77"/>
+                                                                <include reference="Tio-Jg-UFr"/>
+                                                                <include reference="fJ0-Yg-MhY"/>
+                                                                <include reference="Ey1-gf-4Yl"/>
+                                                                <include reference="VSW-0c-Hbi"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -6869,9 +6854,15 @@ FOTO</string>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Carona" id="SYh-KU-ZDs"/>
+                    <navigationItem key="navigationItem" title="Carona" id="SYh-KU-ZDs">
+                        <barButtonItem key="rightBarButtonItem" title="Chat" id="4SH-I9-Hcm">
+                            <connections>
+                                <action selector="didTapChatButton:" destination="SRb-hM-LXF" id="f9R-3L-WAg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="400" height="1000"/>
+                    <size key="freeformSize" width="400" height="1200"/>
                     <connections>
                         <outlet property="cancelButton" destination="FCq-V2-p1d" id="vXo-d2-MoC"/>
                         <outlet property="carColorLabel" destination="uJJ-2B-yFq" id="qxe-Lo-NpL"/>
@@ -6881,6 +6872,7 @@ FOTO</string>
                         <outlet property="carIconPlate" destination="bbT-SR-WbA" id="2Tt-c9-Khb"/>
                         <outlet property="carModelLabel" destination="e2a-uF-8Ry" id="wCe-Gu-LRX"/>
                         <outlet property="carPlateLabel" destination="aCx-nb-Rrv" id="gLG-TY-04z"/>
+                        <outlet property="chatButton" destination="4SH-I9-Hcm" id="m0v-43-69Q"/>
                         <outlet property="clockIcon" destination="fQj-VC-R47" id="NL0-NS-oDg"/>
                         <outlet property="dateLabel" destination="1UZ-co-mpB" id="WHY-Lm-nng"/>
                         <outlet property="descriptionLabel" destination="7fD-gY-dO4" id="mSy-Zn-Sza"/>

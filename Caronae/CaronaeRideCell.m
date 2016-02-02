@@ -7,7 +7,8 @@
 - (void)configureCellWithRide:(Ride *)ride {
     _ride = ride;
     
-    [self updateTitleLabel];
+    _titleLabel.text = [_ride.title uppercaseString];
+    
     [self updatePhoto];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -28,7 +29,7 @@
 - (void)configureHistoryCellWithRide:(Ride *)ride {
     _ride = ride;
     
-    [self updateTitleLabel];
+    _titleLabel.text = [_ride.title uppercaseString];
     [self updatePhoto];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -39,15 +40,6 @@
     
     self.accessoryType = UITableViewCellAccessoryNone;
     self.color = [CaronaeDefaults colorForZone:_ride.zone];
-}
-
-- (void)updateTitleLabel {
-    if (_ride.going) {
-        _titleLabel.text = [[NSString stringWithFormat:@"%@ → %@", _ride.neighborhood, _ride.hub] uppercaseString];
-    }
-    else {
-        _titleLabel.text = [[NSString stringWithFormat:@"%@ → %@", _ride.hub, _ride.neighborhood] uppercaseString];
-    }
 }
 
 - (void)updatePhoto {

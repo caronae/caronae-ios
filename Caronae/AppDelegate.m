@@ -4,12 +4,12 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Google/CloudMessaging.h>
 #import "AppDelegate.h"
+#import "Message.h"
+#import "Message+CoreDataProperties.h"
 
 @interface AppDelegate () <GGLInstanceIDDelegate, GCMReceiverDelegate>
 @property(nonatomic, strong) void (^registrationHandler) (NSString *registrationToken, NSError *error);
 @property(nonatomic, assign) BOOL connectedToGCM;
-@property(nonatomic, strong) NSString *registrationToken;
-@property(nonatomic, assign) BOOL subscribedToTopic;
 @end
 
 @implementation AppDelegate
@@ -46,11 +46,22 @@
     // Handler for registration token request
     _registrationHandler = ^(NSString *registrationToken, NSError *error){
         if (registrationToken != nil) {
-            weakSelf.registrationToken = registrationToken;
+            [CaronaeDefaults setUserGCMToken:registrationToken];
             NSLog(@"Registration Token: %@", registrationToken);
             
             if ([CaronaeDefaults defaults].user) {
                 [weakSelf updateUserGCMToken:registrationToken];
+            }
+            
+            if (!weakSelf.connectedToGCM) {
+                [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
+                    if (error) {
+                        NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
+                    } else {
+                        weakSelf.connectedToGCM = true;
+                        NSLog(@"Connected to GCM");
+                    }
+                }];
             }
             
             NSDictionary *userInfo = @{@"registrationToken": registrationToken};
@@ -75,8 +86,9 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[GCMService sharedInstance] disconnect];
+    NSLog(@"Disconnected from GCM");
+    _connectedToGCM = NO;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -84,7 +96,14 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
+        } else {
+            _connectedToGCM = true;
+            NSLog(@"Connected to GCM");
+        }
+    }];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -122,6 +141,43 @@
     }
 }
 
+- (BOOL)handleNotification:(NSDictionary *)userInfo {
+    NSString *msgType = userInfo[@"msgType"];
+    // Handle chat messages
+    if (msgType && [msgType isEqualToString:@"chat"]) {
+        
+        int senderId = [userInfo[@"senderId"] intValue];
+        int currentUserId = [[CaronaeDefaults defaults].user[@"id"] intValue];
+        // We don't need to handle a message if it's from the logged user
+        if (senderId == currentUserId) {
+            return NO;
+        }
+        
+        NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
+        NSLog(@"Received chat message for topic of ride %@", rideID);
+        
+        NSManagedObjectContext *context = [self managedObjectContext];
+        Message *message = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+        message.text = userInfo[@"message"];
+        message.incoming = @(YES);
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        message.sentDate = [dateFormatter dateFromString:userInfo[@"time"]];
+        message.rideID = rideID;
+        message.senderName = userInfo[@"senderName"];
+        message.senderId = @([userInfo[@"senderId"] intValue]);
+        
+        NSError *error;
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
 
 #pragma mark - Google Cloud Messaging (GCM)
 
@@ -154,25 +210,43 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"Notification received: %@", userInfo);
+    NSLog(@"Notification received 1: %@", userInfo);
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
-    // Handle the received message
+    
+    [self handleNotification:userInfo];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
                                                         object:nil
                                                       userInfo:userInfo];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
-    NSLog(@"Notification received: %@", userInfo);
+    NSLog(@"Notification received 2: %@", userInfo);
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
-    // Handle the received message
-    // Invoke the completion handler passing the appropriate UIBackgroundFetchResult value
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
-                                                        object:nil
-                                                      userInfo:userInfo];
-    handler(UIBackgroundFetchResultNoData);
+    
+    // If the application received the notification on the background or foreground
+    if (application.applicationState != UIApplicationStateInactive) {
+        if ([self handleNotification:userInfo]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
+                                                                object:nil
+                                                              userInfo:userInfo];
+            
+            handler(UIBackgroundFetchResultNewData);
+        }
+        else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
+                                                                object:nil
+                                                              userInfo:userInfo];
+            handler(UIBackgroundFetchResultNoData);
+        }
+    }
+    // If the application is opening through the notification
+    else {
+        // TODO: open view according to notification type
+        handler(UIBackgroundFetchResultNoData);
+    }
 }
 
 - (void)onTokenRefresh {

@@ -81,8 +81,7 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:newRides forKey:@"userCreatedRides"];
     
-    NSInteger deletedIndex = [self.rides indexOfObject:ride];
-    if (deletedIndex == NSNotFound) {
+    if (![self.rides containsObject:ride]) {
         NSLog(@"Error: ride to be deleted was not found in user's rides");
         return;
     }

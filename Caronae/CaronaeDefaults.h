@@ -3,6 +3,8 @@
 @class Ride;
 
 extern NSString *const CaronaeAPIBaseURL;
+extern NSString *const CaronaeGCMAPISendURL;
+extern NSString *const CaronaeGCMAPIKey;
 
 extern NSString *const CaronaeUserRidesUpdatedNotification;
 extern NSString *const CaronaeGCMTokenUpdatedNotification;
@@ -41,6 +43,20 @@ extern const NSInteger CaronaeErrorNoRidesCreated;
  *  @return A string containing the user's FB access token or `nil` if user is not connected with Facebook.
  */
 + (NSString *)userFBToken;
+
+/**
+ *  Return the user's GCM registration token.
+ *
+ *  @return A string containing the user's Google Cloud Messaging registration token or `nil` if there isn't one.
+ */
++ (NSString *)userGCMToken;
+
+/**
+ *  Update the user's GCM token.
+ *
+ *  @param gcmToken A string containing the user's GCM token or `nil` if there isn`t one.
+ */
++ (void)setUserGCMToken:(NSString *)gcmToken;
 
 /**
  *  Check if the user profile is incomplete (with any fields left blank).

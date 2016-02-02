@@ -34,6 +34,15 @@ static NSDateFormatter *otherDateParserFormatter;
     return self;
 }
 
+- (NSString *)title {
+    if (_going) {
+        return [NSString stringWithFormat:@"%@ → %@", _neighborhood, _hub];
+    }
+    else {
+        return [NSString stringWithFormat:@"%@ → %@", _hub, _neighborhood];
+    }
+}
+
 /**
  *  Parse date/time string to a NSDate object. The seconds are optional.
  *
