@@ -80,6 +80,9 @@ static const CGFloat toolBarMinHeight = 44.0f;
                                                }];
 
     }
+    else {
+        NSLog(@"Could not subscribe to topic because registration token is nil");
+    }
 }
 
 - (void)appendMessage:(Message *)message {
@@ -203,6 +206,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [self gcmSendMessage:messageText];
     [self appendMessage:message];
     self.textView.text = @"";
+    self.sendButton.enabled = NO;
 }
 
 
@@ -234,6 +238,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     NSString *senderName = sender[@"name"];
     NSNumber *senderId = sender[@"id"];
     
+    NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", senderName, message];
     
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -241,6 +246,8 @@ static const CGFloat toolBarMinHeight = 44.0f;
     NSString *time = [dateFormatter stringFromDate:date];
     NSDictionary *params = @{
                              @"to": self.topicID,
+                             @"notification": @{ @"body": notificationBody },
+                             @"content_available": @(YES),
                              @"data": NSDictionaryOfVariableBindings(message, rideId, msgType, senderName, senderId, time)
                              };
     
