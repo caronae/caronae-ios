@@ -56,7 +56,7 @@
                     if (![ChatStore chatForRide:ride]) {
                         Chat *chat = [[Chat alloc] initWithRide:ride];
                         if (!chat.subscribed) {
-                            [chat subscribeToTopic];
+                            [chat subscribe];
                         }
                         [ChatStore setChat:chat forRide:ride];
                     }

@@ -6,7 +6,8 @@
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithRide:(Ride *)ride NS_DESIGNATED_INITIALIZER;
 
-- (void)subscribeToTopic;
+- (void)subscribe;
+- (void)unsubscribe;
 
 @property (nonatomic) Ride *ride;
 @property (nonatomic, readonly) NSString *topicID;

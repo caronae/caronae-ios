@@ -41,11 +41,11 @@
             subscribedTopics = newSubscribedTopics;
         }
     }
-
+    
     [[NSUserDefaults standardUserDefaults] setObject:subscribedTopics forKey:@"subscribedTopics"];
 }
 
-- (void)subscribeToTopic {
+- (void)subscribe {
     NSString *registrationToken = [CaronaeDefaults userGCMToken];
     if (registrationToken) {
         [[GCMPubSub sharedInstance] subscribeWithToken:registrationToken
@@ -53,8 +53,7 @@
                                                options:nil
                                                handler:^(NSError *error) {
                                                    if (error) {
-                                                       // Treat the "already subscribed" error more gently
-                                                       if (error.code == 3001) {
+                                                       if (error.code == kGCMServiceErrorCodePubSubAlreadySubscribed) {
                                                            self.subscribed = YES;
                                                            NSLog(@"Already subscribed to %@",
                                                                  self.topicID);
@@ -71,6 +70,34 @@
     }
     else {
         NSLog(@"Could not subscribe to topic because registration token is nil");
+    }
+}
+
+- (void)unsubscribe {
+    NSString *registrationToken = [CaronaeDefaults userGCMToken];
+    if (registrationToken) {
+        [[GCMPubSub sharedInstance] unsubscribeWithToken:registrationToken
+                                                   topic:self.topicID
+                                                 options:nil
+                                                 handler:^(NSError *error) {
+                                                     if (error) {
+                                                         if (error.code == kGCMServiceErrorCodePubSubAlreadyUnsubscribed) {
+                                                             self.subscribed = NO;
+                                                             NSLog(@"Already unsubscribed from %@",
+                                                                   self.topicID);
+                                                         } else {
+                                                             NSLog(@"Failed to unsubscribe: %@",
+                                                                   error.localizedDescription);
+                                                         }
+                                                     } else {
+                                                         self.subscribed = NO;
+                                                         NSLog(@"Unsubscribed from %@", self.topicID);
+                                                     }
+                                                 }];
+        
+    }
+    else {
+        NSLog(@"Could not unsubscribe from topic because registration token is nil");
     }
 }
 

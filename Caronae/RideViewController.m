@@ -241,7 +241,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 #pragma mark - Ride operations
 
 - (void)cancelRide {
-    NSLog(@"Requesting to leave ride %ld", _ride.rideID);
+    NSLog(@"Requesting to leave/cancel ride %ld", _ride.rideID);
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -252,6 +252,8 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/leaveRide"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"User left the ride. (Message: %@)", responseObject[@"message"]);
+        
+        [[ChatStore chatForRide:_ride] unsubscribe];
         
         if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
             [_delegate didDeleteRide:_ride];
