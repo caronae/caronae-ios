@@ -22,4 +22,16 @@
  */
 + (Chat *)chatForRide:(Ride *)ride;
 
+/**
+ *  Returns all chats in the store.
+ *
+ *  @return A dictionary where the ride ID is the key and the Chat is the object.
+ */
++ (NSDictionary<NSNumber *, Chat *> *)allChats;
+
+/**
+ *  Clears all chats in the store.
+ */
++ (void)clearChats;
+
 @end

@@ -43,6 +43,7 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:subscribedTopics forKey:@"subscribedTopics"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)subscribe {

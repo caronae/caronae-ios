@@ -1,8 +1,9 @@
 #import <FBSDKLoginKit/FBSDKLoginManager.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import "CaronaeDefaults.h"
-#import "Ride.h"
 #import "AppDelegate.h"
+#import "CaronaeDefaults.h"
+#import "ChatStore.h"
+#import "Ride.h"
 
 #pragma mark - API settings
 
@@ -82,6 +83,12 @@ static NSUserDefaults *userDefaults;
 + (void)signOut {
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     [appDelegate updateUserGCMToken:nil];
+    
+    NSDictionary *chats = [ChatStore allChats];
+    for (id rideID in chats) {
+        [chats[rideID] unsubscribe];
+    }
+    [ChatStore clearChats];
     
     [CaronaeDefaults defaults].user = nil;
     [CaronaeDefaults defaults].userToken = nil;

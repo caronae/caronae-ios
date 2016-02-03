@@ -1,6 +1,6 @@
 #import "ChatStore.h"
 
-static NSMutableDictionary *chats;
+static NSMutableDictionary<NSNumber *, Chat *> *chats;
 
 @implementation ChatStore
 
@@ -16,6 +16,14 @@ static NSMutableDictionary *chats;
     if (!chats) return nil;
     id key = @(ride.rideID);
     return chats[key];
+}
+
++ (NSDictionary<NSNumber *, Chat *> *)allChats {
+    return chats;
+}
+
++ (void)clearChats {
+    if (chats) [chats removeAllObjects];
 }
 
 @end

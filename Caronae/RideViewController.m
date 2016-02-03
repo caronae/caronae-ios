@@ -279,6 +279,9 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/finishRide"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"User finished the ride. (Message: %@)", responseObject[@"message"]);
         
+        [[ChatStore chatForRide:_ride] unsubscribe];
+        self.navigationItem.rightBarButtonItem = nil;
+        
         [_finishRideButton setTitle:@"  Carona concluída" forState:UIControlStateNormal];
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
