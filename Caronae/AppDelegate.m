@@ -157,7 +157,7 @@
         NSLog(@"Received chat message for topic of ride %@", rideID);
         
         NSManagedObjectContext *context = [self managedObjectContext];
-        Message *message = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+        Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
         message.text = userInfo[@"message"];
         message.incoming = @(YES);
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

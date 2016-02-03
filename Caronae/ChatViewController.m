@@ -153,11 +153,11 @@ static const CGFloat toolBarMinHeight = 44.0f;
 #pragma mark - Actions
 
 - (void)sendAction:(id)sender {
-    NSString *messageText = self.textView.text;
+    NSString *messageText = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSDictionary *currentUser = [CaronaeDefaults defaults].user;
     
     NSManagedObjectContext *context = [self managedObjectContext];
-    Message *message = [NSEntityDescription insertNewObjectForEntityForName:@"Message" inManagedObjectContext:context];
+    Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
     message.text = messageText;
     message.incoming = @(NO);
     message.sentDate = [NSDate date];
@@ -267,7 +267,9 @@ static const CGFloat toolBarMinHeight = 44.0f;
 #pragma mark - UITextView methods
 
 - (void)textViewDidChange:(UITextView *)textView {
-    self.sendButton.enabled = [textView hasText];
+    NSString *trimmedText = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.sendButton.enabled = ![trimmedText isEqualToString:@""];
+;
 }
 
 
