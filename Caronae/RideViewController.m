@@ -7,6 +7,7 @@
 #import "CaronaeRiderCell.h"
 #import "CaronaeAlertController.h"
 #import "Chat.h"
+#import "ChatStore.h"
 #import "ChatViewController.h"
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
@@ -229,12 +230,11 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 }
 
 - (IBAction)didTapChatButton:(id)sender {
-    Chat *chat = [[Chat alloc] init];
-    chat.ride = _ride;
-    chat.color = _color;
-    
-    ChatViewController *chatVC = [[ChatViewController alloc] initWithChat:chat];
-    [self.navigationController pushViewController:chatVC animated:YES];    
+    Chat *chat = [ChatStore chatForRide:_ride];
+    if (chat) {
+        ChatViewController *chatVC = [[ChatViewController alloc] initWithChat:chat andColor:_color];
+        [self.navigationController pushViewController:chatVC animated:YES];
+    }
 }
 
 

@@ -3,9 +3,10 @@
 
 @interface ChatViewController : UIViewController
 
-- (instancetype)initWithChat:(Chat *)chat;
+- (instancetype)initWithChat:(Chat *)chat andColor:(UIColor *)color;
 
 @property (nonatomic) Chat *chat;
+@property (nonatomic) UIColor *color;
 
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) UIToolbar *toolBar;

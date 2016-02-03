@@ -5,7 +5,6 @@
 - (NSDictionary *)generateRideDictionaryFromView;
 + (NSArray *)parseCreateRidesFromResponse:(id)responseObject withError:(NSError **)err;
 
-
 @property (weak, nonatomic) IBOutlet UIButton *neighborhoodButton;
 @property (weak, nonatomic) IBOutlet UITextField *reference;
 @property (weak, nonatomic) IBOutlet UITextField *route;
@@ -36,4 +35,5 @@
 @property (nonatomic) NSDate *rideDate;
 @property (nonatomic) NSMutableArray *weekDays;
 @property (nonatomic) int routineDurationMonths;
+
 @end

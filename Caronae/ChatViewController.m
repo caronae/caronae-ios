@@ -9,7 +9,6 @@
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 
-@property (nonatomic) NSString *topicID;
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
@@ -18,16 +17,17 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 @implementation ChatViewController
 
-- (instancetype)initWithChat:(Chat *)chat {
+- (instancetype)initWithChat:(Chat *)chat andColor:(UIColor *)color {
     self = [super init];
     if (self) {
         _chat = chat;
+        _color = color;
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @" - dd/MM - HH:mm";
         
         self.title = [chat.ride.title stringByAppendingString:[dateFormatter stringFromDate:chat.ride.date]];
-        self.topicID = [NSString stringWithFormat:@"/topics/%lu", chat.ride.rideID];
+        
         self.hidesBottomBarWhenPushed = YES;
         
         AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
@@ -54,35 +54,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
     if (error) {
         NSLog(@"Whoops, couldn't load: %@", [error localizedDescription]);
     } 
-}
-
-- (void)subscribeToTopic {
-    NSString *registrationToken = [CaronaeDefaults userGCMToken];
-    if (registrationToken) {
-        [[GCMPubSub sharedInstance] subscribeWithToken:registrationToken
-                                                 topic:self.topicID
-                                               options:nil
-                                               handler:^(NSError *error) {
-                                                   if (error) {
-                                                       // Treat the "already subscribed" error more gently
-                                                       if (error.code == 3001) {
-                                                           self.chat.subscribed = YES;
-                                                           NSLog(@"Already subscribed to %@",
-                                                                 self.topicID);
-                                                       } else {
-                                                           NSLog(@"Subscription failed: %@",
-                                                                 error.localizedDescription);
-                                                       }
-                                                   } else {
-                                                       self.chat.subscribed = YES;
-                                                       NSLog(@"Subscribed to %@", self.topicID);
-                                                   }
-                                               }];
-
-    }
-    else {
-        NSLog(@"Could not subscribe to topic because registration token is nil");
-    }
 }
 
 - (void)appendMessage:(Message *)message {
@@ -127,10 +98,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [notificationCenter addObserver:self selector:@selector(gcmDidReceiveMessage:) name:CaronaeGCMMessageReceivedNotification object:nil];
     
     [self loadChatMessages];
-    
-    if (!self.chat.subscribed) {
-        [self subscribeToTopic];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -162,7 +129,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
         _sendButton = [UIButton buttonWithType:UIButtonTypeSystem];
         _sendButton.enabled = NO;
         _sendButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-        _sendButton.tintColor = self.chat.color;
+        _sendButton.tintColor = self.color;
         [_sendButton setTitle:@"Enviar" forState:UIControlStateNormal];
         
         _sendButton.contentEdgeInsets = UIEdgeInsetsMake(6, 6, 6, 6);
@@ -247,7 +214,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     NSDate *date = [NSDate date];
     NSString *time = [dateFormatter stringFromDate:date];
     NSDictionary *params = @{
-                             @"to": self.topicID,
+                             @"to": self.chat.topicID,
                              @"notification": @{ @"body": notificationBody },
                              @"content_available": @(YES),
                              @"data": NSDictionaryOfVariableBindings(message, rideId, msgType, senderName, senderId, time)
@@ -280,7 +247,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     MessageBubbleTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[MessageBubbleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.tintColor = self.chat.color;
+        cell.tintColor = self.color;
     }
     
     Message *message = self.chat.loadedMessages[indexPath.row];

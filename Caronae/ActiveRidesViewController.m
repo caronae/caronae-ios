@@ -3,6 +3,8 @@
 #import "CaronaeAlertController.h"
 #import "ActiveRidesViewController.h"
 #import "CaronaeRideCell.h"
+#import "Chat.h"
+#import "ChatStore.h"
 #import "RideViewController.h"
 #import "Ride.h"
 
@@ -47,6 +49,18 @@
             [self.tableView reloadData];
             if (self.rides.count > 0) {
                 self.tableView.backgroundView = nil;
+                
+                // Initialise chats
+                for (Ride *ride in self.rides) {
+                    // If chat doesn't exist in store, create it and subscribe to it
+                    if (![ChatStore chatForRide:ride]) {
+                        Chat *chat = [[Chat alloc] initWithRide:ride];
+                        if (!chat.subscribed) {
+                            [chat subscribeToTopic];
+                        }
+                        [ChatStore setChat:chat forRide:ride];
+                    }
+                }
             }
             else {
                 self.tableView.backgroundView = self.emptyTableLabel;
