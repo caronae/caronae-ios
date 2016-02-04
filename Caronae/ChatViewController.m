@@ -207,15 +207,12 @@ static const CGFloat toolBarMinHeight = 44.0f;
     NSString *senderName = sender[@"name"];
     NSNumber *senderId = sender[@"id"];
     
-    NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", senderName, message];
-    
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *date = [NSDate date];
     NSString *time = [dateFormatter stringFromDate:date];
     NSDictionary *params = @{
                              @"to": self.chat.topicID,
-                             @"notification": @{ @"body": notificationBody },
                              @"content_available": @(YES),
                              @"data": NSDictionaryOfVariableBindings(message, rideId, msgType, senderName, senderId, time)
                              };
@@ -231,6 +228,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     }];
 
 }
+
 
 #pragma mark - Table methods
 
@@ -269,7 +267,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
 - (void)textViewDidChange:(UITextView *)textView {
     NSString *trimmedText = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     self.sendButton.enabled = ![trimmedText isEqualToString:@""];
-;
 }
 
 
