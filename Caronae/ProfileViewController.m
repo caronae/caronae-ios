@@ -71,8 +71,8 @@
     
     _nameLabel.text = _user[@"name"];
     _courseLabel.text = [NSString stringWithFormat:@"%@ | %@", _user[@"profile"], _user[@"course"]];
-    _numDrivesLabel.text = _user[@"numDrives"] ? [NSString stringWithFormat:@"%ld", [_user[@"numDrives"] integerValue]] : @"-";
-    _numRidesLabel.text = _user[@"numRides"] ? [NSString stringWithFormat:@"%ld", [_user[@"numRides"] integerValue]] : @"-";
+    _numDrivesLabel.text = _user[@"numDrives"] ? [NSString stringWithFormat:@"%ld", (long)[_user[@"numDrives"] integerValue]] : @"-";
+    _numRidesLabel.text = _user[@"numRides"] ? [NSString stringWithFormat:@"%ld", (long)[_user[@"numRides"] integerValue]] : @"-";
     
     if (_user[@"profile_pic_url"] && [_user[@"profile_pic_url"] isKindOfClass:[NSString class]] && ![_user[@"profile_pic_url"] isEqualToString:@""]) {
         [self.profileImage sd_setImageWithURL:[NSURL URLWithString:_user[@"profile_pic_url"]]
@@ -92,10 +92,10 @@
         NSInteger numDrives = [responseObject[@"offeredCount"] integerValue];
         NSInteger numRides = [responseObject[@"takenCount"] integerValue];
         
-        NSLog(@"Updated user %@ stats: offered %ld, joined %ld.", _user[@"id"], numDrives, numRides);
+        NSLog(@"Updated user %@ stats: offered %ld, joined %ld.", _user[@"id"], (long)numDrives, (long)numRides);
         
-        _numDrivesLabel.text = [NSString stringWithFormat:@"%ld", numDrives];
-        _numRidesLabel.text = [NSString stringWithFormat:@"%ld", numRides];
+        _numDrivesLabel.text = [NSString stringWithFormat:@"%ld", (long)numDrives];
+        _numRidesLabel.text = [NSString stringWithFormat:@"%ld", (long)numRides];
         
         if ([self isMyProfile]) {
             NSMutableDictionary *mutableUser = _user.mutableCopy;

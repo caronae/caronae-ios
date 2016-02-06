@@ -73,8 +73,8 @@
     self.courseLabel.text = [NSString stringWithFormat:@"%@ | %@", user[@"profile"], user[@"course"]];
     
     self.joinedDateLabel.text = [self.joinedDateFormatter stringFromDate:joinedDate];
-    self.numDrivesLabel.text = user[@"numDrives"] ? [NSString stringWithFormat:@"%ld", [user[@"numDrives"] integerValue]] : @"-";
-    self.numRidesLabel.text = user[@"numRides"] ? [NSString stringWithFormat:@"%ld", [user[@"numRides"] integerValue]] : @"-";
+    self.numDrivesLabel.text = user[@"numDrives"] ? [NSString stringWithFormat:@"%ld", (long)[user[@"numDrives"] integerValue]] : @"-";
+    self.numRidesLabel.text = user[@"numRides"] ? [NSString stringWithFormat:@"%ld", (long)[user[@"numRides"] integerValue]] : @"-";
     
     self.emailTextField.text = user[@"email"];
     [self.phoneTextField setFormattedText:user[@"phone_number"]];

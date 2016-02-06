@@ -27,6 +27,10 @@ platform :ios do
     cocoapods
     
     increment_build_number
+    commit_version_bump(
+      message: "Build number bump to #{lane_context[SharedValues::BUILD_NUMBER]}",
+      force: true
+    )
 
     # xctool # run the tests of your app
   end

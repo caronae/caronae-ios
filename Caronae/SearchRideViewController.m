@@ -50,7 +50,7 @@
     NSString *buttonTitle = @"";
     for (unsigned int i = 0; i < neighborhoods.count; i++) {
         if (i > 2) {
-            buttonTitle = [NSString stringWithFormat:@"%@ + %lu", buttonTitle, neighborhoods.count-i];
+            buttonTitle = [NSString stringWithFormat:@"%@ + %lu", buttonTitle, (long)neighborhoods.count-i];
             break;
         }
         buttonTitle = [buttonTitle stringByAppendingString:neighborhoods[i]];
