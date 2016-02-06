@@ -4,6 +4,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Google/CloudMessaging.h>
 #import "AppDelegate.h"
+#import "ChatStore.h"
 #import "Message.h"
 #import "Message+CoreDataProperties.h"
 
@@ -142,9 +143,12 @@
 }
 
 - (BOOL)handleNotification:(NSDictionary *)userInfo {
+    if (!userInfo[@"msgType"]) return NO;
+    
     NSString *msgType = userInfo[@"msgType"];
+    
     // Handle chat messages
-    if (msgType && [msgType isEqualToString:@"chat"]) {
+    if ([msgType isEqualToString:@"chat"]) {
         
         int senderId = [userInfo[@"senderId"] intValue];
         int currentUserId = [[CaronaeDefaults defaults].user[@"id"] intValue];
@@ -173,6 +177,19 @@
         }
         
         return YES;
+    }
+    // Handle 'join request accepted' messages
+    else if ([msgType isEqualToString:@"accepted"]) {
+        NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
+        
+        if (![ChatStore chatForRide:ride]) {
+            Chat *chat = [[Chat alloc] initWithRide:ride];
+            if (!chat.subscribed) {
+                [chat subscribe];
+            }
+            [ChatStore setChat:chat forRide:ride];
+        }
+
     }
     
     return NO;

@@ -2,6 +2,7 @@
 #import "Ride.h"
 #import "CaronaeRideCell.h"
 #import "RideViewController.h"
+#import "ChatStore.h"
 
 @interface MyRidesViewController ()
 
@@ -46,6 +47,15 @@
             }
             
             ride.driver = self.user;
+            
+            if (![ChatStore chatForRide:ride]) {
+                Chat *chat = [[Chat alloc] initWithRide:ride];
+                if (!chat.subscribed) {
+                    [chat subscribe];
+                }
+                [ChatStore setChat:chat forRide:ride];
+            }
+
             [rides addObject:ride];
         }
         

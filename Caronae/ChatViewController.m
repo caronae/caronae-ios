@@ -216,7 +216,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
                                          @"time": time}
                                  };
     
-    NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", message.senderName, message.text];
+    NSString *notificationBody = [NSString stringWithFormat:@"💩 %@: %@", message.senderName, message.text];
     NSDictionary *paramsNotification = @{
                                          @"to": self.chat.topicID,
                                          @"priority": @"high",
