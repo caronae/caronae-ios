@@ -94,10 +94,10 @@ static NSUserDefaults *userDefaults;
     [appDelegate deleteAllObjects:@"Message"];
     
     // Clear user data
+    [appDelegate updateUserGCMToken:nil];
     [CaronaeDefaults defaults].user = nil;
     [CaronaeDefaults defaults].userToken = nil;
     [CaronaeDefaults defaults].cachedJoinRequests = nil;
-    [appDelegate updateUserGCMToken:nil];
     [[[FBSDKLoginManager alloc] init] logOut];
 
     UIViewController *topViewController = [appDelegate topViewController];

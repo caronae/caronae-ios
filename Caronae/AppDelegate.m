@@ -172,14 +172,6 @@
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }
         
-        NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", message.senderName, message.text];
-        UILocalNotification* notification = [[UILocalNotification alloc] init];
-        notification.fireDate = message.sentDate;
-        notification.alertBody = notificationBody;
-        notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-
-        
         return YES;
     }
     

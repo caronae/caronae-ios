@@ -53,7 +53,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     self.chat.loadedMessages = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
         NSLog(@"Whoops, couldn't load: %@", [error localizedDescription]);
-    } 
+    }
 }
 
 - (void)appendMessage:(Message *)message {
@@ -77,7 +77,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
 #pragma mark - UIViewController methods
 
 - (void)viewDidLoad {
-    [super viewDidLoad];    
+    [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor]; // smooths push animation
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
@@ -170,7 +170,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
     
-    [self gcmSendMessage:messageText];
+    [self gcmSendMessage:message];
     [self appendMessage:message];
     self.textView.text = @"";
     self.sendButton.enabled = NO;
@@ -188,7 +188,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
         NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
         NSNumber *senderID = @([userInfo[@"senderId"] intValue]);
         NSNumber *currentUserId = [CaronaeDefaults defaults].user[@"id"];
-
+        
         if ([rideID isEqual:@(self.chat.ride.rideID)] && ![senderID isEqual:currentUserId]) {
             NSLog(@"Chat window did receive message: %@", userInfo[@"message"]);
             
@@ -199,34 +199,52 @@ static const CGFloat toolBarMinHeight = 44.0f;
     }
 }
 
-- (void)gcmSendMessage:(NSString *)message {
-    NSNumber *rideId = @(self.chat.ride.rideID);
-    NSString *msgType = @"chat";
-    
-    NSDictionary *sender = [CaronaeDefaults defaults].user;
-    NSString *senderName = sender[@"name"];
-    NSNumber *senderId = sender[@"id"];
-    
+- (void)gcmSendMessage:(Message *)message {
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSDate *date = [NSDate date];
-    NSString *time = [dateFormatter stringFromDate:date];
-    NSDictionary *params = @{
-                             @"to": self.chat.topicID,
-                             @"content_available": @(YES),
-                             @"data": NSDictionaryOfVariableBindings(message, rideId, msgType, senderName, senderId, time)
-                             };
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSString *time = [dateFormatter stringFromDate:message.sentDate];
     
+    NSDictionary *paramsData = @{
+                                 @"to": self.chat.topicID,
+                                 @"priority": @"high",
+                                 @"data": @{
+                                         @"message": message.text,
+                                         @"rideId": message.rideID,
+                                         @"msgType": @"chat",
+                                         @"senderName": message.senderName,
+                                         @"senderId": message.senderId,
+                                         @"time": time}
+                                 };
+    
+    NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", message.senderName, message.text];
+    NSDictionary *paramsNotification = @{
+                                         @"to": self.chat.topicID,
+                                         @"priority": @"high",
+                                         @"notification": @{
+                                                 @"body": notificationBody,
+                                                 @"sound": @"default",
+                                                 @"tag": message.rideID,
+                                                 @"click_action": @"OPEN_ACTIVITY_CHAT"
+                                                 }
+                                         };
+    
+    // Send data message payload
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:CaronaeGCMAPIKey forHTTPHeaderField:@"Authorization"];
     
-    [manager POST:CaronaeGCMAPISendURL parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Message delivered using GCM. Reponse: %@", responseObject);
+    [manager POST:CaronaeGCMAPISendURL parameters:paramsData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Message data delivered. Reponse: %@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error sending message through GCM: %@", error.localizedDescription);
+        NSLog(@"Error sending message data: %@", error.localizedDescription);
     }];
-
+    
+    // Send notification payload
+    [manager POST:CaronaeGCMAPISendURL parameters:paramsNotification success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Message notification delivered. Reponse: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error sending message notification: %@", error.localizedDescription);
+    }];
 }
 
 
