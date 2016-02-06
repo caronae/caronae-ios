@@ -182,14 +182,9 @@
     else if ([msgType isEqualToString:@"accepted"]) {
         NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
         
-        if (![ChatStore chatForRide:ride]) {
-            Chat *chat = [[Chat alloc] initWithRide:ride];
-            if (!chat.subscribed) {
-                [chat subscribe];
-            }
-            [ChatStore setChat:chat forRide:ride];
-        }
-
+        [Chat subscribeToTopicID:[Chat topicIDwithRideID:rideID]];
+        
+        return YES;
     }
     
     return NO;

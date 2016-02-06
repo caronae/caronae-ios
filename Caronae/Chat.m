@@ -7,9 +7,13 @@
     self = [super init];
     if (self) {
         _ride = ride;
-        _topicID = [NSString stringWithFormat:@"/topics/%lu", ride.rideID];
+        _topicID = [Chat topicIDwithRideID:@(ride.rideID)];
     }
     return self;
+}
+
++ (NSString *)topicIDwithRideID:(NSNumber *)rideID {
+    return [NSString stringWithFormat:@"/topics/%lu", [rideID longValue]];
 }
 
 - (BOOL)subscribed {
@@ -99,6 +103,32 @@
     }
     else {
         NSLog(@"Could not unsubscribe from topic because registration token is nil");
+    }
+}
+
++ (void)subscribeToTopicID:(NSString *)topicID {
+    NSString *registrationToken = [CaronaeDefaults userGCMToken];
+    if (registrationToken) {
+        [[GCMPubSub sharedInstance] subscribeWithToken:registrationToken
+                                                 topic:topicID
+                                               options:nil
+                                               handler:^(NSError *error) {
+                                                   if (error) {
+                                                       if (error.code == kGCMServiceErrorCodePubSubAlreadySubscribed) {
+                                                           NSLog(@"Already subscribed to %@",
+                                                                 topicID);
+                                                       } else {
+                                                           NSLog(@"Subscription failed: %@",
+                                                                 error.localizedDescription);
+                                                       }
+                                                   } else {
+                                                       NSLog(@"Subscribed to %@", topicID);
+                                                   }
+                                               }];
+        
+    }
+    else {
+        NSLog(@"Could not subscribe to topic because registration token is nil");
     }
 }
 
