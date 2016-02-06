@@ -3,7 +3,7 @@
 #import "ProfileViewController.h"
 
 @interface MenuViewController ()
-
+@property (nonatomic) NSString *photoURL;
 @end
 
 @implementation MenuViewController
@@ -16,10 +16,18 @@
     NSDictionary *user = [CaronaeDefaults defaults].user;
     self.profileNameLabel.text = user[@"name"];
     self.profileCourseLabel.text = user[@"course"];
-    if (user[@"profile_pic_url"] && [user[@"profile_pic_url"] isKindOfClass:[NSString class]] && ![user[@"profile_pic_url"] isEqualToString:@""]) {
-        [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:user[@"profile_pic_url"]]
-                             placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                                      options:SDWebImageRefreshCached];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSDictionary *user = [CaronaeDefaults defaults].user;
+    id userPhotoURL = user[@"profile_pic_url"];
+    if (userPhotoURL && [userPhotoURL isKindOfClass:[NSString class]] && ![userPhotoURL isEqualToString:@""] && ![userPhotoURL isEqualToString:self.photoURL]) {
+        self.photoURL = userPhotoURL;
+        [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:userPhotoURL]
+                                 placeholderImage:[UIImage imageNamed:@"Profile Picture"]
+                                          options:SDWebImageRefreshCached];
     }
 }
 

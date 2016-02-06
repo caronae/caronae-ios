@@ -9,8 +9,8 @@
 #import "Message+CoreDataProperties.h"
 
 @interface AppDelegate () <GGLInstanceIDDelegate, GCMReceiverDelegate>
-@property(nonatomic, strong) void (^registrationHandler) (NSString *registrationToken, NSError *error);
-@property(nonatomic, assign) BOOL connectedToGCM;
+@property (nonatomic, strong) void (^registrationHandler) (NSString *registrationToken, NSError *error);
+@property (nonatomic, assign) BOOL connectedToGCM;
 @end
 
 @implementation AppDelegate
@@ -33,7 +33,7 @@
     
     // Configure the Google context: parses the GoogleService-Info.plist, and initializes
     // the services that have entries in the file
-    NSError* configureError;
+    NSError *configureError;
     [[GGLContext sharedInstance] configureWithError:&configureError];
     NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
     _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
@@ -57,10 +57,10 @@
             if (!weakSelf.connectedToGCM) {
                 [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
                     if (error) {
-                        NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
+                        NSLog(@"Could not connect to GCM (registration): %@", error.localizedDescription);
                     } else {
                         weakSelf.connectedToGCM = true;
-                        NSLog(@"Connected to GCM");
+                        NSLog(@"Connected to GCM (registration)");
                     }
                 }];
             }
@@ -70,6 +70,7 @@
                                                                 object:nil
                                                               userInfo:userInfo];
         } else {
+            [CaronaeDefaults setUserGCMToken:nil];
             NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
             NSDictionary *userInfo = @{@"error": error.localizedDescription};
             [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
@@ -97,14 +98,16 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
-        if (error) {
-            NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
-        } else {
-            _connectedToGCM = true;
-            NSLog(@"Connected to GCM");
-        }
-    }];
+    if ([CaronaeDefaults userGCMToken] && !_connectedToGCM) {
+        [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
+            if (error) {
+                NSLog(@"Could not connect to GCM (applicationDidBecomeActive): %@", error.localizedDescription);
+            } else {
+                _connectedToGCM = true;
+                NSLog(@"Connected to GCM (applicationDidBecomeActive)");
+            }
+        }];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

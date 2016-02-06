@@ -94,7 +94,7 @@ static NSUserDefaults *userDefaults;
     [appDelegate deleteAllObjects:@"Message"];
     
     // Clear user data
-    [appDelegate updateUserGCMToken:nil];
+    [CaronaeDefaults setUserGCMToken:nil];
     [CaronaeDefaults defaults].user = nil;
     [CaronaeDefaults defaults].userToken = nil;
     [CaronaeDefaults defaults].cachedJoinRequests = nil;
@@ -117,7 +117,13 @@ static NSUserDefaults *userDefaults;
 }
 
 + (void)setUserGCMToken:(NSString *)gcmToken {
-    [[NSUserDefaults standardUserDefaults] setObject:gcmToken forKey:@"gcmToken"];
+    if (gcmToken) {
+        [[NSUserDefaults standardUserDefaults] setObject:gcmToken forKey:@"gcmToken"];
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"gcmToken"];
+    }
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
