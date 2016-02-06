@@ -201,7 +201,7 @@ static NSUserDefaults *userDefaults;
                 }
             }
             else {
-                NSLog(@"Error: %@", readError.description);
+                NSLog(@"Error: %@", readError.localizedDescription);
             }
 
         }

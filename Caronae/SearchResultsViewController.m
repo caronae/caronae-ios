@@ -88,7 +88,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
         self.tableView.backgroundView = self.errorLabel;
-        NSLog(@"Error searching for ride: %@", error.description);
+        NSLog(@"Error searching for ride: %@", error.localizedDescription);
     }];
     
 }

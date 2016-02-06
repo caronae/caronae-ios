@@ -159,7 +159,7 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showLoadingHUD:NO];
-        NSLog(@"Error saving profile: %@", error.description);
+        NSLog(@"Error saving profile: %@", error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando perfil" message:@"Ocorreu um erro salvando as alterações no seu perfil."];
     }];
 }
@@ -420,7 +420,7 @@
                                    options:SDWebImageRefreshCached];
         }
         else {
-            NSLog(@"result: %@", error.description);
+            NSLog(@"result: %@", error.localizedDescription);
             [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível obter sua foto de perfil do Facebook."];
         }
     }];

@@ -261,7 +261,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error leaving/cancelling ride: %@", error.description);
+        NSLog(@"Error leaving/cancelling ride: %@", error.localizedDescription);
         _cancelButton.enabled = YES;
     }];
 }
@@ -285,7 +285,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [_finishRideButton setTitle:@"  Carona concluída" forState:UIControlStateNormal];
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error finishing ride: %@", error.description);
+        NSLog(@"Error finishing ride: %@", error.localizedDescription);
         _finishRideButton.enabled = YES;
     }];
 }
@@ -308,7 +308,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [CaronaeDefaults addToCachedJoinRequests:_ride];
         [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error requesting to join ride: %@", error.description);
+        NSLog(@"Error requesting to join ride: %@", error.localizedDescription);
         _requestRideButton.enabled = YES;
     }];
 }
@@ -334,7 +334,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error loading join requests for ride %lu: %@", rideID, error.description);
+        NSLog(@"Error loading join requests for ride %lu: %@", rideID, error.localizedDescription);
     }];
     
 }
@@ -370,7 +370,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         NSLog(@"Answer to join request successfully sent.");
         [self removeJoinRequest:request];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error accepting join request: %@", error.description);
+        NSLog(@"Error accepting join request: %@", error.localizedDescription);
     }];
 }
 

@@ -66,7 +66,7 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self showLoadingHUD:NO];
-        NSLog(@"Error: %@", error.description);
+        NSLog(@"Error: %@", error.localizedDescription);
         
         [CaronaeAlertController presentOkAlertWithTitle:@"Mensagem não enviada" message:@"Ocorreu um erro enviando sua mensagem. Verifique sua conexão e tente novamente."];
     }];

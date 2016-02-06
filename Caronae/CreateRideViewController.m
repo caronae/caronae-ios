@@ -202,7 +202,7 @@
         [SVProgressHUD dismiss];
         self.createRideButton.enabled = YES;
 
-        NSLog(@"Error creating ride: %@", error.description);
+        NSLog(@"Error creating ride: %@", error.localizedDescription);
         
         [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:error.localizedDescription];
     }];
