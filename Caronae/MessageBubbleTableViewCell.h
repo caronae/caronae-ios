@@ -8,5 +8,6 @@
 @property (nonatomic) UIView *bubbleView;
 @property (nonatomic) UILabel *messageLabel;
 @property (nonatomic) UILabel *senderLabel;
+@property (nonatomic) UILabel *timeLabel;
 
 @end
