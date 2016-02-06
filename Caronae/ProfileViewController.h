@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *joinedDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numDrivesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numRidesLabel;
-@property (weak, nonatomic) IBOutlet UILabel *numLikesLabel;
 
 // Car details
 @property (weak, nonatomic) IBOutlet UIView *carDetailsView;
