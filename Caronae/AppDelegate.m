@@ -212,8 +212,10 @@
     [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
 #ifdef DEBUG
     BOOL isBuiltDebug = YES;
+    NSLog(@"Starting GCM in sandbox mode");
 #else
     BOOL isBuiltDebug = NO;
+    NSLog(@"Starting GCM in appstore mode");
 #endif
     _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
                              kGGLInstanceIDAPNSServerTypeSandboxOption:@(isBuiltDebug)}; // FIXME
