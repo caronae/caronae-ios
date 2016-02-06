@@ -82,17 +82,22 @@ static NSUserDefaults *userDefaults;
 
 + (void)signOut {
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    [appDelegate updateUserGCMToken:nil];
     
+    // Clear chats
     NSDictionary *chats = [ChatStore allChats];
     for (id rideID in chats) {
         [chats[rideID] unsubscribe];
     }
     [ChatStore clearChats];
     
+    // Clear Core Data
+    [appDelegate deleteAllObjects:@"Message"];
+    
+    // Clear user data
     [CaronaeDefaults defaults].user = nil;
     [CaronaeDefaults defaults].userToken = nil;
     [CaronaeDefaults defaults].cachedJoinRequests = nil;
+    [appDelegate updateUserGCMToken:nil];
     [[[FBSDKLoginManager alloc] init] logOut];
 
     UIViewController *topViewController = [appDelegate topViewController];

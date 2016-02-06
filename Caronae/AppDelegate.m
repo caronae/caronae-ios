@@ -337,6 +337,22 @@
     return _managedObjectContext;
 }
 
+- (void)deleteAllObjects:(NSString *)entityDescription  {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityDescription inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSError *error;
+    NSArray *items = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    for (NSManagedObject *managedObject in items) {
+        [self.managedObjectContext deleteObject:managedObject];
+    }
+    
+    [self saveContext];
+}
+
+
 #pragma mark - Core Data Saving support
 
 - (void)saveContext {
