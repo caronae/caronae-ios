@@ -158,7 +158,7 @@
         }
         
         NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
-        NSLog(@"Received chat message for topic of ride %@", rideID);
+        NSLog(@"Received chat message for ride %@", rideID);
         
         NSManagedObjectContext *context = [self managedObjectContext];
         Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
@@ -175,6 +175,13 @@
         if (![context save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         }
+        
+        NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", message.senderName, message.text];
+        UILocalNotification* notification = [[UILocalNotification alloc] init];
+        notification.fireDate = message.sentDate;
+        notification.alertBody = notificationBody;
+//        notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
         
         return YES;
     }
@@ -235,6 +242,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     NSLog(@"Notification received 2: %@", userInfo);
+    
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
     

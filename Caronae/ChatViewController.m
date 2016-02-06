@@ -207,6 +207,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     NSDictionary *paramsData = @{
                                  @"to": self.chat.topicID,
                                  @"priority": @"high",
+                                 @"content_available": @(YES),
                                  @"data": @{
                                          @"message": message.text,
                                          @"rideId": message.rideID,
@@ -215,18 +216,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
                                          @"senderId": message.senderId,
                                          @"time": time}
                                  };
-    
-    NSString *notificationBody = [NSString stringWithFormat:@"💩 %@: %@", message.senderName, message.text];
-    NSDictionary *paramsNotification = @{
-                                         @"to": self.chat.topicID,
-                                         @"priority": @"high",
-                                         @"notification": @{
-                                                 @"body": notificationBody,
-                                                 @"sound": @"default",
-                                                 @"tag": message.rideID,
-                                                 @"click_action": @"OPEN_ACTIVITY_CHAT"
-                                                 }
-                                         };
     
     // Send data message payload
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -237,13 +226,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
         NSLog(@"Message data delivered. Reponse: %@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error sending message data: %@", error.localizedDescription);
-    }];
-    
-    // Send notification payload
-    [manager POST:CaronaeGCMAPISendURL parameters:paramsNotification success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Message notification delivered. Reponse: %@", responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error sending message notification: %@", error.localizedDescription);
     }];
 }
 
