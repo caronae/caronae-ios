@@ -21,6 +21,7 @@ NSString *const CaronaeGCMAPIKey = @"key=AIzaSyBtGz81bar_LcwtN_fpPTKRMBL5glp2T18
 NSString *const CaronaeUserRidesUpdatedNotification = @"CaronaeUserRidesUpdatedNotification";
 NSString *const CaronaeGCMTokenUpdatedNotification = @"CaronaeGCMTokenUpdatedNotification";
 NSString *const CaronaeGCMMessageReceivedNotification = @"CaronaeGCMMessageReceivedNotification";
+NSString *const CaronaeDidUpdateNotifications = @"CaronaeDidUpdateNotifications";
 
 
 #pragma mark - Error types
@@ -28,6 +29,7 @@ NSString *const CaronaeGCMMessageReceivedNotification = @"CaronaeGCMMessageRecei
 NSString *const CaronaeErrorDomain = @"CaronaeError";
 const NSInteger CaronaeErrorInvalidResponse = 1;
 const NSInteger CaronaeErrorNoRidesCreated = 2;
+const NSInteger CaronaeErrorOpeningCoreDataStore = 3;
 
 
 @interface CaronaeDefaults()

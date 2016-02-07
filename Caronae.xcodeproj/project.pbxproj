@@ -39,6 +39,8 @@
 		A37E80E11C5F011100683F27 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E01C5F011100683F27 /* Message.m */; };
 		A37E80E41C5F0C3000683F27 /* MessageBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E31C5F0C3000683F27 /* MessageBubbleTableViewCell.m */; };
 		A37E80E71C5F158600683F27 /* UIImage+imageWithTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */; };
+		A38598451C66D83A00279D6F /* Notification+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = A38598421C66D83A00279D6F /* Notification+CoreDataProperties.m */; };
+		A38598461C66D83A00279D6F /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = A38598441C66D83A00279D6F /* Notification.m */; };
 		A389902D1C58734700C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A389902E1C58734700C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
@@ -141,6 +143,11 @@
 		A37E80E31C5F0C3000683F27 /* MessageBubbleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBubbleTableViewCell.m; sourceTree = "<group>"; };
 		A37E80E51C5F158600683F27 /* Caronae-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Caronae-Bridging-Header.h"; sourceTree = "<group>"; };
 		A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+imageWithTint.swift"; sourceTree = "<group>"; };
+		A38598401C66D79300279D6F /* Caronae 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Caronae 3.xcdatamodel"; sourceTree = "<group>"; };
+		A38598411C66D83A00279D6F /* Notification+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Notification+CoreDataProperties.h"; sourceTree = "<group>"; };
+		A38598421C66D83A00279D6F /* Notification+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Notification+CoreDataProperties.m"; sourceTree = "<group>"; };
+		A38598431C66D83A00279D6F /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		A38598441C66D83A00279D6F /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		A389902B1C58734700C7CD2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A38F1D4B1C0398B500DEF6B1 /* CaronaeRideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeRideCell.h; sourceTree = "<group>"; };
 		A38F1D4C1C0398B500DEF6B1 /* CaronaeRideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeRideCell.m; sourceTree = "<group>"; };
@@ -377,6 +384,10 @@
 		A39BBD001C0629E100EF9EBD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A38598411C66D83A00279D6F /* Notification+CoreDataProperties.h */,
+				A38598421C66D83A00279D6F /* Notification+CoreDataProperties.m */,
+				A38598431C66D83A00279D6F /* Notification.h */,
+				A38598441C66D83A00279D6F /* Notification.m */,
 				A39BBCFD1C06296200EF9EBD /* Ride.h */,
 				A39BBCFE1C06296200EF9EBD /* Ride.m */,
 				A37E80DC1C5F00D300683F27 /* Chat.h */,
@@ -634,6 +645,7 @@
 			files = (
 				A3AD19CA1BED9BFB003EDA17 /* ActiveRidesViewController.m in Sources */,
 				A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */,
+				A38598451C66D83A00279D6F /* Notification+CoreDataProperties.m in Sources */,
 				A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */,
 				A37E80DE1C5F00D300683F27 /* Chat.m in Sources */,
 				A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */,
@@ -654,6 +666,7 @@
 				A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */,
 				A32C77261C41EEE30098583B /* AllRidesViewController.m in Sources */,
 				A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */,
+				A38598461C66D83A00279D6F /* Notification.m in Sources */,
 				A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */,
 				A3C55BDA1C5FB19A00C84204 /* Message+CoreDataProperties.m in Sources */,
 				A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */,
@@ -957,10 +970,11 @@
 		A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A38598401C66D79300279D6F /* Caronae 3.xcdatamodel */,
 				A3C55BDB1C5FD1B700C84204 /* Caronae 2.xcdatamodel */,
 				A3169CA01BED842D00A0D428 /* Caronae.xcdatamodel */,
 			);
-			currentVersion = A3C55BDB1C5FD1B700C84204 /* Caronae 2.xcdatamodel */;
+			currentVersion = A38598401C66D79300279D6F /* Caronae 3.xcdatamodel */;
 			path = Caronae.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

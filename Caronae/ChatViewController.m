@@ -4,8 +4,8 @@
 #import "CaronaeDefaults.h"
 #import "ChatViewController.h"
 #import "MessageBubbleTableViewCell.h"
-#import "Message.h"
 #import "Message+CoreDataProperties.h"
+#import "Notification+CoreDataProperties.h"
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 
@@ -42,7 +42,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 - (void)loadChatMessages {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Message" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Message.class) inManagedObjectContext:self.managedObjectContext];
     fetchRequest.entity = entity;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rideID == %@", @(self.chat.ride.rideID)];
     fetchRequest.predicate = predicate;
@@ -54,6 +54,36 @@ static const CGFloat toolBarMinHeight = 44.0f;
     if (error) {
         NSLog(@"Whoops, couldn't load: %@", [error localizedDescription]);
     }
+}
+
+- (void)clearNotifications {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
+    fetchRequest.entity = entity;
+    fetchRequest.includesPropertyValues = NO;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == 'chat' AND read == NO AND rideID = %@", @(self.chat.ride.rideID)];
+    fetchRequest.predicate = predicate;
+    
+    NSError *error;
+    NSArray<Notification *> *unreadChatNotifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        NSLog(@"Whoops, couldn't load unread notifications for chat: %@", [error localizedDescription]);
+        return;
+    }
+    
+    for (id notification in unreadChatNotifications) {
+        [self.managedObjectContext deleteObject:notification];
+    }
+    
+    [self.managedObjectContext save:&error];
+    if (error) {
+        NSLog(@"Whoops, couldn't delete notifications for chat: %@", [error localizedDescription]);
+        return;
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
+                                                        object:nil
+                                                      userInfo:@{@"msgType": @"chat"}];
 }
 
 - (void)appendMessage:(Message *)message {
@@ -98,6 +128,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [notificationCenter addObserver:self selector:@selector(gcmDidReceiveMessage:) name:CaronaeGCMMessageReceivedNotification object:nil];
     
     [self loadChatMessages];
+    [self clearNotifications];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

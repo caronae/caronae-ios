@@ -1,14 +1,19 @@
 #import <AFNetworking/AFNetworking.h>
+#import <CoreData/CoreData.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "AppDelegate.h"
 #import "CaronaeAlertController.h"
+#import "CaronaeDefaults.h"
 #import "ActiveRidesViewController.h"
 #import "CaronaeRideCell.h"
 #import "Chat.h"
 #import "ChatStore.h"
+#import "Notification+CoreDataProperties.h"
 #import "RideViewController.h"
 #import "Ride.h"
 
 @interface ActiveRidesViewController ()
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -20,6 +25,13 @@
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
     
     [self loadActiveRides];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateNotifications:) name:CaronaeDidUpdateNotifications object:nil];
+    
+    [self updateBadgeCount];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -33,6 +45,36 @@
     }
 }
 
+- (void)updateBadgeCount {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
+    fetchRequest.entity = entity;
+    fetchRequest.includesPropertyValues = NO;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == 'chat' AND read == NO"];
+    fetchRequest.predicate = predicate;
+    
+    NSError *error;
+    NSArray<Notification *> *unreadChatNotifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        NSLog(@"Whoops, couldn't load unread notifications: %@", [error localizedDescription]);
+        return;
+    }
+    
+    if (unreadChatNotifications.count > 0) {
+        self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", (long)unreadChatNotifications.count];
+    }
+    else {
+        self.navigationController.tabBarItem.badgeValue = nil;
+    }
+}
+
+- (void)didUpdateNotifications:(NSNotification *)notification {
+    NSString *msgType = notification.userInfo[@"msgType"];
+    
+    if ([msgType isEqualToString:@"chat"]) {
+        [self updateBadgeCount];
+    }
+}
 
 #pragma mark - Rides methods
 

@@ -9,10 +9,12 @@ extern NSString *const CaronaeGCMAPIKey;
 extern NSString *const CaronaeUserRidesUpdatedNotification;
 extern NSString *const CaronaeGCMTokenUpdatedNotification;
 extern NSString *const CaronaeGCMMessageReceivedNotification;
+extern NSString *const CaronaeDidUpdateNotifications;
 
 extern NSString *const CaronaeErrorDomain;
 extern const NSInteger CaronaeErrorInvalidResponse;
 extern const NSInteger CaronaeErrorNoRidesCreated;
+extern const NSInteger CaronaeErrorOpeningCoreDataStore;
 
 @interface CaronaeDefaults : NSObject
 

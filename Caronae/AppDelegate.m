@@ -1,14 +1,16 @@
-#import <SVProgressHUD/SVProgressHUD.h>
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import <CRToast/CRToast.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Google/CloudMessaging.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "AppDelegate.h"
 #import "ChatStore.h"
 #import "ChatViewController.h"
 #import "Message.h"
 #import "Message+CoreDataProperties.h"
+#import "Notification.h"
+#import "Notification+CoreDataProperties.h"
 
 @interface AppDelegate () <GGLInstanceIDDelegate, GCMReceiverDelegate>
 @property (nonatomic, strong) void (^registrationHandler) (NSString *registrationToken, NSError *error);
@@ -184,7 +186,9 @@
         NSError *error;
         if (![context save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            return YES;
         }
+        
         
         NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", message.senderName, message.text];
         if (application.applicationState != UIApplicationStateActive) {
@@ -192,6 +196,7 @@
             notification.fireDate = message.sentDate;
             notification.alertBody = notificationBody;
             [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+            
         }
         else {
             ChatViewController *topVC = (ChatViewController *)[self topViewController];
@@ -202,6 +207,19 @@
             
             [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: notificationBody}                                     completionBlock:nil];
         }
+        
+        Notification *caronaeNotification = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Notification.class) inManagedObjectContext:context];
+        caronaeNotification.rideID = rideID;
+        caronaeNotification.date = message.sentDate;
+        caronaeNotification.type = msgType;
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save notification: %@", [error localizedDescription]);
+            return YES;
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
+                                                            object:nil
+                                                          userInfo:userInfo];
         
         return YES;
     }
@@ -347,17 +365,19 @@
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Caronae.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    
+    NSDictionary *options = @{ NSMigratePersistentStoresAutomaticallyOption : @(YES),
+                               NSInferMappingModelAutomaticallyOption : @(YES) };
+
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
         dict[NSLocalizedFailureReasonErrorKey] = failureReason;
         dict[NSUnderlyingErrorKey] = error;
-        error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
-        // Replace this with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+        error = [NSError errorWithDomain:CaronaeErrorDomain code:CaronaeErrorOpeningCoreDataStore userInfo:dict];
+
+        NSLog(@"Unresolved Core Data error %@, %@", error, [error userInfo]);
     }
     
     return _persistentStoreCoordinator;
