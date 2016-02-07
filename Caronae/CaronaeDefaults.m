@@ -94,6 +94,7 @@ static NSUserDefaults *userDefaults;
     
     // Clear Core Data
     [appDelegate deleteAllObjects:@"Message"];
+    [appDelegate deleteAllObjects:@"Notification"];
     
     // Clear user data
     [CaronaeDefaults setUserGCMToken:nil];
