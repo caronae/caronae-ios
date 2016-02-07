@@ -101,8 +101,8 @@
     self.photoURL = user[@"profile_pic_url"];
     if (self.photoURL) {
         [self.photo sd_setImageWithURL:[NSURL URLWithString:self.photoURL]
-                     placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                              options:SDWebImageRefreshCached];
+                      placeholderImage:[UIImage imageNamed:@"Profile Picture"]
+                               options:SDWebImageRefreshCached];
     }
 }
 
@@ -221,8 +221,8 @@
     
     if (!self.completeProfileMode) {
         alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar edição do perfil?"
-                                                                                 message:@"Quaisquer mudanças serão descartadas."
-                                                                          preferredStyle:SDCAlertControllerStyleAlert];
+                                                         message:@"Quaisquer mudanças serão descartadas."
+                                                  preferredStyle:SDCAlertControllerStyleAlert];
         [alert addAction:[SDCAlertAction actionWithTitle:@"Cont. editando" style:SDCAlertActionStyleCancel handler:nil]];
         [alert addAction:[SDCAlertAction actionWithTitle:@"Descartar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
             [self dismissViewControllerAnimated:YES completion:nil];
@@ -230,8 +230,8 @@
     }
     else {
         alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar criação do perfil?"
-                                                                                 message:@"Você será deslogado do aplicativo e precisará entrar novamente com o token."
-                                                                          preferredStyle:SDCAlertControllerStyleAlert];
+                                                         message:@"Você será deslogado do aplicativo e precisará entrar novamente com o token."
+                                                  preferredStyle:SDCAlertControllerStyleAlert];
         [alert addAction:[SDCAlertAction actionWithTitle:@"Cont. editando" style:SDCAlertActionStyleCancel handler:nil]];
         [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
             [CaronaeDefaults signOut];
@@ -250,7 +250,7 @@
             [self importPhotoFromFacebook];
         }]];
         [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do SIGA" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
+            [self importPhotoFromSIGA];
         }]];
         [alert addAction:[UIAlertAction actionWithTitle:@"Remover minha foto" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             NSLog(@"Removendo foto...");
@@ -294,18 +294,19 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
-        // Remove photo
+            // Remove photo
         case 0:
             NSLog(@"Removendo foto...");
             _photoURL = nil;
             _photo.image = [UIImage imageNamed:@"Profile Picture"];
             break;
-        // Import from Facebook
+            // Import from Facebook
         case 1:
             [self importPhotoFromFacebook];
             break;
-        // Import from SIGA
+            // Import from SIGA
         case 2:
+            [self importPhotoFromSIGA];
             break;
         default:
             break;
@@ -411,20 +412,48 @@
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
                                           id result,
                                           NSError *error) {
-        [SVProgressHUD dismiss];
         if (!error) {
             NSDictionary *data = result[@"data"];
             _photoURL = data[@"url"];
             [_photo sd_setImageWithURL:[NSURL URLWithString:_photoURL]
-                          placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                                   options:SDWebImageRefreshCached];
+                      placeholderImage:[UIImage imageNamed:@"Profile Picture"]
+                               options:SDWebImageRefreshCached
+                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                 [SVProgressHUD dismiss];
+                             }];
         }
         else {
+            [SVProgressHUD dismiss];
             NSLog(@"result: %@", error.localizedDescription);
-            [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível obter sua foto de perfil do Facebook."];
+            [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do Facebook."];
         }
     }];
 }
 
+
+#pragma mark - SIGA integration
+
+- (void)importPhotoFromSIGA {
+    NSLog(@"Importing profile picture from SIGA...");
+    
+    [SVProgressHUD show];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    
+    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/user/intranetPhotoUrl"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        _photoURL = responseObject[@"url"];
+        [_photo sd_setImageWithURL:[NSURL URLWithString:_photoURL]
+                  placeholderImage:[UIImage imageNamed:@"Profile Picture"]
+                           options:SDWebImageRefreshCached
+                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                             [SVProgressHUD dismiss];
+                         }];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        NSLog(@"result: %@", error.localizedDescription);
+        [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do SIGA."];
+    }];
+}
 
 @end
