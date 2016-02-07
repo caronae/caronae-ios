@@ -23,6 +23,7 @@
     _slotsLabel.text = [NSString stringWithFormat:@"%d %@", ride.slots, ride.slots == 1 ? @"vaga" : @"vagas"];
     
     self.color = [CaronaeDefaults colorForZone:_ride.zone];
+    _badgeLabel.hidden = YES;
 }
 
 
@@ -40,6 +41,7 @@
     
     self.accessoryType = UITableViewCellAccessoryNone;
     self.color = [CaronaeDefaults colorForZone:_ride.zone];
+    _badgeLabel.hidden = YES;
 }
 
 - (void)updatePhoto {
@@ -60,6 +62,17 @@
     _slotsLabel.textColor = color;
     _photo.layer.borderColor = color.CGColor;
     self.tintColor = color;
+}
+
+- (void)setBadgeCount:(int)badgeCount {
+    _badgeCount = badgeCount;
+    if (badgeCount > 0) {
+        _badgeLabel.text = [NSString stringWithFormat:@"%d", badgeCount];
+        _badgeLabel.hidden = NO;
+    }
+    else {
+        _badgeLabel.hidden = YES;
+    }
 }
 
 @end

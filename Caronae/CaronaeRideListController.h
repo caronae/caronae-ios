@@ -1,8 +1,14 @@
 #import <UIKit/UIKit.h>
+#import "CaronaeRideCell.h"
 
 @interface CaronaeRideListController : UIViewController
 
+- (CaronaeRideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+
 @property (nonatomic) NSArray *rides;
+@property (nonatomic, readonly) NSArray *filteredRides;
+
 @property (nonatomic) Ride *selectedRide;
 
 @property (nonatomic) BOOL ridesDirectionGoing;

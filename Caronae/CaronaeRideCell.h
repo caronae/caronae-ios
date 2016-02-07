@@ -20,9 +20,11 @@
 
 @property (nonatomic, readonly) Ride *ride;
 @property (nonatomic, readonly) UIColor *color;
+@property (nonatomic) int badgeCount;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *arrivalDateTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *slotsLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
+@property (weak, nonatomic) IBOutlet UILabel *badgeLabel;
 
 @end

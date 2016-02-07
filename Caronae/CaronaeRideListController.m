@@ -1,10 +1,9 @@
 #import "CaronaeRideListController.h"
-#import "CaronaeRideCell.h"
 #import "RideViewController.h"
 #import "Ride.h"
 
 @interface CaronaeRideListController() <RideDelegate>
-@property (nonatomic) NSArray *filteredRides;
+@property (nonatomic, readwrite) NSArray *filteredRides;
 @end
 
 @implementation CaronaeRideListController

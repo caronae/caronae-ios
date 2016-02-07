@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10102" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10080"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -70,12 +70,31 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgh-Un-6Zl" userLabel="Badge">
+                        <rect key="frame" x="398" y="33" width="20" height="20"/>
+                        <color key="backgroundColor" red="0.92941176891326904" green="0.18039216101169586" blue="0.050980392843484879" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="eFV-Zq-SyS"/>
+                            <constraint firstAttribute="width" secondItem="rgh-Un-6Zl" secondAttribute="height" multiplier="1:1" id="kGm-pZ-uPL"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="yhy-4r-phG" firstAttribute="leading" secondItem="N9U-VB-hra" secondAttribute="leadingMargin" constant="15" id="FQY-PI-bbJ"/>
                     <constraint firstItem="yhy-4r-phG" firstAttribute="centerY" secondItem="N9U-VB-hra" secondAttribute="centerY" id="HfE-B6-yCz"/>
+                    <constraint firstItem="rgh-Un-6Zl" firstAttribute="centerY" secondItem="N9U-VB-hra" secondAttribute="centerY" id="Nna-2E-Ymw"/>
                     <constraint firstItem="bLW-pS-2uv" firstAttribute="centerY" secondItem="yhy-4r-phG" secondAttribute="centerY" id="am1-FT-aOn"/>
                     <constraint firstItem="bLW-pS-2uv" firstAttribute="leading" secondItem="yhy-4r-phG" secondAttribute="trailing" constant="15" id="c3b-kN-4oj"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="rgh-Un-6Zl" secondAttribute="trailing" constant="-10" id="oyi-ap-bIn"/>
                     <constraint firstItem="yhy-4r-phG" firstAttribute="width" secondItem="yhy-4r-phG" secondAttribute="height" multiplier="1:1" id="xhV-bg-6X0"/>
                 </constraints>
             </tableViewCellContentView>
@@ -84,6 +103,7 @@
             </constraints>
             <connections>
                 <outlet property="arrivalDateTimeLabel" destination="2br-U4-dn5" id="ITd-qo-zn4"/>
+                <outlet property="badgeLabel" destination="rgh-Un-6Zl" id="Z2f-xd-IGF"/>
                 <outlet property="photo" destination="yhy-4r-phG" id="oZ3-zM-gSM"/>
                 <outlet property="slotsLabel" destination="qaW-GQ-xGL" id="RIo-vd-88u"/>
                 <outlet property="titleLabel" destination="fWN-UA-DTI" id="GMN-BP-W02"/>

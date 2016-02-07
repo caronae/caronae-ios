@@ -4,6 +4,7 @@
 #import "AppDelegate.h"
 #import "CaronaeAlertController.h"
 #import "CaronaeDefaults.h"
+#import "CaronaeRideCell.h"
 #import "ActiveRidesViewController.h"
 #import "CaronaeRideCell.h"
 #import "Chat.h"
@@ -14,6 +15,7 @@
 
 @interface ActiveRidesViewController ()
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic) NSArray *unreadChatNotifications;
 
 @end
 
@@ -24,14 +26,13 @@
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
     
-    [self loadActiveRides];
-    
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateNotifications:) name:CaronaeDidUpdateNotifications object:nil];
+    [self updateUnreadChatNotifications];
+    [self loadActiveRides];
     
-    [self updateBadgeCount];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateNotifications:) name:CaronaeDidUpdateNotifications object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -45,7 +46,7 @@
     }
 }
 
-- (void)updateBadgeCount {
+- (void)updateUnreadChatNotifications {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
     fetchRequest.entity = entity;
@@ -59,6 +60,7 @@
         NSLog(@"Whoops, couldn't load unread notifications: %@", [error localizedDescription]);
         return;
     }
+    self.unreadChatNotifications = unreadChatNotifications;
     
     if (unreadChatNotifications.count > 0) {
         self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", (long)unreadChatNotifications.count];
@@ -72,7 +74,8 @@
     NSString *msgType = notification.userInfo[@"msgType"];
     
     if ([msgType isEqualToString:@"chat"]) {
-        [self updateBadgeCount];
+        [self updateUnreadChatNotifications];
+        [self.tableView reloadData];
     }
 }
 
@@ -146,6 +149,26 @@
     }
     
     return nil;
+}
+
+
+#pragma mark - Table methods
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CaronaeRideCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    int unreadCount = 0;
+    Ride *ride = self.filteredRides[indexPath.row];
+    NSNumber *rideID = @(ride.rideID);
+    for (Notification *caronaeNotification in self.unreadChatNotifications) {
+        if ([caronaeNotification.rideID isEqualToNumber:rideID]) {
+            ++unreadCount;
+        }
+    }
+    
+    cell.badgeCount = unreadCount;
+    
+    return cell;
 }
 
 @end
