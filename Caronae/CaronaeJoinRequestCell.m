@@ -26,15 +26,28 @@
     self.tintColor = color;
 }
 
+- (void)setButtonsEnabled:(BOOL)enabled {
+    _acceptButton.enabled = enabled;
+    _declineButton.enabled = enabled;
+    if (enabled) {
+        _acceptButton.alpha = 1.0f;
+        _declineButton.alpha = 1.0f;
+    }
+    else {
+        _acceptButton.alpha = 0.5f;
+        _declineButton.alpha = 0.5f;
+    }
+}
+
 
 #pragma mark - IBActions
 
 - (IBAction)didTapAcceptButton:(id)sender {
-    [self.delegate joinRequest:self.request hasAccepted:YES];
+    [self.delegate joinRequest:self.request hasAccepted:YES cell:self];
 }
 
 - (IBAction)didTapDeclineButton:(id)sender {
-    [self.delegate joinRequest:self.request hasAccepted:NO];
+    [self.delegate joinRequest:self.request hasAccepted:NO cell:self];
 }
 
 - (IBAction)didTapUserDetails:(id)sender {

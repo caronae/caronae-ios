@@ -21,6 +21,7 @@ PODS:
   - AFNetworking/UIKit (2.6.2):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CRToast (0.0.9)
   - GGLInstanceID (1.1.5):
     - GoogleIPhoneUtilities (~> 1.0)
     - GoogleNetworkingUtilities (~> 1.0)
@@ -66,6 +67,7 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.0.3)
   - AFNetworking (~> 2.0)
+  - CRToast (~> 0.0.7)
   - Google/CloudMessaging
   - SDCAlertView (= 2.5.4)
   - SDWebImage (~> 3.7)
@@ -76,6 +78,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 11f2053085d3088dc1ef9d38a9f11c18b528dd9e
   AFNetworking: 7f317038a9710cabfa43ec56396b307b45df72ab
+  CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   GGLInstanceID: 4be9a86f27e87f8cedc9694f521f12949813a7ba
   Google: 97618e118111b998cce1d8dd1bd98b82301d72db
   GoogleCloudMessaging: faa057e30845e7300da31de3777060420b2f6579

@@ -356,7 +356,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     return nil;
 }
 
-- (void)joinRequest:(NSDictionary *)request hasAccepted:(BOOL)accepted {
+- (void)joinRequest:(NSDictionary *)request hasAccepted:(BOOL)accepted cell:(CaronaeJoinRequestCell *)cell {
     NSLog(@"Request for user %@ was %@", request[@"name"], accepted ? @"accepted" : @"not accepted");
     NSDictionary *params = @{@"userId": request[@"id"],
                              @"rideId": @(_ride.rideID),
@@ -366,11 +366,14 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
+    [cell setButtonsEnabled:NO];
+    
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/answerJoinRequest"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Answer to join request successfully sent.");
         [self removeJoinRequest:request];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error accepting join request: %@", error.localizedDescription);
+        [cell setButtonsEnabled:YES];
     }];
 }
 

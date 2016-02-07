@@ -1,10 +1,12 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
+#import <CRToast/CRToast.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Google/CloudMessaging.h>
 #import "AppDelegate.h"
 #import "ChatStore.h"
+#import "ChatViewController.h"
 #import "Message.h"
 #import "Message+CoreDataProperties.h"
 
@@ -42,7 +44,7 @@
     gcmConfig.receiverDelegate = self;
     gcmConfig.logLevel = kGCMLogLevelError;
     [[GCMService sharedInstance] startWithConfig:gcmConfig];
-
+    
     __weak typeof(self) weakSelf = self;
     // Handler for registration token request
     _registrationHandler = ^(NSString *registrationToken, NSError *error){
@@ -78,6 +80,10 @@
                                                               userInfo:userInfo];
         }
     };
+    
+    [CRToastManager setDefaultOptions:@{
+                                        kCRToastBackgroundColorKey: [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000],
+                                        }];
     
     return YES;
 }
@@ -145,14 +151,13 @@
     }
 }
 
-- (BOOL)handleNotification:(NSDictionary *)userInfo {
+- (BOOL)application:(UIApplication *)application handleNotification:(NSDictionary *)userInfo {
     if (!userInfo[@"msgType"]) return NO;
     
     NSString *msgType = userInfo[@"msgType"];
     
     // Handle chat messages
     if ([msgType isEqualToString:@"chat"]) {
-        
         int senderId = [userInfo[@"senderId"] intValue];
         int currentUserId = [[CaronaeDefaults defaults].user[@"id"] intValue];
         // We don't need to handle a message if it's from the logged user
@@ -180,11 +185,21 @@
         }
         
         NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", message.senderName, message.text];
-        UILocalNotification* notification = [[UILocalNotification alloc] init];
-        notification.fireDate = message.sentDate;
-        notification.alertBody = notificationBody;
-//        notification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        if (application.applicationState != UIApplicationStateActive) {
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.fireDate = message.sentDate;
+            notification.alertBody = notificationBody;
+            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        }
+        else {
+            ChatViewController *topVC = (ChatViewController *)[self topViewController];
+            // Ignore notification if the message's chat is already open
+            if ([topVC isKindOfClass:ChatViewController.class] && [message.rideID isEqualToNumber:@(topVC.chat.ride.rideID)]) {
+                return YES;
+            }
+            
+            [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: notificationBody}                                     completionBlock:nil];
+        }
         
         return YES;
     }
@@ -193,11 +208,11 @@
         NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
         
         [Chat subscribeToTopicID:[Chat topicIDwithRideID:rideID]];
-        
-        return YES;
     }
     
-    return NO;
+    [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
+    
+    return YES;
 }
 
 
@@ -238,7 +253,7 @@
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
     
-    [self handleNotification:userInfo];
+    [self application:application handleNotification:userInfo];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
                                                         object:nil
@@ -253,7 +268,7 @@
     
     // If the application received the notification on the background or foreground
     if (application.applicationState != UIApplicationStateInactive) {
-        if ([self handleNotification:userInfo]) {
+        if ([self application:application handleNotification:userInfo]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
                                                                 object:nil
                                                               userInfo:userInfo];
