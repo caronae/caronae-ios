@@ -251,6 +251,7 @@
 				A32B80B81C2E075000FC370A /* Ride */,
 				A32B80B71C2E073000FC370A /* User */,
 				A37E80D81C5EFFA600683F27 /* Chat */,
+				A3DF39BC1C66CFAE005D22FD /* Falae */,
 				A3180F841C6066AF007195DF /* Neighborhood selection */,
 				A3169CA21BED842D00A0D428 /* Assets.xcassets */,
 				A3169C9C1BED842D00A0D428 /* Main.storyboard */,
@@ -258,8 +259,6 @@
 				A3169C971BED842D00A0D428 /* AppDelegate.m */,
 				A3B5AEFD1BF1AAC10026A889 /* CaronaeDefaults.h */,
 				A3B5AEFE1BF1AAC10026A889 /* CaronaeDefaults.m */,
-				A32B80B41C2C6EBE00FC370A /* FalaeViewController.h */,
-				A32B80B51C2C6EBE00FC370A /* FalaeViewController.m */,
 				A34312C51BF01B9A005BA311 /* MenuViewController.h */,
 				A34312C61BF01B9A005BA311 /* MenuViewController.m */,
 				A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */,
@@ -415,6 +414,15 @@
 				A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		A3DF39BC1C66CFAE005D22FD /* Falae */ = {
+			isa = PBXGroup;
+			children = (
+				A32B80B41C2C6EBE00FC370A /* FalaeViewController.h */,
+				A32B80B51C2C6EBE00FC370A /* FalaeViewController.m */,
+			);
+			name = Falae;
 			sourceTree = "<group>";
 		};
 		D2A5ADC9EBDC943DAB5ACFFA /* Pods */ = {

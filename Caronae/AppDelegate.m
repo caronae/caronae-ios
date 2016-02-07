@@ -85,6 +85,8 @@
                                         kCRToastBackgroundColorKey: [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000],
                                         }];
     
+    [application setApplicationIconBadgeNumber:0];
+    
     return YES;
 }
 

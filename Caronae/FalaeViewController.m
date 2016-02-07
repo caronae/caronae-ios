@@ -1,20 +1,29 @@
-#import <AFNetworking/AFNetworking.h>
 #import <ActionSheetStringPicker.h>
+#import <AFNetworking/AFNetworking.h>
+#import <sys/utsname.h>
 #import "CaronaeAlertController.h"
 #import "FalaeViewController.h"
 
+/**
+ * Returns the model of the current device.
+ */
+NSString *deviceName() {
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    
+    return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+}
+
 @interface FalaeViewController () <UITextViewDelegate>
-@property (weak, nonatomic) IBOutlet UIButton *typeButton;
-@property (weak, nonatomic) IBOutlet UITextField *subjectTextField;
-@property (weak, nonatomic) IBOutlet UITextView *messageTextView;
-@property (nonatomic) IBOutlet UIBarButtonItem *sendButton;
-@property (nonatomic) UIBarButtonItem *loadingButton;
+
 @property (nonatomic) NSString *messagePlaceholder;
 @property (nonatomic) UIColor *messageTextColor;
 @property (nonatomic) NSString *selectedType;
+@property (nonatomic) NSString *selectedTypeCute;
 @property (nonatomic) int selectedTypeInitialIndex;
 @property (nonatomic) NSArray *messageTypes;
 @property (nonatomic) NSDictionary *reportedUser;
+
 @end
 
 @implementation FalaeViewController
@@ -31,6 +40,7 @@
     
     if (_reportedUser) {
         _selectedType = @"report";
+        _selectedTypeCute = @"Denúncia";
         _selectedTypeInitialIndex = 3;
         [_typeButton setTitle:@"Denúncia" forState:UIControlStateNormal];
         _subjectTextField.text = [NSString stringWithFormat:@"Denúncia sobre usuário %@ (id: %d)", _reportedUser[@"name"], [_reportedUser[@"id"] intValue]];
@@ -39,6 +49,7 @@
     else {
         _selectedTypeInitialIndex = 0;
         _selectedType = @"complaint";
+        _selectedTypeCute = @"Reclamação";
     }
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
@@ -79,6 +90,7 @@
     [ActionSheetStringPicker showPickerWithTitle:@"Qual o motivo do seu contato?"
                                             rows:_messageTypes                                                          initialSelection:_selectedTypeInitialIndex
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           _selectedTypeCute = selectedValue;
                                            if ([selectedValue isEqualToString:@"Reclamação"]) {
                                                _selectedType = @"complaint";
                                            }
@@ -102,9 +114,21 @@
 - (IBAction)didTapSendButton:(id)sender {
     [self.view endEditing:YES];
     
+    if ([_messageTextView.text isEqualToString:@""] || [_subjectTextField.text isEqualToString:@""]) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"" message:@"Por favor, preencha um assunto e uma mensagem para entrar em contato conosco."];
+        return;
+    }
+    
     NSString *type = _selectedType;
-    NSString *subject = _subjectTextField.text;
-    NSString *text = _messageTextView.text;
+    NSString *subject = [NSString stringWithFormat:@"[%@] %@", _selectedTypeCute, _subjectTextField.text];
+    
+    NSString *appVersionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString *appBuildString = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    NSString *versionBuildString = [NSString stringWithFormat:@"%@ (build %@)", appVersionString, appBuildString];
+    NSString *osVersion = [[UIDevice currentDevice] systemVersion];
+    NSString *device = deviceName();
+    
+    NSString *text = [NSString stringWithFormat:@"%@\n\n--------------------------------\nDevice: %@ (iOS %@)\nVersão do app: %@", _messageTextView.text, device, osVersion, versionBuildString];
     
     NSDictionary *message = @{@"type": type,
                              @"subject": subject,
