@@ -21,7 +21,7 @@ extern const NSInteger CaronaeErrorOpeningCoreDataStore;
 + (instancetype)defaults;
 
 /**
- *  Store the user object, token and previous rides internally.
+ *  Stores the user object, token and previous rides internally.
  *
  *  @param userProfile A dictionary containing the signed in user profile.
  *  @param userToken   The user's authentication token.
@@ -30,7 +30,8 @@ extern const NSInteger CaronaeErrorOpeningCoreDataStore;
 + (void)signIn:(NSDictionary *)userProfile token:(NSString *)userToken rides:(NSArray *)userRides;
 
 /**
- *  Register for push notifications with iOS if necessary.
+ *  Registers for push notifications with iOS. If the user has already registered for notifications,
+ * this does nothing.
  */
 + (void)registerForNotifications;
 

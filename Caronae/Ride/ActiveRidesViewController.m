@@ -100,12 +100,13 @@
                 // Initialise chats
                 for (Ride *ride in self.rides) {
                     // If chat doesn't exist in store, create it and subscribe to it
-                    if (![ChatStore chatForRide:ride]) {
-                        Chat *chat = [[Chat alloc] initWithRide:ride];
-                        if (!chat.subscribed) {
-                            [chat subscribe];
-                        }
+                    Chat *chat = [ChatStore chatForRide:ride];
+                    if (!chat) {
+                        chat = [[Chat alloc] initWithRide:ride];
                         [ChatStore setChat:chat forRide:ride];
+                    }
+                    if (!chat.subscribed) {
+                        [chat subscribe];
                     }
                 }
             }

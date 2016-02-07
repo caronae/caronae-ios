@@ -23,13 +23,6 @@
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
     
-    if ([CaronaeDefaults defaults].user) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *tokenViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeTabViewController"];
-        self.window.rootViewController = tokenViewController;
-        [self.window makeKeyAndVisible];
-    }
-    
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.75f]];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     
@@ -51,18 +44,22 @@
     // Handler for registration token request
     _registrationHandler = ^(NSString *registrationToken, NSError *error){
         if (registrationToken != nil) {
-            [CaronaeDefaults setUserGCMToken:registrationToken];
             NSLog(@"Registration Token: %@", registrationToken);
             
-            if ([CaronaeDefaults defaults].user) {
-                [weakSelf updateUserGCMToken:registrationToken];
+            NSString *cachedRegistrationToken = [CaronaeDefaults userGCMToken];
+            // Update cached registration token locally and remotely if the token has changed.
+            if (![cachedRegistrationToken isEqualToString:registrationToken]) {
+                [CaronaeDefaults setUserGCMToken:registrationToken];
+                if ([CaronaeDefaults defaults].user) {
+                    [weakSelf updateUserGCMToken:registrationToken];
+                }
             }
             
             if (!weakSelf.connectedToGCM) {
                 [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
-                    if (error) {
+                    if (error && error.code != kGCMServiceErrorCodeAlreadyConnected) {
                         NSLog(@"Could not connect to GCM (registration): %@", error.localizedDescription);
-                    } else {
+                    } else if (!error) {
                         weakSelf.connectedToGCM = true;
                         NSLog(@"Connected to GCM (registration)");
                     }
@@ -89,6 +86,15 @@
     
     [application setApplicationIconBadgeNumber:0];
     
+    // Load home screen if the user has already signed in
+    if ([CaronaeDefaults defaults].user) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *initialViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeTabViewController"];
+        self.window.rootViewController = initialViewController;
+        [self.window makeKeyAndVisible];
+        [CaronaeDefaults registerForNotifications];
+    }
+    
     return YES;
 }
 
@@ -110,9 +116,9 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     if ([CaronaeDefaults userGCMToken] && !_connectedToGCM) {
         [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
-            if (error) {
+            if (error && error.code != kGCMServiceErrorCodeAlreadyConnected) {
                 NSLog(@"Could not connect to GCM (applicationDidBecomeActive): %@", error.localizedDescription);
-            } else {
+            } else if (!error) {
                 _connectedToGCM = true;
                 NSLog(@"Connected to GCM (applicationDidBecomeActive)");
             }
