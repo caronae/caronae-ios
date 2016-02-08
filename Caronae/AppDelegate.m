@@ -44,11 +44,11 @@
     // Handler for registration token request
     _registrationHandler = ^(NSString *registrationToken, NSError *error){
         if (registrationToken != nil) {
-            NSLog(@"Registration Token: %@", registrationToken);
-            
             NSString *cachedRegistrationToken = [CaronaeDefaults userGCMToken];
             // Update cached registration token locally and remotely if the token has changed.
             if (![cachedRegistrationToken isEqualToString:registrationToken]) {
+                NSLog(@"Registration Token: %@", registrationToken);
+                
                 [CaronaeDefaults setUserGCMToken:registrationToken];
                 if ([CaronaeDefaults defaults].user) {
                     [weakSelf updateUserGCMToken:registrationToken];
@@ -161,84 +161,92 @@
     }
 }
 
-- (BOOL)application:(UIApplication *)application handleNotification:(NSDictionary *)userInfo {
+
+#pragma mark - Notification handling
+
+
+- (BOOL)handleNotification:(NSDictionary *)userInfo application:(UIApplication *)application {
     if (!userInfo[@"msgType"]) return NO;
-    
     NSString *msgType = userInfo[@"msgType"];
     
     // Handle chat messages
     if ([msgType isEqualToString:@"chat"]) {
-        int senderId = [userInfo[@"senderId"] intValue];
-        int currentUserId = [[CaronaeDefaults defaults].user[@"id"] intValue];
-        // We don't need to handle a message if it's from the logged user
-        if (senderId == currentUserId) {
-            return NO;
-        }
-        
-        NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
-        NSLog(@"Received chat message for ride %@", rideID);
-        
-        NSManagedObjectContext *context = [self managedObjectContext];
-        Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
-        message.text = userInfo[@"message"];
-        message.incoming = @(YES);
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        message.sentDate = [dateFormatter dateFromString:userInfo[@"time"]];
-        message.rideID = rideID;
-        message.senderName = userInfo[@"senderName"];
-        message.senderId = @([userInfo[@"senderId"] intValue]);
-        
-        NSError *error;
-        if (![context save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-            return YES;
-        }
-        
-        
-        NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", message.senderName, message.text];
-        if (application.applicationState != UIApplicationStateActive) {
-            UILocalNotification *notification = [[UILocalNotification alloc] init];
-            notification.fireDate = message.sentDate;
-            notification.alertBody = notificationBody;
-            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-            
-        }
-        else {
-            ChatViewController *topVC = (ChatViewController *)[self topViewController];
-            // Ignore notification if the message's chat is already open
-            if ([topVC isKindOfClass:ChatViewController.class] && [message.rideID isEqualToNumber:@(topVC.chat.ride.rideID)]) {
-                return YES;
-            }
-            
-            [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: notificationBody}                                     completionBlock:nil];
-        }
-        
-        Notification *caronaeNotification = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Notification.class) inManagedObjectContext:context];
-        caronaeNotification.rideID = rideID;
-        caronaeNotification.date = message.sentDate;
-        caronaeNotification.type = msgType;
-        if (![context save:&error]) {
-            NSLog(@"Whoops, couldn't save notification: %@", [error localizedDescription]);
-            return YES;
-        }
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
-                                                            object:nil
-                                                          userInfo:userInfo];
-        
-        return YES;
+        [self handleChatNotification:userInfo application:application];
     }
     // Handle 'join request accepted' messages
     else if ([msgType isEqualToString:@"accepted"]) {
         NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
         
         [Chat subscribeToTopicID:[Chat topicIDwithRideID:rideID]];
+        
+        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
     }
     
-    [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
-    
     return YES;
+}
+
+- (void)handleChatNotification:(NSDictionary *)userInfo application:(UIApplication *)application {
+    int senderId = [userInfo[@"senderId"] intValue];
+    int currentUserId = [[CaronaeDefaults defaults].user[@"id"] intValue];
+    
+    // We don't need to handle a message if it's from the logged user
+    if (senderId == currentUserId) {
+        return;
+    }
+    
+    NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
+    NSLog(@"Received chat message for ride %@", rideID);
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
+    message.text = userInfo[@"message"];
+    message.incoming = @(YES);
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    message.sentDate = [dateFormatter dateFromString:userInfo[@"time"]];
+    message.rideID = rideID;
+    message.senderName = userInfo[@"senderName"];
+    message.senderId = @([userInfo[@"senderId"] intValue]);
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        return;
+    }
+    
+    
+    NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", message.senderName, message.text];
+    if (application.applicationState != UIApplicationStateActive) {
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        notification.fireDate = message.sentDate;
+        notification.alertBody = notificationBody;
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        
+    }
+    else {
+        ChatViewController *topVC = (ChatViewController *)[self topViewController];
+        // Ignore notification if the message's chat is already open
+        if ([topVC isKindOfClass:ChatViewController.class] && [message.rideID isEqualToNumber:@(topVC.chat.ride.rideID)]) {
+            return;
+        }
+        
+        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: notificationBody}                                     completionBlock:nil];
+    }
+    
+    Notification *caronaeNotification = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Notification.class) inManagedObjectContext:context];
+    caronaeNotification.rideID = rideID;
+    caronaeNotification.date = message.sentDate;
+    caronaeNotification.type = userInfo[@"msgType"];
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save notification: %@", [error localizedDescription]);
+        return;
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
+                                                        object:nil
+                                                      userInfo:userInfo];
+    
+    [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
 }
 
 
@@ -279,7 +287,7 @@
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
     
-    [self application:application handleNotification:userInfo];
+    [self handleNotification:userInfo application:application];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
                                                         object:nil
@@ -294,7 +302,7 @@
     
     // If the application received the notification on the background or foreground
     if (application.applicationState != UIApplicationStateInactive) {
-        if ([self application:application handleNotification:userInfo]) {
+        if ([self handleNotification:userInfo application:application]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
                                                                 object:nil
                                                               userInfo:userInfo];
