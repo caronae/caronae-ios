@@ -51,7 +51,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
     fetchRequest.entity = entity;
     fetchRequest.includesPropertyValues = NO;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == 'chat' AND read == NO"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == 'chat'"];
     fetchRequest.predicate = predicate;
     
     NSError *error;

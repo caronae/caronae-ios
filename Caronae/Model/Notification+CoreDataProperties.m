@@ -15,7 +15,6 @@
 
 @dynamic type;
 @dynamic date;
-@dynamic read;
 @dynamic rideID;
 
 @end

@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSString *type;
 @property (nullable, nonatomic, retain) NSDate *date;
-@property (nullable, nonatomic, retain) NSNumber *read;
 @property (nullable, nonatomic, retain) NSNumber *rideID;
 
 @end

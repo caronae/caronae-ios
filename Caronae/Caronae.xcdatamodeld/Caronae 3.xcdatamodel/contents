@@ -10,7 +10,6 @@
     </entity>
     <entity name="Notification" representedClassName="Notification" syncable="YES">
         <attribute name="date" attributeType="Date" syncable="YES"/>
-        <attribute name="read" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="rideID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="type" attributeType="String" syncable="YES"/>
     </entity>
@@ -31,7 +30,7 @@
     </entity>
     <elements>
         <element name="Message" positionX="-63" positionY="81" width="128" height="135"/>
+        <element name="Notification" positionX="-63" positionY="81" width="128" height="90"/>
         <element name="Ride" positionX="-63" positionY="-18" width="128" height="240"/>
-        <element name="Notification" positionX="-63" positionY="81" width="128" height="105"/>
     </elements>
 </model>

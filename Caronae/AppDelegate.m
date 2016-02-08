@@ -85,8 +85,6 @@
                                         kCRToastBackgroundColorKey: [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000],
                                         }];
     
-    [application setApplicationIconBadgeNumber:0];
-    
     // Load home screen if the user has already signed in
     if ([CaronaeDefaults defaults].user) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -96,7 +94,27 @@
         [CaronaeDefaults registerForNotifications];
     }
     
+    // Update application badge number and listen to notification updates
+    [self updateApplicationBadgeNumber];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateApplicationBadgeNumber) name:CaronaeDidUpdateNotifications object:nil];
+    
     return YES;
+}
+
+- (void)updateApplicationBadgeNumber {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
+    fetchRequest.entity = entity;
+    fetchRequest.includesPropertyValues = NO;
+    
+    NSError *error;
+    NSUInteger totalUnreadNotifications = [self.managedObjectContext countForFetchRequest:fetchRequest error:&error];
+    if (error) {
+        NSLog(@"Whoops, couldn't load unread notifications: %@", [error localizedDescription]);
+        return;
+    }
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:totalUnreadNotifications];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -165,7 +183,6 @@
 
 
 #pragma mark - Notification handling
-
 
 - (BOOL)handleNotification:(NSDictionary *)userInfo application:(UIApplication *)application {
     if (!userInfo[@"msgType"]) return NO;
@@ -241,7 +258,7 @@
     Notification *caronaeNotification = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Notification.class) inManagedObjectContext:context];
     caronaeNotification.rideID = rideID;
     caronaeNotification.date = message.sentDate;
-    caronaeNotification.type = userInfo[@"msgType"];
+    caronaeNotification.type = @"chat";
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save notification: %@", [error localizedDescription]);
         return;

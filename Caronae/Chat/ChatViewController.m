@@ -61,7 +61,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
     fetchRequest.entity = entity;
     fetchRequest.includesPropertyValues = NO;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == 'chat' AND read == NO AND rideID = %@", @(self.chat.ride.rideID)];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == 'chat' AND rideID = %@", @(self.chat.ride.rideID)];
     fetchRequest.predicate = predicate;
     
     NSError *error;
