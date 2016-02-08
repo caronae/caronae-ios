@@ -4,15 +4,15 @@
 
 @protocol EditProfileDelegate <NSObject>
 
-- (void)didUpdateUser:(NSDictionary *)newUser;
+- (void)didUpdateUser:(User *)newUser;
 
 @end
 
 @interface EditProfileViewController : UIViewController
 
-- (NSDictionary *)generateUserDictionaryFromView;
+- (User *)generateUserFromView;
 
-@property (nonatomic) NSDictionary *user;
+@property (nonatomic) User *user;
 @property id<EditProfileDelegate> delegate;
 @property (nonatomic) BOOL completeProfileMode;
 

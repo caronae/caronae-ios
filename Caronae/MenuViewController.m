@@ -13,17 +13,17 @@
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
     
-    NSDictionary *user = [CaronaeDefaults defaults].user;
-    self.profileNameLabel.text = user[@"name"];
-    self.profileCourseLabel.text = user[@"course"];
+    User *user = [CaronaeDefaults defaults].user;
+    self.profileNameLabel.text = user.name;
+    self.profileCourseLabel.text = user.course;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSDictionary *user = [CaronaeDefaults defaults].user;
-    id userPhotoURL = user[@"profile_pic_url"];
-    if (userPhotoURL && [userPhotoURL isKindOfClass:[NSString class]] && ![userPhotoURL isEqualToString:@""] && ![userPhotoURL isEqualToString:self.photoURL]) {
+    User *user = [CaronaeDefaults defaults].user;
+    id userPhotoURL = user.profilePictureURL;
+    if (userPhotoURL && ![userPhotoURL isEqualToString:@""] && ![userPhotoURL isEqualToString:self.photoURL]) {
         self.photoURL = userPhotoURL;
         [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:userPhotoURL]
                                  placeholderImage:[UIImage imageNamed:@"Profile Picture"]

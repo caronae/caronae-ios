@@ -12,9 +12,9 @@
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
 
-@property (nonatomic) NSArray *joinRequests;
-@property (nonatomic) NSDictionary *selectedUser;
-@property (nonatomic) NSArray *mutualFriends;
+@property (nonatomic) NSArray<User *> *joinRequests;
+@property (nonatomic) NSArray<User *> *mutualFriends;
+@property (nonatomic) User *selectedUser;
 @property (nonatomic) UIColor *color;
 
 @end
@@ -42,8 +42,8 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         _referenceLabel.text = _ride.place;
     }
 
-    _driverNameLabel.text = _ride.driver[@"name"];
-    _driverCourseLabel.text = [NSString stringWithFormat:@"%@ | %@", _ride.driver[@"profile"], _ride.driver[@"course"]];
+    _driverNameLabel.text = _ride.driver.name;
+    _driverCourseLabel.text = [NSString stringWithFormat:@"%@ | %@", _ride.driver.profile, _ride.driver.course];
     
     if ([_ride.route isKindOfClass:[NSString class]] && [_ride.route isEqualToString:@""]) {
         _routeLabel.text = @"---";
@@ -59,8 +59,8 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         _driverMessageLabel.text = _ride.notes;
     }
     
-    if (_ride.driver[@"profile_pic_url"] && [_ride.driver[@"profile_pic_url"] isKindOfClass:[NSString class]] && ![_ride.driver[@"profile_pic_url"] isEqualToString:@""]) {
-        [_driverPhoto sd_setImageWithURL:[NSURL URLWithString:_ride.driver[@"profile_pic_url"]]
+    if (_ride.driver.profilePictureURL && ![_ride.driver.profilePictureURL isEqualToString:@""]) {
+        [_driverPhoto sd_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]
                   placeholderImage:[UIImage imageNamed:@"Profile Picture"]
                            options:SDWebImageRefreshCached];
     }
@@ -81,10 +81,10 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [self.mutualFriendsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         
         // Car details
-        NSDictionary *user = [CaronaeDefaults defaults].user;
-        _carPlateLabel.text = user[@"car_plate"];
-        _carModelLabel.text = user[@"car_model"];
-        _carColorLabel.text = user[@"car_color"];
+        User *user = [CaronaeDefaults defaults].user;
+        _carPlateLabel.text = user.carPlate;
+        _carModelLabel.text = user.carModel;
+        _carColorLabel.text = user.carColor;
     }
     // If the user is already a rider, hide 'join' button
     else if ([self userIsRider]) {
@@ -93,9 +93,9 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [self.cancelButton setTitle:@"DESISTIR" forState:UIControlStateNormal];
         
         // Car details
-        _carPlateLabel.text = _ride.driver[@"car_plate"];
-        _carModelLabel.text = _ride.driver[@"car_model"];
-        _carColorLabel.text = _ride.driver[@"car_color"];
+        _carPlateLabel.text = _ride.driver.carPlate;
+        _carModelLabel.text = _ride.driver.carModel;
+        _carColorLabel.text = _ride.driver.carColor;
         
         [self updateMutualFriends];
     }
@@ -148,12 +148,12 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 }
 
 - (BOOL)userIsDriver {
-    return [[CaronaeDefaults defaults].user[@"id"] isEqual:_ride.driver[@"id"]];
+    return [[CaronaeDefaults defaults].user.userID isEqualToNumber:_ride.driver.userID];
 }
 
 - (BOOL)userIsRider {
     for (NSDictionary *user in _ride.users) {
-        if ([user[@"id"] isEqual:[CaronaeDefaults defaults].user[@"id"]]) {
+        if ([user[@"id"] isEqualToNumber:[CaronaeDefaults defaults].user.userID]) {
             return YES;
         }
     }
@@ -162,7 +162,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 
 - (void)updateMutualFriends {
     // Abort if the Facebook accounts are not connected.
-    if (![CaronaeDefaults userFBToken] || ![_ride.driver[@"face_id"] isKindOfClass:[NSString class]] || [_ride.driver[@"face_id"] isEqualToString:@""]) {
+    if (![CaronaeDefaults userFBToken] || ![_ride.driver.facebookID isEqualToString:@""]) {
         return;
     }
     
@@ -171,12 +171,19 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     [manager.requestSerializer setValue:[CaronaeDefaults userFBToken] forHTTPHeaderField:@"Facebook-Token"];
     
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _ride.driver[@"face_id"]]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *mutualFriends = responseObject[@"mutual_friends"];
+    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _ride.driver.facebookID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
+        NSError *error;
+        NSArray<User *> *mutualFriends = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:mutualFriendsJSON error:&error];
+        
+        if (error) {
+            NSLog(@"Error parsing mutual friends. %@", error.localizedDescription);
+        }
+        
         if (mutualFriends.count > 0) {
+            _mutualFriends = mutualFriends;
             _mutualFriendsCollectionHeight.constant = 40.0f;
             [_mutualFriendsView layoutIfNeeded];
-            _mutualFriends = mutualFriends;
             [_mutualFriendsCollectionView reloadData];
         }
         _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", [responseObject[@"total_count"] intValue]];
@@ -322,9 +329,10 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/getRequesters/%ld", rideID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSError *responseError;
-        NSArray *joinRequests = [RideViewController parseJoinRequestsFromResponse:responseObject withError:&responseError];
-        if (!responseError) {
+        NSError *error;
+        NSArray<User *> *joinRequests = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:responseObject error:&error];
+        
+        if (!error) {
             NSLog(@"Ride %lu has %lu join requests.", rideID, (unsigned long)joinRequests.count);
             self.joinRequests = joinRequests;
             if (joinRequests.count > 0) {
@@ -332,33 +340,15 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
                 [self adjustHeightOfTableview];
             }
         }
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error loading join requests for ride %lu: %@", rideID, error.localizedDescription);
     }];
     
 }
 
-+ (NSArray *)parseJoinRequestsFromResponse:(id)responseObject withError:(NSError *__autoreleasing *)err {
-    // Check if we received an array of the rides
-    if ([responseObject isKindOfClass:NSArray.class]) {
-        return responseObject;
-    }
-    else {
-        if (err) {
-            NSDictionary *errorInfo = @{
-                                        NSLocalizedDescriptionKey: NSLocalizedString(@"Unexpected server response.", nil)
-                                        };
-            *err = [NSError errorWithDomain:CaronaeErrorDomain code:CaronaeErrorInvalidResponse userInfo:errorInfo];
-        }
-    }
-    
-    return nil;
-}
-
-- (void)joinRequest:(NSDictionary *)request hasAccepted:(BOOL)accepted cell:(CaronaeJoinRequestCell *)cell {
-    NSLog(@"Request for user %@ was %@", request[@"name"], accepted ? @"accepted" : @"not accepted");
-    NSDictionary *params = @{@"userId": request[@"id"],
+- (void)joinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(CaronaeJoinRequestCell *)cell {
+    NSLog(@"Request for user %@ was %@", requestingUser.name, accepted ? @"accepted" : @"not accepted");
+    NSDictionary *params = @{@"userId": requestingUser.userID,
                              @"rideId": @(_ride.rideID),
                              @"accepted": @(accepted)};
     
@@ -370,27 +360,27 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/answerJoinRequest"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Answer to join request successfully sent.");
-        [self removeJoinRequest:request];
+        [self removeJoinRequest:requestingUser];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error accepting join request: %@", error.localizedDescription);
         [cell setButtonsEnabled:YES];
     }];
 }
 
-- (void)removeJoinRequest:(NSDictionary *)request {
+- (void)removeJoinRequest:(User *)requestingUser {
     NSMutableArray *joinRequestsMutable = [NSMutableArray arrayWithArray:self.joinRequests];
-    [joinRequestsMutable removeObject:request];
+    [joinRequestsMutable removeObject:requestingUser];
     
     [self.requestsTable beginUpdates];
-    unsigned long index = [self.joinRequests indexOfObject:request];
+    unsigned long index = [self.joinRequests indexOfObject:requestingUser];
     [self.requestsTable deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
     self.joinRequests = joinRequestsMutable;
     [self.requestsTable endUpdates];
     [self adjustHeightOfTableview];
 }
 
-- (void)tappedUserDetailsForRequest:(NSDictionary *)request {
-    self.selectedUser = request;
+- (void)tappedUserDetailsForRequest:(User *)user {
+    self.selectedUser = user;
     [self performSegueWithIdentifier:@"ViewProfile" sender:self];
 }
 
@@ -409,7 +399,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     CaronaeJoinRequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Request Cell" forIndexPath:indexPath];
     
     cell.delegate = self;
-    [cell configureCellWithRequest:self.joinRequests[indexPath.row]];
+    [cell configureCellWithUser:self.joinRequests[indexPath.row]];
     [cell setColor:self.color];
     
     return cell;
@@ -453,7 +443,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CaronaeRiderCell *cell;
-    NSDictionary *user;
+    User *user;
     
     if (collectionView == _ridersCollectionView) {
         user = _ride.users[indexPath.row];
@@ -465,12 +455,11 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         
     }
     
-    NSString *firstName = [user[@"name"] componentsSeparatedByString:@" "].firstObject;
     cell.user = user;
-    cell.nameLabel.text = firstName;
+    cell.nameLabel.text = user.firstName;
     
-    if (user[@"profile_pic_url"] && [user[@"profile_pic_url"] isKindOfClass:[NSString class]] && ![user[@"profile_pic_url"] isEqualToString:@""]) {
-        [cell.photo sd_setImageWithURL:[NSURL URLWithString:user[@"profile_pic_url"]]
+    if (user.profilePictureURL && ![user.profilePictureURL isEqualToString:@""]) {
+        [cell.photo sd_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
                                options:SDWebImageRefreshCached];
     }

@@ -6,7 +6,7 @@
 
 @interface MyRidesViewController ()
 
-@property (nonatomic) NSDictionary *user;
+@property (nonatomic) User *user;
 
 @end
 

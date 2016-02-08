@@ -1,8 +1,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "NSDictionary+dictionaryWithoutNulls.h"
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
+#import "NSDictionary+dictionaryWithoutNulls.h"
 #import "TokenViewController.h"
 
 @interface TokenViewController () <UITextFieldDelegate>
@@ -38,8 +38,15 @@
                 [filteredRides addObject:[rideDictionary dictionaryWithoutNulls]];
             }
             
-            NSDictionary *userProfile = [responseObject[@"user"] dictionaryWithoutNulls];
-            [CaronaeDefaults signIn:userProfile token:userToken rides:filteredRides];
+            NSError *error;
+            User *user = [MTLJSONAdapter modelOfClass:User.class fromJSONDictionary:responseObject[@"user"] error:&error];
+            if (error) {
+                [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível autenticar." message:@"Ocorreu um erro carregando seu perfil."];
+                _authButton.enabled = YES;
+                return;
+            }
+            
+            [CaronaeDefaults signIn:user token:userToken rides:filteredRides];
             
             [CaronaeDefaults registerForNotifications];
             

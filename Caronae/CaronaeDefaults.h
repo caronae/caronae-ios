@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 
-@class Ride;
+#import "Ride.h"
+#import "User.h"
 
 extern NSString *const CaronaeAPIBaseURL;
 extern NSString *const CaronaeGCMAPISendURL;
@@ -24,11 +25,11 @@ extern const NSInteger CaronaeErrorOpeningCoreDataStore;
 /**
  *  Stores the user object, token and previous rides internally.
  *
- *  @param userProfile A dictionary containing the signed in user profile.
+ *  @param user A User object containing the signed in user profile.
  *  @param userToken   The user's authentication token.
  *  @param userRides   An array of ride dictionaries.
  */
-+ (void)signIn:(NSDictionary *)userProfile token:(NSString *)userToken rides:(NSArray *)userRides;
++ (void)signIn:(User *)user token:(NSString *)userToken rides:(NSArray *)userRides;
 
 /**
  *  Registers for push notifications with iOS. If the user has already registered for notifications,
@@ -99,7 +100,7 @@ extern const NSInteger CaronaeErrorOpeningCoreDataStore;
 @property (nonatomic, readonly) NSArray *zones;
 @property (nonatomic, readonly) NSDictionary *zoneColors;
 @property (nonatomic, readonly) NSDictionary *neighborhoods;
-@property (nonatomic, readwrite) NSDictionary *user;
+@property (nonatomic, readwrite) User *user;
 @property (nonatomic, readwrite) NSString *userToken;
 @property (nonatomic, readwrite) NSArray *cachedJoinRequests;
 

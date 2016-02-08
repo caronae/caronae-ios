@@ -73,7 +73,7 @@
 }
 
 - (void)checkIfUserHasCar {
-    if ([[CaronaeDefaults defaults].user[@"car_owner"] isEqual:@(NO)]) {
+    if (![CaronaeDefaults defaults].user.carOwner) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Você possui carro?" message:@"Parece que você marcou no seu perfil que não possui um carro.\n\nPara criar uma carona, preencha os dados do seu carro no seu perfil." handler:^{
             [self goBack:nil];
         }];

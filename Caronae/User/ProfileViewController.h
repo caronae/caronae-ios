@@ -2,7 +2,7 @@
 
 @interface ProfileViewController : UIViewController
 
-@property (nonatomic) NSDictionary *user;
+@property (nonatomic) User *user;
 
 // ID
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

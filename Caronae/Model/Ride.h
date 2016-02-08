@@ -1,22 +1,23 @@
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 @interface Ride : NSObject
 
 - (instancetype)initWithDictionary:(NSDictionary *)ride;
 
-@property (nonatomic) NSString *neighborhood;
-@property (nonatomic) NSString *place;
-@property (nonatomic) NSString *route;
-@property (nonatomic) NSDate *date;
-@property (nonatomic) unsigned int slots;
-@property (nonatomic) NSString *zone;
-@property (nonatomic) NSString *notes;
-@property (nonatomic) NSString *hub;
-@property (nonatomic) BOOL going;
-@property (nonatomic) long rideID;
-@property (nonatomic) NSDictionary *driver;
-@property (nonatomic) NSArray *users;
+@property (nonatomic, copy) NSString *neighborhood;
+@property (nonatomic, copy) NSString *place;
+@property (nonatomic, copy) NSString *route;
+@property (nonatomic, copy) NSDate *date;
+@property (nonatomic, assign) unsigned int slots;
+@property (nonatomic, copy) NSString *zone;
+@property (nonatomic, copy) NSString *notes;
+@property (nonatomic, copy) NSString *hub;
+@property (nonatomic, assign) BOOL going;
+@property (nonatomic, assign) long rideID;
+@property (nonatomic, strong) User *driver;
+@property (nonatomic, strong) NSArray<User *> *users;
 
-@property (nonatomic, readonly) NSString *title;
+@property (readonly, nonatomic, copy) NSString *title;
 
 @end

@@ -185,7 +185,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 - (void)sendAction:(id)sender {
     NSString *messageText = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSDictionary *currentUser = [CaronaeDefaults defaults].user;
+    User *currentUser = [CaronaeDefaults defaults].user;
     
     NSManagedObjectContext *context = [self managedObjectContext];
     Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
@@ -193,8 +193,8 @@ static const CGFloat toolBarMinHeight = 44.0f;
     message.incoming = @(NO);
     message.sentDate = [NSDate date];
     message.rideID = @(self.chat.ride.rideID);
-    message.senderName = currentUser[@"name"];
-    message.senderId = currentUser[@"id"];
+    message.senderName = currentUser.name;
+    message.senderId = currentUser.userID;
     
     NSError *error;
     if (![context save:&error]) {
@@ -218,7 +218,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     if (msgType && [msgType isEqualToString:@"chat"]) {
         NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
         NSNumber *senderID = @([userInfo[@"senderId"] intValue]);
-        NSNumber *currentUserId = [CaronaeDefaults defaults].user[@"id"];
+        NSNumber *currentUserId = [CaronaeDefaults defaults].user.userID;
         
         if ([rideID isEqual:@(self.chat.ride.rideID)] && ![senderID isEqual:currentUserId]) {
             NSLog(@"Chat window did receive message: %@", userInfo[@"message"]);

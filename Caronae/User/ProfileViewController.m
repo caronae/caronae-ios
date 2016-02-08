@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *signoutButton;
 @property (weak, nonatomic) IBOutlet UIView *reportView;
 @property (nonatomic) NSDateFormatter *joinedDateFormatter;
-@property (nonatomic) NSArray *mutualFriends;
+@property (nonatomic) NSArray<User *> *mutualFriends;
 @end
 
 @implementation ProfileViewController
@@ -38,10 +38,10 @@
     if ([self isMyProfile]) {
         self.title = @"Meu Perfil";
         
-        if ([_user[@"car_owner"] isEqual:@(YES)]) {
-            _carPlateLabel.text = _user[@"car_plate"];
-            _carModelLabel.text = _user[@"car_model"];
-            _carColorLabel.text = _user[@"car_color"];
+        if (_user.carOwner) {
+            _carPlateLabel.text = _user.carPlate;
+            _carModelLabel.text = _user.carModel;
+            _carColorLabel.text = _user.carColor;
         }
         else {
             _carPlateLabel.text = @"-";
@@ -53,29 +53,26 @@
         [_reportView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     }
     else {
-        self.title = _user[@"name"];
+        self.title = _user.name;
         [_carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [_signoutButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         self.navigationItem.rightBarButtonItem = nil;
         [self updateMutualFriends];
     }
     
-    if (_user[@"created_at"]) {
-        NSDateFormatter *joinedDateParser = [[NSDateFormatter alloc] init];
-        joinedDateParser.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        NSDate *joinedDate = [joinedDateParser dateFromString:_user[@"created_at"]];
+    if (_user.createdAt) {
         _joinedDateFormatter = [[NSDateFormatter alloc] init];
         _joinedDateFormatter.dateFormat = @"MM/yyyy";
-        _joinedDateLabel.text = [self.joinedDateFormatter stringFromDate:joinedDate];
+        _joinedDateLabel.text = [self.joinedDateFormatter stringFromDate:_user.createdAt];
     }
     
-    _nameLabel.text = _user[@"name"];
-    _courseLabel.text = [NSString stringWithFormat:@"%@ | %@", _user[@"profile"], _user[@"course"]];
-    _numDrivesLabel.text = _user[@"numDrives"] ? [NSString stringWithFormat:@"%ld", (long)[_user[@"numDrives"] integerValue]] : @"-";
-    _numRidesLabel.text = _user[@"numRides"] ? [NSString stringWithFormat:@"%ld", (long)[_user[@"numRides"] integerValue]] : @"-";
+    _nameLabel.text = _user.name;
+    _courseLabel.text = [NSString stringWithFormat:@"%@ | %@", _user.profile, _user.course];
+    _numDrivesLabel.text = _user.numDrives > -1 ? [NSString stringWithFormat:@"%d", _user.numDrives] : @"-";
+    _numRidesLabel.text = _user.numRides > -1 ? [NSString stringWithFormat:@"%d", _user.numRides] : @"-";
     
-    if (_user[@"profile_pic_url"] && [_user[@"profile_pic_url"] isKindOfClass:[NSString class]] && ![_user[@"profile_pic_url"] isEqualToString:@""]) {
-        [self.profileImage sd_setImageWithURL:[NSURL URLWithString:_user[@"profile_pic_url"]]
+    if (_user.profilePictureURL && ![_user.profilePictureURL isEqualToString:@""]) {
+        [self.profileImage sd_setImageWithURL:[NSURL URLWithString:_user.profilePictureURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
                                options:SDWebImageRefreshCached];
     }
@@ -88,21 +85,15 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/getRidesHistoryCount/%@", _user[@"id"]]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSInteger numDrives = [responseObject[@"offeredCount"] integerValue];
-        NSInteger numRides = [responseObject[@"takenCount"] integerValue];
+    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/getRidesHistoryCount/%@", _user.userID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        int numDrives = [responseObject[@"offeredCount"] intValue];
+        int numRides = [responseObject[@"takenCount"] intValue];
         
-        NSLog(@"Updated user %@ stats: offered %ld, joined %ld.", _user[@"id"], (long)numDrives, (long)numRides);
+        _numDrivesLabel.text = [NSString stringWithFormat:@"%d", numDrives];
+        _numRidesLabel.text = [NSString stringWithFormat:@"%d", numRides];
         
-        _numDrivesLabel.text = [NSString stringWithFormat:@"%ld", (long)numDrives];
-        _numRidesLabel.text = [NSString stringWithFormat:@"%ld", (long)numRides];
-        
-        if ([self isMyProfile]) {
-            NSMutableDictionary *mutableUser = _user.mutableCopy;
-            mutableUser[@"numDrives"] = @(numDrives);
-            mutableUser[@"numRides"] = @(numRides);
-            [CaronaeDefaults defaults].user = mutableUser;
-        }
+        _user.numDrives = numDrives;
+        _user.numRides = numRides;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error reading history count for user: %@", error.localizedDescription);
     }];
@@ -110,7 +101,7 @@
 
 - (void)updateMutualFriends {
     // Abort if the Facebook accounts are not connected.
-    if (![CaronaeDefaults userFBToken] || ![_user[@"face_id"] isKindOfClass:[NSString class]] || [_user[@"face_id"] isEqualToString:@""]) {
+    if (![CaronaeDefaults userFBToken] || !_user.facebookID || [_user.facebookID isEqualToString:@""]) {
         return;
     }
     
@@ -119,10 +110,19 @@
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     [manager.requestSerializer setValue:[CaronaeDefaults userFBToken] forHTTPHeaderField:@"Facebook-Token"];
     
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _user[@"face_id"]]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *mutualFriends = responseObject[@"mutual_friends"];
-        _mutualFriends = mutualFriends;
-        [_mutualFriendsCollectionView reloadData];
+    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _user.facebookID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
+        
+        NSError *error;
+        NSArray<User *> *mutualFriends = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:mutualFriendsJSON error:&error];
+        
+        if (error) {
+            NSLog(@"Error parsing user from mutual friends: %@", error.localizedDescription);
+        }
+        
+        self.mutualFriends = mutualFriends;
+        
+        [self.mutualFriendsCollectionView reloadData];
         _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", [responseObject[@"total_count"] intValue]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
@@ -132,8 +132,8 @@
 
 #pragma mark - Edit profile methods
 
-- (void)didUpdateUser:(NSDictionary *)newUser {
-    _user = newUser;
+- (void)didUpdateUser:(User *)updatedUser {
+    self.user = updatedUser;
     [self updateProfileFields];
 }
 
@@ -178,16 +178,15 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *user = _mutualFriends[indexPath.row];
-    NSString *firstName = [user[@"name"] componentsSeparatedByString:@" "].firstObject;
+    User *user = _mutualFriends[indexPath.row];
     
     CaronaeRiderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Friend Cell" forIndexPath:indexPath];
     
     cell.user = user;
-    cell.nameLabel.text = firstName;
+    cell.nameLabel.text = user.firstName;
     
-    if (user[@"profile_pic_url"] && [user[@"profile_pic_url"] isKindOfClass:[NSString class]] && ![user[@"profile_pic_url"] isEqualToString:@""]) {
-        [cell.photo sd_setImageWithURL:[NSURL URLWithString:user[@"profile_pic_url"]]
+    if (user.profilePictureURL && ![user.profilePictureURL isEqualToString:@""]) {
+        [cell.photo sd_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
                                options:SDWebImageRefreshCached];
     }

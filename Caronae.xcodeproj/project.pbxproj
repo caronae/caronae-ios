@@ -41,6 +41,8 @@
 		A37E80E71C5F158600683F27 /* UIImage+imageWithTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */; };
 		A38598451C66D83A00279D6F /* Notification+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = A38598421C66D83A00279D6F /* Notification+CoreDataProperties.m */; };
 		A38598461C66D83A00279D6F /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = A38598441C66D83A00279D6F /* Notification.m */; };
+		A38598491C691D1400279D6F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = A38598481C691D1400279D6F /* User.m */; };
+		A385984B1C6923D000279D6F /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A385984A1C6923D000279D6F /* UserTests.m */; };
 		A389902D1C58734700C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A389902E1C58734700C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
@@ -63,6 +65,7 @@
 		A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F30EEF1C0891520024BE37 /* ZoneSelectionViewController.m */; };
 		A3F30EF21C08ABDC0024BE37 /* bairros.csv in Resources */ = {isa = PBXBuildFile; fileRef = A3F30EF11C08ABDC0024BE37 /* bairros.csv */; };
 		CA6E9412F08ECA00330BBD7E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DA16FE6BC427F62DBE27E5 /* libPods.a */; };
+		DB044265D99E3F78D5BF8658 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DA16FE6BC427F62DBE27E5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +151,9 @@
 		A38598421C66D83A00279D6F /* Notification+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Notification+CoreDataProperties.m"; sourceTree = "<group>"; };
 		A38598431C66D83A00279D6F /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
 		A38598441C66D83A00279D6F /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
+		A38598471C691D1400279D6F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		A38598481C691D1400279D6F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		A385984A1C6923D000279D6F /* UserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTests.m; sourceTree = "<group>"; };
 		A389902B1C58734700C7CD2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A38F1D4B1C0398B500DEF6B1 /* CaronaeRideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeRideCell.h; sourceTree = "<group>"; };
 		A38F1D4C1C0398B500DEF6B1 /* CaronaeRideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeRideCell.m; sourceTree = "<group>"; };
@@ -204,6 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB044265D99E3F78D5BF8658 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				A302B29A1BF4439300FA161D /* CreateRideTests.m */,
+				A385984A1C6923D000279D6F /* UserTests.m */,
 				A3169CB21BED842D00A0D428 /* Info.plist */,
 			);
 			path = CaronaeTests;
@@ -396,6 +404,8 @@
 				A38598441C66D83A00279D6F /* Notification.m */,
 				A39BBCFD1C06296200EF9EBD /* Ride.h */,
 				A39BBCFE1C06296200EF9EBD /* Ride.m */,
+				A38598471C691D1400279D6F /* User.h */,
+				A38598481C691D1400279D6F /* User.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -472,9 +482,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3169CC31BED842D00A0D428 /* Build configuration list for PBXNativeTarget "CaronaeTests" */;
 			buildPhases = (
+				CAF7333EE3F2BEB539B6EF97 /* Check Pods Manifest.lock */,
 				A3169CA81BED842D00A0D428 /* Sources */,
 				A3169CA91BED842D00A0D428 /* Frameworks */,
 				A3169CAA1BED842D00A0D428 /* Resources */,
+				AD108005FC29547F46033341 /* Embed Pods Frameworks */,
+				31D54DA596375ADB93C512C4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -591,6 +604,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		31D54DA596375ADB93C512C4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		33CFABFE4B10410E9256B97C /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -606,7 +634,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AD108005FC29547F46033341 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B691BB43D7D46A240967937A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CAF7333EE3F2BEB539B6EF97 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -651,6 +709,7 @@
 				A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */,
 				A357EF331C56C5A100AC8096 /* CaronaeRideListController.m in Sources */,
 				A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */,
+				A38598491C691D1400279D6F /* User.m in Sources */,
 				A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */,
 				A3EE026C1C17D01000A8407E /* CaronaeRiderCell.m in Sources */,
 				A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */,
@@ -691,6 +750,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A385984B1C6923D000279D6F /* UserTests.m in Sources */,
 				A302B29B1BF4439300FA161D /* CreateRideTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -881,8 +941,38 @@
 		};
 		A3169CC41BED842D00A0D428 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0EBBD02EF13166ED3D0B34A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Google/Headers",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/ActionSheetPicker-3.0\"",
+					"\"${PODS_ROOT}/Headers/Public/CRToast\"",
+					"\"${PODS_ROOT}/Headers/Public/GGLInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/Google\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleCloudMessaging\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleIPhoneUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/Mantle\"",
+					"\"${PODS_ROOT}/Headers/Public/RBBAnimation\"",
+					"\"${PODS_ROOT}/Headers/Public/SDCAlertView\"",
+					"\"${PODS_ROOT}/Headers/Public/SDCAutoLayout\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/Public/SHSPhoneComponent\"",
+					"\"${PODS_ROOT}/Headers/Public/SVProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/Public/TPKeyboardAvoiding\"",
+				);
 				INFOPLIST_FILE = CaronaeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.meriw.CaronaeTests;
@@ -893,8 +983,38 @@
 		};
 		A3169CC51BED842D00A0D428 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A6BECEDB68F9DCBC935D1ED /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/Google/Headers",
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/ActionSheetPicker-3.0\"",
+					"\"${PODS_ROOT}/Headers/Public/CRToast\"",
+					"\"${PODS_ROOT}/Headers/Public/GGLInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/Google\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleCloudMessaging\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleIPhoneUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
+					"\"${PODS_ROOT}/Headers/Public/Mantle\"",
+					"\"${PODS_ROOT}/Headers/Public/RBBAnimation\"",
+					"\"${PODS_ROOT}/Headers/Public/SDCAlertView\"",
+					"\"${PODS_ROOT}/Headers/Public/SDCAutoLayout\"",
+					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
+					"\"${PODS_ROOT}/Headers/Public/SHSPhoneComponent\"",
+					"\"${PODS_ROOT}/Headers/Public/SVProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/Public/TPKeyboardAvoiding\"",
+				);
 				INFOPLIST_FILE = CaronaeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.meriw.CaronaeTests;

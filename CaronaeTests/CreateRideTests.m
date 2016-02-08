@@ -26,7 +26,7 @@
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSDate *date = [dateFormatter dateFromString:dateString];
     
-    _vc.origin.text = @"Jardim Guanabara";
+//    _vc.origin.text = @"Jardim Guanabara";
     _vc.reference.text = @"Praia da Bica";
     _vc.route.text = @"via Jardim";
     // TODO: test center
@@ -58,7 +58,7 @@
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSDate *date = [dateFormatter dateFromString:dateString];
     
-    _vc.origin.text = @"Jardim Guanabara";
+//    _vc.origin.text = @"Jardim Guanabara";
     _vc.reference.text = @"Praia da Bica";
     _vc.route.text = @"via Jardim";
     // TODO: test center

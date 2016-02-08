@@ -25,10 +25,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if ([FBSDKAccessToken currentAccessToken]) {
-        FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
-        NSLog(@"User is logged in on Facebook with ID %@", token.userID);
-    }
     
     [self.phoneTextField.formatter setDefaultOutputPattern:@"(##) #####-####"];
     [self updateProfileFields];
@@ -60,26 +56,23 @@
 }
 
 - (void)updateProfileFields {
-    NSDictionary *user = [CaronaeDefaults defaults].user;
+    User *user = [CaronaeDefaults defaults].user;
     self.user = user;
     
-    NSDateFormatter *joinedDateParser = [[NSDateFormatter alloc] init];
-    joinedDateParser.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    NSDate *joinedDate = [joinedDateParser dateFromString:user[@"created_at"]];
     self.joinedDateFormatter = [[NSDateFormatter alloc] init];
     self.joinedDateFormatter.dateFormat = @"MM/yyyy";
     
-    self.nameLabel.text = user[@"name"];
-    self.courseLabel.text = [NSString stringWithFormat:@"%@ | %@", user[@"profile"], user[@"course"]];
+    self.nameLabel.text = user.name;
+    self.courseLabel.text = [NSString stringWithFormat:@"%@ | %@", user.profile, user.course];
     
-    self.joinedDateLabel.text = [self.joinedDateFormatter stringFromDate:joinedDate];
-    self.numDrivesLabel.text = user[@"numDrives"] ? [NSString stringWithFormat:@"%ld", (long)[user[@"numDrives"] integerValue]] : @"-";
-    self.numRidesLabel.text = user[@"numRides"] ? [NSString stringWithFormat:@"%ld", (long)[user[@"numRides"] integerValue]] : @"-";
+    self.joinedDateLabel.text = [self.joinedDateFormatter stringFromDate:user.createdAt];
+    self.numDrivesLabel.text = user.numDrives > -1 ? [NSString stringWithFormat:@"%d", user.numDrives] : @"-";
+    self.numRidesLabel.text = user.numRides > -1 ? [NSString stringWithFormat:@"%d", user.numRides] : @"-";
     
-    self.emailTextField.text = user[@"email"];
-    [self.phoneTextField setFormattedText:user[@"phone_number"]];
+    self.emailTextField.text = user.email;
+    [self.phoneTextField setFormattedText:user.phoneNumber];
     
-    self.neighborhood = user[@"location"];
+    self.neighborhood = user.location;
     if (![self.neighborhood isEqualToString:@""]) {
         [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
     }
@@ -87,18 +80,18 @@
         [self.neighborhoodButton setTitle:@"Bairro" forState:UIControlStateNormal];
     }
     
-    self.hasCarSwitch.on = [user[@"car_owner"] isEqual:@(YES)];
+    self.hasCarSwitch.on = user.carOwner;
     if (!self.hasCarSwitch.on) {
         _carDetailsHeightOriginal = _carDetailsHeight.constant;
         _carDetailsHeight.constant = 0;
         _carDetailsView.alpha = 0.0f;
     }
     
-    self.carPlateTextField.text = user[@"car_plate"];
-    self.carModelTextField.text = user[@"car_model"];
-    self.carColorTextField.text = user[@"car_color"];
+    self.carPlateTextField.text = user.carPlate;
+    self.carModelTextField.text = user.carModel;
+    self.carColorTextField.text = user.carColor;
     
-    self.photoURL = user[@"profile_pic_url"];
+    self.photoURL = user.profilePictureURL;
     if (self.photoURL) {
         [self.photo sd_setImageWithURL:[NSURL URLWithString:self.photoURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
@@ -106,54 +99,56 @@
     }
 }
 
-- (NSDictionary *)generateUserDictionaryFromView {
-    NSDictionary *updatedUser = @{
-                                  @"name": self.user[@"name"],
-                                  @"profile": self.user[@"profile"],
-                                  @"course": self.user[@"course"],
-                                  @"phone_number": self.phoneTextField.phoneNumber,
-                                  @"email": self.emailTextField.text,
-                                  @"car_owner": @(self.hasCarSwitch.on),
-                                  @"car_model": self.carModelTextField.text,
-                                  @"car_plate": self.carPlateTextField.text,
-                                  @"car_color": self.carColorTextField.text,
-                                  @"location": self.neighborhood,
-                                  @"profile_pic_url": _photoURL ? _photoURL : @""
-                                  };
-    
+- (User *)generateUserFromView {
+    User *updatedUser = [[User alloc] init];
+    updatedUser.name = self.user.name;
+    updatedUser.profile = self.user.profile;
+    updatedUser.course = self.user.course;
+    updatedUser.phoneNumber = self.phoneTextField.phoneNumber;
+    updatedUser.email = self.emailTextField.text;
+    updatedUser.carOwner = self.hasCarSwitch.on;
+    updatedUser.carModel = self.carModelTextField.text;
+    updatedUser.carPlate = self.carPlateTextField.text;
+    updatedUser.carColor = self.carColorTextField.text;
+    updatedUser.location = self.neighborhood;
+    updatedUser.profilePictureURL = _photoURL;
+
     return updatedUser;
 }
 
 - (void)saveProfile {
-    NSDictionary *updatedUser = [self generateUserDictionaryFromView];
+    User *updatedUser = [self generateUserFromView];
+    NSError *error = nil;
+    NSDictionary *updatedUserJSON = [MTLJSONAdapter JSONDictionaryFromModel:updatedUser error:&error];
+    if (error) {
+        NSLog(@"User serialization error: %@", error.localizedDescription);
+        [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando perfil" message:@"Ocorreu um erro editando seu perfil."];
+        return;
+    }
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
     [self showLoadingHUD:YES];
     
-    [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user"] parameters:updatedUser success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user"] parameters:updatedUserJSON success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self showLoadingHUD:NO];
         
         NSLog(@"User updated.");
-        NSMutableDictionary *newUpdatedUser = [[NSMutableDictionary alloc] initWithDictionary:self.user];
-        newUpdatedUser[@"name"] = updatedUser[@"name"];
-        newUpdatedUser[@"course"] = updatedUser[@"course"];
-        newUpdatedUser[@"profile"] = updatedUser[@"profile"];
-        newUpdatedUser[@"phone_number"] = updatedUser[@"phone_number"];
-        newUpdatedUser[@"email"] = updatedUser[@"email"];
-        newUpdatedUser[@"car_owner"] = updatedUser[@"car_owner"];
-        newUpdatedUser[@"car_model"] = updatedUser[@"car_model"];
-        newUpdatedUser[@"car_plate"] = updatedUser[@"car_plate"];
-        newUpdatedUser[@"car_color"] = updatedUser[@"car_color"];
-        newUpdatedUser[@"location"] = updatedUser[@"location"];
-        newUpdatedUser[@"profile_pic_url"] = _photoURL ? _photoURL : @"";
-        self.user = newUpdatedUser;
+        self.user.phoneNumber = updatedUser.phoneNumber;
+        self.user.email = updatedUser.email;
+        self.user.carOwner = updatedUser.carOwner;
+        self.user.carModel = updatedUser.carModel;
+        self.user.carPlate = updatedUser.carPlate;
+        self.user.carColor = updatedUser.carColor;
+        self.user.location = updatedUser.location;
+        self.user.profilePictureURL = updatedUser.profilePictureURL;
         
-        [CaronaeDefaults defaults].user = newUpdatedUser;
-        
+        [CaronaeDefaults defaults].user = self.user;
+                
         if ([self.delegate respondsToSelector:@selector(didUpdateUser:)]) {
-            [self.delegate didUpdateUser:newUpdatedUser];
+            [self.delegate didUpdateUser:self.user];
         }
         
         [self dismissViewControllerAnimated:YES completion:nil];

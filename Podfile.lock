@@ -52,6 +52,9 @@ PODS:
   - GoogleSymbolUtilities (1.0.3)
   - GoogleUtilities (1.1.0):
     - GoogleSymbolUtilities (~> 1.0.0)
+  - Mantle (2.0.6):
+    - Mantle/extobjc (= 2.0.6)
+  - Mantle/extobjc (2.0.6)
   - RBBAnimation (0.4.0)
   - SDCAlertView (2.5.4):
     - RBBAnimation (~> 0.3)
@@ -69,6 +72,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - CRToast (~> 0.0.7)
   - Google/CloudMessaging
+  - Mantle (~> 2.0)
   - SDCAlertView (= 2.5.4)
   - SDWebImage (~> 3.7)
   - SHSPhoneComponent
@@ -87,6 +91,7 @@ SPEC CHECKSUMS:
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
+  Mantle: 299966b00759634931699f69cb6a30b9239b944d
   RBBAnimation: 4b2d66f6d993febce63cd564da934985313b9c59
   SDCAlertView: 2e2b0ecc5f1ec367e45d83efa2e512688ca7fa55
   SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420

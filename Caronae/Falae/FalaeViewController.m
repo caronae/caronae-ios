@@ -22,7 +22,7 @@ NSString *deviceName() {
 @property (nonatomic) NSString *selectedTypeCute;
 @property (nonatomic) int selectedTypeInitialIndex;
 @property (nonatomic) NSArray *messageTypes;
-@property (nonatomic) NSDictionary *reportedUser;
+@property (nonatomic) User *reportedUser;
 
 @end
 
@@ -43,7 +43,7 @@ NSString *deviceName() {
         _selectedTypeCute = @"Denúncia";
         _selectedTypeInitialIndex = 3;
         [_typeButton setTitle:@"Denúncia" forState:UIControlStateNormal];
-        _subjectTextField.text = [NSString stringWithFormat:@"Denúncia sobre usuário %@ (id: %d)", _reportedUser[@"name"], [_reportedUser[@"id"] intValue]];
+        _subjectTextField.text = [NSString stringWithFormat:@"Denúncia sobre usuário %@ (id: %d)", _reportedUser.name, [_reportedUser.userID intValue]];
         _subjectTextField.enabled = NO;
     }
     else {
@@ -58,7 +58,7 @@ NSString *deviceName() {
     _loadingButton = [[UIBarButtonItem alloc] initWithCustomView:spinner];
 }
 
-- (void)setReport:(NSDictionary *)user {
+- (void)setReport:(User *)user {
     _reportedUser = user;
 }
 

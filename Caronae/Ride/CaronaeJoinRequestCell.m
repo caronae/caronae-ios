@@ -1,3 +1,4 @@
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "CaronaeJoinRequestCell.h"
 
 @implementation CaronaeJoinRequestCell
@@ -12,10 +13,16 @@
     [_userName addGestureRecognizer:nameTap];
 }
 
-- (void)configureCellWithRequest:(NSDictionary *)request {
-    _request = request;
-    _userName.text = request[@"name"];
-    _userCourse.text = [NSString stringWithFormat:@"%@ | %@",request[@"profile"], request[@"course"]];
+- (void)configureCellWithUser:(User *)user {
+    _requestingUser = user;
+    _userName.text = user.name;
+    _userCourse.text = [NSString stringWithFormat:@"%@ | %@", user.profile, user.course];
+    
+    if (user.profilePictureURL && ![user.profilePictureURL isEqualToString:@""]) {
+        [self.userPhoto sd_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]
+                      placeholderImage:[UIImage imageNamed:@"Profile Picture"]
+                               options:SDWebImageRefreshCached];
+    }
 }
 
 - (void)setColor:(UIColor *)color {
@@ -43,15 +50,15 @@
 #pragma mark - IBActions
 
 - (IBAction)didTapAcceptButton:(id)sender {
-    [self.delegate joinRequest:self.request hasAccepted:YES cell:self];
+    [self.delegate joinRequest:self.requestingUser hasAccepted:YES cell:self];
 }
 
 - (IBAction)didTapDeclineButton:(id)sender {
-    [self.delegate joinRequest:self.request hasAccepted:NO cell:self];
+    [self.delegate joinRequest:self.requestingUser hasAccepted:NO cell:self];
 }
 
 - (IBAction)didTapUserDetails:(id)sender {
-    [self.delegate tappedUserDetailsForRequest:self.request];
+    [self.delegate tappedUserDetailsForRequest:self.requestingUser];
 }
 
 @end

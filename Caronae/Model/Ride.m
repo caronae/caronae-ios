@@ -24,11 +24,23 @@ static NSDateFormatter *otherDateParserFormatter;
         }
         
         if (ride[@"driver"]) {
-            _driver = ride[@"driver"];
+            NSError *error;
+            User *driver = [MTLJSONAdapter modelOfClass:User.class fromJSONDictionary:ride[@"driver"] error:&error];
+            if (!error) {
+                _driver = driver;
+            } else {
+                NSLog(@"Error parsing driver from JSON. %@", error.localizedDescription);
+            }
         }
         
         if (ride[@"riders"]) {
-            _users = ride[@"riders"];
+            NSError *error;
+            NSArray<User *> *riders = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:ride[@"riders"] error:&error];
+            if (!error) {
+                _users = riders;
+            } else {
+                NSLog(@"Error parsing riders from JSON. %@", error.localizedDescription);
+            }
         }
     }
     return self;

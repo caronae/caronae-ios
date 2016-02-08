@@ -4,18 +4,18 @@
 
 @protocol JoinRequestDelegate <NSObject>
 
-- (void)joinRequest:(NSDictionary *)request hasAccepted:(BOOL)accepted cell:(CaronaeJoinRequestCell *)cell;
-- (void)tappedUserDetailsForRequest:(NSDictionary *)request ;
+- (void)joinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(CaronaeJoinRequestCell *)cell;
+- (void)tappedUserDetailsForRequest:(User *)user;
 
 @end
 
 @interface CaronaeJoinRequestCell : UITableViewCell
 
-- (void)configureCellWithRequest:(NSDictionary *)request;
+- (void)configureCellWithUser:(User *)user;
 - (void)setButtonsEnabled:(BOOL)active;
 
 @property (nonatomic, assign) id<JoinRequestDelegate> delegate;
-@property (nonatomic) NSDictionary *request;
+@property (nonatomic) User *requestingUser;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *userCourse;
 @property (weak, nonatomic) IBOutlet UIImageView *userPhoto;

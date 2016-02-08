@@ -3,7 +3,6 @@
 #import "AppDelegate.h"
 #import "CaronaeDefaults.h"
 #import "ChatStore.h"
-#import "Ride.h"
 
 #pragma mark - API settings
 
@@ -60,8 +59,8 @@ static NSUserDefaults *userDefaults;
     return sharedMyManager;
 }
 
-+ (void)signIn:(NSDictionary *)userProfile token:(NSString *)userToken rides:(NSArray *)userRides {
-    [userDefaults setObject:userProfile forKey:@"user"];
++ (void)signIn:(User *)user token:(NSString *)userToken rides:(NSArray *)userRides {
+    [CaronaeDefaults defaults].user = user;
     [userDefaults setObject:userToken forKey:@"token"];
     [userDefaults setObject:userRides forKey:@"userCreatedRides"];
     
@@ -132,8 +131,8 @@ static NSUserDefaults *userDefaults;
 }
 
 + (BOOL)userProfileIsIncomplete {
-    NSDictionary *user = [CaronaeDefaults defaults].user;
-    return [user[@"phone_number"] isEqualToString:@""] || [user[@"email"] isEqualToString:@""] || [user[@"location"] isEqualToString:@""];
+    User *user = [CaronaeDefaults defaults].user;
+    return [user.phoneNumber isEqualToString:@""] || [user.email isEqualToString:@""] || [user.location isEqualToString:@""];
 }
 
 + (BOOL)hasUserAlreadyRequestedJoin:(Ride *)ride {
@@ -220,12 +219,34 @@ static NSUserDefaults *userDefaults;
     return _neighborhoods;
 }
 
-- (NSDictionary *)user {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+- (User *)user {
+    NSError *error;
+    NSDictionary *userJSON = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+    
+    User *user = [MTLJSONAdapter modelOfClass:User.class fromJSONDictionary:userJSON error:&error];
+    if (error) {
+        NSLog(@"Error deserializing user from defaults. %@", error.localizedDescription);
+    }
+    
+    return user;
 }
 
-- (void)setUser:(NSDictionary *)user {
-    [[NSUserDefaults standardUserDefaults] setObject:user forKey:@"user"];
+- (void)setUser:(User *)user {
+    if (user) {
+        NSError *error;
+        NSDictionary *userJSON = [MTLJSONAdapter JSONDictionaryFromModel:user error:&error];
+
+        if (!error) {
+            [[NSUserDefaults standardUserDefaults] setObject:userJSON forKey:@"user"];
+        }
+        else {
+            NSLog(@"Error serializing user. %@", error.localizedDescription);
+        }
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
+    }
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

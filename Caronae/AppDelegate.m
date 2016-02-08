@@ -189,7 +189,7 @@
 
 - (void)handleChatNotification:(NSDictionary *)userInfo application:(UIApplication *)application {
     int senderId = [userInfo[@"senderId"] intValue];
-    int currentUserId = [[CaronaeDefaults defaults].user[@"id"] intValue];
+    int currentUserId = [[CaronaeDefaults defaults].user.userID intValue];
     
     // We don't need to handle a message if it's from the logged user
     if (senderId == currentUserId) {

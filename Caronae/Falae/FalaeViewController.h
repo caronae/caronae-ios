@@ -1,8 +1,10 @@
 #import <UIKit/UIKit.h>
 
+@class User;
+
 @interface FalaeViewController : UIViewController
 
-- (void)setReport:(NSDictionary *)user;
+- (void)setReport:(User *)user;
 
 @property (weak, nonatomic) IBOutlet UIButton *typeButton;
 @property (weak, nonatomic) IBOutlet UITextField *subjectTextField;
