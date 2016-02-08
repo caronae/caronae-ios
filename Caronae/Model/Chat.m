@@ -1,4 +1,5 @@
 #import <Google/CloudMessaging.h>
+#import "CaronaeDefaults.h"
 #import "Chat.h"
 
 @implementation Chat
@@ -10,6 +11,10 @@
         _topicID = [Chat topicIDwithRideID:@(ride.rideID)];
     }
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:CaronaeGCMConnectedNotification object:nil];
 }
 
 + (NSString *)topicIDwithRideID:(NSNumber *)rideID {
@@ -74,7 +79,8 @@
         
     }
     else {
-        NSLog(@"Could not subscribe to topic because registration token is nil");
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didConnectWithGCM) name:CaronaeGCMConnectedNotification object:nil];
+        NSLog(@"Could not subscribe to topic because registration token is nil. Waiting for GCM to connect...");
     }
 }
 
@@ -130,6 +136,12 @@
     else {
         NSLog(@"Could not subscribe to topic because registration token is nil");
     }
+}
+
+- (void)didConnectWithGCM {
+    NSLog(@"GCM connected. Trying to subscribe to topic %@ again...", self.topicID);
+    [self subscribe];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:CaronaeGCMConnectedNotification object:nil];
 }
 
 @end

@@ -62,6 +62,7 @@
                     } else if (!error) {
                         weakSelf.connectedToGCM = true;
                         NSLog(@"Connected to GCM (registration)");
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMConnectedNotification object:nil userInfo:nil];
                     }
                 }];
             }
@@ -121,6 +122,7 @@
             } else if (!error) {
                 _connectedToGCM = true;
                 NSLog(@"Connected to GCM (applicationDidBecomeActive)");
+                [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMConnectedNotification object:nil userInfo:nil];
             }
         }];
     }
