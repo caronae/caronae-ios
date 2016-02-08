@@ -23,6 +23,7 @@
     _slotsLabel.text = [NSString stringWithFormat:@"%d %@", ride.slots, ride.slots == 1 ? @"vaga" : @"vagas"];
     
     self.color = [CaronaeDefaults colorForZone:_ride.zone];
+    
     _badgeLabel.hidden = YES;
 }
 
@@ -72,6 +73,15 @@
     }
     else {
         _badgeLabel.hidden = YES;
+    }
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    UIColor *badgeBackgroundColor = _badgeLabel.backgroundColor;
+    [super setHighlighted:highlighted animated:animated];
+    
+    if (highlighted) {
+        _badgeLabel.backgroundColor = badgeBackgroundColor;
     }
 }
 
