@@ -15,7 +15,7 @@
 
 @interface ActiveRidesViewController ()
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic) NSArray *unreadChatNotifications;
+@property (nonatomic) NSArray<Notification *> *unreadNotifications;
 
 @end
 
@@ -29,7 +29,7 @@
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
     
-    [self updateUnreadChatNotifications];
+    [self updateUnreadNotifications];
     [self loadActiveRides];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateNotifications:) name:CaronaeDidUpdateNotifications object:nil];
@@ -46,7 +46,7 @@
     }
 }
 
-- (void)updateUnreadChatNotifications {
+- (void)updateUnreadNotifications {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
     fetchRequest.entity = entity;
@@ -55,15 +55,14 @@
     fetchRequest.predicate = predicate;
     
     NSError *error;
-    NSArray<Notification *> *unreadChatNotifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    self.unreadNotifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        NSLog(@"Whoops, couldn't load unread notifications: %@", [error localizedDescription]);
+        NSLog(@"Whoops, couldn't load unread notifications: %@", error.localizedDescription);
         return;
     }
-    self.unreadChatNotifications = unreadChatNotifications;
     
-    if (unreadChatNotifications.count > 0) {
-        self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", (long)unreadChatNotifications.count];
+    if (self.unreadNotifications.count > 0) {
+        self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", (long)self.unreadNotifications.count];
     }
     else {
         self.navigationController.tabBarItem.badgeValue = nil;
@@ -74,7 +73,7 @@
     NSString *msgType = notification.userInfo[@"msgType"];
     
     if ([msgType isEqualToString:@"chat"]) {
-        [self updateUnreadChatNotifications];
+        [self updateUnreadNotifications];
         [self.tableView reloadData];
     }
 }
@@ -161,7 +160,7 @@
     int unreadCount = 0;
     Ride *ride = self.filteredRides[indexPath.row];
     NSNumber *rideID = @(ride.rideID);
-    for (Notification *caronaeNotification in self.unreadChatNotifications) {
+    for (Notification *caronaeNotification in self.unreadNotifications) {
         if ([caronaeNotification.rideID isEqualToNumber:rideID]) {
             ++unreadCount;
         }

@@ -1,14 +1,17 @@
 #import <AFNetworking/AFNetworking.h>
+#import <CoreData/CoreData.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "RideViewController.h"
+#import "AppDelegate.h"
 #import "CaronaeJoinRequestCell.h"
-#import "ProfileViewController.h"
-#import "Ride.h"
 #import "CaronaeRiderCell.h"
 #import "CaronaeAlertController.h"
 #import "Chat.h"
 #import "ChatStore.h"
 #import "ChatViewController.h"
+#import "Notification.h"
+#import "ProfileViewController.h"
+#import "Ride.h"
+#import "RideViewController.h"
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
 
@@ -16,6 +19,7 @@
 @property (nonatomic) NSArray<User *> *mutualFriends;
 @property (nonatomic) User *selectedUser;
 @property (nonatomic) UIColor *color;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -28,6 +32,9 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     [super viewDidLoad];
     
     self.title = @"Carona";
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    self.managedObjectContext = appDelegate.managedObjectContext;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"HH:mm | dd/MM";
@@ -76,7 +83,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     
     // If the user is the driver of the ride, load pending join requests and hide 'join' button
     if ([self userIsDriver]) {
-        [self searchForJoinRequests];
+        [self loadJoinRequests];
         [self.requestRideButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.mutualFriendsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         
@@ -131,6 +138,35 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [noRidersLabel sizeToFit];
         self.ridersCollectionView.backgroundView = noRidersLabel;
     }
+}
+
+- (void)clearNotifications {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
+    fetchRequest.entity = entity;
+    fetchRequest.includesPropertyValues = NO;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == 'joinRequest' AND rideID = %@", @(self.ride.rideID)];
+    fetchRequest.predicate = predicate;
+    
+    NSError *error;
+    NSArray<Notification *> *unreadNotifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        NSLog(@"Whoops, couldn't load unread notifications for chat: %@", error.localizedDescription);
+        return;
+    }
+    
+    for (id notification in unreadNotifications) {
+        [self.managedObjectContext deleteObject:notification];
+    }
+    
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't delete notifications for chat: %@", error.localizedDescription);
+        return;
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
+                                                        object:nil
+                                                      userInfo:@{@"msgType": @"joinRequest"}];
 }
 
 - (void)setColor:(UIColor *)color {
@@ -320,7 +356,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     }];
 }
 
-- (void)searchForJoinRequests {
+- (void)loadJoinRequests {
     long rideID = _ride.rideID;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -339,6 +375,8 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
                 [self.requestsTable reloadData];
                 [self adjustHeightOfTableview];
             }
+            
+            [self clearNotifications];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error loading join requests for ride %lu: %@", rideID, error.localizedDescription);

@@ -110,7 +110,7 @@
     NSError *error;
     NSUInteger totalUnreadNotifications = [self.managedObjectContext countForFetchRequest:fetchRequest error:&error];
     if (error) {
-        NSLog(@"Whoops, couldn't load unread notifications: %@", [error localizedDescription]);
+        NSLog(@"Whoops, couldn't load unread notifications: %@", error.localizedDescription);
         return;
     }
     
@@ -184,15 +184,19 @@
 
 #pragma mark - Notification handling
 
-- (BOOL)handleNotification:(NSDictionary *)userInfo application:(UIApplication *)application {
+- (BOOL)handleNotification:(NSDictionary *)userInfo {
     if (!userInfo[@"msgType"]) return NO;
     NSString *msgType = userInfo[@"msgType"];
     
     // Handle chat messages
     if ([msgType isEqualToString:@"chat"]) {
-        [self handleChatNotification:userInfo application:application];
+        [self handleChatNotification:userInfo];
     }
-    // Handle 'join request accepted' messages
+    // Handle 'join request' notifications
+    else if ([msgType isEqualToString:@"joinRequest"]) {
+        [self handleJoinRequestNotification:userInfo];
+    }
+    // Handle 'join request accepted' notifications
     else if ([msgType isEqualToString:@"accepted"]) {
         NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
         
@@ -207,7 +211,7 @@
     return YES;
 }
 
-- (void)handleChatNotification:(NSDictionary *)userInfo application:(UIApplication *)application {
+- (void)handleChatNotification:(NSDictionary *)userInfo {
     int senderId = [userInfo[@"senderId"] intValue];
     int currentUserId = [[CaronaeDefaults defaults].user.userID intValue];
     
@@ -232,13 +236,12 @@
     
     NSError *error;
     if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        NSLog(@"Whoops, couldn't save: %@", error.localizedDescription);
         return;
     }
     
-    
     NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", message.senderName, message.text];
-    if (application.applicationState != UIApplicationStateActive) {
+    if ([UIApplication sharedApplication].applicationState != UIApplicationStateActive) {
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         notification.fireDate = message.sentDate;
         notification.alertBody = notificationBody;
@@ -260,13 +263,35 @@
     caronaeNotification.date = message.sentDate;
     caronaeNotification.type = @"chat";
     if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save notification: %@", [error localizedDescription]);
+        NSLog(@"Whoops, couldn't save notification: %@", error.localizedDescription);
         return;
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
                                                         object:nil
                                                       userInfo:userInfo];
+}
+
+- (void)handleJoinRequestNotification:(NSDictionary *)userInfo {
+    NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
+    NSManagedObjectContext *context = [self managedObjectContext];
+
+    Notification *caronaeNotification = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Notification.class) inManagedObjectContext:context];
+    caronaeNotification.rideID = rideID;
+    caronaeNotification.date = [NSDate date];
+    caronaeNotification.type = @"joinRequest";
+
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save notification: %@", error.localizedDescription);
+        return;
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
+                                                        object:nil
+                                                      userInfo:userInfo];
+    
+    [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
 }
 
 
@@ -307,7 +332,7 @@
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
     
-    [self handleNotification:userInfo application:application];
+    [self handleNotification:userInfo];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
                                                         object:nil
@@ -322,7 +347,7 @@
     
     // If the application received the notification on the background or foreground
     if (application.applicationState != UIApplicationStateInactive) {
-        if ([self handleNotification:userInfo application:application]) {
+        if ([self handleNotification:userInfo]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
                                                                 object:nil
                                                               userInfo:userInfo];

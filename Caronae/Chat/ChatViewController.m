@@ -65,19 +65,18 @@ static const CGFloat toolBarMinHeight = 44.0f;
     fetchRequest.predicate = predicate;
     
     NSError *error;
-    NSArray<Notification *> *unreadChatNotifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray<Notification *> *unreadNotifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        NSLog(@"Whoops, couldn't load unread notifications for chat: %@", [error localizedDescription]);
+        NSLog(@"Whoops, couldn't load unread notifications for chat: %@", error.localizedDescription);
         return;
     }
     
-    for (id notification in unreadChatNotifications) {
+    for (id notification in unreadNotifications) {
         [self.managedObjectContext deleteObject:notification];
     }
     
-    [self.managedObjectContext save:&error];
-    if (error) {
-        NSLog(@"Whoops, couldn't delete notifications for chat: %@", [error localizedDescription]);
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't delete notifications for chat: %@", error.localizedDescription);
         return;
     }
     
@@ -198,7 +197,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     
     NSError *error;
     if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        NSLog(@"Whoops, couldn't save: %@", error.localizedDescription);
     }
     
     [self gcmSendMessage:message];
