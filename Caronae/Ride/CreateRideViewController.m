@@ -333,7 +333,6 @@
 }
 
 - (void)hasSelectedNeighborhood:(NSString *)neighborhood inZone:(NSString *)zone {
-    NSLog(@"User has selected %@ in %@", neighborhood, zone);
     self.zone = zone;
     self.neighborhood = neighborhood;
     [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];

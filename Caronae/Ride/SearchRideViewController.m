@@ -108,7 +108,6 @@
 }
 
 - (void)hasSelectedNeighborhoods:(NSArray *)neighborhoods inZone:(NSString *)zone {
-    NSLog(@"User has selected %@ in %@", neighborhoods, zone);
     self.zone = zone;
     self.neighborhoods = neighborhoods;
 }

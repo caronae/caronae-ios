@@ -369,7 +369,6 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         NSArray<User *> *joinRequests = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:responseObject error:&error];
         
         if (!error) {
-            NSLog(@"Ride %lu has %lu join requests.", rideID, (unsigned long)joinRequests.count);
             self.joinRequests = joinRequests;
             if (joinRequests.count > 0) {
                 [self.requestsTable reloadData];
