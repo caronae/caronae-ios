@@ -95,8 +95,11 @@
             return;
         }
         
-        self.rides = rides;
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+        self.rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
+
         [self.tableView reloadData];
+        
         if (self.rides.count > 0) {
             self.tableView.backgroundView = nil;
             

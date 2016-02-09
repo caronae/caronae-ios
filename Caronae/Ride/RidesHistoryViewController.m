@@ -34,15 +34,17 @@
             return;
         }
 
-        NSLog(@"Rides history returned %lu rides.", (unsigned long)rides.count);
-        self.rides = rides;
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+        self.rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
+        
+        [self.tableView reloadData];
+        
         if (self.rides.count > 0) {
             self.tableView.backgroundView = nil;
         }
         else {
             self.tableView.backgroundView = self.emptyTableLabel;
         }
-        [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         self.tableView.backgroundView = self.errorLabel;
         

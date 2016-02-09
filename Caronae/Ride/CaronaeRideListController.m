@@ -85,6 +85,10 @@
     self.tableView.contentInset = UIEdgeInsetsMake(45.0f, 0.0f, 0.0f, 0.0f);
     
     self.tableView.backgroundView = self.loadingLabel;
+    
+    if (self.historyTable) {
+        self.tableView.allowsSelection = NO;
+    }
 }
 
 + (NSArray *)filterRides:(NSArray *)rides withDirectionGoing:(BOOL)going {

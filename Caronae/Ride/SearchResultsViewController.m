@@ -72,10 +72,10 @@
             self.tableView.backgroundView = self.errorLabel;
             return;
         }
-        
-        NSLog(@"Search returned %lu rides.", (unsigned long)rides.count);
-        
-        self.rides = rides;
+                
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+        self.rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
+
         [self.tableView reloadData];
         if (rides.count > 0) {
             self.tableView.backgroundView = nil;
