@@ -1,12 +1,11 @@
-#import "CreateRideViewController.h"
-#import "NSDate+nextHour.h"
-#import "NSDictionary+dictionaryWithoutNulls.h"
-#import "ZoneSelectionViewController.h"
-#import "CaronaeAlertController.h"
-#import <AFNetworking/AFNetworking.h>
-#import <SVProgressHUD/SVProgressHUD.h>
 #import <ActionSheetDatePicker.h>
 #import <ActionSheetStringPicker.h>
+#import <AFNetworking/AFNetworking.h>
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "CaronaeAlertController.h"
+#import "CreateRideViewController.h"
+#import "NSDate+nextHour.h"
+#import "ZoneSelectionViewController.h"
 
 @interface CreateRideViewController () <UITextViewDelegate, ZoneSelectionDelegate>
 
@@ -23,6 +22,8 @@
 @implementation CreateRideViewController
 
 - (void)viewDidLoad {
+    NSAssert(self.delegate, @"No delegate for CreateRideViewController");
+    
     [super viewDidLoad];
     
     [self checkIfUserHasCar];
@@ -89,7 +90,7 @@
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"dd/MM/yyyy";
     NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
-    timeFormat.dateFormat = @"HH:mm";
+    timeFormat.dateFormat = @"HH:mm:ss";
     NSString *weekDaysString = [[self.weekDays sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] componentsJoinedByString:@","];
     NSString *description = [self.notes.text isEqualToString:_notesPlaceholder] ? @"" : self.notes.text;
     BOOL isRoutine = self.routineSwitch.on;
@@ -122,36 +123,39 @@
     [[NSUserDefaults standardUserDefaults] setObject:location forKey:@"lastOfferedRideLocation"];
 }
 
-+ (NSArray *)parseCreateRidesFromResponse:(id)responseObject withError:(NSError *__autoreleasing *)err {
-    // Check if we received an array of the created rides
-    if ([responseObject isKindOfClass:NSArray.class]) {
-        
-        NSArray *createdRides = responseObject;
-        if (createdRides.count == 0) {
-            if (err) {
-                NSDictionary *errorInfo = @{
-                                           NSLocalizedDescriptionKey: NSLocalizedString(@"Nenhuma carona foi criada.", nil)
-                                           };
-                *err = [NSError errorWithDomain:CaronaeErrorDomain code:CaronaeErrorNoRidesCreated userInfo:errorInfo];
-            }
-        }
-        else {
-            return createdRides;
-        }
-    }
-    else {
-        if (err) {
-            NSDictionary *errorInfo = @{
-                                        NSLocalizedDescriptionKey: NSLocalizedString(@"Resposta inesperada do servidor.", nil)
-                                        };
-            *err = [NSError errorWithDomain:CaronaeErrorDomain code:CaronaeErrorInvalidResponse userInfo:errorInfo];
-        }
-    }
+- (void)createRide:(NSDictionary *)ride {
+    [SVProgressHUD show];
+    self.createRideButton.enabled = NO;
     
-    return nil;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride"] parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
+        NSError *error;
+        NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
+        if (error) {
+            NSLog(@"Error parsing my rides. %@", error.localizedDescription);
+            self.createRideButton.enabled = YES;
+            [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:error.localizedDescription];
+            return;
+        }
+        
+        [self.delegate didCreateRides:rides];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
+        self.createRideButton.enabled = YES;
+        
+        NSLog(@"Error creating ride: %@", error.localizedDescription);
+        
+        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:error.localizedDescription];
+    }];
 }
 
-- (IBAction)createRide:(id)sender {
+- (IBAction)didTapCreateButton:(id)sender {
     // Check if the user selected the location and hub
     if (!self.zone || !self.neighborhood || !self.selectedHub) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que você esqueceu de preencher o local da sua carona."];
@@ -167,46 +171,7 @@
         return;
     }
     
-    [SVProgressHUD show];
-    self.createRideButton.enabled = NO;
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride"] parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [SVProgressHUD dismiss];
-        
-        NSLog(@"Response JSON: %@", responseObject);
-        NSError *responseError;
-        NSArray *createdRides = [CreateRideViewController parseCreateRidesFromResponse:responseObject withError:&responseError];
-        if (responseError) {
-            self.createRideButton.enabled = YES;
-            NSLog(@"Response error: %@", responseError.localizedDescription);
-            [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:responseError.localizedDescription];
-        }
-        else {
-            NSLog(@"%lu rides created.", (unsigned long)createdRides.count);
-            
-            NSMutableArray *userRidesArchive = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"]];
-            for (id rideDictionary in createdRides) {
-                [userRidesArchive addObject:[rideDictionary dictionaryWithoutNulls]];
-            }
-            [[NSUserDefaults standardUserDefaults] setObject:userRidesArchive forKey:@"userCreatedRides"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeUserRidesUpdatedNotification object:self];
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
-        self.createRideButton.enabled = YES;
-
-        NSLog(@"Error creating ride: %@", error.localizedDescription);
-        
-        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:error.localizedDescription];
-    }];
-
+    [self createRide:ride];
 }
 
 - (IBAction)slotsStepperChanged:(UIStepper *)sender {
@@ -216,11 +181,6 @@
 
 #pragma mark - Routine selection buttons
 
-/**
- *  Show or hide the routine pattern fields if the 'generate routines' switch changes.
- *
- *  @param sender 'Generate routines' UISwitch
- */
 - (IBAction)routineSwitchChanged:(UISwitch *)sender {
     [self.view endEditing:YES];
     if (sender.on) {

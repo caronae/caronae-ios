@@ -2,12 +2,13 @@
 #import "AppDelegate.h"
 #import "CaronaeRideCell.h"
 #import "ChatStore.h"
+#import "CreateRideViewController.h"
 #import "MyRidesViewController.h"
 #import "Notification.h"
 #import "Ride.h"
 #import "RideViewController.h"
 
-@interface MyRidesViewController ()
+@interface MyRidesViewController () <CreateRideDelegate>
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) User *user;
@@ -26,7 +27,6 @@
     
     self.user = [CaronaeDefaults defaults].user;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveNotification:) name:CaronaeUserRidesUpdatedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateNotifications:) name:CaronaeDidUpdateNotifications object:nil];
     
     [self updateUnreadNotifications];
@@ -56,6 +56,26 @@
     }
 }
 
+- (void)didCreateRides:(NSArray<NSDictionary *> *)rides {
+    NSLog(@"%lu rides created.", (unsigned long)rides.count);
+    
+    NSArray *oldUserRidesArchive = [[NSUserDefaults standardUserDefaults] arrayForKey:@"userCreatedRides"];
+    NSMutableArray *newUserRidesArchive = [NSMutableArray arrayWithArray:oldUserRidesArchive];
+    NSError *error;
+    NSArray *createdRidesJSON = [MTLJSONAdapter JSONArrayFromModels:rides error:&error];
+    if (error) {
+        NSLog(@"Error serializing created rides. %@", error.localizedDescription);
+        return;
+    }
+    
+    [newUserRidesArchive addObjectsFromArray:createdRidesJSON];
+
+    [[NSUserDefaults standardUserDefaults] setObject:newUserRidesArchive forKey:@"userCreatedRides"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self updateRides];
+}
+
 - (void)didUpdateNotifications:(NSNotification *)notification {
     NSString *msgType = notification.userInfo[@"msgType"];
     
@@ -65,23 +85,22 @@
     }
 }
 
-- (void)didReceiveNotification:(NSNotification *)notification {
-    if ([notification.name isEqualToString:CaronaeUserRidesUpdatedNotification]) {
-        [self updateRides];
-    }
-}
-
 
 #pragma mark - Ride methods
 
 - (void)updateRides {
     // Run in secondary thread so it won't affect UI
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSArray *rideArchive = [[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"];
+        NSArray *ridesJSON = [[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"];
+        NSError *error;
+        NSArray<Ride *> *rideArchive = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:ridesJSON error:&error];
+        if (error) {
+            NSLog(@"Error parsing my rides. %@", error.localizedDescription);
+            return;
+        }
+        
         NSMutableArray *rides = [[NSMutableArray alloc] initWithCapacity:rideArchive.count];
-        for (id rideDictionary in rideArchive) {
-            Ride *ride = [[Ride alloc] initWithDictionary:rideDictionary];
-            
+        for (Ride *ride in rideArchive) {
             // Skip rides in the past
             if ([ride.date compare:[NSDate date]] == NSOrderedAscending) {
                 continue;
@@ -161,6 +180,17 @@
     cell.badgeCount = unreadCount;
     
     return cell;
+}
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"CreateRide"]) {
+        UINavigationController *navigationVC = segue.destinationViewController;
+        CreateRideViewController *vc = (CreateRideViewController *)navigationVC.topViewController;
+        vc.delegate = self;
+    }
 }
 
 @end

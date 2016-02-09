@@ -51,18 +51,21 @@
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/all"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self.refreshControl endRefreshing];
         
-        NSError *responseError;
-        NSArray *rides = [AllRidesViewController parseResultsFromResponse:responseObject withError:&responseError];
-        if (!responseError) {
-            self.rides = rides;
-            [self.tableView reloadData];
-            
-            if (self.rides.count > 0) {
-                self.tableView.backgroundView = nil;
-            }
-            else {
-                self.tableView.backgroundView = self.emptyTableLabel;
-            }
+        NSError *error;
+        NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
+        if (error) {
+            NSLog(@"Error parsing all rides. %@", error.localizedDescription);
+            return;
+        }
+        
+        self.rides = rides;
+        [self.tableView reloadData];
+        
+        if (self.rides.count > 0) {
+            self.tableView.backgroundView = nil;
+        }
+        else {
+            self.tableView.backgroundView = self.emptyTableLabel;
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.refreshControl endRefreshing];
@@ -78,29 +81,6 @@
             NSLog(@"Error loading all rides: %@", error.localizedDescription);
         }
     }];
-}
-
-+ (NSArray *)parseResultsFromResponse:(id)responseObject withError:(NSError *__autoreleasing *)err {
-    // Check if we received an array of the rides
-    if ([responseObject isKindOfClass:NSArray.class]) {
-        NSMutableArray *rides = [NSMutableArray arrayWithCapacity:((NSArray*)responseObject).count];
-        for (NSDictionary *rideDictionary in responseObject) {
-            Ride *ride = [[Ride alloc] initWithDictionary:rideDictionary];
-            [rides addObject:ride];
-        }
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-        return [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
-    }
-    else {
-        if (err) {
-            NSDictionary *errorInfo = @{
-                                        NSLocalizedDescriptionKey: NSLocalizedString(@"Unexpected server response.", nil)
-                                        };
-            *err = [NSError errorWithDomain:CaronaeErrorDomain code:CaronaeErrorInvalidResponse userInfo:errorInfo];
-        }
-    }
-    
-    return nil;
 }
 
 

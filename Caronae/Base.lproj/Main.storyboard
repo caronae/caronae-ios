@@ -1548,7 +1548,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                                 <connections>
-                                                    <action selector="createRide:" destination="Frl-vE-K7W" eventType="touchUpInside" id="s1Z-GO-xnh"/>
+                                                    <action selector="didTapCreateButton:" destination="Frl-vE-K7W" eventType="touchUpInside" id="rFj-LG-Abj"/>
                                                 </connections>
                                             </button>
                                         </subviews>

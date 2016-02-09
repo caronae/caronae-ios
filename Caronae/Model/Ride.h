@@ -1,20 +1,19 @@
 #import <Foundation/Foundation.h>
+#import <Mantle/Mantle.h>
 #import "User.h"
 
-@interface Ride : NSObject
+@interface Ride : MTLModel <MTLJSONSerializing>
 
-- (instancetype)initWithDictionary:(NSDictionary *)ride;
-
+@property (nonatomic, assign) long rideID;
 @property (nonatomic, copy) NSString *neighborhood;
+@property (nonatomic, copy) NSString *zone;
 @property (nonatomic, copy) NSString *place;
 @property (nonatomic, copy) NSString *route;
 @property (nonatomic, copy) NSDate *date;
 @property (nonatomic, assign) unsigned int slots;
-@property (nonatomic, copy) NSString *zone;
 @property (nonatomic, copy) NSString *notes;
 @property (nonatomic, copy) NSString *hub;
 @property (nonatomic, assign) BOOL going;
-@property (nonatomic, assign) long rideID;
 @property (nonatomic, strong) User *driver;
 @property (nonatomic, strong) NSArray<User *> *users;
 

@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import <Mantle.h>
+#import <Mantle/Mantle.h>
 
 @interface User : MTLModel <MTLJSONSerializing>
 

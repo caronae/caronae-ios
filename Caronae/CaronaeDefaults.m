@@ -17,7 +17,6 @@ NSString *const CaronaeGCMAPIKey = @"key=AIzaSyBtGz81bar_LcwtN_fpPTKRMBL5glp2T18
 
 #pragma mark - Notifications
 
-NSString *const CaronaeUserRidesUpdatedNotification = @"CaronaeUserRidesUpdatedNotification";
 NSString *const CaronaeGCMConnectedNotification = @"CaronaeGCMConnectedNotification";
 NSString *const CaronaeGCMTokenUpdatedNotification = @"CaronaeGCMTokenUpdatedNotification";
 NSString *const CaronaeGCMMessageReceivedNotification = @"CaronaeGCMMessageReceivedNotification";

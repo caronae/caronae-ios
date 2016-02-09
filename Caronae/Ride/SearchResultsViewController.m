@@ -65,24 +65,23 @@
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/listFiltered"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         
-        NSLog(@"Search results are back.");
+        NSError *error;
+        NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
+        if (error) {
+            NSLog(@"Error parsing all rides. %@", error.localizedDescription);
+            self.tableView.backgroundView = self.errorLabel;
+            return;
+        }
         
-        NSError *responseError;
-        NSArray *rides = [SearchResultsViewController parseSearchResultsFromResponse:responseObject withError:&responseError];
-        if (!responseError) {
-            NSLog(@"Search returned %lu rides.", (unsigned long)rides.count);
-            
-            self.rides = rides;
-            [self.tableView reloadData];
-            if (rides.count > 0) {
-                self.tableView.backgroundView = nil;
-            }
-            else {
-                self.tableView.backgroundView = self.emptyTableLabel;
-            }
+        NSLog(@"Search returned %lu rides.", (unsigned long)rides.count);
+        
+        self.rides = rides;
+        [self.tableView reloadData];
+        if (rides.count > 0) {
+            self.tableView.backgroundView = nil;
         }
         else {
-            self.tableView.backgroundView = self.errorLabel;
+            self.tableView.backgroundView = self.emptyTableLabel;
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -90,30 +89,6 @@
         self.tableView.backgroundView = self.errorLabel;
         NSLog(@"Error searching for ride: %@", error.localizedDescription);
     }];
-    
-}
-
-+ (NSArray *)parseSearchResultsFromResponse:(id)responseObject withError:(NSError *__autoreleasing *)err {
-    // Check if we received an array of the rides
-    if ([responseObject isKindOfClass:NSArray.class]) {
-        NSMutableArray *rides = [NSMutableArray arrayWithCapacity:((NSArray*)responseObject).count];
-        for (NSDictionary *result in responseObject) {
-            Ride *ride = [[Ride alloc] initWithDictionary:result];
-            [rides addObject:ride];
-        }
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-        return [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
-    }
-    else {
-        if (err) {
-            NSDictionary *errorInfo = @{
-                                        NSLocalizedDescriptionKey: NSLocalizedString(@"Unexpected server response.", nil)
-                                        };
-            *err = [NSError errorWithDomain:CaronaeErrorDomain code:CaronaeErrorInvalidResponse userInfo:errorInfo];
-        }
-    }
-    
-    return nil;
 }
 
 @end

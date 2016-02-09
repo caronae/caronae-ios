@@ -88,30 +88,33 @@
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/getMyActiveRides"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self.refreshControl endRefreshing];
         
-        NSError *responseError;
-        NSArray *rides = [ActiveRidesViewController parseResultsFromResponse:responseObject withError:&responseError];
-        if (!responseError) {
-            self.rides = rides;
-            [self.tableView reloadData];
-            if (self.rides.count > 0) {
-                self.tableView.backgroundView = nil;
-                
-                // Initialise chats
-                for (Ride *ride in self.rides) {
-                    // If chat doesn't exist in store, create it and subscribe to it
-                    Chat *chat = [ChatStore chatForRide:ride];
-                    if (!chat) {
-                        chat = [[Chat alloc] initWithRide:ride];
-                        [ChatStore setChat:chat forRide:ride];
-                    }
-                    if (!chat.subscribed) {
-                        [chat subscribe];
-                    }
+        NSError *error;
+        NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
+        if (error) {
+            NSLog(@"Error parsing active rides. %@", error.localizedDescription);
+            return;
+        }
+        
+        self.rides = rides;
+        [self.tableView reloadData];
+        if (self.rides.count > 0) {
+            self.tableView.backgroundView = nil;
+            
+            // Initialise chats
+            for (Ride *ride in self.rides) {
+                // If chat doesn't exist in store, create it and subscribe to it
+                Chat *chat = [ChatStore chatForRide:ride];
+                if (!chat) {
+                    chat = [[Chat alloc] initWithRide:ride];
+                    [ChatStore setChat:chat forRide:ride];
+                }
+                if (!chat.subscribed) {
+                    [chat subscribe];
                 }
             }
-            else {
-                self.tableView.backgroundView = self.emptyTableLabel;
-            }
+        }
+        else {
+            self.tableView.backgroundView = self.emptyTableLabel;
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.refreshControl endRefreshing];
@@ -126,29 +129,6 @@
             NSLog(@"Error loading active rides: %@", error.localizedDescription);
         }
     }];
-}
-
-+ (NSArray *)parseResultsFromResponse:(id)responseObject withError:(NSError *__autoreleasing *)err {
-    // Check if we received an array of the rides
-    if ([responseObject isKindOfClass:NSArray.class]) {
-        NSMutableArray *rides = [NSMutableArray arrayWithCapacity:((NSArray*)responseObject).count];
-        for (NSDictionary *rideDictionary in responseObject) {
-            Ride *ride = [[Ride alloc] initWithDictionary:rideDictionary];
-            [rides addObject:ride];
-        }
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-        return [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
-    }
-    else {
-        if (err) {
-            NSDictionary *errorInfo = @{
-                                        NSLocalizedDescriptionKey: NSLocalizedString(@"Unexpected server response.", nil)
-                                        };
-            *err = [NSError errorWithDomain:CaronaeErrorDomain code:CaronaeErrorInvalidResponse userInfo:errorInfo];
-        }
-    }
-    
-    return nil;
 }
 
 
