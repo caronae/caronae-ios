@@ -6,8 +6,7 @@
 #import "TokenViewController.h"
 
 @interface TokenViewController () <UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *tokenTextField;
-@property (weak, nonatomic) IBOutlet UIButton *authenticateButton;
+
 @end
 
 @implementation TokenViewController
@@ -15,18 +14,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _authButton.enabled = NO;
+    _tokenTextField.delegate = self;
+    _idTextField.delegate = self;
 }
 
 - (void)authenticate {
     _authButton.enabled = NO;
-    [_authTextField resignFirstResponder];
+    [self.view endEditing:YES];
     [SVProgressHUD show];
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSString *userToken = _tokenTextField.text;
-    NSDictionary *parameters = @{@"token": userToken};
+    NSString *idUFRJ = _idTextField.text;
+    NSDictionary *params = @{ @"id_ufrj": idUFRJ,
+                                  @"token": userToken };
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/user/login"] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/user/login"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         
         // Check if the authentication was ok if we received an user object
@@ -94,9 +98,12 @@
 #pragma mark Text field methods
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField == _authTextField) {
+    if (textField == _tokenTextField) {
         [self authenticate];
         return NO;
+    }
+    else if (textField == _idTextField && _idTextField.hasText) {
+        [_tokenTextField becomeFirstResponder];
     }
     
     return YES;
@@ -104,13 +111,13 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    if ([text isEqualToString:@""]) {
-        _authButton.enabled = NO;
+    if (textField == _idTextField) {
+        _authButton.enabled = ![text isEqualToString:@""] && _tokenTextField.hasText;
     }
-    else {
-        _authButton.enabled = YES;
+    else if (textField == _tokenTextField) {
+        _authButton.enabled = ![text isEqualToString:@""] && _idTextField.hasText;
     }
-    
+
     return YES;
 }
 

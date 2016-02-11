@@ -3,6 +3,7 @@
 #import "AppDelegate.h"
 #import "CaronaeDefaults.h"
 #import "ChatStore.h"
+#import "NSDictionary+dictionaryWithoutNulls.h"
 
 #pragma mark - API settings
 
@@ -234,7 +235,7 @@ static NSUserDefaults *userDefaults;
 - (void)setUser:(User *)user {
     if (user) {
         NSError *error;
-        NSDictionary *userJSON = [MTLJSONAdapter JSONDictionaryFromModel:user error:&error];
+        NSDictionary *userJSON = [[MTLJSONAdapter JSONDictionaryFromModel:user error:&error] dictionaryWithoutNulls];
 
         if (!error) {
             [[NSUserDefaults standardUserDefaults] setObject:userJSON forKey:@"user"];

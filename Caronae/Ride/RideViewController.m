@@ -59,7 +59,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         _routeLabel.text = [[_ride.route stringByReplacingOccurrencesOfString:@", " withString:@"\n"] stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
     }
     
-    if ([_ride.notes isKindOfClass:[NSString class]] && [_ride.notes isEqualToString:@""]) {
+    if ([_ride.notes isKindOfClass:NSString.class] && [_ride.notes isEqualToString:@""]) {
         _driverMessageLabel.text = @"---";
     }
     else {
@@ -74,7 +74,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     
     self.color = [CaronaeDefaults colorForZone:_ride.zone];
     
-    UINib *cellNib = [UINib nibWithNibName:@"CaronaeJoinRequestCell" bundle:nil];
+    UINib *cellNib = [UINib nibWithNibName:NSStringFromClass(CaronaeJoinRequestCell.class) bundle:nil];
     [self.requestsTable registerNib:cellNib forCellReuseIdentifier:@"Request Cell"];
     self.requestsTable.dataSource = self;
     self.requestsTable.delegate = self;
@@ -196,8 +196,8 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 }
 
 - (BOOL)userIsRider {
-    for (NSDictionary *user in _ride.users) {
-        if ([user[@"id"] isEqualToNumber:[CaronaeDefaults defaults].user.userID]) {
+    for (User *user in _ride.users) {
+        if ([user.userID isEqualToNumber:[CaronaeDefaults defaults].user.userID]) {
             return YES;
         }
     }
