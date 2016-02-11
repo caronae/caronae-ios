@@ -106,7 +106,6 @@ static NSUserDefaults *userDefaults;
     UIViewController *authViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"InitialTokenScreen"];
     authViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [topViewController presentViewController:authViewController animated:YES completion:nil];
-    
 }
 
 + (NSString *)userFBToken {
