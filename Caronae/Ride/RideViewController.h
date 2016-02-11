@@ -37,7 +37,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mutualFriendsCollectionHeight;
 @property (weak, nonatomic) IBOutlet UIView *finishRideView;
 @property (weak, nonatomic) IBOutlet UICollectionView *ridersCollectionView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ridersCollectionViewHeight;
 @property (weak, nonatomic) IBOutlet UICollectionView *mutualFriendsCollectionView;
 @property (weak, nonatomic) IBOutlet UIImageView *clockIcon;
 @property (weak, nonatomic) IBOutlet UIImageView *carIconPlate;

@@ -7,10 +7,9 @@
 #import "AppDelegate.h"
 #import "ChatStore.h"
 #import "ChatViewController.h"
-#import "Message.h"
 #import "Message+CoreDataProperties.h"
-#import "Notification.h"
 #import "Notification+CoreDataProperties.h"
+#import "TabBarController.h"
 
 @interface AppDelegate () <GGLInstanceIDDelegate, GCMReceiverDelegate>
 @property (nonatomic, strong) void (^registrationHandler) (NSString *registrationToken, NSError *error);
@@ -204,7 +203,7 @@
         
         [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
     }
-    else {
+    else if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive && userInfo[@"message"] && ![userInfo[@"message"] isEqualToString:@""]) {
         [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
     }
     
@@ -246,7 +245,6 @@
         notification.fireDate = message.sentDate;
         notification.alertBody = notificationBody;
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-        
     }
     else {
         ChatViewController *topVC = (ChatViewController *)[self topViewController];
@@ -291,9 +289,34 @@
                                                         object:nil
                                                       userInfo:userInfo];
     
-    [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
+    }
 }
 
+- (void)setActiveScreenAccordingToNotification:(NSDictionary *)userInfo {
+    if (!userInfo[@"msgType"]) return;
+    
+    TabBarController *tabBarController = (TabBarController *)self.window.rootViewController;
+    NSString *msgType = userInfo[@"msgType"];
+    if ([msgType isEqualToString:@"joinRequest"]) {
+        tabBarController.selectedViewController = tabBarController.myRidesNavigationController;
+    }
+    else if ([msgType isEqualToString:@"accepted"] ||
+             [msgType isEqualToString:@"refused"] ||
+             [msgType isEqualToString:@"cancelled"] ||
+             [msgType isEqualToString:@"quitter"]) {
+        tabBarController.selectedViewController = tabBarController.activeRidesNavigationController;
+    }
+    else if ([msgType isEqualToString:@"finished"]) {
+        tabBarController.selectedViewController = tabBarController.menuNavigationController;
+        MenuViewController *menuViewController = tabBarController.menuViewController;
+        [menuViewController openRidesHistory];
+    }
+    else if ([msgType isEqualToString:@"chat"]) {
+
+    }
+}
 
 #pragma mark - Google Cloud Messaging (GCM)
 
@@ -363,8 +386,8 @@
     }
     // If the application is opening through the notification
     else {
-        // TODO: open view according to notification type
-        handler(UIBackgroundFetchResultNoData);
+        [self setActiveScreenAccordingToNotification:userInfo];
+        handler(UIBackgroundFetchResultNewData);
     }
 }
 
@@ -398,12 +421,10 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (NSURL *)applicationDocumentsDirectory {
-    // The directory the application uses to store the Core Data store file. This code uses a directory named "com.meriw.Caronae" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 - (NSManagedObjectModel *)managedObjectModel {
-    // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
@@ -413,12 +434,9 @@
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-    // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it.
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-    
-    // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Caronae.sqlite"];
@@ -429,7 +447,6 @@
                                NSInferMappingModelAutomaticallyOption : @(YES) };
 
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
-        // Report any error we got.
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
         dict[NSLocalizedFailureReasonErrorKey] = failureReason;
@@ -444,7 +461,6 @@
 
 
 - (NSManagedObjectContext *)managedObjectContext {
-    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
     }

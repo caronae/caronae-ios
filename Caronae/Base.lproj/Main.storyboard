@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10102" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10080"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -349,6 +349,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <state key="normal" title="ACESSAR" backgroundImage="ButtonColor">
                                                     <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="163" y="447" width="73" height="32"/>
+                                                </variation>
                                                 <connections>
                                                     <action selector="didTapAuthenticateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="da5-pN-Iyk"/>
                                                 </connections>
@@ -356,6 +359,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovk-fe-fy7">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <state key="normal" title="Criar usuário"/>
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="156" y="487" width="88" height="30"/>
+                                                </variation>
                                                 <connections>
                                                     <segue destination="DFi-hH-t6a" kind="presentation" id="LJD-Zm-tLI"/>
                                                 </connections>
@@ -414,7 +420,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <exclude reference="yZY-Sq-SYI"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact">
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="571"/>
                                             <mask key="subviews">
                                                 <include reference="zej-9f-2CU"/>
                                                 <include reference="TQy-c2-48w"/>
@@ -544,7 +551,7 @@ Este é o token gerado através da Intranet UFRJ</string>
         <!--Tab Bar Controller-->
         <scene sceneID="rql-kG-mhS">
             <objects>
-                <tabBarController storyboardIdentifier="HomeTabViewController" id="Grf-xD-SWT" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeTabViewController" id="Grf-xD-SWT" customClass="TabBarController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="eUx-bw-n1E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -1542,7 +1549,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <exclude reference="ENW-kS-zDL"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="337" y="768" width="43" height="32"/>
                                                     <mask key="constraints">
                                                         <exclude reference="ENW-kS-zDL"/>
                                                     </mask>
@@ -1650,7 +1658,8 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <exclude reference="gDV-a8-ReJ"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact">
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="830"/>
                                             <mask key="subviews">
                                                 <include reference="wWF-a6-BXF"/>
                                                 <include reference="SoK-oZ-c5J"/>
@@ -4715,7 +4724,7 @@ FOTO</string>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="Gvm-Bo-rik" kind="show" id="SlU-x6-piJ"/>
+                                                    <segue destination="Gvm-Bo-rik" kind="show" identifier="RidesHistory" id="SlU-x6-piJ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -7173,7 +7182,7 @@ FOTO</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6XD-md-C6D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1815" y="-760"/>
+            <point key="canvasLocation" x="1815" y="-768"/>
         </scene>
     </scenes>
     <resources>
@@ -7202,12 +7211,12 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DwZ-AK-niy"/>
-        <segue reference="VJh-c3-WKd"/>
+        <segue reference="emk-CJ-38Y"/>
         <segue reference="tvA-Ui-5Q1"/>
         <segue reference="hM9-nM-k0Y"/>
-        <segue reference="H8O-Mc-OH3"/>
+        <segue reference="DwZ-AK-niy"/>
         <segue reference="ugX-qh-OjL"/>
+        <segue reference="jF8-dz-c1W"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>

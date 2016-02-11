@@ -3,8 +3,6 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-- (UIViewController *)topViewController;
-
 - (void)updateUserGCMToken:(NSString *)token;
 
 @property (strong, nonatomic) UIWindow *window;
@@ -22,6 +20,8 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
+// Etc.
+- (UIViewController *)topViewController;
 
 @end
 

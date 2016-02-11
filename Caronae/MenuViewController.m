@@ -31,6 +31,10 @@
     }
 }
 
+- (void)openRidesHistory {
+    [self performSegueWithIdentifier:@"RidesHistory" sender:nil];
+}
+
 
 #pragma mark - Navigation
 

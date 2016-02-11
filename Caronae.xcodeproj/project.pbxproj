@@ -48,6 +48,7 @@
 		A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A38F1D4D1C0398B500DEF6B1 /* CaronaeRideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F1D4C1C0398B500DEF6B1 /* CaronaeRideCell.m */; };
 		A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */; };
+		A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */; };
 		A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */; };
 		A39BBCFF1C06296200EF9EBD /* Ride.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBCFE1C06296200EF9EBD /* Ride.m */; };
 		A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBD021C06378E00EF9EBD /* NSDate+nextHour.m */; };
@@ -159,6 +160,8 @@
 		A38F1D4C1C0398B500DEF6B1 /* CaronaeRideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeRideCell.m; sourceTree = "<group>"; };
 		A3996D2B1C13AC0900D2E890 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
 		A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
+		A39BA2EA1C6C0F3A0063DDD1 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		A39BBCF41C048E4D00EF9EBD /* SearchRideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRideViewController.h; sourceTree = "<group>"; };
 		A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRideViewController.m; sourceTree = "<group>"; };
 		A39BBCFD1C06296200EF9EBD /* Ride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ride.h; sourceTree = "<group>"; };
@@ -279,6 +282,8 @@
 				A3169C9C1BED842D00A0D428 /* Main.storyboard */,
 				A34312C51BF01B9A005BA311 /* MenuViewController.h */,
 				A34312C61BF01B9A005BA311 /* MenuViewController.m */,
+				A39BA2EA1C6C0F3A0063DDD1 /* TabBarController.h */,
+				A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */,
 			);
 			path = Caronae;
 			sourceTree = "<group>";
@@ -719,6 +724,7 @@
 				A325DA701C0CAFD700B9124E /* CaronaeJoinRequestCell.m in Sources */,
 				A3A4A4AF1C4C695800CF4CB2 /* NSString+validation.m in Sources */,
 				A39BBCFF1C06296200EF9EBD /* Ride.m in Sources */,
+				A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */,
 				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
 				A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */,
 				A37E80E11C5F011100683F27 /* Message.m in Sources */,
