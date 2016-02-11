@@ -140,6 +140,14 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (self.shouldOpenChatWindow) {
+        [self openChatWindow];
+        self.shouldOpenChatWindow = NO;
+    }
+}
+
 - (void)clearNotifications {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
@@ -238,6 +246,13 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     }
 }
 
+- (void)openChatWindow {
+    Chat *chat = [ChatStore chatForRide:_ride];
+    if (chat) {
+        ChatViewController *chatVC = [[ChatViewController alloc] initWithChat:chat andColor:_color];
+        [self.navigationController pushViewController:chatVC animated:YES];
+    }
+}
 
 #pragma mark - IBActions
 
@@ -273,11 +288,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 }
 
 - (IBAction)didTapChatButton:(id)sender {
-    Chat *chat = [ChatStore chatForRide:_ride];
-    if (chat) {
-        ChatViewController *chatVC = [[ChatViewController alloc] initWithChat:chat andColor:_color];
-        [self.navigationController pushViewController:chatVC animated:YES];
-    }
+    [self openChatWindow];
 }
 
 

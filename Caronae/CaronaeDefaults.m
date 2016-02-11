@@ -101,6 +101,8 @@ static NSUserDefaults *userDefaults;
     [CaronaeDefaults defaults].userToken = nil;
     [CaronaeDefaults defaults].cachedJoinRequests = nil;
     [[[FBSDKLoginManager alloc] init] logOut];
+    
+    [appDelegate updateApplicationBadgeNumber];
 
     UIViewController *topViewController = [appDelegate topViewController];
     UIViewController *authViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"InitialTokenScreen"];

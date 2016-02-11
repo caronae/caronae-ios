@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
-#import "CaronaeRideListController.h"
+#import "RideListController.h"
 
-@interface MyRidesViewController : CaronaeRideListController
+@interface MyRidesViewController : RideListController
 
 @end

@@ -11,8 +11,11 @@
 
 @interface RideViewController : UIViewController
 
+- (void)openChatWindow;
+
 @property (nonatomic) Ride *ride;
 @property (nonatomic, assign) id<RideDelegate> delegate;
+@property (nonatomic, assign) BOOL shouldOpenChatWindow;
 
 // Ride info
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

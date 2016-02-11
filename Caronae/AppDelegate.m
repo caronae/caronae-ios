@@ -18,7 +18,6 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
@@ -46,6 +45,12 @@
     // Update application badge number and listen to notification updates
     [self updateApplicationBadgeNumber];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateApplicationBadgeNumber) name:CaronaeDidUpdateNotifications object:nil];
+    
+    // Check if the app was opened by a remote notification
+    NSDictionary *remoteNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (remoteNotification) {
+        [self application:application didReceiveRemoteNotification:remoteNotification];
+    }
     
     return YES;
 }
@@ -194,6 +199,7 @@
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         notification.fireDate = message.sentDate;
         notification.alertBody = notificationBody;
+        notification.userInfo = userInfo;
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
     else {
@@ -264,7 +270,10 @@
         [menuViewController openRidesHistory];
     }
     else if ([msgType isEqualToString:@"chat"]) {
-
+        NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
+        tabBarController.selectedViewController = tabBarController.activeRidesNavigationController;
+        ActiveRidesViewController *activeRidesViewController = tabBarController.activeRidesViewController;
+        [activeRidesViewController openChatForRideWithID:rideID];
     }
 }
 
@@ -356,7 +365,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"Notification received 1: %@", userInfo);
+    NSLog(@"Remote notification received 1: %@", userInfo);
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
     
@@ -368,7 +377,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
-    NSLog(@"Notification received 2: %@", userInfo);
+    NSLog(@"Remote notification received 2: %@", userInfo);
     
     // This works only if the app started the GCM service
     [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
@@ -389,10 +398,17 @@
             handler(UIBackgroundFetchResultNoData);
         }
     }
-    // If the application is opening through the notification
+    // If the app is opening through the notification
     else {
         [self setActiveScreenAccordingToNotification:userInfo];
         handler(UIBackgroundFetchResultNewData);
+    }
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    if (application.applicationState == UIApplicationStateInactive) {
+        NSLog(@"Opening app from local notification");
+        [self setActiveScreenAccordingToNotification:notification.userInfo];
     }
 }
 

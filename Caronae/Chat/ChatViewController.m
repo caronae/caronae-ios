@@ -183,6 +183,10 @@ static const CGFloat toolBarMinHeight = 44.0f;
 #pragma mark - Actions
 
 - (void)sendAction:(id)sender {
+    // Hack to trigger autocorrect before sending the text
+    [self.textView resignFirstResponder];
+    [self.textView becomeFirstResponder];
+    
     NSString *messageText = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     User *currentUser = [CaronaeDefaults defaults].user;
     

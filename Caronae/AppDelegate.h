@@ -3,6 +3,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+- (void)updateApplicationBadgeNumber;
 - (void)updateUserGCMToken:(NSString *)token;
 
 @property (strong, nonatomic) UIWindow *window;

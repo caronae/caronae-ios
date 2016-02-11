@@ -31,10 +31,6 @@
     }
 }
 
-- (void)openRidesHistory {
-    [self performSegueWithIdentifier:@"RidesHistory" sender:nil];
-}
-
 
 #pragma mark - Navigation
 
@@ -43,6 +39,10 @@
         ProfileViewController *vc = segue.destinationViewController;
         vc.user = [CaronaeDefaults defaults].user;
     }
+}
+
+- (void)openRidesHistory {
+    [self performSegueWithIdentifier:@"RidesHistory" sender:nil];
 }
 
 @end

@@ -1,6 +1,8 @@
 #import <UIKit/UIKit.h>
-#import "CaronaeRideListController.h"
+#import "RideListController.h"
 
-@interface ActiveRidesViewController : CaronaeRideListController
+@interface ActiveRidesViewController : RideListController
+
+- (void)openChatForRideWithID:(NSNumber *)rideID;
 
 @end

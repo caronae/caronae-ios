@@ -1,17 +1,15 @@
-#import "CaronaeRideListController.h"
-#import "RideViewController.h"
-#import "Ride.h"
+#import "RideListController.h"
 
-@interface CaronaeRideListController() <RideDelegate>
-@property (nonatomic, readwrite) NSArray *filteredRides;
+@interface RideListController() <RideDelegate>
+@property (nonatomic, readwrite) NSArray<Ride *> *filteredRides;
 @end
 
-@implementation CaronaeRideListController
+@implementation RideListController
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.view = [[[NSBundle mainBundle] loadNibNamed:@"CaronaeRideListController"
+        self.view = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass(RideListController.class)
                                                    owner:self
                                                  options:nil] objectAtIndex:0];
         
@@ -78,7 +76,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UINib *cellNib = [UINib nibWithNibName:@"CaronaeRideCell" bundle:nil];
+    UINib *cellNib = [UINib nibWithNibName:NSStringFromClass(CaronaeRideCell.class) bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"Ride Cell"];
     
     self.tableView.rowHeight = 85.0f;
@@ -106,9 +104,19 @@
 - (void)setRides:(NSArray *)rides {
     _rides = rides;
     if (_rides) {
-        self.filteredRides = [CaronaeRideListController filterRides:_rides withDirectionGoing:self.ridesDirectionGoing];
+        self.filteredRides = [RideListController filterRides:_rides withDirectionGoing:self.ridesDirectionGoing];
     }
-    self.selectedRide = nil;
+}
+
+
+#pragma mark - Navigation
+
+- (RideViewController *)rideViewControllerForRide:(Ride *)ride {
+    RideViewController *rideVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RideViewController"];
+    rideVC.ride = ride;
+    rideVC.delegate = self;
+    
+    return rideVC;
 }
 
 
@@ -139,11 +147,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (!self.historyTable) {
-        self.selectedRide = self.filteredRides[indexPath.row];
-        
-        RideViewController *rideVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RideViewController"];
-        rideVC.ride = self.selectedRide;
-        rideVC.delegate = self;
+        Ride *ride = self.filteredRides[indexPath.row];
+        RideViewController *rideVC = [self rideViewControllerForRide:ride];
         
         [self.navigationController pushViewController:rideVC animated:YES];
     }

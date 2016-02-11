@@ -9,14 +9,14 @@
  *
  *  @param ride A Ride object.
  */
-- (void)configureCellWithRide:(NSDictionary *)ride;
+- (void)configureCellWithRide:(Ride *)ride;
 
 /**
  *  Configures the cell with a Ride object which belongs to a user's ride history, updating the cell's labels and style accordingly.
  *
  *  @param ride A Ride object.
  */
-- (void)configureHistoryCellWithRide:(NSDictionary *)ride;
+- (void)configureHistoryCellWithRide:(Ride *)ride;
 
 @property (nonatomic, readonly) Ride *ride;
 @property (nonatomic, readonly) UIColor *color;

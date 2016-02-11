@@ -16,7 +16,6 @@
 @interface ActiveRidesViewController ()
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) NSArray<Notification *> *unreadNotifications;
-
 @end
 
 @implementation ActiveRidesViewController
@@ -77,6 +76,29 @@
         [self.tableView reloadData];
     }
 }
+
+
+#pragma mark - Navigation
+
+- (void)openChatForRideWithID:(NSNumber *)rideID {
+    Ride *ride;
+    
+    // Find ride
+    for (Ride *r in self.rides) {
+        if ([rideID isEqualToNumber:@(r.rideID)]) {
+            ride = r;
+            break;
+        }
+    }
+    
+    if (ride) {
+        RideViewController *rideVC = [self rideViewControllerForRide:ride];
+        rideVC.shouldOpenChatWindow = YES;
+        
+        [self.navigationController pushViewController:rideVC animated:YES];
+    }
+}
+
 
 #pragma mark - Rides methods
 
