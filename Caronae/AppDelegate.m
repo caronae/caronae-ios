@@ -156,7 +156,9 @@
         
         [Chat subscribeToTopicID:[Chat topicIDwithRideID:rideID]];
         
-        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
+        if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+            [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
+        }
     }
     else if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive && userInfo[@"message"] && ![userInfo[@"message"] isEqualToString:@""]) {
         [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
@@ -204,12 +206,10 @@
     }
     else {
         ChatViewController *topVC = (ChatViewController *)[self topViewController];
-        // Ignore notification if the message's chat is already open
-        if ([topVC isKindOfClass:ChatViewController.class] && [message.rideID isEqualToNumber:@(topVC.chat.ride.rideID)]) {
-            return;
+        // Present notification only if the chat window is not already open
+        if (![topVC isKindOfClass:ChatViewController.class] || ![message.rideID isEqualToNumber:@(topVC.chat.ride.rideID)]) {
+            [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: notificationBody}                                     completionBlock:nil];
         }
-        
-        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: notificationBody}                                     completionBlock:nil];
     }
     
     Notification *caronaeNotification = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Notification.class) inManagedObjectContext:context];
