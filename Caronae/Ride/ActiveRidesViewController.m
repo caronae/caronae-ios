@@ -1,17 +1,16 @@
 #import <AFNetworking/AFNetworking.h>
 #import <CoreData/CoreData.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "ActiveRidesViewController.h"
 #import "AppDelegate.h"
 #import "CaronaeAlertController.h"
 #import "CaronaeDefaults.h"
-#import "CaronaeRideCell.h"
-#import "ActiveRidesViewController.h"
-#import "CaronaeRideCell.h"
 #import "Chat.h"
 #import "ChatStore.h"
 #import "Notification+CoreDataProperties.h"
-#import "RideViewController.h"
 #import "Ride.h"
+#import "RideCell.h"
+#import "RideViewController.h"
 
 @interface ActiveRidesViewController ()
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -160,7 +159,7 @@
 #pragma mark - Table methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CaronaeRideCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    RideCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
     int unreadCount = 0;
     Ride *ride = self.filteredRides[indexPath.row];

@@ -1,6 +1,6 @@
-#import "CaronaeZoneCell.h"
+#import "ZoneCell.h"
 
-@implementation CaronaeZoneCell
+@implementation ZoneCell
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     UIColor *detailBackgroundColor = _colorDetail.backgroundColor;

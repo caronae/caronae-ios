@@ -1,15 +1,15 @@
 #import <UIKit/UIKit.h>
 
-@class CaronaeJoinRequestCell;
+@class JoinRequestCell;
 
 @protocol JoinRequestDelegate <NSObject>
 
-- (void)joinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(CaronaeJoinRequestCell *)cell;
+- (void)joinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(JoinRequestCell *)cell;
 - (void)tappedUserDetailsForRequest:(User *)user;
 
 @end
 
-@interface CaronaeJoinRequestCell : UITableViewCell
+@interface JoinRequestCell : UITableViewCell
 
 - (void)configureCellWithUser:(User *)user;
 - (void)setButtonsEnabled:(BOOL)active;

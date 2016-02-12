@@ -1,8 +1,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "CaronaeRideCell.h"
 #import "Ride.h"
+#import "RideCell.h"
 
-@implementation CaronaeRideCell
+@implementation RideCell
 
 - (void)configureCellWithRide:(Ride *)ride {
     _ride = ride;

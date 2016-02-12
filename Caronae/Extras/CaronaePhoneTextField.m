@@ -1,6 +1,6 @@
-#import "CaronaeTextField.h"
+#import "CaronaePhoneTextField.h"
 
-@implementation CaronaeTextField
+@implementation CaronaePhoneTextField
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];

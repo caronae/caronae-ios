@@ -1,11 +1,12 @@
 #import <AFNetworking/AFNetworking.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import <SVProgressHUD/SVProgressHUD.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "CaronaeTextField.h"
-#import "NSString+validation.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
+#import "CaronaeTextField.h"
+#import "CaronaePhoneTextField.h"
+#import "NSString+validation.h"
 #import "EditProfileViewController.h"
 #import "ZoneSelectionViewController.h"
 

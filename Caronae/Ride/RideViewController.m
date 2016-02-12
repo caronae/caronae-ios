@@ -2,16 +2,16 @@
 #import <CoreData/CoreData.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "AppDelegate.h"
-#import "CaronaeJoinRequestCell.h"
-#import "CaronaeRiderCell.h"
 #import "CaronaeAlertController.h"
 #import "Chat.h"
 #import "ChatStore.h"
 #import "ChatViewController.h"
+#import "JoinRequestCell.h"
 #import "Notification.h"
 #import "ProfileViewController.h"
 #import "Ride.h"
 #import "RideViewController.h"
+#import "RiderCell.h"
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
 
@@ -74,7 +74,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     
     self.color = [CaronaeDefaults colorForZone:_ride.zone];
     
-    UINib *cellNib = [UINib nibWithNibName:NSStringFromClass(CaronaeJoinRequestCell.class) bundle:nil];
+    UINib *cellNib = [UINib nibWithNibName:NSStringFromClass(JoinRequestCell.class) bundle:nil];
     [self.requestsTable registerNib:cellNib forCellReuseIdentifier:@"Request Cell"];
     self.requestsTable.dataSource = self;
     self.requestsTable.delegate = self;
@@ -394,7 +394,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     
 }
 
-- (void)joinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(CaronaeJoinRequestCell *)cell {
+- (void)joinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(JoinRequestCell *)cell {
     NSLog(@"Request for user %@ was %@", requestingUser.name, accepted ? @"accepted" : @"not accepted");
     NSDictionary *params = @{@"userId": requestingUser.userID,
                              @"rideId": @(_ride.rideID),
@@ -444,7 +444,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CaronaeJoinRequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Request Cell" forIndexPath:indexPath];
+    JoinRequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Request Cell" forIndexPath:indexPath];
     
     cell.delegate = self;
     [cell configureCellWithUser:self.joinRequests[indexPath.row]];
@@ -490,7 +490,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CaronaeRiderCell *cell;
+    RiderCell *cell;
     User *user;
     
     if (collectionView == _ridersCollectionView) {
@@ -519,7 +519,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
     if (collectionView == _ridersCollectionView) {
-        CaronaeRiderCell *cell = (CaronaeRiderCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        RiderCell *cell = (RiderCell *)[collectionView cellForItemAtIndexPath:indexPath];
         self.selectedUser = cell.user;
         
         [self performSegueWithIdentifier:@"ViewProfile" sender:self];

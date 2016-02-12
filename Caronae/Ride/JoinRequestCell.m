@@ -1,7 +1,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "CaronaeJoinRequestCell.h"
+#import "JoinRequestCell.h"
 
-@implementation CaronaeJoinRequestCell
+@implementation JoinRequestCell
 
 - (void)awakeFromNib {
     UITapGestureRecognizer *pictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapUserDetails:)];

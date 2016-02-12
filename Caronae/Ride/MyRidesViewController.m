@@ -1,11 +1,11 @@
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
-#import "CaronaeRideCell.h"
 #import "ChatStore.h"
 #import "CreateRideViewController.h"
 #import "MyRidesViewController.h"
 #import "Notification.h"
 #import "Ride.h"
+#import "RideCell.h"
 #import "RideViewController.h"
 
 @interface MyRidesViewController () <CreateRideDelegate>
@@ -166,7 +166,7 @@
 #pragma mark - Table methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CaronaeRideCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    RideCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
     int unreadCount = 0;
     Ride *ride = self.filteredRides[indexPath.row];

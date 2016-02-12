@@ -2,7 +2,7 @@
 
 @class Ride;
 
-@interface CaronaeRideCell : UITableViewCell
+@interface RideCell : UITableViewCell
 
 /**
  *  Configures the cell with a Ride object, updating the cell's labels and style accordingly.

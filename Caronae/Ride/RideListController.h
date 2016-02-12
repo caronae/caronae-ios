@@ -1,13 +1,13 @@
 #import <UIKit/UIKit.h>
-#import "CaronaeRideCell.h"
 #import "Ride.h"
+#import "RideCell.h"
 #import "RideViewController.h"
 
 @interface RideListController : UIViewController
 
 - (RideViewController *)rideViewControllerForRide:(Ride *)ride;
 
-- (CaronaeRideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (RideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @property (nonatomic) NSArray<Ride *> *rides;

@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface CaronaeZoneCell : UITableViewCell
+@interface ZoneCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *zoneNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *colorDetail;
 

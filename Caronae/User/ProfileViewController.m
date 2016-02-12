@@ -1,12 +1,12 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import "ProfileViewController.h"
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
 #import "FalaeViewController.h"
-#import "CaronaeRiderCell.h"
 #import "MenuViewController.h"
+#import "ProfileViewController.h"
+#import "RiderCell.h"
 
 @interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
@@ -180,7 +180,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     User *user = _mutualFriends[indexPath.row];
     
-    CaronaeRiderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Friend Cell" forIndexPath:indexPath];
+    RiderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Friend Cell" forIndexPath:indexPath];
     
     cell.user = user;
     cell.nameLabel.text = user.firstName;

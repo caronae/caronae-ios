@@ -76,7 +76,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UINib *cellNib = [UINib nibWithNibName:NSStringFromClass(CaronaeRideCell.class) bundle:nil];
+    UINib *cellNib = [UINib nibWithNibName:NSStringFromClass(RideCell.class) bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"Ride Cell"];
     
     self.tableView.rowHeight = 85.0f;
@@ -131,7 +131,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CaronaeRideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Ride Cell" forIndexPath:indexPath];
+    RideCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Ride Cell" forIndexPath:indexPath];
     
     if (!self.historyTable) {
         [cell configureCellWithRide:self.filteredRides[indexPath.row]];

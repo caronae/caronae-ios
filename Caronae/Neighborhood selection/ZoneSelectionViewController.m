@@ -1,6 +1,6 @@
+#import "ZoneCell.h"
 #import "ZoneSelectionViewController.h"
 #import "ZoneSelectionInputViewController.h"
-#import "CaronaeZoneCell.h"
 
 @interface ZoneSelectionViewController ()
 @property (nonatomic) NSArray *zones;
@@ -49,7 +49,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CaronaeZoneCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Zone Cell" forIndexPath:indexPath];
+    ZoneCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Zone Cell" forIndexPath:indexPath];
     
     NSString *zone = self.zones[indexPath.row];
     UIColor *cellColor;

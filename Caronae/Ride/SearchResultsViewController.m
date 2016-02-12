@@ -1,9 +1,9 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "SearchRideViewController.h"
 #import "Ride.h"
 #import "RideViewController.h"
 #import "SearchResultsViewController.h"
+#import "SearchRideViewController.h"
 
 @interface SearchResultsViewController () <SearchRideDelegate>
 

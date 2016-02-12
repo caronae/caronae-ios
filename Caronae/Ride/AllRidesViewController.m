@@ -1,13 +1,13 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "CaronaeAlertController.h"
 #import "AllRidesViewController.h"
-#import "SearchResultsViewController.h"
-#import "CaronaeRideCell.h"
-#import "SearchRideViewController.h"
+#import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
-#import "RideViewController.h"
 #import "Ride.h"
+#import "RideCell.h"
+#import "RideViewController.h"
+#import "SearchResultsViewController.h"
+#import "SearchRideViewController.h"
 
 @interface AllRidesViewController () <SearchRideDelegate>
 @property (nonatomic) NSDictionary *searchParams;
