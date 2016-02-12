@@ -1,6 +1,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <CoreData/CoreData.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "AppDelegate.h"
 #import "CaronaeAlertController.h"
 #import "Chat.h"
@@ -267,7 +268,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 
 - (IBAction)didTapCancelRide:(id)sender {
     CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Deseja mesmo desistir da carona?"
-                                                                             message:@"Você é livre para cancelar caronas caso não possa participar, mas é importante fazer isso com responsabilidade. Os outros usuários da carona serão notificados."
+                                                                             message:@"Você é livre para cancelar caronas caso não possa participar, mas é importante fazer isso com responsabilidade. Caso haja outros usuários na carona, eles serão notificados."
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Desistir" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
@@ -303,8 +304,10 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     NSDictionary *params = @{@"rideId": @(_ride.rideID)};
     
     _cancelButton.enabled = NO;
+    [SVProgressHUD show];
     
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/leaveRide"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
         NSLog(@"User left the ride. (Message: %@)", responseObject[@"message"]);
         
         [[ChatStore chatForRide:_ride] unsubscribe];
@@ -316,6 +319,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error leaving/cancelling ride: %@", error.localizedDescription);
+        [SVProgressHUD dismiss];
         _cancelButton.enabled = YES;
     }];
 }
@@ -329,8 +333,9 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     NSDictionary *params = @{@"rideId": @(_ride.rideID)};
     
     _finishRideButton.enabled = NO;
+    [SVProgressHUD show];
     
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/finishRide"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/finishRide"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {        [SVProgressHUD dismiss];
         NSLog(@"User finished the ride. (Message: %@)", responseObject[@"message"]);
         
         [[ChatStore chatForRide:_ride] unsubscribe];
@@ -340,6 +345,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error finishing ride: %@", error.localizedDescription);
+        [SVProgressHUD dismiss];
         _finishRideButton.enabled = YES;
     }];
 }
@@ -356,12 +362,15 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
     _requestRideButton.enabled = NO;
+    [SVProgressHUD show];
     
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [SVProgressHUD dismiss];
         NSLog(@"Done requesting ride. (Message: %@)", responseObject[@"message"]);
         [CaronaeDefaults addToCachedJoinRequests:_ride];
         [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [SVProgressHUD dismiss];
         NSLog(@"Error requesting to join ride: %@", error.localizedDescription);
         _requestRideButton.enabled = YES;
     }];
