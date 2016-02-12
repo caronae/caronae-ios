@@ -15,7 +15,6 @@
 		A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */; };
 		A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA21BED842D00A0D428 /* Assets.xcassets */; };
 		A3169CA61BED842D00A0D428 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */; };
-		A3169CBC1BED842D00A0D428 /* CaronaeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CBB1BED842D00A0D428 /* CaronaeUITests.m */; };
 		A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */; };
 		A3180F871C618DDF007195DF /* ChatStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A3180F861C618DDF007195DF /* ChatStore.m */; };
 		A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */; };
@@ -44,7 +43,6 @@
 		A38598491C691D1400279D6F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = A38598481C691D1400279D6F /* User.m */; };
 		A385984B1C6923D000279D6F /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A385984A1C6923D000279D6F /* UserTests.m */; };
 		A389902D1C58734700C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
-		A389902E1C58734700C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F1D4C1C0398B500DEF6B1 /* RideCell.m */; };
 		A398BE051C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */; };
@@ -78,13 +76,6 @@
 			remoteGlobalIDString = A3169C8F1BED842D00A0D428;
 			remoteInfo = Caronae;
 		};
-		A3169CB81BED842D00A0D428 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A3169C881BED842D00A0D428 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A3169C8F1BED842D00A0D428;
-			remoteInfo = Caronae;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -103,9 +94,6 @@
 		A3169CA71BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3169CAC1BED842D00A0D428 /* CaronaeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaronaeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3169CB21BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A3169CB71BED842D00A0D428 /* CaronaeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaronaeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3169CBB1BED842D00A0D428 /* CaronaeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CaronaeUITests.m; sourceTree = "<group>"; };
-		A3169CBD1BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3169CC91BED893F00A0D428 /* CaronaeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeTextField.h; sourceTree = "<group>"; };
 		A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeTextField.m; sourceTree = "<group>"; };
 		A3180F851C618DDF007195DF /* ChatStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatStore.h; sourceTree = "<group>"; };
@@ -220,13 +208,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3169CB41BED842D00A0D428 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -245,7 +226,6 @@
 			children = (
 				A3169C921BED842D00A0D428 /* Caronae */,
 				A3169CAF1BED842D00A0D428 /* CaronaeTests */,
-				A3169CBA1BED842D00A0D428 /* CaronaeUITests */,
 				9EEF98FE6EBF502EF2E23188 /* Frameworks */,
 				D2A5ADC9EBDC943DAB5ACFFA /* Pods */,
 				A3169C911BED842D00A0D428 /* Products */,
@@ -257,7 +237,6 @@
 			children = (
 				A3169C901BED842D00A0D428 /* Caronae.app */,
 				A3169CAC1BED842D00A0D428 /* CaronaeTests.xctest */,
-				A3169CB71BED842D00A0D428 /* CaronaeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -311,15 +290,6 @@
 				A3169CB21BED842D00A0D428 /* Info.plist */,
 			);
 			path = CaronaeTests;
-			sourceTree = "<group>";
-		};
-		A3169CBA1BED842D00A0D428 /* CaronaeUITests */ = {
-			isa = PBXGroup;
-			children = (
-				A3169CBB1BED842D00A0D428 /* CaronaeUITests.m */,
-				A3169CBD1BED842D00A0D428 /* Info.plist */,
-			);
-			path = CaronaeUITests;
 			sourceTree = "<group>";
 		};
 		A3180F841C6066AF007195DF /* Neighborhood selection */ = {
@@ -509,24 +479,6 @@
 			productReference = A3169CAC1BED842D00A0D428 /* CaronaeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		A3169CB61BED842D00A0D428 /* CaronaeUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A3169CC61BED842D00A0D428 /* Build configuration list for PBXNativeTarget "CaronaeUITests" */;
-			buildPhases = (
-				A3169CB31BED842D00A0D428 /* Sources */,
-				A3169CB41BED842D00A0D428 /* Frameworks */,
-				A3169CB51BED842D00A0D428 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A3169CB91BED842D00A0D428 /* PBXTargetDependency */,
-			);
-			name = CaronaeUITests;
-			productName = CaronaeUITests;
-			productReference = A3169CB71BED842D00A0D428 /* CaronaeUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -553,10 +505,6 @@
 						CreatedOnToolsVersion = 7.1;
 						TestTargetID = A3169C8F1BED842D00A0D428;
 					};
-					A3169CB61BED842D00A0D428 = {
-						CreatedOnToolsVersion = 7.1;
-						TestTargetID = A3169C8F1BED842D00A0D428;
-					};
 				};
 			};
 			buildConfigurationList = A3169C8B1BED842D00A0D428 /* Build configuration list for PBXProject "Caronae" */;
@@ -574,7 +522,6 @@
 			targets = (
 				A3169C8F1BED842D00A0D428 /* Caronae */,
 				A3169CAB1BED842D00A0D428 /* CaronaeTests */,
-				A3169CB61BED842D00A0D428 /* CaronaeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -600,14 +547,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A389902D1C58734700C7CD2D /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3169CB51BED842D00A0D428 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A389902E1C58734700C7CD2D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,14 +706,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3169CB31BED842D00A0D428 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A3169CBC1BED842D00A0D428 /* CaronaeUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -782,11 +713,6 @@
 			isa = PBXTargetDependency;
 			target = A3169C8F1BED842D00A0D428 /* Caronae */;
 			targetProxy = A3169CAD1BED842D00A0D428 /* PBXContainerItemProxy */;
-		};
-		A3169CB91BED842D00A0D428 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A3169C8F1BED842D00A0D428 /* Caronae */;
-			targetProxy = A3169CB81BED842D00A0D428 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1035,30 +961,6 @@
 			};
 			name = Release;
 		};
-		A3169CC71BED842D00A0D428 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = CaronaeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.ufrj.caronae.uitests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Caronae;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		A3169CC81BED842D00A0D428 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = CaronaeUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.ufrj.caronae.uitests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Caronae;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1085,15 +987,6 @@
 			buildConfigurations = (
 				A3169CC41BED842D00A0D428 /* Debug */,
 				A3169CC51BED842D00A0D428 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A3169CC61BED842D00A0D428 /* Build configuration list for PBXNativeTarget "CaronaeUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A3169CC71BED842D00A0D428 /* Debug */,
-				A3169CC81BED842D00A0D428 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
