@@ -11,4 +11,4 @@ pod 'Google/CloudMessaging'
 pod 'CRToast', '~> 0.0.7'
 pod 'Mantle', '~> 2.0'
 
-link_with 'Caronae', 'CaronaeTests'
+link_with 'Caronae'

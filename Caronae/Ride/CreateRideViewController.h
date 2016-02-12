@@ -43,4 +43,8 @@
 @property (nonatomic) NSMutableArray *weekDays;
 @property (nonatomic) int routineDurationMonths;
 
+@property (nonatomic) NSString *selectedHub;
+@property (nonatomic) NSString *neighborhood;
+@property (nonatomic) NSString *zone;
+
 @end

@@ -13,16 +13,15 @@
 @property (nonatomic) NSString *notesPlaceholder;
 @property (nonatomic) UIColor *notesTextColor;
 @property (nonatomic) NSDateFormatter *arrivalDateLabelFormatter;
-@property (nonatomic) NSString *selectedHub;
 @property (nonatomic) NSArray *hubs;
-@property (nonatomic) NSString *neighborhood;
-@property (nonatomic) NSString *zone;
 @end
 
 @implementation CreateRideViewController
 
 - (void)viewDidLoad {
-    NSAssert(self.delegate, @"No delegate for CreateRideViewController");
+    if (!self.delegate) {
+        NSLog(@"WARNING: No delegate for CreateRideViewController");
+    }
     
     [super viewDidLoad];
     
