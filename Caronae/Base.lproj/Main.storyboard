@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -20,10 +21,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nAq-cg-OGV" customClass="TPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nAq-cg-OGV" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="-20" y="-20" width="440" height="640"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i0l-ft-BBF" userLabel="Content View">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i0l-ft-BBF" userLabel="Content View">
                                         <rect key="frame" x="20" y="20" width="400" height="600"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="CADASTRAR NOVO USUÁRIO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccm-ld-UB7">
@@ -251,10 +252,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2gD-nq-Gsc" customClass="TPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2gD-nq-Gsc" customClass="TPKeyboardAvoidingScrollView">
                                 <rect key="frame" x="20" y="20" width="360" height="363"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVq-3z-13h">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVq-3z-13h">
                                         <rect key="frame" x="20" y="20" width="360" height="363"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AuthBackground" translatesAutoresizingMaskIntoConstraints="NO" id="zej-9f-2CU">
@@ -348,7 +349,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <segue destination="DFi-hH-t6a" kind="presentation" id="LJD-Zm-tLI"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ID UFRJ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZBE-h4-ywG" userLabel="ID Text Field" customClass="CaronaeTextField">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ID UFRJ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZBE-h4-ywG" userLabel="ID Text Field" customClass="CaronaeTextField">
                                                 <rect key="frame" x="20" y="259" width="320" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="sVR-jG-HbO"/>
@@ -618,26 +619,11 @@ Este é o token gerado através da Intranet UFRJ</string>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wWF-a6-BXF">
                                                 <rect key="frame" x="-61" y="-14" width="123" height="29"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="320" id="eAG-Yl-6aG">
-                                                        <variation key="widthClass=compact" constant="220"/>
-                                                    </constraint>
-                                                </constraints>
                                                 <segments>
-                                                    <segment title="Ida"/>
-                                                    <segment title="Volta"/>
+                                                    <segment title="Chegando na UFRJ"/>
+                                                    <segment title="Saindo da UFRJ"/>
                                                 </segments>
                                                 <color key="tintColor" red="0.57647061347961426" green="0.58039218187332153" blue="0.57647061347961426" alpha="1" colorSpace="calibratedRGB"/>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="eAG-Yl-6aG"/>
-                                                    </mask>
-                                                </variation>
-                                                <variation key="widthClass=compact">
-                                                    <mask key="constraints">
-                                                        <include reference="eAG-Yl-6aG"/>
-                                                    </mask>
-                                                </variation>
                                                 <connections>
                                                     <action selector="directionChanged:" destination="Frl-vE-K7W" eventType="valueChanged" id="rd0-J1-Vtb"/>
                                                 </connections>
@@ -729,6 +715,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="LBU-nZ-oVt" userLabel="Location Icon">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="0.0" y="-64" width="16" height="15"/>
+                                                </variation>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LkG-Ym-CPN" userLabel="Reference">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -737,9 +726,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="5" width="360" height="30"/>
-                                                        </variation>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -781,9 +767,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="5" width="360" height="30"/>
-                                                        </variation>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1587,9 +1570,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <constraint firstItem="SoK-oZ-c5J" firstAttribute="leading" secondItem="omJ-ZJ-6FM" secondAttribute="leading" constant="10" id="TZm-d6-SzH">
                                                 <variation key="widthClass=compact" constant="20"/>
                                             </constraint>
-                                            <constraint firstItem="wWF-a6-BXF" firstAttribute="top" secondItem="omJ-ZJ-6FM" secondAttribute="top" constant="10" id="Vgz-sR-2Nu">
-                                                <variation key="widthClass=compact" constant="25"/>
-                                            </constraint>
+                                            <constraint firstItem="wWF-a6-BXF" firstAttribute="top" secondItem="omJ-ZJ-6FM" secondAttribute="top" constant="15" id="Vgz-sR-2Nu"/>
                                             <constraint firstItem="kWX-s3-c5B" firstAttribute="top" secondItem="BOK-HL-cQ2" secondAttribute="bottom" constant="10" id="VyZ-U5-B1Z"/>
                                             <constraint firstItem="be5-5E-ceQ" firstAttribute="leading" secondItem="SoK-oZ-c5J" secondAttribute="leading" id="Xjz-aA-0a4"/>
                                             <constraint firstItem="LkG-Ym-CPN" firstAttribute="leading" secondItem="BOK-HL-cQ2" secondAttribute="leading" id="YGl-KY-BON"/>
@@ -1951,7 +1932,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="O que deseja dizer para a equipe do Caronaê?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ysw-F7-F0j">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="O que deseja dizer para a equipe do Caronaê?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ysw-F7-F0j">
                                                         <rect key="frame" x="0.0" y="32" width="560" height="380"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -2056,13 +2037,13 @@ Este é o token gerado através da Intranet UFRJ</string>
                         <rect key="frame" x="0.0" y="0.0" width="400" height="700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hxa-IR-Z8Q">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hxa-IR-Z8Q">
                                 <rect key="frame" x="0.0" y="59" width="400" height="411"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4Y-FM-tR4" userLabel="Content View">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b4Y-FM-tR4" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="-5" width="400" height="411"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OPY-Ou-4A7" userLabel="ID">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OPY-Ou-4A7" userLabel="ID">
                                                 <rect key="frame" x="20" y="20" width="360" height="80"/>
                                                 <subviews>
                                                     <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="Ejx-Yf-BBH" userLabel="Photo">
@@ -2203,7 +2184,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATU-TR-4v1" userLabel="Numbers">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ATU-TR-4v1" userLabel="Numbers">
                                                 <rect key="frame" x="20" y="110" width="360" height="30"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbD-NA-ch3" userLabel="Joined">
@@ -2465,7 +2446,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SeparatorColor" translatesAutoresizingMaskIntoConstraints="NO" id="uWW-QB-xp0" userLabel="Separator">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="SeparatorColor" translatesAutoresizingMaskIntoConstraints="NO" id="uWW-QB-xp0" userLabel="Separator">
                                                 <rect key="frame" x="20" y="145" width="360" height="4"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="rUx-dR-gny">
@@ -2483,7 +2464,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dux-0O-fyC" userLabel="Friends">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dux-0O-fyC" userLabel="Friends">
                                                 <rect key="frame" x="30" y="169" width="340" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amigos em comum: -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MmR-2o-zB8">
@@ -2675,7 +2656,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAI-e5-Rkq" userLabel="Car Details">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dAI-e5-Rkq" userLabel="Car Details">
                                                 <rect key="frame" x="30" y="250" width="340" height="141"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOBRE SEU CARRO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRf-ep-z7x">
@@ -4664,10 +4645,10 @@ FOTO</string>
                                     </mask>
                                 </variation>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pfb-I0-ivc">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pfb-I0-ivc">
                                 <rect key="frame" x="0.0" y="205" width="400" height="280"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJd-ob-3gr">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SJd-ob-3gr">
                                         <rect key="frame" x="0.0" y="0.0" width="157" height="280"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVQ-c0-WsA">
@@ -5570,13 +5551,13 @@ FOTO</string>
                         <rect key="frame" x="0.0" y="0.0" width="400" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T7m-fq-ERe">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T7m-fq-ERe">
                                 <rect key="frame" x="-20" y="44" width="440" height="532"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zB7-Ma-qJK" userLabel="Content View">
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zB7-Ma-qJK" userLabel="Content View">
                                         <rect key="frame" x="20" y="20" width="400" height="492"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmH-vg-yLk" userLabel="Header View">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hmH-vg-yLk" userLabel="Header View">
                                                 <rect key="frame" x="-5" y="-5" width="256" height="90"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="FREGUESIA → CT" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fD-gY-dO4" userLabel="Title">
@@ -5848,10 +5829,10 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                             </tableView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERr-yS-hg4" userLabel="Detail View">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ERr-yS-hg4" userLabel="Detail View">
                                                 <rect key="frame" x="-20" y="46" width="420" height="397"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iA1-Kq-194" userLabel="Driver details View">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iA1-Kq-194" userLabel="Driver details View">
                                                         <rect key="frame" x="0.0" y="-5" width="392" height="104"/>
                                                         <subviews>
                                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Renan Souza" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iZ9-2r-k89" userLabel="Driver name">
@@ -6097,7 +6078,7 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RX5-Kp-EcW" userLabel="Route details View">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RX5-Kp-EcW" userLabel="Route details View">
                                                         <rect key="frame" x="20" y="92" width="380" height="139"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ROTA DO MOTORISTA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJz-Ez-OqI" userLabel="Route title">
@@ -6566,10 +6547,10 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kxV-cn-8YF" userLabel="Request ride View">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kxV-cn-8YF" userLabel="Request ride View">
                                                         <rect key="frame" x="118" y="203" width="144" height="175"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qc-Bw-Oem">
+                                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qc-Bw-Oem">
                                                                 <rect key="frame" x="20" y="20" width="104" height="135"/>
                                                                 <color key="backgroundColor" red="0.94901961088180542" green="0.94901961088180542" blue="0.94901961088180542" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
