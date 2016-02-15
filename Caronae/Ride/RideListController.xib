@@ -27,10 +27,10 @@
                     </connections>
                 </tableView>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="EV6-FJ-bWI">
-                    <rect key="frame" x="177" y="83" width="247" height="29"/>
+                    <rect key="frame" x="169" y="83" width="263" height="29"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <segments>
-                        <segment title="Chegando à UFRJ"/>
+                        <segment title="Chegando na UFRJ"/>
                         <segment title="Saindo da UFRJ"/>
                     </segments>
                     <color key="tintColor" red="0.57647061349999995" green="0.58039218189999997" blue="0.57647061349999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -46,6 +46,9 @@
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
+                    <variation key="heightClass=compact" misplaced="YES">
+                        <rect key="frame" x="169" y="45" width="263" height="29"/>
+                    </variation>
                     <connections>
                         <action selector="didChangeDirection:" destination="-1" eventType="valueChanged" id="jLV-93-OKd"/>
                     </connections>
@@ -55,12 +58,20 @@
             <constraints>
                 <constraint firstItem="EV6-FJ-bWI" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6eO-dw-m6k"/>
                 <constraint firstItem="6Ac-hY-QKJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Drr-QV-nW1"/>
-                <constraint firstItem="EV6-FJ-bWI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="75" id="Gzr-a2-ChU"/>
+                <constraint firstItem="EV6-FJ-bWI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="75" id="Gzr-a2-ChU">
+                    <variation key="heightClass=compact" constant="45"/>
+                </constraint>
                 <constraint firstAttribute="bottom" secondItem="6Ac-hY-QKJ" secondAttribute="bottom" id="Qfk-bn-OKw"/>
                 <constraint firstItem="6Ac-hY-QKJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UMa-bL-jCs"/>
                 <constraint firstAttribute="trailing" secondItem="6Ac-hY-QKJ" secondAttribute="trailing" id="ayK-AH-gqw"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <variation key="heightClass=compact">
+                <mask key="constraints">
+                    <include reference="Gzr-a2-ChU"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>
