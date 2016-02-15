@@ -66,8 +66,16 @@
             return;
         }
         
+        // Skip rides in the past
+        NSMutableArray<Ride *> *futureRides = [NSMutableArray arrayWithCapacity:rides.count];
+        for (Ride *ride in rides) {
+            if ([ride.date compare:NSDate.date] != NSOrderedAscending) {
+                [futureRides addObject:ride];
+            }
+        }
+        
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-        self.rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
+        self.rides = [futureRides sortedArrayUsingDescriptors:@[sortDescriptor]];
 
         [self.tableView reloadData];
         
