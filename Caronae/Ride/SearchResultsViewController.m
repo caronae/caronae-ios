@@ -1,26 +1,18 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "CaronaeAlertController.h"
 #import "Ride.h"
 #import "RideViewController.h"
 #import "SearchResultsViewController.h"
 #import "SearchRideViewController.h"
 
 @interface SearchResultsViewController () <SearchRideDelegate>
-
 @end
 
 @implementation SearchResultsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    if (self.searchParams) {
-        [self searchForRidesWithParameters:self.searchParams];
-    }
 }
 
 
@@ -45,14 +37,14 @@
     timeFormatter.dateFormat = @"HH:mm";
     NSString *timeString = [timeFormatter stringFromDate:date];
     
-    self.searchParams = @{@"center": center,
+    NSDictionary *searchParams = @{@"center": center,
                           @"location": [neighborhoods componentsJoinedByString:@", "],
                           @"date": dateString,
                           @"time": timeString,
                           @"go": @(going)
                           };
     
-    [self searchForRidesWithParameters:self.searchParams];
+    [self searchForRidesWithParameters:searchParams];
 }
 
 - (void)searchForRidesWithParameters:(NSDictionary *)params {
@@ -82,12 +74,21 @@
         }
         else {
             self.tableView.backgroundView = self.emptyTableLabel;
+            
+            // Hack so that the alert is not presented from the modal search dialog
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+                [CaronaeAlertController presentOkAlertWithTitle:@"Nenhuma carona encontrada :(" message:@"Você pode ampliar sua pesquisa selecionando vários bairros ou escolhendo um horário mais cedo."];
+            });
         }
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
         self.tableView.backgroundView = self.errorLabel;
         NSLog(@"Error searching for ride: %@", error.localizedDescription);
+        
+        // Hack so that the alert is not presented from the modal search dialog
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
+            [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível fazer a pesquisa. (%@)", error.localizedDescription]];
+        });
     }];
 }
 

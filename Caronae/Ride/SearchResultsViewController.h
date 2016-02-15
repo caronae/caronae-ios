@@ -3,6 +3,6 @@
 
 @interface SearchResultsViewController : RideListController
 
-@property (nonatomic) NSDictionary *searchParams;
+- (void)searchForRidesWithParameters:(NSDictionary *)params;
 
 @end

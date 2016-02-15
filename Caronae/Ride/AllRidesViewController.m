@@ -96,7 +96,7 @@
     }
     else if ([segue.identifier isEqualToString:@"ViewSearchResults"]) {
         SearchResultsViewController *vc = segue.destinationViewController;
-        vc.searchParams = self.searchParams;
+        [vc searchForRidesWithParameters:self.searchParams];
     }
 }
 
