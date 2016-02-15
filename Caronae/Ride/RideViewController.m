@@ -321,6 +321,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         NSLog(@"Error leaving/cancelling ride: %@", error.localizedDescription);
         [SVProgressHUD dismiss];
         _cancelButton.enabled = YES;
+        [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível cancelar sua carona. (%@)", error.localizedDescription]];
     }];
 }
 
@@ -347,6 +348,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         NSLog(@"Error finishing ride: %@", error.localizedDescription);
         [SVProgressHUD dismiss];
         _finishRideButton.enabled = YES;
+        [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível concluir sua carona. (%@)", error.localizedDescription]];
     }];
 }
 
@@ -373,6 +375,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [SVProgressHUD dismiss];
         NSLog(@"Error requesting to join ride: %@", error.localizedDescription);
         _requestRideButton.enabled = YES;
+        [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível solicitar a carona. (%@)", error.localizedDescription]];
     }];
 }
 
@@ -399,8 +402,8 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error loading join requests for ride %lu: %@", rideID, error.localizedDescription);
+        [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível carregar as solicitações da sua carona. (%@)", error.localizedDescription]];
     }];
-    
 }
 
 - (void)joinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(JoinRequestCell *)cell {
