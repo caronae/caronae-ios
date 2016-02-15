@@ -89,6 +89,10 @@
 #pragma mark - Ride methods
 
 - (void)updateRides {
+    if (self.tableView.backgroundView != nil) {
+        self.tableView.backgroundView = self.loadingLabel;
+    }
+    
     // Run in secondary thread so it won't affect UI
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSArray *ridesJSON = [[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"];
@@ -96,6 +100,7 @@
         NSArray<Ride *> *rideArchive = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:ridesJSON error:&error];
         if (error) {
             NSLog(@"Error parsing my rides. %@", error.localizedDescription);
+            [self loadingFailedWithOperation:nil error:error];
             return;
         }
         
@@ -136,7 +141,6 @@
                 self.tableView.backgroundView = self.emptyTableLabel;
             });
         }
-
     });
 }
 

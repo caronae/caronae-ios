@@ -1,4 +1,8 @@
+#import <AFNetworking/AFHTTPRequestOperation.h>
+#import <AFNetworking/AFNetworkReachabilityManager.h>
+#import "CaronaeAlertController.h"
 #import "RideListController.h"
+#import "UIViewController+isVisible.h"
 
 @interface RideListController() <RideDelegate>
 @property (nonatomic, readwrite) NSArray<Ride *> *filteredRides;
@@ -105,6 +109,33 @@
     _rides = rides;
     if (_rides) {
         self.filteredRides = [RideListController filterRides:_rides withDirectionGoing:self.ridesDirectionGoing];
+    }
+}
+
+- (void)loadingFailedWithOperation:(AFHTTPRequestOperation *)operation error:(NSError *)error {
+    self.tableView.backgroundView = self.errorLabel;
+    
+    NSLog(@"%@ failed to load rides: %@", NSStringFromClass(self.class), error.localizedDescription);
+    
+    if (operation && operation.response.statusCode == 403) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Seu token pode ter sido suspenso ou expirado." handler:^{
+            [CaronaeDefaults signOut];
+        }];
+        return;
+    }
+    
+    NSString *errorAlertTitle, *errorAlertMessage;
+    if (![AFNetworkReachabilityManager sharedManager].isReachable) {
+        errorAlertTitle = @"Sem conexão com a internet";
+        errorAlertMessage = @"Não foi possível carregar as caronas. Verifique sua conexão com a internet e tente novamente.";
+    }
+    else {
+        errorAlertTitle = @"Algo deu errado.";
+        errorAlertMessage = @"Não foi possível carregar as caronas. Por favor, tente novamente.";
+    }
+    
+    if ([self isVisible]) {
+        [CaronaeAlertController presentOkAlertWithTitle:errorAlertTitle message:errorAlertMessage];
     }
 }
 

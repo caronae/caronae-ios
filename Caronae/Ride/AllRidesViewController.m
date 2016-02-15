@@ -1,7 +1,6 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "AllRidesViewController.h"
-#import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
 #import "Ride.h"
 #import "RideCell.h"
@@ -23,6 +22,10 @@
     }
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     [self loadAllRides];
 }
@@ -44,6 +47,10 @@
 #pragma mark - Rides methods
 
 - (void)loadAllRides {
+    if (self.tableView.backgroundView != nil) {
+        self.tableView.backgroundView = self.loadingLabel;
+    }
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
@@ -55,6 +62,7 @@
         NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
         if (error) {
             NSLog(@"Error parsing all rides. %@", error.localizedDescription);
+            [self loadingFailedWithOperation:operation error:error];
             return;
         }
         
@@ -71,17 +79,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.refreshControl endRefreshing];
-        
-        self.tableView.backgroundView = self.errorLabel;
-        
-        if (operation.response.statusCode == 403) {
-            [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Seu token pode ter sido suspenso ou expirado." handler:^{
-                [CaronaeDefaults signOut];
-            }];
-        }
-        else {
-            NSLog(@"Error loading all rides: %@", error.localizedDescription);
-        }
+        [self loadingFailedWithOperation:operation error:error];
     }];
 }
 

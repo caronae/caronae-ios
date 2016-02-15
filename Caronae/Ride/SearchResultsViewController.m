@@ -1,4 +1,5 @@
 #import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
 #import "Ride.h"
@@ -48,11 +49,14 @@
 }
 
 - (void)searchForRidesWithParameters:(NSDictionary *)params {
+    [SVProgressHUD show];
+    if (self.tableView.backgroundView != nil) {
+        self.tableView.backgroundView = self.loadingLabel;
+    }
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
-    
-    [SVProgressHUD show];
     
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/listFiltered"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
@@ -69,6 +73,7 @@
         self.rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
 
         [self.tableView reloadData];
+        
         if (rides.count > 0) {
             self.tableView.backgroundView = nil;
         }
@@ -81,13 +86,10 @@
             });
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [SVProgressHUD dismiss];
-        self.tableView.backgroundView = self.errorLabel;
-        NSLog(@"Error searching for ride: %@", error.localizedDescription);
-        
+        [SVProgressHUD dismiss];      
         // Hack so that the alert is not presented from the modal search dialog
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
-            [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível fazer a pesquisa. (%@)", error.localizedDescription]];
+            [self loadingFailedWithOperation:operation error:error];
         });
     }];
 }

@@ -3,9 +3,13 @@
 #import "RideCell.h"
 #import "RideViewController.h"
 
+@class AFHTTPRequestOperation;
+
 @interface RideListController : UIViewController
 
 - (RideViewController *)rideViewControllerForRide:(Ride *)ride;
+
+- (void)loadingFailedWithOperation:(AFHTTPRequestOperation *)operation error:(NSError *)error;
 
 - (RideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;

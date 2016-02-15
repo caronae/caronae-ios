@@ -26,6 +26,7 @@
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
     [self configureGCM];
     

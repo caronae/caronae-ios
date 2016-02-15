@@ -3,7 +3,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "ActiveRidesViewController.h"
 #import "AppDelegate.h"
-#import "CaronaeAlertController.h"
 #import "CaronaeDefaults.h"
 #import "Chat.h"
 #import "ChatStore.h"
@@ -113,6 +112,7 @@
         NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
         if (error) {
             NSLog(@"Error parsing active rides. %@", error.localizedDescription);
+            [self loadingFailedWithOperation:operation error:error];
             return;
         }
         
@@ -142,16 +142,7 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.refreshControl endRefreshing];
-        self.tableView.backgroundView = self.errorLabel;
-        
-        if (operation.response.statusCode == 403) {
-            [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Seu token pode ter sido suspenso ou expirado." handler:^{
-                [CaronaeDefaults signOut];
-            }];
-        }
-        else {
-            NSLog(@"Error loading active rides: %@", error.localizedDescription);
-        }
+        [self loadingFailedWithOperation:operation error:error];
     }];
 }
 

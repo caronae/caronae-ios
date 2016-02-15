@@ -31,6 +31,7 @@
 		A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A357EF321C56C5A100AC8096 /* RideListController.xib */; };
 		A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF361C57168D00AC8096 /* SignupViewController.m */; };
 		A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35D472A1C2092A300501647 /* RidesHistoryViewController.m */; };
+		A369A4EB1C72928700FE5495 /* UIViewController+isVisible.m in Sources */ = {isa = PBXBuildFile; fileRef = A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */; };
 		A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */; };
 		A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
 		A37E80DB1C5F007900683F27 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A37E80DA1C5F007900683F27 /* ChatViewController.m */; };
@@ -122,6 +123,8 @@
 		A357EF361C57168D00AC8096 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		A35D47291C2092A300501647 /* RidesHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RidesHistoryViewController.h; sourceTree = "<group>"; };
 		A35D472A1C2092A300501647 /* RidesHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RidesHistoryViewController.m; sourceTree = "<group>"; };
+		A369A4E91C72928700FE5495 /* UIViewController+isVisible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+isVisible.h"; sourceTree = "<group>"; };
+		A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+isVisible.m"; sourceTree = "<group>"; };
 		A374623D1C4D7B59000B802C /* ZoneSelectionInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoneSelectionInputViewController.h; sourceTree = "<group>"; };
 		A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoneSelectionInputViewController.m; sourceTree = "<group>"; };
 		A375D2F91C19175A00795CAE /* CaronaeAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeAlertController.h; sourceTree = "<group>"; };
@@ -413,6 +416,8 @@
 				A3A4A4AD1C4C695800CF4CB2 /* NSString+validation.h */,
 				A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */,
 				A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */,
+				A369A4E91C72928700FE5495 /* UIViewController+isVisible.h */,
+				A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -648,6 +653,7 @@
 				A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */,
 				A3C55BDA1C5FB19A00C84204 /* Message+CoreDataProperties.m in Sources */,
 				A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */,
+				A369A4EB1C72928700FE5495 /* UIViewController+isVisible.m in Sources */,
 				A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */,
 				A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */,
 				A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */,
