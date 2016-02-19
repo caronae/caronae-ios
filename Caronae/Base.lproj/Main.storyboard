@@ -1842,6 +1842,55 @@ Este é o token gerado através da Intranet UFRJ</string>
             </objects>
             <point key="canvasLocation" x="2628" y="1499"/>
         </scene>
+        <!--Web View Controller-->
+        <scene sceneID="q02-Xb-0Ke">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="kDw-KM-p2e" customClass="WebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tJA-R2-npH"/>
+                        <viewControllerLayoutGuide type="bottom" id="gM5-zO-okd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Ro-0b-ezE">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEU-dV-kmf">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gM5-zO-okd" firstAttribute="top" secondItem="fEU-dV-kmf" secondAttribute="bottom" id="2mE-LJ-6UU"/>
+                            <constraint firstAttribute="trailing" secondItem="fEU-dV-kmf" secondAttribute="trailing" id="Q5F-6a-Oh9"/>
+                            <constraint firstItem="fEU-dV-kmf" firstAttribute="top" secondItem="tJA-R2-npH" secondAttribute="bottom" id="hhW-EH-QPR"/>
+                            <constraint firstItem="fEU-dV-kmf" firstAttribute="leading" secondItem="6Ro-0b-ezE" secondAttribute="leading" id="i7G-sx-fos"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Q5F-6a-Oh9"/>
+                                <exclude reference="hhW-EH-QPR"/>
+                                <exclude reference="i7G-sx-fos"/>
+                                <exclude reference="2mE-LJ-6UU"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="Q5F-6a-Oh9"/>
+                                <include reference="hhW-EH-QPR"/>
+                                <include reference="i7G-sx-fos"/>
+                                <include reference="2mE-LJ-6UU"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="fEU-dV-kmf" id="2sI-qD-SFS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fZC-RN-1uY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1779" y="2280"/>
+        </scene>
         <!--Falaê-->
         <scene sceneID="dO1-ON-W0Z">
             <objects>
@@ -4675,14 +4724,6 @@ FOTO</string>
                                                     <segue destination="hXu-7Y-tvn" kind="show" identifier="ViewProfile" id="kXd-xG-sw3"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYi-br-Zjd">
-                                                <rect key="frame" x="20" y="55" width="117" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                <state key="normal" title="Caronas">
-                                                    <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSu-Rx-2OT">
                                                 <rect key="frame" x="20" y="125" width="117" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
@@ -4701,6 +4742,9 @@ FOTO</string>
                                                     <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="kDw-KM-p2e" kind="show" identifier="TermsOfUse" id="clB-zg-Nfr"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fY2-fr-NvX">
                                                 <rect key="frame" x="20" y="195" width="117" height="30"/>
@@ -4709,6 +4753,9 @@ FOTO</string>
                                                     <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="kDw-KM-p2e" kind="show" identifier="About" id="sGI-sp-fNN"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jnc-Lr-4vj">
                                                 <rect key="frame" x="20" y="230" width="117" height="30"/>
@@ -4734,15 +4781,13 @@ FOTO</string>
                                             <constraint firstItem="Jnc-Lr-4vj" firstAttribute="top" secondItem="fY2-fr-NvX" secondAttribute="bottom" constant="5" id="7RI-jc-b5Q"/>
                                             <constraint firstItem="fY2-fr-NvX" firstAttribute="top" secondItem="emk-kX-Xv3" secondAttribute="bottom" constant="5" id="8yN-4G-WON"/>
                                             <constraint firstItem="QVQ-c0-WsA" firstAttribute="leading" secondItem="SJd-ob-3gr" secondAttribute="leading" constant="20" id="9BF-t3-0jy"/>
+                                            <constraint firstItem="IzQ-fd-Bi5" firstAttribute="leading" secondItem="QVQ-c0-WsA" secondAttribute="leading" id="CQg-Dg-aFC"/>
                                             <constraint firstAttribute="bottom" secondItem="Jnc-Lr-4vj" secondAttribute="bottom" constant="20" id="Edx-M4-cKx"/>
-                                            <constraint firstItem="aYi-br-Zjd" firstAttribute="leading" secondItem="QVQ-c0-WsA" secondAttribute="leading" id="U6Y-p8-Oek"/>
+                                            <constraint firstItem="IzQ-fd-Bi5" firstAttribute="top" secondItem="QVQ-c0-WsA" secondAttribute="bottom" constant="5" id="Rvf-FD-MV4"/>
                                             <constraint firstItem="QVQ-c0-WsA" firstAttribute="top" secondItem="SJd-ob-3gr" secondAttribute="top" constant="20" id="fdO-5l-Aec"/>
                                             <constraint firstItem="emk-kX-Xv3" firstAttribute="leading" secondItem="JSu-Rx-2OT" secondAttribute="leading" id="hbG-sF-6sh"/>
                                             <constraint firstItem="JSu-Rx-2OT" firstAttribute="top" secondItem="IzQ-fd-Bi5" secondAttribute="bottom" constant="5" id="iSb-zQ-ZKk"/>
-                                            <constraint firstItem="aYi-br-Zjd" firstAttribute="top" secondItem="QVQ-c0-WsA" secondAttribute="bottom" constant="5" id="jda-N6-Zea"/>
                                             <constraint firstItem="JSu-Rx-2OT" firstAttribute="leading" secondItem="IzQ-fd-Bi5" secondAttribute="leading" id="t4u-Na-zvF"/>
-                                            <constraint firstItem="IzQ-fd-Bi5" firstAttribute="leading" secondItem="aYi-br-Zjd" secondAttribute="leading" id="teH-g3-uaE"/>
-                                            <constraint firstItem="IzQ-fd-Bi5" firstAttribute="top" secondItem="aYi-br-Zjd" secondAttribute="bottom" constant="5" id="w39-LK-UyN"/>
                                             <constraint firstItem="emk-kX-Xv3" firstAttribute="top" secondItem="JSu-Rx-2OT" secondAttribute="bottom" constant="5" id="wbe-gA-VAa"/>
                                             <constraint firstItem="fY2-fr-NvX" firstAttribute="leading" secondItem="emk-kX-Xv3" secondAttribute="leading" id="xzX-tU-VFh"/>
                                             <constraint firstItem="Jnc-Lr-4vj" firstAttribute="leading" secondItem="fY2-fr-NvX" secondAttribute="leading" id="zfI-eV-CUT"/>
@@ -4751,10 +4796,8 @@ FOTO</string>
                                             <mask key="constraints">
                                                 <exclude reference="9BF-t3-0jy"/>
                                                 <exclude reference="fdO-5l-Aec"/>
-                                                <exclude reference="U6Y-p8-Oek"/>
-                                                <exclude reference="jda-N6-Zea"/>
-                                                <exclude reference="teH-g3-uaE"/>
-                                                <exclude reference="w39-LK-UyN"/>
+                                                <exclude reference="CQg-Dg-aFC"/>
+                                                <exclude reference="Rvf-FD-MV4"/>
                                                 <exclude reference="iSb-zQ-ZKk"/>
                                                 <exclude reference="t4u-Na-zvF"/>
                                                 <exclude reference="hbG-sF-6sh"/>
@@ -4770,10 +4813,8 @@ FOTO</string>
                                             <mask key="constraints">
                                                 <include reference="9BF-t3-0jy"/>
                                                 <include reference="fdO-5l-Aec"/>
-                                                <include reference="U6Y-p8-Oek"/>
-                                                <include reference="jda-N6-Zea"/>
-                                                <include reference="teH-g3-uaE"/>
-                                                <include reference="w39-LK-UyN"/>
+                                                <include reference="CQg-Dg-aFC"/>
+                                                <include reference="Rvf-FD-MV4"/>
                                                 <include reference="iSb-zQ-ZKk"/>
                                                 <include reference="t4u-Na-zvF"/>
                                                 <include reference="hbG-sF-6sh"/>
@@ -7303,12 +7344,13 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yIa-C3-QN8"/>
-        <segue reference="H8O-Mc-OH3"/>
-        <segue reference="DwZ-AK-niy"/>
         <segue reference="tvA-Ui-5Q1"/>
+        <segue reference="kXd-xG-sw3"/>
+        <segue reference="clB-zg-Nfr"/>
+        <segue reference="U3D-Zh-YLa"/>
+        <segue reference="yIa-C3-QN8"/>
         <segue reference="hM9-nM-k0Y"/>
-        <segue reference="ugX-qh-OjL"/>
+        <segue reference="DwZ-AK-niy"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>

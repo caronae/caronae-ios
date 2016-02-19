@@ -1,6 +1,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "MenuViewController.h"
 #import "ProfileViewController.h"
+#import "WebViewController.h"
 
 @interface MenuViewController ()
 @property (nonatomic) NSString *photoURL;
@@ -38,6 +39,14 @@
     if ([segue.identifier isEqualToString:@"ViewProfile"]) {
         ProfileViewController *vc = segue.destinationViewController;
         vc.user = [CaronaeDefaults defaults].user;
+    }
+    else if ([segue.identifier isEqualToString:@"About"]) {
+        WebViewController *vc = segue.destinationViewController;
+        vc.page = WebViewAboutPage;
+    }
+    else if ([segue.identifier isEqualToString:@"TermsOfUse"]) {
+        WebViewController *vc = segue.destinationViewController;
+        vc.page = WebViewTermsOfUsePage;
     }
 }
 
