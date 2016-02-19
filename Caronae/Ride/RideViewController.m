@@ -87,6 +87,8 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [self loadJoinRequests];
         [self.requestRideButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.mutualFriendsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [self.phoneView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        
         
         // Car details
         User *user = [CaronaeDefaults defaults].user;
@@ -100,6 +102,8 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [self.finishRideView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.cancelButton setTitle:@"DESISTIR" forState:UIControlStateNormal];
         
+        [_phoneButton setTitle:_ride.driver.phoneNumber forState:UIControlStateNormal];
+        
         // Car details
         _carPlateLabel.text = _ride.driver.carPlate;
         _carModelLabel.text = _ride.driver.carModel;
@@ -110,6 +114,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     // If the user is not related to the ride, hide 'cancel' button, car details view, riders view, chat button
     else {
         [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        [self.phoneView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.finishRideView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.ridersView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
@@ -256,6 +261,12 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 }
 
 #pragma mark - IBActions
+
+- (IBAction)didTapPhoneButton:(id)sender {
+    NSString *phoneNumber = _ride.driver.phoneNumber;
+    NSString *phoneNumberURLString = [NSString stringWithFormat:@"telprompt://%@", phoneNumber];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumberURLString]];
+}
 
 - (IBAction)didTapRequestRide:(UIButton *)sender {
     [self requestJoinRide];

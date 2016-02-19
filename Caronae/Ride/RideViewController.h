@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *referenceLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *driverPhoto;
+@property (weak, nonatomic) IBOutlet UIButton *phoneButton;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *driverNameLabel;
@@ -35,6 +36,7 @@
 
 // Assets
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UIView *phoneView;
 @property (weak, nonatomic) IBOutlet UIView *ridersView;
 @property (weak, nonatomic) IBOutlet UIView *mutualFriendsView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mutualFriendsCollectionHeight;
