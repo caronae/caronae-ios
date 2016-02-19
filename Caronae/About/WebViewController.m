@@ -9,6 +9,7 @@
 
 - (void)viewDidLoad {
     self.webView.delegate = self;
+    self.webView.scrollView.bounces = NO;
     
     NSString *urlString;
     if (self.page == WebViewAboutPage) {
