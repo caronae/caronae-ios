@@ -4764,6 +4764,9 @@ FOTO</string>
                                                     <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="kDw-KM-p2e" kind="show" identifier="FAQ" id="mqy-as-BVJ"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzQ-fd-Bi5">
                                                 <rect key="frame" x="20" y="90" width="117" height="30"/>
@@ -7346,8 +7349,8 @@ FOTO</string>
     <inferredMetricsTieBreakers>
         <segue reference="tvA-Ui-5Q1"/>
         <segue reference="kXd-xG-sw3"/>
-        <segue reference="clB-zg-Nfr"/>
         <segue reference="U3D-Zh-YLa"/>
+        <segue reference="mqy-as-BVJ"/>
         <segue reference="yIa-C3-QN8"/>
         <segue reference="hM9-nM-k0Y"/>
         <segue reference="DwZ-AK-niy"/>
