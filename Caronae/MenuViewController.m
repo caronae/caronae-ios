@@ -28,7 +28,7 @@
         self.photoURL = userPhotoURL;
         [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:userPhotoURL]
                                  placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                                          options:SDWebImageRefreshCached];
+                                          options:SDWebImageRefreshCached | SDWebImageRetryFailed];
     }
 }
 

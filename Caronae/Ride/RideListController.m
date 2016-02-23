@@ -114,7 +114,9 @@
 }
 
 - (void)loadingFailedWithOperation:(AFHTTPRequestOperation *)operation error:(NSError *)error {
-    self.tableView.backgroundView = self.errorLabel;
+    if (self.filteredRides.count == 0) {
+        self.tableView.backgroundView = self.errorLabel;
+    }
     
     NSLog(@"%@ failed to load rides: %@", NSStringFromClass(self.class), error.localizedDescription);
     

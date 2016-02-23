@@ -74,7 +74,7 @@
     if (_user.profilePictureURL && ![_user.profilePictureURL isEqualToString:@""]) {
         [self.profileImage sd_setImageWithURL:[NSURL URLWithString:_user.profilePictureURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                               options:SDWebImageRefreshCached];
+                               options:SDWebImageRefreshCached | SDWebImageRetryFailed];
     }
     
     [self updateRidesOfferedCount];
@@ -188,7 +188,7 @@
     if (user.profilePictureURL && ![user.profilePictureURL isEqualToString:@""]) {
         [cell.photo sd_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                               options:SDWebImageRefreshCached];
+                               options:SDWebImageRefreshCached | SDWebImageRetryFailed];
     }
     
     return cell;

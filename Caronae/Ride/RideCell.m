@@ -49,7 +49,7 @@
     if (_ride.driver.profilePictureURL && ![_ride.driver.profilePictureURL isEqualToString:@""]) {
         [_photo sd_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]
                   placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                           options:SDWebImageRefreshCached];
+                           options:SDWebImageRefreshCached | SDWebImageRetryFailed];
     }
     else {
         _photo.image = [UIImage imageNamed:@"Profile Picture"];

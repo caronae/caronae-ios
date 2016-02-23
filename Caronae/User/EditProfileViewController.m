@@ -96,7 +96,7 @@
     if (self.photoURL) {
         [self.photo sd_setImageWithURL:[NSURL URLWithString:self.photoURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                               options:SDWebImageRefreshCached];
+                               options:SDWebImageRefreshCached | SDWebImageRetryFailed];
     }
 }
 
@@ -413,7 +413,7 @@
             _photoURL = data[@"url"];
             [_photo sd_setImageWithURL:[NSURL URLWithString:_photoURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                               options:SDWebImageRefreshCached
+                               options:SDWebImageRefreshCached | SDWebImageRetryFailed
                              completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                  [SVProgressHUD dismiss];
                              }];
@@ -441,7 +441,7 @@
         _photoURL = responseObject[@"url"];
         [_photo sd_setImageWithURL:[NSURL URLWithString:_photoURL]
                   placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                           options:SDWebImageRefreshCached
+                           options:SDWebImageRefreshCached | SDWebImageRetryFailed
                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                              [SVProgressHUD dismiss];
                          }];

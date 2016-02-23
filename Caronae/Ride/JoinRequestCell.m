@@ -21,7 +21,7 @@
     if (user.profilePictureURL && ![user.profilePictureURL isEqualToString:@""]) {
         [self.userPhoto sd_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                               options:SDWebImageRefreshCached];
+                               options:SDWebImageRefreshCached | SDWebImageRetryFailed];
     }
 }
 
