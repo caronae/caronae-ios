@@ -92,7 +92,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         
         // Car details
         User *user = [CaronaeDefaults defaults].user;
-        _carPlateLabel.text = user.carPlate;
+        _carPlateLabel.text = user.carPlate.uppercaseString;
         _carModelLabel.text = user.carModel;
         _carColorLabel.text = user.carColor;
     }
@@ -105,7 +105,7 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [_phoneButton setTitle:_ride.driver.phoneNumber forState:UIControlStateNormal];
         
         // Car details
-        _carPlateLabel.text = _ride.driver.carPlate;
+        _carPlateLabel.text = _ride.driver.carPlate.uppercaseString;
         _carModelLabel.text = _ride.driver.carModel;
         _carColorLabel.text = _ride.driver.carColor;
         
