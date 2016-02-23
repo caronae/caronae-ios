@@ -12,6 +12,12 @@
     [self loadRidesHistory];
 }
 
+- (void)refreshTable:(id)sender {
+    if (self.refreshControl.refreshing) {
+        [self loadRidesHistory];
+    }
+}
+
 
 #pragma mark - Rides methods
 
@@ -25,6 +31,8 @@
     [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/getRidesHistory"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self.refreshControl endRefreshing];
+
         NSError *error;
         NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
         if (error) {
@@ -45,6 +53,7 @@
             self.tableView.backgroundView = self.emptyTableLabel;
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self.refreshControl endRefreshing];
         [self loadingFailedWithOperation:operation error:error];
     }];
 }

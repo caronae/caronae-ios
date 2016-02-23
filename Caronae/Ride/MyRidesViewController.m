@@ -51,11 +51,6 @@
         
         NSMutableArray *rides = [[NSMutableArray alloc] initWithCapacity:rideArchive.count];
         for (Ride *ride in rideArchive) {
-            // Skip rides in the past
-            if ([ride.date compare:[NSDate date]] == NSOrderedAscending) {
-                continue;
-            }
-            
             ride.driver = self.user;
             
             // Checking if subscribed to my rides after delay to ensure GCM is connected
