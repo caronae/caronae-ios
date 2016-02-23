@@ -1,5 +1,6 @@
 #import <AFNetworking/AFHTTPRequestOperation.h>
 #import <AFNetworking/AFNetworkReachabilityManager.h>
+#import <CRToast/CRToast.h>
 #import "CaronaeAlertController.h"
 #import "RideListController.h"
 #import "UIViewController+isVisible.h"
@@ -124,17 +125,19 @@
         return;
     }
     
-    NSString *errorAlertTitle, *errorAlertMessage;
+    if (![self isVisible]) return;
+    
     if (![AFNetworkReachabilityManager sharedManager].isReachable) {
-        errorAlertTitle = @"Sem conexão com a internet";
-        errorAlertMessage = @"Não foi possível carregar as caronas. Verifique sua conexão com a internet e tente novamente.";
+        [CRToastManager showNotificationWithOptions:@{
+                                                      kCRToastTextKey: @"Sem conexão com a internet",
+                                                      kCRToastBackgroundColorKey: [UIColor redColor],
+                                                      }
+                                    completionBlock:nil];
+
     }
     else {
-        errorAlertTitle = @"Algo deu errado.";
-        errorAlertMessage = @"Não foi possível carregar as caronas. Por favor, tente novamente.";
-    }
-    
-    if ([self isVisible]) {
+        NSString *errorAlertTitle = @"Algo deu errado.";
+        NSString *errorAlertMessage = @"Não foi possível carregar as caronas. Por favor, tente novamente.";
         [CaronaeAlertController presentOkAlertWithTitle:errorAlertTitle message:errorAlertMessage];
     }
 }
