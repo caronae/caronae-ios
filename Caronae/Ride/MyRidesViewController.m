@@ -4,11 +4,8 @@
 #import "CreateRideViewController.h"
 #import "MyRidesViewController.h"
 #import "Notification.h"
-#import "Ride.h"
-#import "RideCell.h"
-#import "RideViewController.h"
 
-@interface MyRidesViewController () <CreateRideDelegate>
+@interface MyRidesViewController () <CreateRideDelegate, RideDelegate>
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) User *user;
@@ -31,58 +28,6 @@
     
     [self updateUnreadNotifications];
     [self updateRides];
-}
-
-- (void)updateUnreadNotifications {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
-    fetchRequest.entity = entity;
-    fetchRequest.includesPropertyValues = NO;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == 'joinRequest'"];
-    fetchRequest.predicate = predicate;
-    
-    NSError *error;
-    self.unreadNotifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (error) {
-        NSLog(@"Whoops, couldn't load unread notifications: %@", error.localizedDescription);
-        return;
-    }
-    
-    if (self.unreadNotifications.count > 0) {
-        self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", (long)self.unreadNotifications.count];
-    }
-    else {
-        self.navigationController.tabBarItem.badgeValue = nil;
-    }
-}
-
-- (void)didCreateRides:(NSArray<NSDictionary *> *)rides {
-    NSLog(@"%lu rides created.", (unsigned long)rides.count);
-    
-    NSArray *oldUserRidesArchive = [[NSUserDefaults standardUserDefaults] arrayForKey:@"userCreatedRides"];
-    NSMutableArray *newUserRidesArchive = [NSMutableArray arrayWithArray:oldUserRidesArchive];
-    NSError *error;
-    NSArray *createdRidesJSON = [MTLJSONAdapter JSONArrayFromModels:rides error:&error];
-    if (error) {
-        NSLog(@"Error serializing created rides. %@", error.localizedDescription);
-        return;
-    }
-    
-    [newUserRidesArchive addObjectsFromArray:createdRidesJSON];
-
-    [[NSUserDefaults standardUserDefaults] setObject:newUserRidesArchive forKey:@"userCreatedRides"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    [self updateRides];
-}
-
-- (void)didUpdateNotifications:(NSNotification *)notification {
-    NSString *msgType = notification.userInfo[@"msgType"];
-    
-    if ([msgType isEqualToString:@"joinRequest"]) {
-        [self updateUnreadNotifications];
-        [self.tableView reloadData];
-    }
 }
 
 
@@ -144,9 +89,41 @@
     });
 }
 
+- (void)didCreateRides:(NSArray<NSDictionary *> *)rides {
+    NSLog(@"%lu rides created.", (unsigned long)rides.count);
+    
+    NSArray *oldUserRidesArchive = [[NSUserDefaults standardUserDefaults] arrayForKey:@"userCreatedRides"];
+    NSMutableArray *newUserRidesArchive = [NSMutableArray arrayWithArray:oldUserRidesArchive];
+    NSError *error;
+    NSArray *createdRidesJSON = [MTLJSONAdapter JSONArrayFromModels:rides error:&error];
+    if (error) {
+        NSLog(@"Error serializing created rides. %@", error.localizedDescription);
+        return;
+    }
+    
+    [newUserRidesArchive addObjectsFromArray:createdRidesJSON];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:newUserRidesArchive forKey:@"userCreatedRides"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self updateRides];
+}
+
 - (void)didDeleteRide:(Ride *)ride {
     NSLog(@"User has deleted ride with id %ld", ride.rideID);
     
+    [self removeRideFromMyRides:ride];
+    [self updateRides];
+}
+
+- (void)didFinishRide:(Ride *)ride {
+    NSLog(@"User has finished ride with id %ld", ride.rideID);
+    
+    [self removeRideFromMyRides:ride];
+    [self updateRides];
+}
+
+- (void)removeRideFromMyRides:(Ride *)ride {
     // Find and delete ride from persistent store
     NSMutableArray *newRides = [[[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"] mutableCopy];
     for (NSDictionary *r in newRides) {
@@ -162,8 +139,6 @@
         NSLog(@"Error: ride to be deleted was not found in user's rides");
         return;
     }
-
-    [self updateRides];
 }
 
 
@@ -196,5 +171,41 @@
         vc.delegate = self;
     }
 }
+
+
+#pragma mark - Notification handling
+
+- (void)updateUnreadNotifications {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
+    fetchRequest.entity = entity;
+    fetchRequest.includesPropertyValues = NO;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == 'joinRequest'"];
+    fetchRequest.predicate = predicate;
+    
+    NSError *error;
+    self.unreadNotifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        NSLog(@"Whoops, couldn't load unread notifications: %@", error.localizedDescription);
+        return;
+    }
+    
+    if (self.unreadNotifications.count > 0) {
+        self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", (long)self.unreadNotifications.count];
+    }
+    else {
+        self.navigationController.tabBarItem.badgeValue = nil;
+    }
+}
+
+- (void)didUpdateNotifications:(NSNotification *)notification {
+    NSString *msgType = notification.userInfo[@"msgType"];
+    
+    if ([msgType isEqualToString:@"joinRequest"]) {
+        [self updateUnreadNotifications];
+        [self.tableView reloadData];
+    }
+}
+
 
 @end

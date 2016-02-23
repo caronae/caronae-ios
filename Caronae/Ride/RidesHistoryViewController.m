@@ -1,8 +1,4 @@
 #import <AFNetworking/AFNetworking.h>
-#import <SVProgressHUD/SVProgressHUD.h>
-#import "Ride.h"
-#import "RideCell.h"
-#import "RideViewController.h"
 #import "RidesHistoryViewController.h"
 
 @interface RidesHistoryViewController ()

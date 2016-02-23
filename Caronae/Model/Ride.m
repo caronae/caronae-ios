@@ -57,5 +57,4 @@ static NSDateFormatter *otherDateParserFormatter;
     }
 }
 
-
 @end

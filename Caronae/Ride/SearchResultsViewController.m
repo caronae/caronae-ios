@@ -2,8 +2,6 @@
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
-#import "Ride.h"
-#import "RideViewController.h"
 #import "SearchResultsViewController.h"
 #import "SearchRideViewController.h"
 

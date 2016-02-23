@@ -7,9 +7,6 @@
 #import "Chat.h"
 #import "ChatStore.h"
 #import "Notification+CoreDataProperties.h"
-#import "Ride.h"
-#import "RideCell.h"
-#import "RideViewController.h"
 
 @interface ActiveRidesViewController ()
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;

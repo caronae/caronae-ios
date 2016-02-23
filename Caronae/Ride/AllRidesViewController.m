@@ -2,9 +2,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "AllRidesViewController.h"
 #import "EditProfileViewController.h"
-#import "Ride.h"
-#import "RideCell.h"
-#import "RideViewController.h"
 #import "SearchResultsViewController.h"
 #import "SearchRideViewController.h"
 

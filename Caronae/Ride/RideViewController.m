@@ -28,6 +28,7 @@
 
 static NSString *CaronaeRequestButtonStateNew              = @"PEGAR CARONA";
 static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AUTORIZAÇÃO    ";
+static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluída";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -89,6 +90,9 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         [self.mutualFriendsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.phoneView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         
+//        if (_ride.finished) {
+//            [self configureFinishedRide];
+//        }
         
         // Car details
         User *user = [CaronaeDefaults defaults].user;
@@ -197,6 +201,19 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
     [_finishRideButton setTitleColor:color forState:UIControlStateNormal];
 }
 
+//- (void)configureFinishedRide {
+//    // Disable finish button
+//    [_finishRideButton setTitle:CaronaeFinishButtonStateAlreadyFinished forState:UIControlStateNormal];
+//    _finishRideButton.enabled = NO;
+//    _finishRideButton.alpha = 0.5;
+//    
+//    // Remove chat button
+//    self.navigationItem.rightBarButtonItem = nil;
+//
+//    // Remove cancel button
+//    [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+//}
+
 - (BOOL)userIsDriver {
     return [[CaronaeDefaults defaults].user.userID isEqualToNumber:_ride.driver.userID];
 }
@@ -289,8 +306,8 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
 }
 
 - (IBAction)didTapFinishRide:(id)sender {
-    CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Concluir carona"
-                                                                             message:@"E aí? Correu tudo bem? Deseja mesmo concluir a carona?"
+    CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"E aí? Correu tudo bem?"
+                                                                             message:@"Caso você tenha tido algum problema com a carona, use o Falaê para entrar em contato conosco."
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Concluir" style:SDCAlertActionStyleDefault handler:^(SDCAlertAction *action){
@@ -351,10 +368,12 @@ static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AU
         NSLog(@"User finished the ride. (Message: %@)", responseObject[@"message"]);
         
         [[ChatStore chatForRide:_ride] unsubscribe];
-        self.navigationItem.rightBarButtonItem = nil;
         
-        [_finishRideButton setTitle:@"  Carona concluída" forState:UIControlStateNormal];
-        [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        if (_delegate && [_delegate respondsToSelector:@selector(didFinishRide:)]) {
+            [_delegate didFinishRide:_ride];
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error finishing ride: %@", error.localizedDescription);
         [SVProgressHUD dismiss];

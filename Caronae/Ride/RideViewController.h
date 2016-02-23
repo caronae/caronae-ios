@@ -7,6 +7,9 @@
 @optional
 - (void)didDeleteRide:(Ride *)ride;
 
+@optional
+- (void)didFinishRide:(Ride *)ride;
+
 @end
 
 @interface RideViewController : UIViewController

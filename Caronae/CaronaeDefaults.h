@@ -81,7 +81,7 @@ extern const NSInteger CaronaeErrorOpeningCoreDataStore;
  *  @param ride The ride of the query.
  *  @return `true` if the use has already requested to join the ride, `false` otherwise.
  */
-+ (BOOL)hasUserAlreadyRequestedJoin:(Ride *)RIDE;
++ (BOOL)hasUserAlreadyRequestedJoin:(Ride *)ride;
 
 /**
  *  Adds a Ride to the join requests cache.
