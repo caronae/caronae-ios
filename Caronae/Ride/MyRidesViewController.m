@@ -6,9 +6,7 @@
 #import "Notification.h"
 
 @interface MyRidesViewController () <CreateRideDelegate, RideDelegate>
-
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic) User *user;
 @property (nonatomic) NSArray<Notification *> *unreadNotifications;
 @end
 
@@ -21,8 +19,6 @@
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     self.managedObjectContext = appDelegate.managedObjectContext;
-    
-    self.user = [CaronaeDefaults defaults].user;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateNotifications:) name:CaronaeDidUpdateNotifications object:nil];
     
@@ -44,6 +40,8 @@
         self.tableView.backgroundView = self.loadingLabel;
     }
     
+    User *user = [CaronaeDefaults defaults].user;
+    
     // Run in secondary thread so it won't affect UI
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSArray *ridesJSON = [[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"];
@@ -57,7 +55,7 @@
         
         NSMutableArray *rides = [[NSMutableArray alloc] initWithCapacity:rideArchive.count];
         for (Ride *ride in rideArchive) {
-            ride.driver = self.user;
+            ride.driver = user;
             
             // Checking if subscribed to my rides after delay to ensure GCM is connected
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
