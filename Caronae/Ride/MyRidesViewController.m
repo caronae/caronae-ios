@@ -27,13 +27,19 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateNotifications:) name:CaronaeDidUpdateNotifications object:nil];
     
     [self updateUnreadNotifications];
-    [self updateRides];
+    [self loadMyRides];
+}
+
+- (void)refreshTable:(id)sender {
+    if (self.refreshControl.refreshing) {
+        [self loadMyRides];
+    }
 }
 
 
 #pragma mark - Ride methods
 
-- (void)updateRides {
+- (void)loadMyRides {
     if (self.tableView.backgroundView != nil) {
         self.tableView.backgroundView = self.loadingLabel;
     }
@@ -72,12 +78,14 @@
         
         if (self.rides.count > 0) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                [self.refreshControl endRefreshing];
                 self.tableView.backgroundView = nil;
                 [self.tableView reloadData];
             });
         }
         else {
             dispatch_async(dispatch_get_main_queue(), ^{
+                [self.refreshControl endRefreshing];
                 self.tableView.backgroundView = self.emptyTableLabel;
             });
         }
@@ -101,21 +109,21 @@
     [[NSUserDefaults standardUserDefaults] setObject:newUserRidesArchive forKey:@"userCreatedRides"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [self updateRides];
+    [self loadMyRides];
 }
 
 - (void)didDeleteRide:(Ride *)ride {
     NSLog(@"User has deleted ride with id %ld", ride.rideID);
     
     [self removeRideFromMyRides:ride];
-    [self updateRides];
+    [self loadMyRides];
 }
 
 - (void)didFinishRide:(Ride *)ride {
     NSLog(@"User has finished ride with id %ld", ride.rideID);
     
     [self removeRideFromMyRides:ride];
-    [self updateRides];
+    [self loadMyRides];
 }
 
 - (void)removeRideFromMyRides:(Ride *)ride {
