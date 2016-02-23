@@ -90,15 +90,16 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [self.mutualFriendsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         [self.phoneView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         
-//        if (_ride.finished) {
-//            [self configureFinishedRide];
-//        }
-        
         // Car details
         User *user = [CaronaeDefaults defaults].user;
         _carPlateLabel.text = user.carPlate.uppercaseString;
         _carModelLabel.text = user.carModel;
         _carColorLabel.text = user.carColor;
+        
+        // If the riders aren't provided then hide the riders view
+        if (!_ride.users) {
+            [self.ridersView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        }
     }
     // If the user is already a rider, hide 'join' button
     else if ([self userIsRider]) {
@@ -136,17 +137,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         }
         
         [self updateMutualFriends];
-    }
-    
-    // If the riders aren't provided then hide the riders view
-    if (!_ride.users) {
-        UILabel *noRidersLabel = [[UILabel alloc] init];
-        noRidersLabel.text = @"Não há caronistas aprovados.\n\n\n\n\n";
-        noRidersLabel.numberOfLines = 0;
-        noRidersLabel.font = [UIFont systemFontOfSize:11.0f];
-        noRidersLabel.textColor = [UIColor lightGrayColor];
-        [noRidersLabel sizeToFit];
-        self.ridersCollectionView.backgroundView = noRidersLabel;
     }
 }
 
