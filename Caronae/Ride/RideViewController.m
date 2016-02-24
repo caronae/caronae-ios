@@ -111,9 +111,9 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.requestRideButton removeFromSuperview];
             [self.finishRideView removeFromSuperview];
-            [self.cancelButton removeFromSuperview];
         });
         
+        [self.cancelButton setTitle:@"DESISTIR" forState:UIControlStateNormal];
         [_phoneButton setTitle:_ride.driver.phoneNumber forState:UIControlStateNormal];
         
         // Car details
