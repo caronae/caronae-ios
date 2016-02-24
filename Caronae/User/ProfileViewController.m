@@ -49,14 +49,18 @@
             _carColorLabel.text = @"-";
         }
         
-        [_mutualFriendsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-        [_reportView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_mutualFriendsView removeFromSuperview];
+            [_reportView removeFromSuperview];
+        });
     }
     else {
         self.title = _user.name;
-        [_carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-        [_signoutButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
         self.navigationItem.rightBarButtonItem = nil;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_carDetailsView removeFromSuperview];
+            [_signoutButton removeFromSuperview];
+        });
         [self updateMutualFriends];
     }
     

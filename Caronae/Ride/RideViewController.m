@@ -86,9 +86,12 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     // If the user is the driver of the ride, load pending join requests and hide 'join' button
     if ([self userIsDriver]) {
         [self loadJoinRequests];
-        [self.requestRideButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-        [self.mutualFriendsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-        [self.phoneView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.requestRideButton removeFromSuperview];
+            [self.mutualFriendsView removeFromSuperview];
+            [self.phoneView removeFromSuperview];
+        });
         
         // Car details
         User *user = [CaronaeDefaults defaults].user;
@@ -98,14 +101,18 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         
         // If the riders aren't provided then hide the riders view
         if (!_ride.users) {
-            [self.ridersView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.ridersView removeFromSuperview];
+            });
         }
     }
     // If the user is already a rider, hide 'join' button
     else if ([self userIsRider]) {
-        [self.requestRideButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-        [self.finishRideView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-        [self.cancelButton setTitle:@"DESISTIR" forState:UIControlStateNormal];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.requestRideButton removeFromSuperview];
+            [self.finishRideView removeFromSuperview];
+            [self.cancelButton removeFromSuperview];
+        });
         
         [_phoneButton setTitle:_ride.driver.phoneNumber forState:UIControlStateNormal];
         
@@ -118,11 +125,13 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     }
     // If the user is not related to the ride, hide 'cancel' button, car details view, riders view, chat button
     else {
-        [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-        [self.phoneView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-        [self.carDetailsView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-        [self.finishRideView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-        [self.ridersView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.cancelButton removeFromSuperview];
+            [self.phoneView removeFromSuperview];
+            [self.carDetailsView removeFromSuperview];
+            [self.finishRideView removeFromSuperview];
+            [self.ridersView removeFromSuperview];
+        });
         
         self.navigationItem.rightBarButtonItem = nil;
         
@@ -190,19 +199,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     _finishRideButton.tintColor = color;
     [_finishRideButton setTitleColor:color forState:UIControlStateNormal];
 }
-
-//- (void)configureFinishedRide {
-//    // Disable finish button
-//    [_finishRideButton setTitle:CaronaeFinishButtonStateAlreadyFinished forState:UIControlStateNormal];
-//    _finishRideButton.enabled = NO;
-//    _finishRideButton.alpha = 0.5;
-//    
-//    // Remove chat button
-//    self.navigationItem.rightBarButtonItem = nil;
-//
-//    // Remove cancel button
-//    [self.cancelButton performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
-//}
 
 - (BOOL)userIsDriver {
     return [[CaronaeDefaults defaults].user.userID isEqualToNumber:_ride.driver.userID];
