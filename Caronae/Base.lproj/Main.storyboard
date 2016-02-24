@@ -506,6 +506,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                     </view>
                     <connections>
                         <outlet property="authButton" destination="GdC-RO-82W" id="bVN-mb-NRQ"/>
+                        <outlet property="createUserButton" destination="Ovk-fe-fy7" id="q65-nt-3BO"/>
                         <outlet property="idTextField" destination="ZBE-h4-ywG" id="BAY-ar-wQe"/>
                         <outlet property="tokenTextField" destination="nW8-HP-hhp" id="nbL-Gr-mxx"/>
                         <segue destination="Grf-xD-SWT" kind="show" identifier="ViewHome" id="WCN-l5-gUT"/>
@@ -7348,13 +7349,13 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DwZ-AK-niy"/>
-        <segue reference="hM9-nM-k0Y"/>
-        <segue reference="H8O-Mc-OH3"/>
-        <segue reference="yIa-C3-QN8"/>
+        <segue reference="VJh-c3-WKd"/>
         <segue reference="tvA-Ui-5Q1"/>
         <segue reference="mqy-as-BVJ"/>
         <segue reference="U3D-Zh-YLa"/>
+        <segue reference="hM9-nM-k0Y"/>
+        <segue reference="DwZ-AK-niy"/>
+        <segue reference="H8O-Mc-OH3"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>

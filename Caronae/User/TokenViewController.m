@@ -16,6 +16,10 @@
     _authButton.enabled = NO;
     _tokenTextField.delegate = self;
     _idTextField.delegate = self;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_createUserButton removeFromSuperview];
+    });
 }
 
 - (void)authenticate {
