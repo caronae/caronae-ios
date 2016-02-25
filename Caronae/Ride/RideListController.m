@@ -20,6 +20,7 @@
         
         self.historyTable = NO;
         self.ridesDirectionGoing = YES;
+        self.hidesDirectionControl = NO;
         
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
@@ -84,9 +85,16 @@
     UINib *cellNib = [UINib nibWithNibName:NSStringFromClass(RideCell.class) bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"Ride Cell"];
     
-    self.tableView.rowHeight = 85.0f;
-    self.tableView.contentInset = UIEdgeInsetsMake(45.0f, 0.0f, 0.0f, 0.0f);
+    if (self.hidesDirectionControl) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.directionControl removeFromSuperview];
+        });
+    }
+    else {
+        self.tableView.contentInset = UIEdgeInsetsMake(45.0f, 0.0f, 0.0f, 0.0f);
+    }
     
+    self.tableView.rowHeight = 85.0f;
     self.tableView.backgroundView = self.loadingLabel;
     
     if (self.historyTable) {
@@ -108,8 +116,13 @@
 
 - (void)setRides:(NSArray *)rides {
     _rides = rides;
-    if (_rides) {
-        self.filteredRides = [RideListController filterRides:_rides withDirectionGoing:self.ridesDirectionGoing];
+    if (rides) {
+        if (self.hidesDirectionControl) {
+            self.filteredRides = rides;
+        }
+        else {
+            self.filteredRides = [RideListController filterRides:rides withDirectionGoing:self.ridesDirectionGoing];
+        }
     }
 }
 

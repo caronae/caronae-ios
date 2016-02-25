@@ -17,7 +17,8 @@
 @property (nonatomic) NSArray<Ride *> *rides;
 @property (nonatomic, readonly) NSArray<Ride *> *filteredRides;
 
-@property (nonatomic) BOOL ridesDirectionGoing;
+@property (nonatomic, assign) BOOL hidesDirectionControl;
+@property (nonatomic, assign) BOOL ridesDirectionGoing;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) id<UITableViewDelegate> delegate;

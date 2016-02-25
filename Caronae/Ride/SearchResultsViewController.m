@@ -11,6 +11,7 @@
 @implementation SearchResultsViewController
 
 - (void)viewDidLoad {
+    self.hidesDirectionControl = YES;
     [super viewDidLoad];
 }
 
