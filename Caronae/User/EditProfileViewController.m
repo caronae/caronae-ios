@@ -10,7 +10,7 @@
 #import "EditProfileViewController.h"
 #import "ZoneSelectionViewController.h"
 
-@interface EditProfileViewController () <ZoneSelectionDelegate, UIActionSheetDelegate>
+@interface EditProfileViewController () <ZoneSelectionDelegate, UIActionSheetDelegate, UITextFieldDelegate>
 @property (nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic) NSDateFormatter *joinedDateFormatter;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
@@ -27,7 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.phoneTextField.formatter setDefaultOutputPattern:@"(##) #####-####"];
+    [self.phoneTextField.formatter setDefaultOutputPattern:@"(###) #####-####"];
+    self.phoneTextField.delegate = self;
     [self updateProfileFields];
     [self configureFacebookLoginButton];
     
@@ -169,8 +170,8 @@
     }
     
     NSString *phone = self.phoneTextField.phoneNumber;
-    if (phone.length != 11) {
-        [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que o telefone que você inseriu não é válido."];
+    if (phone.length != 12) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que o telefone que você inseriu não é válido. Ele deve estar no formato (0XX) XXXXX-XXXX."];
         return NO;
     }
     
@@ -308,6 +309,16 @@
             break;
     }
     
+}
+
+
+#pragma mark - UITextField methods
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    // Automatically add prefix
+    if (textField == self.phoneTextField && self.phoneTextField.phoneNumber.length == 0) {
+        [self.phoneTextField setFormattedText:@"021"];
+    }
 }
 
 
