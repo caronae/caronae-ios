@@ -114,6 +114,7 @@ static NSUserDefaults *userDefaults;
     [CaronaeDefaults defaults].user = nil;
     [CaronaeDefaults defaults].userToken = nil;
     [CaronaeDefaults defaults].cachedJoinRequests = nil;
+    [appDelegate updateUserGCMToken:nil];
     [[[FBSDKLoginManager alloc] init] logOut];
     
     [appDelegate updateApplicationBadgeNumber];
