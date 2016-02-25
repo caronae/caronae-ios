@@ -40,6 +40,11 @@ const NSInteger CaronaeErrorNoRidesCreated = 2;
 const NSInteger CaronaeErrorOpeningCoreDataStore = 3;
 
 
+#pragma mark - Etc.
+
+NSString *const CaronaePhoneNumberPattern = @"(###) #####-####";
+
+
 @interface CaronaeDefaults()
 @property (nonatomic, readwrite) NSArray *centers;
 @property (nonatomic, readwrite) NSArray *hubs;

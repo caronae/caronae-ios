@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.phoneTextField.formatter setDefaultOutputPattern:@"(###) #####-####"];
+    [self.phoneTextField.formatter setDefaultOutputPattern:CaronaePhoneNumberPattern];
     self.phoneTextField.delegate = self;
     [self updateProfileFields];
     [self configureFacebookLoginButton];

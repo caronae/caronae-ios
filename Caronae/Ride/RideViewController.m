@@ -13,6 +13,7 @@
 #import "Ride.h"
 #import "RideViewController.h"
 #import "RiderCell.h"
+#import "SHSPhoneNumberFormatter+UserConfig.h"
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
 
@@ -114,7 +115,11 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         });
         
         [self.cancelButton setTitle:@"DESISTIR" forState:UIControlStateNormal];
-        [_phoneButton setTitle:_ride.driver.phoneNumber forState:UIControlStateNormal];
+        SHSPhoneNumberFormatter *phoneFormatter = [[SHSPhoneNumberFormatter alloc] init];
+        [phoneFormatter setDefaultOutputPattern:CaronaePhoneNumberPattern];
+        NSDictionary *result = [phoneFormatter valuesForString:_ride.driver.phoneNumber];
+        NSString *formattedPhoneNumber = result[@"text"];
+        [_phoneButton setTitle:formattedPhoneNumber forState:UIControlStateNormal];
         
         // Car details
         _carPlateLabel.text = _ride.driver.carPlate.uppercaseString;

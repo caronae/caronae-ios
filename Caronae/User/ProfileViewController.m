@@ -7,6 +7,7 @@
 #import "MenuViewController.h"
 #import "ProfileViewController.h"
 #import "RiderCell.h"
+#import "SHSPhoneNumberFormatter+UserConfig.h"
 
 @interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
@@ -76,7 +77,11 @@
     _numRidesLabel.text = _user.numRides > -1 ? [NSString stringWithFormat:@"%d", _user.numRides] : @"-";
     
     if (_user.phoneNumber.length > 0) {
-        [_phoneButton setTitle:_user.phoneNumber forState:UIControlStateNormal];
+        SHSPhoneNumberFormatter *phoneFormatter = [[SHSPhoneNumberFormatter alloc] init];
+        [phoneFormatter setDefaultOutputPattern:CaronaePhoneNumberPattern];
+        NSDictionary *result = [phoneFormatter valuesForString:_user.phoneNumber];
+        NSString *formattedPhoneNumber = result[@"text"];
+        [_phoneButton setTitle:formattedPhoneNumber forState:UIControlStateNormal];
     }
     else {
         dispatch_async(dispatch_get_main_queue(), ^{
