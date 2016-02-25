@@ -16,7 +16,7 @@
 - (void)configureCellWithUser:(User *)user {
     _requestingUser = user;
     _userName.text = user.name;
-    _userCourse.text = [NSString stringWithFormat:@"%@ | %@", user.profile, user.course];
+    _userCourse.text = user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", user.profile, user.course] : user.profile;
     
     if (user.profilePictureURL && ![user.profilePictureURL isEqualToString:@""]) {
         [self.userPhoto sd_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]

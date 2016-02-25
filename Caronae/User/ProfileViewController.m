@@ -71,7 +71,7 @@
     }
     
     _nameLabel.text = _user.name;
-    _courseLabel.text = [NSString stringWithFormat:@"%@ | %@", _user.profile, _user.course];
+    _courseLabel.text = _user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", _user.profile, _user.course] : _user.profile;
     _numDrivesLabel.text = _user.numDrives > -1 ? [NSString stringWithFormat:@"%d", _user.numDrives] : @"-";
     _numRidesLabel.text = _user.numRides > -1 ? [NSString stringWithFormat:@"%d", _user.numRides] : @"-";
     

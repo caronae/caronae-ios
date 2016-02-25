@@ -52,7 +52,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     }
 
     _driverNameLabel.text = _ride.driver.name;
-    _driverCourseLabel.text = [NSString stringWithFormat:@"%@ | %@", _ride.driver.profile, _ride.driver.course];
+    _driverCourseLabel.text = _ride.driver.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", _ride.driver.profile, _ride.driver.course] : _ride.driver.profile;
     
     if ([_ride.route isKindOfClass:[NSString class]] && [_ride.route isEqualToString:@""]) {
         _routeLabel.text = @"---";

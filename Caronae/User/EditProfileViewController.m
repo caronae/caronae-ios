@@ -64,7 +64,7 @@
     self.joinedDateFormatter.dateFormat = @"MM/yyyy";
     
     self.nameLabel.text = user.name;
-    self.courseLabel.text = [NSString stringWithFormat:@"%@ | %@", user.profile, user.course];
+    self.courseLabel.text = user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", user.profile, user.course] : user.profile;
     
     self.joinedDateLabel.text = [self.joinedDateFormatter stringFromDate:user.createdAt];
     self.numDrivesLabel.text = user.numDrives > -1 ? [NSString stringWithFormat:@"%d", user.numDrives] : @"-";

@@ -16,7 +16,7 @@
     
     User *user = [CaronaeDefaults defaults].user;
     self.profileNameLabel.text = user.name;
-    self.profileCourseLabel.text = user.course;
+    self.profileCourseLabel.text = user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", user.profile, user.course] : user.profile;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
