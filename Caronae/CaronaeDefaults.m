@@ -179,7 +179,7 @@ static NSUserDefaults *userDefaults;
 
 - (NSArray *)zones {
     if (!_zones) {
-        _zones = @[@"Baixada Fluminense", @"Centro", @"Grande Niterói", @"Zona Norte", @"Zona Oeste", @"Zona Sul", @"Outra"];
+        _zones = @[@"Baixada", @"Centro", @"Grande Niterói", @"Zona Norte", @"Zona Oeste", @"Zona Sul", @"Outra"];
     }
     return _zones;
 }
