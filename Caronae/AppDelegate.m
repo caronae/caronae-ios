@@ -41,6 +41,8 @@
         self.window.rootViewController = initialViewController;
         [self.window makeKeyAndVisible];
         [CaronaeDefaults registerForNotifications];
+        
+        [self fixUserPhoneIfNecessary]; // TODO: Remove before release
     }
     
     // Update application badge number and listen to notification updates
@@ -54,6 +56,16 @@
     }
     
     return YES;
+}
+
+// TODO: Remove before release
+- (void)fixUserPhoneIfNecessary {
+    User *user = [CaronaeDefaults defaults].user;
+    if (user.phoneNumber.length == 11) {
+        NSString *newPhoneNumber = [@"0" stringByAppendingString:user.phoneNumber];
+        user.phoneNumber = newPhoneNumber;
+        [CaronaeDefaults defaults].user = user;
+    }
 }
 
 - (void)updateApplicationBadgeNumber {
