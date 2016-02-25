@@ -26,7 +26,10 @@
 }
 
 - (IBAction)didTapDoneButton:(id)sender {
-    [self finishSelection];
+    NSString *location = [self.neighborhoodTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (location > 0) {
+        [self finishSelection];
+    }
 }
 
 @end
