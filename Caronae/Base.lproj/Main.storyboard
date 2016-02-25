@@ -5112,14 +5112,9 @@ FOTO</string>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ymB-Vw-rcK">
                                                 <rect key="frame" x="-61" y="-14" width="123" height="29"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="320" id="cyh-xu-vzE">
-                                                        <variation key="widthClass=compact" constant="220"/>
-                                                    </constraint>
-                                                </constraints>
                                                 <segments>
-                                                    <segment title="Ida"/>
-                                                    <segment title="Volta"/>
+                                                    <segment title="Chegando na UFRJ"/>
+                                                    <segment title="Saindo da UFRJ"/>
                                                 </segments>
                                                 <color key="tintColor" red="0.57647061349999995" green="0.58039218189999997" blue="0.57647061349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <userDefinedRuntimeAttributes>
@@ -5134,16 +5129,6 @@ FOTO</string>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="cyh-xu-vzE"/>
-                                                    </mask>
-                                                </variation>
-                                                <variation key="widthClass=compact">
-                                                    <mask key="constraints">
-                                                        <include reference="cyh-xu-vzE"/>
-                                                    </mask>
-                                                </variation>
                                             </segmentedControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Kk-3k-hQd" userLabel="Center">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -5438,7 +5423,8 @@ FOTO</string>
                                                         <exclude reference="3Ze-qi-VAk"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="-330" y="233" width="710" height="710"/>
                                                     <mask key="constraints">
                                                         <exclude reference="3Ze-qi-VAk"/>
                                                     </mask>
@@ -5501,7 +5487,8 @@ FOTO</string>
                                                 <exclude reference="u8N-bY-kfB"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact">
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="973"/>
                                             <mask key="subviews">
                                                 <include reference="ymB-Vw-rcK"/>
                                                 <include reference="8Kk-3k-hQd"/>
@@ -7484,13 +7471,13 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DwZ-AK-niy"/>
+        <segue reference="CEp-XF-lJK"/>
         <segue reference="hM9-nM-k0Y"/>
-        <segue reference="U3D-Zh-YLa"/>
-        <segue reference="kXd-xG-sw3"/>
         <segue reference="mqy-as-BVJ"/>
+        <segue reference="kXd-xG-sw3"/>
+        <segue reference="U3D-Zh-YLa"/>
         <segue reference="yIa-C3-QN8"/>
-        <segue reference="7VR-Dw-svl"/>
+        <segue reference="DwZ-AK-niy"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>
