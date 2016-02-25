@@ -133,6 +133,10 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
             [self.ridersView removeFromSuperview];
         });
         
+        // Hide driver's phone number
+        _ride.driver.phoneNumber = nil;
+        
+        // Hide chat button
         self.navigationItem.rightBarButtonItem = nil;
         
         // Update the state of the join request button if the user has already requested to join
@@ -527,8 +531,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     }
     else {
         user = _mutualFriends[indexPath.row];
+        user.phoneNumber = nil;
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Friend Cell" forIndexPath:indexPath];
-        
     }
     
     cell.user = user;

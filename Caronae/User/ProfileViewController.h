@@ -8,6 +8,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *courseLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
+@property (weak, nonatomic) IBOutlet UIView *phoneView;
+@property (weak, nonatomic) IBOutlet UIButton *phoneButton;
 
 // Mutual friends
 @property (weak, nonatomic) IBOutlet UIView *mutualFriendsView;

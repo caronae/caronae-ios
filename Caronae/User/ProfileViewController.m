@@ -75,6 +75,15 @@
     _numDrivesLabel.text = _user.numDrives > -1 ? [NSString stringWithFormat:@"%d", _user.numDrives] : @"-";
     _numRidesLabel.text = _user.numRides > -1 ? [NSString stringWithFormat:@"%d", _user.numRides] : @"-";
     
+    if (_user.phoneNumber.length > 0) {
+        [_phoneButton setTitle:_user.phoneNumber forState:UIControlStateNormal];
+    }
+    else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_phoneView removeFromSuperview];
+        });
+    }
+    
     if (_user.profilePictureURL && ![_user.profilePictureURL isEqualToString:@""]) {
         [self.profileImage sd_setImageWithURL:[NSURL URLWithString:_user.profilePictureURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
@@ -135,6 +144,12 @@
 
 
 #pragma mark - Edit profile methods
+
+- (IBAction)didTapPhoneButton:(id)sender {
+    NSString *phoneNumber = _user.phoneNumber;
+    NSString *phoneNumberURLString = [NSString stringWithFormat:@"telprompt://%@", phoneNumber];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumberURLString]];
+}
 
 - (void)didUpdateUser:(User *)updatedUser {
     self.user = updatedUser;
