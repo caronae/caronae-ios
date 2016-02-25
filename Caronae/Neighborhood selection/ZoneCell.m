@@ -11,4 +11,13 @@
     }
 }
 
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    UIColor *detailBackgroundColor = _colorDetail.backgroundColor;
+    [super setSelected:selected animated:animated];
+    
+    if (selected) {
+        _colorDetail.backgroundColor = detailBackgroundColor;
+    }
+}
+
 @end

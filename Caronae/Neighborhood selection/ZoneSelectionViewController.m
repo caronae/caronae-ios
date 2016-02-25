@@ -60,7 +60,12 @@
     }
     else {
         cellColor = [CaronaeDefaults colorForZone:self.selectedZone];
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        if (self.neighborhoodSelectionType == NeighborhoodSelectionMany && cell.selected) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
     }
     
     cell.zoneNameLabel.text = zone;
