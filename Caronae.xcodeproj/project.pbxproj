@@ -27,6 +27,7 @@
 		A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C61BF01B9A005BA311 /* MenuViewController.m */; };
 		A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C91BF01C1D005BA311 /* ProfileViewController.m */; };
 		A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312CC1BF01C26005BA311 /* EditProfileViewController.m */; };
+		A34C67581C826280001F6D90 /* NotificationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C67571C826280001F6D90 /* NotificationStore.m */; };
 		A357EF331C56C5A100AC8096 /* RideListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF311C56C5A100AC8096 /* RideListController.m */; };
 		A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A357EF321C56C5A100AC8096 /* RideListController.xib */; };
 		A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF361C57168D00AC8096 /* SignupViewController.m */; };
@@ -117,6 +118,8 @@
 		A34312C91BF01C1D005BA311 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		A34312CB1BF01C26005BA311 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		A34312CC1BF01C26005BA311 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		A34C67561C826280001F6D90 /* NotificationStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationStore.h; path = Notification/NotificationStore.h; sourceTree = "<group>"; };
+		A34C67571C826280001F6D90 /* NotificationStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationStore.m; path = Notification/NotificationStore.m; sourceTree = "<group>"; };
 		A357EF301C56C5A100AC8096 /* RideListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideListController.h; sourceTree = "<group>"; };
 		A357EF311C56C5A100AC8096 /* RideListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideListController.m; sourceTree = "<group>"; };
 		A357EF321C56C5A100AC8096 /* RideListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideListController.xib; sourceTree = "<group>"; };
@@ -253,10 +256,11 @@
 				A3D3E7FD1C77AD350094BBAC /* About */,
 				A3B5AF121BF2F1050026A889 /* Categories */,
 				A37E80D81C5EFFA600683F27 /* Chat */,
-				A3AD19C71BED96DC003EDA17 /* Extras */,
+				A3AD19C71BED96DC003EDA17 /* Etc */,
 				A3DF39BC1C66CFAE005D22FD /* Falae */,
 				A39BBD001C0629E100EF9EBD /* Model */,
 				A3180F841C6066AF007195DF /* Neighborhood selection */,
+				A34C67551C826258001F6D90 /* Notification */,
 				A32B80B81C2E075000FC370A /* Ride */,
 				A3169C931BED842D00A0D428 /* Supporting Files */,
 				A32B80B71C2E073000FC370A /* User */,
@@ -361,6 +365,15 @@
 			path = Ride;
 			sourceTree = "<group>";
 		};
+		A34C67551C826258001F6D90 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				A34C67561C826280001F6D90 /* NotificationStore.h */,
+				A34C67571C826280001F6D90 /* NotificationStore.m */,
+			);
+			name = Notification;
+			sourceTree = "<group>";
+		};
 		A37E80D81C5EFFA600683F27 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,7 +408,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		A3AD19C71BED96DC003EDA17 /* Extras */ = {
+		A3AD19C71BED96DC003EDA17 /* Etc */ = {
 			isa = PBXGroup;
 			children = (
 				A375D2F91C19175A00795CAE /* CaronaeAlertController.h */,
@@ -405,6 +418,7 @@
 				A398BE031C6D7DEC00CEA6A1 /* CaronaePhoneTextField.h */,
 				A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */,
 			);
+			name = Etc;
 			path = Extras;
 			sourceTree = "<group>";
 		};
@@ -674,6 +688,7 @@
 				A3B5AEFF1BF1AAC10026A889 /* CaronaeDefaults.m in Sources */,
 				A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */,
 				A37E80DB1C5F007900683F27 /* ChatViewController.m in Sources */,
+				A34C67581C826280001F6D90 /* NotificationStore.m in Sources */,
 				A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */,
 				A3169C951BED842D00A0D428 /* main.m in Sources */,
 				A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */,

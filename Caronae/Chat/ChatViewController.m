@@ -6,6 +6,7 @@
 #import "MessageBubbleTableViewCell.h"
 #import "Message+CoreDataProperties.h"
 #import "Notification+CoreDataProperties.h"
+#import "NotificationStore.h"
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 
@@ -57,28 +58,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
 }
 
 - (void)clearNotifications {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
-    fetchRequest.entity = entity;
-    fetchRequest.includesPropertyValues = NO;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == 'chat' AND rideID = %@", @(self.chat.ride.rideID)];
-    fetchRequest.predicate = predicate;
-    
-    NSError *error;
-    NSArray<Notification *> *unreadNotifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (error) {
-        NSLog(@"Whoops, couldn't load unread notifications for chat: %@", error.localizedDescription);
-        return;
-    }
-    
-    for (id notification in unreadNotifications) {
-        [self.managedObjectContext deleteObject:notification];
-    }
-    
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't delete notifications for chat: %@", error.localizedDescription);
-        return;
-    }
+    [NotificationStore clearNotificationsForRide:@(self.chat.ride.rideID) ofType:NotificationTypeChat];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
                                                         object:nil

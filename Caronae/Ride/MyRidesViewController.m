@@ -1,12 +1,11 @@
 #import <CoreData/CoreData.h>
-#import "AppDelegate.h"
 #import "ChatStore.h"
 #import "CreateRideViewController.h"
 #import "MyRidesViewController.h"
 #import "Notification.h"
+#import "NotificationStore.h"
 
 @interface MyRidesViewController () <CreateRideDelegate, RideDelegate>
-@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) NSArray<Notification *> *unreadNotifications;
 @end
 
@@ -16,9 +15,6 @@
     [super viewDidLoad];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
-    
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    self.managedObjectContext = appDelegate.managedObjectContext;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateNotifications:) name:CaronaeDidUpdateNotifications object:nil];
     
@@ -178,20 +174,7 @@
 #pragma mark - Notification handling
 
 - (void)updateUnreadNotifications {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
-    fetchRequest.entity = entity;
-    fetchRequest.includesPropertyValues = NO;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == 'joinRequest'"];
-    fetchRequest.predicate = predicate;
-    
-    NSError *error;
-    self.unreadNotifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (error) {
-        NSLog(@"Whoops, couldn't load unread notifications: %@", error.localizedDescription);
-        return;
-    }
-    
+    self.unreadNotifications = [NotificationStore getNotificationsOfType:NotificationTypeRequest];
     if (self.unreadNotifications.count > 0) {
         self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", (long)self.unreadNotifications.count];
     }

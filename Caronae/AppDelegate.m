@@ -9,6 +9,7 @@
 #import "ChatViewController.h"
 #import "Message+CoreDataProperties.h"
 #import "Notification+CoreDataProperties.h"
+#import "NotificationStore.h"
 #import "TabBarController.h"
 
 @interface AppDelegate () <GGLInstanceIDDelegate, GCMReceiverDelegate>
@@ -69,18 +70,7 @@
 }
 
 - (void)updateApplicationBadgeNumber {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
-    fetchRequest.entity = entity;
-    fetchRequest.includesPropertyValues = NO;
-    
-    NSError *error;
-    NSUInteger totalUnreadNotifications = [self.managedObjectContext countForFetchRequest:fetchRequest error:&error];
-    if (error) {
-        NSLog(@"Whoops, couldn't load unread notifications: %@", error.localizedDescription);
-        return;
-    }
-    
+    NSUInteger totalUnreadNotifications = [NotificationStore getNotificationsOfType:NotificationTypeAll].count;
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:totalUnreadNotifications];
 }
 
@@ -173,6 +163,10 @@
             [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
         }
     }
+    // Handle 'ride cancelled' notifications
+    else if ([msgType isEqualToString:@"cancelled"] || [msgType isEqualToString:@"finished"]) {
+        [self handleFinishedNotification:userInfo];
+    }
     else if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive && userInfo[@"message"] && ![userInfo[@"message"] isEqualToString:@""]) {
         [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
     }
@@ -225,14 +219,11 @@
         }
     }
     
-    Notification *caronaeNotification = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Notification.class) inManagedObjectContext:context];
+    Notification *caronaeNotification = [[Notification alloc] init];
     caronaeNotification.rideID = rideID;
     caronaeNotification.date = message.sentDate;
     caronaeNotification.type = @"chat";
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save notification: %@", error.localizedDescription);
-        return;
-    }
+    [NotificationStore insertNotification:caronaeNotification];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
                                                         object:nil
@@ -243,20 +234,29 @@
     NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
     NSManagedObjectContext *context = [self managedObjectContext];
 
-    Notification *caronaeNotification = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Notification.class) inManagedObjectContext:context];
+    Notification *caronaeNotification = [[Notification alloc] init];
     caronaeNotification.rideID = rideID;
     caronaeNotification.date = [NSDate date];
     caronaeNotification.type = @"joinRequest";
-
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save notification: %@", error.localizedDescription);
-        return;
-    }
+    [NotificationStore insertNotification:caronaeNotification];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
                                                         object:nil
                                                       userInfo:userInfo];
+    
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
+    }
+}
+
+- (void)handleFinishedNotification:(NSDictionary *)userInfo {
+    NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
+    
+    [NotificationStore clearNotificationsForRide:rideID ofType:NotificationTypeAll];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
+                                                        object:nil
+                                                      userInfo:@{@"msgType": @"chat"}];
     
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];

@@ -2,13 +2,13 @@
 #import <CoreData/CoreData.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "AppDelegate.h"
 #import "CaronaeAlertController.h"
 #import "Chat.h"
 #import "ChatStore.h"
 #import "ChatViewController.h"
 #import "JoinRequestCell.h"
 #import "Notification.h"
+#import "NotificationStore.h"
 #import "ProfileViewController.h"
 #import "Ride.h"
 #import "RideViewController.h"
@@ -21,7 +21,6 @@
 @property (nonatomic) NSArray<User *> *mutualFriends;
 @property (nonatomic) User *selectedUser;
 @property (nonatomic) UIColor *color;
-@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -35,9 +34,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     [super viewDidLoad];
     
     self.title = @"Carona";
-    
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    self.managedObjectContext = appDelegate.managedObjectContext;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"HH:mm | dd/MM";
@@ -167,29 +163,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)clearNotifications {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
-    fetchRequest.entity = entity;
-    fetchRequest.includesPropertyValues = NO;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == 'joinRequest' AND rideID = %@", @(self.ride.rideID)];
-    fetchRequest.predicate = predicate;
-    
-    NSError *error;
-    NSArray<Notification *> *unreadNotifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (error) {
-        NSLog(@"Whoops, couldn't load unread notifications for chat: %@", error.localizedDescription);
-        return;
-    }
-    
-    for (id notification in unreadNotifications) {
-        [self.managedObjectContext deleteObject:notification];
-    }
-    
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't delete notifications for chat: %@", error.localizedDescription);
-        return;
-    }
-    
+    [NotificationStore clearNotificationsForRide:@(self.ride.rideID) ofType:NotificationTypeRequest];
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
                                                         object:nil
                                                       userInfo:@{@"msgType": @"joinRequest"}];

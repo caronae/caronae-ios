@@ -2,14 +2,13 @@
 #import <CoreData/CoreData.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "ActiveRidesViewController.h"
-#import "AppDelegate.h"
 #import "CaronaeDefaults.h"
 #import "Chat.h"
 #import "ChatStore.h"
 #import "Notification+CoreDataProperties.h"
+#import "NotificationStore.h"
 
 @interface ActiveRidesViewController ()
-@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) NSArray<Notification *> *unreadNotifications;
 @end
 
@@ -19,9 +18,6 @@
     [super viewDidLoad];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
-    
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    self.managedObjectContext = appDelegate.managedObjectContext;
     
     [self updateUnreadNotifications];
     [self loadActiveRides];
@@ -41,19 +37,7 @@
 }
 
 - (void)updateUnreadNotifications {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Notification.class) inManagedObjectContext:self.managedObjectContext];
-    fetchRequest.entity = entity;
-    fetchRequest.includesPropertyValues = NO;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == 'chat'"];
-    fetchRequest.predicate = predicate;
-    
-    NSError *error;
-    self.unreadNotifications = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (error) {
-        NSLog(@"Whoops, couldn't load unread notifications: %@", error.localizedDescription);
-        return;
-    }
+    self.unreadNotifications = [NotificationStore getNotificationsOfType:NotificationTypeChat];
     
     if (self.unreadNotifications.count > 0) {
         self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld", (long)self.unreadNotifications.count];
