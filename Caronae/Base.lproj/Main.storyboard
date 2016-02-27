@@ -63,9 +63,6 @@
                                                     <constraint firstAttribute="bottom" secondItem="ac1-YF-lCK" secondAttribute="bottom" constant="5" id="piL-jb-h4e"/>
                                                     <constraint firstItem="ac1-YF-lCK" firstAttribute="top" secondItem="2UI-P7-VW1" secondAttribute="bottom" constant="5" id="yfO-wj-Bxd"/>
                                                 </constraints>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="20" y="93" width="360" height="67"/>
-                                                </variation>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qqb-7l-ptZ" userLabel="Token">
                                                 <rect key="frame" x="20" y="150" width="360" height="67"/>
@@ -91,17 +88,11 @@
                                                     <constraint firstAttribute="bottom" secondItem="mFu-hh-jDk" secondAttribute="bottom" constant="5" id="VrT-fI-4P1"/>
                                                     <constraint firstItem="mFu-hh-jDk" firstAttribute="leading" secondItem="aRV-k9-33D" secondAttribute="leading" id="m18-aZ-hdj"/>
                                                 </constraints>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="20" y="170" width="360" height="67"/>
-                                                </variation>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGw-oS-smP">
                                                 <rect key="frame" x="150" y="267" width="100" height="42"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="CRIAR" backgroundImage="ButtonColor"/>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="150" y="287" width="100" height="42"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="didTapCreateButton:" destination="DFi-hH-t6a" eventType="touchUpInside" id="cxz-H2-FwP"/>
                                                 </connections>
@@ -110,9 +101,6 @@
                                                 <rect key="frame" x="171" y="319" width="58" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <state key="normal" title="Cancelar"/>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="171" y="339" width="58" height="29"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="didTapCancelButton:" destination="DFi-hH-t6a" eventType="touchUpInside" id="95A-3v-4UL"/>
                                                 </connections>
@@ -338,9 +326,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <state key="normal" title="ACESSAR" backgroundImage="ButtonColor">
                                                     <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="-156" y="454" width="711" height="710"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="didTapAuthenticateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="da5-pN-Iyk"/>
                                                 </connections>
@@ -348,9 +333,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovk-fe-fy7">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <state key="normal" title="Criar usuário"/>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="156" y="1172" width="88" height="30"/>
-                                                </variation>
                                                 <connections>
                                                     <segue destination="DFi-hH-t6a" kind="presentation" id="LJD-Zm-tLI"/>
                                                 </connections>
@@ -361,7 +343,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstAttribute="height" constant="30" id="sVR-jG-HbO"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Token" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-HP-hhp" userLabel="Token Text Field" customClass="CaronaeTextField">
                                                 <rect key="frame" x="20" y="259" width="320" height="30"/>
@@ -428,8 +410,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <exclude reference="BqT-2c-aNb"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="1256"/>
+                                        <variation key="widthClass=compact">
                                             <mask key="subviews">
                                                 <include reference="zej-9f-2CU"/>
                                                 <include reference="TQy-c2-48w"/>
@@ -1547,8 +1528,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                         <exclude reference="ENW-kS-zDL"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="-330" y="758" width="710" height="710"/>
+                                                <variation key="widthClass=compact">
                                                     <mask key="constraints">
                                                         <exclude reference="ENW-kS-zDL"/>
                                                     </mask>
@@ -1654,8 +1634,7 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <exclude reference="gDV-a8-ReJ"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="1498"/>
+                                        <variation key="widthClass=compact">
                                             <mask key="subviews">
                                                 <include reference="wWF-a6-BXF"/>
                                                 <include reference="SoK-oZ-c5J"/>
@@ -5423,8 +5402,7 @@ FOTO</string>
                                                         <exclude reference="3Ze-qi-VAk"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="-330" y="233" width="710" height="710"/>
+                                                <variation key="widthClass=compact">
                                                     <mask key="constraints">
                                                         <exclude reference="3Ze-qi-VAk"/>
                                                     </mask>
@@ -5487,8 +5465,7 @@ FOTO</string>
                                                 <exclude reference="u8N-bY-kfB"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="973"/>
+                                        <variation key="widthClass=compact">
                                             <mask key="subviews">
                                                 <include reference="ymB-Vw-rcK"/>
                                                 <include reference="8Kk-3k-hQd"/>
@@ -5604,15 +5581,15 @@ FOTO</string>
             <objects>
                 <tableViewController id="m4b-ln-3hN" customClass="ZoneSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VjV-fS-glM">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Zone Cell" id="igM-m5-EON" customClass="ZoneCell">
-                                <rect key="frame" x="0.0" y="92" width="400" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="igM-m5-EON" id="hkP-M9-PyM">
-                                    <rect key="frame" x="0.0" y="0.0" width="367" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ny-zh-u1W" userLabel="Color Detail">
@@ -7220,15 +7197,15 @@ FOTO</string>
             <objects>
                 <tableViewController id="J0r-pk-iNO" customClass="ZoneSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="q3z-80-JGK">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="Zone Cell" id="fNt-ar-NHR" customClass="ZoneCell">
-                                <rect key="frame" x="0.0" y="92" width="400" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fNt-ar-NHR" id="wCF-CR-hFQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="361" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="561" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eS-e0-z0Y" userLabel="Color Detail">
@@ -7339,7 +7316,7 @@ FOTO</string>
                         <viewControllerLayoutGuide type="bottom" id="pcA-fx-kaF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="27z-nz-vnk">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Digite o nome do bairro" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xyj-Wb-gUe" customClass="CaronaeTextField">
@@ -7471,13 +7448,13 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CEp-XF-lJK"/>
+        <segue reference="VJh-c3-WKd"/>
         <segue reference="hM9-nM-k0Y"/>
-        <segue reference="mqy-as-BVJ"/>
-        <segue reference="kXd-xG-sw3"/>
-        <segue reference="U3D-Zh-YLa"/>
-        <segue reference="yIa-C3-QN8"/>
         <segue reference="DwZ-AK-niy"/>
+        <segue reference="CEp-XF-lJK"/>
+        <segue reference="U3D-Zh-YLa"/>
+        <segue reference="kXd-xG-sw3"/>
+        <segue reference="mqy-as-BVJ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>
