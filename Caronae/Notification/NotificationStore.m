@@ -18,11 +18,7 @@ static NSManagedObjectContext *_managedObjectContext;
 
 + (BOOL)insertNotification:(Notification *)notification {
     NSManagedObjectContext *managedObjectContext = [NotificationStore managedObjectContext];
-    Notification *newNotification = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Notification.class) inManagedObjectContext:managedObjectContext];
-    newNotification.rideID = notification.rideID;
-    newNotification.date = notification.date;
-    newNotification.type = notification.type;
-    
+        
     NSError *error;
     if (![managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save notification: %@", error.localizedDescription);
@@ -39,8 +35,7 @@ static NSManagedObjectContext *_managedObjectContext;
     fetchRequest.entity = entity;
     
     if (type != NotificationTypeAll) {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == '%@'", NSStringFromNotificationType(type)];
-    fetchRequest.predicate = predicate;
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"type == %@", NSStringFromNotificationType(type)];
     }
     
     NSError *error;
@@ -64,7 +59,7 @@ static NSManagedObjectContext *_managedObjectContext;
         predicate = [NSPredicate predicateWithFormat:@"rideID = %@", rideID];
     }
     else {
-        predicate = [NSPredicate predicateWithFormat:@"rideID = %@ AND type == '%@'", rideID, NSStringFromNotificationType(type)];
+        predicate = [NSPredicate predicateWithFormat:@"rideID = %@ AND type == %@", rideID, NSStringFromNotificationType(type)];
     
     }
     fetchRequest.predicate = predicate;

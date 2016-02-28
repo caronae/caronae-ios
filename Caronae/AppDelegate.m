@@ -163,7 +163,7 @@
             [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
         }
     }
-    // Handle 'ride cancelled' notifications
+    // Handle 'ride cancelled' and 'ride finished' notifications
     else if ([msgType isEqualToString:@"cancelled"] || [msgType isEqualToString:@"finished"]) {
         [self handleFinishedNotification:userInfo];
     }
@@ -219,10 +219,7 @@
         }
     }
     
-    Notification *caronaeNotification = [[Notification alloc] init];
-    caronaeNotification.rideID = rideID;
-    caronaeNotification.date = message.sentDate;
-    caronaeNotification.type = @"chat";
+    Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:message.sentDate type:@"chat" context:self.managedObjectContext];
     [NotificationStore insertNotification:caronaeNotification];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
@@ -232,12 +229,8 @@
 
 - (void)handleJoinRequestNotification:(NSDictionary *)userInfo {
     NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
-    NSManagedObjectContext *context = [self managedObjectContext];
 
-    Notification *caronaeNotification = [[Notification alloc] init];
-    caronaeNotification.rideID = rideID;
-    caronaeNotification.date = [NSDate date];
-    caronaeNotification.type = @"joinRequest";
+    Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:[NSDate date] type:@"joinRequest" context:self.managedObjectContext];
     [NotificationStore insertNotification:caronaeNotification];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
@@ -256,7 +249,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
                                                         object:nil
-                                                      userInfo:@{@"msgType": @"chat"}];
+                                                      userInfo:nil];
     
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];

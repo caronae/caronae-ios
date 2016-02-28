@@ -1,15 +1,13 @@
-//
-//  Notification.m
-//  Caronae
-//
-//  Created by Mario Cecchi on 06/02/2016.
-//  Copyright © 2016 Mario Cecchi. All rights reserved.
-//
-
 #import "Notification.h"
 
 @implementation Notification
 
-// Insert code here to add functionality to your managed object subclass
++ (instancetype)notificationWithRideID:(NSNumber *)rideID date:(NSDate *)date type:(NSString *)type context:(NSManagedObjectContext *)managedObjectContext {
+    Notification *notification = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Notification.class) inManagedObjectContext:managedObjectContext];
+    notification.rideID = rideID;
+    notification.date = date;
+    notification.type = type;
+    return notification;
+}
 
 @end

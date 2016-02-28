@@ -57,6 +57,7 @@ static NSDateFormatter *dateFormatter;
         [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_senderLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_bubbleView attribute:NSLayoutAttributeTop multiplier:1 constant:8]];
         [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_senderLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:_messageLabel attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
         [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_timeLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:_messageLabel attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
+        [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_timeLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:_messageLabel attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
         
         [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_messageLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_bubbleView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
         [_bubbleView addConstraint:[NSLayoutConstraint constraintWithItem:_messageLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_senderLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:4]];
