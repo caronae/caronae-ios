@@ -199,7 +199,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (void)updateMutualFriends {
     // Abort if the Facebook accounts are not connected.
-    if (![UserController sharedInstance].userFBToken || ![_ride.driver.facebookID isEqualToString:@""]) {
+    if (![UserController sharedInstance].userFBToken || _ride.driver.facebookID.length == 0) {
         return;
     }
     
@@ -210,6 +210,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _ride.driver.facebookID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
+        int totalMutualFriends = [responseObject[@"total_count"] intValue];
         NSError *error;
         NSArray<User *> *mutualFriends = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:mutualFriendsJSON error:&error];
         
@@ -223,7 +224,13 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
             [_mutualFriendsView layoutIfNeeded];
             [_mutualFriendsCollectionView reloadData];
         }
-        _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", [responseObject[@"total_count"] intValue]];
+        
+        if (totalMutualFriends > 0) {
+            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d no total e %d no Caronaê", totalMutualFriends, (int)mutualFriends.count];
+        }
+        else {
+            _mutualFriendsLabel.text = @"Amigos em comum: 0";
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
     }];

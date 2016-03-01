@@ -133,7 +133,7 @@
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _user.facebookID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
-        
+        int totalMutualFriends = [responseObject[@"total_count"] intValue];
         NSError *error;
         NSArray<User *> *mutualFriends = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:mutualFriendsJSON error:&error];
         
@@ -142,9 +142,14 @@
         }
         
         self.mutualFriends = mutualFriends;
-        
         [self.mutualFriendsCollectionView reloadData];
-        _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d", [responseObject[@"total_count"] intValue]];
+
+        if (totalMutualFriends > 0) {
+            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d no total e %d no Caronaê", totalMutualFriends, (int)mutualFriends.count];
+        }
+        else {
+            _mutualFriendsLabel.text = @"Amigos em comum: 0";
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
     }];
