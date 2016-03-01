@@ -92,6 +92,12 @@ extern NSString *const CaronaePhoneNumberPattern;
 + (void)addToCachedJoinRequests:(Ride *)ride;
 
 /**
+ *  Removes a Ride from the join requests cache.
+ * @param ride The ride the user has requested to join.
+ */
++ (void)removeFromCachedJoinRequests:(Ride *)ride;
+
+/**
  *  Returns the color related to a specific zone according to the app's default color palette.
  *
  *  @param zone The zone name (Zona Norte, Zona Sul, Centro etc.)

@@ -73,7 +73,6 @@
     if (ride) {
         RideViewController *rideVC = [self rideViewControllerForRide:ride];
         rideVC.shouldOpenChatWindow = YES;
-        
         [self.navigationController pushViewController:rideVC animated:YES];
     }
 }

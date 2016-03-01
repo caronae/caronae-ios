@@ -163,6 +163,13 @@ static NSUserDefaults *userDefaults;
     [CaronaeDefaults defaults].cachedJoinRequests = requested;
 }
 
++ (void)removeFromCachedJoinRequests:(Ride *)ride {
+    NSMutableArray *requested = [CaronaeDefaults defaults].cachedJoinRequests.mutableCopy;
+    NSNumber *rideID = @(ride.rideID);
+    [requested removeObject:rideID];
+    [CaronaeDefaults defaults].cachedJoinRequests = requested;
+}
+
 + (UIColor *)colorForZone:(NSString *)zone {
     UIColor *color = [CaronaeDefaults defaults].zoneColors[zone];
     if (!color) color = [UIColor darkTextColor];
