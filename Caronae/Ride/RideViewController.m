@@ -92,7 +92,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         });
         
         // Car details
-        User *user = [CaronaeDefaults defaults].user;
+        User *user = [UserController sharedInstance].user;
         _carPlateLabel.text = user.carPlate.uppercaseString;
         _carModelLabel.text = user.carModel;
         _carColorLabel.text = user.carColor;
@@ -185,12 +185,12 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (BOOL)userIsDriver {
-    return [[CaronaeDefaults defaults].user.userID isEqualToNumber:_ride.driver.userID];
+    return [[UserController sharedInstance].user.userID isEqualToNumber:_ride.driver.userID];
 }
 
 - (BOOL)userIsRider {
     for (User *user in _ride.users) {
-        if ([user.userID isEqualToNumber:[CaronaeDefaults defaults].user.userID]) {
+        if ([user.userID isEqualToNumber:[UserController sharedInstance].user.userID]) {
             return YES;
         }
     }
@@ -199,14 +199,14 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (void)updateMutualFriends {
     // Abort if the Facebook accounts are not connected.
-    if (![CaronaeDefaults userFBToken] || ![_ride.driver.facebookID isEqualToString:@""]) {
+    if (![UserController sharedInstance].userFBToken || ![_ride.driver.facebookID isEqualToString:@""]) {
         return;
     }
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
-    [manager.requestSerializer setValue:[CaronaeDefaults userFBToken] forHTTPHeaderField:@"Facebook-Token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userFBToken forHTTPHeaderField:@"Facebook-Token"];
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _ride.driver.facebookID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
@@ -298,7 +298,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     NSDictionary *params = @{@"rideId": @(_ride.rideID)};
     
     _cancelButton.enabled = NO;
@@ -328,7 +328,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     NSDictionary *params = @{@"rideId": @(_ride.rideID)};
     
     _finishRideButton.enabled = NO;
@@ -361,7 +361,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     _requestRideButton.enabled = NO;
     [SVProgressHUD show];
@@ -384,7 +384,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/getRequesters/%ld", rideID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -414,7 +414,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     [cell setButtonsEnabled:NO];
     

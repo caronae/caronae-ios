@@ -58,7 +58,7 @@
 }
 
 - (void)updateProfileFields {
-    User *user = [CaronaeDefaults defaults].user;
+    User *user = [UserController sharedInstance].user;
     self.user = user;
     
     self.joinedDateFormatter = [[NSDateFormatter alloc] init];
@@ -130,7 +130,7 @@
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     [self showLoadingHUD:YES];
     
@@ -147,7 +147,7 @@
         self.user.location = updatedUser.location;
         self.user.profilePictureURL = updatedUser.profilePictureURL;
         
-        [CaronaeDefaults defaults].user = self.user;
+        [UserController sharedInstance].user = self.user;
                 
         if ([self.delegate respondsToSelector:@selector(didUpdateUser:)]) {
             [self.delegate didUpdateUser:self.user];
@@ -231,7 +231,7 @@
                                                   preferredStyle:SDCAlertControllerStyleAlert];
         [alert addAction:[SDCAlertAction actionWithTitle:@"Cont. editando" style:SDCAlertActionStyleCancel handler:nil]];
         [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
-            [CaronaeDefaults signOut];
+            [[UserController sharedInstance] signOut];
         }]];
     }
     
@@ -385,7 +385,7 @@
     else {
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+        [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
         
         NSDictionary *params;
         if (fbID) {
@@ -446,7 +446,7 @@
     [SVProgressHUD show];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/user/intranetPhotoUrl"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         _photoURL = responseObject[@"url"];

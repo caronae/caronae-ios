@@ -101,7 +101,7 @@
 - (void)updateRidesOfferedCount {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/getRidesHistoryCount/%@", _user.userID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         int numDrives = [responseObject[@"offeredCount"] intValue];
@@ -119,14 +119,14 @@
 
 - (void)updateMutualFriends {
     // Abort if the Facebook accounts are not connected.
-    if (![CaronaeDefaults userFBToken] || !_user.facebookID || [_user.facebookID isEqualToString:@""]) {
+    if (![UserController sharedInstance].userFBToken || _user.facebookID.length == 0) {
         return;
     }
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
-    [manager.requestSerializer setValue:[CaronaeDefaults userFBToken] forHTTPHeaderField:@"Facebook-Token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userFBToken forHTTPHeaderField:@"Facebook-Token"];
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _user.facebookID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
@@ -170,7 +170,7 @@
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Sair" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
-        [CaronaeDefaults signOut];
+        [[UserController sharedInstance] signOut];
     }]];
     [alert presentWithCompletion:nil];
 }

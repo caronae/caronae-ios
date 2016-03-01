@@ -135,7 +135,7 @@
     
     if (operation && operation.response.statusCode == 403) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Seu token pode ter sido suspenso ou expirado." handler:^{
-            [CaronaeDefaults signOut];
+            [[UserController sharedInstance] signOut];
         }];
         return;
     }

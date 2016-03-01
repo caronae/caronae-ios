@@ -29,6 +29,7 @@
 		A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312CC1BF01C26005BA311 /* EditProfileViewController.m */; };
 		A34C67581C826280001F6D90 /* NotificationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C67571C826280001F6D90 /* NotificationStore.m */; };
 		A34C675C1C853C4B001F6D90 /* RideRequestsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C675B1C853C4B001F6D90 /* RideRequestsStore.m */; };
+		A34C675F1C854EA7001F6D90 /* UserController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C675E1C854EA7001F6D90 /* UserController.m */; };
 		A357EF331C56C5A100AC8096 /* RideListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF311C56C5A100AC8096 /* RideListController.m */; };
 		A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A357EF321C56C5A100AC8096 /* RideListController.xib */; };
 		A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF361C57168D00AC8096 /* SignupViewController.m */; };
@@ -123,6 +124,8 @@
 		A34C67571C826280001F6D90 /* NotificationStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationStore.m; path = Notification/NotificationStore.m; sourceTree = "<group>"; };
 		A34C675A1C853C4B001F6D90 /* RideRequestsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideRequestsStore.h; sourceTree = "<group>"; };
 		A34C675B1C853C4B001F6D90 /* RideRequestsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideRequestsStore.m; sourceTree = "<group>"; };
+		A34C675D1C854EA7001F6D90 /* UserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserController.h; sourceTree = "<group>"; };
+		A34C675E1C854EA7001F6D90 /* UserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserController.m; sourceTree = "<group>"; };
 		A357EF301C56C5A100AC8096 /* RideListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideListController.h; sourceTree = "<group>"; };
 		A357EF311C56C5A100AC8096 /* RideListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideListController.m; sourceTree = "<group>"; };
 		A357EF321C56C5A100AC8096 /* RideListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideListController.xib; sourceTree = "<group>"; };
@@ -330,6 +333,8 @@
 				A357EF361C57168D00AC8096 /* SignupViewController.m */,
 				A3169C991BED842D00A0D428 /* TokenViewController.h */,
 				A3169C9A1BED842D00A0D428 /* TokenViewController.m */,
+				A34C675D1C854EA7001F6D90 /* UserController.h */,
+				A34C675E1C854EA7001F6D90 /* UserController.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -671,6 +676,7 @@
 				A37E80DE1C5F00D300683F27 /* Chat.m in Sources */,
 				A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */,
 				A357EF331C56C5A100AC8096 /* RideListController.m in Sources */,
+				A34C675F1C854EA7001F6D90 /* UserController.m in Sources */,
 				A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */,
 				A38598491C691D1400279D6F /* User.m in Sources */,
 				A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */,

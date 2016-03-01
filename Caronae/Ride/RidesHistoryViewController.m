@@ -1,5 +1,6 @@
 #import <AFNetworking/AFNetworking.h>
 #import "RidesHistoryViewController.h"
+#import "UserController.h"
 
 @interface RidesHistoryViewController ()
 
@@ -28,7 +29,7 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/getRidesHistory"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self.refreshControl endRefreshing];

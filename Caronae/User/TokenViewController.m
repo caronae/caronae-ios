@@ -54,7 +54,7 @@
                 return;
             }
             
-            [CaronaeDefaults signIn:user token:userToken rides:filteredRides];
+            [[UserController sharedInstance] setUser:user token:userToken rides:filteredRides];
             
             [CaronaeDefaults registerForNotifications];
             

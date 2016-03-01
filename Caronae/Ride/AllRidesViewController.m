@@ -14,7 +14,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([CaronaeDefaults defaults].user.isProfileIncomplete) {
+    if ([UserController sharedInstance].user.isProfileIncomplete) {
         [self performSelector:@selector(presentFinishProfileScreen) withObject:nil afterDelay:0.0];
     }
     
@@ -50,7 +50,7 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/all"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self.refreshControl endRefreshing];

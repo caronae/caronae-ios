@@ -65,7 +65,7 @@ NSString *deviceName() {
 - (void)sendMessage:(NSDictionary *)message {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     [self showLoadingHUD:YES];
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/falae/sendMessage"] parameters:message success:^(AFHTTPRequestOperation *operation, id responseObject) {

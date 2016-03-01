@@ -1,10 +1,4 @@
-#import <FBSDKLoginKit/FBSDKLoginManager.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import "AppDelegate.h"
 #import "CaronaeDefaults.h"
-#import "ChatStore.h"
-#import "NSDictionary+dictionaryWithoutNulls.h"
-#import "RideRequestsStore.h"
 
 #pragma mark - API settings
 
@@ -54,15 +48,7 @@ NSString *const CaronaePhoneNumberPattern = @"(###) #####-####";
 @property (nonatomic, readwrite) NSDictionary *neighborhoods;
 @end
 
-static NSUserDefaults *userDefaults;
-
 @implementation CaronaeDefaults
-
-- (instancetype)init {
-    self = [super init];
-    userDefaults = [NSUserDefaults standardUserDefaults];
-    return self;
-}
 
 + (instancetype)defaults {
     static CaronaeDefaults *sharedMyManager = nil;
@@ -71,14 +57,6 @@ static NSUserDefaults *userDefaults;
         sharedMyManager = [[self alloc] init];
     });
     return sharedMyManager;
-}
-
-+ (void)signIn:(User *)user token:(NSString *)userToken rides:(NSArray *)userRides {
-    [CaronaeDefaults defaults].user = user;
-    [userDefaults setObject:userToken forKey:@"token"];
-    [userDefaults setObject:userRides forKey:@"userCreatedRides"];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (void)registerForNotifications {
@@ -94,56 +72,6 @@ static NSUserDefaults *userDefaults;
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
-}
-
-+ (void)signOut {
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    
-    // Clear chats
-    NSDictionary *chats = [ChatStore allChats];
-    for (id rideID in chats) {
-        [chats[rideID] unsubscribe];
-    }
-    [ChatStore clearChats];
-    
-    // Clear Core Data
-    [appDelegate deleteAllObjects:@"Message"];
-    [appDelegate deleteAllObjects:@"Notification"];
-    
-    // Clear user data
-    [CaronaeDefaults setUserGCMToken:nil];
-    [appDelegate updateUserGCMToken:nil];
-    [CaronaeDefaults defaults].user = nil;
-    [CaronaeDefaults defaults].userToken = nil;
-    [RideRequestsStore clearAllRequests];
-    [[[FBSDKLoginManager alloc] init] logOut];
-    
-    [appDelegate updateApplicationBadgeNumber];
-
-    UIViewController *topViewController = [appDelegate topViewController];
-    UIViewController *authViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"InitialTokenScreen"];
-    authViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [topViewController presentViewController:authViewController animated:YES completion:nil];
-}
-
-+ (NSString *)userFBToken {
-    FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
-    return token.tokenString;
-}
-
-+ (NSString *)userGCMToken {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:@"gcmToken"];
-}
-
-+ (void)setUserGCMToken:(NSString *)gcmToken {
-    if (gcmToken) {
-        [[NSUserDefaults standardUserDefaults] setObject:gcmToken forKey:@"gcmToken"];
-    }
-    else {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"gcmToken"];
-    }
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (UIColor *)colorForZone:(NSString *)zone {
@@ -215,46 +143,6 @@ static NSUserDefaults *userDefaults;
         _neighborhoods = neighborhoods;
     }
     return _neighborhoods;
-}
-
-- (User *)user {
-    NSError *error;
-    NSDictionary *userJSON = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
-    
-    User *user = [MTLJSONAdapter modelOfClass:User.class fromJSONDictionary:userJSON error:&error];
-    if (error) {
-        NSLog(@"Error deserializing user from defaults. %@", error.localizedDescription);
-    }
-    
-    return user;
-}
-
-- (void)setUser:(User *)user {
-    if (user) {
-        NSError *error;
-        NSDictionary *userJSON = [[MTLJSONAdapter JSONDictionaryFromModel:user error:&error] dictionaryWithoutNulls];
-
-        if (!error) {
-            [[NSUserDefaults standardUserDefaults] setObject:userJSON forKey:@"user"];
-        }
-        else {
-            NSLog(@"Error serializing user. %@", error.localizedDescription);
-        }
-    }
-    else {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
-    }
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (NSString *)userToken {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
-}
-
-- (void)setUserToken:(NSString *)userToken {
-    [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"token"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

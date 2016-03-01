@@ -168,7 +168,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [self.textView becomeFirstResponder];
     
     NSString *messageText = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    User *currentUser = [CaronaeDefaults defaults].user;
+    User *currentUser = [UserController sharedInstance].user;
     
     NSManagedObjectContext *context = [self managedObjectContext];
     Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
@@ -201,7 +201,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     if (msgType && [msgType isEqualToString:@"chat"]) {
         NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
         NSNumber *senderID = @([userInfo[@"senderId"] intValue]);
-        NSNumber *currentUserId = [CaronaeDefaults defaults].user.userID;
+        NSNumber *currentUserId = [UserController sharedInstance].user.userID;
         
         if ([rideID isEqual:@(self.chat.ride.rideID)] && ![senderID isEqual:currentUserId]) {
             NSLog(@"Chat window did receive message: %@", userInfo[@"message"]);

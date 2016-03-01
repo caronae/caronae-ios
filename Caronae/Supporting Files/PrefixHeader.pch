@@ -2,5 +2,6 @@
 #define PrefixHeader_pch
 
 #import "CaronaeDefaults.h"
+#import "UserController.h"
 
 #endif

@@ -1,6 +1,7 @@
 #import <Google/CloudMessaging.h>
 #import "CaronaeDefaults.h"
 #import "Chat.h"
+#import "UserController.h"
 
 @implementation Chat
 
@@ -56,7 +57,7 @@
 }
 
 - (void)subscribe {
-    NSString *registrationToken = [CaronaeDefaults userGCMToken];
+    NSString *registrationToken = [UserController sharedInstance].userGCMToken;
     if (registrationToken) {
         [[GCMPubSub sharedInstance] subscribeWithToken:registrationToken
                                                  topic:self.topicID
@@ -85,7 +86,7 @@
 }
 
 - (void)unsubscribe {
-    NSString *registrationToken = [CaronaeDefaults userGCMToken];
+    NSString *registrationToken = [UserController sharedInstance].userGCMToken;
     if (registrationToken) {
         [[GCMPubSub sharedInstance] unsubscribeWithToken:registrationToken
                                                    topic:self.topicID
@@ -113,7 +114,7 @@
 }
 
 + (void)subscribeToTopicID:(NSString *)topicID {
-    NSString *registrationToken = [CaronaeDefaults userGCMToken];
+    NSString *registrationToken = [UserController sharedInstance].userGCMToken;
     if (registrationToken) {
         [[GCMPubSub sharedInstance] subscribeWithToken:registrationToken
                                                  topic:topicID

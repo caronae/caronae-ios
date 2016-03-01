@@ -36,7 +36,7 @@
         self.tableView.backgroundView = self.loadingLabel;
     }
     
-    User *user = [CaronaeDefaults defaults].user;
+    User *user = [UserController sharedInstance].user;
     
     // Run in secondary thread so it won't affect UI
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{

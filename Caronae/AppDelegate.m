@@ -36,7 +36,7 @@
                                         }];
     
     // Load home screen if the user has already signed in
-    if ([CaronaeDefaults defaults].user) {
+    if ([UserController sharedInstance].user) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *initialViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeTabViewController"];
         self.window.rootViewController = initialViewController;
@@ -61,11 +61,11 @@
 
 // TODO: Remove before release
 - (void)fixUserPhoneIfNecessary {
-    User *user = [CaronaeDefaults defaults].user;
+    User *user = [UserController sharedInstance].user;
     if (user.phoneNumber.length == 11) {
         NSString *newPhoneNumber = [@"0" stringByAppendingString:user.phoneNumber];
         user.phoneNumber = newPhoneNumber;
-        [CaronaeDefaults defaults].user = user;
+        [UserController sharedInstance].user = user;
     }
 }
 
@@ -90,7 +90,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    if ([CaronaeDefaults userGCMToken] && !_connectedToGCM) {
+    if ([UserController sharedInstance].userGCMToken && !_connectedToGCM) {
         [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
             if (error && error.code != kGCMServiceErrorCodeAlreadyConnected) {
                 NSLog(@"Could not connect to GCM (application became active): %@", error.localizedDescription);
@@ -176,7 +176,7 @@
 
 - (void)handleChatNotification:(NSDictionary *)userInfo {
     int senderId = [userInfo[@"senderId"] intValue];
-    int currentUserId = [[CaronaeDefaults defaults].user.userID intValue];
+    int currentUserId = [[UserController sharedInstance].user.userID intValue];
     
     // We don't need to handle a message if it's from the logged user
     if (senderId == currentUserId) {
@@ -302,13 +302,13 @@
     // Handler for registration token request
     _registrationHandler = ^(NSString *registrationToken, NSError *error){
         if (registrationToken != nil) {
-            NSString *cachedRegistrationToken = [CaronaeDefaults userGCMToken];
+            NSString *cachedRegistrationToken = [UserController sharedInstance].userGCMToken;
             // Update cached registration token locally and remotely if the token has changed.
             if (![cachedRegistrationToken isEqualToString:registrationToken]) {
                 NSLog(@"Registration Token: %@", registrationToken);
                 
-                [CaronaeDefaults setUserGCMToken:registrationToken];
-                if ([CaronaeDefaults defaults].user) {
+                [UserController sharedInstance].userGCMToken = registrationToken;
+                if ([UserController sharedInstance].user) {
                     [weakSelf updateUserGCMToken:registrationToken];
                 }
             }
@@ -330,7 +330,7 @@
                                                                 object:nil
                                                               userInfo:userInfo];
         } else {
-            [CaronaeDefaults setUserGCMToken:nil];
+            [UserController sharedInstance].userGCMToken = nil;
             NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
             NSDictionary *userInfo = @{@"error": error.localizedDescription};
             [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
@@ -430,7 +430,7 @@
 - (void)updateUserGCMToken:(NSString *)token {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[CaronaeDefaults defaults].userToken forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     NSDictionary *params = @{@"token": token ? token : [NSNull null]};
     [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user/saveGcmToken"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
