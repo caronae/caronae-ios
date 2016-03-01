@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import "Ride.h"
 
 @protocol CreateRideDelegate <NSObject>
 
