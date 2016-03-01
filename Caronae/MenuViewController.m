@@ -23,8 +23,8 @@
     [super viewWillAppear:animated];
     
     User *user = [CaronaeDefaults defaults].user;
-    id userPhotoURL = user.profilePictureURL;
-    if (userPhotoURL && ![userPhotoURL isEqualToString:@""] && ![userPhotoURL isEqualToString:self.photoURL]) {
+    NSString *userPhotoURL = user.profilePictureURL;
+    if (userPhotoURL.length > 0 && ![userPhotoURL isEqualToString:self.photoURL]) {
         self.photoURL = userPhotoURL;
         [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:userPhotoURL]
                                  placeholderImage:[UIImage imageNamed:@"Profile Picture"]

@@ -46,7 +46,7 @@
 }
 
 - (void)updatePhoto {
-    if (_ride.driver.profilePictureURL && ![_ride.driver.profilePictureURL isEqualToString:@""]) {
+    if (_ride.driver.profilePictureURL.length > 0) {
         [_photo sd_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]
                   placeholderImage:[UIImage imageNamed:@"Profile Picture"]
                            options:SDWebImageRefreshCached | SDWebImageRetryFailed];

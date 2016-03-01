@@ -18,7 +18,7 @@
     _userName.text = user.name;
     _userCourse.text = user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", user.profile, user.course] : user.profile;
     
-    if (user.profilePictureURL && ![user.profilePictureURL isEqualToString:@""]) {
+    if (user.profilePictureURL.length > 0) {
         [self.userPhoto sd_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
                                options:SDWebImageRefreshCached | SDWebImageRetryFailed];

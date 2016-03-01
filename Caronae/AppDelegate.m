@@ -93,10 +93,10 @@
     if ([CaronaeDefaults userGCMToken] && !_connectedToGCM) {
         [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
             if (error && error.code != kGCMServiceErrorCodeAlreadyConnected) {
-                NSLog(@"Could not connect to GCM (applicationDidBecomeActive): %@", error.localizedDescription);
+                NSLog(@"Could not connect to GCM (application became active): %@", error.localizedDescription);
             } else if (!error) {
                 _connectedToGCM = true;
-                NSLog(@"Connected to GCM (applicationDidBecomeActive)");
+                NSLog(@"Connected to GCM (application became active)");
                 [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMConnectedNotification object:nil userInfo:nil];
             }
         }];

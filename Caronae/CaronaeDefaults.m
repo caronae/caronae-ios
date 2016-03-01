@@ -4,6 +4,7 @@
 #import "CaronaeDefaults.h"
 #import "ChatStore.h"
 #import "NSDictionary+dictionaryWithoutNulls.h"
+#import "RideRequestsStore.h"
 
 #pragma mark - API settings
 
@@ -114,7 +115,7 @@ static NSUserDefaults *userDefaults;
     [appDelegate updateUserGCMToken:nil];
     [CaronaeDefaults defaults].user = nil;
     [CaronaeDefaults defaults].userToken = nil;
-    [CaronaeDefaults defaults].cachedJoinRequests = nil;
+    [RideRequestsStore clearAllRequests];
     [[[FBSDKLoginManager alloc] init] logOut];
     
     [appDelegate updateApplicationBadgeNumber];
@@ -143,19 +144,6 @@ static NSUserDefaults *userDefaults;
     }
     
     [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-+ (BOOL)hasUserAlreadyRequestedJoin:(Ride *)ride {
-    NSArray *requested = [CaronaeDefaults defaults].cachedJoinRequests;
-    NSNumber *rideID = @(ride.rideID);
-    return [requested containsObject:rideID];
-}
-
-+ (void)addToCachedJoinRequests:(Ride *)ride {
-    NSMutableArray *requested = [CaronaeDefaults defaults].cachedJoinRequests.mutableCopy;
-    NSNumber *rideID = @(ride.rideID);
-    [requested addObject:rideID];
-    [CaronaeDefaults defaults].cachedJoinRequests = requested;
 }
 
 + (UIColor *)colorForZone:(NSString *)zone {
@@ -266,21 +254,6 @@ static NSUserDefaults *userDefaults;
 
 - (void)setUserToken:(NSString *)userToken {
     [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"token"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (NSArray *)cachedJoinRequests {
-    id saved = [[NSUserDefaults standardUserDefaults] objectForKey:@"cachedJoinRequests"];
-    // Create empty dictionary if an old one wasn't found
-    if (!saved || ![saved isKindOfClass:[NSArray class]]) {
-        saved = [[NSArray alloc] init];
-        [self setCachedJoinRequests:saved];
-    }
-    return saved;
-}
-
-- (void)setCachedJoinRequests:(NSArray *)cachedJoinRequests {
-    [[NSUserDefaults standardUserDefaults] setObject:cachedJoinRequests forKey:@"cachedJoinRequests"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

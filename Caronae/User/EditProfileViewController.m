@@ -94,7 +94,7 @@
     self.carColorTextField.text = user.carColor;
     
     self.photoURL = user.profilePictureURL;
-    if (self.photoURL) {
+    if (self.photoURL.length > 0) {
         [self.photo sd_setImageWithURL:[NSURL URLWithString:self.photoURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
                                options:SDWebImageRefreshCached | SDWebImageRetryFailed];

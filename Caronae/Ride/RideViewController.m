@@ -13,6 +13,7 @@
 #import "Ride.h"
 #import "RideViewController.h"
 #import "RiderCell.h"
+#import "RideRequestsStore.h"
 #import "SHSPhoneNumberFormatter+UserConfig.h"
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
@@ -65,7 +66,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         _driverMessageLabel.text = _ride.notes;
     }
     
-    if (_ride.driver.profilePictureURL && ![_ride.driver.profilePictureURL isEqualToString:@""]) {
+    if (_ride.driver.profilePictureURL.length > 0) {
         [_driverPhoto sd_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]
                   placeholderImage:[UIImage imageNamed:@"Profile Picture"]
                            options:SDWebImageRefreshCached | SDWebImageRetryFailed];
@@ -141,7 +142,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         self.navigationItem.rightBarButtonItem = nil;
         
         // Update the state of the join request button if the user has already requested to join
-        if ([CaronaeDefaults hasUserAlreadyRequestedJoin:_ride]) {
+        if ([RideRequestsStore hasRequestedToJoinRide:_ride]) {
             _requestRideButton.enabled = NO;
             [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
         }
@@ -368,7 +369,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [SVProgressHUD dismiss];
         NSLog(@"Done requesting ride. (Message: %@)", responseObject[@"message"]);
-        [CaronaeDefaults addToCachedJoinRequests:_ride];
+        [RideRequestsStore setRideAsRequested:_ride];
         [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
@@ -517,7 +518,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     cell.user = user;
     cell.nameLabel.text = user.firstName;
     
-    if (user.profilePictureURL && ![user.profilePictureURL isEqualToString:@""]) {
+    if (user.profilePictureURL.length > 0) {
         [cell.photo sd_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
                                options:SDWebImageRefreshCached | SDWebImageRetryFailed];

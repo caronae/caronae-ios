@@ -89,7 +89,7 @@
         });
     }
     
-    if (_user.profilePictureURL && ![_user.profilePictureURL isEqualToString:@""]) {
+    if (_user.profilePictureURL.length > 0) {
         [self.profileImage sd_setImageWithURL:[NSURL URLWithString:_user.profilePictureURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
                                options:SDWebImageRefreshCached | SDWebImageRetryFailed];
@@ -209,7 +209,7 @@
     cell.user = user;
     cell.nameLabel.text = user.firstName;
     
-    if (user.profilePictureURL && ![user.profilePictureURL isEqualToString:@""]) {
+    if (user.profilePictureURL.length > 0) {
         [cell.photo sd_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]
                       placeholderImage:[UIImage imageNamed:@"Profile Picture"]
                                options:SDWebImageRefreshCached | SDWebImageRetryFailed];
