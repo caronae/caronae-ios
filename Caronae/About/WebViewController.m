@@ -2,7 +2,6 @@
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
-#import "CaronaeDefaults.h"
 #import "WebViewController.h"
 
 @implementation WebViewController

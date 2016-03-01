@@ -1,6 +1,5 @@
 #import <AFNetworking/AFNetworking.h>
 #import "RidesHistoryViewController.h"
-#import "UserController.h"
 
 @interface RidesHistoryViewController ()
 

@@ -1,7 +1,5 @@
 #import <Google/CloudMessaging.h>
-#import "CaronaeDefaults.h"
 #import "Chat.h"
-#import "UserController.h"
 
 @implementation Chat
 

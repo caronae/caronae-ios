@@ -2,7 +2,6 @@
 #import <CoreData/CoreData.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "ActiveRidesViewController.h"
-#import "CaronaeDefaults.h"
 #import "Chat.h"
 #import "ChatStore.h"
 #import "Notification+CoreDataProperties.h"
