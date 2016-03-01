@@ -308,7 +308,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         NSLog(@"User left the ride. (Message: %@)", responseObject[@"message"]);
         
         [[ChatStore chatForRide:_ride] unsubscribe];
-        [CaronaeDefaults removeFromCachedJoinRequests:_ride];
         
         if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
             [_delegate didDeleteRide:_ride];
