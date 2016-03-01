@@ -1,5 +1,6 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "AppDelegate.h"
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
 #import "NSDictionary+dictionaryWithoutNulls.h"
@@ -56,7 +57,8 @@
             
             [[UserController sharedInstance] setUser:user token:userToken rides:filteredRides];
             
-            [CaronaeDefaults registerForNotifications];
+            AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+            [appDelegate registerForNotifications];
             
             [self performSegueWithIdentifier:@"ViewHome" sender:self];
         }

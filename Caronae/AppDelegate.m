@@ -41,7 +41,7 @@
         UIViewController *initialViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeTabViewController"];
         self.window.rootViewController = initialViewController;
         [self.window makeKeyAndVisible];
-        [CaronaeDefaults registerForNotifications];
+        [self registerForNotifications];
         
         [self fixUserPhoneIfNecessary]; // TODO: Remove before release
     }
@@ -140,6 +140,21 @@
 
 
 #pragma mark - Notification handling
+
+- (void)registerForNotifications {
+    // Register for remote notifications
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
+        // iOS 7.1 or earlier
+        UIRemoteNotificationType allNotificationTypes = (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge);
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:allNotificationTypes];
+    } else {
+        // iOS 8 or later
+        UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+}
 
 - (BOOL)handleNotification:(NSDictionary *)userInfo {
     if (!userInfo[@"msgType"]) return NO;

@@ -24,19 +24,6 @@ extern NSString *const CaronaePhoneNumberPattern;
 
 + (instancetype)defaults;
 
-/**
- *  Registers for push notifications with iOS. If the user has already registered for notifications,
- * this does nothing.
- */
-+ (void)registerForNotifications;
-
-/**
- *  Returns the color related to a specific zone according to the app's default color palette.
- *
- *  @param zone The zone name (Zona Norte, Zona Sul, Centro etc.)
- *
- *  @return The color of the zone.
- */
 + (UIColor *)colorForZone:(NSString *)zone;
 
 @property (nonatomic, readonly) NSArray *centers;

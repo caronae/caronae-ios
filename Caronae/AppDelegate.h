@@ -5,6 +5,7 @@
 
 - (void)updateApplicationBadgeNumber;
 - (void)updateUserGCMToken:(NSString *)token;
+- (void)registerForNotifications;
 
 @property (strong, nonatomic) UIWindow *window;
 
