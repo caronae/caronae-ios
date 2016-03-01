@@ -35,7 +35,7 @@ static NSManagedObjectContext *_managedObjectContext;
     fetchRequest.entity = entity;
     
     if (type != NotificationTypeAll) {
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"type == %@", NSStringFromNotificationType(type)];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"type = %@", NSStringFromNotificationType(type)];
     }
     
     NSError *error;
@@ -59,8 +59,7 @@ static NSManagedObjectContext *_managedObjectContext;
         predicate = [NSPredicate predicateWithFormat:@"rideID = %@", rideID];
     }
     else {
-        predicate = [NSPredicate predicateWithFormat:@"rideID = %@ AND type == %@", rideID, NSStringFromNotificationType(type)];
-    
+        predicate = [NSPredicate predicateWithFormat:@"rideID = %@ AND type = %@", rideID, NSStringFromNotificationType(type)];
     }
     fetchRequest.predicate = predicate;
     
