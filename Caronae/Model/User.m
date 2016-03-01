@@ -19,7 +19,9 @@ static NSDateFormatter *dateFormatter;
              @"carColor": @"car_color",
              @"profilePictureURL": @"profile_pic_url",
              @"facebookID": @"face_id",
-             @"createdAt": @"created_at"
+             @"createdAt": @"created_at",
+             @"numRides": @"numRides",
+             @"numDrives": @"numDrives"
              };
 }
 

@@ -29,10 +29,10 @@
     if (navigationVC.viewControllers.count >= 2) {
         UIViewController *previousVC = navigationVC.viewControllers[navigationVC.viewControllers.count - 2];
         if ([previousVC isKindOfClass:[MenuViewController class]]) {
-            return true;
+            return YES;
         }
     }
-    return false;
+    return NO;
 }
 
 - (void)updateProfileFields {
@@ -112,6 +112,9 @@
         
         _user.numDrives = numDrives;
         _user.numRides = numRides;
+        if ([self isMyProfile]) {
+            [UserController sharedInstance].user = _user;
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error reading history count for user: %@", error.localizedDescription);
     }];
