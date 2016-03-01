@@ -14,7 +14,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([CaronaeDefaults userProfileIsIncomplete]) {
+    if ([CaronaeDefaults defaults].user.isProfileIncomplete) {
         [self performSelector:@selector(presentFinishProfileScreen) withObject:nil afterDelay:0.0];
     }
     

@@ -24,4 +24,7 @@
 
 @property (readonly, nonatomic, copy) NSString *firstName;
 
+
+@property (readonly, nonatomic, assign) BOOL isProfileIncomplete;
+
 @end

@@ -27,7 +27,7 @@
 @implementation RideViewController
 
 static NSString *CaronaeRequestButtonStateNew              = @"PEGAR CARONA";
-static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    AGUARDANDO AUTORIZAÇÃO    ";
+static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    SOLICITAÇÃO ENVIADA    ";
 static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluída";
 
 - (void)viewDidLoad {

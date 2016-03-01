@@ -334,18 +334,11 @@
 		A32B80B81C2E075000FC370A /* Ride */ = {
 			isa = PBXGroup;
 			children = (
+				A34C67591C853A9C001F6D90 /* Custom cells */,
 				A3AD19C81BED9BFB003EDA17 /* ActiveRidesViewController.h */,
 				A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */,
 				A32C77241C41EEE30098583B /* AllRidesViewController.h */,
 				A32C77251C41EEE30098583B /* AllRidesViewController.m */,
-				A325DA6D1C0CAFD700B9124E /* JoinRequestCell.h */,
-				A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */,
-				A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */,
-				A38F1D4B1C0398B500DEF6B1 /* RideCell.h */,
-				A38F1D4C1C0398B500DEF6B1 /* RideCell.m */,
-				A39BBD041C06AB9D00EF9EBD /* RideCell.xib */,
-				A3EE026A1C17D01000A8407E /* RiderCell.h */,
-				A3EE026B1C17D01000A8407E /* RiderCell.m */,
 				A33FABE81BEE8E93008B4F51 /* CreateRideViewController.h */,
 				A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */,
 				A3B5AF041BF1ADF30026A889 /* MyRidesViewController.h */,
@@ -372,6 +365,21 @@
 				A34C67571C826280001F6D90 /* NotificationStore.m */,
 			);
 			name = Notification;
+			sourceTree = "<group>";
+		};
+		A34C67591C853A9C001F6D90 /* Custom cells */ = {
+			isa = PBXGroup;
+			children = (
+				A325DA6D1C0CAFD700B9124E /* JoinRequestCell.h */,
+				A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */,
+				A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */,
+				A38F1D4B1C0398B500DEF6B1 /* RideCell.h */,
+				A38F1D4C1C0398B500DEF6B1 /* RideCell.m */,
+				A39BBD041C06AB9D00EF9EBD /* RideCell.xib */,
+				A3EE026A1C17D01000A8407E /* RiderCell.h */,
+				A3EE026B1C17D01000A8407E /* RiderCell.m */,
+			);
+			name = "Custom cells";
 			sourceTree = "<group>";
 		};
 		A37E80D81C5EFFA600683F27 /* Chat */ = {

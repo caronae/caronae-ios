@@ -145,11 +145,6 @@ static NSUserDefaults *userDefaults;
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (BOOL)userProfileIsIncomplete {
-    User *user = [CaronaeDefaults defaults].user;
-    return [user.phoneNumber isEqualToString:@""] || [user.email isEqualToString:@""] || [user.location isEqualToString:@""];
-}
-
 + (BOOL)hasUserAlreadyRequestedJoin:(Ride *)ride {
     NSArray *requested = [CaronaeDefaults defaults].cachedJoinRequests;
     NSNumber *rideID = @(ride.rideID);

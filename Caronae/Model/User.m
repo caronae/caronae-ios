@@ -43,6 +43,10 @@ static NSDateFormatter *dateFormatter;
     return [self.name componentsSeparatedByString:@" "].firstObject;
 }
 
+- (BOOL)isProfileIncomplete {
+    return [self.phoneNumber isEqualToString:@""] || [self.email isEqualToString:@""] || [self.location isEqualToString:@""];
+}
+
 /*    
  "id": 1,
  "car_color": "Pretofg ",
