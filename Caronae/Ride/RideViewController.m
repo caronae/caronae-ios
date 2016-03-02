@@ -316,6 +316,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         NSLog(@"User left the ride. (Message: %@)", responseObject[@"message"]);
         
         [[ChatStore chatForRide:_ride] unsubscribe];
+        [NotificationStore clearNotificationsForRide:@(_ride.rideID) ofType:NotificationTypeAll];
         
         if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
             [_delegate didDeleteRide:_ride];
@@ -345,6 +346,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         NSLog(@"User finished the ride. (Message: %@)", responseObject[@"message"]);
         
         [[ChatStore chatForRide:_ride] unsubscribe];
+        [NotificationStore clearNotificationsForRide:@(_ride.rideID) ofType:NotificationTypeAll];
         
         if (_delegate && [_delegate respondsToSelector:@selector(didFinishRide:)]) {
             [_delegate didFinishRide:_ride];
