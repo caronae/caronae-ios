@@ -16,7 +16,7 @@
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateNotifications:) name:CaronaeDidUpdateNotifications object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUnreadNotifications) name:CaronaeDidUpdateNotifications object:nil];
     
     [self updateUnreadNotifications];
     [self loadMyRides];
@@ -181,15 +181,7 @@
     else {
         self.navigationController.tabBarItem.badgeValue = nil;
     }
-}
-
-- (void)didUpdateNotifications:(NSNotification *)notification {
-    NSString *msgType = notification.userInfo[@"msgType"];
-    
-    if ([msgType isEqualToString:@"joinRequest"]) {
-        [self updateUnreadNotifications];
-        [self.tableView reloadData];
-    }
+    [self.tableView reloadData];
 }
 
 

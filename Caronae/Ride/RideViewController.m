@@ -163,13 +163,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     }
 }
 
-- (void)clearNotifications {
-    [NotificationStore clearNotificationsForRide:@(self.ride.rideID) ofType:NotificationTypeRequest];
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
-                                                        object:nil
-                                                      userInfo:@{@"msgType": @"joinRequest"}];
-}
-
 - (void)setColor:(UIColor *)color {
     _color = color;
     _headerView.backgroundColor = color;
@@ -407,7 +400,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
                 [self adjustHeightOfTableview];
             }
             
-            [self clearNotifications];
+            [NotificationStore clearNotificationsForRide:@(self.ride.rideID) ofType:NotificationTypeRequest];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error loading join requests for ride %lu: %@", rideID, error.localizedDescription);

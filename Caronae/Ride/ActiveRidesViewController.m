@@ -21,7 +21,7 @@
     [self updateUnreadNotifications];
     [self loadActiveRides];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateNotifications:) name:CaronaeDidUpdateNotifications object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUnreadNotifications) name:CaronaeDidUpdateNotifications object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -44,15 +44,8 @@
     else {
         self.navigationController.tabBarItem.badgeValue = nil;
     }
-}
-
-- (void)didUpdateNotifications:(NSNotification *)notification {
-    NSString *msgType = notification.userInfo[@"msgType"];
     
-    if ([msgType isEqualToString:@"chat"]) {
-        [self updateUnreadNotifications];
-        [self.tableView reloadData];
-    }
+    [self.tableView reloadData];
 }
 
 

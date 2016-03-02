@@ -56,14 +56,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
     }
 }
 
-- (void)clearNotifications {
-    [NotificationStore clearNotificationsForRide:@(self.chat.ride.rideID) ofType:NotificationTypeChat];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
-                                                        object:nil
-                                                      userInfo:@{@"msgType": @"chat"}];
-}
-
 - (void)appendMessage:(Message *)message {
     self.chat.loadedMessages = [self.chat.loadedMessages arrayByAddingObject:message];
     
@@ -106,7 +98,8 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [notificationCenter addObserver:self selector:@selector(gcmDidReceiveMessage:) name:CaronaeGCMMessageReceivedNotification object:nil];
     
     [self loadChatMessages];
-    [self clearNotifications];
+    
+    [NotificationStore clearNotificationsForRide:@(self.chat.ride.rideID) ofType:NotificationTypeChat];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

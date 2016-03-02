@@ -236,10 +236,6 @@
     
     Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:message.sentDate type:@"chat" context:self.managedObjectContext];
     [NotificationStore insertNotification:caronaeNotification];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
-                                                        object:nil
-                                                      userInfo:userInfo];
 }
 
 - (void)handleJoinRequestNotification:(NSDictionary *)userInfo {
@@ -247,10 +243,6 @@
 
     Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:[NSDate date] type:@"joinRequest" context:self.managedObjectContext];
     [NotificationStore insertNotification:caronaeNotification];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
-                                                        object:nil
-                                                      userInfo:userInfo];
     
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
@@ -261,10 +253,6 @@
     NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
     
     [NotificationStore clearNotificationsForRide:rideID ofType:NotificationTypeAll];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications
-                                                        object:nil
-                                                      userInfo:nil];
     
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];

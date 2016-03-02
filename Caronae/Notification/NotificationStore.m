@@ -25,6 +25,7 @@ static NSManagedObjectContext *_managedObjectContext;
         return NO;
     }
     
+    [NotificationStore notifyListenersThatNotificationsChanged];
     return YES;
 }
 
@@ -78,6 +79,12 @@ static NSManagedObjectContext *_managedObjectContext;
         NSLog(@"Whoops, couldn't delete notifications for ride: %@", error.localizedDescription);
         return;
     }
+    
+    [NotificationStore notifyListenersThatNotificationsChanged];
+}
+
++ (void)notifyListenersThatNotificationsChanged {
+    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeDidUpdateNotifications object:nil userInfo:nil];
 }
 
 + (NSManagedObjectContext *)managedObjectContext {
