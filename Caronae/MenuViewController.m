@@ -48,10 +48,6 @@
         WebViewController *vc = segue.destinationViewController;
         vc.page = WebViewTermsOfUsePage;
     }
-    else if ([segue.identifier isEqualToString:@"FAQ"]) {
-        WebViewController *vc = segue.destinationViewController;
-        vc.page = WebViewFAQPage;
-    }
 }
 
 - (void)openRidesHistory {

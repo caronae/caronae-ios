@@ -2,8 +2,7 @@
 
 typedef enum {
     WebViewAboutPage,
-    WebViewTermsOfUsePage,
-    WebViewFAQPage
+    WebViewTermsOfUsePage
 } WebViewPage;
 
 @interface WebViewController : UIViewController <UIWebViewDelegate>

@@ -19,10 +19,6 @@
         self.title = @"Termos de Uso";
         urlString = CaronaeTermsOfUsePageURLString;
     }
-    else if (self.page == WebViewFAQPage) {
-        self.title = @"FAQ";
-        urlString = CaronaeFAQPageURLString;
-    }
     
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self.webView loadRequest:urlRequest];
