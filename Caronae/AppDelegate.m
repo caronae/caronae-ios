@@ -142,18 +142,10 @@
 #pragma mark - Notification handling
 
 - (void)registerForNotifications {
-    // Register for remote notifications
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
-        // iOS 7.1 or earlier
-        UIRemoteNotificationType allNotificationTypes = (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge);
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:allNotificationTypes];
-    } else {
-        // iOS 8 or later
-        UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    }
+    UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
 }
 
 - (BOOL)handleNotification:(NSDictionary *)userInfo {
@@ -175,7 +167,7 @@
         [Chat subscribeToTopicID:[Chat topicIDwithRideID:rideID]];
         
         if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-            [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
+            [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]} completionBlock:nil];
         }
     }
     // Handle 'ride cancelled' and 'ride finished' notifications
@@ -183,7 +175,7 @@
         [self handleFinishedNotification:userInfo];
     }
     else if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive && userInfo[@"message"] && ![userInfo[@"message"] isEqualToString:@""]) {
-        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
+        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]} completionBlock:nil];
     }
     
     return YES;
@@ -230,7 +222,7 @@
         ChatViewController *topVC = (ChatViewController *)[self topViewController];
         // Present notification only if the chat window is not already open
         if (![topVC isKindOfClass:ChatViewController.class] || ![message.rideID isEqualToNumber:@(topVC.chat.ride.rideID)]) {
-            [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: notificationBody}                                     completionBlock:nil];
+            [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: notificationBody} completionBlock:nil];
         }
     }
     
@@ -245,7 +237,7 @@
     [NotificationStore insertNotification:caronaeNotification];
     
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
+        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]} completionBlock:nil];
     }
 }
 
@@ -255,7 +247,7 @@
     [NotificationStore clearNotificationsForRide:rideID ofType:NotificationTypeAll];
     
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]}                                     completionBlock:nil];
+        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]} completionBlock:nil];
     }
 }
 

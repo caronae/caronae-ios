@@ -1739,7 +1739,10 @@ Este é o token gerado através da Intranet UFRJ</string>
                                 <exclude reference="3Oq-zT-Esa"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="74D-M0-f5s"/>
                                 <exclude reference="GX0-0l-aM4"/>
+                                <exclude reference="M2t-T2-AZ4"/>
+                                <exclude reference="zde-Al-ptR"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -6183,8 +6186,7 @@ FOTO</string>
                                                                                             <exclude reference="usE-UZ-yyp"/>
                                                                                         </mask>
                                                                                     </variation>
-                                                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                                                        <rect key="frame" x="5" y="0.0" width="40" height="40"/>
+                                                                                    <variation key="widthClass=compact">
                                                                                         <mask key="constraints">
                                                                                             <include reference="Pyu-eX-zyw"/>
                                                                                             <include reference="usE-UZ-yyp"/>
@@ -7392,11 +7394,11 @@ FOTO</string>
     <inferredMetricsTieBreakers>
         <segue reference="hM9-nM-k0Y"/>
         <segue reference="DwZ-AK-niy"/>
-        <segue reference="CEp-XF-lJK"/>
         <segue reference="kXd-xG-sw3"/>
         <segue reference="U3D-Zh-YLa"/>
         <segue reference="sGI-sp-fNN"/>
         <segue reference="yIa-C3-QN8"/>
+        <segue reference="7VR-Dw-svl"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>
