@@ -57,4 +57,8 @@ static NSDateFormatter *otherDateParserFormatter;
     }
 }
 
+- (BOOL)active {
+    return _users.count > 0;
+}
+
 @end

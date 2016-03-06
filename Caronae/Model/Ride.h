@@ -18,5 +18,5 @@
 @property (nonatomic, strong) NSArray<User *> *users;
 
 @property (readonly, nonatomic, copy) NSString *title;
-
+@property (readonly, nonatomic, assign) BOOL active;
 @end

@@ -90,6 +90,10 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
             [self.requestRideButton removeFromSuperview];
             [self.mutualFriendsView removeFromSuperview];
             [self.phoneView removeFromSuperview];
+            
+            if (!_ride.active) {
+                [self.finishRideView removeFromSuperview];
+            }
         });
         
         // Car details
