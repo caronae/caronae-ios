@@ -67,8 +67,7 @@ static NSUserDefaults *userDefaults;
     }
     [ChatStore clearChats];
     
-    // Clear Core Data
-    [appDelegate deleteAllObjects:@"Message"];
+    // Clear saved notifications
     [appDelegate deleteAllObjects:@"Notification"];
     
     // Clear user data
