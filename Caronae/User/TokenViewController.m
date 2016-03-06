@@ -31,7 +31,7 @@
     NSString *userToken = _tokenTextField.text;
     NSString *idUFRJ = _idTextField.text;
     NSDictionary *params = @{ @"id_ufrj": idUFRJ,
-                                  @"token": userToken };
+                              @"token": userToken };
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -123,7 +123,7 @@
     else if (textField == _tokenTextField) {
         _authButton.enabled = ![text isEqualToString:@""] && _idTextField.hasText;
     }
-
+    
     return YES;
 }
 
