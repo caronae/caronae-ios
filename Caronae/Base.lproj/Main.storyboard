@@ -1985,6 +1985,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                                 <exclude reference="mS0-3w-NhH"/>
                                                             </mask>
                                                         </variation>
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="32" width="360" height="292"/>
+                                                        </variation>
                                                     </textView>
                                                 </subviews>
                                                 <constraints>
@@ -1995,6 +1998,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstItem="aXm-bY-nhq" firstAttribute="leading" secondItem="niF-RV-GOB" secondAttribute="leading" id="nvG-xL-6as"/>
                                                     <constraint firstItem="Ysw-F7-F0j" firstAttribute="leading" secondItem="aXm-bY-nhq" secondAttribute="leading" id="zGI-aD-Fkr"/>
                                                 </constraints>
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="20" y="153" width="360" height="329"/>
+                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2244,33 +2250,6 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                             </mask>
                                                         </variation>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UD9-3b-3BN">
-                                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="6aV-FG-3ME">
-                                                                <variation key="widthClass=compact" constant="71"/>
-                                                            </constraint>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                        <state key="normal" image="ButtonSignout">
-                                                            <color key="titleColor" red="0.92941176470588238" green="0.1803921568627451" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <variation key="default">
-                                                            <mask key="constraints">
-                                                                <exclude reference="6aV-FG-3ME"/>
-                                                            </mask>
-                                                        </variation>
-                                                        <variation key="widthClass=compact">
-                                                            <mask key="constraints">
-                                                                <include reference="6aV-FG-3ME"/>
-                                                            </mask>
-                                                        </variation>
-                                                        <connections>
-                                                            <action selector="didTapLogoutButton:" destination="hXu-7Y-tvn" eventType="touchUpInside" id="745-TR-cQd"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="Ejx-Yf-BBH" firstAttribute="top" secondItem="OPY-Ou-4A7" secondAttribute="top" constant="5" id="8Et-39-0ge"/>
@@ -2282,21 +2261,14 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <constraint firstAttribute="height" constant="100" id="nNn-AN-WuO">
                                                         <variation key="widthClass=compact" constant="80"/>
                                                     </constraint>
-                                                    <constraint firstAttribute="trailing" secondItem="UD9-3b-3BN" secondAttribute="trailing" constant="15" id="uw8-Ow-SdB">
-                                                        <variation key="widthClass=compact" constant="0.0"/>
-                                                    </constraint>
-                                                    <constraint firstAttribute="centerY" secondItem="UD9-3b-3BN" secondAttribute="centerY" id="zBT-mn-daT"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="subviews">
                                                         <exclude reference="Ejx-Yf-BBH"/>
                                                         <exclude reference="slk-Jt-8rC"/>
-                                                        <exclude reference="UD9-3b-3BN"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <exclude reference="nNn-AN-WuO"/>
-                                                        <exclude reference="uw8-Ow-SdB"/>
-                                                        <exclude reference="zBT-mn-daT"/>
                                                         <exclude reference="8Et-39-0ge"/>
                                                         <exclude reference="M7Y-bT-9bo"/>
                                                         <exclude reference="eAl-RL-H7X"/>
@@ -2309,12 +2281,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     <mask key="subviews">
                                                         <include reference="Ejx-Yf-BBH"/>
                                                         <include reference="slk-Jt-8rC"/>
-                                                        <include reference="UD9-3b-3BN"/>
                                                     </mask>
                                                     <mask key="constraints">
                                                         <include reference="nNn-AN-WuO"/>
-                                                        <include reference="uw8-Ow-SdB"/>
-                                                        <include reference="zBT-mn-daT"/>
                                                         <include reference="8Et-39-0ge"/>
                                                         <include reference="M7Y-bT-9bo"/>
                                                         <include reference="eAl-RL-H7X"/>
@@ -3099,14 +3068,41 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                     </mask>
                                                 </variation>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UD9-3b-3BN">
+                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="70" id="6aV-FG-3ME">
+                                                        <variation key="widthClass=compact" constant="71"/>
+                                                    </constraint>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                <state key="normal" image="ButtonSignout">
+                                                    <color key="titleColor" red="0.92941176470588238" green="0.1803921568627451" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="6aV-FG-3ME"/>
+                                                    </mask>
+                                                </variation>
+                                                <variation key="widthClass=compact">
+                                                    <mask key="constraints">
+                                                        <include reference="6aV-FG-3ME"/>
+                                                    </mask>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="didTapLogoutButton:" destination="hXu-7Y-tvn" eventType="touchUpInside" id="745-TR-cQd"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="dAI-e5-Rkq" secondAttribute="bottom" constant="20" id="2gs-U4-Ytm"/>
                                             <constraint firstItem="dAI-e5-Rkq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uWW-QB-xp0" secondAttribute="bottom" constant="20" id="4Cr-CP-PbG"/>
                                             <constraint firstItem="ATU-TR-4v1" firstAttribute="leading" secondItem="OPY-Ou-4A7" secondAttribute="leading" id="B26-Is-9NP"/>
                                             <constraint firstItem="dAI-e5-Rkq" firstAttribute="top" secondItem="Dux-0O-fyC" secondAttribute="bottom" constant="31" id="DZi-K6-kKe"/>
                                             <constraint firstItem="Dux-0O-fyC" firstAttribute="leading" secondItem="uWW-QB-xp0" secondAttribute="leading" id="E07-nu-ZbP"/>
+                                            <constraint firstItem="UD9-3b-3BN" firstAttribute="top" secondItem="dAI-e5-Rkq" secondAttribute="bottom" constant="25" id="Ktd-PF-L1K"/>
                                             <constraint firstItem="ATU-TR-4v1" firstAttribute="width" secondItem="OPY-Ou-4A7" secondAttribute="width" id="QQt-d9-Rru"/>
                                             <constraint firstItem="uWW-QB-xp0" firstAttribute="top" secondItem="ATU-TR-4v1" secondAttribute="bottom" constant="5" id="SKe-my-7RL"/>
                                             <constraint firstItem="OPY-Ou-4A7" firstAttribute="top" secondItem="b4Y-FM-tR4" secondAttribute="top" constant="15" id="Vqb-MZ-rVU"/>
@@ -3115,8 +3111,10 @@ Este é o token gerado através da Intranet UFRJ</string>
                                             <constraint firstItem="Kvy-uv-slh" firstAttribute="leading" secondItem="uWW-QB-xp0" secondAttribute="leading" id="aTZ-u4-bir"/>
                                             <constraint firstItem="dAI-e5-Rkq" firstAttribute="width" secondItem="uWW-QB-xp0" secondAttribute="width" id="cgm-M9-bp4"/>
                                             <constraint firstItem="uWW-QB-xp0" firstAttribute="leading" secondItem="ATU-TR-4v1" secondAttribute="leading" id="knt-0o-mfo"/>
+                                            <constraint firstItem="UD9-3b-3BN" firstAttribute="centerX" secondItem="b4Y-FM-tR4" secondAttribute="centerX" id="lai-L3-kgM"/>
                                             <constraint firstAttribute="trailing" secondItem="OPY-Ou-4A7" secondAttribute="trailing" constant="20" id="ppZ-Ei-fce"/>
                                             <constraint firstItem="OPY-Ou-4A7" firstAttribute="leading" secondItem="b4Y-FM-tR4" secondAttribute="leading" constant="20" id="sNu-eo-TN2"/>
+                                            <constraint firstAttribute="bottom" secondItem="UD9-3b-3BN" secondAttribute="bottom" constant="20" id="sgy-j5-YOw"/>
                                             <constraint firstItem="Dux-0O-fyC" firstAttribute="width" secondItem="uWW-QB-xp0" secondAttribute="width" id="tRt-sn-rjW"/>
                                             <constraint firstItem="ATU-TR-4v1" firstAttribute="top" secondItem="OPY-Ou-4A7" secondAttribute="bottom" constant="10" id="udh-ER-KpV"/>
                                             <constraint firstItem="Kvy-uv-slh" firstAttribute="top" secondItem="Dux-0O-fyC" secondAttribute="bottom" constant="10" id="uuV-HF-Lrr"/>
@@ -3127,12 +3125,9 @@ Este é o token gerado através da Intranet UFRJ</string>
                                         <variation key="default">
                                             <mask key="subviews">
                                                 <exclude reference="Kvy-uv-slh"/>
+                                                <exclude reference="UD9-3b-3BN"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <exclude reference="aTZ-u4-bir"/>
-                                                <exclude reference="uuV-HF-Lrr"/>
-                                                <exclude reference="yXx-dP-xb1"/>
-                                                <exclude reference="zMD-gu-BBv"/>
                                                 <exclude reference="Vqb-MZ-rVU"/>
                                                 <exclude reference="ppZ-Ei-fce"/>
                                                 <exclude reference="sNu-eo-TN2"/>
@@ -3145,22 +3140,25 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <exclude reference="E07-nu-ZbP"/>
                                                 <exclude reference="WK3-8v-CYQ"/>
                                                 <exclude reference="tRt-sn-rjW"/>
-                                                <exclude reference="2gs-U4-Ytm"/>
+                                                <exclude reference="aTZ-u4-bir"/>
+                                                <exclude reference="uuV-HF-Lrr"/>
+                                                <exclude reference="yXx-dP-xb1"/>
+                                                <exclude reference="zMD-gu-BBv"/>
                                                 <exclude reference="4Cr-CP-PbG"/>
                                                 <exclude reference="DZi-K6-kKe"/>
                                                 <exclude reference="W7I-uC-XEb"/>
                                                 <exclude reference="cgm-M9-bp4"/>
+                                                <exclude reference="Ktd-PF-L1K"/>
+                                                <exclude reference="lai-L3-kgM"/>
+                                                <exclude reference="sgy-j5-YOw"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
                                             <mask key="subviews">
                                                 <include reference="Kvy-uv-slh"/>
+                                                <include reference="UD9-3b-3BN"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <include reference="aTZ-u4-bir"/>
-                                                <include reference="uuV-HF-Lrr"/>
-                                                <include reference="yXx-dP-xb1"/>
-                                                <include reference="zMD-gu-BBv"/>
                                                 <include reference="Vqb-MZ-rVU"/>
                                                 <include reference="ppZ-Ei-fce"/>
                                                 <include reference="sNu-eo-TN2"/>
@@ -3173,11 +3171,17 @@ Este é o token gerado através da Intranet UFRJ</string>
                                                 <include reference="E07-nu-ZbP"/>
                                                 <include reference="WK3-8v-CYQ"/>
                                                 <include reference="tRt-sn-rjW"/>
-                                                <include reference="2gs-U4-Ytm"/>
+                                                <include reference="aTZ-u4-bir"/>
+                                                <include reference="uuV-HF-Lrr"/>
+                                                <include reference="yXx-dP-xb1"/>
+                                                <include reference="zMD-gu-BBv"/>
                                                 <include reference="4Cr-CP-PbG"/>
                                                 <include reference="DZi-K6-kKe"/>
                                                 <include reference="W7I-uC-XEb"/>
                                                 <include reference="cgm-M9-bp4"/>
+                                                <include reference="Ktd-PF-L1K"/>
+                                                <include reference="lai-L3-kgM"/>
+                                                <include reference="sgy-j5-YOw"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -7392,13 +7396,13 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VJh-c3-WKd"/>
         <segue reference="DwZ-AK-niy"/>
         <segue reference="9kE-zS-Odm"/>
         <segue reference="H8O-Mc-OH3"/>
-        <segue reference="U3D-Zh-YLa"/>
-        <segue reference="sGI-sp-fNN"/>
+        <segue reference="ugX-qh-OjL"/>
+        <segue reference="yIa-C3-QN8"/>
         <segue reference="7VR-Dw-svl"/>
+        <segue reference="sGI-sp-fNN"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>
