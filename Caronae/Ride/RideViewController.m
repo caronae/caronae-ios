@@ -257,7 +257,14 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (IBAction)didTapRequestRide:(UIButton *)sender {
-    [self requestJoinRide];
+    CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Deseja mesmo solicitar a carona?"
+                                                                             message:@"Ao confirmar, você estará ocupando uma vaga nesta carona."
+                                                                      preferredStyle:SDCAlertControllerStyleAlert];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Solicitar" style:SDCAlertActionStyleRecommended handler:^(SDCAlertAction *action){
+        [self requestJoinRide];
+    }]];
+    [alert presentWithCompletion:nil];
 }
 
 - (IBAction)viewUserProfile:(id)sender {
@@ -269,8 +276,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Deseja mesmo desistir da carona?"
                                                                              message:@"Você é livre para cancelar caronas caso não possa participar, mas é importante fazer isso com responsabilidade. Caso haja outros usuários na carona, eles serão notificados."
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
-    [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
-    [alert addAction:[SDCAlertAction actionWithTitle:@"Desistir" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Não" style:SDCAlertActionStyleCancel handler:nil]];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Sim" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
         [self cancelRide];
     }]];
     [alert presentWithCompletion:nil];
@@ -281,7 +288,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
                                                                              message:@"Caso você tenha tido algum problema com a carona, use o Falaê para entrar em contato conosco."
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
-    [alert addAction:[SDCAlertAction actionWithTitle:@"Concluir" style:SDCAlertActionStyleDefault handler:^(SDCAlertAction *action){
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Concluir" style:SDCAlertActionStyleRecommended handler:^(SDCAlertAction *action){
         [self finishRide];
     }]];
     [alert presentWithCompletion:nil];
