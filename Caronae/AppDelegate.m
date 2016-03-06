@@ -217,17 +217,21 @@
         notification.alertBody = notificationBody;
         notification.userInfo = userInfo;
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        
+        Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:message.sentDate type:@"chat" context:self.managedObjectContext];
+        [NotificationStore insertNotification:caronaeNotification];
     }
     else {
         ChatViewController *topVC = (ChatViewController *)[self topViewController];
         // Present notification only if the chat window is not already open
         if (![topVC isKindOfClass:ChatViewController.class] || ![message.rideID isEqualToNumber:@(topVC.chat.ride.rideID)]) {
+            Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:message.sentDate type:@"chat" context:self.managedObjectContext];
+            [NotificationStore insertNotification:caronaeNotification];
+            
             [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: notificationBody} completionBlock:nil];
         }
     }
     
-    Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:message.sentDate type:@"chat" context:self.managedObjectContext];
-    [NotificationStore insertNotification:caronaeNotification];
 }
 
 - (void)handleJoinRequestNotification:(NSDictionary *)userInfo {
