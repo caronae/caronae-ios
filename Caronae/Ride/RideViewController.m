@@ -37,10 +37,11 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     self.title = @"Carona";
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"HH:mm | dd/MM";
+    dateFormatter.dateFormat = @"HH:mm | E | dd/MM";
+    NSString *dateString = [dateFormatter stringFromDate:_ride.date].capitalizedString;
     
     _titleLabel.text = [_ride.title uppercaseString];   
-    _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", [dateFormatter stringFromDate:_ride.date]];
+    _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", dateString];
     
     if ([_ride.place isKindOfClass:[NSString class]] && [_ride.place isEqualToString:@""]) {
         _referenceLabel.text = @"---";

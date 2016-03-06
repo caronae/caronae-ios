@@ -4,6 +4,17 @@
 
 @implementation RideCell
 
+static NSDateFormatter *dateFormatter;
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"HH:mm | E | dd/MM";
+    }
+    return self;
+}
+
 - (void)configureCellWithRide:(Ride *)ride {
     _ride = ride;
     
@@ -11,13 +22,11 @@
     
     [self updatePhoto];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"HH:mm | dd/MM";
     if (ride.going) {
-        _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Chegando às %@", [dateFormatter stringFromDate:_ride.date]];
+        _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Chegando às %@", self.dateString];
     }
     else {
-        _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Saindo às %@", [dateFormatter stringFromDate:_ride.date]];
+        _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Saindo às %@", self.dateString];
     }
     
     _slotsLabel.text = [NSString stringWithFormat:@"%d %@", ride.slots, ride.slots == 1 ? @"vaga" : @"vagas"];
@@ -34,15 +43,17 @@
     _titleLabel.text = [_ride.title uppercaseString];
     [self updatePhoto];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"HH:mm | dd/MM";
-    _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Chegou às %@", [dateFormatter stringFromDate:_ride.date]];
+    _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Chegou às %@", self.dateString];
     
     _slotsLabel.text = [NSString stringWithFormat:@"%lu %@", (unsigned long)ride.users.count, ride.users.count == 1 ? @"caronista" : @"caronistas"];
     
     self.accessoryType = UITableViewCellAccessoryNone;
     self.color = [CaronaeDefaults colorForZone:_ride.zone];
     _badgeLabel.hidden = YES;
+}
+
+- (NSString *)dateString {
+    return [dateFormatter stringFromDate:_ride.date].capitalizedString;
 }
 
 - (void)updatePhoto {

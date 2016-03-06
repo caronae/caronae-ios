@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10115" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10084"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -17,22 +17,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bLW-pS-2uv" userLabel="Info">
-                        <rect key="frame" x="98" y="18" width="315" height="51"/>
+                        <rect key="frame" x="92" y="18" width="327" height="51"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FREGUESIA → CT" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWN-UA-DTI" userLabel="Description">
-                                <rect key="frame" x="0.0" y="0.0" width="315" height="17"/>
+                                <rect key="frame" x="0.0" y="0.0" width="327" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chegando às 16:45 | 03/11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2br-U4-dn5" userLabel="Date">
-                                <rect key="frame" x="0.0" y="19" width="315" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chegando às 16:45 | Qua | 03/11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2br-U4-dn5" userLabel="Date">
+                                <rect key="frame" x="0.0" y="19" width="327" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 vagas" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaW-GQ-xGL" userLabel="Slots">
-                                <rect key="frame" x="0.0" y="36" width="315" height="15"/>
+                                <rect key="frame" x="0.0" y="36" width="327" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="yhy-4r-phG" userLabel="Driver photo">
-                        <rect key="frame" x="23" y="13" width="60" height="60"/>
+                        <rect key="frame" x="20" y="13" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="eFq-SE-vLr"/>
                         </constraints>
@@ -89,17 +89,17 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="yhy-4r-phG" firstAttribute="leading" secondItem="N9U-VB-hra" secondAttribute="leadingMargin" constant="15" id="FQY-PI-bbJ"/>
+                    <constraint firstItem="yhy-4r-phG" firstAttribute="leading" secondItem="N9U-VB-hra" secondAttribute="leadingMargin" constant="12" id="FQY-PI-bbJ"/>
                     <constraint firstItem="yhy-4r-phG" firstAttribute="centerY" secondItem="N9U-VB-hra" secondAttribute="centerY" id="HfE-B6-yCz"/>
                     <constraint firstItem="rgh-Un-6Zl" firstAttribute="centerY" secondItem="N9U-VB-hra" secondAttribute="centerY" id="Nna-2E-Ymw"/>
                     <constraint firstItem="bLW-pS-2uv" firstAttribute="centerY" secondItem="yhy-4r-phG" secondAttribute="centerY" id="am1-FT-aOn"/>
-                    <constraint firstItem="bLW-pS-2uv" firstAttribute="leading" secondItem="yhy-4r-phG" secondAttribute="trailing" constant="15" id="c3b-kN-4oj"/>
+                    <constraint firstItem="bLW-pS-2uv" firstAttribute="leading" secondItem="yhy-4r-phG" secondAttribute="trailing" constant="12" id="c3b-kN-4oj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="rgh-Un-6Zl" secondAttribute="trailing" constant="-10" id="oyi-ap-bIn"/>
                     <constraint firstItem="yhy-4r-phG" firstAttribute="width" secondItem="yhy-4r-phG" secondAttribute="height" multiplier="1:1" id="xhV-bg-6X0"/>
                 </constraints>
             </tableViewCellContentView>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="bLW-pS-2uv" secondAttribute="trailing" constant="36" id="lzi-GJ-vay"/>
+                <constraint firstAttribute="trailing" secondItem="bLW-pS-2uv" secondAttribute="trailing" constant="30" id="lzi-GJ-vay"/>
             </constraints>
             <connections>
                 <outlet property="arrivalDateTimeLabel" destination="2br-U4-dn5" id="ITd-qo-zn4"/>
