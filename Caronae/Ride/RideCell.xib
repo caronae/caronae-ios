@@ -31,7 +31,7 @@
                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 vagas" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaW-GQ-xGL" userLabel="Slots">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Renan Souza" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaW-GQ-xGL" userLabel="Slots">
                                 <rect key="frame" x="0.0" y="36" width="327" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -104,8 +104,8 @@
             <connections>
                 <outlet property="arrivalDateTimeLabel" destination="2br-U4-dn5" id="ITd-qo-zn4"/>
                 <outlet property="badgeLabel" destination="rgh-Un-6Zl" id="Z2f-xd-IGF"/>
+                <outlet property="driverNameLabel" destination="qaW-GQ-xGL" id="a44-Iu-qZh"/>
                 <outlet property="photo" destination="yhy-4r-phG" id="oZ3-zM-gSM"/>
-                <outlet property="slotsLabel" destination="qaW-GQ-xGL" id="RIo-vd-88u"/>
                 <outlet property="titleLabel" destination="fWN-UA-DTI" id="GMN-BP-W02"/>
             </connections>
             <point key="canvasLocation" x="319.5" y="231.5"/>

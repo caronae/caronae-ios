@@ -16,39 +16,31 @@ static NSDateFormatter *dateFormatter;
 }
 
 - (void)configureCellWithRide:(Ride *)ride {
-    _ride = ride;
-    
-    _titleLabel.text = [_ride.title uppercaseString];
-    
-    [self updatePhoto];
-    
+    [self configureBasicCellWithRide:ride];
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     if (ride.going) {
         _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Chegando às %@", self.dateString];
     }
     else {
         _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Saindo às %@", self.dateString];
     }
-    
-    _slotsLabel.text = [NSString stringWithFormat:@"%d %@", ride.slots, ride.slots == 1 ? @"vaga" : @"vagas"];
-    
-    self.color = [CaronaeDefaults colorForZone:_ride.zone];
-    
-    _badgeLabel.hidden = YES;
 }
 
-
 - (void)configureHistoryCellWithRide:(Ride *)ride {
-    _ride = ride;
-    
-    _titleLabel.text = [_ride.title uppercaseString];
-    [self updatePhoto];
-    
+    [self configureBasicCellWithRide:ride];
     _arrivalDateTimeLabel.text = [NSString stringWithFormat:@"Chegou às %@", self.dateString];
-    
-    _slotsLabel.text = [NSString stringWithFormat:@"%lu %@", (unsigned long)ride.users.count, ride.users.count == 1 ? @"caronista" : @"caronistas"];
-    
     self.accessoryType = UITableViewCellAccessoryNone;
+}
+
+- (void)configureBasicCellWithRide:(Ride *)ride {
+    _ride = ride;
+    _titleLabel.text = [_ride.title uppercaseString];
+    _driverNameLabel.text = _ride.driver.name;
+    
+    [self updatePhoto];
     self.color = [CaronaeDefaults colorForZone:_ride.zone];
+    
     _badgeLabel.hidden = YES;
 }
 
@@ -71,7 +63,7 @@ static NSDateFormatter *dateFormatter;
     _color = color;
     _titleLabel.textColor = color;
     _arrivalDateTimeLabel.textColor = color;
-    _slotsLabel.textColor = color;
+    _driverNameLabel.textColor = color;
     _photo.layer.borderColor = color.CGColor;
     self.tintColor = color;
 }
