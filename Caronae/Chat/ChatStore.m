@@ -5,9 +5,15 @@ static NSMutableDictionary<NSNumber *, Chat *> *chats;
 @implementation ChatStore
 
 + (void)setChat:(Chat *)chat forRide:(Ride *)ride {
+    if (!chat || !ride) {
+        NSLog(@"Tried to store a Chat with a nil parameter (Chat: %@, Ride: %@)", chat, ride);
+        return;
+    }
+    
     if (!chats) {
         chats = [[NSMutableDictionary alloc] init];
     }
+    
     id key = @(ride.rideID);
     chats[key] = chat;
 }

@@ -34,7 +34,7 @@
         self.selectedHub = lastSearchedCenter;
     }
     else {
-        self.selectedHub = self.hubs[0];
+        self.selectedHub = self.hubs.firstObject;
     }
     [self.centerButton setTitle:self.selectedHub forState:UIControlStateNormal];
     

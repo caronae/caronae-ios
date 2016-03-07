@@ -28,7 +28,7 @@
     [self checkIfUserHasCar];
     
     self.hubs = [CaronaeDefaults defaults].centers;
-    self.selectedHub = self.hubs[0];
+    self.selectedHub = self.hubs.firstObject;
     
     NSDictionary *lastRideLocation = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
     if (lastRideLocation) {
@@ -315,15 +315,21 @@
     else {
         self.hubs = [CaronaeDefaults defaults].hubs;
     }
-    self.selectedHub = self.hubs[0];
+    self.selectedHub = self.hubs.firstObject;
     [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
 }
 
 - (IBAction)selectCenterTapped:(id)sender {
     [self.view endEditing:YES];
+    
+    NSUInteger selectedIndex = [self.hubs indexOfObject:self.selectedHub];
+    if (selectedIndex == NSNotFound) {
+        selectedIndex = 0;
+    }
+    
     [ActionSheetStringPicker showPickerWithTitle:@"Selecione um centro"
                                             rows:self.hubs
-                                initialSelection:[self.hubs indexOfObject:self.selectedHub]
+                                initialSelection:selectedIndex
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            self.selectedHub = selectedValue;
                                            [self.center setTitle:selectedValue forState:UIControlStateNormal];
