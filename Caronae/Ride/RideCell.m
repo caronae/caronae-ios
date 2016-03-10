@@ -36,7 +36,11 @@ static NSDateFormatter *dateFormatter;
 - (void)configureBasicCellWithRide:(Ride *)ride {
     _ride = ride;
     _titleLabel.text = [_ride.title uppercaseString];
-    _driverNameLabel.text = _ride.driver.name;
+    
+    // Display first and last names only
+    NSArray<NSString *> *names = [_ride.driver.name componentsSeparatedByString:@" "];
+    NSString *displayName = names.count > 1 ? [NSString stringWithFormat:@"%@ %@", names.firstObject, names.lastObject] : _ride.driver.name;
+    _driverNameLabel.text = displayName;
     
     [self updatePhoto];
     self.color = [CaronaeDefaults colorForZone:_ride.zone];
