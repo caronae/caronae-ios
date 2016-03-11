@@ -280,8 +280,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Deseja mesmo desistir da carona?"
                                                                              message:@"Você é livre para cancelar caronas caso não possa participar, mas é importante fazer isso com responsabilidade. Caso haja outros usuários na carona, eles serão notificados."
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
-    [alert addAction:[SDCAlertAction actionWithTitle:@"Não" style:SDCAlertActionStyleCancel handler:nil]];
-    [alert addAction:[SDCAlertAction actionWithTitle:@"Sim" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Voltar" style:SDCAlertActionStyleCancel handler:nil]];
+    [alert addAction:[SDCAlertAction actionWithTitle:@"Desistir" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
         [self cancelRide];
     }]];
     [alert presentWithCompletion:nil];
