@@ -179,6 +179,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     _carIconColor.tintColor = color;
     _finishRideButton.layer.borderColor = color.CGColor;
     _finishRideButton.tintColor = color;
+    _requestRideButton.backgroundColor = color;
     [_finishRideButton setTitleColor:color forState:UIControlStateNormal];
 }
 
