@@ -6232,8 +6232,7 @@ FOTO</string>
                                                                                             <exclude reference="usE-UZ-yyp"/>
                                                                                         </mask>
                                                                                     </variation>
-                                                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                                                        <rect key="frame" x="5" y="0.0" width="40" height="40"/>
+                                                                                    <variation key="widthClass=compact">
                                                                                         <mask key="constraints">
                                                                                             <include reference="Pyu-eX-zyw"/>
                                                                                             <include reference="usE-UZ-yyp"/>
@@ -6318,6 +6317,33 @@ FOTO</string>
                                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RX5-Kp-EcW" userLabel="Route details View">
                                                         <rect key="frame" x="20" y="92" width="380" height="139"/>
                                                         <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PONTO DE REFERÊNCIA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVk-8T-Xcd" userLabel="Location title">
+                                                                <rect key="frame" x="92" y="56" width="215" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                                <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Em frente à Igreja." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lz2-Z4-QpW" userLabel="Location">
+                                                                <rect key="frame" x="92" y="56" width="215" height="21"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="Fpl-Rl-Te8">
+                                                                        <variation key="widthClass=compact" constant="15"/>
+                                                                    </constraint>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="Fpl-Rl-Te8"/>
+                                                                    </mask>
+                                                                </variation>
+                                                                <variation key="widthClass=compact">
+                                                                    <mask key="constraints">
+                                                                        <include reference="Fpl-Rl-Te8"/>
+                                                                    </mask>
+                                                                </variation>
+                                                            </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ROTA DO MOTORISTA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJz-Ez-OqI" userLabel="Route title">
                                                                 <rect key="frame" x="92" y="56" width="215" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
@@ -6345,40 +6371,13 @@ FOTO</string>
                                                                     </mask>
                                                                 </variation>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PONTO DE REFERÊNCIA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVk-8T-Xcd" userLabel="Route title">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECADO DO MOTORISTA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQb-4h-7CT" userLabel="Driver's message title">
                                                                 <rect key="frame" x="92" y="56" width="215" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Em frente à Igreja." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lz2-Z4-QpW" userLabel="Route">
-                                                                <rect key="frame" x="92" y="56" width="215" height="21"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="Fpl-Rl-Te8">
-                                                                        <variation key="widthClass=compact" constant="15"/>
-                                                                    </constraint>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                                <variation key="default">
-                                                                    <mask key="constraints">
-                                                                        <exclude reference="Fpl-Rl-Te8"/>
-                                                                    </mask>
-                                                                </variation>
-                                                                <variation key="widthClass=compact">
-                                                                    <mask key="constraints">
-                                                                        <include reference="Fpl-Rl-Te8"/>
-                                                                    </mask>
-                                                                </variation>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RECADO DO MOTORISTA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQb-4h-7CT" userLabel="Driver message title">
-                                                                <rect key="frame" x="92" y="56" width="215" height="21"/>
-                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                                                <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Só chegar. Não fumo nem nada. Rola passar por São Cristóvão também." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGC-vs-gc5" userLabel="Driver message content">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Só chegar. Não fumo nem nada. Rola passar por São Cristóvão também." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGC-vs-gc5" userLabel="Driver's message content">
                                                                 <rect key="frame" x="92" y="56" width="215" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29" id="xNz-nx-YVn">
@@ -6404,17 +6403,16 @@ FOTO</string>
                                                             <constraint firstItem="aGC-vs-gc5" firstAttribute="top" secondItem="iQb-4h-7CT" secondAttribute="bottom" constant="-1" id="1Tj-eD-gVU">
                                                                 <variation key="widthClass=compact" constant="5"/>
                                                             </constraint>
+                                                            <constraint firstItem="iQb-4h-7CT" firstAttribute="top" secondItem="0a3-ca-yPl" secondAttribute="bottom" constant="15" id="1t9-1K-IlJ"/>
+                                                            <constraint firstItem="xVk-8T-Xcd" firstAttribute="top" secondItem="RX5-Kp-EcW" secondAttribute="top" constant="10" id="2qa-Ax-ire"/>
                                                             <constraint firstItem="0a3-ca-yPl" firstAttribute="top" secondItem="gJz-Ez-OqI" secondAttribute="bottom" id="3P1-m2-pOk">
                                                                 <variation key="widthClass=compact" constant="5"/>
                                                             </constraint>
                                                             <constraint firstItem="0a3-ca-yPl" firstAttribute="width" secondItem="aGC-vs-gc5" secondAttribute="width" id="4cF-tH-wVz"/>
-                                                            <constraint firstItem="iQb-4h-7CT" firstAttribute="top" secondItem="lz2-Z4-QpW" secondAttribute="bottom" constant="15" id="B4B-6I-dh9"/>
                                                             <constraint firstItem="xVk-8T-Xcd" firstAttribute="leading" secondItem="0a3-ca-yPl" secondAttribute="leading" id="Ey1-gf-4Yl"/>
                                                             <constraint firstItem="aGC-vs-gc5" firstAttribute="leading" secondItem="iQb-4h-7CT" secondAttribute="leading" id="JOL-B5-4bw"/>
-                                                            <constraint firstItem="gJz-Ez-OqI" firstAttribute="top" secondItem="RX5-Kp-EcW" secondAttribute="top" constant="10" id="NV5-gX-TCs"/>
                                                             <constraint firstItem="lz2-Z4-QpW" firstAttribute="top" secondItem="xVk-8T-Xcd" secondAttribute="bottom" constant="5" id="Nda-Bi-o77"/>
                                                             <constraint firstItem="lz2-Z4-QpW" firstAttribute="width" secondItem="0a3-ca-yPl" secondAttribute="width" id="Tio-Jg-UFr"/>
-                                                            <constraint firstItem="xVk-8T-Xcd" firstAttribute="top" secondItem="0a3-ca-yPl" secondAttribute="bottom" constant="15" id="VSW-0c-Hbi"/>
                                                             <constraint firstItem="0a3-ca-yPl" firstAttribute="leading" secondItem="iQb-4h-7CT" secondAttribute="leading" id="aXV-Uf-gVS"/>
                                                             <constraint firstItem="gJz-Ez-OqI" firstAttribute="leading" secondItem="iQb-4h-7CT" secondAttribute="leading" id="dhk-Xv-kU5"/>
                                                             <constraint firstAttribute="trailing" secondItem="aGC-vs-gc5" secondAttribute="trailing" constant="-36.5" id="eRZ-r5-TgB">
@@ -6424,62 +6422,63 @@ FOTO</string>
                                                             <constraint firstItem="iQb-4h-7CT" firstAttribute="leading" secondItem="RX5-Kp-EcW" secondAttribute="leading" constant="8" id="jar-nM-w79">
                                                                 <variation key="widthClass=compact" constant="25"/>
                                                             </constraint>
+                                                            <constraint firstItem="gJz-Ez-OqI" firstAttribute="top" secondItem="lz2-Z4-QpW" secondAttribute="bottom" constant="15" id="joW-vV-YvH"/>
                                                             <constraint firstAttribute="bottom" secondItem="aGC-vs-gc5" secondAttribute="bottom" constant="10" id="yTY-ld-iTm"/>
                                                         </constraints>
                                                         <variation key="default">
                                                             <mask key="subviews">
-                                                                <exclude reference="gJz-Ez-OqI"/>
-                                                                <exclude reference="0a3-ca-yPl"/>
                                                                 <exclude reference="xVk-8T-Xcd"/>
                                                                 <exclude reference="lz2-Z4-QpW"/>
+                                                                <exclude reference="gJz-Ez-OqI"/>
+                                                                <exclude reference="0a3-ca-yPl"/>
                                                                 <exclude reference="iQb-4h-7CT"/>
                                                                 <exclude reference="aGC-vs-gc5"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <exclude reference="2qa-Ax-ire"/>
+                                                                <exclude reference="Ey1-gf-4Yl"/>
+                                                                <exclude reference="Nda-Bi-o77"/>
+                                                                <exclude reference="Tio-Jg-UFr"/>
+                                                                <exclude reference="fJ0-Yg-MhY"/>
+                                                                <exclude reference="dhk-Xv-kU5"/>
+                                                                <exclude reference="joW-vV-YvH"/>
                                                                 <exclude reference="3P1-m2-pOk"/>
                                                                 <exclude reference="4cF-tH-wVz"/>
                                                                 <exclude reference="aXV-Uf-gVS"/>
+                                                                <exclude reference="1t9-1K-IlJ"/>
+                                                                <exclude reference="jar-nM-w79"/>
                                                                 <exclude reference="1Tj-eD-gVU"/>
                                                                 <exclude reference="JOL-B5-4bw"/>
                                                                 <exclude reference="eRZ-r5-TgB"/>
                                                                 <exclude reference="yTY-ld-iTm"/>
-                                                                <exclude reference="NV5-gX-TCs"/>
-                                                                <exclude reference="dhk-Xv-kU5"/>
-                                                                <exclude reference="B4B-6I-dh9"/>
-                                                                <exclude reference="jar-nM-w79"/>
-                                                                <exclude reference="Nda-Bi-o77"/>
-                                                                <exclude reference="Tio-Jg-UFr"/>
-                                                                <exclude reference="fJ0-Yg-MhY"/>
-                                                                <exclude reference="Ey1-gf-4Yl"/>
-                                                                <exclude reference="VSW-0c-Hbi"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
                                                             <mask key="subviews">
-                                                                <include reference="gJz-Ez-OqI"/>
-                                                                <include reference="0a3-ca-yPl"/>
                                                                 <include reference="xVk-8T-Xcd"/>
                                                                 <include reference="lz2-Z4-QpW"/>
+                                                                <include reference="gJz-Ez-OqI"/>
+                                                                <include reference="0a3-ca-yPl"/>
                                                                 <include reference="iQb-4h-7CT"/>
                                                                 <include reference="aGC-vs-gc5"/>
                                                             </mask>
                                                             <mask key="constraints">
+                                                                <include reference="2qa-Ax-ire"/>
+                                                                <include reference="Ey1-gf-4Yl"/>
+                                                                <include reference="Nda-Bi-o77"/>
+                                                                <include reference="Tio-Jg-UFr"/>
+                                                                <include reference="fJ0-Yg-MhY"/>
+                                                                <include reference="dhk-Xv-kU5"/>
+                                                                <include reference="joW-vV-YvH"/>
                                                                 <include reference="3P1-m2-pOk"/>
                                                                 <include reference="4cF-tH-wVz"/>
                                                                 <include reference="aXV-Uf-gVS"/>
+                                                                <include reference="1t9-1K-IlJ"/>
+                                                                <include reference="jar-nM-w79"/>
                                                                 <include reference="1Tj-eD-gVU"/>
                                                                 <include reference="JOL-B5-4bw"/>
                                                                 <include reference="eRZ-r5-TgB"/>
                                                                 <include reference="yTY-ld-iTm"/>
-                                                                <include reference="NV5-gX-TCs"/>
-                                                                <include reference="dhk-Xv-kU5"/>
-                                                                <include reference="B4B-6I-dh9"/>
-                                                                <include reference="jar-nM-w79"/>
-                                                                <include reference="Nda-Bi-o77"/>
-                                                                <include reference="Tio-Jg-UFr"/>
-                                                                <include reference="fJ0-Yg-MhY"/>
-                                                                <include reference="Ey1-gf-4Yl"/>
-                                                                <include reference="VSW-0c-Hbi"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
