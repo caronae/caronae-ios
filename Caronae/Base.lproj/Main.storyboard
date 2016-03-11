@@ -1781,6 +1781,7 @@ Cgo
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Criar carona" id="gT8-2O-S5n">
+                        <barButtonItem key="backBarButtonItem" title="Criar" id="80G-s6-o0L"/>
                         <barButtonItem key="leftBarButtonItem" title="Cancelar" id="oHO-Oe-5U4">
                             <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -5550,6 +5551,7 @@ FOTO</string>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Buscar carona" id="cr5-on-Tdt">
+                        <barButtonItem key="backBarButtonItem" title="Buscar" id="DOo-FI-8ww"/>
                         <barButtonItem key="leftBarButtonItem" title="Cancelar" id="T5F-y9-QJ8">
                             <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -7278,7 +7280,7 @@ FOTO</string>
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Zona" id="KA9-iE-llC">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="cuf-yz-P0A">
+                        <barButtonItem key="rightBarButtonItem" title="OK" id="cuf-yz-P0A">
                             <connections>
                                 <action selector="didTapDoneButton:" destination="J0r-pk-iNO" id="KbN-ps-GtW"/>
                             </connections>
@@ -7435,12 +7437,12 @@ FOTO</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VJh-c3-WKd"/>
+        <segue reference="hM9-nM-k0Y"/>
         <segue reference="DwZ-AK-niy"/>
-        <segue reference="9kE-zS-Odm"/>
         <segue reference="H8O-Mc-OH3"/>
         <segue reference="ugX-qh-OjL"/>
         <segue reference="sGI-sp-fNN"/>
-        <segue reference="7VR-Dw-svl"/>
+        <segue reference="tvA-Ui-5Q1"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>

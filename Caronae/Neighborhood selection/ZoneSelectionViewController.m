@@ -21,13 +21,22 @@
         self.title = self.selectedZone;
         self.zones = [CaronaeDefaults defaults].neighborhoods[self.selectedZone];
         self.selectedNeighborhoods = [[NSMutableArray alloc] init];
+        self.doneButton.title = @"Sel. todos";
     }
 }
 
 - (void)finishSelection {
     [self.navigationController popToRootViewControllerAnimated:YES];
     if (self.neighborhoodSelectionType == NeighborhoodSelectionMany && [self.delegate respondsToSelector:@selector(hasSelectedNeighborhoods:inZone:)]) {
-        [self.delegate hasSelectedNeighborhoods:self.selectedNeighborhoods inZone:self.selectedZone];
+        NSArray *selectedNeighborhoods;
+        if (self.selectedNeighborhoods.count == 0) {
+            selectedNeighborhoods = self.zones;
+        }
+        else {
+            selectedNeighborhoods = self.selectedNeighborhoods;
+        }
+
+        [self.delegate hasSelectedNeighborhoods:selectedNeighborhoods inZone:self.selectedZone];
     }
     else if (self.neighborhoodSelectionType == NeighborhoodSelectionOne && [self.delegate respondsToSelector:@selector(hasSelectedNeighborhood:inZone:)]) {
         [self.delegate hasSelectedNeighborhood:self.selectedNeighborhoods.firstObject inZone:self.selectedZone];
@@ -102,7 +111,7 @@
         else if (self.neighborhoodSelectionType == NeighborhoodSelectionMany) {
             UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            self.doneButton.enabled = (self.selectedNeighborhoods.count > 0);
+            self.doneButton.title = (self.selectedNeighborhoods.count > 0) ? @"OK" : @"Sel. todos";
         }
     }
 }
@@ -114,7 +123,7 @@
     NSString *selectedNeighborhood = self.zones[indexPath.row];
     [self.selectedNeighborhoods removeObject:selectedNeighborhood];
     
-    self.doneButton.enabled = (self.selectedNeighborhoods.count > 0);
+    self.doneButton.title = (self.selectedNeighborhoods.count > 0) ? @"OK" : @"Sel. todos";
 }
 
 #pragma mark - Navigation
