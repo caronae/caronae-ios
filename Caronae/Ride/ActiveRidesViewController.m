@@ -7,7 +7,7 @@
 #import "Notification+CoreDataProperties.h"
 #import "NotificationStore.h"
 
-@interface ActiveRidesViewController ()
+@interface ActiveRidesViewController () <UITableViewDelegate>
 @property (nonatomic) NSArray<Notification *> *unreadNotifications;
 @end
 
@@ -138,5 +138,21 @@
     
     return cell;
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UILabel *titleMessage = [[UILabel alloc] init];
+    titleMessage.text = @"Se você é motorista de alguma carona, não\n esqueça de concluí-la após seu término. :)";
+    titleMessage.numberOfLines = 0;
+    titleMessage.backgroundColor = [UIColor whiteColor];
+    titleMessage.font = [UIFont systemFontOfSize:10];
+    titleMessage.textColor = [UIColor lightGrayColor];
+    titleMessage.textAlignment = NSTextAlignmentCenter;
+    return titleMessage;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 40.0f;
+}
+
 
 @end
