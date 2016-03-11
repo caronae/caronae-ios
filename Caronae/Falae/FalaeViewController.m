@@ -31,7 +31,7 @@ NSString *deviceName() {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _messageTypes = @[@"Reclamação", @"Ajuda", @"Sugestão", @"Denúncia"];
+    _messageTypes = @[@"Sugestão", @"Denúncia", @"Dúvida"];
     
     _messageTextView.delegate = self;
     _messagePlaceholder = _messageTextView.text;
@@ -41,15 +41,15 @@ NSString *deviceName() {
     if (_reportedUser) {
         _selectedType = @"report";
         _selectedTypeCute = @"Denúncia";
-        _selectedTypeInitialIndex = 3;
+        _selectedTypeInitialIndex = [_messageTypes indexOfObject:_selectedTypeCute];
         [_typeButton setTitle:@"Denúncia" forState:UIControlStateNormal];
         _subjectTextField.text = [NSString stringWithFormat:@"Denúncia sobre usuário %@ (id: %d)", _reportedUser.name, [_reportedUser.userID intValue]];
         _subjectTextField.enabled = NO;
     }
     else {
-        _selectedTypeInitialIndex = 0;
         _selectedType = @"complaint";
-        _selectedTypeCute = @"Reclamação";
+        _selectedTypeCute = @"Denúncia";
+        _selectedTypeInitialIndex = [_messageTypes indexOfObject:_selectedTypeCute];
     }
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
@@ -91,16 +91,13 @@ NSString *deviceName() {
                                             rows:_messageTypes                                                          initialSelection:_selectedTypeInitialIndex
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            _selectedTypeCute = selectedValue;
-                                           if ([selectedValue isEqualToString:@"Reclamação"]) {
-                                               _selectedType = @"complaint";
-                                           }
-                                           else if ([selectedValue isEqualToString:@"Sugestão"]) {
+                                           if ([selectedValue isEqualToString:@"Sugestão"]) {
                                                _selectedType = @"suggestion";
                                            }
                                            else if ([selectedValue isEqualToString:@"Denúncia"]) {
                                                _selectedType = @"report";
                                            }
-                                           else if ([selectedValue isEqualToString:@"Ajuda"]) {
+                                           else if ([selectedValue isEqualToString:@"Dúvida"]) {
                                                _selectedType = @"help";
                                            }
                                            else {
@@ -114,8 +111,9 @@ NSString *deviceName() {
 - (IBAction)didTapSendButton:(id)sender {
     [self.view endEditing:YES];
     
-    if ([_messageTextView.text isEqualToString:@""] || [_subjectTextField.text isEqualToString:@""]) {
-        [CaronaeAlertController presentOkAlertWithTitle:@"" message:@"Por favor, preencha um assunto e uma mensagem para entrar em contato conosco."];
+    NSString *messageText = [_messageTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if ([messageText isEqualToString:_messagePlaceholder] || messageText.length == 0) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"" message:@"Ops! Parece que você esqueceu de preencher sua mensagem."];
         return;
     }
     
@@ -128,11 +126,11 @@ NSString *deviceName() {
     NSString *osVersion = [[UIDevice currentDevice] systemVersion];
     NSString *device = deviceName();
     
-    NSString *text = [NSString stringWithFormat:@"%@\n\n--------------------------------\nDevice: %@ (iOS %@)\nVersão do app: %@", _messageTextView.text, device, osVersion, versionBuildString];
+    NSString *text = [NSString stringWithFormat:@"%@\n\n--------------------------------\nDevice: %@ (iOS %@)\nVersão do app: %@", messageText, device, osVersion, versionBuildString];
     
     NSDictionary *message = @{@"type": type,
-                             @"subject": subject,
-                             @"message": text};
+                              @"subject": subject,
+                              @"message": text};
     
     [self sendMessage:message];
 }
