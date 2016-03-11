@@ -1,4 +1,5 @@
 #import <AFNetworking/AFNetworking.h>
+#import <SafariServices/SafariServices.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "AppDelegate.h"
 #import "CaronaeAlertController.h"
@@ -17,6 +18,9 @@
     _authButton.enabled = NO;
     _tokenTextField.delegate = self;
     _idTextField.delegate = self;
+    
+    UITapGestureRecognizer *welcomeTextTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapWelcomeText:)];
+    [_welcomeLabel addGestureRecognizer:welcomeTextTapRecognizer];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [_createUserButton removeFromSuperview];
@@ -98,6 +102,18 @@
 
 - (IBAction)didTapAuthenticateButton:(UIButton *)sender {
     [self authenticate];
+}
+
+- (void)didTapWelcomeText:(id)sender {
+    NSURL *intranetURL = [NSURL URLWithString:CaronaeIntranetURLString];
+    
+    if ([SFSafariViewController class]) {
+        SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:intranetURL entersReaderIfAvailable:NO];
+        [self presentViewController:safariVC animated:YES completion:nil];
+    }
+    else {
+        [UIApplication.sharedApplication openURL:intranetURL];
+    }
 }
 
 
