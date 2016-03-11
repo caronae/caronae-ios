@@ -4,7 +4,7 @@
 
 @interface ZoneSelectionViewController ()
 @property (nonatomic) NSArray *zones;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
+@property (nonatomic) UIBarButtonItem *doneButton;
 @property (nonatomic) NSMutableArray *selectedNeighborhoods;
 @end
 
@@ -21,7 +21,10 @@
         self.title = self.selectedZone;
         self.zones = [CaronaeDefaults defaults].neighborhoods[self.selectedZone];
         self.selectedNeighborhoods = [[NSMutableArray alloc] init];
-        self.doneButton.title = @"Sel. todos";
+        if (self.neighborhoodSelectionType == NeighborhoodSelectionMany) {
+            self.doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Sel. todos" style:UIBarButtonItemStyleDone target:self action:@selector(finishSelection)];
+            self.navigationItem.rightBarButtonItem = self.doneButton;
+        }
     }
 }
 
@@ -43,9 +46,6 @@
     }
 }
 
-- (IBAction)didTapDoneButton:(id)sender {
-    [self finishSelection];
-}
 
 #pragma mark - Table view data source
 

@@ -7279,17 +7279,8 @@ FOTO</string>
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Zona" id="KA9-iE-llC">
-                        <barButtonItem key="rightBarButtonItem" title="OK" id="cuf-yz-P0A">
-                            <connections>
-                                <action selector="didTapDoneButton:" destination="J0r-pk-iNO" id="KbN-ps-GtW"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Zona" id="KA9-iE-llC"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="doneButton" destination="cuf-yz-P0A" id="d1q-1i-qa8"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HfW-YK-U8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
