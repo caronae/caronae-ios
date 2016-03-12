@@ -81,7 +81,7 @@
             
             // Hack so that the alert is not presented from the modal search dialog
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
-                [CaronaeAlertController presentOkAlertWithTitle:@"Nenhuma carona encontrada :(" message:@"Você pode ampliar sua pesquisa selecionando vários bairros ou escolhendo um horário mais cedo."];
+                [CaronaeAlertController presentOkAlertWithTitle:@"Nenhuma carona\nencontrada :(" message:@"Você pode ampliar sua pesquisa selecionando vários bairros ou escolhendo um horário mais cedo."];
             });
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
