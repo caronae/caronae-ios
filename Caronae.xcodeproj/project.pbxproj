@@ -30,6 +30,7 @@
 		A34C67581C826280001F6D90 /* NotificationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C67571C826280001F6D90 /* NotificationStore.m */; };
 		A34C675C1C853C4B001F6D90 /* RideRequestsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C675B1C853C4B001F6D90 /* RideRequestsStore.m */; };
 		A34C675F1C854EA7001F6D90 /* UserController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C675E1C854EA7001F6D90 /* UserController.m */; };
+		A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A34CEC4C1C993115006FC41E /* Settings.bundle */; };
 		A357EF331C56C5A100AC8096 /* RideListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF311C56C5A100AC8096 /* RideListController.m */; };
 		A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A357EF321C56C5A100AC8096 /* RideListController.xib */; };
 		A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF361C57168D00AC8096 /* SignupViewController.m */; };
@@ -126,6 +127,7 @@
 		A34C675B1C853C4B001F6D90 /* RideRequestsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideRequestsStore.m; sourceTree = "<group>"; };
 		A34C675D1C854EA7001F6D90 /* UserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserController.h; sourceTree = "<group>"; };
 		A34C675E1C854EA7001F6D90 /* UserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserController.m; sourceTree = "<group>"; };
+		A34CEC4C1C993115006FC41E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A357EF301C56C5A100AC8096 /* RideListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideListController.h; sourceTree = "<group>"; };
 		A357EF311C56C5A100AC8096 /* RideListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideListController.m; sourceTree = "<group>"; };
 		A357EF321C56C5A100AC8096 /* RideListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideListController.xib; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				9EEF98FE6EBF502EF2E23188 /* Frameworks */,
 				D2A5ADC9EBDC943DAB5ACFFA /* Pods */,
 				A3169C911BED842D00A0D428 /* Products */,
+				A34CEC4C1C993115006FC41E /* Settings.bundle */,
 			);
 			sourceTree = "<group>";
 		};
@@ -586,6 +589,7 @@
 				A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */,
 				A3F30EF21C08ABDC0024BE37 /* bairros.csv in Resources */,
 				A3169C9E1BED842D00A0D428 /* Main.storyboard in Resources */,
+				A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */,
 				A325DA711C0CAFD700B9124E /* JoinRequestCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

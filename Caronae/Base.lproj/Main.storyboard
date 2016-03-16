@@ -256,8 +256,7 @@
                                                         <exclude reference="FSR-iX-UEn"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="444" width="400" height="258"/>
+                                                <variation key="widthClass=compact">
                                                     <mask key="constraints">
                                                         <include reference="FSR-iX-UEn"/>
                                                     </mask>
@@ -327,9 +326,6 @@ Cgo
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovk-fe-fy7">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <state key="normal" title="Criar usuário"/>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="156" y="504" width="88" height="30"/>
-                                                </variation>
                                                 <connections>
                                                     <segue destination="DFi-hH-t6a" kind="presentation" id="LJD-Zm-tLI"/>
                                                 </connections>
@@ -341,9 +337,6 @@ Cgo
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="40" y="360" width="320" height="30"/>
-                                                </variation>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sua chave aqui" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-HP-hhp" userLabel="Token Text Field" customClass="CaronaeTextField">
                                                 <rect key="frame" x="20" y="259" width="320" height="30"/>
@@ -6197,7 +6190,8 @@ FOTO</string>
                                                                                             <exclude reference="usE-UZ-yyp"/>
                                                                                         </mask>
                                                                                     </variation>
-                                                                                    <variation key="widthClass=compact">
+                                                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                                                        <rect key="frame" x="5" y="0.0" width="40" height="40"/>
                                                                                         <mask key="constraints">
                                                                                             <include reference="Pyu-eX-zyw"/>
                                                                                             <include reference="usE-UZ-yyp"/>
@@ -6400,22 +6394,22 @@ FOTO</string>
                                                                 <exclude reference="aGC-vs-gc5"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <exclude reference="2qa-Ax-ire"/>
-                                                                <exclude reference="Ey1-gf-4Yl"/>
-                                                                <exclude reference="Nda-Bi-o77"/>
-                                                                <exclude reference="Tio-Jg-UFr"/>
-                                                                <exclude reference="fJ0-Yg-MhY"/>
-                                                                <exclude reference="dhk-Xv-kU5"/>
-                                                                <exclude reference="joW-vV-YvH"/>
                                                                 <exclude reference="3P1-m2-pOk"/>
                                                                 <exclude reference="4cF-tH-wVz"/>
                                                                 <exclude reference="aXV-Uf-gVS"/>
-                                                                <exclude reference="1t9-1K-IlJ"/>
-                                                                <exclude reference="jar-nM-w79"/>
                                                                 <exclude reference="1Tj-eD-gVU"/>
                                                                 <exclude reference="JOL-B5-4bw"/>
                                                                 <exclude reference="eRZ-r5-TgB"/>
                                                                 <exclude reference="yTY-ld-iTm"/>
+                                                                <exclude reference="dhk-Xv-kU5"/>
+                                                                <exclude reference="joW-vV-YvH"/>
+                                                                <exclude reference="1t9-1K-IlJ"/>
+                                                                <exclude reference="jar-nM-w79"/>
+                                                                <exclude reference="Nda-Bi-o77"/>
+                                                                <exclude reference="Tio-Jg-UFr"/>
+                                                                <exclude reference="fJ0-Yg-MhY"/>
+                                                                <exclude reference="2qa-Ax-ire"/>
+                                                                <exclude reference="Ey1-gf-4Yl"/>
                                                             </mask>
                                                         </variation>
                                                         <variation key="widthClass=compact">
@@ -6428,22 +6422,22 @@ FOTO</string>
                                                                 <include reference="aGC-vs-gc5"/>
                                                             </mask>
                                                             <mask key="constraints">
-                                                                <include reference="2qa-Ax-ire"/>
-                                                                <include reference="Ey1-gf-4Yl"/>
-                                                                <include reference="Nda-Bi-o77"/>
-                                                                <include reference="Tio-Jg-UFr"/>
-                                                                <include reference="fJ0-Yg-MhY"/>
-                                                                <include reference="dhk-Xv-kU5"/>
-                                                                <include reference="joW-vV-YvH"/>
                                                                 <include reference="3P1-m2-pOk"/>
                                                                 <include reference="4cF-tH-wVz"/>
                                                                 <include reference="aXV-Uf-gVS"/>
-                                                                <include reference="1t9-1K-IlJ"/>
-                                                                <include reference="jar-nM-w79"/>
                                                                 <include reference="1Tj-eD-gVU"/>
                                                                 <include reference="JOL-B5-4bw"/>
                                                                 <include reference="eRZ-r5-TgB"/>
                                                                 <include reference="yTY-ld-iTm"/>
+                                                                <include reference="dhk-Xv-kU5"/>
+                                                                <include reference="joW-vV-YvH"/>
+                                                                <include reference="1t9-1K-IlJ"/>
+                                                                <include reference="jar-nM-w79"/>
+                                                                <include reference="Nda-Bi-o77"/>
+                                                                <include reference="Tio-Jg-UFr"/>
+                                                                <include reference="fJ0-Yg-MhY"/>
+                                                                <include reference="2qa-Ax-ire"/>
+                                                                <include reference="Ey1-gf-4Yl"/>
                                                             </mask>
                                                         </variation>
                                                     </view>
@@ -7273,8 +7267,7 @@ FOTO</string>
                                         <exclude reference="WI9-5m-6hu"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="20" y="84" width="360" height="32"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="WI9-5m-6hu"/>
                                     </mask>
