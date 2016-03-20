@@ -78,7 +78,7 @@ NSString *const CaronaePhoneNumberPattern = @"(###) #####-####";
 
 - (NSArray *)hubs {
     if (!_hubs) {
-        _hubs = @[@"CT: Bloco A", @"CT: Bloco D", @"CT: Bloco H", @"CCMN: Frente", @"CCMN: Fundos", @"Letras", @"Reitoria", @"EEFD", @"CCS: Frente", @"CCS: HU"];
+        _hubs = @[@"CT: Bloco A", @"CT: Bloco D", @"CT: Bloco H", @"CCMN: Frente", @"CCMN: Fundos", @"Letras", @"Reitoria", @"EEFD", @"CCS: Frente", @"CCS: HUCFF"];
     }
     return _hubs;
 }
