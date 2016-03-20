@@ -1,6 +1,5 @@
 #import <AFNetworking/AFNetworking.h>
 #import <CoreData/CoreData.h>
-#import <SDWebImage/UIImageView+WebCache.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
 #import "Chat.h"
@@ -15,6 +14,7 @@
 #import "RiderCell.h"
 #import "RideRequestsStore.h"
 #import "SHSPhoneNumberFormatter+UserConfig.h"
+#import "UIImageView+crn_setImageWithURL.h"
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
 
@@ -68,9 +68,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     }
     
     if (_ride.driver.profilePictureURL.length > 0) {
-        [_driverPhoto sd_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]
-                  placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                           options:SDWebImageRefreshCached | SDWebImageRetryFailed];
+        [_driverPhoto crn_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]];
     }
     
     self.color = [CaronaeDefaults colorForZone:_ride.zone];
@@ -534,9 +532,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     cell.nameLabel.text = user.firstName;
     
     if (user.profilePictureURL.length > 0) {
-        [cell.photo sd_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]
-                      placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                               options:SDWebImageRefreshCached | SDWebImageRetryFailed];
+        [cell.photo crn_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]];
     }
     
     return cell;

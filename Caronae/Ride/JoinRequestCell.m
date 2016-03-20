@@ -1,5 +1,5 @@
-#import <SDWebImage/UIImageView+WebCache.h>
 #import "JoinRequestCell.h"
+#import "UIImageView+crn_setImageWithURL.h"
 
 @implementation JoinRequestCell
 
@@ -19,9 +19,7 @@
     _userCourse.text = user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", user.profile, user.course] : user.profile;
     
     if (user.profilePictureURL.length > 0) {
-        [self.userPhoto sd_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]
-                      placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                               options:SDWebImageRefreshCached | SDWebImageRetryFailed];
+        [self.userPhoto crn_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]];
     }
 }
 

@@ -1,6 +1,6 @@
-#import <SDWebImage/UIImageView+WebCache.h>
 #import "MenuViewController.h"
 #import "ProfileViewController.h"
+#import "UIImageView+crn_setImageWithURL.h"
 #import "WebViewController.h"
 
 @interface MenuViewController ()
@@ -26,9 +26,7 @@
     NSString *userPhotoURL = user.profilePictureURL;
     if (userPhotoURL.length > 0 && ![userPhotoURL isEqualToString:self.photoURL]) {
         self.photoURL = userPhotoURL;
-        [self.profileImageView sd_setImageWithURL:[NSURL URLWithString:userPhotoURL]
-                                 placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                                          options:SDWebImageRefreshCached | SDWebImageRetryFailed];
+        [self.profileImageView crn_setImageWithURL:[NSURL URLWithString:userPhotoURL]];
     }
 }
 

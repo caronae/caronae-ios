@@ -20,6 +20,7 @@ extern const NSInteger CaronaeErrorNoRidesCreated;
 extern const NSInteger CaronaeErrorOpeningCoreDataStore;
 
 extern NSString *const CaronaePhoneNumberPattern;
+extern NSString *const CaronaePlaceholderProfileImage;
 
 @interface CaronaeDefaults : NSObject
 

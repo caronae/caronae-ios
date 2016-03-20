@@ -1,4 +1,4 @@
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "UIImageView+crn_setImageWithURL.h"
 #import "Ride.h"
 #import "RideCell.h"
 
@@ -54,9 +54,7 @@ static NSDateFormatter *dateFormatter;
 
 - (void)updatePhoto {
     if (_ride.driver.profilePictureURL.length > 0) {
-        [_photo sd_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]
-                  placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                           options:SDWebImageRefreshCached | SDWebImageRetryFailed];
+        [_photo crn_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]];
     }
     else {
         _photo.image = [UIImage imageNamed:@"Profile Picture"];

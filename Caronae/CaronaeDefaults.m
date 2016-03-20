@@ -42,6 +42,7 @@ const NSInteger CaronaeErrorOpeningCoreDataStore = 3;
 #pragma mark - Etc.
 
 NSString *const CaronaePhoneNumberPattern = @"(###) #####-####";
+NSString *const CaronaePlaceholderProfileImage = @"Profile Picture";
 
 
 @interface CaronaeDefaults()

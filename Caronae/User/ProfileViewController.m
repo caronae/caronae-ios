@@ -1,5 +1,4 @@
 #import <AFNetworking/AFNetworking.h>
-#import <SDWebImage/UIImageView+WebCache.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
@@ -8,6 +7,7 @@
 #import "ProfileViewController.h"
 #import "RiderCell.h"
 #import "SHSPhoneNumberFormatter+UserConfig.h"
+#import "UIImageView+crn_setImageWithURL.h"
 
 @interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
@@ -90,9 +90,7 @@
     }
     
     if (_user.profilePictureURL.length > 0) {
-        [self.profileImage sd_setImageWithURL:[NSURL URLWithString:_user.profilePictureURL]
-                      placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                               options:SDWebImageRefreshCached | SDWebImageRetryFailed];
+        [self.profileImage crn_setImageWithURL:[NSURL URLWithString:_user.profilePictureURL]];
     }
     
     [self updateRidesOfferedCount];
@@ -218,9 +216,7 @@
     cell.nameLabel.text = user.firstName;
     
     if (user.profilePictureURL.length > 0) {
-        [cell.photo sd_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]
-                      placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                               options:SDWebImageRefreshCached | SDWebImageRetryFailed];
+        [cell.photo crn_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]];
     }
     
     return cell;

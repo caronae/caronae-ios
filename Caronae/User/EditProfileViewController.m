@@ -1,13 +1,13 @@
 #import <AFNetworking/AFNetworking.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import <SDWebImage/UIImageView+WebCache.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
 #import "CaronaeTextField.h"
 #import "CaronaePhoneTextField.h"
 #import "NSString+validation.h"
 #import "EditProfileViewController.h"
+#import "UIImageView+crn_setImageWithURL.h"
 #import "ZoneSelectionViewController.h"
 
 @interface EditProfileViewController () <ZoneSelectionDelegate, UIActionSheetDelegate, UITextFieldDelegate>
@@ -95,9 +95,7 @@
     
     self.photoURL = user.profilePictureURL;
     if (self.photoURL.length > 0) {
-        [self.photo sd_setImageWithURL:[NSURL URLWithString:self.photoURL]
-                      placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                               options:SDWebImageRefreshCached | SDWebImageRetryFailed];
+        [self.photo crn_setImageWithURL:[NSURL URLWithString:self.photoURL]];
     }
 }
 
@@ -422,12 +420,9 @@
         if (!error) {
             NSDictionary *data = result[@"data"];
             _photoURL = data[@"url"];
-            [_photo sd_setImageWithURL:[NSURL URLWithString:_photoURL]
-                      placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                               options:SDWebImageRefreshCached | SDWebImageRetryFailed
-                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                 [SVProgressHUD dismiss];
-                             }];
+            [_photo crn_setImageWithURL:[NSURL URLWithString:_photoURL] completed:^{
+                [SVProgressHUD dismiss];
+            }];
         }
         else {
             [SVProgressHUD dismiss];
@@ -450,12 +445,9 @@
     
     [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/user/intranetPhotoUrl"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         _photoURL = responseObject[@"url"];
-        [_photo sd_setImageWithURL:[NSURL URLWithString:_photoURL]
-                  placeholderImage:[UIImage imageNamed:@"Profile Picture"]
-                           options:SDWebImageRefreshCached | SDWebImageRetryFailed
-                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                             [SVProgressHUD dismiss];
-                         }];
+        [_photo crn_setImageWithURL:[NSURL URLWithString:_photoURL] completed:^{
+            [SVProgressHUD dismiss];
+        }];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [SVProgressHUD dismiss];
         NSLog(@"result: %@", error.localizedDescription);
