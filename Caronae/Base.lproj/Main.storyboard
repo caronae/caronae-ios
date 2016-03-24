@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -305,9 +305,6 @@ Cgo
                                                     </fragment>
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="40" y="173" width="320" height="172"/>
-                                                </variation>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdC-RO-82W">
                                                 <rect key="frame" x="146" y="313" width="67" height="30"/>
@@ -316,18 +313,8 @@ Cgo
                                                 <state key="normal" title="ACESSAR" backgroundImage="ButtonColor">
                                                     <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="150" y="454" width="100" height="42"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="didTapAuthenticateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="da5-pN-Iyk"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovk-fe-fy7">
-                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                                <state key="normal" title="Criar usuário"/>
-                                                <connections>
-                                                    <segue destination="DFi-hH-t6a" kind="presentation" id="LJD-Zm-tLI"/>
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Seu CPF aqui" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZBE-h4-ywG" userLabel="ID Text Field" customClass="CaronaeTextField">
@@ -345,9 +332,6 @@ Cgo
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="40" y="400" width="320" height="30"/>
-                                                </variation>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -358,7 +342,6 @@ Cgo
                                             <constraint firstItem="pyv-Ne-S5g" firstAttribute="leading" secondItem="mVq-3z-13h" secondAttribute="leading" constant="40" id="Cfn-lO-D6b"/>
                                             <constraint firstItem="ZBE-h4-ywG" firstAttribute="top" secondItem="pyv-Ne-S5g" secondAttribute="bottom" constant="15" id="KSX-13-89H"/>
                                             <constraint firstAttribute="trailing" secondItem="zej-9f-2CU" secondAttribute="trailing" id="KrT-vL-wou"/>
-                                            <constraint firstItem="Ovk-fe-fy7" firstAttribute="top" secondItem="GdC-RO-82W" secondAttribute="bottom" constant="8" id="NzW-Fv-3tP"/>
                                             <constraint firstItem="pyv-Ne-S5g" firstAttribute="leading" secondItem="nW8-HP-hhp" secondAttribute="leading" id="PHC-W0-gC2"/>
                                             <constraint firstItem="pyv-Ne-S5g" firstAttribute="trailing" secondItem="nW8-HP-hhp" secondAttribute="trailing" id="RHL-nl-AmZ"/>
                                             <constraint firstItem="TQy-c2-48w" firstAttribute="top" secondItem="mVq-3z-13h" secondAttribute="top" constant="-24" id="UOn-dS-Rcv">
@@ -370,7 +353,6 @@ Cgo
                                                 <variation key="widthClass=compact" constant="-10"/>
                                             </constraint>
                                             <constraint firstItem="pyv-Ne-S5g" firstAttribute="centerX" secondItem="GdC-RO-82W" secondAttribute="centerX" id="k8n-me-Gyr"/>
-                                            <constraint firstItem="Ovk-fe-fy7" firstAttribute="centerX" secondItem="GdC-RO-82W" secondAttribute="centerX" id="kSA-UW-xMB"/>
                                             <constraint firstItem="pyv-Ne-S5g" firstAttribute="top" secondItem="TQy-c2-48w" secondAttribute="bottom" constant="-4" id="ke0-Dc-38b">
                                                 <variation key="widthClass=compact" constant="50"/>
                                             </constraint>
@@ -381,12 +363,9 @@ Cgo
                                             <mask key="subviews">
                                                 <exclude reference="zej-9f-2CU"/>
                                                 <exclude reference="TQy-c2-48w"/>
-                                                <exclude reference="Ovk-fe-fy7"/>
                                                 <exclude reference="ZBE-h4-ywG"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <exclude reference="NzW-Fv-3tP"/>
-                                                <exclude reference="kSA-UW-xMB"/>
                                                 <exclude reference="4Dg-SA-AvI"/>
                                                 <exclude reference="UOn-dS-Rcv"/>
                                                 <exclude reference="KrT-vL-wou"/>
@@ -406,17 +385,13 @@ Cgo
                                                 <exclude reference="BqT-2c-aNb"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="588"/>
+                                        <variation key="widthClass=compact">
                                             <mask key="subviews">
                                                 <include reference="zej-9f-2CU"/>
                                                 <include reference="TQy-c2-48w"/>
-                                                <include reference="Ovk-fe-fy7"/>
                                                 <include reference="ZBE-h4-ywG"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <include reference="NzW-Fv-3tP"/>
-                                                <include reference="kSA-UW-xMB"/>
                                                 <include reference="4Dg-SA-AvI"/>
                                                 <include reference="UOn-dS-Rcv"/>
                                                 <include reference="KrT-vL-wou"/>
@@ -491,7 +466,6 @@ Cgo
                     </view>
                     <connections>
                         <outlet property="authButton" destination="GdC-RO-82W" id="bVN-mb-NRQ"/>
-                        <outlet property="createUserButton" destination="Ovk-fe-fy7" id="q65-nt-3BO"/>
                         <outlet property="idTextField" destination="ZBE-h4-ywG" id="BAY-ar-wQe"/>
                         <outlet property="tokenTextField" destination="nW8-HP-hhp" id="nbL-Gr-mxx"/>
                         <outlet property="welcomeLabel" destination="pyv-Ne-S5g" id="VsB-tZ-Sjd"/>
@@ -1984,9 +1958,6 @@ Cgo
                                                                 <exclude reference="mS0-3w-NhH"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="32" width="360" height="292"/>
-                                                        </variation>
                                                     </textView>
                                                 </subviews>
                                                 <constraints>
@@ -1997,9 +1968,6 @@ Cgo
                                                     <constraint firstItem="aXm-bY-nhq" firstAttribute="leading" secondItem="niF-RV-GOB" secondAttribute="leading" id="nvG-xL-6as"/>
                                                     <constraint firstItem="Ysw-F7-F0j" firstAttribute="leading" secondItem="aXm-bY-nhq" secondAttribute="leading" id="zGI-aD-Fkr"/>
                                                 </constraints>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="20" y="153" width="360" height="329"/>
-                                                </variation>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -7385,12 +7353,12 @@ FOTO</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VJh-c3-WKd"/>
-        <segue reference="hM9-nM-k0Y"/>
+        <segue reference="7VR-Dw-svl"/>
         <segue reference="DwZ-AK-niy"/>
+        <segue reference="hM9-nM-k0Y"/>
         <segue reference="H8O-Mc-OH3"/>
         <segue reference="ugX-qh-OjL"/>
         <segue reference="sGI-sp-fNN"/>
-        <segue reference="tvA-Ui-5Q1"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>
