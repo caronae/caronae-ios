@@ -63,6 +63,9 @@
                                                     <constraint firstAttribute="bottom" secondItem="ac1-YF-lCK" secondAttribute="bottom" constant="5" id="piL-jb-h4e"/>
                                                     <constraint firstItem="ac1-YF-lCK" firstAttribute="top" secondItem="2UI-P7-VW1" secondAttribute="bottom" constant="5" id="yfO-wj-Bxd"/>
                                                 </constraints>
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="20" y="93" width="360" height="67"/>
+                                                </variation>
                                             </view>
                                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qqb-7l-ptZ" userLabel="Token">
                                                 <rect key="frame" x="20" y="150" width="360" height="67"/>
@@ -88,11 +91,17 @@
                                                     <constraint firstAttribute="bottom" secondItem="mFu-hh-jDk" secondAttribute="bottom" constant="5" id="VrT-fI-4P1"/>
                                                     <constraint firstItem="mFu-hh-jDk" firstAttribute="leading" secondItem="aRV-k9-33D" secondAttribute="leading" id="m18-aZ-hdj"/>
                                                 </constraints>
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="20" y="170" width="360" height="67"/>
+                                                </variation>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGw-oS-smP">
                                                 <rect key="frame" x="150" y="267" width="100" height="42"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="CRIAR" backgroundImage="ButtonColor"/>
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="-155" y="287" width="710" height="710"/>
+                                                </variation>
                                                 <connections>
                                                     <action selector="didTapCreateButton:" destination="DFi-hH-t6a" eventType="touchUpInside" id="cxz-H2-FwP"/>
                                                 </connections>
@@ -101,6 +110,9 @@
                                                 <rect key="frame" x="171" y="319" width="58" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <state key="normal" title="Cancelar"/>
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="171" y="1007" width="58" height="29"/>
+                                                </variation>
                                                 <connections>
                                                     <action selector="didTapCancelButton:" destination="DFi-hH-t6a" eventType="touchUpInside" id="95A-3v-4UL"/>
                                                 </connections>
@@ -283,21 +295,20 @@ Cgo
                                                             <font key="NSFont" size="17" name="HelveticaNeue"/>
                                                         </attributes>
                                                     </fragment>
-                                                    <fragment>
-                                                        <string key="content">Bem vindo ao aplicativo de caronas da UFRJ. O acesso é restrito a usuários vinculados à universidade. Para continuar, você deve obter sua chave de acesso na </string>
+                                                    <fragment content="Bem vindo ao aplicativo de caronas da UFRJ. O acesso é restrito a usuários vinculados à universidade. Para continuar, ">
                                                         <attributes>
                                                             <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <font key="NSFont" size="16" name="HelveticaNeue"/>
                                                         </attributes>
                                                     </fragment>
-                                                    <fragment content="Intranet UFRJ">
+                                                    <fragment content="clique aqui">
                                                         <attributes>
                                                             <color key="NSColor" red="0.12549019607843137" green="0.14509803921568629" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                             <font key="NSFont" size="16" name="HelveticaNeue"/>
                                                             <integer key="NSUnderline" value="1"/>
                                                         </attributes>
                                                     </fragment>
-                                                    <fragment content=".">
+                                                    <fragment content=" para obter a sua chave de acesso, usando seu login da Intranet UFRJ.">
                                                         <attributes>
                                                             <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             <font key="NSFont" size="16" name="HelveticaNeue"/>
@@ -313,6 +324,9 @@ Cgo
                                                 <state key="normal" title="ACESSAR" backgroundImage="ButtonColor">
                                                     <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="-156" y="422" width="711" height="710"/>
+                                                </variation>
                                                 <connections>
                                                     <action selector="didTapAuthenticateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="da5-pN-Iyk"/>
                                                 </connections>
@@ -385,7 +399,8 @@ Cgo
                                                 <exclude reference="BqT-2c-aNb"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact">
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="1224"/>
                                             <mask key="subviews">
                                                 <include reference="zej-9f-2CU"/>
                                                 <include reference="TQy-c2-48w"/>
@@ -687,6 +702,9 @@ Cgo
                                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="5" width="360" height="30"/>
+                                                        </variation>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -728,6 +746,9 @@ Cgo
                                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="5" width="360" height="30"/>
+                                                        </variation>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1494,7 +1515,8 @@ Cgo
                                                         <exclude reference="ENW-kS-zDL"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="-330" y="758" width="710" height="710"/>
                                                     <mask key="constraints">
                                                         <exclude reference="ENW-kS-zDL"/>
                                                     </mask>
@@ -1600,7 +1622,8 @@ Cgo
                                                 <exclude reference="gDV-a8-ReJ"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact">
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="1498"/>
                                             <mask key="subviews">
                                                 <include reference="wWF-a6-BXF"/>
                                                 <include reference="SoK-oZ-c5J"/>
@@ -3763,9 +3786,15 @@ FOTO</string>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Gfe-eh-A7H" userLabel="Email icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="70" width="17" height="16"/>
+                                                        </variation>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Mds-A1-ZMf" userLabel="Phone icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="118" width="16" height="20"/>
+                                                        </variation>
                                                     </imageView>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21 99875-5678" borderStyle="roundedRect" placeholder="Telefone celular" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-zR-zbO" userLabel="Phone" customClass="CaronaePhoneTextField">
                                                         <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
@@ -3780,7 +3809,8 @@ FOTO</string>
                                                                 <exclude reference="Hvq-Jb-OBD"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="27" y="106" width="343" height="30"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="Hvq-Jb-OBD"/>
                                                             </mask>
@@ -3872,7 +3902,8 @@ FOTO</string>
                                                         <exclude reference="wtM-4d-Nyi"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="15" y="267" width="370" height="151"/>
                                                     <mask key="subviews">
                                                         <include reference="qjM-je-3ke"/>
                                                         <include reference="Gfe-eh-A7H"/>
@@ -4015,7 +4046,8 @@ FOTO</string>
                                                         <exclude reference="zt9-ct-BEd"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="15" y="443" width="370" height="85"/>
                                                     <mask key="subviews">
                                                         <include reference="ftJ-lK-bEs"/>
                                                         <include reference="1W7-OK-GJ3"/>
@@ -4082,7 +4114,8 @@ FOTO</string>
                                                         <exclude reference="P60-OE-cll"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="15" y="533" width="370" height="50"/>
                                                     <mask key="subviews">
                                                         <include reference="K8h-kP-2X5"/>
                                                         <include reference="P3j-hD-d2F"/>
@@ -4141,7 +4174,8 @@ FOTO</string>
                                                                 <exclude reference="pCi-86-yhh"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="121" width="27" height="15"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="mrX-gz-9pd"/>
                                                                 <exclude reference="pCi-86-yhh"/>
@@ -4161,7 +4195,8 @@ FOTO</string>
                                                                 <exclude reference="QeR-UZ-a3h"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="37" y="106" width="333" height="30"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="QeR-UZ-a3h"/>
                                                             </mask>
@@ -4194,7 +4229,8 @@ FOTO</string>
                                                                 <exclude reference="lOH-zk-dNU"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="3" y="170" width="20" height="20"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="f8y-eS-b9V"/>
                                                                 <exclude reference="lOH-zk-dNU"/>
@@ -4216,7 +4252,8 @@ FOTO</string>
                                                                 <exclude reference="tf4-Lm-ctF"/>
                                                             </mask>
                                                         </variation>
-                                                        <variation key="widthClass=compact">
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="37" y="156" width="333" height="30"/>
                                                             <mask key="constraints">
                                                                 <exclude reference="JsV-ht-chF"/>
                                                                 <exclude reference="tf4-Lm-ctF"/>
@@ -4225,6 +4262,9 @@ FOTO</string>
                                                     </textField>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="oTl-se-EDm" userLabel="Car Icon">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="71" width="27" height="15"/>
+                                                        </variation>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
@@ -4301,7 +4341,8 @@ FOTO</string>
                                                         <exclude reference="xEf-z0-zZP"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="widthClass=compact">
+                                                <variation key="widthClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="15" y="593" width="370" height="165"/>
                                                     <mask key="subviews">
                                                         <include reference="q8t-lO-Jqk"/>
                                                         <include reference="ZA1-8O-6ah"/>
@@ -4437,7 +4478,8 @@ FOTO</string>
                                                 <exclude reference="vqv-Ea-ive"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact">
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="773"/>
                                             <mask key="subviews">
                                                 <include reference="wC6-CD-nF5"/>
                                                 <include reference="NpW-3h-cia"/>
