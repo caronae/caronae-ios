@@ -37,10 +37,11 @@
     }
     
     User *user = [UserController sharedInstance].user;
-    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
     // Run in secondary thread so it won't affect UI
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSArray *ridesJSON = [[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"];
+        NSArray *ridesJSON = [[NSUserDefaults standardUserDefaults] arrayForKey:@"userCreatedRides"];
         NSError *error;
         NSArray<Ride *> *rideArchive = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:ridesJSON error:&error];
         if (error) {
@@ -105,7 +106,6 @@
     [newUserRidesArchive addObjectsFromArray:createdRidesJSON];
     
     [[NSUserDefaults standardUserDefaults] setObject:newUserRidesArchive forKey:@"userCreatedRides"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [self loadMyRides];
 }

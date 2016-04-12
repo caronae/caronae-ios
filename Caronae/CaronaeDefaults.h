@@ -7,7 +7,6 @@ extern NSString *const CaronaeGCMAPIKey;
 extern NSString *const CaronaeIntranetURLString;
 extern NSString *const CaronaeAboutPageURLString;
 extern NSString *const CaronaeTermsOfUsePageURLString;
-extern NSString *const CaronaeFAQPageURLString;
 
 extern NSString *const CaronaeGCMConnectedNotification;
 extern NSString *const CaronaeGCMTokenUpdatedNotification;

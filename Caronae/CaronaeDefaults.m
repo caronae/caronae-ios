@@ -2,7 +2,7 @@
 
 #pragma mark - API settings
 
-NSString *const CaronaeAPIBaseURL = @"http://caronae.tic.ufrj.br";
+NSString *const CaronaeAPIBaseURL = @"https://api.caronae.ufrj.br";
 //NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90";
 //NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
 //NSString *const CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
@@ -17,10 +17,9 @@ NSString *const CaronaeGCMAPIKey = @"key=AIzaSyBtGz81bar_LcwtN_fpPTKRMBL5glp2T18
 
 #pragma mark - Static pages URLs
 
-NSString *const CaronaeIntranetURLString = @"http://caronae.tic.ufrj.br/chave";
-NSString *const CaronaeAboutPageURLString = @"http://caronae.tic.ufrj.br/static_pages/sobre.html";
-NSString *const CaronaeTermsOfUsePageURLString = @"http://caronae.tic.ufrj.br/static_pages/termos.html";
-NSString *const CaronaeFAQPageURLString = @"http://caronae.tic.ufrj.br/static_pages/faq.html";
+NSString *const CaronaeIntranetURLString = @"https://api.caronae.ufrj.br/chave";
+NSString *const CaronaeAboutPageURLString = @"https://api.caronae.ufrj.br/static_pages/sobre.html";
+NSString *const CaronaeTermsOfUsePageURLString = @"https://api.caronae.ufrj.br/static_pages/termos.html";
 
 
 #pragma mark - Notifications
