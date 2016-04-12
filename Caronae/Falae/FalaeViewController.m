@@ -41,7 +41,7 @@ NSString *deviceName() {
     if (_reportedUser) {
         _selectedType = @"report";
         _selectedTypeCute = @"Denúncia";
-        _selectedTypeInitialIndex = [_messageTypes indexOfObject:_selectedTypeCute];
+        _selectedTypeInitialIndex = (int)[_messageTypes indexOfObject:_selectedTypeCute];
         [_typeButton setTitle:@"Denúncia" forState:UIControlStateNormal];
         _subjectTextField.text = [NSString stringWithFormat:@"Denúncia sobre usuário %@ (id: %d)", _reportedUser.name, [_reportedUser.userID intValue]];
         _subjectTextField.enabled = NO;
@@ -49,7 +49,7 @@ NSString *deviceName() {
     else {
         _selectedType = @"complaint";
         _selectedTypeCute = @"Denúncia";
-        _selectedTypeInitialIndex = [_messageTypes indexOfObject:_selectedTypeCute];
+        _selectedTypeInitialIndex = (int)[_messageTypes indexOfObject:_selectedTypeCute];
     }
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]

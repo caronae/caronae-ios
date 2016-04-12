@@ -17,6 +17,9 @@
 }
 
 + (NSString *)topicIDwithRideID:(NSNumber *)rideID {
+    if (!rideID) {
+        return @"";
+    }
     return [NSString stringWithFormat:@"/topics/%lu", [rideID longValue]];
 }
 

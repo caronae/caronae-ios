@@ -5,8 +5,8 @@ static NSMutableDictionary<NSNumber *, Chat *> *chats;
 @implementation ChatStore
 
 + (void)setChat:(Chat *)chat forRide:(Ride *)ride {
-    if (!chat || !ride) {
-        NSLog(@"Tried to store a Chat with a nil parameter (Chat: %@, Ride: %@)", chat, ride);
+    if (!chat || !ride || ride.rideID <= 0) {
+        NSLog(@"Tried to store a Chat with an invalid parameter (Chat: %@, Ride: %@)", chat, ride);
         return;
     }
     
@@ -14,13 +14,18 @@ static NSMutableDictionary<NSNumber *, Chat *> *chats;
         chats = [[NSMutableDictionary alloc] init];
     }
     
-    id key = @(ride.rideID);
-    chats[key] = chat;
+    if (chats) {
+        NSNumber *key = [NSNumber numberWithLong:ride.rideID];
+        chats[key] = chat;
+    }
 }
 
 + (Chat *)chatForRide:(Ride *)ride {
-    if (!chats) return nil;
-    id key = @(ride.rideID);
+    if (!chats || !ride || ride.rideID <= 0) return nil;
+    NSNumber *key = [NSNumber numberWithLong:ride.rideID];
+    if (!key) {
+        return nil;
+    }
     return chats[key];
 }
 
