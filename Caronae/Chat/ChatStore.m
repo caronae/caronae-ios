@@ -10,31 +10,40 @@ static NSMutableDictionary<NSNumber *, Chat *> *chats;
         return;
     }
     
-    if (!chats) {
-        chats = [[NSMutableDictionary alloc] init];
-    }
+    NSNumber *key = [NSNumber numberWithLong:ride.rideID];
     
-    if (chats) {
-        NSNumber *key = [NSNumber numberWithLong:ride.rideID];
-        chats[key] = chat;
+    @synchronized (chats) {
+        if (!chats) {
+            chats = [[NSMutableDictionary alloc] init];
+        }
+        
+        if (chats) {
+            chats[key] = chat;
+        }
     }
 }
 
 + (Chat *)chatForRide:(Ride *)ride {
-    if (!chats || !ride || ride.rideID <= 0) return nil;
+    if (!ride || ride.rideID <= 0) return nil;
+    
     NSNumber *key = [NSNumber numberWithLong:ride.rideID];
-    if (!key) {
-        return nil;
+    
+    @synchronized (chats) {
+        if (!chats) return nil;
+        return chats[key];
     }
-    return chats[key];
 }
 
 + (NSDictionary<NSNumber *, Chat *> *)allChats {
-    return chats;
+    @synchronized (chats) {
+        return chats;
+    }
 }
 
 + (void)clearChats {
-    if (chats) [chats removeAllObjects];
+    @synchronized (chats) {
+        if (chats) [chats removeAllObjects];
+    }
 }
 
 @end
