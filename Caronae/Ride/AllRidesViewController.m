@@ -7,6 +7,7 @@
 
 @interface AllRidesViewController () <SearchRideDelegate>
 @property (nonatomic) NSDictionary *searchParams;
+@property (nonatomic) UIView *tableFooter;
 @end
 
 @implementation AllRidesViewController
@@ -25,6 +26,20 @@
     [super viewWillAppear:animated];
     
     [self loadAllRides];
+}
+
+- (UIView *)tableFooter {
+    if (!_tableFooter) {
+        UILabel *tableFooter = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 40)];
+        tableFooter.text = @"Quer encontrar mais caronas? Use a pesquisa! 🔍";
+        tableFooter.numberOfLines = 0;
+        tableFooter.backgroundColor = [UIColor whiteColor];
+        tableFooter.font = [UIFont systemFontOfSize:10];
+        tableFooter.textColor = [UIColor lightGrayColor];
+        tableFooter.textAlignment = NSTextAlignmentCenter;
+        _tableFooter = tableFooter;
+    }
+    return _tableFooter;
 }
 
 - (void)refreshTable:(id)sender {
@@ -78,9 +93,11 @@
         
         if (self.rides.count > 0) {
             self.tableView.backgroundView = nil;
+            self.tableView.tableFooterView = self.tableFooter;
         }
         else {
             self.tableView.backgroundView = self.emptyTableLabel;
+            self.tableView.tableFooterView = nil;
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.refreshControl endRefreshing];
@@ -123,5 +140,6 @@
     
     [self performSegueWithIdentifier:@"ViewSearchResults" sender:self];
 }
+
 
 @end
