@@ -93,9 +93,6 @@
                                                 <rect key="frame" x="150" y="267" width="100" height="42"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="CRIAR" backgroundImage="ButtonColor"/>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="-155" y="287" width="710" height="710"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="didTapCreateButton:" destination="DFi-hH-t6a" eventType="touchUpInside" id="cxz-H2-FwP"/>
                                                 </connections>
@@ -104,9 +101,6 @@
                                                 <rect key="frame" x="171" y="319" width="58" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <state key="normal" title="Cancelar"/>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="171" y="1007" width="58" height="29"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="didTapCancelButton:" destination="DFi-hH-t6a" eventType="touchUpInside" id="95A-3v-4UL"/>
                                                 </connections>
@@ -508,6 +502,12 @@ Cgo
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Ativas" id="3Xy-Gf-p9D"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="emptyMessage">
+                            <string key="value">Você não possui
+caronas ativas.</string>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="63o-N6-NEe" kind="show" identifier="ViewSearchResults" id="gns-F9-8s8"/>
                     </connections>
@@ -1800,6 +1800,10 @@ Cgo
                     <navigationItem key="navigationItem" title="Histórico" id="geR-VK-1Za"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="historyTable" value="YES"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="emptyMessage">
+                            <string key="value">Você ainda não concluiu
+nenhuma carona.</string>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m5U-oa-23T" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -7105,6 +7109,12 @@ FOTO</string>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="emptyMessage">
+                            <string key="value">Você não está oferecendo
+nenhuma carona.</string>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ejJ-kb-mqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -7357,13 +7367,13 @@ FOTO</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VJh-c3-WKd"/>
-        <segue reference="7VR-Dw-svl"/>
-        <segue reference="DwZ-AK-niy"/>
-        <segue reference="hM9-nM-k0Y"/>
-        <segue reference="H8O-Mc-OH3"/>
         <segue reference="ugX-qh-OjL"/>
+        <segue reference="H8O-Mc-OH3"/>
+        <segue reference="gns-F9-8s8"/>
+        <segue reference="hM9-nM-k0Y"/>
+        <segue reference="tvA-Ui-5Q1"/>
         <segue reference="sGI-sp-fNN"/>
+        <segue reference="yIa-C3-QN8"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
 </document>

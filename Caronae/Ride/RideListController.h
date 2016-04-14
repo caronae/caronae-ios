@@ -31,5 +31,6 @@
 @property (nonatomic) UILabel *loadingLabel;
 
 @property (nonatomic) IBInspectable BOOL historyTable;
+@property (nonatomic, strong) IBInspectable NSString *emptyMessage;
 
 @end

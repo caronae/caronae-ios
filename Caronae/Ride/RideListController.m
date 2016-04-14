@@ -5,6 +5,13 @@
 #import "RideListController.h"
 #import "UIViewController+isVisible.h"
 
+static NSString *const RideListDefaultEmptyMessage = @"Nenhuma carona\nencontrada.";
+static NSString *const RideListDefaultLoadingMessage = @"Carregando...";
+static NSString *const RideListDefaultErrorMessage = @"Não foi possível\ncarregar as caronas.";
+
+static NSString *const RideListMessageAlternateFontFamily = @"HelveticaNeue-UltraLight";
+static CGFloat const RideListMessageFontSize = 25.0f;
+
 @interface RideListController() <RideDelegate>
 @property (nonatomic, readwrite) NSArray<Ride *> *filteredRides;
 @end
@@ -33,48 +40,6 @@
             [self.tableView addSubview:self.refreshControl];
         }
 #pragma clang diagnostic pop
-        
-        // Background view when the table is empty
-        _emptyTableLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-        _emptyTableLabel.text = @"Nenhuma carona\nencontrada.";
-        _emptyTableLabel.textColor = [UIColor grayColor];
-        _emptyTableLabel.numberOfLines = 0;
-        _emptyTableLabel.textAlignment = NSTextAlignmentCenter;
-        if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
-            _emptyTableLabel.font = [UIFont systemFontOfSize:25.0f weight:UIFontWeightUltraLight];
-        }
-        else {
-            _emptyTableLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0f];
-        }
-        [_emptyTableLabel sizeToFit];
-        
-        // Background view when an error occurs
-        _errorLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-        _errorLabel.text = @"Não foi possível\ncarregar as caronas.";
-        _errorLabel.textColor = [UIColor grayColor];
-        _errorLabel.numberOfLines = 0;
-        _errorLabel.textAlignment = NSTextAlignmentCenter;
-        if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
-            _errorLabel.font = [UIFont systemFontOfSize:25.0f weight:UIFontWeightUltraLight];
-        }
-        else {
-            _errorLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0f];
-        }
-        [_errorLabel sizeToFit];
-        
-        // Background view when the table is loading
-        _loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-        _loadingLabel.text = @"Carregando...";
-        _loadingLabel.textColor = [UIColor grayColor];
-        _loadingLabel.numberOfLines = 0;
-        _loadingLabel.textAlignment = NSTextAlignmentCenter;
-        if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
-            _loadingLabel.font = [UIFont systemFontOfSize:25.0f weight:UIFontWeightUltraLight];
-        }
-        else {
-            _loadingLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:25.0f];
-        }
-        [_loadingLabel sizeToFit];
     }
     return self;
 }
@@ -148,7 +113,7 @@
                                                       kCRToastBackgroundColorKey: [UIColor redColor],
                                                       }
                                     completionBlock:nil];
-
+        
     }
     else {
         NSString *errorAlertTitle = @"Algo deu errado.";
@@ -210,6 +175,66 @@
     self.ridesDirectionGoing = (sender.selectedSegmentIndex == 0);
     [self setRides:self.rides];
     [self.tableView reloadData];
+}
+
+
+#pragma mark - Extra views
+
+// Background view when the table is empty
+- (UILabel *)emptyTableLabel {
+    if (!_emptyTableLabel) {
+        _emptyTableLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        _emptyTableLabel.text = self.emptyMessage ? self.emptyMessage : RideListDefaultEmptyMessage;
+        _emptyTableLabel.textColor = [UIColor grayColor];
+        _emptyTableLabel.numberOfLines = 0;
+        _emptyTableLabel.textAlignment = NSTextAlignmentCenter;
+        if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
+            _emptyTableLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
+        }
+        else {
+            _emptyTableLabel.font = [UIFont fontWithName:RideListMessageAlternateFontFamily size:RideListMessageFontSize];
+        }
+        [_emptyTableLabel sizeToFit];
+    }
+    return _emptyTableLabel;
+}
+
+// Background view when an error occurs
+- (UILabel *)errorLabel {
+    if (!_errorLabel) {
+        _errorLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        _errorLabel.text = RideListDefaultErrorMessage;
+        _errorLabel.textColor = [UIColor grayColor];
+        _errorLabel.numberOfLines = 0;
+        _errorLabel.textAlignment = NSTextAlignmentCenter;
+        if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
+            _errorLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
+        }
+        else {
+            _errorLabel.font = [UIFont fontWithName:RideListMessageAlternateFontFamily size:RideListMessageFontSize];
+        }
+        [_errorLabel sizeToFit];
+    }
+    return _errorLabel;
+}
+
+// Background view when the table is loading
+- (UILabel *)loadingLabel {
+    if (!_loadingLabel) {
+        _loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        _loadingLabel.text = RideListDefaultLoadingMessage;
+        _loadingLabel.textColor = [UIColor grayColor];
+        _loadingLabel.numberOfLines = 0;
+        _loadingLabel.textAlignment = NSTextAlignmentCenter;
+        if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
+            _loadingLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
+        }
+        else {
+            _loadingLabel.font = [UIFont fontWithName:RideListMessageAlternateFontFamily size:RideListMessageFontSize];
+        }
+        [_loadingLabel sizeToFit];
+    }
+    return _loadingLabel;
 }
 
 @end
