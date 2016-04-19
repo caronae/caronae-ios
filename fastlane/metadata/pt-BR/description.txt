@@ -1,0 +1,17 @@
+O Caronaê UFRJ é um sistema de caronas exclusivo para a comunidade acadêmica da UFRJ. Composto por pontos de carona no Campus da Cidade Universitária e um aplicativo mobile de acesso restrito a alunos, professores e funcionários, o sistema permite o compartilhamento das viagens de carro indo e voltando da Universidade.
+
+-------------------------------------------------------
+Para começar a usar, siga o passo-a-passo:
+
+1. Acesse a página da Intranet UFRJ (https://intranet.ufrj.br/) e faça seu login normalmente.
+
+2. Dentro da Intranet UFRJ, clique no banner do Caronaê UFRJ para gerar sua chave de acesso ao aplicativo. 
+
+3. Copie o código e cole no campo de login do aplicativo.
+
+4. Pronto, agora basta oferecer e pegar caronas. Adeus, ônibus lotado!
+-------------------------------------------------------
+
+Caso encontre problemas, entre em contato conosco através do e-mail caronae@fundoverde.ufrj.br, ou nos mande uma mensagem em nossa página do Facebook: https://www.facebook.com/caronaeufrj.
+
+Desenvolvido por Mario Cecchi, em conjunto com a Equipe Caronaê UFRJ.
