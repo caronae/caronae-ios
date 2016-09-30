@@ -298,12 +298,12 @@ Cgo
                                                     <action selector="didTapAuthenticateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="da5-pN-Iyk"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Seu CPF aqui" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZBE-h4-ywG" userLabel="ID Text Field" customClass="CaronaeTextField">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sua identificação aqui" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZBE-h4-ywG" userLabel="ID Text Field" customClass="CaronaeTextField">
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="sVR-jG-HbO"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sua chave aqui" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-HP-hhp" userLabel="Token Text Field" customClass="CaronaeTextField">
                                                 <constraints>
@@ -7104,11 +7104,11 @@ nenhuma carona.</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="VJh-c3-WKd"/>
         <segue reference="tvA-Ui-5Q1"/>
         <segue reference="gns-F9-8s8"/>
         <segue reference="9kE-zS-Odm"/>
         <segue reference="H8O-Mc-OH3"/>
-        <segue reference="yIa-C3-QN8"/>
         <segue reference="sGI-sp-fNN"/>
         <segue reference="U3D-Zh-YLa"/>
     </inferredMetricsTieBreakers>
