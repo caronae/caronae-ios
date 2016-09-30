@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B703899BB09FEE6DC0710D9 /* libPods-Caronae.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82527D52981AFEFBE68EA15D /* libPods-Caronae.a */; };
 		A302B29B1BF4439300FA161D /* CreateRideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A302B29A1BF4439300FA161D /* CreateRideTests.m */; };
 		A3169C951BED842D00A0D428 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C941BED842D00A0D428 /* main.m */; };
 		A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C971BED842D00A0D428 /* AppDelegate.m */; };
@@ -71,8 +72,6 @@
 		A3F30EED1C0890C10024BE37 /* ZoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F30EEC1C0890C10024BE37 /* ZoneCell.m */; };
 		A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F30EEF1C0891520024BE37 /* ZoneSelectionViewController.m */; };
 		A3F30EF21C08ABDC0024BE37 /* bairros.csv in Resources */ = {isa = PBXBuildFile; fileRef = A3F30EF11C08ABDC0024BE37 /* bairros.csv */; };
-		CA6E9412F08ECA00330BBD7E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DA16FE6BC427F62DBE27E5 /* libPods.a */; };
-		DB044265D99E3F78D5BF8658 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7DA16FE6BC427F62DBE27E5 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +85,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7A6BECEDB68F9DCBC935D1ED /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug.xcconfig"; sourceTree = "<group>"; };
+		48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.release.xcconfig"; sourceTree = "<group>"; };
+		82527D52981AFEFBE68EA15D /* libPods-Caronae.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Caronae.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A302B29A1BF4439300FA161D /* CreateRideTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRideTests.m; sourceTree = "<group>"; };
 		A3169C901BED842D00A0D428 /* Caronae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caronae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3169C941BED842D00A0D428 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -205,8 +206,6 @@
 		A3F30EEE1C0891520024BE37 /* ZoneSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoneSelectionViewController.h; sourceTree = "<group>"; };
 		A3F30EEF1C0891520024BE37 /* ZoneSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoneSelectionViewController.m; sourceTree = "<group>"; };
 		A3F30EF11C08ABDC0024BE37 /* bairros.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bairros.csv; sourceTree = "<group>"; };
-		A7DA16FE6BC427F62DBE27E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0EBBD02EF13166ED3D0B34A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,9 +213,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA6E9412F08ECA00330BBD7E /* libPods.a in Frameworks */,
 				A33BC29E1C1C91840065BC03 /* FBSDKCoreKit.framework in Frameworks */,
 				A33BC2A01C1C92810065BC03 /* FBSDKLoginKit.framework in Frameworks */,
+				2B703899BB09FEE6DC0710D9 /* libPods-Caronae.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,19 +223,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB044265D99E3F78D5BF8658 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		70FE0ED744CA3C4A67F995BC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */,
+				48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9EEF98FE6EBF502EF2E23188 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				A33BC29F1C1C92810065BC03 /* FBSDKLoginKit.framework */,
 				A33BC29D1C1C91840065BC03 /* FBSDKCoreKit.framework */,
-				A7DA16FE6BC427F62DBE27E5 /* libPods.a */,
+				82527D52981AFEFBE68EA15D /* libPods-Caronae.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -247,9 +254,9 @@
 				A3169C921BED842D00A0D428 /* Caronae */,
 				A3169CAF1BED842D00A0D428 /* CaronaeTests */,
 				9EEF98FE6EBF502EF2E23188 /* Frameworks */,
-				D2A5ADC9EBDC943DAB5ACFFA /* Pods */,
 				A3169C911BED842D00A0D428 /* Products */,
 				A34CEC4C1C993115006FC41E /* Settings.bundle */,
+				70FE0ED744CA3C4A67F995BC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -484,15 +491,6 @@
 			path = Falae;
 			sourceTree = "<group>";
 		};
-		D2A5ADC9EBDC943DAB5ACFFA /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C0EBBD02EF13166ED3D0B34A /* Pods.debug.xcconfig */,
-				7A6BECEDB68F9DCBC935D1ED /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -500,12 +498,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3169CC01BED842D00A0D428 /* Build configuration list for PBXNativeTarget "Caronae" */;
 			buildPhases = (
-				B691BB43D7D46A240967937A /* Check Pods Manifest.lock */,
+				56ED107787C9713DEB010EE6 /* [CP] Check Pods Manifest.lock */,
 				A3169C8C1BED842D00A0D428 /* Sources */,
 				A3169C8D1BED842D00A0D428 /* Frameworks */,
 				A3169C8E1BED842D00A0D428 /* Resources */,
-				33CFABFE4B10410E9256B97C /* Embed Pods Frameworks */,
-				E3ECA5EB01D3EB94E76F3031 /* Copy Pods Resources */,
+				9896CD0E11FCA37A83183763 /* [CP] Embed Pods Frameworks */,
+				AC4048482FADAF52D42EED1B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -520,7 +518,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3169CC31BED842D00A0D428 /* Build configuration list for PBXNativeTarget "CaronaeTests" */;
 			buildPhases = (
-				CAF7333EE3F2BEB539B6EF97 /* Check Pods Manifest.lock */,
 				A3169CA81BED842D00A0D428 /* Sources */,
 				A3169CA91BED842D00A0D428 /* Frameworks */,
 				A3169CAA1BED842D00A0D428 /* Resources */,
@@ -610,64 +607,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		33CFABFE4B10410E9256B97C /* Embed Pods Frameworks */ = {
+		56ED107787C9713DEB010EE6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B691BB43D7D46A240967937A /* Check Pods Manifest.lock */ = {
+		9896CD0E11FCA37A83183763 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Caronae/Pods-Caronae-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CAF7333EE3F2BEB539B6EF97 /* Check Pods Manifest.lock */ = {
+		AC4048482FADAF52D42EED1B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		E3ECA5EB01D3EB94E76F3031 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Caronae/Pods-Caronae-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -855,7 +837,7 @@
 		};
 		A3169CC11BED842D00A0D428 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C0EBBD02EF13166ED3D0B34A /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
@@ -883,7 +865,7 @@
 		};
 		A3169CC21BED842D00A0D428 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A6BECEDB68F9DCBC935D1ED /* Pods.release.xcconfig */;
+			baseConfigurationReference = 48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
@@ -910,7 +892,6 @@
 		};
 		A3169CC41BED842D00A0D428 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C0EBBD02EF13166ED3D0B34A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -952,7 +933,6 @@
 		};
 		A3169CC51BED842D00A0D428 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A6BECEDB68F9DCBC935D1ED /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
