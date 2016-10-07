@@ -2,16 +2,16 @@ platform :ios, '8.0'
 
 target 'Caronae' do
 
-    pod 'AFNetworking', '~> 2.0'
-    pod 'ActionSheetPicker-3.0', '~> 2.0.3'
-    pod 'TPKeyboardAvoiding', '~> 1.2.10'
+    pod 'AFNetworking', '~> 2.6.3'
+    pod 'ActionSheetPicker-3.0', '~> 2.0.5'
+    pod 'TPKeyboardAvoiding', '~> 1.2.11'
     pod 'SDCAlertView', '2.5.4'
     pod 'SVProgressHUD'
-    pod 'SDWebImage', '~>3.7'
+    pod 'SDWebImage', '~>3.8.2'
     pod 'SHSPhoneComponent'
     pod 'Google/CloudMessaging'
     pod 'CRToast', '~> 0.0.7'
-    pod 'Mantle', '~> 2.0'
+    pod 'Mantle', '~> 2.0.7'
 
     #link_with 'Caronae'
 
