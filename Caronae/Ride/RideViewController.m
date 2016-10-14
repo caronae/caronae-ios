@@ -40,8 +40,13 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     dateFormatter.dateFormat = @"HH:mm | E | dd/MM";
     NSString *dateString = [dateFormatter stringFromDate:_ride.date].capitalizedString;
     
-    _titleLabel.text = [_ride.title uppercaseString];   
-    _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", dateString];
+    _titleLabel.text = [_ride.title uppercaseString];
+    if (_ride.going) {
+        _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", dateString];
+    }
+    else {
+        _dateLabel.text = [NSString stringWithFormat:@"Saindo às %@", dateString];
+    }
     
     if ([_ride.place isKindOfClass:[NSString class]] && [_ride.place isEqualToString:@""]) {
         _referenceLabel.text = @"---";
