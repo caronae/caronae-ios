@@ -459,7 +459,7 @@ Cgo
         <!--Pesquisa-->
         <scene sceneID="86N-xC-KLU">
             <objects>
-                <tableViewController title="Pesquisa" id="63o-N6-NEe" customClass="SearchResultsViewController" sceneMemberID="viewController">
+                <tableViewController title="Pesquisa" hidesBottomBarWhenPushed="YES" id="63o-N6-NEe" customClass="SearchResultsViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Pesquisa" id="frv-QM-TF5">
                         <barButtonItem key="rightBarButtonItem" image="SearchRide" id="I4b-tM-lj5">
                             <connections>
@@ -1727,7 +1727,7 @@ caronas ativas.</string>
         <!--Histórico-->
         <scene sceneID="1WW-W3-O3d">
             <objects>
-                <tableViewController id="Gvm-Bo-rik" customClass="RidesHistoryViewController" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="Gvm-Bo-rik" customClass="RidesHistoryViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Histórico" id="geR-VK-1Za"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="historyTable" value="YES"/>
@@ -1744,7 +1744,7 @@ nenhuma carona.</string>
         <!--Web View Controller-->
         <scene sceneID="q02-Xb-0Ke">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="kDw-KM-p2e" customClass="WebViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="kDw-KM-p2e" customClass="WebViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tJA-R2-npH"/>
                         <viewControllerLayoutGuide type="bottom" id="gM5-zO-okd"/>
@@ -1793,13 +1793,13 @@ nenhuma carona.</string>
         <!--Falaê-->
         <scene sceneID="dO1-ON-W0Z">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="SUh-3J-VXI" customClass="FalaeViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="SUh-3J-VXI" customClass="FalaeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zhm-FT-3CJ"/>
                         <viewControllerLayoutGuide type="bottom" id="Xzi-Wl-Bdn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MJZ-pz-MHW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NT2-m5-GvC" customClass="TPKeyboardAvoidingScrollView">
@@ -1961,7 +1961,7 @@ nenhuma carona.</string>
         <!--Meu Perfil-->
         <scene sceneID="aoM-mI-f82">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="hXu-7Y-tvn" customClass="ProfileViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="hXu-7Y-tvn" customClass="ProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uJj-sX-pEZ"/>
                         <viewControllerLayoutGuide type="bottom" id="o0X-WE-SJG"/>
@@ -7104,13 +7104,13 @@ nenhuma carona.</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VJh-c3-WKd"/>
-        <segue reference="tvA-Ui-5Q1"/>
         <segue reference="gns-F9-8s8"/>
         <segue reference="9kE-zS-Odm"/>
         <segue reference="H8O-Mc-OH3"/>
+        <segue reference="yIa-C3-QN8"/>
+        <segue reference="ugX-qh-OjL"/>
+        <segue reference="7VR-Dw-svl"/>
         <segue reference="sGI-sp-fNN"/>
-        <segue reference="U3D-Zh-YLa"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
