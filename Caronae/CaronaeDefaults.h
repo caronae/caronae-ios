@@ -18,7 +18,8 @@ extern const NSInteger CaronaeErrorInvalidResponse;
 extern const NSInteger CaronaeErrorNoRidesCreated;
 extern const NSInteger CaronaeErrorOpeningCoreDataStore;
 
-extern NSString *const CaronaePhoneNumberPattern;
+extern NSString *const Caronae8PhoneNumberPattern;
+extern NSString *const Caronae9PhoneNumberPattern;
 extern NSString *const CaronaePlaceholderProfileImage;
 
 @interface CaronaeDefaults : NSObject

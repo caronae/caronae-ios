@@ -121,7 +121,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         
         [self.cancelButton setTitle:@"DESISTIR" forState:UIControlStateNormal];
         SHSPhoneNumberFormatter *phoneFormatter = [[SHSPhoneNumberFormatter alloc] init];
-        [phoneFormatter setDefaultOutputPattern:CaronaePhoneNumberPattern];
+        [phoneFormatter setDefaultOutputPattern:Caronae8PhoneNumberPattern];
+        [phoneFormatter addOutputPattern:Caronae9PhoneNumberPattern forRegExp:@"[0-9]{12}\\d*$"];
         NSDictionary *result = [phoneFormatter valuesForString:_ride.driver.phoneNumber];
         NSString *formattedPhoneNumber = result[@"text"];
         [_phoneButton setTitle:formattedPhoneNumber forState:UIControlStateNormal];

@@ -78,7 +78,8 @@
     
     if (_user.phoneNumber.length > 0) {
         SHSPhoneNumberFormatter *phoneFormatter = [[SHSPhoneNumberFormatter alloc] init];
-        [phoneFormatter setDefaultOutputPattern:CaronaePhoneNumberPattern];
+        [phoneFormatter setDefaultOutputPattern:Caronae8PhoneNumberPattern];
+        [phoneFormatter addOutputPattern:Caronae9PhoneNumberPattern forRegExp:@"[0-9]{12}\\d*$"];
         NSDictionary *result = [phoneFormatter valuesForString:_user.phoneNumber];
         NSString *formattedPhoneNumber = result[@"text"];
         [_phoneButton setTitle:formattedPhoneNumber forState:UIControlStateNormal];
