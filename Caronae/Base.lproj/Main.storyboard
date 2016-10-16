@@ -1198,7 +1198,7 @@ caronas ativas.</string>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWn-qY-Z8N" userLabel="Chegada ao destino">
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5VK-HF-o3E">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5VK-HF-o3E">
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <state key="normal" title="Qua 7 Out 17h00m"/>
                                                         <connections>
@@ -1235,6 +1235,7 @@ caronas ativas.</string>
                                                     <constraint firstAttribute="trailing" secondItem="qfO-34-rYU" secondAttribute="trailing" constant="146" id="KjP-Jk-00I">
                                                         <variation key="widthClass=compact" constant="0.0"/>
                                                     </constraint>
+                                                    <constraint firstItem="5VK-HF-o3E" firstAttribute="leading" secondItem="CyH-CA-n5H" secondAttribute="trailing" constant="8" id="Sle-JY-u0r"/>
                                                     <constraint firstItem="UEW-h5-p9Q" firstAttribute="centerY" secondItem="TWn-qY-Z8N" secondAttribute="centerY" id="SwT-8g-2Ys"/>
                                                     <constraint firstItem="UEW-h5-p9Q" firstAttribute="leading" secondItem="TWn-qY-Z8N" secondAttribute="leading" id="XtW-6e-Lve"/>
                                                     <constraint firstAttribute="bottom" secondItem="qfO-34-rYU" secondAttribute="bottom" constant="5" id="ZJf-sf-ahl"/>
@@ -5655,10 +5656,10 @@ FOTO</string>
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Request Cell" id="IEk-EF-5fo">
-                                                        <rect key="frame" x="0.0" y="28" width="400" height="100"/>
+                                                        <rect key="frame" x="0.0" y="28" width="1000" height="100"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IEk-EF-5fo" id="vsV-lK-jvL">
-                                                            <frame key="frameInset" width="400" height="100"/>
+                                                            <frame key="frameInset" width="1000" height="100"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </tableViewCellContentView>
                                                     </tableViewCell>
@@ -5905,8 +5906,10 @@ FOTO</string>
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
                                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Friend Cell" id="D8N-Oi-hZ8" customClass="RiderCell">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
                                                                                 <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="twK-5y-Mx5" userLabel="Friend photo">
