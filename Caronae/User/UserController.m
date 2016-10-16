@@ -58,7 +58,7 @@ static NSUserDefaults *userDefaults;
 }
 
 - (void)signOut {
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *appDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     
     // Clear chats
     NSDictionary *chats = [ChatStore allChats];

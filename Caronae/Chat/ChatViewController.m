@@ -30,7 +30,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
         
         self.hidesBottomBarWhenPushed = YES;
         
-        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        AppDelegate *appDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
         self.managedObjectContext = appDelegate.managedObjectContext;
     }
     return self;

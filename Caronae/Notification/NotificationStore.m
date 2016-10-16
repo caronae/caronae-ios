@@ -89,7 +89,7 @@ static NSManagedObjectContext *_managedObjectContext;
 
 + (NSManagedObjectContext *)managedObjectContext {
     if (!_managedObjectContext) {
-        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        AppDelegate *appDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
         _managedObjectContext = appDelegate.managedObjectContext;
     }
     return _managedObjectContext;

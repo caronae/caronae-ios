@@ -4,6 +4,7 @@
 @implementation JoinRequestCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     UITapGestureRecognizer *pictureTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapUserDetails:)];
     pictureTap.numberOfTapsRequired = 1;
     [_userPhoto addGestureRecognizer:pictureTap];
