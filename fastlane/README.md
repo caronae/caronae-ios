@@ -11,6 +11,16 @@ sudo gem install fastlane
 fastlane ios test
 ```
 Runs all the tests
+### ios commit_build_bump
+```
+fastlane ios commit_build_bump
+```
+Commit the version/build number bump
+### ios tag
+```
+fastlane ios tag
+```
+Add tag with the current version and build number
 ### ios beta
 ```
 fastlane ios beta
