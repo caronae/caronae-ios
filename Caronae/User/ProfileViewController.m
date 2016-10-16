@@ -173,7 +173,7 @@
 
 - (IBAction)didTapLogoutButton:(id)sender {
     CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Você deseja mesmo sair da sua conta?"
-                                                                             message:@"Para entrar novamente você precisará do token de autorização gerado pelo SIGA."
+                                                                             message: nil
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Sair" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
