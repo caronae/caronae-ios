@@ -87,6 +87,7 @@ platform :ios do
     build_number = get_build_number
 
     commit_build_bump(push: true)
+    tag(type: "appstore")
   end
 
   desc "Sync all certificates and provisioning profiles"
