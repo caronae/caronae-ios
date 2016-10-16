@@ -1,22 +1,4 @@
-# Customise this file, documentation can be found here:
-# https://github.com/KrauseFx/fastlane/tree/master/docs
-# All available actions: https://github.com/KrauseFx/fastlane/blob/master/docs/Actions.md
-# can also be listed using the `fastlane actions` command
-
-# Change the syntax highlighting to Ruby
-# All lines starting with a # are ignored when running `fastlane`
-
-# By default, fastlane will send which actions are used
-# No personal data is shared, more information on https://github.com/fastlane/enhancer
-# Uncomment the following line to opt out
-# opt_out_usage
-
-# If you want to automatically update fastlane if a new version is available:
-# update_fastlane
-
-# This is the minimum version number required.
-# Update this, if you use features of a newer version
-fastlane_version "1.49.0"
+fastlane_version "1.80.0"
 
 default_platform :ios
 
@@ -24,7 +6,13 @@ default_platform :ios
 platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."    
-    # ensure_git_status_clean
+    ensure_git_status_clean
+  end
+
+  desc "Build and sign the app"
+  private_lane :build_app do |options|
+    increment_build_number
+    gym
   end
 
   desc "Runs all the tests"
@@ -32,20 +20,73 @@ platform :ios do
     snapshot
   end
 
+  desc "Commit the version/build number bump"
+  lane :commit_build_bump do
+    version_number = get_version_number
+    build_number = get_build_number
+
+    commit_version_bump(
+      message: "🔖 Version bump to #{version_number} (#{build_number})"
+    )
+  end
+
+  desc "Add tag with the current version and build number"
+  lane :tag do |options|
+    version_number = get_version_number
+    build_number = get_build_number
+
+    if options[:type] == "beta"
+      tag = "beta/#{version_number}/#{build_number}"
+    elsif options[:type] == "appstore"
+      tag = "appstore/#{version_number}/#{build_number}"
+    else
+      UI.user_error!("Missing option 'type' as 'beta' or 'appstore'")
+    end
+
+    add_git_tag(tag: tag)
+
+    if options[:push]
+      push_to_git_remote
+    end
+
+    UI.success("Success! New tag: '#{tag}' 🔖")
+  end
+
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
     sigh
-    gym
-    pilot
+
+    build_app
+
+    pilot(
+      skip_submission: true,
+      skip_waiting_for_build_processing: true
+    )
+
+    # Make sure our directory is clean, except for changes Fastlane has made
+    clean_build_artifacts
+
+    commit_build_bump(push: true)
+    tag(type: "beta")
   end
 
   desc "Deploy a new version to the App Store"
   lane :deploy do
     # snapshot
     sigh
-    gym
+    
+    build_app
+
     deliver(submit_for_review: true)
+
+    # Make sure our directory is clean, except for changes Fastlane has made
+    clean_build_artifacts
+
+    version_number = get_version_number
+    build_number = get_build_number
+
+    commit_build_bump(push: true)
   end
 
   desc "Sync all certificates and provisioning profiles"
@@ -69,5 +110,6 @@ platform :ios do
     #   message: exception.message,
     #   success: false
     # )
+    reset_git_repo
   end
 end
