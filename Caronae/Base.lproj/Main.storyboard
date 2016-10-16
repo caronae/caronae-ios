@@ -651,10 +651,6 @@ caronas ativas.</string>
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="LBU-nZ-oVt" userLabel="Location Icon">
-                                                <frame key="frameInset" minY="-64" width="16" height="15"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LkG-Ym-CPN" userLabel="Reference">
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Referência Ex: Shopping Tijuca" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ah4-oz-Cgc" customClass="CaronaeTextField">
@@ -760,19 +756,22 @@ caronas ativas.</string>
                                                             </mask>
                                                         </variation>
                                                     </view>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="LBU-nZ-oVt" userLabel="Location Icon"/>
                                                 </subviews>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
+                                                    <constraint firstItem="LBU-nZ-oVt" firstAttribute="centerY" secondItem="vII-kc-e4x" secondAttribute="centerY" id="DIk-EF-rPc"/>
                                                     <constraint firstAttribute="height" constant="40" id="EVj-Cg-l4i"/>
                                                     <constraint firstAttribute="bottom" secondItem="VnG-s1-gVC" secondAttribute="bottom" constant="69" id="HdJ-lj-N9u">
                                                         <variation key="widthClass=compact" constant="0.0"/>
                                                     </constraint>
                                                     <constraint firstItem="VnG-s1-gVC" firstAttribute="width" secondItem="kWX-s3-c5B" secondAttribute="width" id="Kxw-5n-kXT"/>
                                                     <constraint firstAttribute="centerY" secondItem="vII-kc-e4x" secondAttribute="centerY" id="OF5-DT-R97"/>
+                                                    <constraint firstItem="LBU-nZ-oVt" firstAttribute="leading" secondItem="kWX-s3-c5B" secondAttribute="leading" id="P34-oI-H7y"/>
+                                                    <constraint firstItem="vII-kc-e4x" firstAttribute="leading" secondItem="LBU-nZ-oVt" secondAttribute="trailing" constant="8" id="W6m-mX-dZz"/>
                                                     <constraint firstItem="VnG-s1-gVC" firstAttribute="leading" secondItem="kWX-s3-c5B" secondAttribute="leading" constant="24" id="aYx-y4-aRL">
                                                         <variation key="widthClass=compact" constant="0.0"/>
                                                     </constraint>
-                                                    <constraint firstItem="vII-kc-e4x" firstAttribute="leading" secondItem="kWX-s3-c5B" secondAttribute="leading" id="bXf-8t-Uqg"/>
                                                     <constraint firstAttribute="trailing" secondItem="vII-kc-e4x" secondAttribute="trailing" id="bau-Am-iua"/>
                                                     <constraint firstAttribute="trailing" secondItem="VnG-s1-gVC" secondAttribute="trailing" constant="96" id="fxt-jf-Gio">
                                                         <variation key="widthClass=compact" constant="0.0"/>
@@ -790,7 +789,6 @@ caronas ativas.</string>
                                                         <exclude reference="aYx-y4-aRL"/>
                                                         <exclude reference="fxt-jf-Gio"/>
                                                         <exclude reference="OF5-DT-R97"/>
-                                                        <exclude reference="bXf-8t-Uqg"/>
                                                         <exclude reference="bau-Am-iua"/>
                                                     </mask>
                                                 </variation>
@@ -806,7 +804,6 @@ caronas ativas.</string>
                                                         <include reference="aYx-y4-aRL"/>
                                                         <include reference="fxt-jf-Gio"/>
                                                         <include reference="OF5-DT-R97"/>
-                                                        <include reference="bXf-8t-Uqg"/>
                                                         <include reference="bau-Am-iua"/>
                                                     </mask>
                                                 </variation>
@@ -1502,7 +1499,6 @@ caronas ativas.</string>
                                             <mask key="subviews">
                                                 <exclude reference="wWF-a6-BXF"/>
                                                 <exclude reference="SoK-oZ-c5J"/>
-                                                <exclude reference="LBU-nZ-oVt"/>
                                                 <exclude reference="LkG-Ym-CPN"/>
                                                 <exclude reference="BOK-HL-cQ2"/>
                                                 <exclude reference="kWX-s3-c5B"/>
@@ -1540,7 +1536,6 @@ caronas ativas.</string>
                                             <mask key="subviews">
                                                 <include reference="wWF-a6-BXF"/>
                                                 <include reference="SoK-oZ-c5J"/>
-                                                <include reference="LBU-nZ-oVt"/>
                                                 <include reference="LkG-Ym-CPN"/>
                                                 <include reference="BOK-HL-cQ2"/>
                                                 <include reference="kWX-s3-c5B"/>
@@ -7104,13 +7099,13 @@ nenhuma carona.</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="sGI-sp-fNN"/>
         <segue reference="gns-F9-8s8"/>
         <segue reference="9kE-zS-Odm"/>
         <segue reference="H8O-Mc-OH3"/>
         <segue reference="yIa-C3-QN8"/>
         <segue reference="ugX-qh-OjL"/>
-        <segue reference="7VR-Dw-svl"/>
-        <segue reference="sGI-sp-fNN"/>
+        <segue reference="tvA-Ui-5Q1"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
