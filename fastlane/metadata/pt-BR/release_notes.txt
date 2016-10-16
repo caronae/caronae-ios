@@ -1,13 +1,7 @@
-Obrigado pelo seu feedback! 
+O desenvolvimento do Caronaê voltou e estamos ouvindo todo o feedback que recebemos!
+Neste update corrigimos alguns problemas que foram reportados para nós.
 
-Pedimos desculpas pela instabilidade do nosso servidor. Estamos trabalhando diretamente com a TIC (Superintendência de Tecnologia da Informação e Comunicação da UFRJ) para tornar nosso servidor mais confiável e você não perder mais nenhuma carona! Agradecemos pela sua paciência :)
-
-
-Neste update (1.0.1):
-
-- Corrigimos um problema com os chats que podia fazer o aplicativo fechar inesperadamente
-- Corrigimos a visualização dos termos de uso e do "Sobre"
-- Melhoramos as mensagens exibidas em cada tela quando não há caronas
-- Melhoramos a exibição das caronas na tela de "Todas". Lembramos que, nessa tela, só aparecem as próximas caronas. Para encontrar mais caronas, use a pesquisa.
-- Melhoramos a digitação da chave no primeiro uso
-
+- Usuários estrangeiros agora conseguem digitar o número do passaporte no login
+- Deixamos mais claro nas caronas se o horário é chegando ou saindo da UFRJ
+- Usuários que possuem telefones com 8 dígitos agora conseguem atualizar o perfil corretamente
+- Outras correções menores e melhorias no design

@@ -61,7 +61,7 @@
             
             [[UserController sharedInstance] setUser:user token:userToken rides:filteredRides];
             
-            AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+            AppDelegate *appDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
             [appDelegate registerForNotifications];
             
             [self performSegueWithIdentifier:@"ViewHome" sender:self];

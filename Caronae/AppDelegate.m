@@ -300,11 +300,12 @@
     __weak typeof(self) weakSelf = self;
     // Handler for registration token request
     _registrationHandler = ^(NSString *registrationToken, NSError *error){
-        if (registrationToken != nil) {
+        if (!error && registrationToken != nil) {
             NSString *cachedRegistrationToken = [UserController sharedInstance].userGCMToken;
+            NSLog(@"GCM Registration Token: %@", registrationToken);
             // Update cached registration token locally and remotely if the token has changed.
             if (![cachedRegistrationToken isEqualToString:registrationToken]) {
-                NSLog(@"Registration Token: %@", registrationToken);
+                NSLog(@"GCM Registration Token has changed.");
                 
                 [UserController sharedInstance].userGCMToken = registrationToken;
                 if ([UserController sharedInstance].user) {
@@ -348,13 +349,13 @@
     [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
 #ifdef DEBUG
     BOOL isBuiltDebug = YES;
-    NSLog(@"Starting GCM in sandbox mode");
+    NSLog(@"Starting GCM in development mode");
 #else
     BOOL isBuiltDebug = NO;
-    NSLog(@"Starting GCM in appstore mode");
+    NSLog(@"Starting GCM in production mode");
 #endif
     _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
-                             kGGLInstanceIDAPNSServerTypeSandboxOption:@(isBuiltDebug)}; // FIXME
+                             kGGLInstanceIDAPNSServerTypeSandboxOption:@(isBuiltDebug)};
     [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
                                                         scope:kGGLInstanceIDScopeGCM
                                                       options:_registrationOptions
@@ -419,7 +420,7 @@
 
 - (void)onTokenRefresh {
     // A rotation of the registration tokens is happening, so the app needs to request a new token.
-    NSLog(@"The GCM registration token needs to be changed.");
+    NSLog(@"The GCM registration token needs to be refreshed.");
     [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
                                                         scope:kGGLInstanceIDScopeGCM
                                                       options:_registrationOptions

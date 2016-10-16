@@ -78,7 +78,8 @@
     
     if (_user.phoneNumber.length > 0) {
         SHSPhoneNumberFormatter *phoneFormatter = [[SHSPhoneNumberFormatter alloc] init];
-        [phoneFormatter setDefaultOutputPattern:CaronaePhoneNumberPattern];
+        [phoneFormatter setDefaultOutputPattern:Caronae8PhoneNumberPattern];
+        [phoneFormatter addOutputPattern:Caronae9PhoneNumberPattern forRegExp:@"[0-9]{12}\\d*$"];
         NSDictionary *result = [phoneFormatter valuesForString:_user.phoneNumber];
         NSString *formattedPhoneNumber = result[@"text"];
         [_phoneButton setTitle:formattedPhoneNumber forState:UIControlStateNormal];
@@ -172,7 +173,7 @@
 
 - (IBAction)didTapLogoutButton:(id)sender {
     CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Você deseja mesmo sair da sua conta?"
-                                                                             message:@"Para entrar novamente você precisará do token de autorização gerado pelo SIGA."
+                                                                             message: nil
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Sair" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){

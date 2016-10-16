@@ -27,7 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.phoneTextField.formatter setDefaultOutputPattern:CaronaePhoneNumberPattern];
+    [self.phoneTextField.formatter setDefaultOutputPattern:Caronae8PhoneNumberPattern];
+    [self.phoneTextField.formatter addOutputPattern:Caronae9PhoneNumberPattern forRegExp:@"[0-9]{12}\\d*$"];
     self.phoneTextField.delegate = self;
     [self updateProfileFields];
     [self configureFacebookLoginButton];
@@ -168,7 +169,7 @@
     }
     
     NSString *phone = self.phoneTextField.phoneNumber;
-    if (phone.length != 12) {
+    if (phone.length != 12 && phone.length != 11) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que o telefone que você inseriu não é válido. Ele deve estar no formato (0XX) XXXXX-XXXX."];
         return NO;
     }

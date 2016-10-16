@@ -40,8 +40,13 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     dateFormatter.dateFormat = @"HH:mm | E | dd/MM";
     NSString *dateString = [dateFormatter stringFromDate:_ride.date].capitalizedString;
     
-    _titleLabel.text = [_ride.title uppercaseString];   
-    _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", dateString];
+    _titleLabel.text = [_ride.title uppercaseString];
+    if (_ride.going) {
+        _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", dateString];
+    }
+    else {
+        _dateLabel.text = [NSString stringWithFormat:@"Saindo às %@", dateString];
+    }
     
     if ([_ride.place isKindOfClass:[NSString class]] && [_ride.place isEqualToString:@""]) {
         _referenceLabel.text = @"---";
@@ -116,7 +121,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         
         [self.cancelButton setTitle:@"DESISTIR" forState:UIControlStateNormal];
         SHSPhoneNumberFormatter *phoneFormatter = [[SHSPhoneNumberFormatter alloc] init];
-        [phoneFormatter setDefaultOutputPattern:CaronaePhoneNumberPattern];
+        [phoneFormatter setDefaultOutputPattern:Caronae8PhoneNumberPattern];
+        [phoneFormatter addOutputPattern:Caronae9PhoneNumberPattern forRegExp:@"[0-9]{12}\\d*$"];
         NSDictionary *result = [phoneFormatter valuesForString:_ride.driver.phoneNumber];
         NSString *formattedPhoneNumber = result[@"text"];
         [_phoneButton setTitle:formattedPhoneNumber forState:UIControlStateNormal];

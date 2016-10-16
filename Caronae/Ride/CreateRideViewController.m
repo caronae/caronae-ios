@@ -295,7 +295,7 @@
 
 - (IBAction)selectDateTapped:(id)sender {
     [self.view endEditing:YES];
-    ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Chegada ao destino" datePickerMode:UIDatePickerModeDateAndTime selectedDate:self.rideDate target:self action:@selector(timeWasSelected:element:) origin:sender];
+    ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle: (self.segmentedControl.selectedSegmentIndex == 0)? @"Chegada ao destino" : @"Saída da UFRJ" datePickerMode:UIDatePickerModeDateAndTime selectedDate:self.rideDate target:self action:@selector(timeWasSelected:element:) origin:sender];
     ((UIDatePicker *)datePicker).minimumDate = [NSDate currentHour];
     [datePicker showActionSheetPicker];
 }
