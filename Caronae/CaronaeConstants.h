@@ -22,6 +22,8 @@ extern NSString *const CaronaeTermsOfUsePageURLString;
 
 extern NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey;
 extern NSString *const CaronaePreferenceLastSearchedCenterKey;
+extern NSString *const CaronaePreferenceLastSearchedDateKey;
+extern NSString *const CaronaePreferenceLastSearchedDirectionKey;
 
 
 #pragma mark - Notifications
@@ -45,6 +47,9 @@ extern const NSInteger CaronaeErrorOpeningCoreDataStore;
 extern NSString *const Caronae8PhoneNumberPattern;
 extern NSString *const Caronae9PhoneNumberPattern;
 extern NSString *const CaronaePlaceholderProfileImage;
+extern NSString *const CaronaeSearchDateFormat;
+extern NSString *const CaronaeDateLocaleIdentifier;
+
 
 @interface CaronaeConstants : NSObject
 

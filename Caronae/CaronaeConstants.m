@@ -34,6 +34,8 @@ NSString *const CaronaeDidUpdateNotifications = @"CaronaeDidUpdateNotifications"
 
 NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey = @"lastSearchedNeighborhoods";
 NSString *const CaronaePreferenceLastSearchedCenterKey = @"lastSearchedCenter";
+NSString *const CaronaePreferenceLastSearchedDateKey = @"lastSearchedDate";
+NSString *const CaronaePreferenceLastSearchedDirectionKey = @"lastSearchedDirection";
 
 
 #pragma mark - Error types
@@ -49,6 +51,8 @@ const NSInteger CaronaeErrorOpeningCoreDataStore = 3;
 NSString *const Caronae8PhoneNumberPattern = @"(###) ####-####";
 NSString *const Caronae9PhoneNumberPattern = @"(###) #####-####";
 NSString *const CaronaePlaceholderProfileImage = @"Profile Picture";
+NSString *const CaronaeSearchDateFormat = @"EEEE, dd/MM/yyyy HH:mm";
+NSString *const CaronaeDateLocaleIdentifier = @"pt_BR";
 
 
 @interface CaronaeConstants ()

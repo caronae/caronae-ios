@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2B703899BB09FEE6DC0710D9 /* libPods-Caronae.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82527D52981AFEFBE68EA15D /* libPods-Caronae.a */; };
 		A302B29B1BF4439300FA161D /* CreateRideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A302B29A1BF4439300FA161D /* CreateRideTests.m */; };
+		A3034D581DB58A1B00816B79 /* NSDate+isInTheFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */; };
 		A3169C951BED842D00A0D428 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C941BED842D00A0D428 /* main.m */; };
 		A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C971BED842D00A0D428 /* AppDelegate.m */; };
 		A3169C9B1BED842D00A0D428 /* TokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C9A1BED842D00A0D428 /* TokenViewController.m */; };
@@ -89,6 +90,7 @@
 		48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.release.xcconfig"; sourceTree = "<group>"; };
 		82527D52981AFEFBE68EA15D /* libPods-Caronae.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Caronae.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A302B29A1BF4439300FA161D /* CreateRideTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRideTests.m; sourceTree = "<group>"; };
+		A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+isInTheFuture.swift"; sourceTree = "<group>"; };
 		A3169C901BED842D00A0D428 /* Caronae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caronae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3169C941BED842D00A0D428 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A3169C961BED842D00A0D428 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 			children = (
 				A3B5AF0F1BF2F0560026A889 /* CALayer+UIColor.h */,
 				A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */,
+				A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */,
 				A39BBD011C06378E00EF9EBD /* NSDate+nextHour.h */,
 				A39BBD021C06378E00EF9EBD /* NSDate+nextHour.m */,
 				A3F30EE71C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.h */,
@@ -676,6 +679,7 @@
 				A38598491C691D1400279D6F /* User.m in Sources */,
 				A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */,
 				A34C675C1C853C4B001F6D90 /* RideRequestsStore.m in Sources */,
+				A3034D581DB58A1B00816B79 /* NSDate+isInTheFuture.swift in Sources */,
 				A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */,
 				A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */,
 				A3F30EED1C0890C10024BE37 /* ZoneCell.m in Sources */,
