@@ -27,7 +27,7 @@
     
     [self checkIfUserHasCar];
     
-    self.hubs = [CaronaeDefaults defaults].centers;
+    self.hubs = [CaronaeConstants defaults].centers;
     self.selectedHub = self.hubs.firstObject;
     
     NSDictionary *lastRideLocation = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
@@ -310,10 +310,10 @@
 - (IBAction)directionChanged:(UISegmentedControl *)sender {
     [self.view endEditing:YES];
     if (sender.selectedSegmentIndex == 0) {
-        self.hubs = [CaronaeDefaults defaults].centers;
+        self.hubs = [CaronaeConstants defaults].centers;
     }
     else {
-        self.hubs = [CaronaeDefaults defaults].hubs;
+        self.hubs = [CaronaeConstants defaults].hubs;
     }
     self.selectedHub = self.hubs.firstObject;
     [self.center setTitle:self.selectedHub forState:UIControlStateNormal];

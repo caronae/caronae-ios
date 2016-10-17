@@ -1,4 +1,4 @@
-#import "CaronaeDefaults.h"
+#import "CaronaeConstants.h"
 
 #pragma mark - API settings
 
@@ -30,6 +30,12 @@ NSString *const CaronaeGCMMessageReceivedNotification = @"CaronaeGCMMessageRecei
 NSString *const CaronaeDidUpdateNotifications = @"CaronaeDidUpdateNotifications";
 
 
+#pragma mark - Preference keys
+
+NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey = @"lastSearchedNeighborhoods";
+NSString *const CaronaePreferenceLastSearchedCenterKey = @"lastSearchedCenter";
+
+
 #pragma mark - Error types
 
 NSString *const CaronaeErrorDomain = @"CaronaeError";
@@ -45,7 +51,7 @@ NSString *const Caronae9PhoneNumberPattern = @"(###) #####-####";
 NSString *const CaronaePlaceholderProfileImage = @"Profile Picture";
 
 
-@interface CaronaeDefaults()
+@interface CaronaeConstants ()
 @property (nonatomic, readwrite) NSArray *centers;
 @property (nonatomic, readwrite) NSArray *hubs;
 @property (nonatomic, readwrite) NSArray *zones;
@@ -53,10 +59,10 @@ NSString *const CaronaePlaceholderProfileImage = @"Profile Picture";
 @property (nonatomic, readwrite) NSDictionary *neighborhoods;
 @end
 
-@implementation CaronaeDefaults
+@implementation CaronaeConstants
 
 + (instancetype)defaults {
-    static CaronaeDefaults *sharedMyManager = nil;
+    static CaronaeConstants *sharedMyManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedMyManager = [[self alloc] init];
@@ -65,7 +71,7 @@ NSString *const CaronaePlaceholderProfileImage = @"Profile Picture";
 }
 
 + (UIColor *)colorForZone:(NSString *)zone {
-    UIColor *color = [CaronaeDefaults defaults].zoneColors[zone];
+    UIColor *color = [CaronaeConstants defaults].zoneColors[zone];
     if (!color) color = [UIColor darkTextColor];
     return color;
 }

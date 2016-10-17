@@ -29,7 +29,7 @@
     }
     
     NSString *lastSearchedCenter = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearchedCenter"];
-    self.hubs = [CaronaeDefaults defaults].centers;
+    self.hubs = [CaronaeConstants defaults].centers;
     if (lastSearchedCenter) {
         self.selectedHub = lastSearchedCenter;
     }

@@ -15,11 +15,11 @@
     
     if (self.type == ZoneSelectionZone) {
         self.title = @"Zonas";
-        self.zones = [CaronaeDefaults defaults].zones;
+        self.zones = [CaronaeConstants defaults].zones;
     }
     else {
         self.title = self.selectedZone;
-        self.zones = [CaronaeDefaults defaults].neighborhoods[self.selectedZone];
+        self.zones = [CaronaeConstants defaults].neighborhoods[self.selectedZone];
         self.selectedNeighborhoods = [[NSMutableArray alloc] init];
         if (self.neighborhoodSelectionType == NeighborhoodSelectionMany) {
             self.doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Sel. todos" style:UIBarButtonItemStyleDone target:self action:@selector(finishSelection)];
@@ -64,11 +64,11 @@
     UIColor *cellColor;
     
     if (self.type == ZoneSelectionZone) {
-        cellColor = [CaronaeDefaults colorForZone:zone];
+        cellColor = [CaronaeConstants colorForZone:zone];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     else {
-        cellColor = [CaronaeDefaults colorForZone:self.selectedZone];
+        cellColor = [CaronaeConstants colorForZone:self.selectedZone];
         if (self.neighborhoodSelectionType == NeighborhoodSelectionMany && cell.selected) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
