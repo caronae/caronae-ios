@@ -47,7 +47,7 @@
     
     // Load last searched center
     NSString *lastSearchedCenter = [self.userDefaults stringForKey:CaronaePreferenceLastSearchedCenterKey];
-    self.hubs = [CaronaeConstants defaults].centers;
+    self.hubs = [@[@"Todos os Centros"] arrayByAddingObjectsFromArray:[CaronaeConstants defaults].centers];
     if (lastSearchedCenter) {
         self.selectedHub = lastSearchedCenter;
     } else {
@@ -103,7 +103,7 @@
     [self.userDefaults setBool:self.directionControl.selectedSegmentIndex forKey:CaronaePreferenceLastSearchedDirectionKey];
     
     BOOL going = (self.directionControl.selectedSegmentIndex == 0);
-    [self.delegate searchedForRideWithCenter:self.selectedHub andNeighborhoods:self.neighborhoods onDate:self.searchedDate going:going];
+    [self.delegate searchedForRideWithCenter: ([self.selectedHub isEqual: self.hubs[0]] ? @"" : self.selectedHub) andNeighborhoods:self.neighborhoods onDate:self.searchedDate going:going];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
