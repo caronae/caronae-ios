@@ -23,8 +23,6 @@
 		A325DA711C0CAFD700B9124E /* JoinRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */; };
 		A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A32B80B51C2C6EBE00FC370A /* FalaeViewController.m */; };
 		A32C77261C41EEE30098583B /* AllRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A32C77251C41EEE30098583B /* AllRidesViewController.m */; };
-		A33BC29E1C1C91840065BC03 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A33BC29D1C1C91840065BC03 /* FBSDKCoreKit.framework */; };
-		A33BC2A01C1C92810065BC03 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A33BC29F1C1C92810065BC03 /* FBSDKLoginKit.framework */; };
 		A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */; };
 		A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C61BF01B9A005BA311 /* MenuViewController.m */; };
 		A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C91BF01C1D005BA311 /* ProfileViewController.m */; };
@@ -115,8 +113,6 @@
 		A32B80B51C2C6EBE00FC370A /* FalaeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FalaeViewController.m; sourceTree = "<group>"; };
 		A32C77241C41EEE30098583B /* AllRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllRidesViewController.h; sourceTree = "<group>"; };
 		A32C77251C41EEE30098583B /* AllRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllRidesViewController.m; sourceTree = "<group>"; };
-		A33BC29D1C1C91840065BC03 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		A33BC29F1C1C92810065BC03 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		A33FABE81BEE8E93008B4F51 /* CreateRideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRideViewController.h; sourceTree = "<group>"; };
 		A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRideViewController.m; sourceTree = "<group>"; };
 		A34312C51BF01B9A005BA311 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -216,8 +212,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A33BC29E1C1C91840065BC03 /* FBSDKCoreKit.framework in Frameworks */,
-				A33BC2A01C1C92810065BC03 /* FBSDKLoginKit.framework in Frameworks */,
 				2B703899BB09FEE6DC0710D9 /* libPods-Caronae.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,8 +238,6 @@
 		9EEF98FE6EBF502EF2E23188 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A33BC29F1C1C92810065BC03 /* FBSDKLoginKit.framework */,
-				A33BC29D1C1C91840065BC03 /* FBSDKCoreKit.framework */,
 				82527D52981AFEFBE68EA15D /* libPods-Caronae.a */,
 			);
 			name = Frameworks;

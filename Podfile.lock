@@ -21,7 +21,17 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
   - CRToast (0.0.9)
+  - FBSDKCoreKit (4.16.1):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.16.1):
+    - FBSDKCoreKit
   - GGLInstanceID (1.2.1)
   - Google/CloudMessaging (2.0.4):
     - GGLInstanceID (~> 1.0)
@@ -65,6 +75,8 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.0.5)
   - AFNetworking (~> 2.6.3)
   - CRToast (~> 0.0.7)
+  - FBSDKCoreKit
+  - FBSDKLoginKit
   - Google/CloudMessaging
   - Mantle (~> 2.0.7)
   - SDCAlertView (= 2.5.4)
@@ -76,7 +88,10 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 8312778b6815578e6a86d630fbcf31dc94c534e7
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
+  FBSDKCoreKit: 6feac4e8921ccd7afa83fb1df6291dc6eec42c7c
+  FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
   GGLInstanceID: 4a317044f744281b82cd03015f379899f277cad3
   Google: d0932824c5b97c96be489aa6f4e8cd6c294d637d
   GoogleCloudMessaging: f37ea14dd0f41d4d889c10b5559dd35bbfd9ac26
@@ -89,11 +104,11 @@ SPEC CHECKSUMS:
   RBBAnimation: 4b2d66f6d993febce63cd564da934985313b9c59
   SDCAlertView: 2e2b0ecc5f1ec367e45d83efa2e512688ca7fa55
   SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   SHSPhoneComponent: 4cec0653a150ad63cbc52b0c8b29ce2d3c9c26f0
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
 
-PODFILE CHECKSUM: d20995835d1d18ab2231d538feb1f48eb9f86341
+PODFILE CHECKSUM: bf65a7df1df8e6e18f331475ce12f7e728982191
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.1.1
