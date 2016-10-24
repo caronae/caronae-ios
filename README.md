@@ -6,7 +6,7 @@ Aplicativo para iPhone do Caronaê.
 
 * Xcode 8+
 * iOS 8.0+
-* [CocoaPods](https://cocoapods.org) 1.1.0.rc.2
+* [CocoaPods](https://cocoapods.org) 1.1.1
 
 
 ## Instalação
