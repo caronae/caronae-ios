@@ -2,7 +2,6 @@
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import <CRToast/CRToast.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <Google/CloudMessaging.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "AppDelegate.h"
 #import "ChatStore.h"
@@ -30,7 +29,7 @@
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
-    [self configureGCM]; 
+    [self configureFirebase];
     
     [CRToastManager setDefaultOptions:@{
                                         kCRToastBackgroundColorKey: [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000],
@@ -285,61 +284,61 @@
 
 #pragma mark - Google Cloud Messaging (GCM)
 
-- (void)configureGCM {
-    // Configure the Google context: parses the GoogleService-Info.plist, and initializes
-    // the services that have entries in the file
-    NSError *configureError;
-    [[GGLContext sharedInstance] configureWithError:&configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
-    
-    GCMConfig *gcmConfig = [GCMConfig defaultConfig];
-    gcmConfig.receiverDelegate = self;
-    gcmConfig.logLevel = kGCMLogLevelError;
-    [[GCMService sharedInstance] startWithConfig:gcmConfig];
-    
-    __weak typeof(self) weakSelf = self;
-    // Handler for registration token request
-    _registrationHandler = ^(NSString *registrationToken, NSError *error){
-        if (!error && registrationToken != nil) {
-            NSString *cachedRegistrationToken = [UserController sharedInstance].userGCMToken;
-            NSLog(@"GCM Registration Token: %@", registrationToken);
-            // Update cached registration token locally and remotely if the token has changed.
-            if (![cachedRegistrationToken isEqualToString:registrationToken]) {
-                NSLog(@"GCM Registration Token has changed.");
-                
-                [UserController sharedInstance].userGCMToken = registrationToken;
-                if ([UserController sharedInstance].user) {
-                    [weakSelf updateUserGCMToken:registrationToken];
-                }
-            }
-            
-            if (!weakSelf.connectedToGCM) {
-                [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
-                    if (error && error.code != kGCMServiceErrorCodeAlreadyConnected) {
-                        NSLog(@"Could not connect to GCM (registration): %@", error.localizedDescription);
-                    } else if (!error) {
-                        weakSelf.connectedToGCM = true;
-                        NSLog(@"Connected to GCM (registration)");
-                        [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMConnectedNotification object:nil userInfo:nil];
-                    }
-                }];
-            }
-            
-            NSDictionary *userInfo = @{@"registrationToken": registrationToken};
-            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
-                                                                object:nil
-                                                              userInfo:userInfo];
-        } else {
-            [UserController sharedInstance].userGCMToken = nil;
-            NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
-            NSDictionary *userInfo = @{@"error": error.localizedDescription};
-            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
-                                                                object:nil
-                                                              userInfo:userInfo];
-        }
-    };
-}
+//- (void)configureGCM {
+//    // Configure the Google context: parses the GoogleService-Info.plist, and initializes
+//    // the services that have entries in the file
+//    NSError *configureError;
+//    [[GGLContext sharedInstance] configureWithError:&configureError];
+//    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+//    _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
+//    
+//    GCMConfig *gcmConfig = [GCMConfig defaultConfig];
+//    gcmConfig.receiverDelegate = self;
+//    gcmConfig.logLevel = kGCMLogLevelError;
+//    [[GCMService sharedInstance] startWithConfig:gcmConfig];
+//    
+//    __weak typeof(self) weakSelf = self;
+//    // Handler for registration token request
+//    _registrationHandler = ^(NSString *registrationToken, NSError *error){
+//        if (!error && registrationToken != nil) {
+//            NSString *cachedRegistrationToken = [UserController sharedInstance].userGCMToken;
+//            NSLog(@"GCM Registration Token: %@", registrationToken);
+//            // Update cached registration token locally and remotely if the token has changed.
+//            if (![cachedRegistrationToken isEqualToString:registrationToken]) {
+//                NSLog(@"GCM Registration Token has changed.");
+//                
+//                [UserController sharedInstance].userGCMToken = registrationToken;
+//                if ([UserController sharedInstance].user) {
+//                    [weakSelf updateUserGCMToken:registrationToken];
+//                }
+//            }
+//            
+//            if (!weakSelf.connectedToGCM) {
+//                [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
+//                    if (error && error.code != kGCMServiceErrorCodeAlreadyConnected) {
+//                        NSLog(@"Could not connect to GCM (registration): %@", error.localizedDescription);
+//                    } else if (!error) {
+//                        weakSelf.connectedToGCM = true;
+//                        NSLog(@"Connected to GCM (registration)");
+//                        [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMConnectedNotification object:nil userInfo:nil];
+//                    }
+//                }];
+//            }
+//            
+//            NSDictionary *userInfo = @{@"registrationToken": registrationToken};
+//            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
+//                                                                object:nil
+//                                                              userInfo:userInfo];
+//        } else {
+//            [UserController sharedInstance].userGCMToken = nil;
+//            NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
+//            NSDictionary *userInfo = @{@"error": error.localizedDescription};
+//            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
+//                                                                object:nil
+//                                                              userInfo:userInfo];
+//        }
+//    };
+//}
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
