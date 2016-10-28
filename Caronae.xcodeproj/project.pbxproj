@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B703899BB09FEE6DC0710D9 /* libPods-Caronae.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82527D52981AFEFBE68EA15D /* libPods-Caronae.a */; };
+		71710F151DC3745E009420B4 /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71710F141DC3745E009420B4 /* AppDelegate+Firebase.swift */; };
 		A302B29B1BF4439300FA161D /* CreateRideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A302B29A1BF4439300FA161D /* CreateRideTests.m */; };
 		A3034D581DB58A1B00816B79 /* NSDate+isInTheFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */; };
 		A3169C951BED842D00A0D428 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C941BED842D00A0D428 /* main.m */; };
@@ -86,6 +87,7 @@
 /* Begin PBXFileReference section */
 		2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug.xcconfig"; sourceTree = "<group>"; };
 		48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.release.xcconfig"; sourceTree = "<group>"; };
+		71710F141DC3745E009420B4 /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
 		82527D52981AFEFBE68EA15D /* libPods-Caronae.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Caronae.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A302B29A1BF4439300FA161D /* CreateRideTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRideTests.m; sourceTree = "<group>"; };
 		A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+isInTheFuture.swift"; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				A32B80B71C2E073000FC370A /* User */,
 				A3169C961BED842D00A0D428 /* AppDelegate.h */,
 				A3169C971BED842D00A0D428 /* AppDelegate.m */,
+				71710F141DC3745E009420B4 /* AppDelegate+Firebase.swift */,
 				A3169CA21BED842D00A0D428 /* Assets.xcassets */,
 				A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */,
 				A3B5AEFD1BF1AAC10026A889 /* CaronaeConstants.h */,
@@ -707,6 +710,7 @@
 				A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */,
 				A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */,
 				A3180F871C618DDF007195DF /* ChatStore.m in Sources */,
+				71710F151DC3745E009420B4 /* AppDelegate+Firebase.swift in Sources */,
 				A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */,
 				A37E80E41C5F0C3000683F27 /* MessageBubbleTableViewCell.m in Sources */,
 			);

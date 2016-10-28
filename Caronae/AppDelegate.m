@@ -11,6 +11,7 @@
 #import "Notification+CoreDataProperties.h"
 #import "NotificationStore.h"
 #import "TabBarController.h"
+#import "Caronae-Swift.h"
 
 @interface AppDelegate () <GGLInstanceIDDelegate, GCMReceiverDelegate>
 @property (nonatomic, strong) void (^registrationHandler) (NSString *registrationToken, NSError *error);
@@ -29,7 +30,7 @@
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
-    [self configureGCM];
+    [self configureGCM]; 
     
     [CRToastManager setDefaultOptions:@{
                                         kCRToastBackgroundColorKey: [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000],
