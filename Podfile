@@ -12,8 +12,8 @@ target 'Caronae' do
     pod 'Google/CloudMessaging'
     pod 'CRToast', '~> 0.0.7'
     pod 'Mantle', '~> 2.0.7'
-
-    #link_with 'Caronae'
+    pod 'FBSDKCoreKit'
+    pod 'FBSDKLoginKit'
 
     class ::Pod::Generator::Acknowledgements
         def header_title

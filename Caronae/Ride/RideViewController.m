@@ -76,7 +76,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [_driverPhoto crn_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]];
     }
     
-    self.color = [CaronaeDefaults colorForZone:_ride.zone];
+    self.color = [CaronaeConstants colorForZone:_ride.zone];
     
     UINib *cellNib = [UINib nibWithNibName:NSStringFromClass(JoinRequestCell.class) bundle:nil];
     [self.requestsTable registerNib:cellNib forCellReuseIdentifier:@"Request Cell"];

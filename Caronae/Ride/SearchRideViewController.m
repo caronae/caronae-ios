@@ -4,44 +4,67 @@
 #import "NSDate+nextHour.h"
 #import "SearchRideViewController.h"
 #import "ZoneSelectionViewController.h"
+#import "Caronae-Swift.h"
 
 @interface SearchRideViewController () <ZoneSelectionDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *directionControl;
+@property (weak, nonatomic) IBOutlet UIButton *dateButton;
+@property (weak, nonatomic) IBOutlet UIButton *neighborhoodButton;
+@property (weak, nonatomic) IBOutlet UIButton *centerButton;
 @property (nonatomic) NSArray *neighborhoods;
 @property (nonatomic) NSString *zone;
 @property (nonatomic) NSDate *searchedDate;
 @property (nonatomic) NSString *selectedHub;
-@property (weak, nonatomic) IBOutlet UIButton *dateButton;
-@property (weak, nonatomic) IBOutlet UIButton *neighborhoodButton;
-@property (weak, nonatomic) IBOutlet UIButton *centerButton;
 @property (nonatomic) NSDateFormatter *dateFormatter;
 @property (nonatomic) NSArray *hubs;
+@property (nonatomic) NSUserDefaults *userDefaults;
 @end
 
 @implementation SearchRideViewController
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    self.dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:CaronaeDateLocaleIdentifier];
+    [self.dateFormatter setDateFormat:CaronaeSearchDateFormat];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSArray *lastSearchedNeighborhoods = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearchedNeighborhoods"];
+    // Load last searched direction
+    BOOL lastSearchedDirection = [self.userDefaults boolForKey:CaronaePreferenceLastSearchedDirectionKey];
+    self.directionControl.selectedSegmentIndex = lastSearchedDirection;
+    
+    // Load last searched neighborhoods
+    NSArray *lastSearchedNeighborhoods = [self.userDefaults arrayForKey:CaronaePreferenceLastSearchedNeighborhoodsKey];
     if (lastSearchedNeighborhoods) {
         self.neighborhoods = lastSearchedNeighborhoods;
     }
     
-    NSString *lastSearchedCenter = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSearchedCenter"];
-    self.hubs = [CaronaeDefaults defaults].centers;
+    // Load last searched center
+    NSString *lastSearchedCenter = [self.userDefaults stringForKey:CaronaePreferenceLastSearchedCenterKey];
+    self.hubs = [@[@"Todos os Centros"] arrayByAddingObjectsFromArray:[CaronaeConstants defaults].centers];
     if (lastSearchedCenter) {
         self.selectedHub = lastSearchedCenter;
-    }
-    else {
+    } else {
         self.selectedHub = self.hubs.firstObject;
     }
     [self.centerButton setTitle:self.selectedHub forState:UIControlStateNormal];
     
-    self.searchedDate = [NSDate nextHour];
-    self.dateFormatter = [[NSDateFormatter alloc] init];
-    [self.dateFormatter setDateFormat:@"dd/MM/yyyy HH:mm"];
-    [self.dateButton setTitle:[self.dateFormatter stringFromDate:self.searchedDate] forState:UIControlStateNormal];
+    // Load last searched date
+    NSDate *lastSearchedDate = [self.userDefaults objectForKey:CaronaePreferenceLastSearchedDateKey];
+    if (lastSearchedDate && [lastSearchedDate isInTheFuture]) {
+        self.searchedDate = lastSearchedDate;
+    } else {
+        self.searchedDate = [NSDate nextHour];
+    }
+    
+    NSString *dateString = [self.dateFormatter stringFromDate:self.searchedDate];
+    [self.dateButton setTitle:dateString forState:UIControlStateNormal];
 }
 
 - (void)setNeighborhoods:(NSArray *)neighborhoods {
@@ -67,18 +90,22 @@
 }
 
 - (IBAction)didTapSearchButton:(id)sender {
-    BOOL going = (self.directionControl.selectedSegmentIndex == 0);
-    
-    // Test if user has selected a neighborhood
-    if (self.neighborhoods && self.neighborhoods.count > 0) {
-        [[NSUserDefaults standardUserDefaults] setObject:self.neighborhoods forKey:@"lastSearchedNeighborhoods"];
-        [[NSUserDefaults standardUserDefaults] setObject:self.selectedHub forKey:@"lastSearchedCenter"];
-        [self.delegate searchedForRideWithCenter:self.selectedHub andNeighborhoods:self.neighborhoods onDate:self.searchedDate going:going];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    else {
+    // Validate form
+    if (![self isSearchValid]) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Nenhum bairro selecionado" message:@"Ops! Parece que você esqueceu de selecionar em quais bairros está pesquisando a carona."];
+        return;
     }
+
+    // Save search parameters for the next search
+    [self.userDefaults setObject:self.neighborhoods forKey:CaronaePreferenceLastSearchedNeighborhoodsKey];
+    [self.userDefaults setObject:self.selectedHub forKey:CaronaePreferenceLastSearchedCenterKey];
+    [self.userDefaults setObject:self.searchedDate forKey:CaronaePreferenceLastSearchedDateKey];
+    [self.userDefaults setBool:self.directionControl.selectedSegmentIndex forKey:CaronaePreferenceLastSearchedDirectionKey];
+    
+    BOOL going = (self.directionControl.selectedSegmentIndex == 0);
+    [self.delegate searchedForRideWithCenter: ([self.selectedHub isEqual: self.hubs[0]] ? @"" : self.selectedHub) andNeighborhoods:self.neighborhoods onDate:self.searchedDate going:going];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)didTapDate:(id)sender {
@@ -91,7 +118,8 @@
 
 - (void)timeWasSelected:(NSDate *)selectedTime element:(id)element {
     self.searchedDate = selectedTime;
-    [self.dateButton setTitle:[self.dateFormatter stringFromDate:selectedTime] forState:UIControlStateNormal];
+    NSString *dateString = [self.dateFormatter stringFromDate:self.searchedDate];
+    [self.dateButton setTitle:dateString forState:UIControlStateNormal];
 }
 
 - (IBAction)selectCenterTapped:(id)sender {
@@ -112,6 +140,14 @@
     self.neighborhoods = neighborhoods;
 }
 
+- (BOOL)isSearchValid {
+    // Test if user has selected a neighborhood
+    if (self.neighborhoods && self.neighborhoods.count > 0) {
+        return true;
+    }
+
+    return false;
+}
 
 #pragma mark - Navigation
 
