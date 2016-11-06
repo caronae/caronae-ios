@@ -1,5 +1,5 @@
-#import <Google/CloudMessaging.h>
 #import "Chat.h"
+#import <Firebase.h>
 
 @implementation Chat
 
@@ -58,92 +58,20 @@
 }
 
 - (void)subscribe {
-    NSString *registrationToken = [UserController sharedInstance].userGCMToken;
-    if (registrationToken) {
-        [[GCMPubSub sharedInstance] subscribeWithToken:registrationToken
-                                                 topic:self.topicID
-                                               options:nil
-                                               handler:^(NSError *error) {
-                                                   if (error) {
-                                                       if (error.code == kGCMServiceErrorCodePubSubAlreadySubscribed) {
-                                                           self.subscribed = YES;
-                                                           NSLog(@"Already subscribed to %@",
-                                                                 self.topicID);
-                                                       } else {
-                                                           NSLog(@"Subscription failed: %@",
-                                                                 error.localizedDescription);
-                                                       }
-                                                   } else {
-                                                       self.subscribed = YES;
-                                                       NSLog(@"Subscribed to %@", self.topicID);
-                                                   }
-                                               }];
-        
-    }
-    else {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didConnectWithGCM) name:CaronaeGCMConnectedNotification object:nil];
-        NSLog(@"Could not subscribe to topic because registration token is nil. Waiting for GCM to connect...");
-    }
+    NSLog(@"Subscribing to: %@", self.topicID);
+    [[FIRMessaging messaging] subscribeToTopic:self.topicID];
+    //self.subscribed = YES;
 }
 
 - (void)unsubscribe {
-    NSString *registrationToken = [UserController sharedInstance].userGCMToken;
-    if (registrationToken) {
-        [[GCMPubSub sharedInstance] unsubscribeWithToken:registrationToken
-                                                   topic:self.topicID
-                                                 options:nil
-                                                 handler:^(NSError *error) {
-                                                     if (error) {
-                                                         if (error.code == kGCMServiceErrorCodePubSubAlreadyUnsubscribed) {
-                                                             self.subscribed = NO;
-                                                             NSLog(@"Already unsubscribed from %@",
-                                                                   self.topicID);
-                                                         } else {
-                                                             NSLog(@"Failed to unsubscribe: %@",
-                                                                   error.localizedDescription);
-                                                         }
-                                                     } else {
-                                                         self.subscribed = NO;
-                                                         NSLog(@"Unsubscribed from %@", self.topicID);
-                                                     }
-                                                 }];
-        
-    }
-    else {
-        NSLog(@"Could not unsubscribe from topic because registration token is nil");
-    }
+    NSLog(@"Unsubscribing from: %@", self.topicID);
+    [[FIRMessaging messaging] unsubscribeFromTopic:self.topicID];
+    //self.subscribed = NO;
 }
 
 + (void)subscribeToTopicID:(NSString *)topicID {
-    NSString *registrationToken = [UserController sharedInstance].userGCMToken;
-    if (registrationToken) {
-        [[GCMPubSub sharedInstance] subscribeWithToken:registrationToken
-                                                 topic:topicID
-                                               options:nil
-                                               handler:^(NSError *error) {
-                                                   if (error) {
-                                                       if (error.code == kGCMServiceErrorCodePubSubAlreadySubscribed) {
-                                                           NSLog(@"Already subscribed to %@",
-                                                                 topicID);
-                                                       } else {
-                                                           NSLog(@"Subscription failed: %@",
-                                                                 error.localizedDescription);
-                                                       }
-                                                   } else {
-                                                       NSLog(@"Subscribed to %@", topicID);
-                                                   }
-                                               }];
-        
-    }
-    else {
-        NSLog(@"Could not subscribe to topic because registration token is nil");
-    }
-}
-
-- (void)didConnectWithGCM {
-    NSLog(@"GCM connected. Trying to subscribe to topic %@ again...", self.topicID);
-    [self subscribe];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:CaronaeGCMConnectedNotification object:nil];
+    NSLog(@"Subscribing to: %@", topicID);
+    [[FIRMessaging messaging] subscribeToTopic:topicID];
 }
 
 @end

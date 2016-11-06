@@ -6,6 +6,7 @@
 #import "EditProfileViewController.h"
 #import "NSDictionary+dictionaryWithoutNulls.h"
 #import "TokenViewController.h"
+#import "Caronae-Swift.h"
 
 @interface TokenViewController () <UITextFieldDelegate>
 
@@ -62,6 +63,7 @@
             [[UserController sharedInstance] setUser:user token:userToken rides:filteredRides];
             
             AppDelegate *appDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+            [appDelegate subscribeToUserTopic];
             [appDelegate registerForNotifications];
             
             [self performSegueWithIdentifier:@"ViewHome" sender:self];

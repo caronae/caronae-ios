@@ -11,12 +11,8 @@
 #import "NotificationStore.h"
 #import "TabBarController.h"
 #import "Caronae-Swift.h"
-
-@interface AppDelegate () <GGLInstanceIDDelegate, GCMReceiverDelegate>
-@property (nonatomic, strong) void (^registrationHandler) (NSString *registrationToken, NSError *error);
-@property (nonatomic, assign) BOOL connectedToGCM;
-@end
-
+#import <Firebase.h>
+ 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -29,11 +25,11 @@
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
-    [self configureFirebase];
-    
     [CRToastManager setDefaultOptions:@{
                                         kCRToastBackgroundColorKey: [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000],
                                         }];
+    
+    [self configureFirebase];
     
     // Load home screen if the user has already signed in
     if ([UserController sharedInstance].user) {
@@ -42,8 +38,6 @@
         self.window.rootViewController = initialViewController;
         [self.window makeKeyAndVisible];
         [self registerForNotifications];
-        
-        [self fixUserPhoneIfNecessary]; // TODO: Remove before release
     }
     
     // Update application badge number and listen to notification updates
@@ -80,9 +74,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [[GCMService sharedInstance] disconnect];
-    NSLog(@"Disconnected from GCM");
-    _connectedToGCM = NO;
+    [self disconnectFromFcm];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -90,17 +82,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    if ([UserController sharedInstance].userGCMToken && !_connectedToGCM) {
-        [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
-            if (error && error.code != kGCMServiceErrorCodeAlreadyConnected) {
-                NSLog(@"Could not connect to GCM (application became active): %@", error.localizedDescription);
-            } else if (!error) {
-                _connectedToGCM = true;
-                NSLog(@"Connected to GCM (application became active)");
-                [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMConnectedNotification object:nil userInfo:nil];
-            }
-        }];
-    }
+    [self connectToFcm];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -140,13 +122,6 @@
 
 
 #pragma mark - Notification handling
-
-- (void)registerForNotifications {
-    UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-}
 
 - (BOOL)handleNotification:(NSDictionary *)userInfo {
     if (!userInfo[@"msgType"]) return NO;
@@ -282,98 +257,22 @@
     }
 }
 
+
 #pragma mark - Google Cloud Messaging (GCM)
 
-//- (void)configureGCM {
-//    // Configure the Google context: parses the GoogleService-Info.plist, and initializes
-//    // the services that have entries in the file
-//    NSError *configureError;
-//    [[GGLContext sharedInstance] configureWithError:&configureError];
-//    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-//    _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
-//    
-//    GCMConfig *gcmConfig = [GCMConfig defaultConfig];
-//    gcmConfig.receiverDelegate = self;
-//    gcmConfig.logLevel = kGCMLogLevelError;
-//    [[GCMService sharedInstance] startWithConfig:gcmConfig];
-//    
-//    __weak typeof(self) weakSelf = self;
-//    // Handler for registration token request
-//    _registrationHandler = ^(NSString *registrationToken, NSError *error){
-//        if (!error && registrationToken != nil) {
-//            NSString *cachedRegistrationToken = [UserController sharedInstance].userGCMToken;
-//            NSLog(@"GCM Registration Token: %@", registrationToken);
-//            // Update cached registration token locally and remotely if the token has changed.
-//            if (![cachedRegistrationToken isEqualToString:registrationToken]) {
-//                NSLog(@"GCM Registration Token has changed.");
-//                
-//                [UserController sharedInstance].userGCMToken = registrationToken;
-//                if ([UserController sharedInstance].user) {
-//                    [weakSelf updateUserGCMToken:registrationToken];
-//                }
-//            }
-//            
-//            if (!weakSelf.connectedToGCM) {
-//                [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
-//                    if (error && error.code != kGCMServiceErrorCodeAlreadyConnected) {
-//                        NSLog(@"Could not connect to GCM (registration): %@", error.localizedDescription);
-//                    } else if (!error) {
-//                        weakSelf.connectedToGCM = true;
-//                        NSLog(@"Connected to GCM (registration)");
-//                        [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMConnectedNotification object:nil userInfo:nil];
-//                    }
-//                }];
-//            }
-//            
-//            NSDictionary *userInfo = @{@"registrationToken": registrationToken};
-//            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
-//                                                                object:nil
-//                                                              userInfo:userInfo];
-//        } else {
-//            [UserController sharedInstance].userGCMToken = nil;
-//            NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
-//            NSDictionary *userInfo = @{@"error": error.localizedDescription};
-//            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
-//                                                                object:nil
-//                                                              userInfo:userInfo];
-//        }
-//    };
-//}
-
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    // Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
-    GGLInstanceIDConfig *instanceIDConfig = [GGLInstanceIDConfig defaultConfig];
-    instanceIDConfig.delegate = self;
-    // Start the GGLInstanceID shared instance with the that config and request a registration
-    // token to enable reception of notifications
-    [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
-#ifdef DEBUG
-    BOOL isBuiltDebug = YES;
-    NSLog(@"Starting GCM in development mode");
-#else
-    BOOL isBuiltDebug = NO;
-    NSLog(@"Starting GCM in production mode");
-#endif
-    _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
-                             kGGLInstanceIDAPNSServerTypeSandboxOption:@(isBuiltDebug)};
-    [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
-                                                        scope:kGGLInstanceIDScopeGCM
-                                                      options:_registrationOptions
-                                                      handler:_registrationHandler];
+    [self didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSLog(@"Registration for remote notification failed with error: %@", error.localizedDescription);
-    NSDictionary *userInfo = @{@"error": error.localizedDescription};
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
-                                                        object:nil
-                                                      userInfo:userInfo];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"Remote notification received 1: %@", userInfo);
-    // This works only if the app started the GCM service
-    [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
+    
+    // Let FCM know about the message for analytics etc.
+    [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
     
     [self handleNotification:userInfo];
     
@@ -385,8 +284,8 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     NSLog(@"Remote notification received 2: %@", userInfo);
     
-    // This works only if the app started the GCM service
-    [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
+    // Let FCM know about the message for analytics etc.
+    [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
     
     // If the application received the notification on the background or foreground
     if (application.applicationState != UIApplicationStateInactive) {
@@ -416,28 +315,6 @@
         NSLog(@"Opening app from local notification");
         [self setActiveScreenAccordingToNotification:notification.userInfo];
     }
-}
-
-- (void)onTokenRefresh {
-    // A rotation of the registration tokens is happening, so the app needs to request a new token.
-    NSLog(@"The GCM registration token needs to be refreshed.");
-    [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
-                                                        scope:kGGLInstanceIDScopeGCM
-                                                      options:_registrationOptions
-                                                      handler:_registrationHandler];
-}
-
-- (void)updateUserGCMToken:(NSString *)token {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
-    NSDictionary *params = @{@"token": token ? token : [NSNull null]};
-    [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user/saveGcmToken"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"User's GCM token updated.");
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error updating user's GCM token: %@", error.localizedDescription);
-    }];
 }
 
 

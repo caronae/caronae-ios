@@ -1,5 +1,4 @@
 #import <AFNetworking/AFNetworking.h>
-#import <Google/CloudMessaging.h>
 #import "AppDelegate.h"
 #import "ChatViewController.h"
 #import "MessageBubbleTableViewCell.h"
@@ -206,29 +205,18 @@ static const CGFloat toolBarMinHeight = 44.0f;
 }
 
 - (void)gcmSendMessage:(Message *)message {
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    NSString *time = [dateFormatter stringFromDate:message.sentDate];
     
     NSDictionary *paramsData = @{
-                                 @"to": self.chat.topicID,
-                                 @"priority": @"high",
-                                 @"content_available": @(YES),
-                                 @"data": @{
-                                         @"message": message.text,
-                                         @"rideId": message.rideID,
-                                         @"msgType": @"chat",
-                                         @"senderName": message.senderName,
-                                         @"senderId": message.senderId,
-                                         @"time": time}
+                                 @"message": message.text,
                                  };
     
     // Send data message payload
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:CaronaeGCMAPIKey forHTTPHeaderField:@"Authorization"];
+    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
-    [manager POST:CaronaeGCMAPISendURL parameters:paramsData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *sendURL = [CaronaeAPIBaseURL stringByAppendingFormat:@"/ride/%@/chat", message.rideID];
+    [manager POST:sendURL parameters:paramsData success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Message data delivered. Reponse: %@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error sending message data: %@", error.localizedDescription);

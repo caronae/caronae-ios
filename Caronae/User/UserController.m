@@ -5,6 +5,7 @@
 #import "NSDictionary+dictionaryWithoutNulls.h"
 #import "RideRequestsStore.h"
 #import "UserController.h"
+#import "Caronae-Swift.h"
 
 @implementation UserController
 
@@ -60,6 +61,8 @@ static NSUserDefaults *userDefaults;
 - (void)signOut {
     AppDelegate *appDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     
+    [appDelegate unsubscribeFromUserTopic];
+    
     // Clear chats
     NSDictionary *chats = [ChatStore allChats];
     for (id rideID in chats) {
@@ -72,7 +75,6 @@ static NSUserDefaults *userDefaults;
     
     // Clear user data
     self.userGCMToken = nil;
-    [appDelegate updateUserGCMToken:nil];
     self.user = nil;
     self.userToken = nil;
     [RideRequestsStore clearAllRequests];
@@ -88,15 +90,6 @@ static NSUserDefaults *userDefaults;
 
 - (NSString *)userFBToken {
     return [FBSDKAccessToken currentAccessToken].tokenString;
-}
-
-- (NSString *)userGCMToken {
-    return [userDefaults stringForKey:@"gcmToken"];
-}
-
-- (void)setUserGCMToken:(NSString *)gcmToken {
-    [userDefaults setObject:gcmToken forKey:@"gcmToken"];
-    [userDefaults synchronize];
 }
 
 - (NSString *)userToken {
