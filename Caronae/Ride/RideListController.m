@@ -92,13 +92,21 @@ static CGFloat const RideListMessageFontSize = 25.0f;
 }
 
 - (void)loadingFailedWithOperation:(AFHTTPRequestOperation *)operation error:(NSError *)error {
+    if (operation) {
+        [self loadingFailedWithStatusCode:operation.response.statusCode andError:error];
+    } else {
+        [self loadingFailedWithStatusCode:0 andError:error];
+    }
+}
+
+- (void)loadingFailedWithStatusCode:(NSInteger)statusCode andError:(NSError *)error {
     if (self.filteredRides.count == 0) {
         self.tableView.backgroundView = self.errorLabel;
     }
     
     NSLog(@"%@ failed to load rides: %@", NSStringFromClass(self.class), error.localizedDescription);
     
-    if (operation && operation.response.statusCode == 403) {
+    if (statusCode == 403) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Seu token pode ter sido suspenso ou expirado." handler:^{
             [[UserController sharedInstance] signOut];
         }];

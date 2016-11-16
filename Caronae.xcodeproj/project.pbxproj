@@ -64,6 +64,7 @@
 		A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */; };
 		A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */; };
 		A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */; };
+		A3BBF1381DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */; };
 		A3C55BDA1C5FB19A00C84204 /* Message+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C55BD91C5FB19A00C84204 /* Message+CoreDataProperties.m */; };
 		A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3E7FB1C77AD310094BBAC /* WebViewController.m */; };
 		A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE026B1C17D01000A8407E /* RiderCell.m */; };
@@ -189,6 +190,7 @@
 		A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRidesViewController.m; sourceTree = "<group>"; };
 		A3B5AF0F1BF2F0560026A889 /* CALayer+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+UIColor.h"; sourceTree = "<group>"; };
 		A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+UIColor.m"; sourceTree = "<group>"; };
+		A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaronaeAPIHTTPSessionManager.swift; path = Networking/CaronaeAPIHTTPSessionManager.swift; sourceTree = "<group>"; };
 		A3C55BD81C5FB19A00C84204 /* Message+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Message+CoreDataProperties.h"; sourceTree = "<group>"; };
 		A3C55BD91C5FB19A00C84204 /* Message+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Message+CoreDataProperties.m"; sourceTree = "<group>"; };
 		A3C55BDB1C5FD1B700C84204 /* Caronae 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Caronae 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				A3DF39BC1C66CFAE005D22FD /* Falae */,
 				A39BBD001C0629E100EF9EBD /* Model */,
 				A3180F841C6066AF007195DF /* Neighborhood selection */,
+				A3BBF1391DDC0E9200765CD7 /* Networking */,
 				A34C67551C826258001F6D90 /* Notification */,
 				A32B80B81C2E075000FC370A /* Ride */,
 				A3169C931BED842D00A0D428 /* Supporting Files */,
@@ -468,6 +471,14 @@
 				A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		A3BBF1391DDC0E9200765CD7 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 		A3D3E7FD1C77AD350094BBAC /* About */ = {
@@ -677,6 +688,7 @@
 				A3F30EED1C0890C10024BE37 /* ZoneCell.m in Sources */,
 				A3169C9B1BED842D00A0D428 /* TokenViewController.m in Sources */,
 				A37E80E71C5F158600683F27 /* UIImage+imageWithTint.swift in Sources */,
+				A3BBF1381DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift in Sources */,
 				A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */,
 				A3A4A4AF1C4C695800CF4CB2 /* NSString+validation.m in Sources */,
 				A39BBCFF1C06296200EF9EBD /* Ride.m in Sources */,

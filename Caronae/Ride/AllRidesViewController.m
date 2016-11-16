@@ -1,9 +1,9 @@
-#import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "AllRidesViewController.h"
 #import "EditProfileViewController.h"
 #import "SearchResultsViewController.h"
 #import "SearchRideViewController.h"
+#import "Caronae-Swift.h"
 
 @interface AllRidesViewController () <SearchRideDelegate>
 @property (nonatomic) NSDictionary *searchParams;
@@ -63,18 +63,15 @@
         self.tableView.backgroundView = self.loadingLabel;
     }
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/all"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance GET:@"/ride/all" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [self.refreshControl endRefreshing];
         
         NSError *error;
         NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
         if (error) {
             NSLog(@"Error parsing all rides. %@", error.localizedDescription);
-            [self loadingFailedWithOperation:operation error:error];
+            NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
+            [self loadingFailedWithStatusCode:response.statusCode andError:error];
             return;
         }
         
@@ -88,7 +85,7 @@
         
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
         self.rides = [futureRides sortedArrayUsingDescriptors:@[sortDescriptor]];
-
+        
         [self.tableView reloadData];
         
         if (self.rides.count > 0) {
@@ -99,9 +96,12 @@
             self.tableView.backgroundView = self.emptyTableLabel;
             self.tableView.tableFooterView = nil;
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.refreshControl endRefreshing];
-        [self loadingFailedWithOperation:operation error:error];
+        
+        NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
+        [self loadingFailedWithStatusCode:response.statusCode andError:error];
     }];
 }
 
