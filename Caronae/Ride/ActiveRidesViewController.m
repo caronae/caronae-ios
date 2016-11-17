@@ -1,4 +1,3 @@
-#import <AFNetworking/AFNetworking.h>
 #import <CoreData/CoreData.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "ActiveRidesViewController.h"
@@ -6,6 +5,7 @@
 #import "ChatStore.h"
 #import "Notification+CoreDataProperties.h"
 #import "NotificationStore.h"
+#import "Caronae-Swift.h"
 
 @interface ActiveRidesViewController () <UITableViewDelegate>
 @property (nonatomic) NSArray<Notification *> *unreadNotifications;
@@ -74,18 +74,15 @@
 #pragma mark - Rides methods
 
 - (void)loadActiveRides {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/getMyActiveRides"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance GET:@"/ride/getMyActiveRides" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [self.refreshControl endRefreshing];
         
         NSError *error;
         NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
         if (error) {
             NSLog(@"Error parsing active rides. %@", error.localizedDescription);
-            [self loadingFailedWithOperation:operation error:error];
+            NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
+            [self loadingFailedWithStatusCode:response.statusCode andError:error];
             return;
         }
         
@@ -113,9 +110,10 @@
         else {
             self.tableView.backgroundView = self.emptyTableLabel;
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.refreshControl endRefreshing];
-        [self loadingFailedWithOperation:operation error:error];
+        NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
+        [self loadingFailedWithStatusCode:response.statusCode andError:error];
     }];
 }
 

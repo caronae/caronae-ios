@@ -20,6 +20,12 @@ class CaronaeRequestSerializer: AFJSONRequestSerializer {
         } else {
             self.setValue(nil, forHTTPHeaderField: "token")
         }
+        // Add user FB token to the HTTP headers
+        if let userFBToken = UserController.sharedInstance().userFBToken {
+            self.setValue(userFBToken, forHTTPHeaderField: "Facebook-Token")
+        } else {
+            self.setValue(nil, forHTTPHeaderField: "Facebook-Token")
+        }
         
         return super.request(withMethod: method, urlString: URLString, parameters: parameters, error: error)
     }

@@ -1,11 +1,11 @@
 #import <ActionSheetDatePicker.h>
 #import <ActionSheetStringPicker.h>
-#import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
 #import "CreateRideViewController.h"
 #import "NSDate+nextHour.h"
 #import "ZoneSelectionViewController.h"
+#import "Caronae-Swift.h"
 
 @interface CreateRideViewController () <UITextViewDelegate, ZoneSelectionDelegate>
 
@@ -140,10 +140,7 @@
     [SVProgressHUD show];
     self.createRideButton.enabled = NO;
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride"] parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance POST:@"/ride" parameters:ride success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         NSError *error;
         NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
@@ -158,7 +155,7 @@
         
         [self dismissViewControllerAnimated:YES completion:nil];
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         self.createRideButton.enabled = YES;
         

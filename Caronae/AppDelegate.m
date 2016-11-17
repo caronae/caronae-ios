@@ -1,4 +1,3 @@
-#import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import <CRToast/CRToast.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
@@ -11,6 +10,7 @@
 #import "Notification+CoreDataProperties.h"
 #import "NotificationStore.h"
 #import "TabBarController.h"
+#import "Caronae-Swift.h"
 
 @interface AppDelegate () <GGLInstanceIDDelegate, GCMReceiverDelegate>
 @property (nonatomic, strong) void (^registrationHandler) (NSString *registrationToken, NSError *error);
@@ -428,14 +428,10 @@
 }
 
 - (void)updateUserGCMToken:(NSString *)token {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
     NSDictionary *params = @{@"token": token ? token : [NSNull null]};
-    [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user/saveGcmToken"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance PUT:@"/user/saveGcmToken" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSLog(@"User's GCM token updated.");
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error updating user's GCM token: %@", error.localizedDescription);
     }];
 }

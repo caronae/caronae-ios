@@ -1,4 +1,3 @@
-#import <AFNetworking/AFNetworking.h>
 #import <CoreData/CoreData.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
@@ -15,6 +14,7 @@
 #import "RideRequestsStore.h"
 #import "SHSPhoneNumberFormatter+UserConfig.h"
 #import "UIImageView+crn_setImageWithURL.h"
+#import "Caronae-Swift.h"
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
 
@@ -206,12 +206,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         return;
     }
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userFBToken forHTTPHeaderField:@"Facebook-Token"];
-    
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _ride.driver.facebookID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance GET:[NSString stringWithFormat:@"/user/%@/mutualFriends", _ride.driver.facebookID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
         int totalMutualFriends = [responseObject[@"total_count"] intValue];
         NSError *error;
@@ -234,7 +229,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         else {
             _mutualFriendsLabel.text = @"Amigos em comum: 0";
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
     }];
 }
@@ -313,15 +308,12 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 - (void)cancelRide {
     NSLog(@"Requesting to leave/cancel ride %ld", _ride.rideID);
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     NSDictionary *params = @{@"rideId": @(_ride.rideID)};
     
     _cancelButton.enabled = NO;
     [SVProgressHUD show];
     
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/leaveRide"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance POST:@"/ride/leaveRide" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         NSLog(@"User left the ride. (Message: %@)", responseObject[@"message"]);
         
@@ -333,7 +325,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         }
         
         [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error leaving/cancelling ride: %@", error.localizedDescription);
         [SVProgressHUD dismiss];
         _cancelButton.enabled = YES;
@@ -344,15 +336,13 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 - (void)finishRide {
     NSLog(@"Requesting to finish ride %ld", _ride.rideID);
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     NSDictionary *params = @{@"rideId": @(_ride.rideID)};
     
     _finishRideButton.enabled = NO;
     [SVProgressHUD show];
     
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/finishRide"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {        [SVProgressHUD dismiss];
+    [CaronaeAPIHTTPSessionManager.instance POST:@"/ride/finishRide" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        [SVProgressHUD dismiss];
         NSLog(@"User finished the ride. (Message: %@)", responseObject[@"message"]);
         
         [[ChatStore chatForRide:_ride] unsubscribe];
@@ -363,7 +353,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         }
         
         [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error finishing ride: %@", error.localizedDescription);
         [SVProgressHUD dismiss];
         _finishRideButton.enabled = YES;
@@ -378,19 +368,15 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     NSLog(@"Requesting to join ride %ld", _ride.rideID);
     NSDictionary *params = @{@"rideId": @(_ride.rideID)};
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
     _requestRideButton.enabled = NO;
     [SVProgressHUD show];
     
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance POST:@"/ride/requestJoin" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         NSLog(@"Done requesting ride. (Message: %@)", responseObject[@"message"]);
         [RideRequestsStore setRideAsRequested:_ride];
         [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         NSLog(@"Error requesting to join ride: %@", error.localizedDescription);
         _requestRideButton.enabled = YES;
@@ -401,11 +387,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 - (void)loadJoinRequests {
     long rideID = _ride.rideID;
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/getRequesters/%ld", rideID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance GET:[NSString stringWithFormat:@"/ride/getRequesters/%ld", rideID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         
         NSError *error;
         NSArray<User *> *joinRequests = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:responseObject error:&error];
@@ -419,7 +401,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
             
             [NotificationStore clearNotificationsForRide:@(self.ride.rideID) ofType:NotificationTypeRequest];
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error loading join requests for ride %lu: %@", rideID, error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível carregar as solicitações da sua carona. (%@)", error.localizedDescription]];
     }];
@@ -431,16 +413,12 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
                              @"rideId": @(_ride.rideID),
                              @"accepted": @(accepted)};
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
     [cell setButtonsEnabled:NO];
     
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/answerJoinRequest"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance POST:@"/ride/answerJoinRequest" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSLog(@"Answer to join request successfully sent.");
         [self removeJoinRequest:requestingUser];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error accepting join request: %@", error.localizedDescription);
         [cell setButtonsEnabled:YES];
     }];
