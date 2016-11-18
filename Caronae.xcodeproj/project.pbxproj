@@ -49,6 +49,7 @@
 		A385984B1C6923D000279D6F /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A385984A1C6923D000279D6F /* UserTests.m */; };
 		A389902D1C58734700C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
+		A38C2DF71DDE7E22000A5A80 /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38C2DF61DDE7E22000A5A80 /* RideService.swift */; };
 		A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F1D4C1C0398B500DEF6B1 /* RideCell.m */; };
 		A398BE051C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */; };
 		A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */; };
@@ -161,6 +162,7 @@
 		A38598481C691D1400279D6F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		A385984A1C6923D000279D6F /* UserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTests.m; sourceTree = "<group>"; };
 		A389902B1C58734700C7CD2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A38C2DF61DDE7E22000A5A80 /* RideService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RideService.swift; path = Services/RideService.swift; sourceTree = "<group>"; };
 		A38F1D4B1C0398B500DEF6B1 /* RideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideCell.h; sourceTree = "<group>"; };
 		A38F1D4C1C0398B500DEF6B1 /* RideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideCell.m; sourceTree = "<group>"; };
 		A398BE031C6D7DEC00CEA6A1 /* CaronaePhoneTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaePhoneTextField.h; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 		A3169C921BED842D00A0D428 /* Caronae */ = {
 			isa = PBXGroup;
 			children = (
+				A38C2DF51DDE7DFA000A5A80 /* Services */,
 				A3D680191DB4016E00135C2B /* Caronae.entitlements */,
 				A3D3E7FD1C77AD350094BBAC /* About */,
 				A3B5AF121BF2F1050026A889 /* Categories */,
@@ -415,6 +418,14 @@
 				A37E80E31C5F0C3000683F27 /* MessageBubbleTableViewCell.m */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		A38C2DF51DDE7DFA000A5A80 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A38C2DF61DDE7E22000A5A80 /* RideService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		A39BBD001C0629E100EF9EBD /* Model */ = {
@@ -704,6 +715,7 @@
 				A38598461C66D83A00279D6F /* Notification.m in Sources */,
 				A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */,
 				A3C55BDA1C5FB19A00C84204 /* Message+CoreDataProperties.m in Sources */,
+				A38C2DF71DDE7E22000A5A80 /* RideService.swift in Sources */,
 				A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */,
 				A369A4EB1C72928700FE5495 /* UIViewController+isVisible.m in Sources */,
 				A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */,
