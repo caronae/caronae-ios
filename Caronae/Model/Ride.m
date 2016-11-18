@@ -18,8 +18,21 @@ static NSDateFormatter *otherDateParserFormatter;
              @"going": @"going",
              @"driver": @"driver",
              @"users": @"riders",
-             @"date": @[ @"mydate", @"mytime" ]
+             @"date": @[ @"mydate", @"mytime" ],
+             @"routineID": @[ @"routine_id", @"week_days" ]
              };
+}
+
++ (NSValueTransformer *)routineIDJSONTransformer {
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSDictionary *routineDictionary, BOOL *success, NSError *__autoreleasing *error) {
+        if ([routineDictionary objectForKey:@"week_days"] == [NSNull null]) {
+            return @"";
+        } else {
+            return routineDictionary[@"routine_id"];
+        }
+    } reverseBlock:^id(NSNumber *routineID, BOOL *success, NSError *__autoreleasing *error) {
+        return @{ @"routine_id": routineID };
+    }];
 }
 
 + (NSValueTransformer *)dateJSONTransformer {
@@ -59,6 +72,10 @@ static NSDateFormatter *otherDateParserFormatter;
 
 - (BOOL)active {
     return _users.count > 0;
+}
+
+- (BOOL)isRoutine {
+    return ![_routineID isEqual:@""];
 }
 
 @end
