@@ -19,6 +19,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUnreadNotifications) name:CaronaeDidUpdateNotifications object:nil];
     
     [self updateUnreadNotifications];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
     [self loadMyRides];
 }
 
@@ -114,7 +117,6 @@
     NSLog(@"User has deleted ride with id %ld", ride.rideID);
     
     [self removeRideFromMyRides:ride];
-    [self loadMyRides];
 }
 
 - (void)didFinishRide:(Ride *)ride {
@@ -130,11 +132,10 @@
     for (NSDictionary *r in newRides) {
         if ([r[@"rideId"] longValue] == ride.rideID || [r[@"id"] longValue] == ride.rideID) {
             [newRides removeObject:r];
-            break;
+            [[NSUserDefaults standardUserDefaults] setObject:newRides forKey:@"userCreatedRides"];
+            return;
         }
     }
-    
-    [[NSUserDefaults standardUserDefaults] setObject:newRides forKey:@"userCreatedRides"];
     
     if (![self.rides containsObject:ride]) {
         NSLog(@"Error: ride to be deleted was not found in user's rides");
