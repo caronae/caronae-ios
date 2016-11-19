@@ -25,12 +25,18 @@ static NSDateFormatter *otherDateParserFormatter;
 
 + (NSValueTransformer *)routineIDJSONTransformer {
     return [MTLValueTransformer transformerUsingForwardBlock:^id(NSDictionary *routineDictionary, BOOL *success, NSError *__autoreleasing *error) {
-        if ([routineDictionary objectForKey:@"week_days"] == [NSNull null]) {
-            return @"";
+        NSString *weekDays = routineDictionary[@"week_days"];
+        id routineID = routineDictionary[@"routine_id"];
+        if ([weekDays isEqual:[NSNull null]] || ([weekDays isKindOfClass:NSString.class] && weekDays.length == 0)) {
+            return @(0);
         } else {
-            return routineDictionary[@"routine_id"];
+            return routineID;
         }
-    } reverseBlock:^id(NSNumber *routineID, BOOL *success, NSError *__autoreleasing *error) {
+    } reverseBlock:^id(id routineID, BOOL *success, NSError *__autoreleasing *error) {
+        if ([routineID isEqual:@(0)]) {
+            routineID = [NSNull null];
+        }
+        
         return @{ @"routine_id": routineID };
     }];
 }
@@ -75,7 +81,7 @@ static NSDateFormatter *otherDateParserFormatter;
 }
 
 - (BOOL)isRoutine {
-    return ![_routineID isEqual:@""];
+    return _routineID != 0;
 }
 
 @end

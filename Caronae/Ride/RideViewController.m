@@ -353,7 +353,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)deleteRoutine {
-    NSLog(@"Requesting to delete routine %@", _ride.routineID);
+    NSLog(@"Requesting to delete routine %ld", _ride.routineID);
     
     _cancelButton.enabled = NO;
     [SVProgressHUD show];
@@ -367,12 +367,12 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         return;
     }
     
-    [CaronaeAPIHTTPSessionManager.instance DELETE:[NSString stringWithFormat:@"/ride/allFromRoutine/%@", _ride.routineID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance DELETE:[NSString stringWithFormat:@"/ride/allFromRoutine/%ld", _ride.routineID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         NSLog(@"User left all rides from routine. (Message: %@)", responseObject[@"message"]);
         
         for (Ride *userRide in userRides) {
-            if ([userRide.routineID isEqual: _ride.routineID]) {
+            if (userRide.routineID == _ride.routineID) {
                 [[ChatStore chatForRide:userRide] unsubscribe];
                 [NotificationStore clearNotificationsForRide:@(userRide.rideID) ofType:NotificationTypeAll];
                 
