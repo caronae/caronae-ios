@@ -306,6 +306,25 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 #pragma mark - Ride operations
 
 - (void)cancelRide {
+    if (_ride.isRoutine) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Esta carona pertence a uma rotina."
+                                                                       message:nil
+                                                                preferredStyle:UIAlertControllerStyleActionSheet];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Desistir somente desta" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+            [self leaveRide];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Desistir da rotina" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+            [self deleteRoutine];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Cancelar" style:UIAlertActionStyleCancel handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        [self leaveRide];
+    }
+}
+
+- (void)leaveRide {
     NSLog(@"Requesting to leave/cancel ride %ld", _ride.rideID);
     
     NSDictionary *params = @{@"rideId": @(_ride.rideID)};
@@ -330,6 +349,45 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [SVProgressHUD dismiss];
         _cancelButton.enabled = YES;
         [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível cancelar sua carona. (%@)", error.localizedDescription]];
+    }];
+}
+
+- (void)deleteRoutine {
+    NSLog(@"Requesting to delete routine %ld", _ride.routineID);
+    
+    _cancelButton.enabled = NO;
+    [SVProgressHUD show];
+    
+    NSError *error;
+    NSArray *userRidesArchive = [[NSUserDefaults standardUserDefaults] arrayForKey:@"userCreatedRides"];
+    NSArray<Ride *> *userRides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:userRidesArchive error:&error];
+    if (error) {
+        NSLog(@"Error parsing my rides. %@", error.localizedDescription);
+        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível cancelar sua rotina." message:error.localizedDescription];
+        return;
+    }
+    
+    [CaronaeAPIHTTPSessionManager.instance DELETE:[NSString stringWithFormat:@"/ride/allFromRoutine/%ld", _ride.routineID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        [SVProgressHUD dismiss];
+        NSLog(@"User left all rides from routine. (Message: %@)", responseObject[@"message"]);
+        
+        for (Ride *userRide in userRides) {
+            if (userRide.routineID == _ride.routineID) {
+                [[ChatStore chatForRide:userRide] unsubscribe];
+                [NotificationStore clearNotificationsForRide:@(userRide.rideID) ofType:NotificationTypeAll];
+                
+                if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
+                    [_delegate didDeleteRide:userRide];
+                }
+            }
+        }
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Error deleting routine: %@", error.localizedDescription);
+        [SVProgressHUD dismiss];
+        _cancelButton.enabled = YES;
+        [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível cancelar sua rotina. (%@)", error.localizedDescription]];
     }];
 }
 
