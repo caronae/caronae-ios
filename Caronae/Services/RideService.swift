@@ -32,6 +32,25 @@ class RideService: NSObject {
         })
     }
     
+    func removeRideFromMyRides (ride: Ride) {
+        // Find and delete ride from persistent store
+        guard let userRidesArchive = UserDefaults.standard.object(forKey: "userCreatedRides") as? [Dictionary<String, Any>] else {
+            NSLog("Error: userCreatedRides was not found in UserDefaults")
+            return
+        }
+        
+        var newRides = userRidesArchive
+        for (index, r) in newRides.enumerated() {
+            if r["rideId"] as? Int == ride.rideID || r["id"] as? Int == ride.rideID {
+                NSLog("Ride with id \(ride.rideID) deleted from user's rides")
+                newRides.remove(at: index)
+                UserDefaults.standard.set(newRides, forKey: "userCreatedRides")
+                return
+            }
+        }
+        NSLog("Error: ride to be deleted was not found in user's rides")
+    }
+    
 //    func getMyRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
 //        
 //    }

@@ -339,9 +339,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [[ChatStore chatForRide:_ride] unsubscribe];
         [NotificationStore clearNotificationsForRide:@(_ride.rideID) ofType:NotificationTypeAll];
         
-        if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
-            [_delegate didDeleteRide:_ride];
-        }
+        [RideService.instance removeRideFromMyRidesWithRide:_ride];
         
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -376,9 +374,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
                 [[ChatStore chatForRide:userRide] unsubscribe];
                 [NotificationStore clearNotificationsForRide:@(userRide.rideID) ofType:NotificationTypeAll];
                 
-                if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
-                    [_delegate didDeleteRide:userRide];
-                }
+                [RideService.instance removeRideFromMyRidesWithRide:userRide];
             }
         }
         
@@ -406,9 +402,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [[ChatStore chatForRide:_ride] unsubscribe];
         [NotificationStore clearNotificationsForRide:@(_ride.rideID) ofType:NotificationTypeAll];
         
-        if (_delegate && [_delegate respondsToSelector:@selector(didFinishRide:)]) {
-            [_delegate didFinishRide:_ride];
-        }
+        [RideService.instance removeRideFromMyRidesWithRide:_ride];
         
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

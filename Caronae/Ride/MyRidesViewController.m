@@ -113,36 +113,6 @@
     [self loadMyRides];
 }
 
-- (void)didDeleteRide:(Ride *)ride {
-    NSLog(@"User has deleted ride with id %ld", ride.rideID);
-    
-    [self removeRideFromMyRides:ride];
-}
-
-- (void)didFinishRide:(Ride *)ride {
-    NSLog(@"User has finished ride with id %ld", ride.rideID);
-    
-    [self removeRideFromMyRides:ride];
-    [self loadMyRides];
-}
-
-- (void)removeRideFromMyRides:(Ride *)ride {
-    // Find and delete ride from persistent store
-    NSMutableArray *newRides = [[[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"] mutableCopy];
-    for (NSDictionary *r in newRides) {
-        if ([r[@"rideId"] longValue] == ride.rideID || [r[@"id"] longValue] == ride.rideID) {
-            [newRides removeObject:r];
-            [[NSUserDefaults standardUserDefaults] setObject:newRides forKey:@"userCreatedRides"];
-            return;
-        }
-    }
-    
-    if (![self.rides containsObject:ride]) {
-        NSLog(@"Error: ride to be deleted was not found in user's rides");
-        return;
-    }
-}
-
 
 #pragma mark - Table methods
 
