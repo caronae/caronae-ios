@@ -51,6 +51,19 @@ class RideService: NSObject {
         NSLog("Error: ride to be deleted was not found in user's rides")
     }
     
+    func validateRideDate(ride: [String : Any], success: @escaping (_ valid: NSNumber, _ status: String) -> Void, error: @escaping (_ error: Error?) -> Void) {
+        let params = ["date": ride["mydate"]!, "time" : ride["mytime"]!, "going" : ride["going"]!]
+        
+        api.get("/ride/validateDuplicate?", parameters: params, success: { task, responseObject in
+            let response = responseObject as! [String : Any]
+            success (response["valid"]! as! NSNumber, response["status"]! as! String)
+            
+        }, failure: { _, err in
+            NSLog("Failed to validate ride date: \(err.localizedDescription)")
+            error(err)
+        })
+    }
+    
 //    func getMyRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
 //        
 //    }

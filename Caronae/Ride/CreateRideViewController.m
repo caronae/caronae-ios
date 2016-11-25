@@ -181,7 +181,37 @@
         return;
     }
     
-    [self createRide:ride];
+    [SVProgressHUD show];
+    self.createRideButton.enabled = NO;
+    
+    [RideService.instance validateRideDateWithRide:ride success:^(NSNumber * _Nonnull valid, NSString * _Nonnull status) {
+        [SVProgressHUD dismiss];
+        if ([valid boolValue]) {
+            [self createRide:ride];
+        } else {
+            if ([status isEqualToString:@"duplicate"]) {
+                [CaronaeAlertController presentOkAlertWithTitle:@"Verificamos que você já ofereceu uma carona para este horário!" message:@"Você pode verificar as suas caronas na seção 'Minhas' do aplicativo." handler:^(SDCAlertAction *action){
+                 self.createRideButton.enabled = YES;
+                 }];
+            } else {
+                CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Parece que você já ofereceu uma carona para este dia!"
+                                                                                         message:@"Você pode cancelar e verificar as suas caronas ou continuar e criar esta carona mesmo assim"
+                                                                                  preferredStyle:SDCAlertControllerStyleAlert];
+                [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:^(SDCAlertAction *action){
+                    self.createRideButton.enabled = YES;
+                }]];
+                [alert addAction:[SDCAlertAction actionWithTitle:@"Criar" style:SDCAlertActionStyleRecommended handler:^(SDCAlertAction *action){
+                    [self createRide:ride];
+                }]];
+                [alert presentWithCompletion:nil];
+            }
+        }
+    } error:^(NSError * _Nullable error) {
+        [SVProgressHUD dismiss];
+        self.createRideButton.enabled = YES;
+        
+        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível validar a carona." message:error.localizedDescription];
+    }];
 }
 
 - (IBAction)slotsStepperChanged:(UIStepper *)sender {
