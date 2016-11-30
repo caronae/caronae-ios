@@ -97,10 +97,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         print("Message ID: \(userInfo["gcm.message_id"]!)")
         // Print full message.
         print("%@", userInfo)
+        handleNotification(userInfo)
     }
     
     // Receive data message on iOS 10 devices.
     public func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
         print("%@", remoteMessage.appData)
+        handleNotification(remoteMessage.appData)
     }
 }
