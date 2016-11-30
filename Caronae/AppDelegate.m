@@ -258,7 +258,7 @@
 }
 
 
-#pragma mark - Google Cloud Messaging (GCM)
+#pragma mark - Firebase Messaging (FCM)
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [self didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];

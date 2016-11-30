@@ -1,15 +1,8 @@
-//
-//  AppDelegate+Firebase.swift
-//  Caronae
-//
-//  Created by Rafael Damasceno on 28/10/16.
-//  Copyright © 2016 Mario Cecchi. All rights reserved.
-//
-
 import Firebase
 import UserNotifications
 
 extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
+
     func configureFirebase() {
         FIRApp.configure()
         
@@ -23,7 +16,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     
     func tokenRefreshNotification(_ notification: Notification) {
         if let refreshedToken = FIRInstanceID.instanceID().token() {
-            print("InstanceID token: \(refreshedToken)")
+            NSLog("InstanceID token: \(refreshedToken)")
         }
         
         // Connect to FCM since connection may have failed when attempted before having a token.
@@ -34,9 +27,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         FIRMessaging.messaging().connect { (error) in
             if (error != nil) {
                 
-                print("Unable to connect with FCM. \(error)")
+                NSLog("Unable to connect with FCM. \(error)")
             } else {
-                print("Connected to FCM.")
+                NSLog("Connected to FCM.")
                 self.subscribeToUserTopic()
             }
         }
@@ -44,13 +37,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     
     func disconnectFromFcm() {
         FIRMessaging.messaging().disconnect()
-        print("Disconnected from FCM.")
+        NSLog("Disconnected from FCM.")
     }
     
     func subscribeToUserTopic() {
         if let userID = UserController.sharedInstance().user?.userID {
             let topic = "/topics/user-\(userID)"
-            print("Subscribing to \(topic)")
+            NSLog("Subscribing to: \(topic)")
             FIRMessaging.messaging().subscribe(toTopic: topic)
         }
     }
@@ -58,7 +51,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     func unsubscribeFromUserTopic() {
         if let userID = UserController.sharedInstance().user?.userID {
             let topic = "/topics/user-\(userID)"
-            print("Unsubscribing from \(topic)")
+            NSLog("Unsubscribing from: \(topic)")
             FIRMessaging.messaging().unsubscribe(fromTopic: topic)
         }
     }
@@ -94,15 +87,15 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
         // Print message ID.
-        print("Message ID: \(userInfo["gcm.message_id"]!)")
+        NSLog("Message ID: \(userInfo["gcm.message_id"]!)")
         // Print full message.
-        print("%@", userInfo)
+        NSLog("%@", userInfo)
         handleNotification(userInfo)
     }
     
-    // Receive data message on iOS 10 devices.
+    // Receive data message on iOS 10 devices while app is in the foreground.
     public func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
-        print("%@", remoteMessage.appData)
+        NSLog("%@", remoteMessage.appData)
         handleNotification(remoteMessage.appData)
     }
 }
