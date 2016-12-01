@@ -80,7 +80,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         application.registerForRemoteNotifications()
     }
     
-    // Receive displayed notifications for iOS 10 devices.
+    // [START ios_10_message_handling]
+    // Called when a notification is delivered and the app is in foreground
     @available(iOS 10.0, *)
     public func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
@@ -93,6 +94,20 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         handleNotification(userInfo)
     }
     
+    // Called when an action was selected by the user for a given notification (app was in background)
+    @available(iOS 10.0, *)
+    public func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        // Print message ID.
+        NSLog("Message ID: \(userInfo["gcm.message_id"]!)")
+        // Print full message.
+        print("%@", userInfo)
+        handleNotification(userInfo)
+    }
+    
+    // [START ios_10_data_message_handling]
     // Receive data message on iOS 10 devices while app is in the foreground.
     public func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
         NSLog("%@", remoteMessage.appData)
