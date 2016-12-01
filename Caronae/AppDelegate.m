@@ -269,36 +269,11 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [self didReceiveRemoteNotificationWithUserInfoReceived: userInfo];
+    [self didReceiveRemoteNotificationWithUserInfoReceived:userInfo];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
-    NSLog(@"Remote notification received 2: %@", userInfo);
-    
-    // Let FCM know about the message for analytics etc.
-    [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
-    
-    // If the application received the notification on the background or foreground
-    if (application.applicationState != UIApplicationStateInactive) {
-        if ([self handleNotification:userInfo]) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
-                                                                object:nil
-                                                              userInfo:userInfo];
-            
-            handler(UIBackgroundFetchResultNewData);
-        }
-        else {
-            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
-                                                                object:nil
-                                                              userInfo:userInfo];
-            handler(UIBackgroundFetchResultNoData);
-        }
-    }
-    // If the app is opening through the notification
-    else {
-        [self setActiveScreenAccordingToNotification:userInfo];
-        handler(UIBackgroundFetchResultNewData);
-    }
+    [self didReceiveRemoteNotificationWithUserInfoReceived:userInfo completionHandler:handler];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {

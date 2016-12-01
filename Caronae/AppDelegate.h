@@ -11,6 +11,7 @@
 @property(nonatomic, readonly, strong) NSString *gcmSenderID;
 @property(nonatomic, readonly, strong) NSDictionary *registrationOptions;
 - (BOOL)handleNotification:(NSDictionary *)userInfo;
+- (void)setActiveScreenAccordingToNotification:(NSDictionary *)userInfo;
 
 // Core Data support
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

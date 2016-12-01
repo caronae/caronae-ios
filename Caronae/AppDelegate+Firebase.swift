@@ -91,6 +91,34 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         NotificationCenter.default.post(name: NSNotification.Name.CaronaeGCMMessageReceived, object: nil, userInfo: userInfo)
     }
     
+    func didReceiveRemoteNotification(userInfoReceived: NSDictionary, completionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let application = UIApplication.shared
+        let userInfo = userInfoReceived as! [AnyHashable : Any]
+        NSLog("Remote notification received 2: %@", userInfo)
+        
+        // Let FCM know about the message for analytics etc.
+        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // If the application received the notification on the background or foreground
+        if (application.applicationState != UIApplicationState.inactive) {
+            if (handleNotification(userInfo)) {
+                NotificationCenter.default.post(name: NSNotification.Name.CaronaeGCMMessageReceived, object: nil, userInfo: userInfo)
+                
+                handler(UIBackgroundFetchResult.newData)
+            }
+            else {
+                NotificationCenter.default.post(name: NSNotification.Name.CaronaeGCMMessageReceived, object: nil, userInfo: userInfo)
+                
+                handler(UIBackgroundFetchResult.noData)
+            }
+        }
+        // If the app is opening through the notification
+        else {
+            setActiveScreenAccordingToNotification(userInfo)
+            handler(UIBackgroundFetchResult.newData)
+        }
+    }
+    
     // [START ios_10_message_handling]
     // Called when a notification is delivered and the app is in foreground
     @available(iOS 10.0, *)
