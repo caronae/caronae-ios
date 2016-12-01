@@ -136,6 +136,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
+        
+        // Let FCM know about the message for analytics etc.
+        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
+        
         // Print message ID.
         NSLog("Message ID: \(userInfo["gcm.message_id"]!)")
         // Print full message.
@@ -149,6 +153,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
+        
+        // Let FCM know about the message for analytics etc.
+        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
+        
         // Print message ID.
         NSLog("Message ID: \(userInfo["gcm.message_id"]!)")
         // Print full message.
@@ -160,6 +168,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     // Receive data message on iOS 10 devices while app is in the foreground.
     public func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
         NSLog("%@", remoteMessage.appData)
+        
+        // Let FCM know about the message for analytics etc.
+        FIRMessaging.messaging().appDidReceiveMessage(remoteMessage.appData)
+        
         handleNotification(remoteMessage.appData)
     }
 }
