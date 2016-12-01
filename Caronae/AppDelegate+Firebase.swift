@@ -84,8 +84,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         application.registerForRemoteNotifications()
     }
     
-    func didReceiveRemoteNotification(_ userInfoReceived: NSDictionary) {
-        let userInfo = userInfoReceived as! [AnyHashable : Any]
+    func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any]) {
         NSLog("Remote notification received 1: %@", userInfo)
         
         // Let FCM know about the message for analytics etc.
@@ -95,9 +94,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         NotificationCenter.default.post(name: NSNotification.Name.CaronaeGCMMessageReceived, object: nil, userInfo: userInfo)
     }
     
-    func didReceiveRemoteNotification(_ userInfoReceived: NSDictionary, completionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
+    func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any], completionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
         let application = UIApplication.shared
-        let userInfo = userInfoReceived as! [AnyHashable : Any]
         NSLog("Remote notification received 2: %@", userInfo)
         
         // Let FCM know about the message for analytics etc.
