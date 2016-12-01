@@ -265,22 +265,19 @@
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"Registration for remote notification failed with error: %@", error.localizedDescription);
+    [self didFailToRegisterForRemoteNotificationsWithError:error];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [self didReceiveRemoteNotificationWithUserInfoReceived:userInfo];
+    [self didReceiveRemoteNotification:userInfo];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
-    [self didReceiveRemoteNotificationWithUserInfoReceived:userInfo completionHandler:handler];
+    [self didReceiveRemoteNotification:userInfo completionHandler:handler];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    if (application.applicationState == UIApplicationStateInactive) {
-        NSLog(@"Opening app from local notification");
-        [self setActiveScreenAccordingToNotification:notification.userInfo];
-    }
+    [self didReceiveLocalNotification:notification];
 }
 
 

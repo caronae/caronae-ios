@@ -14,6 +14,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: FIRInstanceIDAPNSTokenType.sandbox)
     }
     
+    func didFailToRegisterForRemoteNotifications(error: NSError) {
+        NSLog("Registration for remote notification failed with error: %@", error.localizedDescription)
+    }
+    
     func tokenRefreshNotification(_ notification: Notification) {
         if let refreshedToken = FIRInstanceID.instanceID().token() {
             NSLog("InstanceID token: \(refreshedToken)")
@@ -80,7 +84,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         application.registerForRemoteNotifications()
     }
     
-    func didReceiveRemoteNotification(userInfoReceived: NSDictionary) {
+    func didReceiveRemoteNotification(_ userInfoReceived: NSDictionary) {
         let userInfo = userInfoReceived as! [AnyHashable : Any]
         NSLog("Remote notification received 1: %@", userInfo)
         
@@ -91,7 +95,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         NotificationCenter.default.post(name: NSNotification.Name.CaronaeGCMMessageReceived, object: nil, userInfo: userInfo)
     }
     
-    func didReceiveRemoteNotification(userInfoReceived: NSDictionary, completionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
+    func didReceiveRemoteNotification(_ userInfoReceived: NSDictionary, completionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
         let application = UIApplication.shared
         let userInfo = userInfoReceived as! [AnyHashable : Any]
         NSLog("Remote notification received 2: %@", userInfo)
@@ -116,6 +120,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         else {
             setActiveScreenAccordingToNotification(userInfo)
             handler(UIBackgroundFetchResult.newData)
+        }
+    }
+    
+    func didReceiveLocalNotification(_ notification: UILocalNotification) {
+        let application = UIApplication.shared
+        if (application.applicationState == UIApplicationState.inactive) {
+            NSLog("Opening app from local notification")
+            setActiveScreenAccordingToNotification(notification.userInfo)
         }
     }
     
