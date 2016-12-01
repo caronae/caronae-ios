@@ -269,16 +269,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"Remote notification received 1: %@", userInfo);
-    
-    // Let FCM know about the message for analytics etc.
-    [[FIRMessaging messaging] appDidReceiveMessage:userInfo];
-    
-    [self handleNotification:userInfo];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
-                                                        object:nil
-                                                      userInfo:userInfo];
+    [self didReceiveRemoteNotificationWithUserInfoReceived: userInfo];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {

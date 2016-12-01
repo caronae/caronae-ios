@@ -80,6 +80,17 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         application.registerForRemoteNotifications()
     }
     
+    func didReceiveRemoteNotification(userInfoReceived: NSDictionary) {
+        let userInfo = userInfoReceived as! [AnyHashable : Any]
+        NSLog("Remote notification received 1: %@", userInfo)
+        
+        // Let FCM know about the message for analytics etc.
+        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
+        
+        handleNotification(userInfo)
+        NotificationCenter.default.post(name: NSNotification.Name.CaronaeGCMMessageReceived, object: nil, userInfo: userInfo)
+    }
+    
     // [START ios_10_message_handling]
     // Called when a notification is delivered and the app is in foreground
     @available(iOS 10.0, *)
