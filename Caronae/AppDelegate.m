@@ -260,10 +260,6 @@
 
 #pragma mark - Firebase Messaging (FCM)
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [self didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
-}
-
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     [self didFailToRegisterForRemoteNotificationsWithError:error];
 }
