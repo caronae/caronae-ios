@@ -38,6 +38,7 @@ class CaronaeSignInViewController: UIViewController, WKNavigationDelegate {
     }
     
     func cancelButtonTapped() {
+        SVProgressHUD.dismiss()
         dismiss(animated: true) {
             self.delegate?.caronaeSignInFailed()
         }
