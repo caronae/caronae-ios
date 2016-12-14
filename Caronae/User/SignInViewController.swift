@@ -51,7 +51,6 @@ class CaronaeSignInViewController: UIViewController, WKNavigationDelegate {
             webView.evaluateJavaScript(getUserCredentialsJS) { (data, error) in
                 guard let resultJson = data as? String else {
                     print("Error executing JavaScript on page")
-                    self.delegate?.caronaeSignInFailed()
                     return
                 }
                 
@@ -59,6 +58,8 @@ class CaronaeSignInViewController: UIViewController, WKNavigationDelegate {
             }
         }
     }
+    
+    // TODO: Handle webView loading errors
     
     private func handleResult(fromJSONString string: String) {
         guard let jsonData = string.data(using: .utf8),
@@ -72,8 +73,6 @@ class CaronaeSignInViewController: UIViewController, WKNavigationDelegate {
             dismiss(animated: true) {
                 self.delegate?.caronaeDidSignInWithSuccess(user: user, token: token)
             }
-        } else {
-            self.delegate?.caronaeSignInFailed()
         }
     }
 }
