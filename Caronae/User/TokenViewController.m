@@ -7,7 +7,7 @@
 #import "TokenViewController.h"
 #import "Caronae-Swift.h"
 
-@interface TokenViewController () <UITextFieldDelegate>
+@interface TokenViewController () <UITextFieldDelegate, CaronaeSignInDelegate>
 
 @end
 
@@ -27,15 +27,13 @@
     });
 }
 
-- (void)authenticate {
+- (void)authenticateWithUser:(NSString *)user token:(NSString *)token {
     _authButton.enabled = NO;
     [self.view endEditing:YES];
     [SVProgressHUD show];
     
-    NSString *userToken = _tokenTextField.text;
-    NSString *idUFRJ = _idTextField.text;
-    NSDictionary *params = @{ @"id_ufrj": idUFRJ,
-                              @"token": userToken };
+    NSDictionary *params = @{ @"id_ufrj": user,
+                              @"token": token };
     [CaronaeAPIHTTPSessionManager.instance POST:@"/user/login" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         
@@ -51,12 +49,12 @@
             NSError *error;
             User *user = [MTLJSONAdapter modelOfClass:User.class fromJSONDictionary:responseObject[@"user"] error:&error];
             if (error) {
-                [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível autenticar." message:@"Ocorreu um erro carregando seu perfil."];
+                [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível autenticar" message:@"Ocorreu um erro carregando seu perfil."];
                 _authButton.enabled = YES;
                 return;
             }
             
-            [[UserController sharedInstance] setUser:user token:userToken rides:filteredRides];
+            [[UserController sharedInstance] setUser:user token:token rides:filteredRides];
             
             AppDelegate *appDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
             [appDelegate registerForNotifications];
@@ -74,13 +72,13 @@
         NSString *errorMsg;
         NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
         if (response.statusCode == 403) {
-            errorMsg = @"Token não autorizado. Verifique se o mesmo foi digitado corretamente e tente de novo.";
+            errorMsg = @"Chave não autorizada. Verifique se a mesma foi digitada corretamente e tente de novo.";
         }
         else {
             errorMsg = [NSString stringWithFormat:@"Ocorreu um erro autenticando com o servidor do Caronaê. Tente novamente.\n(%@)", error.localizedDescription];
         }
         
-        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível autenticar." message:errorMsg];
+        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível autenticar" message:errorMsg];
         _authButton.enabled = YES;
     }];
 }
@@ -99,27 +97,33 @@
 #pragma mark - IBActions
 
 - (IBAction)didTapAuthenticateButton:(UIButton *)sender {
-    [self authenticate];
+    NSString *userToken = _tokenTextField.text;
+    NSString *idUFRJ = _idTextField.text;
+    [self authenticateWithUser:idUFRJ token:userToken];
 }
 
 - (void)didTapWelcomeText:(id)sender {
-    NSURL *intranetURL = [NSURL URLWithString:CaronaeIntranetURLString];
-    
-    if ([SFSafariViewController class]) {
-        SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:intranetURL entersReaderIfAvailable:NO];
-        [self presentViewController:safariVC animated:YES completion:nil];
-    }
-    else {
-        [UIApplication.sharedApplication openURL:intranetURL];
-    }
+    [CaronaeSignInViewController presentFromViewController:self delegate:self];
 }
 
+
+#pragma mark - Sign in delegate
+
+- (void)caronaeDidSignInWithSuccessWithUser:(NSString *)user token:(NSString *)token {
+    [self authenticateWithUser:user token:token];
+}
+
+- (void)caronaeSignInFailed {
+    NSLog(@"Authentication failed");
+}
 
 #pragma mark Text field methods
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == _tokenTextField) {
-        [self authenticate];
+        NSString *userToken = _tokenTextField.text;
+        NSString *idUFRJ = _idTextField.text;
+        [self authenticateWithUser:idUFRJ token:userToken];
         return NO;
     }
     else if (textField == _idTextField && _idTextField.hasText) {

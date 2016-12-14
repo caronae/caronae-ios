@@ -18,7 +18,7 @@ NSString *const CaronaeGCMAPIKey = @"key=AIzaSyBtGz81bar_LcwtN_fpPTKRMBL5glp2T18
 
 #pragma mark - Static pages URLs
 
-NSString *const CaronaeIntranetURLString = @"https://api.caronae.ufrj.br/chave";
+NSString *const CaronaeIntranetURLString = @"https://api.caronae.ufrj.br/chave/";
 NSString *const CaronaeAboutPageURLString = @"https://api.caronae.ufrj.br/static_pages/sobre.html";
 NSString *const CaronaeTermsOfUsePageURLString = @"https://api.caronae.ufrj.br/static_pages/termos.html";
 
