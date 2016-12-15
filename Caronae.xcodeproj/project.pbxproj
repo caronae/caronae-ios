@@ -72,6 +72,7 @@
 		A3F30EED1C0890C10024BE37 /* ZoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F30EEC1C0890C10024BE37 /* ZoneCell.m */; };
 		A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F30EEF1C0891520024BE37 /* ZoneSelectionViewController.m */; };
 		A3F30EF21C08ABDC0024BE37 /* bairros.csv in Resources */ = {isa = PBXBuildFile; fileRef = A3F30EF11C08ABDC0024BE37 /* bairros.csv */; };
+		AFEAC964FFA322F6E478F560 /* libPods-CaronaeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 268F7F33A1579FC3EBEECCAE /* libPods-CaronaeTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,8 +86,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		034368C5C58B7751F19F8886 /* Pods-CaronaeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaronaeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		268F7F33A1579FC3EBEECCAE /* libPods-CaronaeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CaronaeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug.xcconfig"; sourceTree = "<group>"; };
 		48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.release.xcconfig"; sourceTree = "<group>"; };
+		4B35A3BD2CCAED11349480AC /* Pods-CaronaeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaronaeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests.release.xcconfig"; sourceTree = "<group>"; };
 		82527D52981AFEFBE68EA15D /* libPods-Caronae.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Caronae.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A302B29A1BF4439300FA161D /* CreateRideTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRideTests.m; sourceTree = "<group>"; };
 		A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+isInTheFuture.swift"; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFEAC964FFA322F6E478F560 /* libPods-CaronaeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +238,8 @@
 			children = (
 				2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */,
 				48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */,
+				034368C5C58B7751F19F8886 /* Pods-CaronaeTests.debug.xcconfig */,
+				4B35A3BD2CCAED11349480AC /* Pods-CaronaeTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -241,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				82527D52981AFEFBE68EA15D /* libPods-Caronae.a */,
+				268F7F33A1579FC3EBEECCAE /* libPods-CaronaeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -526,9 +534,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3169CC31BED842D00A0D428 /* Build configuration list for PBXNativeTarget "CaronaeTests" */;
 			buildPhases = (
+				485B8656E54BC22208C3F5A8 /* [CP] Check Pods Manifest.lock */,
 				A3169CA81BED842D00A0D428 /* Sources */,
 				A3169CA91BED842D00A0D428 /* Frameworks */,
 				A3169CAA1BED842D00A0D428 /* Resources */,
+				7186B0DBF5B7C597766D5AD3 /* [CP] Embed Pods Frameworks */,
+				5707D7E912A312855D002827 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -617,6 +628,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		485B8656E54BC22208C3F5A8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		56ED107787C9713DEB010EE6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -630,6 +656,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5707D7E912A312855D002827 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7186B0DBF5B7C597766D5AD3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9896CD0E11FCA37A83183763 /* [CP] Embed Pods Frameworks */ = {
@@ -910,6 +966,7 @@
 		};
 		A3169CC41BED842D00A0D428 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 034368C5C58B7751F19F8886 /* Pods-CaronaeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -951,6 +1008,7 @@
 		};
 		A3169CC51BED842D00A0D428 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B35A3BD2CCAED11349480AC /* Pods-CaronaeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

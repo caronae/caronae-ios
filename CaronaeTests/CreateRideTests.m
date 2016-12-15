@@ -1,5 +1,5 @@
 #import <XCTest/XCTest.h>
-#import "CaronaeDefaults.h"
+#import "CaronaeConstants.h"
 #import "CreateRideViewController.h"
 
 @interface CreateRideTests : XCTestCase
