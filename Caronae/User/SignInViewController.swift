@@ -7,14 +7,13 @@ protocol CaronaeSignInDelegate: class {
     func caronaeSignInFailed()
 }
 
-class CaronaeSignInViewController: UIViewController, WKNavigationDelegate {
-    
-    private var webView: WKWebView!
-    private let url = URL(string: CaronaeIntranetURLString)
+class SignInViewController: UIViewController {
+
+    fileprivate let url = URL(string: CaronaeIntranetURLString)
     weak var delegate: CaronaeSignInDelegate?
     
     class func presentFromViewController(_ viewController: UIViewController, delegate: CaronaeSignInDelegate) {
-        let signInController = CaronaeSignInViewController()
+        let signInController = SignInViewController()
         signInController.delegate = delegate
         
         let navigationController = UINavigationController(rootViewController: signInController)
@@ -25,9 +24,9 @@ class CaronaeSignInViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
         
         title = "Login Intranet UFRJ"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelSignIn))
         
-        webView = WKWebView(frame: view.frame)
+        let webView = WKWebView(frame: view.frame)
         webView.navigationDelegate = self
         self.view = webView
         
@@ -37,12 +36,30 @@ class CaronaeSignInViewController: UIViewController, WKNavigationDelegate {
         SVProgressHUD.show()
     }
     
-    func cancelButtonTapped() {
+    func cancelSignIn() {
         SVProgressHUD.dismiss()
         dismiss(animated: true) {
             self.delegate?.caronaeSignInFailed()
         }
     }
+    
+    fileprivate func handleResult(fromJSONString string: String) {
+        guard let jsonData = string.data(using: .utf8),
+            let result = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: String] else {
+                print("Error reading data")
+                return
+        }
+        
+        if let user = result?["user"], let token = result?["token"] {
+            dismiss(animated: true) {
+                self.delegate?.caronaeDidSignInWithSuccess(user: user, token: token)
+            }
+        }
+    }
+}
+
+
+extension SignInViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         SVProgressHUD.dismiss()
@@ -60,20 +77,10 @@ class CaronaeSignInViewController: UIViewController, WKNavigationDelegate {
         }
     }
     
-    // TODO: Handle webView loading errors
-    
-    private func handleResult(fromJSONString string: String) {
-        guard let jsonData = string.data(using: .utf8),
-            let result = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: String] else {
-                print("Error reading data")
-                self.delegate?.caronaeSignInFailed()
-                return
-        }
-        
-        if let user = result?["user"], let token = result?["token"] {
-            dismiss(animated: true) {
-                self.delegate?.caronaeDidSignInWithSuccess(user: user, token: token)
-            }
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        SVProgressHUD.dismiss()
+        CaronaeAlertController.presentOkAlert(withTitle: "Erro de conexão", message: "Não foi possível conectar com a Intranet UFRJ. Verifique sua conexão com a internet e tente novamente.") {
+            self.cancelSignIn()
         }
     }
 }

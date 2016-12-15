@@ -103,7 +103,7 @@
 }
 
 - (void)didTapWelcomeText:(id)sender {
-    [CaronaeSignInViewController presentFromViewController:self delegate:self];
+    [SignInViewController presentFromViewController:self delegate:self];
 }
 
 
@@ -116,6 +116,7 @@
 - (void)caronaeSignInFailed {
     NSLog(@"Authentication failed");
 }
+
 
 #pragma mark Text field methods
 

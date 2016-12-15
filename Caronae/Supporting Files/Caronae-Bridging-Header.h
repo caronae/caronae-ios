@@ -6,5 +6,6 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
+#import "CaronaeAlertController.h"
 #import "CaronaeConstants.h"
 #import "UserController.h"
