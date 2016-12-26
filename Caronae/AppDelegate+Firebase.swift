@@ -25,13 +25,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     
     func connectToFcm() {
         FIRMessaging.messaging().connect { (error) in
-            if (error != nil) {
-                
+            guard error == nil else {
                 NSLog("Unable to connect with FCM. \(error)")
-            } else {
-                NSLog("Connected to FCM.")
-                self.subscribeToUserTopic()
+                return
             }
+            
+            NSLog("Connected to FCM.")
+            self.subscribeToUserTopic()
         }
     }
     
