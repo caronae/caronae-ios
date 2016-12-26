@@ -190,12 +190,12 @@
             [self createRide:ride];
         } else {
             if ([status isEqualToString:@"duplicate"]) {
-                [CaronaeAlertController presentOkAlertWithTitle:@"Verificamos que você já ofereceu uma carona para este horário!" message:@"Você pode verificar as suas caronas na seção 'Minhas' do aplicativo." handler:^(SDCAlertAction *action){
+                [CaronaeAlertController presentOkAlertWithTitle:@"Você já ofereceu uma carona muito parecida com essa" message:@"Você pode verificar as suas caronas na seção 'Minhas' do aplicativo." handler:^(SDCAlertAction *action){
                  self.createRideButton.enabled = YES;
                  }];
             } else {
-                CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Parece que você já ofereceu uma carona para este dia!"
-                                                                                         message:@"Você pode cancelar e verificar as suas caronas ou continuar e criar esta carona mesmo assim"
+                CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Parece que você já ofereceu uma carona para este dia"
+                                                                                         message:@"Você pode cancelar e verificar as suas caronas ou continuar e criar a carona mesmo assim."
                                                                                   preferredStyle:SDCAlertControllerStyleAlert];
                 [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:^(SDCAlertAction *action){
                     self.createRideButton.enabled = YES;
