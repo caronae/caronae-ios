@@ -42,6 +42,21 @@ class ChatService: NSObject {
     
     // MARK: Message methods
     
+    func messagesForChat(_ chat: Chat, completionBlock: @escaping ([Message]?, Error?) -> Void) {
+        let context: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext // TODO: achar um jeito melhor de acessar o context
+        
+        let fetchRequest: NSFetchRequest<Message> = NSFetchRequest(entityName: NSStringFromClass(Message.self))
+        fetchRequest.predicate = NSPredicate(format: "rideID == %@", chat.ride.rideID as NSNumber)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "sentDate", ascending: true)]
+        
+        do {
+            let messages = try context.fetch(fetchRequest) 
+            completionBlock(messages, nil)
+        } catch let error {
+            completionBlock(nil, error)
+        }
+    }
+    
     func sendMessage(_ body: String, inChat chat: Chat, completionBlock: @escaping (Message?, Error?) -> Void) {
         let currentUser = UserController.sharedInstance().user!
         

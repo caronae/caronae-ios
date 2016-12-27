@@ -1,5 +1,3 @@
-#import <AFNetworking/AFNetworking.h>
-#import "AppDelegate.h"
 #import "CaronaeAlertController.h"
 #import "ChatViewController.h"
 #import "MessageBubbleTableViewCell.h"
@@ -10,8 +8,7 @@
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 
-@property (nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic) NSMutableArray *messages;
+@property (nonatomic) NSMutableArray<Message *> *messages;
 
 @end
 
@@ -32,9 +29,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
         self.title = [chat.ride.title stringByAppendingString:[dateFormatter stringFromDate:chat.ride.date]];
         
         self.hidesBottomBarWhenPushed = YES;
-        
-        AppDelegate *appDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-        self.managedObjectContext = appDelegate.managedObjectContext;
     }
     return self;
 }
@@ -44,19 +38,14 @@ static const CGFloat toolBarMinHeight = 44.0f;
 }
 
 - (void)loadChatMessages {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Message.class) inManagedObjectContext:self.managedObjectContext];
-    fetchRequest.entity = entity;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rideID == %@", @(self.chat.ride.rideID)];
-    fetchRequest.predicate = predicate;
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sentDate" ascending:YES];
-    fetchRequest.sortDescriptors = @[sortDescriptor];
-    
-    NSError *error;
-    self.messages = [[self.managedObjectContext executeFetchRequest:fetchRequest error:&error] mutableCopy];
-    if (error) {
-        NSLog(@"Whoops, couldn't load: %@", [error localizedDescription]);
-    }
+    __weak typeof(self) weakSelf = self;
+    [[ChatService sharedInstance] messagesForChat:_chat completionBlock:^(NSArray<Message *> * _Nullable messages, NSError * _Nullable error) {
+        if (messages) {
+            weakSelf.messages = [messages mutableCopy];
+        } else {
+            NSLog(@"Whoops, couldn't load: %@", [error localizedDescription]);
+        }
+    }];
 }
 
 - (void)appendMessage:(Message *)message {
