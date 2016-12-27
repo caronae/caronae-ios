@@ -69,7 +69,6 @@ static NSUserDefaults *userDefaults;
     [appDelegate deleteAllObjects:@"Notification"];
     
     // Clear user data
-    self.userGCMToken = nil;
     self.user = nil;
     self.userToken = nil;
     [RideRequestsStore clearAllRequests];

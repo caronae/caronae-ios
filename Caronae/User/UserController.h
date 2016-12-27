@@ -22,7 +22,6 @@
 
 @property (nonatomic, readwrite) User *user;
 @property (nonatomic, readonly) NSString *userToken;
-@property (nonatomic, readwrite) NSString *userGCMToken;
 @property (nonatomic, readonly) NSString *userFBToken;
 @property (nonatomic, readwrite) NSArray<Ride *> *userRides;
 

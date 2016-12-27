@@ -56,14 +56,10 @@
             if (ride.date.timeIntervalSinceNow < 0) continue;
             
             ride.driver = user;
-            
-            // Checking if subscribed to my rides after delay to ensure GCM is connected
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                Chat *chat = [[ChatService sharedInstance] chatForRide:ride];
-                [[ChatService sharedInstance] subscribeToChat:chat];
-            });
-
             [rides addObject:ride];
+        
+            Chat *chat = [[ChatService sharedInstance] chatForRide:ride];
+            [[ChatService sharedInstance] subscribeToChat:chat];
         }
         
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];

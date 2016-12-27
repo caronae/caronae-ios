@@ -5,12 +5,6 @@
 extern NSString *const CaronaeAPIBaseURL;
 
 
-#pragma mark - GCM settings
-
-extern NSString *const CaronaeGCMAPISendURL;
-extern NSString *const CaronaeGCMAPIKey;
-
-
 #pragma mark - Static pages URLs
 
 extern NSString *const CaronaeIntranetURLString;
