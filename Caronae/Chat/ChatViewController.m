@@ -137,7 +137,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
         [_sendButton setTitle:@"Enviar" forState:UIControlStateNormal];
         
         _sendButton.contentEdgeInsets = UIEdgeInsetsMake(6, 6, 6, 6);
-        [_sendButton addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
         [_toolBar addSubview:_sendButton];
         
         _textView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -154,30 +154,33 @@ static const CGFloat toolBarMinHeight = 44.0f;
 }
 
 
-#pragma mark - Actions
+#pragma mark - Message methods
 
-- (void)sendAction:(id)sender {
+- (void)sendMessage {
     // Hack to trigger autocorrect before sending the text
     [self.textView resignFirstResponder];
     [self.textView becomeFirstResponder];
+    
     self.sendButton.enabled = NO;
     
     NSString *messageText = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    User *currentUser = UserController.sharedInstance.user;
     
-    Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:self.managedObjectContext];
-    message.text = messageText;
-    message.incoming = @(NO);
-    message.sentDate = [NSDate date];
-    message.rideID = @(self.chat.ride.rideID);
-    message.senderName = currentUser.name;
-    message.senderId = currentUser.userID;
-    
-    [self sendMessage:message];
+    __weak typeof(self) weakSelf = self;
+    [[ChatService sharedInstance] sendMessage:messageText inChat:_chat completionBlock:^(Message * _Nullable message, NSError * _Nullable error) {
+        if (message) {
+            NSLog(@"Message data delivered.");
+            
+            [weakSelf appendMessage:message];
+            weakSelf.textView.text = @"";
+        } else {
+            NSLog(@"Error sending message data: %@", error.localizedDescription);
+            
+            [CaronaeAlertController presentOkAlertWithTitle:@"Ops!" message:@"Ocorreu um erro enviando sua mensagem."];
+        }
+        
+        weakSelf.sendButton.enabled = YES;
+    }];
 }
-
-
-#pragma mark - Message methods
 
 - (void)didReceiveMessage:(NSNotification *)notification {
     NSDictionary *userInfo = notification.userInfo;
@@ -197,34 +200,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
             [self tableViewScrollToBottomAnimated:YES];
         }
     }
-}
-
-- (void)sendMessage:(Message *)message {
-    __weak typeof(self) weakSelf = self;
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
-    NSString *sendURL = [CaronaeAPIBaseURL stringByAppendingFormat:@"/ride/%@/chat", message.rideID];
-    NSDictionary *paramsData = @{ @"message": message.text };
-    [manager POST:sendURL parameters:paramsData success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Message data delivered. Reponse: %@", responseObject);
-        [weakSelf appendMessage:message];
-        weakSelf.textView.text = @"";
-        weakSelf.sendButton.enabled = YES;
-        
-        // Persist message
-        NSError *error;
-        if (![weakSelf.managedObjectContext save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", error.localizedDescription);
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error sending message data: %@", error.localizedDescription);
-        weakSelf.sendButton.enabled = YES;
-        
-        [CaronaeAlertController presentOkAlertWithTitle:@"Ops!" message:@"Ocorreu um erro enviando sua mensagem."];
-    }];
 }
 
 
