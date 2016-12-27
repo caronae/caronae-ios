@@ -86,7 +86,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [notificationCenter addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    [notificationCenter addObserver:self selector:@selector(didReceiveMessage:) name:CaronaeGCMMessageReceivedNotification object:nil];
+    [notificationCenter addObserver:self selector:@selector(didReceiveMessage:) name:CaronaeNotificationReceivedNotification object:nil];
     
     [self loadChatMessages];
     

@@ -18,9 +18,7 @@ NSString *const CaronaeTermsOfUsePageURLString = @"https://api.caronae.ufrj.br/s
 
 #pragma mark - Notifications
 
-NSString *const CaronaeGCMConnectedNotification = @"CaronaeGCMConnectedNotification";
-NSString *const CaronaeGCMTokenUpdatedNotification = @"CaronaeGCMTokenUpdatedNotification";
-NSString *const CaronaeGCMMessageReceivedNotification = @"CaronaeGCMMessageReceivedNotification";
+NSString *const CaronaeNotificationReceivedNotification = @"CaronaeNotificationReceivedNotification";
 NSString *const CaronaeDidUpdateNotifications = @"CaronaeDidUpdateNotifications";
 
 

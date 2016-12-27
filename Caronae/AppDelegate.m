@@ -159,7 +159,7 @@
         [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]} completionBlock:nil];
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification object:self userInfo:userInfo];
+    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeNotificationReceivedNotification object:self userInfo:userInfo];
     
     return YES;
 }

@@ -28,9 +28,7 @@ extern NSString *const CaronaePreferenceLastSearchedDirectionKey;
 
 #pragma mark - Notifications
 
-extern NSString *const CaronaeGCMConnectedNotification;
-extern NSString *const CaronaeGCMTokenUpdatedNotification;
-extern NSString *const CaronaeGCMMessageReceivedNotification;
+extern NSString *const CaronaeNotificationReceivedNotification;
 extern NSString *const CaronaeDidUpdateNotifications;
 
 
