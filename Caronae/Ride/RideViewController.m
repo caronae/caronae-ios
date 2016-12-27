@@ -2,8 +2,6 @@
 #import <CoreData/CoreData.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
-#import "Chat.h"
-#import "ChatStore.h"
 #import "ChatViewController.h"
 #import "JoinRequestCell.h"
 #import "Notification.h"
@@ -15,8 +13,17 @@
 #import "RideRequestsStore.h"
 #import "SHSPhoneNumberFormatter+UserConfig.h"
 #import "UIImageView+crn_setImageWithURL.h"
+#import "Caronae-Swift.h"
 
-@interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
+@interface RideViewController ()
+<
+    JoinRequestDelegate,
+    UITableViewDelegate,
+    UITableViewDataSource,
+    UICollectionViewDelegate,
+    UICollectionViewDataSource,
+    UIGestureRecognizerDelegate
+>
 
 @property (nonatomic) NSArray<User *> *joinRequests;
 @property (nonatomic) NSArray<User *> *mutualFriends;
@@ -250,7 +257,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)openChatWindow {
-    Chat *chat = [ChatStore chatForRide:_ride];
+    Chat *chat = [[ChatService sharedInstance] chatForRide:_ride];
     if (chat) {
         ChatViewController *chatVC = [[ChatViewController alloc] initWithChat:chat andColor:_color];
         [self.navigationController pushViewController:chatVC animated:YES];
@@ -325,7 +332,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [SVProgressHUD dismiss];
         NSLog(@"User left the ride. (Message: %@)", responseObject[@"message"]);
         
-        [[ChatStore chatForRide:_ride] unsubscribe];
+        Chat *chat = [[ChatService sharedInstance] chatForRide:_ride];
+        [[ChatService sharedInstance] unsubscribeFromChat:chat];
         [NotificationStore clearNotificationsForRide:@(_ride.rideID) ofType:NotificationTypeAll];
         
         if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
@@ -355,7 +363,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/finishRide"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {        [SVProgressHUD dismiss];
         NSLog(@"User finished the ride. (Message: %@)", responseObject[@"message"]);
         
-        [[ChatStore chatForRide:_ride] unsubscribe];
+        Chat *chat = [[ChatService sharedInstance] chatForRide:_ride];
+        [[ChatService sharedInstance] unsubscribeFromChat:chat];
         [NotificationStore clearNotificationsForRide:@(_ride.rideID) ofType:NotificationTypeAll];
         
         if (_delegate && [_delegate respondsToSelector:@selector(didFinishRide:)]) {

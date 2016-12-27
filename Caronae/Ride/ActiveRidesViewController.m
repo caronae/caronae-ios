@@ -2,10 +2,9 @@
 #import <CoreData/CoreData.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "ActiveRidesViewController.h"
-#import "Chat.h"
-#import "ChatStore.h"
 #import "Notification+CoreDataProperties.h"
 #import "NotificationStore.h"
+#import "Caronae-Swift.h"
 
 @interface ActiveRidesViewController () <UITableViewDelegate>
 @property (nonatomic) NSArray<Notification *> *unreadNotifications;
@@ -100,14 +99,8 @@
             // Initialise chats
             for (Ride *ride in self.rides) {
                 // If chat doesn't exist in store, create it and subscribe to it
-                Chat *chat = [ChatStore chatForRide:ride];
-                if (!chat) {
-                    chat = [[Chat alloc] initWithRide:ride];
-                    [ChatStore setChat:chat forRide:ride];
-                }
-                if (!chat.subscribed) {
-                    [chat subscribe];
-                }
+                Chat *chat = [[ChatService sharedInstance] chatForRide:ride];
+                [[ChatService sharedInstance] subscribeToChat:chat];
             }
         }
         else {

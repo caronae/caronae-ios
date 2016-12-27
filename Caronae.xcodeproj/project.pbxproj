@@ -20,7 +20,6 @@
 		A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA21BED842D00A0D428 /* Assets.xcassets */; };
 		A3169CA61BED842D00A0D428 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */; };
 		A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */; };
-		A3180F871C618DDF007195DF /* ChatStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A3180F861C618DDF007195DF /* ChatStore.m */; };
 		A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */; };
 		A325DA711C0CAFD700B9124E /* JoinRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */; };
 		A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A32B80B51C2C6EBE00FC370A /* FalaeViewController.m */; };
@@ -29,6 +28,8 @@
 		A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C61BF01B9A005BA311 /* MenuViewController.m */; };
 		A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C91BF01C1D005BA311 /* ProfileViewController.m */; };
 		A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312CC1BF01C26005BA311 /* EditProfileViewController.m */; };
+		A348B4E31E11E6010024A601 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A348B4E21E11E6010024A601 /* ChatService.swift */; };
+		A348B4E51E11F36F0024A601 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A348B4E41E11F36F0024A601 /* Chat.swift */; };
 		A34C67581C826280001F6D90 /* NotificationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C67571C826280001F6D90 /* NotificationStore.m */; };
 		A34C675C1C853C4B001F6D90 /* RideRequestsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C675B1C853C4B001F6D90 /* RideRequestsStore.m */; };
 		A34C675F1C854EA7001F6D90 /* UserController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C675E1C854EA7001F6D90 /* UserController.m */; };
@@ -41,7 +42,6 @@
 		A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */; };
 		A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
 		A37E80DB1C5F007900683F27 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A37E80DA1C5F007900683F27 /* ChatViewController.m */; };
-		A37E80DE1C5F00D300683F27 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = A37E80DD1C5F00D300683F27 /* Chat.m */; };
 		A37E80E11C5F011100683F27 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E01C5F011100683F27 /* Message.m */; };
 		A37E80E41C5F0C3000683F27 /* MessageBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E31C5F0C3000683F27 /* MessageBubbleTableViewCell.m */; };
 		A37E80E71C5F158600683F27 /* UIImage+imageWithTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */; };
@@ -106,8 +106,6 @@
 		A3169CB21BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3169CC91BED893F00A0D428 /* CaronaeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeTextField.h; sourceTree = "<group>"; };
 		A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeTextField.m; sourceTree = "<group>"; };
-		A3180F851C618DDF007195DF /* ChatStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatStore.h; sourceTree = "<group>"; };
-		A3180F861C618DDF007195DF /* ChatStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatStore.m; sourceTree = "<group>"; };
 		A325DA6D1C0CAFD700B9124E /* JoinRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinRequestCell.h; sourceTree = "<group>"; };
 		A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinRequestCell.m; sourceTree = "<group>"; };
 		A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinRequestCell.xib; sourceTree = "<group>"; };
@@ -123,6 +121,8 @@
 		A34312C91BF01C1D005BA311 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		A34312CB1BF01C26005BA311 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		A34312CC1BF01C26005BA311 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		A348B4E21E11E6010024A601 /* ChatService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		A348B4E41E11F36F0024A601 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		A34C67561C826280001F6D90 /* NotificationStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationStore.h; path = Notification/NotificationStore.h; sourceTree = "<group>"; };
 		A34C67571C826280001F6D90 /* NotificationStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationStore.m; path = Notification/NotificationStore.m; sourceTree = "<group>"; };
 		A34C675A1C853C4B001F6D90 /* RideRequestsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideRequestsStore.h; sourceTree = "<group>"; };
@@ -145,8 +145,6 @@
 		A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeAlertController.m; sourceTree = "<group>"; };
 		A37E80D91C5F007900683F27 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		A37E80DA1C5F007900683F27 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
-		A37E80DC1C5F00D300683F27 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
-		A37E80DD1C5F00D300683F27 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
 		A37E80DF1C5F011100683F27 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		A37E80E01C5F011100683F27 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		A37E80E21C5F0C3000683F27 /* MessageBubbleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBubbleTableViewCell.h; sourceTree = "<group>"; };
@@ -406,8 +404,7 @@
 		A37E80D81C5EFFA600683F27 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				A3180F851C618DDF007195DF /* ChatStore.h */,
-				A3180F861C618DDF007195DF /* ChatStore.m */,
+				A348B4E21E11E6010024A601 /* ChatService.swift */,
 				A37E80D91C5F007900683F27 /* ChatViewController.h */,
 				A37E80DA1C5F007900683F27 /* ChatViewController.m */,
 				A37E80E21C5F0C3000683F27 /* MessageBubbleTableViewCell.h */,
@@ -419,8 +416,7 @@
 		A39BBD001C0629E100EF9EBD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A37E80DC1C5F00D300683F27 /* Chat.h */,
-				A37E80DD1C5F00D300683F27 /* Chat.m */,
+				A348B4E41E11F36F0024A601 /* Chat.swift */,
 				A3C55BD81C5FB19A00C84204 /* Message+CoreDataProperties.h */,
 				A3C55BD91C5FB19A00C84204 /* Message+CoreDataProperties.m */,
 				A37E80DF1C5F011100683F27 /* Message.h */,
@@ -664,7 +660,6 @@
 				A398BE051C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m in Sources */,
 				A38598451C66D83A00279D6F /* Notification+CoreDataProperties.m in Sources */,
 				A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */,
-				A37E80DE1C5F00D300683F27 /* Chat.m in Sources */,
 				A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */,
 				A357EF331C56C5A100AC8096 /* RideListController.m in Sources */,
 				A34C675F1C854EA7001F6D90 /* UserController.m in Sources */,
@@ -673,6 +668,7 @@
 				A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */,
 				A34C675C1C853C4B001F6D90 /* RideRequestsStore.m in Sources */,
 				A3034D581DB58A1B00816B79 /* NSDate+isInTheFuture.swift in Sources */,
+				A348B4E51E11F36F0024A601 /* Chat.swift in Sources */,
 				A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */,
 				A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */,
 				A3F30EED1C0890C10024BE37 /* ZoneCell.m in Sources */,
@@ -690,6 +686,7 @@
 				A32C77261C41EEE30098583B /* AllRidesViewController.m in Sources */,
 				A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */,
 				A3B18FFA1C9E713F00980607 /* UIImageView+crn_setImageWithURL.m in Sources */,
+				A348B4E31E11E6010024A601 /* ChatService.swift in Sources */,
 				A38598461C66D83A00279D6F /* Notification.m in Sources */,
 				A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */,
 				A3C55BDA1C5FB19A00C84204 /* Message+CoreDataProperties.m in Sources */,
@@ -707,7 +704,6 @@
 				A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */,
 				A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */,
 				A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */,
-				A3180F871C618DDF007195DF /* ChatStore.m in Sources */,
 				71710F151DC3745E009420B4 /* AppDelegate+Firebase.swift in Sources */,
 				A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */,
 				A37E80E41C5F0C3000683F27 /* MessageBubbleTableViewCell.m in Sources */,

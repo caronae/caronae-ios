@@ -1,9 +1,9 @@
 #import <CoreData/CoreData.h>
-#import "ChatStore.h"
 #import "CreateRideViewController.h"
 #import "MyRidesViewController.h"
 #import "Notification.h"
 #import "NotificationStore.h"
+#import "Caronae-Swift.h"
 
 @interface MyRidesViewController () <CreateRideDelegate, RideDelegate>
 @property (nonatomic) NSArray<Notification *> *unreadNotifications;
@@ -59,13 +59,8 @@
             
             // Checking if subscribed to my rides after delay to ensure GCM is connected
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                if (![ChatStore chatForRide:ride]) {
-                    Chat *chat = [[Chat alloc] initWithRide:ride];
-                    if (!chat.subscribed) {
-                        [chat subscribe];
-                    }
-                    [ChatStore setChat:chat forRide:ride];
-                }
+                Chat *chat = [[ChatService sharedInstance] chatForRide:ride];
+                [[ChatService sharedInstance] subscribeToChat:chat];
             });
 
             [rides addObject:ride];

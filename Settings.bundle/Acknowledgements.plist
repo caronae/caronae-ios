@@ -14,7 +14,7 @@
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright (c) 2011&#8211;2015 Alamofire Software Foundation (http://alamofire.org/)
+			<string>Copyright (c) 2011–2015 Alamofire Software Foundation (http://alamofire.org/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -515,7 +515,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright (c) 2013 Robert B&#246;hnke.
+			<string>Copyright (c) 2013 Robert Böhnke.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

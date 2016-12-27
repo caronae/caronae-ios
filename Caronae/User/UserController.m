@@ -1,7 +1,6 @@
 #import <FBSDKLoginKit/FBSDKLoginManager.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "AppDelegate.h"
-#import "ChatStore.h"
 #import "NSDictionary+dictionaryWithoutNulls.h"
 #import "RideRequestsStore.h"
 #import "UserController.h"
@@ -64,11 +63,7 @@ static NSUserDefaults *userDefaults;
     [appDelegate unsubscribeFromUserTopic];
     
     // Clear chats
-    NSDictionary *chats = [ChatStore allChats];
-    for (id rideID in chats) {
-        [chats[rideID] unsubscribe];
-    }
-    [ChatStore clearChats];
+    [[ChatService sharedInstance] removeAllChats];
     
     // Clear saved notifications
     [appDelegate deleteAllObjects:@"Notification"];

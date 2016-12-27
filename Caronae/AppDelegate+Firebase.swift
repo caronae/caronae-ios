@@ -10,6 +10,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
 
     }
     
+    func didRegisterForRemoteNotifications(deviceToken: NSData) {
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: FIRInstanceIDAPNSTokenType.sandbox)
+    }
+    
     func didFailToRegisterForRemoteNotifications(error: NSError) {
         NSLog("Registration for remote notification failed with error: %@", error.localizedDescription)
     }
@@ -25,13 +29,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     
     func connectToFcm() {
         FIRMessaging.messaging().connect { (error) in
-            guard error == nil else {
+            if (error != nil) {
+                
                 NSLog("Unable to connect with FCM. \(error)")
-                return
+            } else {
+                NSLog("Connected to FCM.")
+                self.subscribeToUserTopic()
             }
-            
-            NSLog("Connected to FCM.")
-            self.subscribeToUserTopic()
         }
     }
     
@@ -83,24 +87,25 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any]) {
         NSLog("Remote notification received 1: %@", userInfo)
         
+        // Let FCM know about the message for analytics etc.
+        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
+        
         handleNotification(userInfo)
-        NotificationCenter.default.post(name: NSNotification.Name.CaronaeGCMMessageReceived, object: nil, userInfo: userInfo)
     }
     
     func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any], completionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
         let application = UIApplication.shared
         NSLog("Remote notification received 2: %@", userInfo)
         
+        // Let FCM know about the message for analytics etc.
+        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
+        
         // If the application received the notification on the background or foreground
-        if (application.applicationState != .inactive) {
-            if (handleNotification(userInfo)) {
-                NotificationCenter.default.post(name: NSNotification.Name.CaronaeGCMMessageReceived, object: nil, userInfo: userInfo)
-                
+        if application.applicationState != .inactive {
+            if handleNotification(userInfo) {
                 handler(UIBackgroundFetchResult.newData)
             }
             else {
-                NotificationCenter.default.post(name: NSNotification.Name.CaronaeGCMMessageReceived, object: nil, userInfo: userInfo)
-                
                 handler(UIBackgroundFetchResult.noData)
             }
         }
@@ -112,8 +117,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     }
     
     func didReceiveLocalNotification(_ notification: UILocalNotification) {
-        let application = UIApplication.shared
-        if (application.applicationState == UIApplicationState.inactive) {
+        if UIApplication.shared.applicationState == .inactive {
             NSLog("Opening app from local notification")
             setActiveScreenAccordingToNotification(notification.userInfo)
         }
@@ -126,6 +130,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
+        
+        // Let FCM know about the message for analytics etc.
+        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
         
         // Print message ID.
         NSLog("Message ID: \(userInfo["gcm.message_id"]!)")
@@ -141,6 +148,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         
+        // Let FCM know about the message for analytics etc.
+        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
+        
         // Print message ID.
         NSLog("Message ID: \(userInfo["gcm.message_id"]!)")
         // Print full message.
@@ -152,6 +162,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     // Receive data message on iOS 10 devices while app is in the foreground.
     public func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
         NSLog("%@", remoteMessage.appData)
+        
+        // Let FCM know about the message for analytics etc.
+        FIRMessaging.messaging().appDidReceiveMessage(remoteMessage.appData)
         
         handleNotification(remoteMessage.appData)
     }

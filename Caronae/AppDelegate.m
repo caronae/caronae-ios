@@ -1,17 +1,17 @@
+@import Firebase;
+
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import <CRToast/CRToast.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "AppDelegate.h"
-#import "ChatStore.h"
 #import "ChatViewController.h"
 #import "Message+CoreDataProperties.h"
 #import "Notification+CoreDataProperties.h"
 #import "NotificationStore.h"
 #import "TabBarController.h"
 #import "Caronae-Swift.h"
-#import <Firebase.h>
  
 @implementation AppDelegate
 
@@ -102,7 +102,7 @@
 #pragma mark - Etc
 
 - (UIViewController *)topViewController {
-    return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+    return [self topViewControllerWithRootViewController:UIApplication.sharedApplication.keyWindow.rootViewController];
 }
 
 - (UIViewController *)topViewControllerWithRootViewController:(UIViewController *)rootViewController {
@@ -139,9 +139,15 @@
     else if ([msgType isEqualToString:@"accepted"]) {
         NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
         
-        [Chat subscribeToTopicID:[Chat topicIDwithRideID:rideID]];
+        // Create fake ride
+        Ride *ride = [[Ride alloc] init];
+        ride.rideID = [rideID longValue];
         
-        if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+        // Create chat for ride and subscribe to it
+        Chat *chat = [[ChatService sharedInstance] chatForRide:ride];
+        [[ChatService sharedInstance] subscribeToChat:chat];
+        
+        if (UIApplication.sharedApplication.applicationState == UIApplicationStateActive) {
             [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]} completionBlock:nil];
         }
     }
@@ -149,9 +155,11 @@
     else if ([msgType isEqualToString:@"cancelled"] || [msgType isEqualToString:@"finished"]) {
         [self handleFinishedNotification:userInfo];
     }
-    else if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive && userInfo[@"message"] && ![userInfo[@"message"] isEqualToString:@""]) {
+    else if (UIApplication.sharedApplication.applicationState == UIApplicationStateActive && userInfo[@"message"] && ![userInfo[@"message"] isEqualToString:@""]) {
         [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]} completionBlock:nil];
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification object:self userInfo:userInfo];
     
     return YES;
 }
@@ -186,7 +194,7 @@
     }
     
     NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", message.senderName, message.text];
-    if ([UIApplication sharedApplication].applicationState != UIApplicationStateActive) {
+    if (UIApplication.sharedApplication.applicationState != UIApplicationStateActive) {
         UILocalNotification *notification = [[UILocalNotification alloc] init];
         notification.fireDate = message.sentDate;
         notification.alertBody = notificationBody;
@@ -215,7 +223,7 @@
     Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:[NSDate date] type:@"joinRequest" context:self.managedObjectContext];
     [NotificationStore insertNotification:caronaeNotification];
     
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+    if (UIApplication.sharedApplication.applicationState == UIApplicationStateActive) {
         [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]} completionBlock:nil];
     }
 }
@@ -225,7 +233,7 @@
     
     [NotificationStore clearNotificationsForRide:rideID ofType:NotificationTypeAll];
     
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+    if (UIApplication.sharedApplication.applicationState == UIApplicationStateActive) {
         [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]} completionBlock:nil];
     }
 }

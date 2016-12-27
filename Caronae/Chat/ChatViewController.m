@@ -1,14 +1,17 @@
 #import <AFNetworking/AFNetworking.h>
 #import "AppDelegate.h"
+#import "CaronaeAlertController.h"
 #import "ChatViewController.h"
 #import "MessageBubbleTableViewCell.h"
 #import "Message+CoreDataProperties.h"
 #import "Notification+CoreDataProperties.h"
 #import "NotificationStore.h"
+#import "Caronae-Swift.h"
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic) NSMutableArray *messages;
 
 @end
 
@@ -21,6 +24,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     if (self) {
         _chat = chat;
         _color = color;
+        _messages = [NSMutableArray array];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @" - dd/MM - HH:mm";
@@ -49,17 +53,17 @@ static const CGFloat toolBarMinHeight = 44.0f;
     fetchRequest.sortDescriptors = @[sortDescriptor];
     
     NSError *error;
-    self.chat.loadedMessages = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    self.messages = [[self.managedObjectContext executeFetchRequest:fetchRequest error:&error] mutableCopy];
     if (error) {
         NSLog(@"Whoops, couldn't load: %@", [error localizedDescription]);
     }
 }
 
 - (void)appendMessage:(Message *)message {
-    self.chat.loadedMessages = [self.chat.loadedMessages arrayByAddingObject:message];
+    [self.messages addObject:message];
     
     [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.chat.loadedMessages.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.messages.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
     
     [self tableViewScrollToBottomAnimated:YES];
@@ -77,7 +81,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor]; // smooths push animation
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -94,7 +97,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [notificationCenter addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    [notificationCenter addObserver:self selector:@selector(gcmDidReceiveMessage:) name:CaronaeGCMMessageReceivedNotification object:nil];
+    [notificationCenter addObserver:self selector:@selector(didReceiveMessage:) name:CaronaeGCMMessageReceivedNotification object:nil];
     
     [self loadChatMessages];
     
@@ -157,12 +160,12 @@ static const CGFloat toolBarMinHeight = 44.0f;
     // Hack to trigger autocorrect before sending the text
     [self.textView resignFirstResponder];
     [self.textView becomeFirstResponder];
+    self.sendButton.enabled = NO;
     
     NSString *messageText = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    User *currentUser = [UserController sharedInstance].user;
+    User *currentUser = UserController.sharedInstance.user;
     
-    NSManagedObjectContext *context = [self managedObjectContext];
-    Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
+    Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:self.managedObjectContext];
     message.text = messageText;
     message.incoming = @(NO);
     message.sentDate = [NSDate date];
@@ -170,28 +173,20 @@ static const CGFloat toolBarMinHeight = 44.0f;
     message.senderName = currentUser.name;
     message.senderId = currentUser.userID;
     
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", error.localizedDescription);
-    }
-    
-    [self gcmSendMessage:message];
-    [self appendMessage:message];
-    self.textView.text = @"";
-    self.sendButton.enabled = NO;
+    [self sendMessage:message];
 }
 
 
-#pragma mark - GCM methods
+#pragma mark - Message methods
 
-- (void)gcmDidReceiveMessage:(NSNotification *)notification {
+- (void)didReceiveMessage:(NSNotification *)notification {
     NSDictionary *userInfo = notification.userInfo;
     NSString *msgType = userInfo[@"msgType"];
     
     // Handle chat messages
     if (msgType && [msgType isEqualToString:@"chat"]) {
-        NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
-        NSNumber *senderID = @([userInfo[@"senderId"] intValue]);
+        NSNumber *rideID = userInfo[@"rideId"];
+        NSNumber *senderID = userInfo[@"senderId"];
         NSNumber *currentUserId = [UserController sharedInstance].user.userID;
         
         if ([rideID isEqual:@(self.chat.ride.rideID)] && ![senderID isEqual:currentUserId]) {
@@ -204,22 +199,31 @@ static const CGFloat toolBarMinHeight = 44.0f;
     }
 }
 
-- (void)gcmSendMessage:(Message *)message {
-    
-    NSDictionary *paramsData = @{
-                                 @"message": message.text,
-                                 };
-    
-    // Send data message payload
+- (void)sendMessage:(Message *)message {
+    __weak typeof(self) weakSelf = self;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     NSString *sendURL = [CaronaeAPIBaseURL stringByAppendingFormat:@"/ride/%@/chat", message.rideID];
+    NSDictionary *paramsData = @{ @"message": message.text };
     [manager POST:sendURL parameters:paramsData success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Message data delivered. Reponse: %@", responseObject);
+        [weakSelf appendMessage:message];
+        weakSelf.textView.text = @"";
+        weakSelf.sendButton.enabled = YES;
+        
+        // Persist message
+        NSError *error;
+        if (![weakSelf.managedObjectContext save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", error.localizedDescription);
+        }
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error sending message data: %@", error.localizedDescription);
+        weakSelf.sendButton.enabled = YES;
+        
+        [CaronaeAlertController presentOkAlertWithTitle:@"Ops!" message:@"Ocorreu um erro enviando sua mensagem."];
     }];
 }
 
@@ -231,7 +235,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.chat.loadedMessages.count;
+    return self.messages.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -242,7 +246,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
         cell.tintColor = self.color;
     }
     
-    Message *message = self.chat.loadedMessages[indexPath.row];
+    Message *message = self.messages[indexPath.row];
     [cell configureWithMessage:message];
     
     return cell;

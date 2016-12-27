@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
-#import "Chat.h"
+
+@class Chat;
 
 @interface ChatViewController : UIViewController
 

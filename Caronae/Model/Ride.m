@@ -61,4 +61,16 @@ static NSDateFormatter *otherDateParserFormatter;
     return _users.count > 0;
 }
 
+- (NSUInteger)hash {
+    return _rideID;
+}
+
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:self.class]) {
+        return ((Ride *)object).rideID == _rideID;
+    }
+    
+    return false;
+}
+
 @end
