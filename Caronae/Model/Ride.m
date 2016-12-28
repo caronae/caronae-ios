@@ -27,16 +27,12 @@ static NSDateFormatter *otherDateParserFormatter;
     return [MTLValueTransformer transformerUsingForwardBlock:^id(NSDictionary *routineDictionary, BOOL *success, NSError *__autoreleasing *error) {
         NSString *weekDays = routineDictionary[@"week_days"];
         id routineID = routineDictionary[@"routine_id"];
-        if ([weekDays isEqual:[NSNull null]] || ([weekDays isKindOfClass:NSString.class] && weekDays.length == 0)) {
+        if ([weekDays isEqual:[NSNull null]] || ([weekDays isKindOfClass:NSString.class] && weekDays.length == 0) || (routineID == nil)) {
             return @(0);
         } else {
             return routineID;
         }
     } reverseBlock:^id(id routineID, BOOL *success, NSError *__autoreleasing *error) {
-        if ([routineID isEqual:@(0)]) {
-            routineID = [NSNull null];
-        }
-        
         return @{ @"routine_id": routineID };
     }];
 }
