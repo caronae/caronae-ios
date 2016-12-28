@@ -51,10 +51,38 @@ class RideService: NSObject {
         NSLog("Error: ride to be deleted was not found in user's rides")
     }
     
-//    func getMyRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
-//        
-//    }
-//    
+    func getOfferedRides(success: @escaping (_ rides: [Dictionary<String, Any>]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+        guard let userID = UserController.sharedInstance().user?.userID else {
+            NSLog("Error: No userID registered")
+            return
+        }
+        
+        api.get("/user/\(userID)/offeredRides", parameters: nil, success: { task, responseObject in
+            do {
+                let jsonResponse = responseObject as! Dictionary<String, Any?>
+                guard let ridesResponse = jsonResponse["rides"] as? [Dictionary<String, Any?>] else {
+                    NSLog("Error: rides was not found in responseObject")
+                    return
+                }
+                var ridesArray = [Dictionary<String, Any>]()   
+                //DictionaryWithoutNulls
+                for rideDictionary in ridesResponse {
+                    var new = rideDictionary
+                    for (key,value) in new {
+                        if value == nil {
+                            new[key] = ""
+                        }
+                    }
+                    ridesArray.append(new)
+                }
+                success(ridesArray)
+            }
+        }, failure: { _, err in
+            NSLog("Error: Failed to get Offered Rides: \(err.localizedDescription)")
+            error(err)
+        })
+    }
+
 //    func getRidesHistory(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
 //        
 //    }

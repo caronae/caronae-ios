@@ -101,6 +101,14 @@
             }
         }];
     }
+    if ([UserController sharedInstance].userToken) {
+        [RideService.instance getOfferedRidesWithSuccess:^(NSArray<NSDictionary<NSString *, id> *> * _Nonnull rides) {
+            [[NSUserDefaults standardUserDefaults] setObject:rides forKey:@"userCreatedRides"];
+            NSLog(@"userCreatedRides updated");
+        } error:^(NSError * _Nullable error) {
+            NSLog(@"Couldn't update userCreatedRides");
+        }];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

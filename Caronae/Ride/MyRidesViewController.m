@@ -4,6 +4,7 @@
 #import "MyRidesViewController.h"
 #import "Notification.h"
 #import "NotificationStore.h"
+#import "Caronae-Swift.h"
 
 @interface MyRidesViewController () <CreateRideDelegate, RideDelegate>
 @property (nonatomic) NSArray<Notification *> *unreadNotifications;
@@ -26,6 +27,14 @@
 }
 
 - (void)refreshTable:(id)sender {
+    if ([UserController sharedInstance].userToken) {
+        [RideService.instance getOfferedRidesWithSuccess:^(NSArray<NSDictionary<NSString *, id> *> * _Nonnull rides) {
+            [[NSUserDefaults standardUserDefaults] setObject:rides forKey:@"userCreatedRides"];
+            NSLog(@"userCreatedRides updated");
+        } error:^(NSError * _Nullable error) {
+            NSLog(@"Couldn't update userCreatedRides");
+        }];
+    }
     if (self.refreshControl.refreshing) {
         [self loadMyRides];
     }
