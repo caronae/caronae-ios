@@ -234,28 +234,21 @@
 }
 
 - (IBAction)didTapPhoto:(id)sender {
-    // TODO: support for iOS 7
-    if ([UIAlertController class]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"De onde deseja importar sua foto?" preferredStyle:UIAlertControllerStyleActionSheet];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Cancelar" style:UIAlertActionStyleCancel handler:nil]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do Facebook" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self importPhotoFromFacebook];
-        }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do SIGA" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self importPhotoFromSIGA];
-        }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Remover minha foto" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            NSLog(@"Removendo foto...");
-            _photoURL = nil;
-            _photo.image = [UIImage imageNamed:@"Profile Picture"];
-        }]];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    }
-    else {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"De onde deseja importar sua foto?" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:@"Remover minha foto" otherButtonTitles:@"Usar foto do Facebook", @"Usar foto do SIGA", nil];
-        [actionSheet showInView:self.view];
-    }
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"De onde deseja importar sua foto?" preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancelar" style:UIAlertActionStyleCancel handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do Facebook" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self importPhotoFromFacebook];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do SIGA" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self importPhotoFromSIGA];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Remover minha foto" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Removendo foto...");
+        _photoURL = nil;
+        _photo.image = [UIImage imageNamed:@"Profile Picture"];
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)hasCarSwitchChanged:(UISwitch *)sender {
@@ -279,31 +272,6 @@
             _carDetailsView.alpha = 0.0f;
         }];
     }
-}
-
-
-#pragma mark - UIActionSheet methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    switch (buttonIndex) {
-            // Remove photo
-        case 0:
-            NSLog(@"Removendo foto...");
-            _photoURL = nil;
-            _photo.image = [UIImage imageNamed:@"Profile Picture"];
-            break;
-            // Import from Facebook
-        case 1:
-            [self importPhotoFromFacebook];
-            break;
-            // Import from SIGA
-        case 2:
-            [self importPhotoFromSIGA];
-            break;
-        default:
-            break;
-    }
-    
 }
 
 
