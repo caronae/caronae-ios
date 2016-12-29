@@ -1,7 +1,6 @@
 O desenvolvimento do Caronaê voltou e estamos ouvindo todo o feedback que recebemos!
-Neste update corrigimos alguns problemas que foram reportados para nós.
+Neste update, fizemos algumas melhorias na pesquisa por caronas:
 
-- Usuários estrangeiros agora conseguem digitar o número do passaporte no login
-- Deixamos mais claro nas caronas se o horário é chegando ou saindo da UFRJ
-- Usuários que possuem telefones com 8 dígitos agora conseguem atualizar o perfil corretamente
-- Outras correções menores e melhorias no design
+- Encontre caronas em todos os centros! Sabemos que pra alguns, o que basta é conseguir 
+chegar ao Fundão, então agora você pode selecionar 'Todos os Centros' na pesquisa.
+- Salvamos os dados da última pesquisa para que você não precise selecionar tudo de novo.

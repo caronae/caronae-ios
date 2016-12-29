@@ -1,8 +1,8 @@
 #import <ActionSheetStringPicker.h>
-#import <AFNetworking/AFNetworking.h>
 #import <sys/utsname.h>
 #import "CaronaeAlertController.h"
 #import "FalaeViewController.h"
+#import "Caronae-Swift.h"
 
 /**
  * Returns the model of the current device.
@@ -63,19 +63,16 @@ NSString *deviceName() {
 }
 
 - (void)sendMessage:(NSDictionary *)message {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     [self showLoadingHUD:YES];
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/falae/sendMessage"] parameters:message success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance POST:@"/falae/sendMessage" parameters:message success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [self showLoadingHUD:NO];
         
         [CaronaeAlertController presentOkAlertWithTitle:@"Mensagem enviada!" message:@"Obrigado por nos mandar uma mensagem. Nossa equipe irá entrar em contato em breve." handler:^{
             [self.navigationController popViewControllerAnimated:YES];
         }];
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self showLoadingHUD:NO];
         NSLog(@"Error: %@", error.localizedDescription);
         

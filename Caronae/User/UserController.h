@@ -4,7 +4,7 @@
 
 @interface UserController : NSObject
 
-+ (instancetype)sharedInstance;
++ (instancetype _Nonnull)sharedInstance;
 
 /**
  *  Stores the logged in user object, token and previous rides.
@@ -13,16 +13,16 @@
  *  @param userToken   The user's authentication token.
  *  @param userRides   An array of ride dictionaries.
  */
-- (void)setUser:(User *)user token:(NSString *)userToken rides:(NSArray<Ride *> *)userRides;
+- (void)setUser:(User *_Nullable)user token:(NSString *_Nullable)userToken rides:(NSArray<Ride *> *_Nullable)userRides;
 
 /**
  *  Signs out current user and presents the authentication screen modally.
  */
 - (void)signOut;
 
-@property (nonatomic, readwrite) User *user;
-@property (nonatomic, readonly) NSString *userToken;
-@property (nonatomic, readonly) NSString *userFBToken;
-@property (nonatomic, readwrite) NSArray<Ride *> *userRides;
+@property (nonatomic, readwrite) User *_Nullable user;
+@property (nonatomic, readonly) NSString *_Nullable userToken;
+@property (nonatomic, readonly) NSString *_Nullable userFBToken;
+@property (nonatomic, readwrite) NSArray<Ride *> *_Nullable userRides;
 
 @end

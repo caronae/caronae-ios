@@ -1,11 +1,11 @@
 #import <ActionSheetDatePicker.h>
 #import <ActionSheetStringPicker.h>
-#import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
 #import "CreateRideViewController.h"
 #import "NSDate+nextHour.h"
 #import "ZoneSelectionViewController.h"
+#import "Caronae-Swift.h"
 
 @interface CreateRideViewController () <UITextViewDelegate, ZoneSelectionDelegate>
 
@@ -29,21 +29,6 @@
     
     self.hubs = [CaronaeConstants defaults].centers;
     self.selectedHub = self.hubs.firstObject;
-    
-    NSDictionary *lastRideLocation = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
-    if (lastRideLocation) {
-        self.zone = lastRideLocation[@"zone"];
-        self.neighborhood = lastRideLocation[@"neighborhood"];
-        if (self.neighborhood) {
-            [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
-        }
-        if (lastRideLocation[@"place"]) self.reference.text = lastRideLocation[@"place"];
-        if (lastRideLocation[@"route"]) self.route.text = lastRideLocation[@"route"];
-        if (lastRideLocation[@"hub"]) {
-            self.selectedHub = lastRideLocation[@"hub"];
-            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
-        }
-    }
     
     self.rideDate = [NSDate nextHour];
     self.weekDays = [NSMutableArray arrayWithCapacity:7];
@@ -70,6 +55,22 @@
     
     // Dismiss keyboard when tapping the view
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
+    
+    NSDictionary *lastRideLocation = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
+    if (lastRideLocation) {
+        self.zone = lastRideLocation[@"zone"];
+        self.neighborhood = lastRideLocation[@"neighborhood"];
+        if (self.neighborhood) {
+            [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
+        }
+        if (lastRideLocation[@"place"]) self.reference.text = lastRideLocation[@"place"];
+        if (lastRideLocation[@"route"]) self.route.text = lastRideLocation[@"route"];
+        if (lastRideLocation[@"hubGoing"]) {
+            self.selectedHub = lastRideLocation[@"hubGoing"];
+            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
+        }
+        if (lastRideLocation[@"description"]) self.notes.text = lastRideLocation[@"description"];
+    }
 }
 
 - (void)checkIfUserHasCar {
@@ -117,8 +118,21 @@
     return ride;
 }
 
-- (void)savePresetLocationZone:(NSString *)zone neighborhood:(NSString *)neighborhood place:(NSString *)place route:(NSString *)route hub:(NSString *)hub {
-    NSDictionary *location = NSDictionaryOfVariableBindings(zone, neighborhood, place, route, hub);
+- (void)savePresetLocationZone:(NSString *)zone neighborhood:(NSString *)neighborhood place:(NSString *)place route:(NSString *)route hub:(NSString *)hub description:(NSString *)description going:(NSNumber *)going {
+    NSDictionary *location = [NSDictionary dictionary];
+    NSDictionary *lastRideLocation = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
+    if (lastRideLocation) {
+        location = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
+    }
+    if ([going boolValue]) {
+        NSString *hubGoing = hub;
+        NSDictionary *newLocation = NSDictionaryOfVariableBindings(zone, neighborhood, place, route, hubGoing, description);
+        location = [location mtl_dictionaryByAddingEntriesFromDictionary:newLocation];
+    } else {
+        NSString *hubReturning = hub;
+        NSDictionary *newLocation = NSDictionaryOfVariableBindings(zone, neighborhood, place, route, hubReturning, description);
+        location = [location mtl_dictionaryByAddingEntriesFromDictionary:newLocation];
+    }
     [[NSUserDefaults standardUserDefaults] setObject:location forKey:@"lastOfferedRideLocation"];
 }
 
@@ -126,10 +140,7 @@
     [SVProgressHUD show];
     self.createRideButton.enabled = NO;
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride"] parameters:ride success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance POST:@"/ride" parameters:ride success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         NSError *error;
         NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
@@ -144,7 +155,7 @@
         
         [self dismissViewControllerAnimated:YES completion:nil];
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         self.createRideButton.enabled = YES;
         
@@ -162,7 +173,7 @@
     }
     
     NSDictionary *ride = [self generateRideDictionaryFromView];
-    [self savePresetLocationZone:ride[@"myzone"] neighborhood:ride[@"neighborhood"] place:ride[@"place"] route:ride[@"route"] hub:ride[@"hub"]];
+    [self savePresetLocationZone:ride[@"myzone"] neighborhood:ride[@"neighborhood"] place:ride[@"place"] route:ride[@"route"] hub:ride[@"hub"] description:ride[@"description"] going:ride[@"going"]];
     
     // Check if the user has selected the routine details
     if (![ride[@"repeats_until"] isKindOfClass:[NSNull class]] && [ride[@"week_days"] isEqualToString:@""]) {
@@ -309,14 +320,27 @@
 
 - (IBAction)directionChanged:(UISegmentedControl *)sender {
     [self.view endEditing:YES];
+    NSDictionary *lastRideLocation = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
     if (sender.selectedSegmentIndex == 0) {
         self.hubs = [CaronaeConstants defaults].centers;
+        if (lastRideLocation[@"hubGoing"]) {
+            self.selectedHub = lastRideLocation[@"hubGoing"];
+            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
+        } else {
+            self.selectedHub = self.hubs.firstObject;
+            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
+        }
     }
     else {
         self.hubs = [CaronaeConstants defaults].hubs;
+        if (lastRideLocation[@"hubReturning"]) {
+            self.selectedHub = lastRideLocation[@"hubReturning"];
+            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
+        } else {
+            self.selectedHub = self.hubs.firstObject;
+            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
+        }
     }
-    self.selectedHub = self.hubs.firstObject;
-    [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
 }
 
 - (IBAction)selectCenterTapped:(id)sender {

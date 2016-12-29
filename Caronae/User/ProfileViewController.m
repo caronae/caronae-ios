@@ -1,4 +1,3 @@
-#import <AFNetworking/AFNetworking.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
@@ -8,6 +7,7 @@
 #import "RiderCell.h"
 #import "SHSPhoneNumberFormatter+UserConfig.h"
 #import "UIImageView+crn_setImageWithURL.h"
+#import "Caronae-Swift.h"
 
 @interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
@@ -98,11 +98,7 @@
 }
 
 - (void)updateRidesOfferedCount {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/getRidesHistoryCount/%@", _user.userID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance GET:[NSString stringWithFormat:@"/ride/getRidesHistoryCount/%@", _user.userID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         int numDrives = [responseObject[@"offeredCount"] intValue];
         int numRides = [responseObject[@"takenCount"] intValue];
         
@@ -114,7 +110,7 @@
         if ([self isMyProfile]) {
             [UserController sharedInstance].user = _user;
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error reading history count for user: %@", error.localizedDescription);
     }];
 }
@@ -125,12 +121,7 @@
         return;
     }
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userFBToken forHTTPHeaderField:@"Facebook-Token"];
-    
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _user.facebookID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance GET:[NSString stringWithFormat:@"/user/%@/mutualFriends", _user.facebookID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
         int totalMutualFriends = [responseObject[@"total_count"] intValue];
         NSError *error;
@@ -149,7 +140,7 @@
         else {
             _mutualFriendsLabel.text = @"Amigos em comum: 0";
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
     }];
 }

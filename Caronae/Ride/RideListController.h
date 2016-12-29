@@ -9,6 +9,7 @@
 
 - (RideViewController *)rideViewControllerForRide:(Ride *)ride;
 
+- (void)loadingFailedWithStatusCode:(NSInteger)statusCode andError:(NSError *)error;
 - (void)loadingFailedWithOperation:(AFHTTPRequestOperation *)operation error:(NSError *)error;
 
 - (RideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;

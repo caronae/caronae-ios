@@ -16,7 +16,9 @@
 @property (nonatomic, assign) BOOL going;
 @property (nonatomic, strong) User *driver;
 @property (nonatomic, strong) NSArray<User *> *users;
+@property (nonatomic, assign) long routineID;
 
 @property (readonly, nonatomic, copy) NSString *title;
 @property (readonly, nonatomic, assign) BOOL active;
+@property (readonly, nonatomic, assign) BOOL isRoutine;
 @end

@@ -12,7 +12,7 @@
 #import "NotificationStore.h"
 #import "TabBarController.h"
 #import "Caronae-Swift.h"
- 
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -51,16 +51,6 @@
     }
     
     return YES;
-}
-
-// TODO: Remove before release
-- (void)fixUserPhoneIfNecessary {
-    User *user = [UserController sharedInstance].user;
-    if (user.phoneNumber.length == 11) {
-        NSString *newPhoneNumber = [@"0" stringByAppendingString:user.phoneNumber];
-        user.phoneNumber = newPhoneNumber;
-        [UserController sharedInstance].user = user;
-    }
 }
 
 - (void)updateApplicationBadgeNumber {

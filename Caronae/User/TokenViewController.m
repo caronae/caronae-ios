@@ -1,4 +1,3 @@
-#import <AFNetworking/AFNetworking.h>
 #import <SafariServices/SafariServices.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "AppDelegate.h"
@@ -37,10 +36,7 @@
     NSString *idUFRJ = _idTextField.text;
     NSDictionary *params = @{ @"id_ufrj": idUFRJ,
                               @"token": userToken };
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/user/login"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance POST:@"/user/login" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         
         // Check if the authentication was ok if we received an user object
@@ -72,12 +68,13 @@
             NSLog(@"Error authenticating");
             _authButton.enabled = YES;
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         NSLog(@"Error trying to authenticate: %@", error.localizedDescription);
         
         NSString *errorMsg;
-        if (operation.response.statusCode == 403) {
+        NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
+        if (response.statusCode == 403) {
             errorMsg = @"Token não autorizado. Verifique se o mesmo foi digitado corretamente e tente de novo.";
         }
         else {

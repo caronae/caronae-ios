@@ -1,7 +1,7 @@
-#import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
 #import "SignupViewController.h"
+#import "Caronae-Swift.h"
 
 @interface SignupViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *baseAPILabel;
@@ -25,9 +25,7 @@
     
     [SVProgressHUD show];
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/signup/intranet/%@/%@", idUFRJ, token]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance GET:[NSString stringWithFormat:@"/user/signup/intranet/%@/%@", idUFRJ, token] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         
         // Check if the authentication was ok if we received an user object
@@ -41,13 +39,13 @@
             NSLog(@"Error authenticating");
             self.createButton.enabled = YES;
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         NSLog(@"Error creating user: %@", error.localizedDescription);
         
         NSString *errorMsg;
-        if (operation.responseObject[@"error"]) {
-            errorMsg = operation.responseObject[@"error"];
+        if (error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]) {
+            errorMsg = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
         }
         else {
             errorMsg = [NSString stringWithFormat:@"Ocorreu um erro desconhecido ou a conexão falhou. (%@)", error.localizedDescription];

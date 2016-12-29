@@ -1,4 +1,3 @@
-#import <AFNetworking/AFNetworking.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <SVProgressHUD/SVProgressHUD.h>
@@ -9,6 +8,7 @@
 #import "EditProfileViewController.h"
 #import "UIImageView+crn_setImageWithURL.h"
 #import "ZoneSelectionViewController.h"
+#import "Caronae-Swift.h"
 
 @interface EditProfileViewController () <ZoneSelectionDelegate, UIActionSheetDelegate, UITextFieldDelegate>
 @property (nonatomic) IBOutlet UIBarButtonItem *saveButton;
@@ -126,14 +126,10 @@
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando perfil" message:@"Ocorreu um erro editando seu perfil."];
         return;
     }
-
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     [self showLoadingHUD:YES];
     
-    [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user"] parameters:updatedUserJSON success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance PUT:@"/user" parameters:updatedUserJSON success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [self showLoadingHUD:NO];
         
         NSLog(@"User updated.");
@@ -153,7 +149,7 @@
         }
         
         [self dismissViewControllerAnimated:YES completion:nil];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self showLoadingHUD:NO];
         NSLog(@"Error saving profile: %@", error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando perfil" message:@"Ocorreu um erro salvando as alterações no seu perfil."];
@@ -382,9 +378,6 @@
         failure([NSError errorWithDomain:CaronaeErrorDomain code:3 userInfo:@{@"localizedDescription":@"Failed updating user's Facebook ID remotely."}]);
     }
     else {
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
         
         NSDictionary *params;
         if (fbID) {
@@ -394,9 +387,9 @@
             params = @{@"token": token};
         }
         
-        [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user/saveFaceId"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            success(operation);
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [CaronaeAPIHTTPSessionManager.instance PUT:@"/user/saveFaceId" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+          success(task);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [self updateUsersFacebookID:fbID token:token success:success failure:failure tries:times-1];
         }];
     }
@@ -440,16 +433,12 @@
     NSLog(@"Importing profile picture from SIGA...");
     
     [SVProgressHUD show];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/user/intranetPhotoUrl"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance GET:@"/user/intranetPhotoUrl" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         _photoURL = responseObject[@"url"];
         [_photo crn_setImageWithURL:[NSURL URLWithString:_photoURL] completed:^{
             [SVProgressHUD dismiss];
         }];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         NSLog(@"result: %@", error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do SIGA."];
