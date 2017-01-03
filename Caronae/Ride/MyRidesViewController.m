@@ -27,6 +27,14 @@
 }
 
 - (void)refreshTable:(id)sender {
+    if ([UserController sharedInstance].userToken) {
+        [RideService.instance getOfferedRidesWithSuccess:^(NSArray<NSDictionary<NSString *, id> *> * _Nonnull rides) {
+            [[NSUserDefaults standardUserDefaults] setObject:rides forKey:@"userCreatedRides"];
+            NSLog(@"userCreatedRides updated");
+        } error:^(NSError * _Nullable error) {
+            NSLog(@"Couldn't update userCreatedRides");
+        }];
+    }
     if (self.refreshControl.refreshing) {
         [self loadMyRides];
     }
@@ -114,36 +122,6 @@
     [[NSUserDefaults standardUserDefaults] setObject:newUserRidesArchive forKey:@"userCreatedRides"];
     
     [self loadMyRides];
-}
-
-- (void)didDeleteRide:(Ride *)ride {
-    NSLog(@"User has deleted ride with id %ld", ride.id);
-    
-    [self removeRideFromMyRides:ride];
-}
-
-- (void)didFinishRide:(Ride *)ride {
-    NSLog(@"User has finished ride with id %ld", ride.id);
-    
-    [self removeRideFromMyRides:ride];
-    [self loadMyRides];
-}
-
-- (void)removeRideFromMyRides:(Ride *)ride {
-    // Find and delete ride from persistent store
-    NSMutableArray *newRides = [[[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"] mutableCopy];
-    for (NSDictionary *r in newRides) {
-        if ([r[@"rideId"] longValue] == ride.id || [r[@"id"] longValue] == ride.id) {
-            [newRides removeObject:r];
-            [[NSUserDefaults standardUserDefaults] setObject:newRides forKey:@"userCreatedRides"];
-            return;
-        }
-    }
-    
-    if (![self.rides containsObject:ride]) {
-        NSLog(@"Error: ride to be deleted was not found in user's rides");
-        return;
-    }
 }
 
 

@@ -341,9 +341,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [[ChatStore chatForRide:_ride] unsubscribe];
         [NotificationStore clearNotificationsForRide:@(_ride.id) ofType:NotificationTypeAll];
         
-        if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
-            [_delegate didDeleteRide:_ride];
-        }
+        [RideService.instance removeRideFromMyRidesWithRide:_ride];
         
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -355,6 +353,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)deleteRoutine {
+    // TODO: delete routine
 //    NSLog(@"Requesting to delete routine %ld", _ride.routineID);
 //    
 //    _cancelButton.enabled = NO;
@@ -378,9 +377,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 //                [[ChatStore chatForRide:userRide] unsubscribe];
 //                [NotificationStore clearNotificationsForRide:@(userRide.rideID) ofType:NotificationTypeAll];
 //                
-//                if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
-//                    [_delegate didDeleteRide:userRide];
-//                }
+//                [RideService.instance removeRideFromMyRidesWithRide:userRide];
 //            }
 //        }
 //        
@@ -408,9 +405,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [[ChatStore chatForRide:_ride] unsubscribe];
         [NotificationStore clearNotificationsForRide:@(_ride.id) ofType:NotificationTypeAll];
         
-        if (_delegate && [_delegate respondsToSelector:@selector(didFinishRide:)]) {
-            [_delegate didFinishRide:_ride];
-        }
+        [RideService.instance removeRideFromMyRidesWithRide:_ride];
         
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

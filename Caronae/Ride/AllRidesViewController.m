@@ -64,29 +64,8 @@
         self.tableView.backgroundView = self.loadingLabel;
     }
     
-    [CaronaeAPIHTTPSessionManager.instance GET:@"/ride/all" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        [self.refreshControl endRefreshing];
-        
-        NSError *error;
-        // TODO: deserialize response
-        NSArray<Ride *> *rides = nil;
-        if (error) {
-            NSLog(@"Error parsing all rides. %@", error.localizedDescription);
-            NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
-            [self loadingFailedWithStatusCode:response.statusCode andError:error];
-            return;
-        }
-        
-        // Skip rides in the past
-        NSMutableArray<Ride *> *futureRides = [NSMutableArray arrayWithCapacity:rides.count];
-        for (Ride *ride in rides) {
-            if ([ride.date compare:NSDate.date] != NSOrderedAscending) {
-                [futureRides addObject:ride];
-            }
-        }
-        
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-        self.rides = [futureRides sortedArrayUsingDescriptors:@[sortDescriptor]];
+    [RideService.instance getAllRidesWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
+        self.rides = rides;
         
         [self.tableView reloadData];
         
@@ -98,13 +77,13 @@
             self.tableView.backgroundView = self.emptyTableLabel;
             self.tableView.tableFooterView = nil;
         }
-
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self.refreshControl endRefreshing];
         
-        NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
-        [self loadingFailedWithStatusCode:response.statusCode andError:error];
+        [self.refreshControl endRefreshing];
+    } error:^(NSError * _Nullable error) {
+        [self loadingFailedWithStatusCode:0 andError:error];
+        [self.refreshControl endRefreshing];
     }];
+    
 }
 
 
