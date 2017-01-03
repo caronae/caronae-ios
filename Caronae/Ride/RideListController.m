@@ -4,6 +4,7 @@
 #import "CaronaeAlertController.h"
 #import "RideListController.h"
 #import "UIViewController+isVisible.h"
+#import "Caronae-Swift.h"
 
 static NSString *const RideListDefaultEmptyMessage = @"Nenhuma carona\nencontrada.";
 static NSString *const RideListDefaultLoadingMessage = @"Carregando...";

@@ -1,16 +1,17 @@
 #import "ChatStore.h"
+#import "Caronae-Swift.h"
 
 static NSMutableDictionary<NSNumber *, Chat *> *chats;
 
 @implementation ChatStore
 
 + (void)setChat:(Chat *)chat forRide:(Ride *)ride {
-    if (!chat || !ride || ride.rideID <= 0) {
+    if (!chat || !ride || ride.id <= 0) {
         NSLog(@"Tried to store a Chat with an invalid parameter (Chat: %@, Ride: %@)", chat, ride);
         return;
     }
     
-    NSNumber *key = [NSNumber numberWithLong:ride.rideID];
+    NSNumber *key = [NSNumber numberWithLong:ride.id];
     
     @synchronized (chats) {
         if (!chats) {
@@ -24,9 +25,9 @@ static NSMutableDictionary<NSNumber *, Chat *> *chats;
 }
 
 + (Chat *)chatForRide:(Ride *)ride {
-    if (!ride || ride.rideID <= 0) return nil;
+    if (!ride || ride.id <= 0) return nil;
     
-    NSNumber *key = [NSNumber numberWithLong:ride.rideID];
+    NSNumber *key = [NSNumber numberWithLong:ride.id];
     
     @synchronized (chats) {
         if (!chats) return nil;

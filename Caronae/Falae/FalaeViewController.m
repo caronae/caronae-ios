@@ -1,4 +1,5 @@
-#import <ActionSheetStringPicker.h>
+@import ActionSheetPicker_3_0;
+
 #import <sys/utsname.h>
 #import "CaronaeAlertController.h"
 #import "FalaeViewController.h"
@@ -43,7 +44,7 @@ NSString *deviceName() {
         _selectedTypeCute = @"Denúncia";
         _selectedTypeInitialIndex = (int)[_messageTypes indexOfObject:_selectedTypeCute];
         [_typeButton setTitle:@"Denúncia" forState:UIControlStateNormal];
-        _subjectTextField.text = [NSString stringWithFormat:@"Denúncia sobre usuário %@ (id: %d)", _reportedUser.name, [_reportedUser.userID intValue]];
+        _subjectTextField.text = [NSString stringWithFormat:@"Denúncia sobre usuário %@ (id: %ld)", _reportedUser.name, (long)_reportedUser.id];
         _subjectTextField.enabled = NO;
     }
     else {

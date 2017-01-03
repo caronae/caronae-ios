@@ -1,6 +1,8 @@
 platform :ios, '8.0'
 
 target 'Caronae' do
+    use_frameworks!
+    
     pod 'AFNetworking', '~> 2.6.3'
     pod 'ActionSheetPicker-3.0', '~> 2.0.5'
     pod 'TPKeyboardAvoiding', '~> 1.2.11'
@@ -10,9 +12,10 @@ target 'Caronae' do
     pod 'SHSPhoneComponent'
     pod 'Google/CloudMessaging'
     pod 'CRToast', '~> 0.0.7'
-    pod 'Mantle', '~> 2.0.7'
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
+    pod 'RealmSwift', '~> 2.1'
+    pod 'ObjectMapper', '~> 2.2'
     
     target 'CaronaeTests' do
         inherit! :search_paths

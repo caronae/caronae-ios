@@ -5,6 +5,7 @@
 #import "NSDictionary+dictionaryWithoutNulls.h"
 #import "RideRequestsStore.h"
 #import "UserController.h"
+#import "Caronae-Swift.h"
 
 @implementation UserController
 
@@ -30,7 +31,8 @@ static NSUserDefaults *userDefaults;
     NSError *error;
     NSDictionary *userJSON = [userDefaults dictionaryForKey:@"user"];
     
-    User *user = [MTLJSONAdapter modelOfClass:User.class fromJSONDictionary:userJSON error:&error];
+    // TODO: load from disk
+    User *user = nil;
     if (error) {
         NSLog(@"Error deserializing user from defaults. %@", error.localizedDescription);
     }
@@ -41,7 +43,8 @@ static NSUserDefaults *userDefaults;
 - (void)setUser:(User *)user {
     if (user) {
         NSError *error;
-        NSDictionary *userJSON = [[MTLJSONAdapter JSONDictionaryFromModel:user error:&error] dictionaryWithoutNulls];
+        // TODO: serialize and persist
+        NSDictionary *userJSON = nil;
         
         if (!error) {
             [userDefaults setObject:userJSON forKey:@"user"];

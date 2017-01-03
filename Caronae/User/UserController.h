@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
-#import "Ride.h"
-#import "User.h"
+
+@class User, Ride;
 
 @interface UserController : NSObject
 

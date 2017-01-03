@@ -15,9 +15,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([UserController sharedInstance].user.isProfileIncomplete) {
-        [self performSelector:@selector(presentFinishProfileScreen) withObject:nil afterDelay:0.0];
-    }
+    // TODO: Check if the user has completed the profile
+//    if ([UserController sharedInstance].user.isProfileIncomplete) {
+//        [self performSelector:@selector(presentFinishProfileScreen) withObject:nil afterDelay:0.0];
+//    }
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
 }
@@ -67,7 +68,8 @@
         [self.refreshControl endRefreshing];
         
         NSError *error;
-        NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
+        // TODO: deserialize response
+        NSArray<Ride *> *rides = nil;
         if (error) {
             NSLog(@"Error parsing all rides. %@", error.localizedDescription);
             NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;

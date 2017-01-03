@@ -170,55 +170,56 @@
 }
 
 - (void)handleChatNotification:(NSDictionary *)userInfo {
-    int senderId = [userInfo[@"senderId"] intValue];
-    int currentUserId = [[UserController sharedInstance].user.userID intValue];
+    long senderId = [userInfo[@"senderId"] longValue];
+    long currentUserId = [UserController sharedInstance].user.id;
     
     // We don't need to handle a message if it's from the logged user
     if (senderId == currentUserId) {
         return;
     }
     
-    NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
-    NSLog(@"Received chat message for ride %@", rideID);
-    
-    NSManagedObjectContext *context = [self managedObjectContext];
-    Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
-    message.text = userInfo[@"message"];
-    message.incoming = @(YES);
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    message.sentDate = [dateFormatter dateFromString:userInfo[@"time"]];
-    message.rideID = rideID;
-    message.senderName = userInfo[@"senderName"];
-    message.senderId = @([userInfo[@"senderId"] intValue]);
-    
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", error.localizedDescription);
-        return;
-    }
-    
-    NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", message.senderName, message.text];
-    if ([UIApplication sharedApplication].applicationState != UIApplicationStateActive) {
-        UILocalNotification *notification = [[UILocalNotification alloc] init];
-        notification.fireDate = message.sentDate;
-        notification.alertBody = notificationBody;
-        notification.userInfo = userInfo;
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-        
-        Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:message.sentDate type:@"chat" context:self.managedObjectContext];
-        [NotificationStore insertNotification:caronaeNotification];
-    }
-    else {
-        ChatViewController *topVC = (ChatViewController *)[self topViewController];
-        // Present notification only if the chat window is not already open
-        if (![topVC isKindOfClass:ChatViewController.class] || ![message.rideID isEqualToNumber:@(topVC.chat.ride.rideID)]) {
-            Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:message.sentDate type:@"chat" context:self.managedObjectContext];
-            [NotificationStore insertNotification:caronaeNotification];
-            
-            [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: notificationBody} completionBlock:nil];
-        }
-    }
+    // TODO: handle notification
+//    NSNumber *rideID = @([userInfo[@"rideId"] longValue]);
+//    NSLog(@"Received chat message for ride %@", rideID);
+//    
+//    NSManagedObjectContext *context = [self managedObjectContext];
+//    Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
+//    message.text = userInfo[@"message"];
+//    message.incoming = @(YES);
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    message.sentDate = [dateFormatter dateFromString:userInfo[@"time"]];
+//    message.rideID = rideID;
+//    message.senderName = userInfo[@"senderName"];
+//    message.senderId = @([userInfo[@"senderId"] intValue]);
+//    
+//    NSError *error;
+//    if (![context save:&error]) {
+//        NSLog(@"Whoops, couldn't save: %@", error.localizedDescription);
+//        return;
+//    }
+//    
+//    NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", message.senderName, message.text];
+//    if ([UIApplication sharedApplication].applicationState != UIApplicationStateActive) {
+//        UILocalNotification *notification = [[UILocalNotification alloc] init];
+//        notification.fireDate = message.sentDate;
+//        notification.alertBody = notificationBody;
+//        notification.userInfo = userInfo;
+//        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+//        
+//        Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:message.sentDate type:@"chat" context:self.managedObjectContext];
+//        [NotificationStore insertNotification:caronaeNotification];
+//    }
+//    else {
+//        ChatViewController *topVC = (ChatViewController *)[self topViewController];
+//        // Present notification only if the chat window is not already open
+//        if (![topVC isKindOfClass:ChatViewController.class] || ![message.rideID isEqualToNumber:@(topVC.chat.ride.rideID)]) {
+//            Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:message.sentDate type:@"chat" context:self.managedObjectContext];
+//            [NotificationStore insertNotification:caronaeNotification];
+//            
+//            [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: notificationBody} completionBlock:nil];
+//        }
+//    }
     
 }
 

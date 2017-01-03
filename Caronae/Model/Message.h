@@ -1,5 +1,5 @@
-#import <CoreData/CoreData.h>
-
-@interface Message : NSManagedObject
-
-@end
+//#import <CoreData/CoreData.h>
+//
+//@interface Message : NSManagedObject
+//
+//@end

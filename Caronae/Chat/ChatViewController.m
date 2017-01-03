@@ -6,6 +6,7 @@
 #import "Message+CoreDataProperties.h"
 #import "Notification+CoreDataProperties.h"
 #import "NotificationStore.h"
+#import "Caronae-Swift.h"
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 
@@ -44,7 +45,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Message.class) inManagedObjectContext:self.managedObjectContext];
     fetchRequest.entity = entity;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rideID == %@", @(self.chat.ride.rideID)];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rideID == %@", @(self.chat.ride.id)];
     fetchRequest.predicate = predicate;
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sentDate" ascending:YES];
     fetchRequest.sortDescriptors = @[sortDescriptor];
@@ -99,7 +100,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     
     [self loadChatMessages];
     
-    [NotificationStore clearNotificationsForRide:@(self.chat.ride.rideID) ofType:NotificationTypeChat];
+    [NotificationStore clearNotificationsForRide:@(self.chat.ride.id) ofType:NotificationTypeChat];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -161,21 +162,23 @@ static const CGFloat toolBarMinHeight = 44.0f;
     
     NSString *messageText = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     User *currentUser = [UserController sharedInstance].user;
+
+    // TODO: handle and persist message
+//    NSManagedObjectContext *context = [self managedObjectContext];
+//    Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
+//    message.text = messageText;
+//    message.incoming = @(NO);
+//    message.sentDate = [NSDate date];
+//    message.rideID = @(self.chat.ride.rideID);
+//    message.senderName = currentUser.name;
+//    message.senderId = currentUser.userID;
+//    
+//    NSError *error;
+//    if (![context save:&error]) {
+//        NSLog(@"Whoops, couldn't save: %@", error.localizedDescription);
+//    }
     
-    NSManagedObjectContext *context = [self managedObjectContext];
-    Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
-    message.text = messageText;
-    message.incoming = @(NO);
-    message.sentDate = [NSDate date];
-    message.rideID = @(self.chat.ride.rideID);
-    message.senderName = currentUser.name;
-    message.senderId = currentUser.userID;
-    
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", error.localizedDescription);
-    }
-    
+    Message *message = [[Message alloc] init];
     [self gcmSendMessage:message];
     [self appendMessage:message];
     self.textView.text = @"";
@@ -191,11 +194,11 @@ static const CGFloat toolBarMinHeight = 44.0f;
     
     // Handle chat messages
     if (msgType && [msgType isEqualToString:@"chat"]) {
-        NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
-        NSNumber *senderID = @([userInfo[@"senderId"] intValue]);
-        NSNumber *currentUserId = [UserController sharedInstance].user.userID;
+        long rideID = [userInfo[@"rideId"] longValue];
+        long senderID = [userInfo[@"senderId"] longValue];
+        long currentUserId = [UserController sharedInstance].user.id;
         
-        if ([rideID isEqual:@(self.chat.ride.rideID)] && ![senderID isEqual:currentUserId]) {
+        if (rideID == self.chat.ride.id && senderID !=currentUserId) {
             NSLog(@"Chat window did receive message: %@", userInfo[@"message"]);
             
             [self loadChatMessages];
@@ -206,33 +209,33 @@ static const CGFloat toolBarMinHeight = 44.0f;
 }
 
 - (void)gcmSendMessage:(Message *)message {
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    NSString *time = [dateFormatter stringFromDate:message.sentDate];
-    
-    NSDictionary *paramsData = @{
-                                 @"to": self.chat.topicID,
-                                 @"priority": @"high",
-                                 @"content_available": @(YES),
-                                 @"data": @{
-                                         @"message": message.text,
-                                         @"rideId": message.rideID,
-                                         @"msgType": @"chat",
-                                         @"senderName": message.senderName,
-                                         @"senderId": message.senderId,
-                                         @"time": time}
-                                 };
-    
-    // Send data message payload
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:CaronaeGCMAPIKey forHTTPHeaderField:@"Authorization"];
-    
-    [manager POST:CaronaeGCMAPISendURL parameters:paramsData success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Message data delivered. Reponse: %@", responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error sending message data: %@", error.localizedDescription);
-    }];
+//    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//    NSString *time = [dateFormatter stringFromDate:message.date];
+//    
+//    NSDictionary *paramsData = @{
+//                                 @"to": self.chat.topicID,
+//                                 @"priority": @"high",
+//                                 @"content_available": @(YES),
+//                                 @"data": @{
+//                                         @"message": message.body,
+//                                         @"rideId": @(message.ride.id),
+//                                         @"msgType": @"chat",
+//                                         @"senderName": message.senderName,
+//                                         @"senderId": message.senderId,
+//                                         @"time": time}
+//                                 };
+//    
+//    // Send data message payload
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    [manager.requestSerializer setValue:CaronaeGCMAPIKey forHTTPHeaderField:@"Authorization"];
+//    
+//    [manager POST:CaronaeGCMAPISendURL parameters:paramsData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"Message data delivered. Reponse: %@", responseObject);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error sending message data: %@", error.localizedDescription);
+//    }];
 }
 
 

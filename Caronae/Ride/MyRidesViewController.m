@@ -4,6 +4,7 @@
 #import "MyRidesViewController.h"
 #import "Notification.h"
 #import "NotificationStore.h"
+#import "Caronae-Swift.h"
 
 @interface MyRidesViewController () <CreateRideDelegate, RideDelegate>
 @property (nonatomic) NSArray<Notification *> *unreadNotifications;
@@ -46,7 +47,8 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSArray *ridesJSON = [[NSUserDefaults standardUserDefaults] arrayForKey:@"userCreatedRides"];
         NSError *error;
-        NSArray<Ride *> *rideArchive = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:ridesJSON error:&error];
+        // TODO: deserialize
+        NSArray<Ride *> *rideArchive = nil;
         if (error) {
             NSLog(@"Error parsing my rides. %@", error.localizedDescription);
             [self loadingFailedWithOperation:nil error:error];
@@ -100,7 +102,8 @@
     NSArray *oldUserRidesArchive = [[NSUserDefaults standardUserDefaults] arrayForKey:@"userCreatedRides"];
     NSMutableArray *newUserRidesArchive = [NSMutableArray arrayWithArray:oldUserRidesArchive];
     NSError *error;
-    NSArray *createdRidesJSON = [MTLJSONAdapter JSONArrayFromModels:rides error:&error];
+    // TODO: serialize
+    NSArray *createdRidesJSON = nil;
     if (error) {
         NSLog(@"Error serializing created rides. %@", error.localizedDescription);
         return;
@@ -114,13 +117,13 @@
 }
 
 - (void)didDeleteRide:(Ride *)ride {
-    NSLog(@"User has deleted ride with id %ld", ride.rideID);
+    NSLog(@"User has deleted ride with id %ld", ride.id);
     
     [self removeRideFromMyRides:ride];
 }
 
 - (void)didFinishRide:(Ride *)ride {
-    NSLog(@"User has finished ride with id %ld", ride.rideID);
+    NSLog(@"User has finished ride with id %ld", ride.id);
     
     [self removeRideFromMyRides:ride];
     [self loadMyRides];
@@ -130,7 +133,7 @@
     // Find and delete ride from persistent store
     NSMutableArray *newRides = [[[NSUserDefaults standardUserDefaults] objectForKey:@"userCreatedRides"] mutableCopy];
     for (NSDictionary *r in newRides) {
-        if ([r[@"rideId"] longValue] == ride.rideID || [r[@"id"] longValue] == ride.rideID) {
+        if ([r[@"rideId"] longValue] == ride.id || [r[@"id"] longValue] == ride.id) {
             [newRides removeObject:r];
             [[NSUserDefaults standardUserDefaults] setObject:newRides forKey:@"userCreatedRides"];
             return;
@@ -151,7 +154,7 @@
     
     int unreadCount = 0;
     Ride *ride = self.filteredRides[indexPath.row];
-    NSNumber *rideID = @(ride.rideID);
+    NSNumber *rideID = @(ride.id);
     for (Notification *caronaeNotification in self.unreadNotifications) {
         if ([caronaeNotification.rideID isEqualToNumber:rideID]) {
             ++unreadCount;

@@ -73,7 +73,7 @@
     
     _nameLabel.text = _user.name;
     _courseLabel.text = _user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", _user.profile, _user.course] : _user.profile;
-    _numDrivesLabel.text = _user.numDrives > -1 ? [NSString stringWithFormat:@"%d", _user.numDrives] : @"-";
+    _numDrivesLabel.text = _user.numDrives > -1 ? [NSString stringWithFormat:@"%ld", (long)_user.numDrives] : @"-";
     _numRidesLabel.text = _user.numRides > -1 ? [NSString stringWithFormat:@"%d", _user.numRides] : @"-";
     
     if (_user.phoneNumber.length > 0) {
@@ -98,7 +98,7 @@
 }
 
 - (void)updateRidesOfferedCount {
-    [CaronaeAPIHTTPSessionManager.instance GET:[NSString stringWithFormat:@"/ride/getRidesHistoryCount/%@", _user.userID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance GET:[NSString stringWithFormat:@"/ride/getRidesHistoryCount/%ld", (long)_user.id] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         int numDrives = [responseObject[@"offeredCount"] intValue];
         int numRides = [responseObject[@"takenCount"] intValue];
         
@@ -125,7 +125,8 @@
         NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
         int totalMutualFriends = [responseObject[@"total_count"] intValue];
         NSError *error;
-        NSArray<User *> *mutualFriends = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:mutualFriendsJSON error:&error];
+        // TODO: deserialize response
+        NSArray<User *> *mutualFriends = nil;
         
         if (error) {
             NSLog(@"Error parsing user from mutual friends: %@", error.localizedDescription);

@@ -56,7 +56,7 @@
     
     // Find ride
     for (Ride *r in self.rides) {
-        if ([rideID isEqualToNumber:@(r.rideID)]) {
+        if ([rideID isEqualToNumber:@(r.id)]) {
             ride = r;
             break;
         }
@@ -78,7 +78,8 @@
         [self.refreshControl endRefreshing];
         
         NSError *error;
-        NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
+        // TODO: deserialize response
+        NSArray<Ride *> *rides = nil;
         if (error) {
             NSLog(@"Error parsing active rides. %@", error.localizedDescription);
             NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
@@ -125,7 +126,7 @@
     
     int unreadCount = 0;
     Ride *ride = self.filteredRides[indexPath.row];
-    NSNumber *rideID = @(ride.rideID);
+    NSNumber *rideID = @(ride.id);
     for (Notification *caronaeNotification in self.unreadNotifications) {
         if ([caronaeNotification.rideID isEqualToNumber:rideID]) {
             ++unreadCount;

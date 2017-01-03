@@ -120,7 +120,8 @@
 - (void)saveProfile {
     User *updatedUser = [self generateUserFromView];
     NSError *error = nil;
-    NSDictionary *updatedUserJSON = [MTLJSONAdapter JSONDictionaryFromModel:updatedUser error:&error];
+    // TODO: serialize
+    NSDictionary *updatedUserJSON = nil;
     if (error) {
         NSLog(@"User serialization error: %@", error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando perfil" message:@"Ocorreu um erro editando seu perfil."];

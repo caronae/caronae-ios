@@ -1,5 +1,6 @@
 #import <Google/CloudMessaging.h>
 #import "Chat.h"
+#import "Caronae-Swift.h"
 
 @implementation Chat
 
@@ -7,7 +8,7 @@
     self = [super init];
     if (self) {
         _ride = ride;
-        _topicID = [Chat topicIDwithRideID:@(ride.rideID)];
+        _topicID = [Chat topicIDwithRideID:@(ride.id)];
     }
     return self;
 }
@@ -24,13 +25,13 @@
 }
 
 - (BOOL)subscribed {
-    NSNumber *rideId = @(self.ride.rideID);
+    NSNumber *rideId = @(self.ride.id);
     NSArray *subscribedTopics = [[NSUserDefaults standardUserDefaults] arrayForKey:@"subscribedTopics"];
     return [subscribedTopics containsObject:rideId];
 }
 
 - (void)setSubscribed:(BOOL)subscribed {
-    NSNumber *rideId = @(self.ride.rideID);
+    NSNumber *rideId = @(self.ride.id);
     NSArray *subscribedTopics = [[NSUserDefaults standardUserDefaults] arrayForKey:@"subscribedTopics"];
     
     // Save subscribed

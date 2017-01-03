@@ -1,3 +1,5 @@
+import AFNetworking
+
 class CaronaeAPIHTTPSessionManager: AFHTTPSessionManager {
     static let instance = CaronaeAPIHTTPSessionManager()
    

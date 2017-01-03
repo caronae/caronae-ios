@@ -49,7 +49,8 @@
             }
             
             NSError *error;
-            User *user = [MTLJSONAdapter modelOfClass:User.class fromJSONDictionary:responseObject[@"user"] error:&error];
+            // TODO: deserialize response
+            User *user = nil;
             if (error) {
                 [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível autenticar." message:@"Ocorreu um erro carregando seu perfil."];
                 _authButton.enabled = YES;

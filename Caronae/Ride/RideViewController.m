@@ -76,7 +76,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [_driverPhoto crn_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]];
     }
     
-    self.color = [CaronaeConstants colorForZone:_ride.zone];
+    self.color = [CaronaeConstants colorForZone:_ride.region];
     
     UINib *cellNib = [UINib nibWithNibName:NSStringFromClass(JoinRequestCell.class) bundle:nil];
     [self.requestsTable registerNib:cellNib forCellReuseIdentifier:@"Request Cell"];
@@ -94,7 +94,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
             [self.mutualFriendsView removeFromSuperview];
             [self.phoneView removeFromSuperview];
             
-            if (!_ride.active) {
+            if (!_ride.isActive) {
                 [self.finishRideView removeFromSuperview];
             }
         });
@@ -105,12 +105,12 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         _carModelLabel.text = user.carModel;
         _carColorLabel.text = user.carColor;
         
-        // If the riders aren't provided then hide the riders view
-        if (!_ride.users) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.ridersView removeFromSuperview];
-            });
-        }
+        // TODO: If the riders aren't provided then hide the riders view
+//        if (!_ride.riders) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self.ridersView removeFromSuperview];
+//            });
+//        }
     }
     // If the user is already a rider, hide 'join' button
     else if ([self userIsRider]) {
@@ -188,15 +188,16 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (BOOL)userIsDriver {
-    return [[UserController sharedInstance].user.userID isEqualToNumber:_ride.driver.userID];
+    return UserController.sharedInstance.user.id == _ride.driver.id;
 }
 
 - (BOOL)userIsRider {
-    for (User *user in _ride.users) {
-        if ([user.userID isEqualToNumber:[UserController sharedInstance].user.userID]) {
-            return YES;
-        }
-    }
+    // TODO: check if user is rider
+//    for (User *user in _ride.riders) {
+//        if (user.id == UserController.sharedInstance.user.id) {
+//            return YES;
+//        }
+//    }
     return NO;
 }
 
@@ -210,7 +211,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
         int totalMutualFriends = [responseObject[@"total_count"] intValue];
         NSError *error;
-        NSArray<User *> *mutualFriends = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:mutualFriendsJSON error:&error];
+        // TODO: deserialize response
+        NSArray<User *> *mutualFriends = nil;
         
         if (error) {
             NSLog(@"Error parsing mutual friends. %@", error.localizedDescription);
@@ -325,9 +327,9 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)leaveRide {
-    NSLog(@"Requesting to leave/cancel ride %ld", _ride.rideID);
+    NSLog(@"Requesting to leave/cancel ride %ld", (long)_ride.id);
     
-    NSDictionary *params = @{@"rideId": @(_ride.rideID)};
+    NSDictionary *params = @{@"rideId": @(_ride.id)};
     
     _cancelButton.enabled = NO;
     [SVProgressHUD show];
@@ -337,7 +339,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         NSLog(@"User left the ride. (Message: %@)", responseObject[@"message"]);
         
         [[ChatStore chatForRide:_ride] unsubscribe];
-        [NotificationStore clearNotificationsForRide:@(_ride.rideID) ofType:NotificationTypeAll];
+        [NotificationStore clearNotificationsForRide:@(_ride.id) ofType:NotificationTypeAll];
         
         if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
             [_delegate didDeleteRide:_ride];
@@ -353,48 +355,48 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)deleteRoutine {
-    NSLog(@"Requesting to delete routine %ld", _ride.routineID);
-    
-    _cancelButton.enabled = NO;
-    [SVProgressHUD show];
-    
-    NSError *error;
-    NSArray *userRidesArchive = [[NSUserDefaults standardUserDefaults] arrayForKey:@"userCreatedRides"];
-    NSArray<Ride *> *userRides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:userRidesArchive error:&error];
-    if (error) {
-        NSLog(@"Error parsing my rides. %@", error.localizedDescription);
-        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível cancelar sua rotina." message:error.localizedDescription];
-        return;
-    }
-    
-    [CaronaeAPIHTTPSessionManager.instance DELETE:[NSString stringWithFormat:@"/ride/allFromRoutine/%ld", _ride.routineID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        [SVProgressHUD dismiss];
-        NSLog(@"User left all rides from routine. (Message: %@)", responseObject[@"message"]);
-        
-        for (Ride *userRide in userRides) {
-            if (userRide.routineID == _ride.routineID) {
-                [[ChatStore chatForRide:userRide] unsubscribe];
-                [NotificationStore clearNotificationsForRide:@(userRide.rideID) ofType:NotificationTypeAll];
-                
-                if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
-                    [_delegate didDeleteRide:userRide];
-                }
-            }
-        }
-        
-        [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"Error deleting routine: %@", error.localizedDescription);
-        [SVProgressHUD dismiss];
-        _cancelButton.enabled = YES;
-        [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível cancelar sua rotina. (%@)", error.localizedDescription]];
-    }];
+//    NSLog(@"Requesting to delete routine %ld", _ride.routineID);
+//    
+//    _cancelButton.enabled = NO;
+//    [SVProgressHUD show];
+//    
+//    NSError *error;
+//    NSArray *userRidesArchive = [[NSUserDefaults standardUserDefaults] arrayForKey:@"userCreatedRides"];
+//    NSArray<Ride *> *userRides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:userRidesArchive error:&error];
+//    if (error) {
+//        NSLog(@"Error parsing my rides. %@", error.localizedDescription);
+//        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível cancelar sua rotina." message:error.localizedDescription];
+//        return;
+//    }
+//    
+//    [CaronaeAPIHTTPSessionManager.instance DELETE:[NSString stringWithFormat:@"/ride/allFromRoutine/%ld", _ride.routineID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//        [SVProgressHUD dismiss];
+//        NSLog(@"User left all rides from routine. (Message: %@)", responseObject[@"message"]);
+//        
+//        for (Ride *userRide in userRides) {
+//            if (userRide.routineID == _ride.routineID) {
+//                [[ChatStore chatForRide:userRide] unsubscribe];
+//                [NotificationStore clearNotificationsForRide:@(userRide.rideID) ofType:NotificationTypeAll];
+//                
+//                if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
+//                    [_delegate didDeleteRide:userRide];
+//                }
+//            }
+//        }
+//        
+//        [self.navigationController popViewControllerAnimated:YES];
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"Error deleting routine: %@", error.localizedDescription);
+//        [SVProgressHUD dismiss];
+//        _cancelButton.enabled = YES;
+//        [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível cancelar sua rotina. (%@)", error.localizedDescription]];
+//    }];
 }
 
 - (void)finishRide {
-    NSLog(@"Requesting to finish ride %ld", _ride.rideID);
+    NSLog(@"Requesting to finish ride %ld", _ride.id);
     
-    NSDictionary *params = @{@"rideId": @(_ride.rideID)};
+    NSDictionary *params = @{@"rideId": @(_ride.id)};
     
     _finishRideButton.enabled = NO;
     [SVProgressHUD show];
@@ -404,7 +406,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         NSLog(@"User finished the ride. (Message: %@)", responseObject[@"message"]);
         
         [[ChatStore chatForRide:_ride] unsubscribe];
-        [NotificationStore clearNotificationsForRide:@(_ride.rideID) ofType:NotificationTypeAll];
+        [NotificationStore clearNotificationsForRide:@(_ride.id) ofType:NotificationTypeAll];
         
         if (_delegate && [_delegate respondsToSelector:@selector(didFinishRide:)]) {
             [_delegate didFinishRide:_ride];
@@ -423,8 +425,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 #pragma mark - Join request methods
 
 - (void)requestJoinRide {
-    NSLog(@"Requesting to join ride %ld", _ride.rideID);
-    NSDictionary *params = @{@"rideId": @(_ride.rideID)};
+    NSLog(@"Requesting to join ride %ld", _ride.id);
+    NSDictionary *params = @{@"rideId": @(_ride.id)};
     
     _requestRideButton.enabled = NO;
     [SVProgressHUD show];
@@ -443,12 +445,13 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)loadJoinRequests {
-    long rideID = _ride.rideID;
+    long rideID = _ride.id;
     
     [CaronaeAPIHTTPSessionManager.instance GET:[NSString stringWithFormat:@"/ride/getRequesters/%ld", rideID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         
         NSError *error;
-        NSArray<User *> *joinRequests = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:responseObject error:&error];
+        // TODO: deserialize response
+        NSArray<User *> *joinRequests = nil;
         
         if (!error) {
             self.joinRequests = joinRequests;
@@ -457,7 +460,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
                 [self adjustHeightOfTableview];
             }
             
-            [NotificationStore clearNotificationsForRide:@(self.ride.rideID) ofType:NotificationTypeRequest];
+            [NotificationStore clearNotificationsForRide:@(self.ride.id) ofType:NotificationTypeRequest];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error loading join requests for ride %lu: %@", rideID, error.localizedDescription);
@@ -467,8 +470,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (void)joinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(JoinRequestCell *)cell {
     NSLog(@"Request for user %@ was %@", requestingUser.name, accepted ? @"accepted" : @"not accepted");
-    NSDictionary *params = @{@"userId": requestingUser.userID,
-                             @"rideId": @(_ride.rideID),
+    NSDictionary *params = @{@"userId": @(requestingUser.id),
+                             @"rideId": @(_ride.id),
                              @"accepted": @(accepted)};
     
     [cell setButtonsEnabled:NO];
@@ -549,7 +552,9 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (collectionView == _ridersCollectionView) {
-        return _ride.users.count;
+        return 0;
+        // TODO: return riders
+//        return _ride.riders.count;
     }
     else {
         return _mutualFriends.count;
@@ -561,7 +566,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     User *user;
     
     if (collectionView == _ridersCollectionView) {
-        user = _ride.users[indexPath.row];
+        // TODO: return riders
+//        user = _ride.riders[indexPath.row];
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Rider Cell" forIndexPath:indexPath];
     }
     else {

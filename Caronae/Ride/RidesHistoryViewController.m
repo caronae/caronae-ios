@@ -30,7 +30,8 @@
         [self.refreshControl endRefreshing];
 
         NSError *error;
-        NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
+        // TODO: deserialize rides
+        NSArray<Ride *> *rides = nil;
         if (error) {
             NSLog(@"Error parsing rides history. %@", error.localizedDescription);
             NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;

@@ -1,6 +1,6 @@
-#import <ActionSheetDatePicker.h>
-#import <ActionSheetStringPicker.h>
-#import <SVProgressHUD/SVProgressHUD.h>
+@import ActionSheetPicker_3_0;
+@import SVProgressHUD;
+
 #import "CaronaeAlertController.h"
 #import "CreateRideViewController.h"
 #import "NSDate+nextHour.h"
@@ -127,11 +127,13 @@
     if ([going boolValue]) {
         NSString *hubGoing = hub;
         NSDictionary *newLocation = NSDictionaryOfVariableBindings(zone, neighborhood, place, route, hubGoing, description);
-        location = [location mtl_dictionaryByAddingEntriesFromDictionary:newLocation];
+        // FIXME: persist location
+//        location = [location mtl_dictionaryByAddingEntriesFromDictionary:newLocation];
     } else {
         NSString *hubReturning = hub;
         NSDictionary *newLocation = NSDictionaryOfVariableBindings(zone, neighborhood, place, route, hubReturning, description);
-        location = [location mtl_dictionaryByAddingEntriesFromDictionary:newLocation];
+        // TODO: persist location
+//        location = [location mtl_dictionaryByAddingEntriesFromDictionary:newLocation];
     }
     [[NSUserDefaults standardUserDefaults] setObject:location forKey:@"lastOfferedRideLocation"];
 }
@@ -143,7 +145,8 @@
     [CaronaeAPIHTTPSessionManager.instance POST:@"/ride" parameters:ride success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         NSError *error;
-        NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
+        // TODO: deserialize response
+        NSArray<Ride *> *rides = nil;
         if (error) {
             NSLog(@"Error parsing my rides. %@", error.localizedDescription);
             self.createRideButton.enabled = YES;

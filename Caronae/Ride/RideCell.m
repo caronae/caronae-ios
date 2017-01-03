@@ -1,6 +1,7 @@
 #import "UIImageView+crn_setImageWithURL.h"
 #import "Ride.h"
 #import "RideCell.h"
+#import "Caronae-Swift.h"
 
 @implementation RideCell
 
@@ -43,7 +44,7 @@ static NSDateFormatter *dateFormatter;
     _driverNameLabel.text = displayName;
     
     [self updatePhoto];
-    self.color = [CaronaeConstants colorForZone:_ride.zone];
+    self.color = [CaronaeConstants colorForZone:_ride.region];
     
     _badgeLabel.hidden = YES;
 }

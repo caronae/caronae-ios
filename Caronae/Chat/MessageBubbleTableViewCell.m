@@ -70,15 +70,14 @@ static NSDateFormatter *dateFormatter;
 }
 
 - (void)configureWithMessage:(Message *)message {
-    _messageLabel.text = message.text;
-    _senderLabel.text = message.senderName;
-    _timeLabel.text = [dateFormatter stringFromDate:message.sentDate];
+    _messageLabel.text = message.body;
+    _senderLabel.text = message.sender.name;
+    _timeLabel.text = [dateFormatter stringFromDate:message.date];
     
-    BOOL incoming = [message.incoming boolValue];
     NSLayoutAttribute layoutAttribute;
     CGFloat layoutConstant;
     
-    if (incoming) {
+    if (message.incoming) {
         self.tag = incomingTag;
         _bubbleView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
         _messageLabel.textColor = [UIColor darkTextColor];
