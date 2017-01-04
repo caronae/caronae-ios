@@ -349,25 +349,16 @@
     NSLog(@"Importing profile picture from Facebook...");
     
     [SVProgressHUD show];
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:@"me/picture?type=large&redirect=false"
-                                  parameters:@{@"fields": @"url"}
-                                  HTTPMethod:@"GET"];
-    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
-                                          id result,
-                                          NSError *error) {
-        if (!error) {
-            NSDictionary *data = result[@"data"];
-            _photoURL = data[@"url"];
-            [_photo crn_setImageWithURL:[NSURL URLWithString:_photoURL] completed:^{
-                [SVProgressHUD dismiss];
-            }];
-        }
-        else {
+    [UserService.instance getPhotoFromFacebookWithSuccess:^(NSString * _Nonnull url) {
+        _photoURL = url;
+        [_photo crn_setImageWithURL:[NSURL URLWithString:_photoURL] completed:^{
             [SVProgressHUD dismiss];
-            NSLog(@"result: %@", error.localizedDescription);
-            [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do Facebook."];
-        }
+        }];
+
+    } error:^(NSError * _Nullable error) {
+        [SVProgressHUD dismiss];
+        NSLog(@"Error loading photo: %@", error.localizedDescription);
+        [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do Facebook."];
     }];
 }
 
@@ -378,14 +369,14 @@
     NSLog(@"Importing profile picture from SIGA...");
     
     [SVProgressHUD show];
-    [CaronaeAPIHTTPSessionManager.instance GET:@"/user/intranetPhotoUrl" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        _photoURL = responseObject[@"url"];
+    [UserService.instance getPhotoFromUFRJWithSuccess:^(NSString * _Nonnull url) {
+        _photoURL = url;
         [_photo crn_setImageWithURL:[NSURL URLWithString:_photoURL] completed:^{
             [SVProgressHUD dismiss];
         }];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } error:^(NSError * _Nullable error) {
         [SVProgressHUD dismiss];
-        NSLog(@"result: %@", error.localizedDescription);
+        NSLog(@"Error loading photo: %@", error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do SIGA."];
     }];
 }
