@@ -119,40 +119,15 @@
 
 - (void)saveProfile {
     User *updatedUser = [self generateUserFromView];
-    NSError *error = nil;
-    // TODO: Move to UserService
-    NSDictionary *updatedUserJSON = nil;
-    if (error) {
-        NSLog(@"User serialization error: %@", error.localizedDescription);
-        [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando perfil" message:@"Ocorreu um erro editando seu perfil."];
-        return;
-    }
-    
     [self showLoadingHUD:YES];
     
-    [CaronaeAPIHTTPSessionManager.instance PUT:@"/user" parameters:updatedUserJSON success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        [self showLoadingHUD:NO];
-        
+    __weak typeof(self) weakSelf = self;
+    [UserService.instance updateUser:updatedUser success:^{
+        [weakSelf showLoadingHUD:NO];
         NSLog(@"User updated.");
-        
-        // this has to be in a Realm transaction
-        self.user.phoneNumber = updatedUser.phoneNumber;
-        self.user.email = updatedUser.email;
-        self.user.carOwner = updatedUser.carOwner;
-        self.user.carModel = updatedUser.carModel;
-        self.user.carPlate = updatedUser.carPlate;
-        self.user.carColor = updatedUser.carColor;
-        self.user.location = updatedUser.location;
-        self.user.profilePictureURL = updatedUser.profilePictureURL;
-        UserService.instance.user = self.user;
-                
-        if ([self.delegate respondsToSelector:@selector(didUpdateUser:)]) {
-            [self.delegate didUpdateUser:self.user];
-        }
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self showLoadingHUD:NO];
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    } error:^(NSError * _Nullable error) {
+        [weakSelf showLoadingHUD:NO];
         NSLog(@"Error saving profile: %@", error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando perfil" message:@"Ocorreu um erro salvando as alterações no seu perfil."];
     }];

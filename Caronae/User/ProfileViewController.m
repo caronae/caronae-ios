@@ -9,7 +9,7 @@
 #import "UIImageView+crn_setImageWithURL.h"
 #import "Caronae-Swift.h"
 
-@interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource>
+@interface ProfileViewController () <UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *signoutButton;
 @property (weak, nonatomic) IBOutlet UIView *reportView;
@@ -112,21 +112,13 @@
 }
 
 
-#pragma mark - Edit profile methods
+#pragma mark - IBActions
 
 - (IBAction)didTapPhoneButton:(id)sender {
     NSString *phoneNumber = _user.phoneNumber;
     NSString *phoneNumberURLString = [NSString stringWithFormat:@"telprompt://%@", phoneNumber];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumberURLString]];
 }
-
-- (void)didUpdateUser:(User *)updatedUser {
-    self.user = updatedUser;
-    [self updateProfileFields];
-}
-
-
-#pragma mark - IBActions
 
 - (IBAction)didTapLogoutButton:(id)sender {
     CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Você deseja mesmo sair da sua conta?"
@@ -143,12 +135,7 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"EditProfile"]) {
-        UINavigationController *navigationVC = segue.destinationViewController;
-        EditProfileViewController *vc = (EditProfileViewController *)navigationVC.topViewController;
-        vc.delegate = self;
-    }
-    else if ([segue.identifier isEqualToString:@"ReportUser"]) {
+    if ([segue.identifier isEqualToString:@"ReportUser"]) {
         FalaeViewController *vc = segue.destinationViewController;
         [vc setReport:_user];
     }

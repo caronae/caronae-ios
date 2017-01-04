@@ -93,7 +93,7 @@ class UserService: NSObject {
             success(user!)
             
         }, failure: { task, err in
-            print("Failed to sign in: \(err.localizedDescription)")
+            NSLog("Failed to sign in: \(err.localizedDescription)")
             
             var authenticationError: CaronaeError = .unknownError
             if let response = task?.response as? HTTPURLResponse {
@@ -136,6 +136,34 @@ class UserService: NSObject {
         authViewController.modalTransitionStyle = .flipHorizontal
         topViewController?.present(authViewController, animated: true, completion: nil)
     }
+    
+    func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error?) -> Void) {
+        api.put("/user", parameters: user.toJSON(), success: { task, responseObject in
+            
+            let currentUser = self.user!
+            
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    currentUser.phoneNumber = user.phoneNumber
+                    currentUser.email = user.email
+                    currentUser.carOwner = user.carOwner
+                    currentUser.carModel = user.carModel
+                    currentUser.carPlate = user.carPlate
+                    currentUser.carColor = user.carColor
+                    currentUser.location = user.location
+                    currentUser.profilePictureURL = user.profilePictureURL
+                }
+            } catch let err {
+                error(err)
+            }
+            
+            success()
+        }, failure: { task, err in
+            error(err)
+        })
+    }
+
     
     func ridesCountForUser(withID id: Int, success: @escaping (_ offered: Int, _ taken: Int) -> Void, error: @escaping (_ error: Error?) -> Void) {
         api.get("/ride/getRidesHistoryCount/\(id)", parameters: nil, success: { task, responseObject in
