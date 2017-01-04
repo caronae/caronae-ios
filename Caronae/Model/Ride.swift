@@ -45,9 +45,9 @@ class Ride: Object, Mappable {
     
     var title: String {
         if going {
-            return "\(neighborhood!) → \(hub!)"
+            return String(format: "%@ → %@", neighborhood, hub)
         } else {
-            return "\(hub!) → \(neighborhood!)"
+            return String(format: "%@ → %@", hub, neighborhood)
         }
     }
     
