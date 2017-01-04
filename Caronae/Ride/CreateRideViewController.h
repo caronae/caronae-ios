@@ -48,4 +48,6 @@
 @property (nonatomic) NSString *neighborhood;
 @property (nonatomic) NSString *zone;
 
+@property (nonatomic) NSInteger previouslySelectedSegmentIndex;
+
 @end

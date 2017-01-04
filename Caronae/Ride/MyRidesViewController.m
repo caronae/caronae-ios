@@ -170,6 +170,7 @@
     if ([segue.identifier isEqualToString:@"CreateRide"]) {
         UINavigationController *navigationVC = segue.destinationViewController;
         CreateRideViewController *vc = (CreateRideViewController *)navigationVC.topViewController;
+        vc.previouslySelectedSegmentIndex = self.directionControl.selectedSegmentIndex;
         vc.delegate = self;
     }
 }
