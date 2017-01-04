@@ -6,4 +6,7 @@
 
 @interface SearchRideViewController : UIViewController
 @property (nonatomic, assign) id<SearchRideDelegate> delegate;
+
+@property (nonatomic) NSInteger previouslySelectedSegmentIndex;
+
 @end

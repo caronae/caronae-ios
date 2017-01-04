@@ -23,7 +23,6 @@ extern NSString *const CaronaeTermsOfUsePageURLString;
 extern NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey;
 extern NSString *const CaronaePreferenceLastSearchedCenterKey;
 extern NSString *const CaronaePreferenceLastSearchedDateKey;
-extern NSString *const CaronaePreferenceLastSearchedDirectionKey;
 
 
 #pragma mark - Notifications

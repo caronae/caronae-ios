@@ -5,4 +5,6 @@
 
 - (void)searchForRidesWithParameters:(NSDictionary *)params;
 
+@property (nonatomic) NSInteger previouslySelectedSegmentIndex;
+
 @end

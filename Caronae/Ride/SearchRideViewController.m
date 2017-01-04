@@ -4,6 +4,7 @@
 #import "NSDate+nextHour.h"
 #import "SearchRideViewController.h"
 #import "ZoneSelectionViewController.h"
+#import "SearchResultsViewController.h"
 #import "Caronae-Swift.h"
 
 @interface SearchRideViewController () <ZoneSelectionDelegate>
@@ -35,9 +36,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Load last searched direction
-    BOOL lastSearchedDirection = [self.userDefaults boolForKey:CaronaePreferenceLastSearchedDirectionKey];
-    self.directionControl.selectedSegmentIndex = lastSearchedDirection;
+    // Load last direction
+    self.directionControl.selectedSegmentIndex = self.previouslySelectedSegmentIndex;
     
     // Load last searched neighborhoods
     NSArray *lastSearchedNeighborhoods = [self.userDefaults arrayForKey:CaronaePreferenceLastSearchedNeighborhoodsKey];
@@ -100,12 +100,11 @@
     [self.userDefaults setObject:self.neighborhoods forKey:CaronaePreferenceLastSearchedNeighborhoodsKey];
     [self.userDefaults setObject:self.selectedHub forKey:CaronaePreferenceLastSearchedCenterKey];
     [self.userDefaults setObject:self.searchedDate forKey:CaronaePreferenceLastSearchedDateKey];
-    [self.userDefaults setBool:self.directionControl.selectedSegmentIndex forKey:CaronaePreferenceLastSearchedDirectionKey];
     
     BOOL going = (self.directionControl.selectedSegmentIndex == 0);
     [self.delegate searchedForRideWithCenter: ([self.selectedHub isEqual: self.hubs[0]] ? @"" : self.selectedHub) andNeighborhoods:self.neighborhoods onDate:self.searchedDate going:going];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self performSegueWithIdentifier:@"showResultsUnwind" sender:nil];
 }
 
 - (IBAction)didTapDate:(id)sender {
@@ -157,6 +156,9 @@
         vc.type = ZoneSelectionZone;
         vc.neighborhoodSelectionType = NeighborhoodSelectionMany;
         vc.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"showResultsUnwind"]) {
+        SearchResultsViewController *vc = segue.destinationViewController;
+        vc.previouslySelectedSegmentIndex = self.directionControl.selectedSegmentIndex;
     }
 }
 

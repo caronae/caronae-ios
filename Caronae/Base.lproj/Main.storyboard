@@ -5282,9 +5282,11 @@ FOTO</string>
                         <outlet property="dateButton" destination="HkZ-Ki-Ucb" id="g2v-dM-Kr8"/>
                         <outlet property="directionControl" destination="ymB-Vw-rcK" id="TVH-49-egP"/>
                         <outlet property="neighborhoodButton" destination="4mm-CF-Oik" id="Jfa-t8-2WY"/>
+                        <segue destination="xgS-4R-DWG" kind="unwind" identifier="showResultsUnwind" unwindAction="showResultsUnwind:" id="5si-PI-ipL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAq-wA-fXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xgS-4R-DWG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5127" y="104"/>
         </scene>

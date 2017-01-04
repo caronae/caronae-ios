@@ -36,7 +36,6 @@ NSString *const CaronaeDidUpdateNotifications = @"CaronaeDidUpdateNotifications"
 NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey = @"lastSearchedNeighborhoods";
 NSString *const CaronaePreferenceLastSearchedCenterKey = @"lastSearchedCenter";
 NSString *const CaronaePreferenceLastSearchedDateKey = @"lastSearchedDate";
-NSString *const CaronaePreferenceLastSearchedDirectionKey = @"lastSearchedDirection";
 
 
 #pragma mark - Error types

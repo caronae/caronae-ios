@@ -112,6 +112,7 @@
     if ([segue.identifier isEqualToString:@"SearchRide"]) {
         UINavigationController *searchNavController = segue.destinationViewController;
         SearchRideViewController *searchVC = searchNavController.viewControllers.firstObject;
+        searchVC.previouslySelectedSegmentIndex = self.directionControl.selectedSegmentIndex;
         searchVC.delegate = self;
     }
     else if ([segue.identifier isEqualToString:@"ViewSearchResults"]) {

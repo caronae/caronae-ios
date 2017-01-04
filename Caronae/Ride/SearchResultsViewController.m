@@ -22,8 +22,12 @@
     if ([segue.identifier isEqualToString:@"SearchRide"]) {
         UINavigationController *searchNavController = segue.destinationViewController;
         SearchRideViewController *searchVC = searchNavController.viewControllers.firstObject;
+        searchVC.previouslySelectedSegmentIndex = self.previouslySelectedSegmentIndex;
         searchVC.delegate = self;
     }
+}
+
+-(IBAction)showResultsUnwind:(UIStoryboardSegue *)segue {
 }
 
 
