@@ -15,9 +15,9 @@
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
     
-    User *user = UserService.instance.user;
-    self.profileNameLabel.text = user.name;
-    self.profileCourseLabel.text = user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", user.profile, user.course] : user.profile;
+    [self updateProfileFields];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateProfileFields) name:CaronaeDidUpdateUserNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -31,6 +31,15 @@
     }
 }
 
+- (void)dealloc {
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
+- (void)updateProfileFields {
+    User *user = UserService.instance.user;
+    self.profileNameLabel.text = user.name;
+    self.profileCourseLabel.text = user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", user.profile, user.course] : user.profile;
+}
 
 #pragma mark - Navigation
 

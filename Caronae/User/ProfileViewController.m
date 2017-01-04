@@ -22,6 +22,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self updateProfileFields];
+    
+    if ([UserService.instance.user isEqual:_user]) {
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateProfileFields) name:CaronaeDidUpdateUserNotification object:nil];
+    }
+}
+
+- (void)dealloc {
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)updateProfileFields {

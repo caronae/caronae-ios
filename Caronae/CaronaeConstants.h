@@ -28,10 +28,11 @@ extern NSString *const CaronaePreferenceLastSearchedDirectionKey;
 
 #pragma mark - Notifications
 
-extern NSString *const CaronaeGCMConnectedNotification;
-extern NSString *const CaronaeGCMTokenUpdatedNotification;
-extern NSString *const CaronaeGCMMessageReceivedNotification;
-extern NSString *const CaronaeDidUpdateNotifications;
+extern NSNotificationName const CaronaeGCMConnectedNotification;
+extern NSNotificationName const CaronaeGCMTokenUpdatedNotification;
+extern NSNotificationName const CaronaeGCMMessageReceivedNotification;
+extern NSNotificationName const CaronaeDidUpdateNotifications;
+extern NSNotificationName const CaronaeDidUpdateUserNotification;
 
 
 #pragma mark - Error types

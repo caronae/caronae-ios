@@ -25,10 +25,11 @@ NSString *const CaronaeTermsOfUsePageURLString = @"https://api.caronae.ufrj.br/s
 
 #pragma mark - Notifications
 
-NSString *const CaronaeGCMConnectedNotification = @"CaronaeGCMConnectedNotification";
-NSString *const CaronaeGCMTokenUpdatedNotification = @"CaronaeGCMTokenUpdatedNotification";
-NSString *const CaronaeGCMMessageReceivedNotification = @"CaronaeGCMMessageReceivedNotification";
-NSString *const CaronaeDidUpdateNotifications = @"CaronaeDidUpdateNotifications";
+NSNotificationName const CaronaeGCMConnectedNotification = @"CaronaeGCMConnectedNotification";
+NSNotificationName const CaronaeGCMTokenUpdatedNotification = @"CaronaeGCMTokenUpdatedNotification";
+NSNotificationName const CaronaeGCMMessageReceivedNotification = @"CaronaeGCMMessageReceivedNotification";
+NSNotificationName const CaronaeDidUpdateNotifications = @"CaronaeDidUpdateNotifications";
+NSNotificationName const CaronaeDidUpdateUserNotification = @"CaronaeDidUpdateUserNotification";
 
 
 #pragma mark - Preference keys

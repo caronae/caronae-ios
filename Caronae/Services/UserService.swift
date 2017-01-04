@@ -158,6 +158,7 @@ class UserService: NSObject {
                 error(err)
             }
             
+            NotificationCenter.default.post(name: Notification.Name.CaronaeDidUpdateUser, object: self)
             success()
         }, failure: { task, err in
             error(err)
