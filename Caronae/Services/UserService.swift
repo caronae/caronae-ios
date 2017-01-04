@@ -69,7 +69,7 @@ class UserService: NSObject {
     }
     
     var userFacebookToken: String? {
-        return FBSDKAccessToken.current().tokenString
+        return FBSDKAccessToken.current()?.tokenString
     }
     
     func signIn(withID idUFRJ: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
@@ -135,6 +135,35 @@ class UserService: NSObject {
         let authViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "InitialTokenScreen")
         authViewController.modalTransitionStyle = .flipHorizontal
         topViewController?.present(authViewController, animated: true, completion: nil)
+    }
+    
+    func ridesCountForUser(withID id: Int, success: @escaping (_ offered: Int, _ taken: Int) -> Void, error: @escaping (_ error: Error?) -> Void) {
+        api.get("/ride/getRidesHistoryCount/\(id)", parameters: nil, success: { task, responseObject in
+            guard let response = responseObject as? [String: Any],
+                let offered = response["offeredCount"] as? Int,
+                let taken = response["takenCount"] as? Int else {
+                    error(nil)
+                    return
+            }
+            
+            // Cache the rides count if the user is persisted
+            do {
+                let realm = try Realm()
+                if let user = realm.object(ofType: User.self, forPrimaryKey: id) {
+                    try realm.write {
+                        user.numDrives = offered
+                        user.numRides = taken
+                    }
+                }
+            } catch {
+                NSLog("Error persisting the rides count of the user with id \(id)")
+            }
+            
+            success(offered, taken)
+            
+        }, failure: { _, err in
+            error(err)
+        })
     }
 
 }

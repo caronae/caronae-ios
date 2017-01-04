@@ -24,19 +24,8 @@
     [self updateProfileFields];
 }
 
-- (BOOL)isMyProfile {
-    UINavigationController *navigationVC = self.navigationController;
-    if (navigationVC.viewControllers.count >= 2) {
-        UIViewController *previousVC = navigationVC.viewControllers[navigationVC.viewControllers.count - 2];
-        if ([previousVC isKindOfClass:[MenuViewController class]]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
 - (void)updateProfileFields {
-    if ([self isMyProfile]) {
+    if ([UserService.instance.user isEqual:_user]) {
         self.title = @"Meu Perfil";
         
         if (_user.carOwner) {
@@ -98,22 +87,10 @@
 }
 
 - (void)updateRidesOfferedCount {
-    // TODO: add to user service
-    [CaronaeAPIHTTPSessionManager.instance GET:[NSString stringWithFormat:@"/ride/getRidesHistoryCount/%ld", (long)_user.id] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        int numDrives = [responseObject[@"offeredCount"] intValue];
-        int numRides = [responseObject[@"takenCount"] intValue];
-        
-        _numDrivesLabel.text = [NSString stringWithFormat:@"%d", numDrives];
-        _numRidesLabel.text = [NSString stringWithFormat:@"%d", numRides];
-        
-        _user.numDrives = numDrives;
-        _user.numRides = numRides;
-
-        
-//        if ([self isMyProfile]) {
-//            [UserController sharedInstance].user = _user;
-//        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    [UserService.instance ridesCountForUserWithID:_user.id success:^(NSInteger offeredCount, NSInteger takenCount) {
+        _numDrivesLabel.text = [NSString stringWithFormat:@"%ld", (long)offeredCount];
+        _numRidesLabel.text = [NSString stringWithFormat:@"%ld", (long)takenCount];
+    } error:^(NSError * _Nullable error) {
         NSLog(@"Error reading history count for user: %@", error.localizedDescription);
     }];
 }
