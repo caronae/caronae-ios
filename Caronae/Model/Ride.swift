@@ -13,7 +13,7 @@ class Ride: Object, Mappable {
     dynamic var route: String!
     dynamic var notes: String!
     dynamic var going: Bool = true
-    dynamic var date: Date!
+    dynamic var date: Date! = Date()
     dynamic var slots: Int = 0
     dynamic var driver: User!
     var routineID = RealmOptional<Int>()
@@ -36,7 +36,7 @@ class Ride: Object, Mappable {
         route <- map["route"]
         notes <- map["description"]
         going <- map["going"]
-        date <- map["mydate"]
+//        date <- map["mydate"] // FIXME: parse date and time to a single property
         slots <- map["slots"]
         driver <- map["driver"]
         riders <- map["riders"]
@@ -45,9 +45,9 @@ class Ride: Object, Mappable {
     
     var title: String {
         if going {
-            return "\(neighborhood) → \(hub)"
+            return "\(neighborhood!) → \(hub!)"
         } else {
-            return "\(hub) → \(neighborhood)"
+            return "\(hub!) → \(neighborhood!)"
         }
     }
     

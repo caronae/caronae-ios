@@ -60,8 +60,8 @@ class RideService: NSObject {
         
         api.get("/user/\(userID)/offeredRides", parameters: nil, success: { task, responseObject in
             do {
-                let jsonResponse = responseObject as! Dictionary<String, Any?>
-                guard let ridesJson = jsonResponse["rides"] as? [[String: Any]] else {
+                guard let jsonResponse = responseObject as? [String: Any],
+                    let ridesJson = jsonResponse["rides"] as? [[String: Any]] else {
                     NSLog("Error: rides was not found in responseObject")
                     error(nil)
                     return
@@ -75,11 +75,30 @@ class RideService: NSObject {
                 success(rides)
             }
         }, failure: { _, err in
-            NSLog("Error: Failed to get Offered Rides: \(err.localizedDescription)")
+            NSLog("Error: Failed to get offered rides: \(err.localizedDescription)")
             error(err)
         })
     }
 
+    func getActiveRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+        api.get("/ride/getMyActiveRides", parameters: nil, success: { task, responseObject in
+            do {
+                guard let ridesJson = responseObject as? [[String: Any]] else {
+                    NSLog("Error: Invalid response from the API")
+                    error(nil)
+                    return
+                }
+                
+                let rides = ridesJson.flatMap { Ride(JSON: $0) }.sorted { $0.date < $1.date }
+                success(rides)
+            }
+        }, failure: { _, err in
+            NSLog("Error: Failed to get active rides: \(err.localizedDescription)")
+            error(err)
+        })
+
+    }
+    
 //    func getRidesHistory(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
 //        
 //    }

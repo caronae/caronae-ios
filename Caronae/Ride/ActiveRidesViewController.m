@@ -75,22 +75,10 @@
 #pragma mark - Rides methods
 
 - (void)loadActiveRides {
-    [CaronaeAPIHTTPSessionManager.instance GET:@"/ride/getMyActiveRides" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [RideService.instance getActiveRidesWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
         [self.refreshControl endRefreshing];
+        self.rides = rides;
         
-        NSError *error;
-        // TODO: deserialize response
-        NSArray<Ride *> *rides = nil;
-        if (error) {
-            NSLog(@"Error parsing active rides. %@", error.localizedDescription);
-            NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
-            [self loadingFailedWithStatusCode:response.statusCode andError:error];
-            return;
-        }
-        
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-        self.rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
-
         [self.tableView reloadData];
         
         if (self.rides.count > 0) {
@@ -112,11 +100,13 @@
         else {
             self.tableView.backgroundView = self.emptyTableLabel;
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+    } error:^(NSError * _Nullable error) {
         [self.refreshControl endRefreshing];
-        NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
-        [self loadingFailedWithStatusCode:response.statusCode andError:error];
+
+        // TODO: handle loading failed
     }];
+
 }
 
 
