@@ -10,21 +10,22 @@ class RideService: NSObject {
     
     func getAllRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
         api.get("/ride/all", parameters: nil, success: { task, responseObject in
-            do {
-                // TODO: deserialize response
-                var rides: [Ride]!
-                
-                // Skip rides in the past
-                rides = rides.filter { $0.date.isInTheFuture() }
-                
-                // Sort rides by date/time
-                rides = rides.sorted { $0.date < $1.date }
-                
-                success(rides)
-            } catch let err {
-                print("Error parsing rides: \(err.localizedDescription)")
-                error(err)
+            guard let ridesJson = responseObject as? [[String: Any]] else {
+                print("Error parsing rides")
+                error(nil)
+                return
             }
+            
+            // Deserialize response
+            var rides = ridesJson.flatMap { Ride(JSON: $0) }
+            
+            // Skip rides in the past
+            rides = rides.filter { $0.date.isInTheFuture() }
+            
+            // Sort rides by date/time
+            rides = rides.sorted { $0.date < $1.date }
+            
+            success(rides)
             
         }, failure: { _, err in
             print("Failed to load all rides: \(err.localizedDescription)")
@@ -51,7 +52,7 @@ class RideService: NSObject {
         NSLog("Error: ride to be deleted was not found in user's rides")
     }
     
-    func getOfferedRides(success: @escaping (_ rides: [Dictionary<String, Any>]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+    func getOfferedRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
         guard let userID = UserController.sharedInstance().user?.id else {
             NSLog("Error: No userID registered")
             return
@@ -60,22 +61,18 @@ class RideService: NSObject {
         api.get("/user/\(userID)/offeredRides", parameters: nil, success: { task, responseObject in
             do {
                 let jsonResponse = responseObject as! Dictionary<String, Any?>
-                guard let ridesResponse = jsonResponse["rides"] as? [Dictionary<String, Any?>] else {
+                guard let ridesJson = jsonResponse["rides"] as? [[String: Any]] else {
                     NSLog("Error: rides was not found in responseObject")
+                    error(nil)
                     return
                 }
-                var ridesArray = [Dictionary<String, Any>]()   
-                //DictionaryWithoutNulls
-                for rideDictionary in ridesResponse {
-                    var new = rideDictionary
-                    for (key,value) in new {
-                        if value == nil {
-                            new[key] = ""
-                        }
-                    }
-                    ridesArray.append(new)
-                }
-                success(ridesArray)
+                
+                // Deserialize response
+                let rides = ridesJson.flatMap { Ride(JSON: $0) }
+                
+                // TODO: Persist offered rides
+                
+                success(rides)
             }
         }, failure: { _, err in
             NSLog("Error: Failed to get Offered Rides: \(err.localizedDescription)")

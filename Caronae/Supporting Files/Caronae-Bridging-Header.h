@@ -3,5 +3,8 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
+
+#import "AppDelegate.h"
 #import "CaronaeConstants.h"
+#import "CaronaeAlertController.h"
 #import "UserController.h"

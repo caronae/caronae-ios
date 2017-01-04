@@ -19,7 +19,6 @@ class Ride: Object, Mappable {
     var routineID = RealmOptional<Int>()
     var riders = List<User>()
     
-    
     required convenience init?(map: Map) {
         self.init()
     }

@@ -29,6 +29,7 @@
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
+    [self configureRealm];
     [self configureGCM];
     
     [CRToastManager setDefaultOptions:@{
@@ -90,8 +91,7 @@
         }];
     }
     if ([UserController sharedInstance].userToken) {
-        [RideService.instance getOfferedRidesWithSuccess:^(NSArray<NSDictionary<NSString *, id> *> * _Nonnull rides) {
-            [[NSUserDefaults standardUserDefaults] setObject:rides forKey:@"userCreatedRides"];
+        [RideService.instance getOfferedRidesWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
             NSLog(@"userCreatedRides updated");
         } error:^(NSError * _Nullable error) {
             NSLog(@"Couldn't update userCreatedRides");
