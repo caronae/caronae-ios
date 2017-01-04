@@ -59,7 +59,7 @@
 }
 
 - (void)subscribe {
-    NSString *registrationToken = [UserController sharedInstance].userGCMToken;
+    NSString *registrationToken = UserService.instance.userGCMToken;
     if (registrationToken) {
         [[GCMPubSub sharedInstance] subscribeWithToken:registrationToken
                                                  topic:self.topicID
@@ -88,7 +88,7 @@
 }
 
 - (void)unsubscribe {
-    NSString *registrationToken = [UserController sharedInstance].userGCMToken;
+    NSString *registrationToken = UserService.instance.userGCMToken;
     if (registrationToken) {
         [[GCMPubSub sharedInstance] unsubscribeWithToken:registrationToken
                                                    topic:self.topicID
@@ -116,7 +116,7 @@
 }
 
 + (void)subscribeToTopicID:(NSString *)topicID {
-    NSString *registrationToken = [UserController sharedInstance].userGCMToken;
+    NSString *registrationToken = UserService.instance.userGCMToken;
     if (registrationToken) {
         [[GCMPubSub sharedInstance] subscribeWithToken:registrationToken
                                                  topic:topicID

@@ -63,7 +63,6 @@
 		A3AD82381E1C7409006D8ABE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82371E1C7409006D8ABE /* UserService.swift */; };
 		A3AD823A1E1C8049006D8ABE /* TokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82391E1C8049006D8ABE /* TokenViewController.swift */; };
 		A3AD823C1E1C8860006D8ABE /* AppDelegate+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD823B1E1C8860006D8ABE /* AppDelegate+Realm.swift */; };
-		A3AD823D1E1C8FFD006D8ABE /* UserController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C675E1C854EA7001F6D90 /* UserController.m */; };
 		A3B18FFA1C9E713F00980607 /* UIImageView+crn_setImageWithURL.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */; };
 		A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */; };
 		A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */; };
@@ -129,8 +128,6 @@
 		A34C67571C826280001F6D90 /* NotificationStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationStore.m; path = Notification/NotificationStore.m; sourceTree = "<group>"; };
 		A34C675A1C853C4B001F6D90 /* RideRequestsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideRequestsStore.h; sourceTree = "<group>"; };
 		A34C675B1C853C4B001F6D90 /* RideRequestsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideRequestsStore.m; sourceTree = "<group>"; };
-		A34C675D1C854EA7001F6D90 /* UserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserController.h; sourceTree = "<group>"; };
-		A34C675E1C854EA7001F6D90 /* UserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserController.m; sourceTree = "<group>"; };
 		A34CEC4C1C993115006FC41E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A357EF301C56C5A100AC8096 /* RideListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideListController.h; sourceTree = "<group>"; };
 		A357EF311C56C5A100AC8096 /* RideListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideListController.m; sourceTree = "<group>"; };
@@ -363,8 +360,6 @@
 				A357EF351C57168D00AC8096 /* SignupViewController.h */,
 				A357EF361C57168D00AC8096 /* SignupViewController.m */,
 				A3AD82391E1C8049006D8ABE /* TokenViewController.swift */,
-				A34C675D1C854EA7001F6D90 /* UserController.h */,
-				A34C675E1C854EA7001F6D90 /* UserController.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -790,7 +785,6 @@
 				A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */,
 				A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */,
 				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
-				A3AD823D1E1C8FFD006D8ABE /* UserController.m in Sources */,
 				A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */,
 				A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */,
 				A32C77261C41EEE30098583B /* AllRidesViewController.m in Sources */,

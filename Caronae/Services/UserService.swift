@@ -48,6 +48,30 @@ class UserService: NSObject {
         }
     }
     
+    var userToken: String? {
+        get {
+            return UserDefaults.standard.string(forKey: "token")
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: "token")
+        }
+    }
+    
+    var userGCMToken: String? {
+        get {
+            return UserDefaults.standard.string(forKey: "gcmToken")
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: "gcmToken")
+        }
+    }
+    
+    var userFacebookToken: String? {
+        return FBSDKAccessToken.current().tokenString
+    }
+    
     func signIn(withID idUFRJ: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
         let params = [ "id_ufrj": idUFRJ, "token": token ]
         api.post("/user/login", parameters: params, success: { task, responseObject in
@@ -103,8 +127,8 @@ class UserService: NSObject {
         // Clear ride requests
         RideRequestsStore.clearAllRequests()
         
-        // TODO: Logout from Facebook
-        // FBSDKLoginManager.init().logOut()
+        // Logout from Facebook
+        FBSDKLoginManager().logOut()
         
         // Go to home screen
         let topViewController = appDelegate.topViewController()

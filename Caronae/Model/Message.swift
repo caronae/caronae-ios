@@ -32,9 +32,7 @@ class Message: Object, Mappable {
     }
     
     var incoming: Bool {
-        // TODO: check against the current user
-        // return sender == currentUser
-        return false
+        return sender == UserService.instance.user
     }
 }
 

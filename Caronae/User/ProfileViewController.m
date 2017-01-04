@@ -120,7 +120,7 @@
 
 - (void)updateMutualFriends {
     // Abort if the Facebook accounts are not connected.
-    if (![UserController sharedInstance].userFBToken || _user.facebookID.length == 0) {
+    if (!UserService.instance.userFacebookToken || _user.facebookID.length == 0) {
         return;
     }
     

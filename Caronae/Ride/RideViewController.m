@@ -203,7 +203,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (void)updateMutualFriends {
     // Abort if the Facebook accounts are not connected.
-    if (![UserController sharedInstance].userFBToken || _ride.driver.facebookID.length == 0) {
+    if (!UserService.instance.userFacebookToken || _ride.driver.facebookID.length == 0) {
         return;
     }
     
