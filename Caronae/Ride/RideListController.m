@@ -109,7 +109,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     
     if (statusCode == 403) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Sua chave de acesso pode ter sido alterada ou suspensa." handler:^{
-            [[UserController sharedInstance] signOut];
+            [UserService.instance signOut];
         }];
         return;
     }

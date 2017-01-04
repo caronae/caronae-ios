@@ -27,7 +27,7 @@
 }
 
 - (void)refreshTable:(id)sender {
-    if ([UserController sharedInstance].userToken) {
+    if (UserService.instance.user) {
         [RideService.instance getOfferedRidesWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
             NSLog(@"userCreatedRides updated");
         } error:^(NSError * _Nullable error) {
@@ -47,7 +47,7 @@
         self.tableView.backgroundView = self.loadingLabel;
     }
     
-    User *user = [UserController sharedInstance].user;
+    User *user = UserService.instance.user;
     [[NSUserDefaults standardUserDefaults] synchronize];
 
     // Run in secondary thread so it won't affect UI

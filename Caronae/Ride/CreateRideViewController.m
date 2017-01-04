@@ -74,7 +74,7 @@
 }
 
 - (void)checkIfUserHasCar {
-    if (![UserController sharedInstance].user.carOwner) {
+    if (!UserService.instance.user.carOwner) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Você possui carro?" message:@"Parece que você marcou no seu perfil que não possui um carro.\n\nPara criar uma carona, preencha os dados do seu carro no seu perfil." handler:^{
             [self goBack:nil];
         }];

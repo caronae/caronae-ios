@@ -59,7 +59,7 @@
 }
 
 - (void)updateProfileFields {
-    User *user = [UserController sharedInstance].user;
+    User *user = UserService.instance.user;
     self.user = user;
     
     self.joinedDateFormatter = [[NSDateFormatter alloc] init];
@@ -134,6 +134,8 @@
         [self showLoadingHUD:NO];
         
         NSLog(@"User updated.");
+        
+        // TODO: this has to be in a Realm transaction
         self.user.phoneNumber = updatedUser.phoneNumber;
         self.user.email = updatedUser.email;
         self.user.carOwner = updatedUser.carOwner;
@@ -142,8 +144,7 @@
         self.user.carColor = updatedUser.carColor;
         self.user.location = updatedUser.location;
         self.user.profilePictureURL = updatedUser.profilePictureURL;
-        
-        [UserController sharedInstance].user = self.user;
+        UserService.instance.user = self.user;
                 
         if ([self.delegate respondsToSelector:@selector(didUpdateUser:)]) {
             [self.delegate didUpdateUser:self.user];
@@ -227,7 +228,7 @@
                                                   preferredStyle:SDCAlertControllerStyleAlert];
         [alert addAction:[SDCAlertAction actionWithTitle:@"Cont. editando" style:SDCAlertActionStyleCancel handler:nil]];
         [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
-            [[UserController sharedInstance] signOut];
+            [UserService.instance signOut];
         }]];
     }
     

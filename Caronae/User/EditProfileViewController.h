@@ -1,6 +1,6 @@
-#import <UIKit/UIKit.h>
-#import "User.h"
+@import UIKit;
 
+@class User;
 @class CaronaePhoneTextField;
 
 @protocol EditProfileDelegate <NSObject>

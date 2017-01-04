@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 
+@class Ride;
+
 @interface RideRequestsStore : NSObject
 
 /**

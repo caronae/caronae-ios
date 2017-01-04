@@ -1,5 +1,6 @@
-#import <UIKit/UIKit.h>
-#import "Ride.h"
+@import UIKit;
+
+@class Ride;
 
 @interface Chat : NSObject
 

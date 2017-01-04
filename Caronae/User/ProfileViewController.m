@@ -98,6 +98,7 @@
 }
 
 - (void)updateRidesOfferedCount {
+    // TODO: add to user service
     [CaronaeAPIHTTPSessionManager.instance GET:[NSString stringWithFormat:@"/ride/getRidesHistoryCount/%ld", (long)_user.id] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         int numDrives = [responseObject[@"offeredCount"] intValue];
         int numRides = [responseObject[@"takenCount"] intValue];
@@ -107,9 +108,11 @@
         
         _user.numDrives = numDrives;
         _user.numRides = numRides;
-        if ([self isMyProfile]) {
-            [UserController sharedInstance].user = _user;
-        }
+
+        
+//        if ([self isMyProfile]) {
+//            [UserController sharedInstance].user = _user;
+//        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Error reading history count for user: %@", error.localizedDescription);
     }];
@@ -169,7 +172,7 @@
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Sair" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
-        [[UserController sharedInstance] signOut];
+        [UserService.instance signOut];
     }]];
     [alert presentWithCompletion:nil];
 }

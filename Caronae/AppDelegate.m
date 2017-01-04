@@ -37,7 +37,7 @@
                                         }];
     
     // Load home screen if the user has already signed in
-    if ([UserController sharedInstance].user) {
+    if (UserService.instance.user) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *initialViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeTabViewController"];
         self.window.rootViewController = initialViewController;
@@ -79,7 +79,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    if ([UserController sharedInstance].userGCMToken && !_connectedToGCM) {
+    if (UserService.instance.user && !_connectedToGCM) {
         [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
             if (error && error.code != kGCMServiceErrorCodeAlreadyConnected) {
                 NSLog(@"Could not connect to GCM (application became active): %@", error.localizedDescription);
@@ -90,7 +90,7 @@
             }
         }];
     }
-    if ([UserController sharedInstance].userToken) {
+    if (UserService.instance.user) {
         [RideService.instance getOfferedRidesWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
             NSLog(@"userCreatedRides updated");
         } error:^(NSError * _Nullable error) {
@@ -179,7 +179,7 @@
 
 - (void)handleChatNotification:(NSDictionary *)userInfo {
     long senderId = [userInfo[@"senderId"] longValue];
-    long currentUserId = [UserController sharedInstance].user.id;
+    long currentUserId = UserService.instance.user.id;
     
     // We don't need to handle a message if it's from the logged user
     if (senderId == currentUserId) {
@@ -298,18 +298,7 @@
     // Handler for registration token request
     _registrationHandler = ^(NSString *registrationToken, NSError *error){
         if (!error && registrationToken != nil) {
-            NSString *cachedRegistrationToken = [UserController sharedInstance].userGCMToken;
             NSLog(@"GCM Registration Token: %@", registrationToken);
-            // Update cached registration token locally and remotely if the token has changed.
-            if (![cachedRegistrationToken isEqualToString:registrationToken]) {
-                NSLog(@"GCM Registration Token has changed.");
-                
-                [UserController sharedInstance].userGCMToken = registrationToken;
-                if ([UserController sharedInstance].user) {
-                    [weakSelf updateUserGCMToken:registrationToken];
-                }
-            }
-            
             if (!weakSelf.connectedToGCM) {
                 [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
                     if (error && error.code != kGCMServiceErrorCodeAlreadyConnected) {
@@ -327,7 +316,6 @@
                                                                 object:nil
                                                               userInfo:userInfo];
         } else {
-            [UserController sharedInstance].userGCMToken = nil;
             NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
             NSDictionary *userInfo = @{@"error": error.localizedDescription};
             [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification

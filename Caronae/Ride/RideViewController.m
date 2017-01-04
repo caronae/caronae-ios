@@ -100,7 +100,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         });
         
         // Car details
-        User *user = [UserController sharedInstance].user;
+        User *user = UserService.instance.user;
         _carPlateLabel.text = user.carPlate.uppercaseString;
         _carModelLabel.text = user.carModel;
         _carColorLabel.text = user.carColor;
@@ -188,13 +188,13 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (BOOL)userIsDriver {
-    return UserController.sharedInstance.user.id == _ride.driver.id;
+    return UserService.instance.user.id == _ride.driver.id;
 }
 
 - (BOOL)userIsRider {
     // TODO: check if user is rider
 //    for (User *user in _ride.riders) {
-//        if (user.id == UserController.sharedInstance.user.id) {
+//        if (user.id == UserService.instance.user.id) {
 //            return YES;
 //        }
 //    }

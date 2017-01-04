@@ -161,7 +161,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [self.textView becomeFirstResponder];
     
     NSString *messageText = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    User *currentUser = [UserController sharedInstance].user;
+    User *currentUser = UserService.instance.user;
 
     // TODO: handle and persist message
 //    NSManagedObjectContext *context = [self managedObjectContext];
@@ -196,9 +196,9 @@ static const CGFloat toolBarMinHeight = 44.0f;
     if (msgType && [msgType isEqualToString:@"chat"]) {
         long rideID = [userInfo[@"rideId"] longValue];
         long senderID = [userInfo[@"senderId"] longValue];
-        long currentUserId = [UserController sharedInstance].user.id;
+        long currentUserId = UserService.instance.user.id;
         
-        if (rideID == self.chat.ride.id && senderID !=currentUserId) {
+        if (rideID == self.chat.ride.id && senderID != currentUserId) {
             NSLog(@"Chat window did receive message: %@", userInfo[@"message"]);
             
             [self loadChatMessages];

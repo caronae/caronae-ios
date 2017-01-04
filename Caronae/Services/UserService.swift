@@ -84,6 +84,34 @@ class UserService: NSObject {
             error(authenticationError)
         })
     }
+    
+    func signOut() {
+        self.user = nil
+        
+        guard let realm = try? Realm() else {
+            return
+        }
+        
+        // Clear database
+        realm.deleteAll()
+        
+        // Clear notifications
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.deleteAllObjects("Notification")
+        appDelegate.updateApplicationBadgeNumber()
+        
+        // Clear ride requests
+        RideRequestsStore.clearAllRequests()
+        
+        // TODO: Logout from Facebook
+        // FBSDKLoginManager.init().logOut()
+        
+        // Go to home screen
+        let topViewController = appDelegate.topViewController()
+        let authViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "InitialTokenScreen")
+        authViewController.modalTransitionStyle = .flipHorizontal
+        topViewController?.present(authViewController, animated: true, completion: nil)
+    }
 
 }
 

@@ -53,7 +53,7 @@ class RideService: NSObject {
     }
     
     func getOfferedRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
-        guard let userID = UserController.sharedInstance().user?.id else {
+        guard let userID = UserService.instance.user?.id else {
             NSLog("Error: No userID registered")
             return
         }
