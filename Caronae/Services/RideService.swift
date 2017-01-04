@@ -96,7 +96,6 @@ class RideService: NSObject {
             NSLog("Error: Failed to get active rides: \(err.localizedDescription)")
             error(err)
         })
-
     }
     
     func searchRides(withCenter center: String, neighborhoods: [String], date: Date, going: Bool, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
@@ -131,9 +130,24 @@ class RideService: NSObject {
         })
         
     }
-//    func getRidesHistory(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
-//        
-//    }
-//    
-//    // etc
+    
+    func getRidesHistory(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+        api.get("/ride/getRidesHistory", parameters: nil, success: { task, responseObject in
+            do {
+                guard let ridesJson = responseObject as? [[String: Any]] else {
+                    NSLog("Error: Invalid response from the API")
+                    error(nil)
+                    return
+                }
+                
+                // Deserialize rides and order starting from the newest ride
+                let rides = ridesJson.flatMap { Ride(JSON: $0) }.sorted { $0.date > $1.date }
+                success(rides)
+            }
+        }, failure: { _, err in
+            error(err)
+        })
+    }
+    
+
 }

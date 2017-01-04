@@ -244,7 +244,7 @@ class UserService: NSObject {
             
             let friends = friendsJson.flatMap { User(JSON: $0) }
             success(friends, totalCount)
-            
+
         }, failure: { _, err in
             error(err)
         })
