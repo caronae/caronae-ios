@@ -1,4 +1,4 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "ActiveRidesViewController.h"
 #import "AllRidesViewController.h"
 #import "MenuViewController.h"

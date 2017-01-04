@@ -1,4 +1,4 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "RideListController.h"
 
 @interface SearchResultsViewController : RideListController

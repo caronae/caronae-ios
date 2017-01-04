@@ -1,4 +1,3 @@
-#import <AFNetworking/AFHTTPRequestOperation.h>
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <CRToast/CRToast.h>
 #import "CaronaeAlertController.h"

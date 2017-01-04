@@ -1,6 +1,7 @@
-#import <AFNetworking/AFNetworking.h>
-#import <Google/CloudMessaging.h>
+@import AFNetworking;
+@import Google;
 #import "AppDelegate.h"
+#import "Chat.h"
 #import "ChatViewController.h"
 #import "MessageBubbleTableViewCell.h"
 #import "Message+CoreDataProperties.h"

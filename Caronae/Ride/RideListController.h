@@ -1,4 +1,4 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "Ride.h"
 #import "RideCell.h"
 #import "RideViewController.h"

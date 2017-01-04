@@ -1,4 +1,6 @@
-#import <CoreData/CoreData.h>
+@import CoreData;
+
+#import "Chat.h"
 #import "ChatStore.h"
 #import "CreateRideViewController.h"
 #import "MyRidesViewController.h"

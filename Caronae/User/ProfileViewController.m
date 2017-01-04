@@ -1,4 +1,4 @@
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
+@import FBSDKCoreKit;
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
 #import "FalaeViewController.h"

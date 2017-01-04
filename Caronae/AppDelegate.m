@@ -1,9 +1,10 @@
-#import <AFNetworking/AFNetworkActivityIndicatorManager.h>
-#import <CRToast/CRToast.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <Google/CloudMessaging.h>
-#import <SVProgressHUD/SVProgressHUD.h>
+@import AFNetworking;
+@import CRToast;
+@import FBSDKCoreKit;
+@import Google;
+@import SVProgressHUD;
 #import "AppDelegate.h"
+#import "Chat.h"
 #import "ChatStore.h"
 #import "ChatViewController.h"
 #import "Message+CoreDataProperties.h"

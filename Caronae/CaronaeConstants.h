@@ -1,4 +1,4 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 #pragma mark - API settings
 

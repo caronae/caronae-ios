@@ -1,4 +1,5 @@
-#import <SVProgressHUD/SVProgressHUD.h>
+@import SVProgressHUD;
+
 #import "AllRidesViewController.h"
 #import "EditProfileViewController.h"
 #import "SearchResultsViewController.h"

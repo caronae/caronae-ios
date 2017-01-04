@@ -1,5 +1,5 @@
-#import <CoreData/CoreData.h>
-#import <SVProgressHUD/SVProgressHUD.h>
+@import CoreData;
+@import SVProgressHUD;
 #import "CaronaeAlertController.h"
 #import "Chat.h"
 #import "ChatStore.h"

@@ -1,4 +1,4 @@
-#import <SVProgressHUD/SVProgressHUD.h>
+@import SVProgressHUD;
 #import "CaronaeAlertController.h"
 #import "SignupViewController.h"
 #import "Caronae-Swift.h"

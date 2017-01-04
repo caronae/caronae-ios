@@ -1,4 +1,4 @@
-#import <Google/CloudMessaging.h>
+@import Google;
 #import "Chat.h"
 #import "Caronae-Swift.h"
 

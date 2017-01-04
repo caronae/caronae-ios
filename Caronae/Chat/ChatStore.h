@@ -1,6 +1,6 @@
-#import <Foundation/Foundation.h>
-#import "Chat.h"
-#import "Ride.h"
+@import Foundation;
+
+@class Chat, Ride;
 
 @interface ChatStore : NSObject
 

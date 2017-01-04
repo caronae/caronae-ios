@@ -1,6 +1,6 @@
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import <SVProgressHUD/SVProgressHUD.h>
+@import FBSDKCoreKit;
+@import FBSDKLoginKit;
+@import SVProgressHUD;
 #import "CaronaeAlertController.h"
 #import "CaronaeTextField.h"
 #import "CaronaePhoneTextField.h"
