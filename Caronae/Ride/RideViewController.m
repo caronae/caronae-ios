@@ -8,7 +8,6 @@
 #import "Notification.h"
 #import "NotificationStore.h"
 #import "ProfileViewController.h"
-#import "Ride.h"
 #import "RideViewController.h"
 #import "RiderCell.h"
 #import "RideRequestsStore.h"

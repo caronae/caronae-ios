@@ -7,7 +7,6 @@
 #import "Chat.h"
 #import "ChatStore.h"
 #import "ChatViewController.h"
-#import "Message+CoreDataProperties.h"
 #import "Notification+CoreDataProperties.h"
 #import "NotificationStore.h"
 #import "TabBarController.h"

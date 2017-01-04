@@ -1,5 +1,4 @@
 #import "MessageBubbleTableViewCell.h"
-#import "Message+CoreDataProperties.h"
 #import "Caronae-Swift.h"
 
 static const int incomingTag = 0;

@@ -4,7 +4,6 @@
 #import "Chat.h"
 #import "ChatViewController.h"
 #import "MessageBubbleTableViewCell.h"
-#import "Message+CoreDataProperties.h"
 #import "Notification+CoreDataProperties.h"
 #import "NotificationStore.h"
 #import "Caronae-Swift.h"

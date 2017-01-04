@@ -1,5 +1,4 @@
 @import UIKit;
-#import "Message.h"
 
 @class Message;
 

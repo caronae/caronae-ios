@@ -1,5 +1,4 @@
 #import "UIImageView+crn_setImageWithURL.h"
-#import "Ride.h"
 #import "RideCell.h"
 #import "Caronae-Swift.h"
 
