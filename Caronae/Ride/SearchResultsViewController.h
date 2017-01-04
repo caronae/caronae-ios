@@ -1,8 +1,7 @@
-@import UIKit;
 #import "RideListController.h"
 
 @interface SearchResultsViewController : RideListController
 
-- (void)searchForRidesWithParameters:(NSDictionary *)params;
+- (void)searchedForRideWithCenter:(NSString *)center andNeighborhoods:(NSArray *)neighborhoods onDate:(NSDate *)date going:(BOOL)going;
 
 @end

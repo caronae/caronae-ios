@@ -97,8 +97,11 @@
         searchVC.delegate = self;
     }
     else if ([segue.identifier isEqualToString:@"ViewSearchResults"]) {
-        SearchResultsViewController *vc = segue.destinationViewController;
-        [vc searchForRidesWithParameters:self.searchParams];
+        SearchResultsViewController *searchViewController = segue.destinationViewController;
+        [searchViewController searchedForRideWithCenter:self.searchParams[@"center"]
+                                       andNeighborhoods:self.searchParams[@"neighborhoods"]
+                                                 onDate:self.searchParams[@"date"]
+                                                  going:[self.searchParams[@"going"] boolValue]];
     }
 }
 
@@ -106,18 +109,10 @@
 #pragma mark - Search methods
 
 - (void)searchedForRideWithCenter:(NSString *)center andNeighborhoods:(NSArray *)neighborhoods onDate:(NSDate *)date going:(BOOL)going {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd";
-    NSString *dateString = [dateFormatter stringFromDate:date];
-    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    timeFormatter.dateFormat = @"HH:mm";
-    NSString *timeString = [timeFormatter stringFromDate:date];
-    
     self.searchParams = @{@"center": center,
-                          @"location": [neighborhoods componentsJoinedByString:@", "],
-                          @"date": dateString,
-                          @"time": timeString,
-                          @"go": @(going)
+                          @"neighborhoods": neighborhoods,
+                          @"date": date,
+                          @"going": @(going)
                           };
     
     [self performSegueWithIdentifier:@"ViewSearchResults" sender:self];

@@ -99,6 +99,38 @@ class RideService: NSObject {
 
     }
     
+    func searchRides(withCenter center: String, neighborhoods: [String], date: Date, going: Bool, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: date)
+        dateFormatter.dateFormat = "HH:mm"
+        let timeString = dateFormatter.string(from: date)
+        
+        let params = [
+            "center": center,
+            "location": neighborhoods.joined(separator: ", "),
+            "date": dateString,
+            "time": timeString,
+            "go": going
+        ] as [String : Any]
+        
+        api.post("/ride/listFiltered", parameters: params, success: { task, responseObject in
+            do {
+                guard let ridesJson = responseObject as? [[String: Any]] else {
+                    NSLog("Error: Invalid response from the API")
+                    error(nil)
+                    return
+                }
+                
+                let rides = ridesJson.flatMap { Ride(JSON: $0) }.sorted { $0.date < $1.date }
+                success(rides)
+            }
+        }, failure: { _, err in
+            NSLog("Error: Failed to search rides: \(err.localizedDescription)")
+            error(err)
+        })
+        
+    }
 //    func getRidesHistory(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
 //        
 //    }
