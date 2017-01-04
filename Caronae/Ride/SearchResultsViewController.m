@@ -53,11 +53,12 @@
         self.tableView.backgroundView = self.loadingLabel;
     }
     
+    // TODO: Move to RideService
     [CaronaeAPIHTTPSessionManager.instance POST:@"ride/listFiltered" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         
         NSError *error;
-        // TODO: deserialize response
+        // Deserialize response
         NSArray<Ride *> *rides = nil;
         if (error) {
             NSLog(@"Error parsing all rides. %@", error.localizedDescription);

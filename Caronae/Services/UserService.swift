@@ -165,6 +165,30 @@ class UserService: NSObject {
             error(err)
         })
     }
+    
+    // This actually should use the user's ID instead of the Facebook ID
+    // but would need to refactor the API...
+    func mutualFriendsForUser(withFacebookID facebookID: String, success: @escaping (_ friends: [User], _ totalCount: Int) -> Void, error: @escaping (_ error: Error?) -> Void) {
+        guard !facebookID.isEmpty else {
+            error(nil)
+            return
+        }
+        
+        api.get("/user/\(facebookID)/mutualFriends", parameters: nil, success: { task, responseObject in
+            guard let response = responseObject as? [String: Any],
+            let friendsJson = response["mutual_friends"] as? [[String: Any]],
+                let totalCount = response["total_count"] as? Int else {
+                    error(nil)
+                    return
+            }
+            
+            let friends = friendsJson.flatMap { User(JSON: $0) }
+            success(friends, totalCount)
+            
+        }, failure: { _, err in
+            error(err)
+        })
+    }
 
 }
 

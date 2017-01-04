@@ -26,11 +26,12 @@
         self.tableView.backgroundView = self.loadingLabel;
     }
     
+    // TODO: Move to RideService
     [CaronaeAPIHTTPSessionManager.instance GET:@"/ride/getRidesHistory" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [self.refreshControl endRefreshing];
 
         NSError *error;
-        // TODO: deserialize rides
+        // Deserialize rides
         NSArray<Ride *> *rides = nil;
         if (error) {
             NSLog(@"Error parsing rides history. %@", error.localizedDescription);

@@ -120,7 +120,7 @@
 - (void)saveProfile {
     User *updatedUser = [self generateUserFromView];
     NSError *error = nil;
-    // TODO: serialize
+    // TODO: Move to UserService
     NSDictionary *updatedUserJSON = nil;
     if (error) {
         NSLog(@"User serialization error: %@", error.localizedDescription);
@@ -135,7 +135,7 @@
         
         NSLog(@"User updated.");
         
-        // TODO: this has to be in a Realm transaction
+        // this has to be in a Realm transaction
         self.user.phoneNumber = updatedUser.phoneNumber;
         self.user.email = updatedUser.email;
         self.user.carOwner = updatedUser.carOwner;

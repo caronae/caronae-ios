@@ -52,11 +52,12 @@
     User *user = UserService.instance.user;
     [[NSUserDefaults standardUserDefaults] synchronize];
 
+    // TODO: move to RideService
     // Run in secondary thread so it won't affect UI
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSArray *ridesJSON = [[NSUserDefaults standardUserDefaults] arrayForKey:@"userCreatedRides"];
         NSError *error;
-        // TODO: deserialize
+        // Deserialize response
         NSArray<Ride *> *rideArchive = nil;
         if (error) {
             NSLog(@"Error parsing my rides. %@", error.localizedDescription);
@@ -108,10 +109,11 @@
 - (void)didCreateRides:(NSArray<NSDictionary *> *)rides {
     NSLog(@"%lu rides created.", (unsigned long)rides.count);
     
+    // TODO: Move to RideService
     NSArray *oldUserRidesArchive = [[NSUserDefaults standardUserDefaults] arrayForKey:@"userCreatedRides"];
     NSMutableArray *newUserRidesArchive = [NSMutableArray arrayWithArray:oldUserRidesArchive];
     NSError *error;
-    // TODO: serialize
+    // serialize
     NSArray *createdRidesJSON = nil;
     if (error) {
         NSLog(@"Error serializing created rides. %@", error.localizedDescription);

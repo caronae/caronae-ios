@@ -63,7 +63,7 @@
     _nameLabel.text = _user.name;
     _courseLabel.text = _user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", _user.profile, _user.course] : _user.profile;
     _numDrivesLabel.text = _user.numDrives > -1 ? [NSString stringWithFormat:@"%ld", (long)_user.numDrives] : @"-";
-    _numRidesLabel.text = _user.numRides > -1 ? [NSString stringWithFormat:@"%d", _user.numRides] : @"-";
+    _numRidesLabel.text = _user.numRides > -1 ? [NSString stringWithFormat:@"%ld", (long)_user.numRides] : @"-";
     
     if (_user.phoneNumber.length > 0) {
         SHSPhoneNumberFormatter *phoneFormatter = [[SHSPhoneNumberFormatter alloc] init];
@@ -96,32 +96,17 @@
 }
 
 - (void)updateMutualFriends {
-    // Abort if the Facebook accounts are not connected.
-    if (!UserService.instance.userFacebookToken || _user.facebookID.length == 0) {
-        return;
-    }
-    
-    [CaronaeAPIHTTPSessionManager.instance GET:[NSString stringWithFormat:@"/user/%@/mutualFriends", _user.facebookID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
-        int totalMutualFriends = [responseObject[@"total_count"] intValue];
-        NSError *error;
-        // TODO: deserialize response
-        NSArray<User *> *mutualFriends = nil;
-        
-        if (error) {
-            NSLog(@"Error parsing user from mutual friends: %@", error.localizedDescription);
-        }
-        
+    [UserService.instance mutualFriendsForUserWithFacebookID:_user.facebookID success:^(NSArray<User *> * _Nonnull mutualFriends, NSInteger totalCount) {
         self.mutualFriends = mutualFriends;
         [self.mutualFriendsCollectionView reloadData];
-
-        if (totalMutualFriends > 0) {
-            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d no total e %d no Caronaê", totalMutualFriends, (int)mutualFriends.count];
+        
+        if (totalCount > 0) {
+            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %ld no total e %ld no Caronaê", (long)totalCount, (long)mutualFriends.count];
         }
         else {
             _mutualFriendsLabel.text = @"Amigos em comum: 0";
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } error:^(NSError * _Nullable error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
     }];
 }

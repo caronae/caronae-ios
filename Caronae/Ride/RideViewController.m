@@ -201,22 +201,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)updateMutualFriends {
-    // Abort if the Facebook accounts are not connected.
-    if (!UserService.instance.userFacebookToken || _ride.driver.facebookID.length == 0) {
-        return;
-    }
-    
-    [CaronaeAPIHTTPSessionManager.instance GET:[NSString stringWithFormat:@"/user/%@/mutualFriends", _ride.driver.facebookID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
-        int totalMutualFriends = [responseObject[@"total_count"] intValue];
-        NSError *error;
-        // TODO: deserialize response
-        NSArray<User *> *mutualFriends = nil;
-        
-        if (error) {
-            NSLog(@"Error parsing mutual friends. %@", error.localizedDescription);
-        }
-        
+    [UserService.instance mutualFriendsForUserWithFacebookID:_ride.driver.facebookID success:^(NSArray<User *> * _Nonnull mutualFriends, NSInteger totalCount) {
         if (mutualFriends.count > 0) {
             _mutualFriends = mutualFriends;
             _mutualFriendsCollectionHeight.constant = 40.0f;
@@ -224,13 +209,15 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
             [_mutualFriendsCollectionView reloadData];
         }
         
-        if (totalMutualFriends > 0) {
-            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d no total e %d no Caronaê", totalMutualFriends, (int)mutualFriends.count];
+        if (totalCount > 0) {
+            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %ld no total e %ld no Caronaê", (long)totalCount
+                                        , (long)mutualFriends.count];
         }
         else {
             _mutualFriendsLabel.text = @"Amigos em comum: 0";
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+    } error:^(NSError * _Nullable error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
     }];
 }
@@ -352,7 +339,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)deleteRoutine {
-    // TODO: delete routine
+    // TODO: move to RideService
 //    NSLog(@"Requesting to delete routine %ld", _ride.routineID);
 //    
 //    _cancelButton.enabled = NO;
