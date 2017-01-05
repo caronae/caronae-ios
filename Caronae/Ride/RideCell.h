@@ -20,7 +20,7 @@
 
 @property (nonatomic, readonly) Ride *ride;
 @property (nonatomic, readonly) UIColor *color;
-@property (nonatomic) int badgeCount;
+@property (nonatomic) NSInteger badgeCount;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *arrivalDateTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *driverNameLabel;

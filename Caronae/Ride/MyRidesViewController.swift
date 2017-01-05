@@ -3,7 +3,7 @@ import RealmSwift
 
 class MyRidesViewController: RideListController {
     var ridesNotificationToken: NotificationToken? = nil
-    var unreadNotifications: [Any] = []
+    var unreadNotifications: [Caronae.Notification] = []
     
     override func viewDidLoad() {
         hidesDirectionControl = true
@@ -83,5 +83,18 @@ class MyRidesViewController: RideListController {
 
     // MARK: Table methods
     
-    // TODO: Add badges to cells with notifications
+    override func tableView(_ tableView: UITableView!, cellForRowAt indexPath: IndexPath!) -> RideCell! {
+        var unreadCount = 0
+        let ride = filteredRides[indexPath.row]
+        
+        for notification in unreadNotifications {
+            if Int(notification.rideID!) == ride.id {
+                unreadCount += 1
+            }
+        }
+        
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)!
+        cell.badgeCount = unreadCount
+        return cell
+    }
 }
