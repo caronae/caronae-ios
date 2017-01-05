@@ -161,6 +161,35 @@ class RideService: NSObject {
         })
     }
 
+    func createRide(_ ride: Ride, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+        api.post("/ride", parameters: ride.toJSON(), success: { task, responseObject in
+            guard let ridesJson = responseObject as? [[String: Any]] else {
+                error(nil)
+                return
+            }
+            
+            let user = UserService.instance.user!
+            let rides = ridesJson.flatMap {
+                let ride = Ride(JSON: $0)
+                ride?.driver = user
+                return ride
+                } as [Ride]
+            
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.add(rides, update: true)
+                }
+            } catch _ {
+                error(nil)
+            }
+            
+            success(rides)
+        }, failure: { task, err in
+            error(err)
+        })
+    }
+    
     
     func removeRideFromMyRides (ride: Ride) {
         // Find and delete ride from persistent store

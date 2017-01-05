@@ -135,31 +135,18 @@
 - (void)createRide:(Ride *)ride {
     [SVProgressHUD show];
     self.createRideButton.enabled = NO;
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 
-    // TODO: Move to RideService
-//    [CaronaeAPIHTTPSessionManager.instance POST:@"/ride" parameters:ride success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//        [SVProgressHUD dismiss];
-//        NSError *error;
-//        NSArray<Ride *> *rides = nil;
-//        if (error) {
-//            NSLog(@"Error parsing my rides. %@", error.localizedDescription);
-//            self.createRideButton.enabled = YES;
-//            [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:error.localizedDescription];
-//            return;
-//        }
-//        
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//        
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        [SVProgressHUD dismiss];
-//        self.createRideButton.enabled = YES;
-//        
-//        NSLog(@"Error creating ride: %@", error.localizedDescription);
-//        
-//        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:error.localizedDescription];
-//    }];
+    [RideService.instance createRide:ride success:^(NSArray<Ride *> * _Nonnull createdRides) {
+        [SVProgressHUD dismiss];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } error:^(NSError * _Nullable error) {
+        [SVProgressHUD dismiss];
+        self.createRideButton.enabled = YES;
+
+        NSLog(@"Error creating ride: %@", error.localizedDescription);
+
+        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:error.localizedDescription];
+    }];
 }
 
 - (IBAction)didTapCreateButton:(id)sender {
@@ -173,7 +160,7 @@
     [self savePresetLocationZone:ride.region neighborhood:ride.neighborhood place:ride.place route:ride.route hub:ride.hub description:ride.notes going:ride.going];
     
     // Check if the user has selected the routine details
-    if (![ride[@"repeats_until"] isKindOfClass:[NSNull class]] && [ride[@"week_days"] isEqualToString:@""]) {
+    if (ride.repeatsUntil && ride.weekDays.length == 0) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que você esqueceu de marcar os dias da rotina."];
         return;
     }
