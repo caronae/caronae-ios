@@ -4,8 +4,6 @@
 
 @interface CreateRideViewController : UIViewController
 
-- (NSDictionary *)generateRideDictionaryFromView;
-
 @property (weak, nonatomic) IBOutlet UIButton *neighborhoodButton;
 @property (weak, nonatomic) IBOutlet UITextField *reference;
 @property (weak, nonatomic) IBOutlet UITextField *route;

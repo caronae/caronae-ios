@@ -15,8 +15,12 @@ class Ride: Object, Mappable {
     dynamic var going: Bool = true
     dynamic var date: Date! = Date()
     dynamic var slots: Int = 0
-    dynamic var driver: User!
+    
+    dynamic var weekDays: String?
+    dynamic var repeatsUntil: Date?
     var routineID = RealmOptional<Int>()
+    
+    dynamic var driver: User!
     var riders = List<User>()
     
     required convenience init?(map: Map) {
@@ -28,6 +32,10 @@ class Ride: Object, Mappable {
     }
     
     func mapping(map: Map) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateFormatter = DateFormatterTransform(dateFormatter: formatter)
+        
         id <- map["id"]
         region <- map["myzone"]
         neighborhood <- map["neighborhood"]
@@ -36,11 +44,15 @@ class Ride: Object, Mappable {
         route <- map["route"]
         notes <- map["description"]
         going <- map["going"]
-//        date <- map["mydate"] // FIXME: parse date and time to a single property
+        date <- (map["mydate"], dateFormatter) // FIXME: parse time
         slots <- map["slots"]
+        
+        routineID <- map["routine_id"]
+        weekDays <- map["week_days"]
+        repeatsUntil <- (map["repeats_until"], dateFormatter)
+        
         driver <- map["driver"]
         riders <- map["riders"]
-        routineID <- map["routine_id"]
     }
     
     var title: String {
