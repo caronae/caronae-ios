@@ -17,7 +17,7 @@
 
 @interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
 
-@property (nonatomic) NSArray<User *> *joinRequests;
+@property (nonatomic) NSArray<User *> *requesters;
 @property (nonatomic) NSArray<User *> *mutualFriends;
 @property (nonatomic) User *selectedUser;
 @property (nonatomic) UIColor *color;
@@ -341,7 +341,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 - (void)deleteRoutine {
     // TODO: move to RideService
 //    NSLog(@"Requesting to delete routine %ld", _ride.routineID);
-//    
+//
 //    _cancelButton.enabled = NO;
 //    [SVProgressHUD show];
 //    
@@ -426,25 +426,16 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)loadJoinRequests {
-    long rideID = _ride.id;
-    
-    [CaronaeAPIHTTPSessionManager.instance GET:[NSString stringWithFormat:@"/ride/getRequesters/%ld", rideID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        
-        NSError *error;
-        // TODO: deserialize response
-        NSArray<User *> *joinRequests = nil;
-        
-        if (!error) {
-            self.joinRequests = joinRequests;
-            if (joinRequests.count > 0) {
-                [self.requestsTable reloadData];
-                [self adjustHeightOfTableview];
-            }
-            
-            [NotificationStore clearNotificationsForRide:@(self.ride.id) ofType:NotificationTypeRequest];
+    [RideService.instance getRequestersForRideWithID:_ride.id success:^(NSArray<User *> * _Nonnull users) {
+        self.requesters = users;
+        if (self.requesters.count > 0) {
+            [self.requestsTable reloadData];
+            [self adjustHeightOfTableview];
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"Error loading join requests for ride %lu: %@", rideID, error.localizedDescription);
+        
+        [NotificationStore clearNotificationsForRide:@(_ride.id) ofType:NotificationTypeRequest];
+    } error:^(NSError * _Nullable error) {
+        NSLog(@"Error loading join requests for ride %lu: %@", _ride.id, error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível carregar as solicitações da sua carona. (%@)", error.localizedDescription]];
     }];
 }
@@ -467,13 +458,13 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)removeJoinRequest:(User *)requestingUser {
-    NSMutableArray *joinRequestsMutable = [NSMutableArray arrayWithArray:self.joinRequests];
+    NSMutableArray *joinRequestsMutable = [NSMutableArray arrayWithArray:self.requesters];
     [joinRequestsMutable removeObject:requestingUser];
     
     [self.requestsTable beginUpdates];
-    unsigned long index = [self.joinRequests indexOfObject:requestingUser];
+    unsigned long index = [self.requesters indexOfObject:requestingUser];
     [self.requestsTable deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    self.joinRequests = joinRequestsMutable;
+    self.requesters = joinRequestsMutable;
     [self.requestsTable endUpdates];
     [self adjustHeightOfTableview];
 }
@@ -491,14 +482,14 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.joinRequests.count;
+    return self.requesters.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     JoinRequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Request Cell" forIndexPath:indexPath];
     
     cell.delegate = self;
-    [cell configureCellWithUser:self.joinRequests[indexPath.row]];
+    [cell configureCellWithUser:self.requesters[indexPath.row]];
     [cell setColor:self.color];
     
     return cell;
@@ -517,7 +508,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (void)adjustHeightOfTableview {
     [self.view layoutIfNeeded];
-    CGFloat height = self.joinRequests.count > 0 ? self.requestsTable.contentSize.height : 0;
+    CGFloat height = self.requesters.count > 0 ? self.requestsTable.contentSize.height : 0;
     self.requestsTableHeight.constant = height;
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
