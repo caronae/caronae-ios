@@ -87,6 +87,7 @@ class UserService: NSObject {
             // Deserialize and persist response
             let user = User(JSON: userJson)
             self.user = user
+            self.userToken = token
             
             // TODO: Use notification instead of calling the app delegate directly
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -114,12 +115,13 @@ class UserService: NSObject {
     func signOut() {
         self.user = nil
         
-        guard let realm = try? Realm() else {
-            return
-        }
-        
         // Clear database
-        realm.deleteAll()
+        do {
+            let realm = try Realm()
+            realm.deleteAll()
+        } catch {
+            NSLog("Error deleting Realm. %@", error.localizedDescription)
+        }
         
         // Clear notifications
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
