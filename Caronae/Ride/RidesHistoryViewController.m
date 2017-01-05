@@ -32,7 +32,7 @@
         self.rides = rides;
         [self.tableView reloadData];
         
-        if (self.rides.count > 0) {
+        if ([self.rides count] > 0) {
             self.tableView.backgroundView = nil;
         }
         else {

@@ -1,4 +1,5 @@
 import Foundation
+import RealmSwift
 
 class RideService: NSObject {
     static let instance = RideService()
@@ -33,13 +34,25 @@ class RideService: NSObject {
         })
     }
     
-    func getOfferedRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
-        guard let userID = UserService.instance.user?.id else {
+    func getOfferedRides(success: @escaping (_ rides: Results<Ride>) -> Void, error: @escaping (_ error: Error?) -> Void) {
+        let user = UserService.instance.user!
+        
+        do {
+            let realm = try Realm()
+            let rides = realm.objects(Ride.self).filter("driver == %@", user)
+            success(rides)
+        } catch let err {
+            error(err)
+        }
+    }
+    
+    func updateOfferedRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+        guard let user = UserService.instance.user else {
             NSLog("Error: No userID registered")
             return
         }
         
-        api.get("/user/\(userID)/offeredRides", parameters: nil, success: { task, responseObject in
+        api.get("/user/\(user.id)/offeredRides", parameters: nil, success: { task, responseObject in
             guard let jsonResponse = responseObject as? [String: Any],
                 let ridesJson = jsonResponse["rides"] as? [[String: Any]] else {
                 NSLog("Error: rides was not found in responseObject")
@@ -48,9 +61,20 @@ class RideService: NSObject {
             }
             
             // Deserialize response
-            let rides = ridesJson.flatMap { Ride(JSON: $0) }
+            let rides = ridesJson.flatMap {
+                let ride = Ride(JSON: $0)
+                ride?.driver = user
+                return ride
+            } as [Ride]
             
-            // TODO: Persist offered rides
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.add(rides, update: true)
+                }
+            } catch _ {
+                error(nil)
+            }
             
             success(rides)
         }, failure: { _, err in

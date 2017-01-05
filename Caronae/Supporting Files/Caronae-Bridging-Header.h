@@ -8,5 +8,6 @@
 #import "AppDelegate.h"
 #import "CaronaeConstants.h"
 #import "CaronaeAlertController.h"
+#import "RideListController.h"
 #import "RideRequestsStore.h"
 

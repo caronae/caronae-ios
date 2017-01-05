@@ -83,19 +83,17 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     _rides = rides;
     if (rides) {
         if (self.hidesDirectionControl) {
-            self.filteredRides = rides;
+            NSMutableArray *filtered = [NSMutableArray arrayWithCapacity:rides.count];
+            
+            for (Ride *ride in rides) {
+                [filtered addObject:ride];
+            }
+
+            self.filteredRides = filtered;
         }
         else {
             self.filteredRides = [RideListController filterRides:rides withDirectionGoing:self.ridesDirectionGoing];
         }
-    }
-}
-
-- (void)loadingFailedWithOperation:(AFHTTPRequestOperation *)operation error:(NSError *)error {
-    if (operation) {
-        [self loadingFailedWithStatusCode:operation.response.statusCode andError:error];
-    } else {
-        [self loadingFailedWithStatusCode:0 andError:error];
     }
 }
 

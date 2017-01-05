@@ -2,7 +2,7 @@
 #import "ActiveRidesViewController.h"
 #import "AllRidesViewController.h"
 #import "MenuViewController.h"
-#import "MyRidesViewController.h"
+#import "Caronae-Swift.h"
 
 @interface TabBarController : UITabBarController
 

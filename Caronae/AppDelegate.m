@@ -91,10 +91,10 @@
         }];
     }
     if (UserService.instance.user) {
-        [RideService.instance getOfferedRidesWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
-            NSLog(@"userCreatedRides updated");
+        [RideService.instance updateOfferedRidesWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
+            NSLog(@"Offered rides updated");
         } error:^(NSError * _Nullable error) {
-            NSLog(@"Couldn't update userCreatedRides");
+            NSLog(@"Couldn't update offered rides");
         }];
     }
 }

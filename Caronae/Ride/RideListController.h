@@ -9,12 +9,11 @@
 - (RideViewController *)rideViewControllerForRide:(Ride *)ride;
 
 - (void)loadingFailedWithStatusCode:(NSInteger)statusCode andError:(NSError *)error;
-- (void)loadingFailedWithOperation:(AFHTTPRequestOperation *)operation error:(NSError *)error;
 
 - (RideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
-@property (nonatomic) NSArray<Ride *> *rides;
+@property (nonatomic) id rides;
 @property (nonatomic, readonly) NSArray<Ride *> *filteredRides;
 
 @property (nonatomic, assign) BOOL hidesDirectionControl;
