@@ -10,5 +10,6 @@
 #import "CaronaeAlertController.h"
 #import "NotificationStore.h"
 #import "RideListController.h"
+#import "RideViewController.h"
 #import "RideRequestsStore.h"
 

@@ -190,24 +190,110 @@ class RideService: NSObject {
         })
     }
     
-    
-    func removeRideFromMyRides (ride: Ride) {
-        // Find and delete ride from persistent store
-        guard let userRidesArchive = UserDefaults.standard.object(forKey: "userCreatedRides") as? [Dictionary<String, Any>] else {
-            NSLog("Error: userCreatedRides was not found in UserDefaults")
-            return
-        }
-        
-        var newRides = userRidesArchive
-        for (index, r) in newRides.enumerated() {
-            if r["rideId"] as? Int == ride.id || r["id"] as? Int == ride.id {
-                NSLog("Ride with id \(ride.id) deleted from user's rides")
-                newRides.remove(at: index)
-                UserDefaults.standard.set(newRides, forKey: "userCreatedRides")
-                return
+    func finishRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+        api.post("/ride/finishRide", parameters: ["rideId": id], success: { task, responseObject in
+            do {
+                let realm = try Realm()
+                if let ride = realm.object(ofType: Ride.self, forPrimaryKey: id) {
+                    try realm.write {
+                        realm.delete(ride)
+                    }
+                    
+                    // TODO: Unsubcribe from ride topic and clear notifications
+                } else {
+                    NSLog("Ride with id %d not found locally in user's rides", id)
+                }
+            } catch let err {
+                error(err)
             }
-        }
-        NSLog("Error: ride to be deleted was not found in user's rides")
+            
+            success()
+        }, failure: { task, err in
+            error(err)
+        })
     }
 
+    func leaveRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+        api.post("/ride/leaveRide", parameters: ["rideId": id], success: { task, responseObject in
+            do {
+                let realm = try Realm()
+                if let ride = realm.object(ofType: Ride.self, forPrimaryKey: id) {
+                    try realm.write {
+                        realm.delete(ride)
+                    }
+                    
+                    // TODO: Unsubcribe from ride topic and clear notifications
+                } else {
+                    NSLog("Rides with routine id %d not found locally in user's rides", id)
+                }
+            } catch let err {
+                error(err)
+            }
+            
+            success()
+        }, failure: { task, err in
+            error(err)
+        })
+    }
+    
+    func deleteRoutine(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+        api.delete("/ride/allFromRoutine/\(id)", parameters: nil, success: { task, responseObject in
+            do {
+                let realm = try Realm()
+                let rides = realm.objects(Ride.self).filter("routineID == %@", id)
+                if !rides.isEmpty {
+                    try realm.write {
+                        realm.delete(rides)
+                    }
+                    
+                    // TODO: Unsubcribe from ride topic and clear notifications
+                } else {
+                    NSLog("Ride with id %d not found locally in user's rides", id)
+                }
+            } catch let err {
+                error(err)
+            }
+            
+            success()
+        }, failure: { task, err in
+            error(err)
+        })
+    }
+    
+    func requestJoinOnRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+        api.post("/ride/requestJoin", parameters: ["rideId": id], success: { task, responseObject in
+            // TODO: Persist join requests
+            success()
+        }, failure: { task, err in
+            error(err)
+        })
+    }
+    
+    func answerRequestOnRide(withID rideID: Int, fromUser user: User, accepted: Bool, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+        let params = [
+            "rideId": rideID,
+            "userId": user.id,
+            "accepted": accepted
+        ] as [String: Any]
+        
+        api.post("/ride/answerJoinRequest", parameters: params, success: { task, responseObject in
+            do {
+                let realm = try Realm()
+                if let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) {
+                    try realm.write {
+                        ride.riders.append(user)
+                    }
+                } else {
+                    NSLog("Ride with id %d not found locally in user's rides", rideID)
+                }
+            } catch let err {
+                error(err)
+            }
+
+            success()
+        }, failure: { task, err in
+            error(err)
+        })
+    }
+    
 }

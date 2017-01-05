@@ -315,22 +315,18 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 - (void)leaveRide {
     NSLog(@"Requesting to leave/cancel ride %ld", (long)_ride.id);
     
-    NSDictionary *params = @{@"rideId": @(_ride.id)};
-    
     _cancelButton.enabled = NO;
     [SVProgressHUD show];
     
-    [CaronaeAPIHTTPSessionManager.instance POST:@"/ride/leaveRide" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [RideService.instance leaveRideWithID:_ride.id success:^{
         [SVProgressHUD dismiss];
-        NSLog(@"User left the ride. (Message: %@)", responseObject[@"message"]);
+        NSLog(@"User left the ride.");
         
         [[ChatStore chatForRide:_ride] unsubscribe];
         [NotificationStore clearNotificationsForRide:@(_ride.id) ofType:NotificationTypeAll];
         
-        [RideService.instance removeRideFromMyRidesWithRide:_ride];
-        
         [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } error:^(NSError * _Nonnull error) {
         NSLog(@"Error leaving/cancelling ride: %@", error.localizedDescription);
         [SVProgressHUD dismiss];
         _cancelButton.enabled = YES;
@@ -338,63 +334,21 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     }];
 }
 
-- (void)deleteRoutine {
-    // TODO: move to RideService
-//    NSLog(@"Requesting to delete routine %ld", _ride.routineID);
-//
-//    _cancelButton.enabled = NO;
-//    [SVProgressHUD show];
-//    
-//    NSError *error;
-//    NSArray *userRidesArchive = [[NSUserDefaults standardUserDefaults] arrayForKey:@"userCreatedRides"];
-//    NSArray<Ride *> *userRides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:userRidesArchive error:&error];
-//    if (error) {
-//        NSLog(@"Error parsing my rides. %@", error.localizedDescription);
-//        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível cancelar sua rotina." message:error.localizedDescription];
-//        return;
-//    }
-//    
-//    [CaronaeAPIHTTPSessionManager.instance DELETE:[NSString stringWithFormat:@"/ride/allFromRoutine/%ld", _ride.routineID] parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//        [SVProgressHUD dismiss];
-//        NSLog(@"User left all rides from routine. (Message: %@)", responseObject[@"message"]);
-//        
-//        for (Ride *userRide in userRides) {
-//            if (userRide.routineID == _ride.routineID) {
-//                [[ChatStore chatForRide:userRide] unsubscribe];
-//                [NotificationStore clearNotificationsForRide:@(userRide.rideID) ofType:NotificationTypeAll];
-//                
-//                [RideService.instance removeRideFromMyRidesWithRide:userRide];
-//            }
-//        }
-//        
-//        [self.navigationController popViewControllerAnimated:YES];
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        NSLog(@"Error deleting routine: %@", error.localizedDescription);
-//        [SVProgressHUD dismiss];
-//        _cancelButton.enabled = YES;
-//        [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível cancelar sua rotina. (%@)", error.localizedDescription]];
-//    }];
-}
-
 - (void)finishRide {
     NSLog(@"Requesting to finish ride %ld", _ride.id);
-    
-    NSDictionary *params = @{@"rideId": @(_ride.id)};
     
     _finishRideButton.enabled = NO;
     [SVProgressHUD show];
     
-    [CaronaeAPIHTTPSessionManager.instance POST:@"/ride/finishRide" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [RideService.instance finishRideWithID:_ride.id success:^{
         [SVProgressHUD dismiss];
-        NSLog(@"User finished the ride. (Message: %@)", responseObject[@"message"]);
+        NSLog(@"User finished the ride.");
         
         [[ChatStore chatForRide:_ride] unsubscribe];
         [NotificationStore clearNotificationsForRide:@(_ride.id) ofType:NotificationTypeAll];
         
-        [RideService.instance removeRideFromMyRidesWithRide:_ride];
-        
         [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } error:^(NSError * _Nonnull error) {
         NSLog(@"Error finishing ride: %@", error.localizedDescription);
         [SVProgressHUD dismiss];
         _finishRideButton.enabled = YES;
@@ -407,22 +361,22 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (void)requestJoinRide {
     NSLog(@"Requesting to join ride %ld", _ride.id);
-    NSDictionary *params = @{@"rideId": @(_ride.id)};
     
     _requestRideButton.enabled = NO;
     [SVProgressHUD show];
     
-    [CaronaeAPIHTTPSessionManager.instance POST:@"/ride/requestJoin" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [RideService.instance requestJoinOnRideWithID:_ride.id success:^{
         [SVProgressHUD dismiss];
-        NSLog(@"Done requesting ride. (Message: %@)", responseObject[@"message"]);
+        NSLog(@"Done requesting ride.");
         [RideRequestsStore setRideAsRequested:_ride];
         [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } error:^(NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         NSLog(@"Error requesting to join ride: %@", error.localizedDescription);
         _requestRideButton.enabled = YES;
         [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível solicitar a carona. (%@)", error.localizedDescription]];
     }];
+
 }
 
 - (void)loadJoinRequests {
@@ -441,17 +395,12 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)joinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(JoinRequestCell *)cell {
-    NSLog(@"Request for user %@ was %@", requestingUser.name, accepted ? @"accepted" : @"not accepted");
-    NSDictionary *params = @{@"userId": @(requestingUser.id),
-                             @"rideId": @(_ride.id),
-                             @"accepted": @(accepted)};
-    
     [cell setButtonsEnabled:NO];
     
-    [CaronaeAPIHTTPSessionManager.instance POST:@"/ride/answerJoinRequest" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        NSLog(@"Answer to join request successfully sent.");
+    [RideService.instance answerRequestOnRideWithID:_ride.id fromUser:requestingUser accepted:accepted success:^{
+        NSLog(@"Request for user %@ was %@", requestingUser.name, accepted ? @"accepted" : @"not accepted");
         [self removeJoinRequest:requestingUser];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } error:^(NSError * _Nonnull error) {
         NSLog(@"Error accepting join request: %@", error.localizedDescription);
         [cell setButtonsEnabled:YES];
     }];
