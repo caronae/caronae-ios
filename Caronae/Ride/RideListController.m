@@ -143,11 +143,11 @@ static CGFloat const RideListMessageFontSize = 25.0f;
 #pragma mark - Table methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return (self.filteredRides && self.filteredRides.count > 0) ? 1 : 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return (self.filteredRides && self.filteredRides.count > 0) ? self.filteredRides.count : 0;
+    return [self.filteredRides count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
