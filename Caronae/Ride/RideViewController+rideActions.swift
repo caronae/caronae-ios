@@ -1,6 +1,16 @@
 import SVProgressHUD
 
 extension RideViewController {
+    func userIsRider() -> Bool {
+        let userID = UserService.instance.user!.id
+        for rider in ride.riders {
+            if rider.id == userID {
+                return true
+            }
+        }
+        return false
+    }
+    
     func deleteRoutine() {
         let routineID = self.ride.routineID.value!
         NSLog("Requesting to delete routine with id %ld", routineID)

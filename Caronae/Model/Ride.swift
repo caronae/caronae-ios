@@ -1,8 +1,9 @@
 import ObjectMapper
 import RealmSwift
 
-import ObjectMapper
 import RealmSwift
+import ObjectMapper
+import ObjectMapper_Realm
 
 class Ride: Object, Mappable {
     dynamic var id: Int = 0
@@ -58,7 +59,7 @@ class Ride: Object, Mappable {
         repeatsUntil <- (map["repeats_until"], dateFormatter)
         
         driver <- map["driver"]
-        riders <- map["riders"]
+        riders <- (map["riders"], ListTransform<User>())
     }
     
     var title: String {

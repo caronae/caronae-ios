@@ -16,6 +16,7 @@ target 'Caronae' do
     pod 'FBSDKLoginKit'
     pod 'RealmSwift', '~> 2.1'
     pod 'ObjectMapper', '~> 2.2'
+    pod 'ObjectMapper+Realm', '~> 0.2'
     
     target 'CaronaeTests' do
         inherit! :search_paths

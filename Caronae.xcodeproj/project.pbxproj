@@ -54,7 +54,7 @@
 		A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */; };
 		A3A4A4AF1C4C695800CF4CB2 /* NSString+validation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */; };
 		A3AD19CA1BED9BFB003EDA17 /* ActiveRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */; };
-		A3AD53BC1E1EBEAA005EAF04 /* RideViewController+deleteRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD53BB1E1EBEAA005EAF04 /* RideViewController+deleteRoutine.swift */; };
+		A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD53BB1E1EBEAA005EAF04 /* RideViewController+rideActions.swift */; };
 		A3AD822D1E1B1E85006D8ABE /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD822C1E1B1E85006D8ABE /* Ride.swift */; };
 		A3AD822F1E1C5BD9006D8ABE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD822E1E1C5BD9006D8ABE /* Message.swift */; };
 		A3AD82311E1C6072006D8ABE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82301E1C6072006D8ABE /* User.swift */; };
@@ -174,7 +174,7 @@
 		A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+validation.m"; sourceTree = "<group>"; };
 		A3AD19C81BED9BFB003EDA17 /* ActiveRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveRidesViewController.h; sourceTree = "<group>"; };
 		A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveRidesViewController.m; sourceTree = "<group>"; };
-		A3AD53BB1E1EBEAA005EAF04 /* RideViewController+deleteRoutine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RideViewController+deleteRoutine.swift"; sourceTree = "<group>"; };
+		A3AD53BB1E1EBEAA005EAF04 /* RideViewController+rideActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RideViewController+rideActions.swift"; sourceTree = "<group>"; };
 		A3AD822C1E1B1E85006D8ABE /* Ride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		A3AD822E1E1C5BD9006D8ABE /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A3AD82301E1C6072006D8ABE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -368,7 +368,7 @@
 				A357EF321C56C5A100AC8096 /* RideListController.xib */,
 				A39BBD091C06B94E00EF9EBD /* RideViewController.h */,
 				A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */,
-				A3AD53BB1E1EBEAA005EAF04 /* RideViewController+deleteRoutine.swift */,
+				A3AD53BB1E1EBEAA005EAF04 /* RideViewController+rideActions.swift */,
 				A35D47291C2092A300501647 /* RidesHistoryViewController.h */,
 				A35D472A1C2092A300501647 /* RidesHistoryViewController.m */,
 				A34C675A1C853C4B001F6D90 /* RideRequestsStore.h */,
@@ -778,7 +778,7 @@
 				A369A4EB1C72928700FE5495 /* UIViewController+isVisible.m in Sources */,
 				A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */,
 				A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */,
-				A3AD53BC1E1EBEAA005EAF04 /* RideViewController+deleteRoutine.swift in Sources */,
+				A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */,
 				A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */,
 				A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */,
 				A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */,

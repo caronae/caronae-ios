@@ -190,16 +190,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     return UserService.instance.user.id == _ride.driver.id;
 }
 
-- (BOOL)userIsRider {
-    // TODO: check if user is rider
-//    for (User *user in _ride.riders) {
-//        if (user.id == UserService.instance.user.id) {
-//            return YES;
-//        }
-//    }
-    return NO;
-}
-
 - (void)updateMutualFriends {
     [UserService.instance mutualFriendsForUserWithFacebookID:_ride.driver.facebookID success:^(NSArray<User *> * _Nonnull mutualFriends, NSInteger totalCount) {
         if (mutualFriends.count > 0) {
