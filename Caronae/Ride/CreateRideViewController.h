@@ -2,15 +2,7 @@
 
 @class Ride;
 
-@protocol CreateRideDelegate <NSObject>
-
-- (void)didCreateRides:(NSArray<Ride *> *)rides;
-
-@end
-
 @interface CreateRideViewController : UIViewController
-
-@property (nonatomic) id<CreateRideDelegate> delegate;
 
 - (NSDictionary *)generateRideDictionaryFromView;
 

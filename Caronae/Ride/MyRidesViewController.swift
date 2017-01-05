@@ -1,29 +1,31 @@
-//
-//  MyRidesViewController.swift
-//  Caronae
-//
-//  Created by Mario Cecchi on 04/01/2017.
-//  Copyright © 2017 Mario Cecchi. All rights reserved.
-//
-
 import UIKit
 import RealmSwift
 
 class MyRidesViewController: RideListController {
-    
-    var notificationToken: NotificationToken? = nil
+    var ridesNotificationToken: NotificationToken? = nil
+    var unreadNotifications: [Any] = []
     
     override func viewDidLoad() {
         hidesDirectionControl = true
         super.viewDidLoad()
         
+        navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
+        
         RideService.instance.getOfferedRides(success: { rides in
             self.rides = rides
             self.tableView.backgroundView = nil
-            self.listenToChanges()
+            self.subscribeToChanges()
         }, error: { error in
-            
+            self.tableView.backgroundView = self.errorLabel
         })
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateNotificationBadges), name: Notification.Name.CaronaeDidUpdateNotifications, object: nil)
+        updateNotificationBadges()
+    }
+    
+    deinit {
+        ridesNotificationToken?.stop()
+        NotificationCenter.default.removeObserver(self)
     }
     
     func refreshTable(_ sender: Any) {
@@ -36,13 +38,12 @@ class MyRidesViewController: RideListController {
         })
     }
     
-    func listenToChanges() {
-        // Observe Results Notifications
+    func subscribeToChanges() {
         guard let rides = rides as? Results<Ride> else {
             return
         }
         
-        notificationToken = rides.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+        ridesNotificationToken = rides.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
             switch changes {
             case .initial:
@@ -65,18 +66,22 @@ class MyRidesViewController: RideListController {
                 fatalError("\(error)")
                 break
             }
+            
+            tableView.backgroundView = rides.isEmpty ? self?.emptyTableLabel : nil
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func updateNotificationBadges() {
+        unreadNotifications = NotificationStore.getNotificationsOf(NotificationTypeRequest)
+        if unreadNotifications.isEmpty {
+            navigationController?.tabBarItem.badgeValue = nil
+        } else {
+            navigationController?.tabBarItem.badgeValue = String(format: "%ld", unreadNotifications.count)
+        }
+        tableView.reloadData()
     }
-    */
 
+    // MARK: Table methods
+    
+    // TODO: Add badges to cells with notifications
 }

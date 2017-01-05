@@ -19,10 +19,6 @@
 @implementation CreateRideViewController
 
 - (void)viewDidLoad {
-    if (!self.delegate) {
-        NSLog(@"WARNING: No delegate for CreateRideViewController");
-    }
-    
     [super viewDidLoad];
     
     [self checkIfUserHasCar];
@@ -142,10 +138,10 @@
     [SVProgressHUD show];
     self.createRideButton.enabled = NO;
     
+    // TODO: Move to RideService
     [CaronaeAPIHTTPSessionManager.instance POST:@"/ride" parameters:ride success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         NSError *error;
-        // TODO: deserialize response
         NSArray<Ride *> *rides = nil;
         if (error) {
             NSLog(@"Error parsing my rides. %@", error.localizedDescription);
@@ -153,8 +149,6 @@
             [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:error.localizedDescription];
             return;
         }
-        
-        [self.delegate didCreateRides:rides];
         
         [self dismissViewControllerAnimated:YES completion:nil];
         

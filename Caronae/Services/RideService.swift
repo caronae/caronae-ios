@@ -67,6 +67,8 @@ class RideService: NSObject {
                 return ride
             } as [Ride]
             
+            // TODO: Subscribe to ride topics
+            
             do {
                 let realm = try Realm()
                 try realm.write {
