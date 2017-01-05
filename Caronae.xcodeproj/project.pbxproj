@@ -31,7 +31,6 @@
 		A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A34CEC4C1C993115006FC41E /* Settings.bundle */; };
 		A357EF331C56C5A100AC8096 /* RideListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF311C56C5A100AC8096 /* RideListController.m */; };
 		A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A357EF321C56C5A100AC8096 /* RideListController.xib */; };
-		A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF361C57168D00AC8096 /* SignupViewController.m */; };
 		A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35D472A1C2092A300501647 /* RidesHistoryViewController.m */; };
 		A369A4EB1C72928700FE5495 /* UIViewController+isVisible.m in Sources */ = {isa = PBXBuildFile; fileRef = A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */; };
 		A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */; };
@@ -133,8 +132,6 @@
 		A357EF301C56C5A100AC8096 /* RideListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideListController.h; sourceTree = "<group>"; };
 		A357EF311C56C5A100AC8096 /* RideListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideListController.m; sourceTree = "<group>"; };
 		A357EF321C56C5A100AC8096 /* RideListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideListController.xib; sourceTree = "<group>"; };
-		A357EF351C57168D00AC8096 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
-		A357EF361C57168D00AC8096 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		A35D47291C2092A300501647 /* RidesHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RidesHistoryViewController.h; sourceTree = "<group>"; };
 		A35D472A1C2092A300501647 /* RidesHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RidesHistoryViewController.m; sourceTree = "<group>"; };
 		A369A4E91C72928700FE5495 /* UIViewController+isVisible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+isVisible.h"; sourceTree = "<group>"; };
@@ -350,8 +347,6 @@
 				A34312CC1BF01C26005BA311 /* EditProfileViewController.m */,
 				A34312C81BF01C1D005BA311 /* ProfileViewController.h */,
 				A34312C91BF01C1D005BA311 /* ProfileViewController.m */,
-				A357EF351C57168D00AC8096 /* SignupViewController.h */,
-				A357EF361C57168D00AC8096 /* SignupViewController.m */,
 				A3AD82391E1C8049006D8ABE /* TokenViewController.swift */,
 			);
 			path = User;
@@ -753,7 +748,6 @@
 				A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */,
 				A357EF331C56C5A100AC8096 /* RideListController.m in Sources */,
 				A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */,
-				A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */,
 				A3AD822D1E1B1E85006D8ABE /* Ride.swift in Sources */,
 				A34C675C1C853C4B001F6D90 /* RideRequestsStore.m in Sources */,
 				A3034D581DB58A1B00816B79 /* NSDate+isInTheFuture.swift in Sources */,
