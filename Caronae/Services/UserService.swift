@@ -171,6 +171,19 @@ class UserService: NSObject {
         })
     }
     
+    func updateFacebookID(_ id: Any, token: Any, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+        var params = [
+            "token": token,
+            "id": id
+        ]
+        
+        api.put("/user/saveFaceId", parameters: params, success: { task, responseObject in
+            success()
+        }, failure: { task, err in
+            error(err)
+        })
+    }
+    
     func getPhotoFromUFRJ(success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error?) -> Void) {
         api.get("/user/intranetPhotoUrl", parameters: nil, success: { task, responseObject in
             guard let response = responseObject as? [String: Any],

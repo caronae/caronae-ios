@@ -20,9 +20,6 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [[FBSDKApplicationDelegate sharedInstance] application:application
-                             didFinishLaunchingWithOptions:launchOptions];
-    
     [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.75f]];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     
@@ -31,10 +28,26 @@
     
     [self configureRealm];
     [self configureGCM];
+    [self configureFacebookWithLaunchOptions:launchOptions];
     
     [CRToastManager setDefaultOptions:@{
                                         kCRToastBackgroundColorKey: [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000],
                                         }];
+#ifdef DEBUG
+    // Show the current API server on the status bar
+    NSString *debugMessage = [NSString stringWithFormat:@"API: %@", CaronaeAPIBaseURL];
+    if (UserService.instance.user) {
+        debugMessage = [NSString stringWithFormat:@"%@ User: %ld", debugMessage, (long)UserService.instance.user.id];
+    }
+    [CRToastManager showNotificationWithOptions:@{
+                                                  kCRToastTextKey: debugMessage,
+                                                  kCRToastBackgroundColorKey: [UIColor colorWithWhite:0.96 alpha:1],
+                                                  kCRToastTextColorKey: [UIColor blackColor],
+                                                  kCRToastAnimationInTimeIntervalKey: @0,
+                                                  kCRToastTimeIntervalKey: @DBL_MAX
+                                                  }
+                                completionBlock:nil];
+#endif
     
     // Load home screen if the user has already signed in
     if (UserService.instance.user) {
@@ -112,6 +125,45 @@
                                                        annotation:annotation];
 }
 
+
+#pragma mark - Facebook SDK
+
+- (void)configureFacebookWithLaunchOptions:(NSDictionary *)launchOptions {
+    [[FBSDKApplicationDelegate sharedInstance] application:UIApplication.sharedApplication
+                             didFinishLaunchingWithOptions:launchOptions];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(FBTokenChanged:) name:FBSDKAccessTokenDidChangeNotification object:nil];
+}
+
+
+- (void)FBTokenChanged:(NSNotification *)notification {
+    FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
+    NSLog(@"Facebook Access Token did change. New access token is %@", token.tokenString);
+    
+    id fbToken;
+    if (token.tokenString) {
+        fbToken = token.tokenString;
+    } else {
+        fbToken = [NSNull null];
+    }
+    
+    id fbID;
+    if (notification.userInfo[FBSDKAccessTokenDidChangeUserID]) {
+        if (token.userID) {
+            NSLog(@"Facebook has loogged in with Facebook ID %@.", token.userID);
+            fbID = token.userID;
+        } else {
+            NSLog(@"User has logged out from Facebook.");
+            fbID = [NSNull null];
+        }
+    }
+    
+    [UserService.instance updateFacebookID:fbID token:fbToken success:^{
+        NSLog(@"Updated user's Facebook credentials on server.");
+    } error:^(NSError * _Nonnull error) {
+        NSLog(@"Error updating user's Facebook credentials on server: %@", error.localizedDescription);
+    }];
+}
 
 #pragma mark - Etc
 

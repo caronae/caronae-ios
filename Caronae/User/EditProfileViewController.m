@@ -40,8 +40,6 @@
     
     self.changePhotoButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(FBTokenChanged:) name:FBSDKAccessTokenDidChangeNotification object:nil];
-    
     if (self.completeProfileMode) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Olá!" message:@"Parece que esta é sua primeira vez usando o Caronaê. Por favor, complete seu perfil para continuar."];
         self.numDrivesLabel.text = @"0";
@@ -281,62 +279,6 @@
     }
     else {
         self.navigationItem.rightBarButtonItem = self.loadingButton;
-    }
-}
-
-
-#pragma mark - Facebook integration
-
-- (void)FBTokenChanged:(NSNotification *)notification {
-    FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
-    NSLog(@"Facebook Access Token did change. New access token is %@", token.tokenString);
-    
-    id fbToken;
-    if (token.tokenString) {
-        fbToken = token.tokenString;
-    }
-    else {
-        fbToken = [NSNull null];
-    }
-    
-    id fbID;
-    if (notification.userInfo[FBSDKAccessTokenDidChangeUserID]) {
-        if (token.userID) {
-            NSLog(@"Facebook has loogged in with Facebook ID %@.", token.userID);
-            fbID = token.userID;
-        }
-        else {
-            NSLog(@"User has logged out from Facebook.");
-            fbID = [NSNull null];
-        }
-    }
-    
-    [self updateUsersFacebookID:fbID token:fbToken success:^(id responseObject) {
-        NSLog(@"Updated user's Facebook credentials on server.");
-    } failure:^(NSError *error) {
-        NSLog(@"Error updating user's Facebook credentials on server: %@", error.localizedDescription);
-    } tries:3];
-}
-
-- (void)updateUsersFacebookID:(id)fbID token:(id)token success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure tries:(NSUInteger)times {
-    if (times <= 0) {
-        failure([NSError errorWithDomain:CaronaeErrorDomain code:3 userInfo:@{@"localizedDescription":@"Failed updating user's Facebook ID remotely."}]);
-    }
-    else {
-        
-        NSDictionary *params;
-        if (fbID) {
-            params = @{@"id": fbID, @"token": token};
-        }
-        else {
-            params = @{@"token": token};
-        }
-        
-        [CaronaeAPIHTTPSessionManager.instance PUT:@"/user/saveFaceId" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-          success(task);
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [self updateUsersFacebookID:fbID token:token success:success failure:failure tries:times-1];
-        }];
     }
 }
 
