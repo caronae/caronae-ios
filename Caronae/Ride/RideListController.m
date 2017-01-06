@@ -67,33 +67,25 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     }
 }
 
-+ (NSArray *)filterRides:(NSArray *)rides withDirectionGoing:(BOOL)going {
-    NSMutableArray *filtered = [NSMutableArray arrayWithCapacity:rides.count];
-    
-    for (Ride *ride in rides) {
-        if (ride.going == going) {
-            [filtered addObject:ride];
-        }
-    }
-    
-    return filtered;
-}
-
 - (void)setRides:(NSArray *)rides {
     _rides = rides;
-    if (rides) {
-        if (self.hidesDirectionControl) {
-            NSMutableArray *filtered = [NSMutableArray arrayWithCapacity:rides.count];
-            
-            for (Ride *ride in rides) {
+    [self updateFilteredRides];
+}
+
+- (void)updateFilteredRides {
+    if (_rides) {
+        _tableView.backgroundView = ([_rides count] == 0) ? self.emptyTableLabel : nil;
+        
+        NSMutableArray *filtered = [NSMutableArray arrayWithCapacity:[_rides count]];
+        for (Ride *ride in _rides) {
+            if (self.hidesDirectionControl || ride.going == self.ridesDirectionGoing) {
                 [filtered addObject:ride];
             }
-
-            self.filteredRides = filtered;
         }
-        else {
-            self.filteredRides = [RideListController filterRides:rides withDirectionGoing:self.ridesDirectionGoing];
-        }
+        
+        self.filteredRides = filtered;
+    } else {
+        self.filteredRides = @[];
     }
 }
 

@@ -45,6 +45,8 @@ class MyRidesViewController: RideListController {
         
         ridesNotificationToken = rides.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
+            self?.updateFilteredRides()
+            
             switch changes {
             case .initial:
                 // Results are now populated and can be accessed without blocking the UI
@@ -66,8 +68,6 @@ class MyRidesViewController: RideListController {
                 fatalError("\(error)")
                 break
             }
-            
-            tableView.backgroundView = rides.isEmpty ? self?.emptyTableLabel : nil
         }
     }
     

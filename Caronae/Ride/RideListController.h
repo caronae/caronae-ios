@@ -9,6 +9,7 @@
 - (RideViewController *)rideViewControllerForRide:(Ride *)ride;
 
 - (void)loadingFailedWithStatusCode:(NSInteger)statusCode andError:(NSError *)error;
+- (void)updateFilteredRides;
 
 - (RideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
