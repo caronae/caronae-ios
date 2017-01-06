@@ -118,7 +118,9 @@ class UserService: NSObject {
         // Clear database
         do {
             let realm = try Realm()
-            realm.deleteAll()
+            try realm.write {
+                realm.deleteAll()
+            }
         } catch {
             NSLog("Error deleting Realm. %@", error.localizedDescription)
         }
