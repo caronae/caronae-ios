@@ -333,7 +333,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)finishRide {
-    NSLog(@"Requesting to finish ride %ld", _ride.id);
+    NSLog(@"Requesting to finish ride %ld", (long)_ride.id);
     
     _finishRideButton.enabled = NO;
     [SVProgressHUD show];
@@ -358,7 +358,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 #pragma mark - Join request methods
 
 - (void)requestJoinRide {
-    NSLog(@"Requesting to join ride %ld", _ride.id);
+    NSLog(@"Requesting to join ride %ld", (long)_ride.id);
     
     _requestRideButton.enabled = NO;
     [SVProgressHUD show];
@@ -387,7 +387,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         
         [NotificationStore clearNotificationsForRide:@(_ride.id) ofType:NotificationTypeRequest];
     } error:^(NSError * _Nullable error) {
-        NSLog(@"Error loading join requests for ride %lu: %@", _ride.id, error.localizedDescription);
+        NSLog(@"Error loading join requests for ride %lu: %@", (long)_ride.id, error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível carregar as solicitações da sua carona. (%@)", error.localizedDescription]];
     }];
 }
