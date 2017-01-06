@@ -16,6 +16,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.view.backgroundColor = [UIColor whiteColor];
+    
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
 }
 

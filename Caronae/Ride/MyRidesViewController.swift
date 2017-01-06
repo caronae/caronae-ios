@@ -9,6 +9,8 @@ class MyRidesViewController: RideListController {
         hidesDirectionControl = true
         super.viewDidLoad()
         
+        self.navigationController?.view.backgroundColor = UIColor.white
+        
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
         RideService.instance.getOfferedRides(success: { rides in
