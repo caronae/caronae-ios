@@ -8,6 +8,13 @@ class TokenViewController: UIViewController {
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var tokenTextField: UITextField!
     
+    static func tokenViewController() -> TokenViewController
+    {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InitialTokenScreen") as! TokenViewController
+        viewController.modalTransitionStyle = .flipHorizontal
+        return viewController
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,8 +35,8 @@ class TokenViewController: UIViewController {
         
         UserService.instance.signIn(withID: id, token: token, success: { user in
             // TODO: check if we need to show the screen to complete the profile
-            SVProgressHUD.dismiss()
-            self.performSegue(withIdentifier: "ViewHome", sender: self)
+            let rootViewController = TabBarController()
+            UIApplication.shared.keyWindow?.replaceViewController(with: rootViewController)
         }, error: { error in
             var errorMessage: String!
             

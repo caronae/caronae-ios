@@ -33,7 +33,12 @@
 }
 
 - (void)updateProfileFields {
-    if ([UserService.instance.user isEqual:_user]) {
+    User *currentUser = UserService.instance.user;
+    if (!currentUser) {
+        return;
+    }
+    
+    if ([currentUser isEqual:_user]) {
         self.title = @"Meu Perfil";
         
         if (_user.carOwner) {

@@ -12,4 +12,7 @@
 #import "RideListController.h"
 #import "RideViewController.h"
 #import "RideRequestsStore.h"
+#import "TabBarController.h"
+
+#import "UIWindow+replaceRootViewController.h"
 

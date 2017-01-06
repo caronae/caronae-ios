@@ -1,9 +1,18 @@
 #import "TabBarController.h"
+#import "UIApplication+topViewController.h"
+#import "UIWindow+replaceRootViewController.h"
+#import "Caronae-Swift.h"
 
 @implementation TabBarController
 
+- (instancetype)init {
+    return [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeTabViewController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateUser:) name:CaronaeDidUpdateUserNotification object:nil];
     
     for (UIViewController *viewController in self.viewControllers) {
         if ([viewController isKindOfClass:UINavigationController.class]) {
@@ -27,6 +36,14 @@
                 self.menuViewController = (MenuViewController *)viewController;
             }
         }
+    }
+}
+
+- (void)didUpdateUser:(NSNotification *)notification {
+    if (!UserService.instance.user) {
+        // User has logged out. Go to the authentication screen
+        UIViewController *authViewController = [TokenViewController tokenViewController];
+        [UIApplication.sharedApplication.keyWindow replaceViewControllerWith:authViewController];
     }
 }
 

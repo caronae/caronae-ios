@@ -21,8 +21,5 @@
 - (void)deleteAllObjects:(NSString *)entityDescription;
 - (NSURL *)applicationDocumentsDirectory;
 
-// Etc.
-- (UIViewController *)topViewController;
-
 @end
 

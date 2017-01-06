@@ -11,7 +11,7 @@ class UserService: NSObject {
         // This prevents others from using the default '()' initializer for this class.
     }
     
-    var user: User? {
+    private (set) var user: User? {
         get {
             // Load the saved user id from UserDefaults
             var userID: Int? = UserDefaults.standard.integer(forKey: "user_id")
@@ -47,6 +47,9 @@ class UserService: NSObject {
                 UserDefaults.standard.removeObject(forKey: "user_id")
                 UserDefaults.standard.removeObject(forKey: "user")
             }
+            
+            // Notify observers that the user has changed
+            NotificationCenter.default.post(name: Notification.Name.CaronaeDidUpdateUser, object: self)
         }
     }
     
@@ -84,14 +87,10 @@ class UserService: NSObject {
                 return
             }
             
-            // Deserialize and persist response
+            // Save current user
+            self.userToken = token
             let user = User(JSON: userJson)
             self.user = user
-            self.userToken = token
-            
-            // TODO: Use notification instead of calling the app delegate directly
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.registerForNotifications()
             
             success(user!)
             
@@ -113,8 +112,6 @@ class UserService: NSObject {
     }
     
     func signOut() {
-        self.user = nil
-        
         // Clear database
         do {
             let realm = try Realm()
@@ -136,11 +133,8 @@ class UserService: NSObject {
         // Logout from Facebook
         FBSDKLoginManager().logOut()
         
-        // Go to home screen
-        let topViewController = appDelegate.topViewController()
-        let authViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "InitialTokenScreen")
-        authViewController.modalTransitionStyle = .flipHorizontal
-        topViewController?.present(authViewController, animated: true, completion: nil)
+        // Clear current user
+        self.user = nil
     }
     
     func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error?) -> Void) {
@@ -172,7 +166,7 @@ class UserService: NSObject {
     }
     
     func updateFacebookID(_ id: Any, token: Any, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        var params = [
+        let params = [
             "token": token,
             "id": id
         ]

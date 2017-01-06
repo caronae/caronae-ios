@@ -49,7 +49,7 @@
                                 completionBlock:nil];
 #endif
     
-    // Load home screen if the user has already signed in
+    // Load the authentication screen if the user is not signed in
     if (UserService.instance.user) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *initialViewController = [storyboard instantiateViewControllerWithIdentifier:@"HomeTabViewController"];
@@ -163,27 +163,6 @@
     } error:^(NSError * _Nonnull error) {
         NSLog(@"Error updating user's Facebook credentials on server: %@", error.localizedDescription);
     }];
-}
-
-#pragma mark - Etc
-
-- (UIViewController *)topViewController {
-    return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
-}
-
-- (UIViewController *)topViewControllerWithRootViewController:(UIViewController *)rootViewController {
-    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
-        UITabBarController *tabBarController = (UITabBarController *)rootViewController;
-        return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
-    } else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-        UINavigationController *navigationController = (UINavigationController *)rootViewController;
-        return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
-    } else if (rootViewController.presentedViewController) {
-        UIViewController *presentedViewController = rootViewController.presentedViewController;
-        return [self topViewControllerWithRootViewController:presentedViewController];
-    } else {
-        return rootViewController;
-    }
 }
 
 

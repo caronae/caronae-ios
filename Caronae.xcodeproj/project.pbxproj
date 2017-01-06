@@ -68,6 +68,8 @@
 		A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */; };
 		A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */; };
 		A3BBF1381DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */; };
+		A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */; };
+		A3CA5DD21E1F46520062522D /* UIWindow+replaceRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */; };
 		A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3E7FB1C77AD310094BBAC /* WebViewController.m */; };
 		A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE026B1C17D01000A8407E /* RiderCell.m */; };
 		A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F30EE81C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m */; };
@@ -192,6 +194,10 @@
 		A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+UIColor.m"; sourceTree = "<group>"; };
 		A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaronaeAPIHTTPSessionManager.swift; path = Networking/CaronaeAPIHTTPSessionManager.swift; sourceTree = "<group>"; };
 		A3C55BDB1C5FD1B700C84204 /* Caronae 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Caronae 2.xcdatamodel"; sourceTree = "<group>"; };
+		A3CA5DCD1E1F3C000062522D /* UIApplication+topViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+topViewController.h"; sourceTree = "<group>"; };
+		A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+topViewController.m"; sourceTree = "<group>"; };
+		A3CA5DD01E1F46520062522D /* UIWindow+replaceRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+replaceRootViewController.h"; sourceTree = "<group>"; };
+		A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+replaceRootViewController.m"; sourceTree = "<group>"; };
 		A3D3E7FA1C77AD310094BBAC /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = About/WebViewController.h; sourceTree = "<group>"; };
 		A3D3E7FB1C77AD310094BBAC /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = About/WebViewController.m; sourceTree = "<group>"; };
 		A3D680191DB4016E00135C2B /* Caronae.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Caronae.entitlements; sourceTree = "<group>"; };
@@ -470,11 +476,15 @@
 				A3F30EE81C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m */,
 				A3A4A4AD1C4C695800CF4CB2 /* NSString+validation.h */,
 				A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */,
+				A3CA5DCD1E1F3C000062522D /* UIApplication+topViewController.h */,
+				A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */,
 				A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */,
-				A369A4E91C72928700FE5495 /* UIViewController+isVisible.h */,
-				A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */,
 				A3B18FF81C9E713F00980607 /* UIImageView+crn_setImageWithURL.h */,
 				A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */,
+				A369A4E91C72928700FE5495 /* UIViewController+isVisible.h */,
+				A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */,
+				A3CA5DD01E1F46520062522D /* UIWindow+replaceRootViewController.h */,
+				A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -790,8 +800,10 @@
 				A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */,
 				A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */,
 				A3180F871C618DDF007195DF /* ChatStore.m in Sources */,
+				A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */,
 				A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */,
 				A37E80E41C5F0C3000683F27 /* MessageBubbleTableViewCell.m in Sources */,
+				A3CA5DD21E1F46520062522D /* UIWindow+replaceRootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

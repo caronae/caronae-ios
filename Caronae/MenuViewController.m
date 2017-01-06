@@ -37,8 +37,10 @@
 
 - (void)updateProfileFields {
     User *user = UserService.instance.user;
-    self.profileNameLabel.text = user.name;
-    self.profileCourseLabel.text = user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", user.profile, user.course] : user.profile;
+    if (user) {
+        self.profileNameLabel.text = user.name;
+        self.profileCourseLabel.text = user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", user.profile, user.course] : user.profile;
+    }
 }
 
 #pragma mark - Navigation
