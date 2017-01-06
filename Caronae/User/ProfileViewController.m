@@ -161,16 +161,10 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    User *user = _mutualFriends[indexPath.row];
-    
     RiderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Friend Cell" forIndexPath:indexPath];
     
-    cell.user = user;
-    cell.nameLabel.text = user.firstName;
-    
-    if (user.profilePictureURL.length > 0) {
-        [cell.photo crn_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]];
-    }
+    User *user = _mutualFriends[indexPath.row];
+    [cell configureWithUser:user];
     
     return cell;
 }

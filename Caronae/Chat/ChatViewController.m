@@ -159,11 +159,10 @@ static const CGFloat toolBarMinHeight = 44.0f;
     // Hack to trigger autocorrect before sending the text
     [self.textView resignFirstResponder];
     [self.textView becomeFirstResponder];
-    
-    NSString *messageText = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    User *currentUser = UserService.instance.user;
 
-    // TODO: handle and persist message
+    // TODO: ChatService
+//    NSString *messageText = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//    User *currentUser = UserService.instance.user;
 //    NSManagedObjectContext *context = [self managedObjectContext];
 //    Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
 //    message.text = messageText;

@@ -2,16 +2,13 @@
 
 @class Ride;
 
-@protocol RideDelegate <NSObject>
-
-@end
-
 @interface RideViewController : UIViewController
+
++ (instancetype)rideViewControllerForRide:(Ride *)ride;
 
 - (void)openChatWindow;
 
 @property (nonatomic) Ride *ride;
-@property (nonatomic, assign) id<RideDelegate> delegate;
 @property (nonatomic, assign) BOOL shouldOpenChatWindow;
 
 // Ride info

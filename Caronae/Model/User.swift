@@ -55,6 +55,6 @@ class User: Object, Mappable {
     }
     
     var firstName: String {
-        return ""
+        return name.components(separatedBy: " ").first ?? name
     }
 }

@@ -71,10 +71,10 @@ static NSDateFormatter *dateFormatter;
     self.tintColor = color;
 }
 
-- (void)setBadgeCount:(int)badgeCount {
+- (void)setBadgeCount:(NSInteger)badgeCount {
     _badgeCount = badgeCount;
     if (badgeCount > 0) {
-        _badgeLabel.text = [NSString stringWithFormat:@"%d", badgeCount];
+        _badgeLabel.text = [NSString stringWithFormat:@"%ld", (long)badgeCount];
         _badgeLabel.hidden = NO;
     }
     else {

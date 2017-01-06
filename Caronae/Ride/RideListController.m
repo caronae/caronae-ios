@@ -12,7 +12,7 @@ static NSString *const RideListDefaultErrorMessage = @"Não foi possível\ncarre
 static NSString *const RideListMessageAlternateFontFamily = @"HelveticaNeue-UltraLight";
 static CGFloat const RideListMessageFontSize = 25.0f;
 
-@interface RideListController() <RideDelegate>
+@interface RideListController()
 @property (nonatomic, readwrite) NSArray<Ride *> *filteredRides;
 @end
 
@@ -121,17 +121,6 @@ static CGFloat const RideListMessageFontSize = 25.0f;
 }
 
 
-#pragma mark - Navigation
-
-- (RideViewController *)rideViewControllerForRide:(Ride *)ride {
-    RideViewController *rideVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RideViewController"];
-    rideVC.ride = ride;
-    rideVC.delegate = self;
-    
-    return rideVC;
-}
-
-
 #pragma mark - Table methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -160,7 +149,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     
     if (!self.historyTable) {
         Ride *ride = self.filteredRides[indexPath.row];
-        RideViewController *rideVC = [self rideViewControllerForRide:ride];
+        RideViewController *rideVC = [RideViewController rideViewControllerForRide:ride];
         
         [self.navigationController pushViewController:rideVC animated:YES];
     }

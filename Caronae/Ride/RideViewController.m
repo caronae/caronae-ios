@@ -30,6 +30,13 @@ static NSString *CaronaeRequestButtonStateNew              = @"PEGAR CARONA";
 static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    SOLICITAÇÃO ENVIADA    ";
 static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluída";
 
++ (instancetype)rideViewControllerForRide:(Ride *)ride {
+    RideViewController *rideVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RideViewController"];
+    rideVC.ride = ride;
+    
+    return rideVC;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -105,12 +112,12 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         _carModelLabel.text = user.carModel;
         _carColorLabel.text = user.carColor;
         
-        // TODO: If the riders aren't provided then hide the riders view
-//        if (!_ride.riders) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self.ridersView removeFromSuperview];
-//            });
-//        }
+        // If the riders aren't provided then hide the riders view
+        if (!self.riders) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.ridersView removeFromSuperview];
+            });
+        }
     }
     // If the user is already a rider, hide 'join' button
     else if ([self userIsRider]) {
@@ -456,7 +463,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 
-#pragma mark - Collection methods (Riders)
+#pragma mark - Collection methods (Riders, Mutual friends)
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -464,9 +471,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (collectionView == _ridersCollectionView) {
-        return 0;
-        // TODO: return riders
-//        return _ride.riders.count;
+        return [self.riders count];
     }
     else {
         return _mutualFriends.count;
@@ -478,22 +483,15 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     User *user;
     
     if (collectionView == _ridersCollectionView) {
-        // TODO: return riders
-//        user = _ride.riders[indexPath.row];
+        user = [self riderAtIndex:indexPath.row];
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Rider Cell" forIndexPath:indexPath];
     }
     else {
-        user = _mutualFriends[indexPath.row];
-        user.phoneNumber = nil;
+        user = self.mutualFriends[indexPath.row];
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Friend Cell" forIndexPath:indexPath];
     }
     
-    cell.user = user;
-    cell.nameLabel.text = user.firstName;
-    
-    if (user.profilePictureURL.length > 0) {
-        [cell.photo crn_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]];
-    }
+    [cell configureWithUser:user];    
     
     return cell;
 }

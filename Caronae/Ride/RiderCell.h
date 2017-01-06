@@ -3,7 +3,9 @@
 @class User;
 
 @interface RiderCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *photo;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (nonatomic) User *user;
+
+- (void)configureWithUser:(User *)user;
+
+@property (nonatomic, readonly) User *user;
+
 @end

@@ -1,6 +1,15 @@
 import SVProgressHUD
 
 extension RideViewController {
+    var riders: Any? {
+        return ride.riders
+    }
+    
+    // Method only to get around the issue that Realm's List<User> is not available on Objective-C
+    func rider(atIndex index: Int) -> User {
+        return ride.riders[index]
+    }
+    
     func userIsRider() -> Bool {
         let userID = UserService.instance.user!.id
         for rider in ride.riders {
