@@ -16,11 +16,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // TODO: Check if the user has completed the profile
-//    if ([UserController sharedInstance].user.isProfileIncomplete) {
-//        [self performSelector:@selector(presentFinishProfileScreen) withObject:nil afterDelay:0.0];
-//    }
-    
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
 }
 
@@ -71,18 +66,15 @@
         [self.tableView reloadData];
         
         if ([self.rides count] > 0) {
-            self.tableView.backgroundView = nil;
             self.tableView.tableFooterView = self.tableFooter;
-        }
-        else {
-            self.tableView.backgroundView = self.emptyTableLabel;
+        } else {
             self.tableView.tableFooterView = nil;
         }
         
         [self.refreshControl endRefreshing];
     } error:^(NSError * _Nullable error) {
-        [self loadingFailedWithStatusCode:0 andError:error];
         [self.refreshControl endRefreshing];
+        [self loadingFailedWithError:error];
     }];
     
 }

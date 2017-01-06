@@ -81,32 +81,23 @@
         
         [self.tableView reloadData];
         
-        if ([self.rides count] > 0) {
-            self.tableView.backgroundView = nil;
-            
-            // Initialise chats
-            for (Ride *ride in self.rides) {
-                // If chat doesn't exist in store, create it and subscribe to it
-                Chat *chat = [ChatStore chatForRide:ride];
-                if (!chat) {
-                    chat = [[Chat alloc] initWithRide:ride];
-                    [ChatStore setChat:chat forRide:ride];
-                }
-                if (!chat.subscribed) {
-                    [chat subscribe];
-                }
+        // Initialise chats
+        for (Ride *ride in self.rides) {
+            // If chat doesn't exist in store, create it and subscribe to it
+            Chat *chat = [ChatStore chatForRide:ride];
+            if (!chat) {
+                chat = [[Chat alloc] initWithRide:ride];
+                [ChatStore setChat:chat forRide:ride];
             }
-        }
-        else {
-            self.tableView.backgroundView = self.emptyTableLabel;
+            if (!chat.subscribed) {
+                [chat subscribe];
+            }
         }
 
     } error:^(NSError * _Nullable error) {
         [self.refreshControl endRefreshing];
-
-        // TODO: handle loading failed
+        [self loadingFailedWithError:error];
     }];
-
 }
 
 

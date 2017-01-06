@@ -74,7 +74,7 @@ class UserService: NSObject {
         return FBSDKAccessToken.current()?.tokenString
     }
     
-    func signIn(withID idUFRJ: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
+    func signIn(withID idUFRJ: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeAuthenticationError) -> Void) {
         let params = [ "id_ufrj": idUFRJ, "token": token ]
         api.post("/user/login", parameters: params, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
@@ -98,7 +98,7 @@ class UserService: NSObject {
         }, failure: { task, err in
             NSLog("Failed to sign in: \(err.localizedDescription)")
             
-            var authenticationError: CaronaeError = .unknownError
+            var authenticationError: CaronaeAuthenticationError = .unknownError
             if let response = task?.response as? HTTPURLResponse {
                 switch response.statusCode {
                 case 403, 401:
@@ -256,7 +256,7 @@ class UserService: NSObject {
 
 }
 
-enum CaronaeError: Error {
+enum CaronaeAuthenticationError: Error {
     case invalidCredentials
     case invalidResponse
     case unknownError

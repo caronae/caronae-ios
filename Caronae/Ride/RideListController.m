@@ -89,15 +89,16 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     }
 }
 
-- (void)loadingFailedWithStatusCode:(NSInteger)statusCode andError:(NSError *)error {
+- (void)loadingFailedWithError:(NSError *)error {
     if (self.filteredRides.count == 0) {
         self.tableView.backgroundView = self.errorLabel;
     }
     
     NSLog(@"%@ failed to load rides: %@", NSStringFromClass(self.class), error.localizedDescription);
     
-    if (statusCode == 403) {
-        [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Sua chave de acesso pode ter sido alterada ou suspensa." handler:^{
+    NSHTTPURLResponse *urlResponse = [error.userInfo objectForKey:AFNetworkingOperationFailingURLResponseErrorKey];
+    if (urlResponse && urlResponse.statusCode == 403) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Sua chave de acesso pode ter sido alterada ou suspensa.\n\nPara sua segurança, você será levado à tela de login." handler:^{
             [UserService.instance signOut];
         }];
         return;

@@ -27,20 +27,12 @@
     }
     
     [RideService.instance getRidesHistoryWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
-        [self.refreshControl endRefreshing];
-        
         self.rides = rides;
         [self.tableView reloadData];
-        
-        if ([self.rides count] > 0) {
-            self.tableView.backgroundView = nil;
-        }
-        else {
-            self.tableView.backgroundView = self.emptyTableLabel;
-        }
+        [self.refreshControl endRefreshing];
     } error:^(NSError * _Nullable error) {
         [self.refreshControl endRefreshing];
-        // TODO: Handle failed loading
+        [self loadingFailedWithError:error];
     }];
 }
 

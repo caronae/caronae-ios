@@ -40,12 +40,7 @@
         [self.tableView reloadData];
         [SVProgressHUD dismiss];
         
-        if (rides.count > 0) {
-            self.tableView.backgroundView = nil;
-        }
-        else {
-            self.tableView.backgroundView = self.emptyTableLabel;
-            
+        if (rides.count == 0) {            
             // Hack so that the alert is not presented from the modal search dialog
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^(void){
                 [CaronaeAlertController presentOkAlertWithTitle:@"Nenhuma carona\nencontrada :(" message:@"Você pode ampliar sua pesquisa selecionando vários bairros ou escolhendo um horário mais cedo."];
@@ -54,7 +49,7 @@
 
     } error:^(NSError * _Nullable error) {
         [SVProgressHUD dismiss];
-        // TODO: Handle loading failed
+        [self loadingFailedWithError:error];
     }];
 }
 

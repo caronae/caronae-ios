@@ -6,7 +6,7 @@
 
 @interface RideListController : UIViewController
 
-- (void)loadingFailedWithStatusCode:(NSInteger)statusCode andError:(NSError *)error;
+- (void)loadingFailedWithError:(NSError *)error;
 - (void)updateFilteredRides;
 
 - (RideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
