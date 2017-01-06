@@ -76,6 +76,7 @@ PODS:
   - SHSPhoneComponent (2.15)
   - SVProgressHUD (2.0.3)
   - TPKeyboardAvoiding (1.2.11)
+  - UITextView+Placeholder (1.2.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.0.5)
@@ -92,6 +93,7 @@ DEPENDENCIES:
   - SHSPhoneComponent
   - SVProgressHUD
   - TPKeyboardAvoiding (~> 1.2.11)
+  - UITextView+Placeholder (~> 1.2)
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 8312778b6815578e6a86d630fbcf31dc94c534e7
@@ -119,7 +121,8 @@ SPEC CHECKSUMS:
   SHSPhoneComponent: 4cec0653a150ad63cbc52b0c8b29ce2d3c9c26f0
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
+  UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 4466cf8c06eaf682868f3b3fcbe902ac92cb3227
+PODFILE CHECKSUM: f08547a0bd1401865f940facfebe000dd05b23c5
 
 COCOAPODS: 1.2.0.beta.3

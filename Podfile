@@ -17,6 +17,7 @@ target 'Caronae' do
     pod 'RealmSwift', '~> 2.1'
     pod 'ObjectMapper', '~> 2.2'
     pod 'ObjectMapper+Realm', '~> 0.2'
+    pod 'UITextView+Placeholder', '~> 1.2'
     
     target 'CaronaeTests' do
         inherit! :search_paths
