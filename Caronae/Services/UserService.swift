@@ -13,22 +13,21 @@ class UserService: NSObject {
     
     private (set) var user: User? {
         get {
-            // Load the saved user id from UserDefaults
-            var userID: Int? = UserDefaults.standard.integer(forKey: "user_id")
+            // Load the saved user ID from UserDefaults
+            let userID: Int = UserDefaults.standard.integer(forKey: "user_id")
             
-            // If the user id was not found, check if the user has a legacy 'user' model saved
-            // and migrate it to only save the user_id
-            if userID == 0, let userJson = UserDefaults.standard.dictionary(forKey: "user") {
-                userID = userJson["id"] as? Int
-                UserDefaults.standard.set(userID, forKey: "user_id")
-                UserDefaults.standard.removeObject(forKey: "user")
-            }
-            
-            guard let realm = try? Realm() else {
+            do {
+                // If the user ID was not found, we need to check for a legacy user and migrate it
+                guard userID != 0 else {
+                    return try migrateUserToRealm()
+                }
+                
+                let realm = try Realm()
+                return realm.object(ofType: User.self, forPrimaryKey: userID)
+            } catch {
+                NSLog("Error reading or migrating current user (%@)", error.localizedDescription)
                 return nil
             }
-            
-            return realm.object(ofType: User.self, forPrimaryKey: userID)
         }
         
         set {
@@ -260,11 +259,33 @@ class UserService: NSObject {
             error(err)
         })
     }
-
+    
+    /// Migrate the user saved in UserDefaults and sign in again
+    private func migrateUserToRealm() throws -> User {
+        guard let userJson = UserDefaults.standard.dictionary(forKey: "user") else {
+            throw CaronaeAuthenticationError.notAuthenticated
+        }
+        
+        guard let user = User(JSON: userJson) else {
+            throw CaronaeAuthenticationError.invalidUser
+        }
+        
+        let realm = try Realm()
+        try realm.write {
+            realm.add(user, update: true)
+        }
+        
+        UserDefaults.standard.set(user.id, forKey: "user_id")
+        UserDefaults.standard.removeObject(forKey: "user")
+        
+        return user
+    }
 }
 
 enum CaronaeAuthenticationError: Error {
     case invalidCredentials
     case invalidResponse
+    case invalidUser
+    case notAuthenticated
     case unknownError
 }
