@@ -194,11 +194,11 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     [_finishRideButton setTitleColor:color forState:UIControlStateNormal];
 }
 
-- (BOOL)userIsDriver {
-    return UserService.instance.user.id == _ride.driver.id;
-}
-
 - (void)updateMutualFriends {
+    if (!_ride.driver.facebookID) {
+        return;
+    }
+    
     [UserService.instance mutualFriendsForUserWithFacebookID:_ride.driver.facebookID success:^(NSArray<User *> * _Nonnull mutualFriends, NSInteger totalCount) {
         if (mutualFriends.count > 0) {
             _mutualFriends = mutualFriends;

@@ -20,6 +20,10 @@ extension RideViewController {
         return false
     }
     
+    func userIsDriver() -> Bool {
+        return UserService.instance.user!.id == ride.driver.id
+    }
+    
     func deleteRoutine() {
         let routineID = self.ride.routineID.value!
         NSLog("Requesting to delete routine with id %ld", routineID)
