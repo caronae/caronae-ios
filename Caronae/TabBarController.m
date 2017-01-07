@@ -11,9 +11,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateUser:) name:CaronaeDidUpdateUserNotification object:nil];
-    
+        
     for (UIViewController *viewController in self.viewControllers) {
         if ([viewController isKindOfClass:UINavigationController.class]) {
             UINavigationController *navigationController = (UINavigationController *)viewController;
@@ -36,14 +34,6 @@
                 self.menuViewController = (MenuViewController *)viewController;
             }
         }
-    }
-}
-
-- (void)didUpdateUser:(NSNotification *)notification {
-    if (!UserService.instance.user) {
-        // User has logged out. Go to the authentication screen
-        UIViewController *authViewController = [TokenViewController tokenViewController];
-        [UIApplication.sharedApplication.keyWindow replaceViewControllerWith:authViewController];
     }
 }
 

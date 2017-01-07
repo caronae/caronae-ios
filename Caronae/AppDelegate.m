@@ -10,6 +10,7 @@
 #import "Notification+CoreDataProperties.h"
 #import "NotificationStore.h"
 #import "TabBarController.h"
+#import "UIWindow+replaceRootViewController.h"
 #import "Caronae-Swift.h"
 
 @interface AppDelegate () <GGLInstanceIDDelegate, GCMReceiverDelegate>
@@ -34,19 +35,7 @@
                                         kCRToastBackgroundColorKey: [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000],
                                         }];
 #ifdef DEBUG
-    // Show the current API server on the status bar
-    NSString *debugMessage = [NSString stringWithFormat:@"API: %@", CaronaeAPIBaseURL];
-    if (UserService.instance.user) {
-        debugMessage = [NSString stringWithFormat:@"%@ User: %ld", debugMessage, (long)UserService.instance.user.id];
-    }
-    [CRToastManager showNotificationWithOptions:@{
-                                                  kCRToastTextKey: debugMessage,
-                                                  kCRToastBackgroundColorKey: [UIColor colorWithWhite:0.96 alpha:1],
-                                                  kCRToastTextColorKey: [UIColor blackColor],
-                                                  kCRToastAnimationInTimeIntervalKey: @0,
-                                                  kCRToastTimeIntervalKey: @DBL_MAX
-                                                  }
-                                completionBlock:nil];
+    [self updateStatusBarDebugInfo];
 #endif
     
     // Load the authentication screen if the user is not signed in
@@ -57,6 +46,7 @@
         [self.window makeKeyAndVisible];
         [self registerForNotifications];
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateUser:) name:CaronaeDidUpdateUserNotification object:nil];
     
     // Update application badge number and listen to notification updates
     [self updateApplicationBadgeNumber];
@@ -123,6 +113,18 @@
                                                           openURL:url
                                                 sourceApplication:sourceApplication
                                                        annotation:annotation];
+}
+
+- (void)didUpdateUser:(NSNotification *)notification {
+#ifdef DEBUG
+    [self updateStatusBarDebugInfo];
+#endif
+    
+    if (!UserService.instance.user) {
+        // User has logged out. Go to the authentication screen
+        UIViewController *authViewController = [TokenViewController tokenViewController];
+        [UIApplication.sharedApplication.keyWindow replaceViewControllerWith:authViewController];
+    }
 }
 
 
@@ -330,6 +332,7 @@
     _registrationHandler = ^(NSString *registrationToken, NSError *error){
         if (!error && registrationToken != nil) {
             NSLog(@"GCM Registration Token: %@", registrationToken);
+            UserService.instance.userGCMToken = registrationToken;
             if (!weakSelf.connectedToGCM) {
                 [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
                     if (error && error.code != kGCMServiceErrorCodeAlreadyConnected) {
@@ -540,5 +543,27 @@
         }
     }
 }
+
+
+#pragma mark - Etc.
+
+#ifdef DEBUG
+- (void)updateStatusBarDebugInfo {
+    // Show the current API server on the status bar
+    NSString *debugMessage = [NSString stringWithFormat:@"API: %@", CaronaeAPIBaseURL];
+    if (UserService.instance.user) {
+        debugMessage = [NSString stringWithFormat:@"%@ User: %ld", debugMessage, (long)UserService.instance.user.id];
+    }
+    [CRToastManager dismissAllNotifications:false];
+    [CRToastManager showNotificationWithOptions:@{
+                                                  kCRToastTextKey: debugMessage,
+                                                  kCRToastBackgroundColorKey: [UIColor colorWithWhite:0.96 alpha:1],
+                                                  kCRToastTextColorKey: [UIColor blackColor],
+                                                  kCRToastAnimationInTimeIntervalKey: @0,
+                                                  kCRToastTimeIntervalKey: @DBL_MAX
+                                                  }
+                                completionBlock:nil];
+}
+#endif
 
 @end

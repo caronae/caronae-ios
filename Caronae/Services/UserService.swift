@@ -11,48 +11,24 @@ class UserService: NSObject {
         // This prevents others from using the default '()' initializer for this class.
     }
     
-    private (set) var user: User? {
-        get {
-            // Load the saved user ID from UserDefaults
-            let userID: Int = UserDefaults.standard.integer(forKey: "user_id")
-            
-            do {
-                // If the user ID was not found, we need to check for a legacy user and migrate it
-                guard userID != 0 else {
-                    return try migrateUserToRealm()
-                }
-                
-                let realm = try Realm()
-                return realm.object(ofType: User.self, forPrimaryKey: userID)
-            } catch {
-                NSLog("Error reading or migrating current user (%@)", error.localizedDescription)
-                return nil
-            }
-        }
+    private(set) lazy var user: User? = {
+        let userID: Int = UserDefaults.standard.integer(forKey: "user_id")
         
-        set {
-            if let user = newValue {
-                UserDefaults.standard.set(user.id, forKey: "user_id")
-                
-                do {
-                    let realm = try Realm()
-                    try realm.write {
-                        realm.add(user, update: true)
-                    }
-                } catch let error {
-                    NSLog("Error saving the current user in the Realm: \(error.localizedDescription)")
-                }
-            } else {
-                UserDefaults.standard.removeObject(forKey: "user_id")
-                UserDefaults.standard.removeObject(forKey: "user")
+        do {
+            // If the user ID was not found, we need to check for a legacy user and migrate it
+            guard userID != 0 else {
+                return try self.migrateUserToRealm()
             }
             
-            // Notify observers that the user has changed
-            NotificationCenter.default.post(name: Notification.Name.CaronaeDidUpdateUser, object: self)
+            let realm = try Realm()
+            return realm.object(ofType: User.self, forPrimaryKey: userID)
+        } catch {
+            NSLog("Error reading or migrating current user (%@)", error.localizedDescription)
+            return nil
         }
-    }
+    }()
     
-    var userToken: String? {
+    private(set) var userToken: String? {
         get {
             return UserDefaults.standard.string(forKey: "token")
         }
@@ -80,18 +56,31 @@ class UserService: NSObject {
         let params = [ "id_ufrj": idUFRJ, "token": token ]
         api.post("/user/login", parameters: params, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
-            let userJson = responseObject["user"] as? [String: Any] else {
-                print("Error parsing user")
+            let userJson = responseObject["user"] as? [String: Any],
+            let user = User(JSON: userJson) else {
+                print("Error parsing user response")
                 error(.invalidResponse)
                 return
             }
             
-            // Save current user
-            self.userToken = token
-            let user = User(JSON: userJson)
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.add(user, update: true)
+                }
+            } catch let error {
+                NSLog("Error saving the current user in the Realm: \(error.localizedDescription)")
+            }
+
+            // Update the current user
             self.user = user
+            self.userToken = token
+            UserDefaults.standard.set(user.id, forKey: "user_id")
             
-            success(user!)
+            // Notify observers that the user has changed
+            NotificationCenter.default.post(name: Notification.Name.CaronaeDidUpdateUser, object: self)
+            
+            success(user)
             
         }, failure: { task, err in
             NSLog("Failed to sign in: \(err.localizedDescription)")
@@ -134,6 +123,10 @@ class UserService: NSObject {
         
         // Clear current user
         self.user = nil
+        UserDefaults.standard.removeObject(forKey: "user_id")
+        
+        // Notify observers that the user has changed
+        NotificationCenter.default.post(name: Notification.Name.CaronaeDidUpdateUser, object: self)
     }
     
     func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error?) -> Void) {
@@ -260,6 +253,7 @@ class UserService: NSObject {
         })
     }
     
+    
     /// Migrate the user saved in UserDefaults and sign in again
     private func migrateUserToRealm() throws -> User {
         guard let userJson = UserDefaults.standard.dictionary(forKey: "user") else {
@@ -277,6 +271,7 @@ class UserService: NSObject {
         
         UserDefaults.standard.set(user.id, forKey: "user_id")
         UserDefaults.standard.removeObject(forKey: "user")
+        UserDefaults.standard.removeObject(forKey: "userCreatedRides")
         
         return user
     }
