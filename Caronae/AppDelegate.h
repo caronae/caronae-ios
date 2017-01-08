@@ -3,14 +3,11 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-- (void)updateUserGCMToken:(NSString *)token;
-- (void)registerForNotifications;
-
 @property (strong, nonatomic) UIWindow *window;
 
-// GCM support
-@property(nonatomic, readonly, strong) NSString *gcmSenderID;
-@property(nonatomic, readonly, strong) NSDictionary *registrationOptions;
+// Notification support
+- (BOOL)handleNotification:(NSDictionary *)userInfo;
+- (void)setActiveScreenAccordingToNotification:(NSDictionary *)userInfo;
 
 // Core Data support
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

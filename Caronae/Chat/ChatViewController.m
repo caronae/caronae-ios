@@ -1,14 +1,9 @@
-@import AFNetworking;
-@import Google;
 #import "AppDelegate.h"
-#import "Chat.h"
 #import "ChatViewController.h"
 #import "MessageBubbleTableViewCell.h"
 #import "Caronae-Swift.h"
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
-
-@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -16,21 +11,20 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 @implementation ChatViewController
 
-- (instancetype)initWithChat:(Chat *)chat andColor:(UIColor *)color {
+- (instancetype)initWithRide:(Ride *)ride andColor:(UIColor *)color {
     self = [super init];
     if (self) {
-        _chat = chat;
+        _ride = ride;
         _color = color;
+        _messages = [NSMutableArray array];
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
         dateFormatter.dateFormat = @" - dd/MM - HH:mm";
         
-        self.title = [chat.ride.title stringByAppendingString:[dateFormatter stringFromDate:chat.ride.date]];
+        self.title = [ride.title stringByAppendingString:[dateFormatter stringFromDate:ride.date]];
         
         self.hidesBottomBarWhenPushed = YES;
-        
-        AppDelegate *appDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-        self.managedObjectContext = appDelegate.managedObjectContext;
     }
     return self;
 }
@@ -39,27 +33,11 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)loadChatMessages {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(Message.class) inManagedObjectContext:self.managedObjectContext];
-    fetchRequest.entity = entity;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"rideID == %@", @(self.chat.ride.id)];
-    fetchRequest.predicate = predicate;
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"sentDate" ascending:YES];
-    fetchRequest.sortDescriptors = @[sortDescriptor];
-    
-    NSError *error;
-    self.chat.loadedMessages = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (error) {
-        NSLog(@"Whoops, couldn't load: %@", [error localizedDescription]);
-    }
-}
-
 - (void)appendMessage:(Message *)message {
-    self.chat.loadedMessages = [self.chat.loadedMessages arrayByAddingObject:message];
+    [self.messages addObject:message];
     
     [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.chat.loadedMessages.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.messages count]-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
     
     [self tableViewScrollToBottomAnimated:YES];
@@ -77,7 +55,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor]; // smooths push animation
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -94,7 +71,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [notificationCenter addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    [notificationCenter addObserver:self selector:@selector(gcmDidReceiveMessage:) name:CaronaeGCMMessageReceivedNotification object:nil];
+    [notificationCenter addObserver:self selector:@selector(didReceiveMessage:) name:CaronaeNotificationReceivedNotification object:nil];
     
     [self loadChatMessages];
     [self clearNotifications];
@@ -133,7 +110,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
         [_sendButton setTitle:@"Enviar" forState:UIControlStateNormal];
         
         _sendButton.contentEdgeInsets = UIEdgeInsetsMake(6, 6, 6, 6);
-        [_sendButton addTarget:self action:@selector(sendAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_sendButton addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
         [_toolBar addSubview:_sendButton];
         
         _textView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -150,51 +127,45 @@ static const CGFloat toolBarMinHeight = 44.0f;
 }
 
 
-#pragma mark - Actions
+#pragma mark - Message methods
 
-- (void)sendAction:(id)sender {
+- (void)sendMessage {
     // Hack to trigger autocorrect before sending the text
     [self.textView resignFirstResponder];
     [self.textView becomeFirstResponder];
 
-    // TODO: ChatService
-//    NSString *messageText = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//    User *currentUser = UserService.instance.user;
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
-//    message.text = messageText;
-//    message.incoming = @(NO);
-//    message.sentDate = [NSDate date];
-//    message.rideID = @(self.chat.ride.rideID);
-//    message.senderName = currentUser.name;
-//    message.senderId = currentUser.userID;
-//    
-//    NSError *error;
-//    if (![context save:&error]) {
-//        NSLog(@"Whoops, couldn't save: %@", error.localizedDescription);
-//    }
-    
-    Message *message = [[Message alloc] init];
-    [self gcmSendMessage:message];
-    [self appendMessage:message];
-    self.textView.text = @"";
     self.sendButton.enabled = NO;
+    
+    NSString *messageText = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    __weak typeof(self) weakSelf = self;
+    [ChatService.instance sendMessage:messageText rideID:_ride.id completionBlock:^(Message * _Nullable message, NSError * _Nullable error) {
+        if (message) {
+            NSLog(@"Message data delivered.");
+            
+            [weakSelf appendMessage:message];
+            weakSelf.textView.text = @"";
+        } else {
+            NSLog(@"Error sending message data: %@", error.localizedDescription);
+            
+            [CaronaeAlertController presentOkAlertWithTitle:@"Ops!" message:@"Ocorreu um erro enviando sua mensagem."];
+        }
+        
+        weakSelf.sendButton.enabled = YES;
+    }];
 }
 
-
-#pragma mark - GCM methods
-
-- (void)gcmDidReceiveMessage:(NSNotification *)notification {
+- (void)didReceiveMessage:(NSNotification *)notification {
     NSDictionary *userInfo = notification.userInfo;
     NSString *msgType = userInfo[@"msgType"];
     
     // Handle chat messages
     if (msgType && [msgType isEqualToString:@"chat"]) {
-        long rideID = [userInfo[@"rideId"] longValue];
-        long senderID = [userInfo[@"senderId"] longValue];
-        long currentUserId = UserService.instance.user.id;
+        NSInteger rideID = [userInfo[@"rideId"] integerValue];
+        NSInteger senderID = [userInfo[@"senderId"] integerValue];
+        NSInteger currentUserId = UserService.instance.user.id;
         
-        if (rideID == self.chat.ride.id && senderID != currentUserId) {
+        if (rideID == _ride.id && senderID != currentUserId) {
             NSLog(@"Chat window did receive message: %@", userInfo[@"message"]);
             
             [self loadChatMessages];
@@ -202,36 +173,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
             [self tableViewScrollToBottomAnimated:YES];
         }
     }
-}
-
-- (void)gcmSendMessage:(Message *)message {
-//    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-//    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-//    NSString *time = [dateFormatter stringFromDate:message.date];
-//    
-//    NSDictionary *paramsData = @{
-//                                 @"to": self.chat.topicID,
-//                                 @"priority": @"high",
-//                                 @"content_available": @(YES),
-//                                 @"data": @{
-//                                         @"message": message.body,
-//                                         @"rideId": @(message.ride.id),
-//                                         @"msgType": @"chat",
-//                                         @"senderName": message.senderName,
-//                                         @"senderId": message.senderId,
-//                                         @"time": time}
-//                                 };
-//    
-//    // Send data message payload
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-//    [manager.requestSerializer setValue:CaronaeGCMAPIKey forHTTPHeaderField:@"Authorization"];
-//    
-//    [manager POST:CaronaeGCMAPISendURL parameters:paramsData success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"Message data delivered. Reponse: %@", responseObject);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Error sending message data: %@", error.localizedDescription);
-//    }];
 }
 
 
@@ -242,7 +183,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.chat.loadedMessages.count;
+    return [self.messages count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -253,7 +194,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
         cell.tintColor = self.color;
     }
     
-    Message *message = self.chat.loadedMessages[indexPath.row];
+    Message *message = self.messages[indexPath.row];
     [cell configureWithMessage:message];
     
     return cell;

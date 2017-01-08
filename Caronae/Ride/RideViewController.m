@@ -1,8 +1,6 @@
 @import CoreData;
 @import SVProgressHUD;
 #import "CaronaeAlertController.h"
-#import "Chat.h"
-#import "ChatStore.h"
 #import "ChatViewController.h"
 #import "JoinRequestCell.h"
 #import "ProfileViewController.h"
@@ -13,7 +11,15 @@
 #import "UIImageView+crn_setImageWithURL.h"
 #import "Caronae-Swift.h"
 
-@interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
+@interface RideViewController ()
+<
+    JoinRequestDelegate,
+    UITableViewDelegate,
+    UITableViewDataSource,
+    UICollectionViewDelegate,
+    UICollectionViewDataSource,
+    UIGestureRecognizerDelegate
+>
 
 @property (nonatomic) NSArray<User *> *requesters;
 @property (nonatomic) NSArray<User *> *mutualFriends;
@@ -229,11 +235,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)openChatWindow {
-    Chat *chat = [ChatStore chatForRide:_ride];
-    if (chat) {
-        ChatViewController *chatVC = [[ChatViewController alloc] initWithChat:chat andColor:_color];
-        [self.navigationController pushViewController:chatVC animated:YES];
-    }
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithRide:_ride andColor:_color];
+    [self.navigationController pushViewController:chatVC animated:YES];
 }
 
 #pragma mark - IBActions
@@ -318,8 +321,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [SVProgressHUD dismiss];
         NSLog(@"User left the ride.");
         
-        [[ChatStore chatForRide:_ride] unsubscribe];
-        
         [self.navigationController popViewControllerAnimated:YES];
     } error:^(NSError * _Nonnull error) {
         NSLog(@"Error leaving/cancelling ride: %@", error.localizedDescription);
@@ -338,8 +339,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     [RideService.instance finishRideWithID:_ride.id success:^{
         [SVProgressHUD dismiss];
         NSLog(@"User finished the ride.");
-        
-        [[ChatStore chatForRide:_ride] unsubscribe];
         
         [self.navigationController popViewControllerAnimated:YES];
     } error:^(NSError * _Nonnull error) {

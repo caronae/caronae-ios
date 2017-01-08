@@ -5,12 +5,6 @@
 extern NSString *const CaronaeAPIBaseURL;
 
 
-#pragma mark - GCM settings
-
-extern NSString *const CaronaeGCMAPISendURL;
-extern NSString *const CaronaeGCMAPIKey;
-
-
 #pragma mark - Static pages URLs
 
 extern NSString *const CaronaeIntranetURLString;
@@ -28,9 +22,7 @@ extern NSString *const CaronaePreferenceLastSearchedDirectionKey;
 
 #pragma mark - Notifications
 
-extern NSNotificationName const CaronaeGCMConnectedNotification;
-extern NSNotificationName const CaronaeGCMTokenUpdatedNotification;
-extern NSNotificationName const CaronaeGCMMessageReceivedNotification;
+extern NSNotificationName const CaronaeNotificationReceivedNotification;
 extern NSNotificationName const CaronaeDidUpdateNotifications;
 extern NSNotificationName const CaronaeDidUpdateUserNotification;
 

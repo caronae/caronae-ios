@@ -1,5 +1,5 @@
 extension ChatViewController {
     func clearNotifications() {
-        NotificationService.instance.clearNotifications(forRideID: chat.ride.id, of: .chat)
+        NotificationService.instance.clearNotifications(forRideID: ride.id, of: .chat)
     }
 }

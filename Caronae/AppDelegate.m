@@ -1,20 +1,13 @@
 @import AFNetworking;
 @import CRToast;
 @import FBSDKCoreKit;
-@import Google;
+@import Firebase;
 @import SVProgressHUD;
 #import "AppDelegate.h"
-#import "Chat.h"
-#import "ChatStore.h"
 #import "ChatViewController.h"
 #import "TabBarController.h"
 #import "UIWindow+replaceRootViewController.h"
 #import "Caronae-Swift.h"
-
-@interface AppDelegate () <GGLInstanceIDDelegate, GCMReceiverDelegate>
-@property (nonatomic, strong) void (^registrationHandler) (NSString *registrationToken, NSError *error);
-@property (nonatomic, assign) BOOL connectedToGCM;
-@end
 
 @implementation AppDelegate
 
@@ -26,7 +19,6 @@
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
     [self configureRealm];
-    [self configureGCM];
     [self configureFacebookWithLaunchOptions:launchOptions];
     
     [CRToastManager setDefaultOptions:@{
@@ -36,6 +28,7 @@
     [self updateStatusBarDebugInfo];
 #endif
     
+    [self configureFirebase];
     // Load the authentication screen if the user is not signed in
     if (UserService.instance.user) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -65,9 +58,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [[GCMService sharedInstance] disconnect];
-    NSLog(@"Disconnected from GCM");
-    _connectedToGCM = NO;
+    [self disconnectFromFcm];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -75,18 +66,9 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    if (UserService.instance.user && !_connectedToGCM) {
-        [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
-            if (error && error.code != kGCMServiceErrorCodeAlreadyConnected) {
-                NSLog(@"Could not connect to GCM (application became active): %@", error.localizedDescription);
-            } else if (!error) {
-                _connectedToGCM = true;
-                NSLog(@"Connected to GCM (application became active)");
-                [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMConnectedNotification object:nil userInfo:nil];
-            }
-        }];
-    }
     if (UserService.instance.user) {
+        [self connectToFcm];
+        
         [RideService.instance updateOfferedRidesWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
             NSLog(@"Offered rides updated");
         } error:^(NSError * _Nullable error) {
@@ -163,13 +145,6 @@
 
 #pragma mark - Notification handling
 
-- (void)registerForNotifications {
-    UIUserNotificationType allNotificationTypes = (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-}
-
 - (BOOL)handleNotification:(NSDictionary *)userInfo {
     if (!userInfo[@"msgType"]) return NO;
     NSString *msgType = userInfo[@"msgType"];
@@ -184,8 +159,10 @@
     }
     // Handle 'join request accepted' notifications
     else if ([msgType isEqualToString:@"accepted"]) {
-        NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
-        [Chat subscribeToTopicID:[Chat topicIDwithRideID:rideID]];
+        // Subscribe to ride
+        NSInteger rideID = [userInfo[@"rideId"] integerValue];
+        [ChatService.instance subscribeToRideWithID:rideID];
+        
         [self showMessageIfActive:userInfo[@"message"]];
     }
     // Handle 'ride cancelled' and 'ride finished' notifications
@@ -196,61 +173,9 @@
         [self showMessageIfActive:userInfo[@"message"]];
     }
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeNotificationReceivedNotification object:self userInfo:userInfo];
+    
     return YES;
-}
-
-- (void)handleChatNotification:(NSDictionary *)userInfo {
-    long senderId = [userInfo[@"senderId"] longValue];
-    long currentUserId = UserService.instance.user.id;
-    
-    // We don't need to handle a message if it's from the logged user
-    if (senderId == currentUserId) {
-        return;
-    }
-    
-    // TODO: handle notification
-//    NSNumber *rideID = @([userInfo[@"rideId"] longValue]);
-//    NSLog(@"Received chat message for ride %@", rideID);
-//    
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    Message *message = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(Message.class) inManagedObjectContext:context];
-//    message.text = userInfo[@"message"];
-//    message.incoming = @(YES);
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    message.sentDate = [dateFormatter dateFromString:userInfo[@"time"]];
-//    message.rideID = rideID;
-//    message.senderName = userInfo[@"senderName"];
-//    message.senderId = @([userInfo[@"senderId"] intValue]);
-//    
-//    NSError *error;
-//    if (![context save:&error]) {
-//        NSLog(@"Whoops, couldn't save: %@", error.localizedDescription);
-//        return;
-//    }
-//    
-//    NSString *notificationBody = [NSString stringWithFormat:@"%@: %@", message.senderName, message.text];
-//    if ([UIApplication sharedApplication].applicationState != UIApplicationStateActive) {
-//        UILocalNotification *notification = [[UILocalNotification alloc] init];
-//        notification.fireDate = message.sentDate;
-//        notification.alertBody = notificationBody;
-//        notification.userInfo = userInfo;
-//        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-//        
-//        Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:message.sentDate type:@"chat" context:self.managedObjectContext];
-//        [NotificationStore insertNotification:caronaeNotification];
-//    }
-//    else {
-//        ChatViewController *topVC = (ChatViewController *)[self topViewController];
-//        // Present notification only if the chat window is not already open
-//        if (![topVC isKindOfClass:ChatViewController.class] || ![message.rideID isEqualToNumber:@(topVC.chat.ride.rideID)]) {
-//            Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:message.sentDate type:@"chat" context:self.managedObjectContext];
-//            [NotificationStore insertNotification:caronaeNotification];
-//            
-//            [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: notificationBody} completionBlock:nil];
-//        }
-//    }
-    
 }
 
 - (void)setActiveScreenAccordingToNotification:(NSDictionary *)userInfo {
@@ -280,147 +205,23 @@
     }
 }
 
-#pragma mark - Google Cloud Messaging (GCM)
 
-- (void)configureGCM {
-    // Configure the Google context: parses the GoogleService-Info.plist, and initializes
-    // the services that have entries in the file
-    NSError *configureError;
-    [[GGLContext sharedInstance] configureWithError:&configureError];
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
-    
-    GCMConfig *gcmConfig = [GCMConfig defaultConfig];
-    gcmConfig.receiverDelegate = self;
-    gcmConfig.logLevel = kGCMLogLevelError;
-    [[GCMService sharedInstance] startWithConfig:gcmConfig];
-    
-    __weak typeof(self) weakSelf = self;
-    // Handler for registration token request
-    _registrationHandler = ^(NSString *registrationToken, NSError *error){
-        if (!error && registrationToken != nil) {
-            NSLog(@"GCM Registration Token: %@", registrationToken);
-            UserService.instance.userGCMToken = registrationToken;
-            if (!weakSelf.connectedToGCM) {
-                [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
-                    if (error && error.code != kGCMServiceErrorCodeAlreadyConnected) {
-                        NSLog(@"Could not connect to GCM (registration): %@", error.localizedDescription);
-                    } else if (!error) {
-                        weakSelf.connectedToGCM = true;
-                        NSLog(@"Connected to GCM (registration)");
-                        [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMConnectedNotification object:nil userInfo:nil];
-                    }
-                }];
-            }
-            
-            NSDictionary *userInfo = @{@"registrationToken": registrationToken};
-            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
-                                                                object:nil
-                                                              userInfo:userInfo];
-        } else {
-            NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
-            NSDictionary *userInfo = @{@"error": error.localizedDescription};
-            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
-                                                                object:nil
-                                                              userInfo:userInfo];
-        }
-    };
-}
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    // Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
-    GGLInstanceIDConfig *instanceIDConfig = [GGLInstanceIDConfig defaultConfig];
-    instanceIDConfig.delegate = self;
-    // Start the GGLInstanceID shared instance with the that config and request a registration
-    // token to enable reception of notifications
-    [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
-#ifdef DEBUG
-    BOOL isBuiltDebug = YES;
-    NSLog(@"Starting GCM in development mode");
-#else
-    BOOL isBuiltDebug = NO;
-    NSLog(@"Starting GCM in production mode");
-#endif
-    _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
-                             kGGLInstanceIDAPNSServerTypeSandboxOption:@(isBuiltDebug)};
-    [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
-                                                        scope:kGGLInstanceIDScopeGCM
-                                                      options:_registrationOptions
-                                                      handler:_registrationHandler];
-}
+#pragma mark - Firebase Messaging (FCM)
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"Registration for remote notification failed with error: %@", error.localizedDescription);
-    NSDictionary *userInfo = @{@"error": error.localizedDescription};
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMTokenUpdatedNotification
-                                                        object:nil
-                                                      userInfo:userInfo];
+    [self didFailToRegisterForRemoteNotificationsWithError:error];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    NSLog(@"Remote notification received 1: %@", userInfo);
-    // This works only if the app started the GCM service
-    [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
-    
-    [self handleNotification:userInfo];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
-                                                        object:nil
-                                                      userInfo:userInfo];
+    [self didReceiveRemoteNotification:userInfo];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
-    NSLog(@"Remote notification received 2: %@", userInfo);
-    
-    // This works only if the app started the GCM service
-    [[GCMService sharedInstance] appDidReceiveMessage:userInfo];
-    
-    // If the application received the notification on the background or foreground
-    if (application.applicationState != UIApplicationStateInactive) {
-        if ([self handleNotification:userInfo]) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
-                                                                object:nil
-                                                              userInfo:userInfo];
-            
-            handler(UIBackgroundFetchResultNewData);
-        }
-        else {
-            [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeGCMMessageReceivedNotification
-                                                                object:nil
-                                                              userInfo:userInfo];
-            handler(UIBackgroundFetchResultNoData);
-        }
-    }
-    // If the app is opening through the notification
-    else {
-        [self setActiveScreenAccordingToNotification:userInfo];
-        handler(UIBackgroundFetchResultNewData);
-    }
+    [self didReceiveRemoteNotification:userInfo completionHandler:handler];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    if (application.applicationState == UIApplicationStateInactive) {
-        NSLog(@"Opening app from local notification");
-        [self setActiveScreenAccordingToNotification:notification.userInfo];
-    }
-}
-
-- (void)onTokenRefresh {
-    // A rotation of the registration tokens is happening, so the app needs to request a new token.
-    NSLog(@"The GCM registration token needs to be refreshed.");
-    [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
-                                                        scope:kGGLInstanceIDScopeGCM
-                                                      options:_registrationOptions
-                                                      handler:_registrationHandler];
-}
-
-- (void)updateUserGCMToken:(NSString *)token {
-    NSDictionary *params = @{@"token": token ? token : [NSNull null]};
-    [CaronaeAPIHTTPSessionManager.instance PUT:@"/user/saveGcmToken" parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        NSLog(@"User's GCM token updated.");
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"Error updating user's GCM token: %@", error.localizedDescription);
-    }];
+    [self didReceiveLocalNotification:notification];
 }
 
 

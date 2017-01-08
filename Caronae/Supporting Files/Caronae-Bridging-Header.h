@@ -8,12 +8,12 @@
 #import "AppDelegate.h"
 #import "CaronaeConstants.h"
 #import "CaronaeAlertController.h"
-#import "Chat.h"
 #import "ChatViewController.h"
 #import "RideListController.h"
 #import "RideViewController.h"
 #import "RideRequestsStore.h"
 #import "TabBarController.h"
 
+#import "UIApplication+topViewController.h"
 #import "UIWindow+replaceRootViewController.h"
 

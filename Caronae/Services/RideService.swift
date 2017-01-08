@@ -67,8 +67,6 @@ class RideService: NSObject {
                 return ride
             } as [Ride]
             
-            // TODO: Subscribe to ride topics
-            
             do {
                 let realm = try Realm()
                 try realm.write {
@@ -76,6 +74,11 @@ class RideService: NSObject {
                 }
             } catch _ {
                 error(nil)
+            }
+            
+            // Subscribe to rides
+            rides.forEach { ride in
+                ChatService.instance.subscribeToRide(withID: ride.id)
             }
             
             success(rides)
@@ -201,7 +204,7 @@ class RideService: NSObject {
                         realm.delete(ride)
                     }
                     
-                    // TODO: Unsubcribe from ride topic
+                    ChatService.instance.unsubscribeFromRide(withID: id)
                     NotificationService.instance.clearNotifications(forRideID: id)
                 } else {
                     NSLog("Ride with id %d not found locally in user's rides", id)
@@ -225,7 +228,7 @@ class RideService: NSObject {
                         realm.delete(ride)
                     }
                     
-                    // TODO: Unsubcribe from ride topic
+                    ChatService.instance.unsubscribeFromRide(withID: id)
                     NotificationService.instance.clearNotifications(forRideID: id)
                 } else {
                     NSLog("Rides with routine id %d not found locally in user's rides", id)
@@ -247,14 +250,13 @@ class RideService: NSObject {
                 let rides = realm.objects(Ride.self).filter("routineID == %@", id)
                 if !rides.isEmpty {    
                     rides.forEach { ride in
+                        ChatService.instance.unsubscribeFromRide(withID: ride.id)
                         NotificationService.instance.clearNotifications(forRideID: ride.id)
                     }
                     
                     try realm.write {
                         realm.delete(rides)
                     }
-                    
-                    // TODO: Unsubcribe from ride topic
                 } else {
                     NSLog("Ride with id %d not found locally in user's rides", id)
                 }

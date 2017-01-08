@@ -1,13 +1,15 @@
 @import UIKit;
 
-@class Chat;
+@class Ride;
 
 @interface ChatViewController : UIViewController
 
-- (instancetype)initWithChat:(Chat *)chat andColor:(UIColor *)color;
+- (instancetype)initWithRide:(Ride *)ride andColor:(UIColor *)color;
 
-@property (nonatomic) Chat *chat;
+@property (nonatomic) Ride *ride;
 @property (nonatomic) UIColor *color;
+
+@property (nonatomic) id messages;
 
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) UIToolbar *toolBar;

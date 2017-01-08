@@ -4,16 +4,7 @@
 
 //NSString *const CaronaeAPIBaseURL = @"https://api.caronae.ufrj.br";
 //NSString *const CaronaeAPIBaseURL = @"http://dev.caronae.tic.ufrj.br";
-//NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90";
-//NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
 NSString *const CaronaeAPIBaseURL = @"http://192.168.0.2:8000";
-//NSString *const CaronaeAPIBaseURL = @"http://localhost:8000";
-
-
-#pragma mark - GCM settings
-
-NSString *const CaronaeGCMAPISendURL = @"https://gcm-http.googleapis.com/gcm/send";
-NSString *const CaronaeGCMAPIKey = @"key=AIzaSyBtGz81bar_LcwtN_fpPTKRMBL5glp2T18";
 
 
 #pragma mark - Static pages URLs
@@ -25,9 +16,7 @@ NSString *const CaronaeTermsOfUsePageURLString = @"https://api.caronae.ufrj.br/s
 
 #pragma mark - Notifications
 
-NSNotificationName const CaronaeGCMConnectedNotification = @"CaronaeGCMConnectedNotification";
-NSNotificationName const CaronaeGCMTokenUpdatedNotification = @"CaronaeGCMTokenUpdatedNotification";
-NSNotificationName const CaronaeGCMMessageReceivedNotification = @"CaronaeGCMMessageReceivedNotification";
+NSNotificationName const CaronaeNotificationReceivedNotification = @"CaronaeNotificationReceivedNotification";
 NSNotificationName const CaronaeDidUpdateNotifications = @"CaronaeDidUpdateNotifications";
 NSNotificationName const CaronaeDidUpdateUserNotification = @"CaronaeDidUpdateUserNotification";
 

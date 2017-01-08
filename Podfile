@@ -10,7 +10,6 @@ target 'Caronae' do
     pod 'SVProgressHUD'
     pod 'SDWebImage', '~>3.8.2'
     pod 'SHSPhoneComponent'
-    pod 'Google/CloudMessaging'
     pod 'CRToast', '~> 0.0.7'
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
@@ -18,6 +17,7 @@ target 'Caronae' do
     pod 'ObjectMapper', '~> 2.2'
     pod 'ObjectMapper+Realm', '~> 0.2'
     pod 'UITextView+Placeholder', '~> 1.2'
+    pod 'Firebase/Messaging'
     
     target 'CaronaeTests' do
         inherit! :search_paths
