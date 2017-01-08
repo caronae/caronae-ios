@@ -263,7 +263,7 @@ Cgo
         <!--Pesquisa-->
         <scene sceneID="86N-xC-KLU">
             <objects>
-                <tableViewController title="Pesquisa" hidesBottomBarWhenPushed="YES" id="63o-N6-NEe" customClass="SearchResultsViewController" sceneMemberID="viewController">
+                <viewController title="Pesquisa" hidesBottomBarWhenPushed="YES" id="63o-N6-NEe" customClass="SearchResultsViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Pesquisa" id="frv-QM-TF5">
                         <barButtonItem key="rightBarButtonItem" image="SearchRide" id="I4b-tM-lj5">
                             <connections>
@@ -274,7 +274,7 @@ Cgo
                     <connections>
                         <segue destination="SRb-hM-LXF" kind="show" identifier="ViewRideDetails" id="TRe-kz-qy8"/>
                     </connections>
-                </tableViewController>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="936-oT-CHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3510" y="-1202"/>
@@ -282,7 +282,7 @@ Cgo
         <!--Ativas-->
         <scene sceneID="aEb-UJ-7dz">
             <objects>
-                <tableViewController id="qPf-v5-qZ8" customClass="ActiveRidesViewController" sceneMemberID="viewController">
+                <viewController id="qPf-v5-qZ8" customClass="ActiveRidesViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Ativas" id="3Xy-Gf-p9D"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -295,7 +295,7 @@ caronas ativas.</string>
                     <connections>
                         <segue destination="63o-N6-NEe" kind="show" identifier="ViewSearchResults" id="gns-F9-8s8"/>
                     </connections>
-                </tableViewController>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MPm-iD-62t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2628" y="5"/>
@@ -1576,7 +1576,7 @@ caronas ativas.</string>
         <!--Histórico-->
         <scene sceneID="1WW-W3-O3d">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="Gvm-Bo-rik" customClass="RidesHistoryViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Gvm-Bo-rik" customClass="RidesHistoryViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Histórico" id="geR-VK-1Za"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="historyTable" value="YES"/>
@@ -1585,7 +1585,7 @@ caronas ativas.</string>
 nenhuma carona.</string>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
-                </tableViewController>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m5U-oa-23T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2628" y="1499"/>
@@ -4084,12 +4084,12 @@ FOTO</string>
                                                         <exclude reference="2b8-Sr-ItU"/>
                                                         <exclude reference="Jyf-Mo-KOp"/>
                                                         <exclude reference="wNK-zQ-Fvx"/>
-                                                        <exclude reference="QsC-U5-GTe"/>
-                                                        <exclude reference="rjG-HV-tQ6"/>
                                                         <exclude reference="90V-ob-lKK"/>
                                                         <exclude reference="kaN-W4-vbR"/>
                                                         <exclude reference="uw7-sB-eDs"/>
                                                         <exclude reference="wbm-Tr-SFx"/>
+                                                        <exclude reference="QsC-U5-GTe"/>
+                                                        <exclude reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
@@ -4120,12 +4120,12 @@ FOTO</string>
                                                         <include reference="2b8-Sr-ItU"/>
                                                         <include reference="Jyf-Mo-KOp"/>
                                                         <include reference="wNK-zQ-Fvx"/>
-                                                        <include reference="QsC-U5-GTe"/>
-                                                        <include reference="rjG-HV-tQ6"/>
                                                         <include reference="90V-ob-lKK"/>
                                                         <include reference="kaN-W4-vbR"/>
                                                         <include reference="uw7-sB-eDs"/>
                                                         <include reference="wbm-Tr-SFx"/>
+                                                        <include reference="QsC-U5-GTe"/>
+                                                        <include reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -5293,15 +5293,15 @@ FOTO</string>
             <objects>
                 <tableViewController id="m4b-ln-3hN" customClass="ZoneSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VjV-fS-glM">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Zone Cell" id="igM-m5-EON" customClass="ZoneCell">
-                                <rect key="frame" x="0.0" y="28" width="400" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="igM-m5-EON" id="hkP-M9-PyM">
-                                    <rect key="frame" x="0.0" y="0.0" width="367" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ny-zh-u1W" userLabel="Color Detail">
@@ -6904,15 +6904,15 @@ nenhuma carona.</string>
             <objects>
                 <tableViewController id="J0r-pk-iNO" customClass="ZoneSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="q3z-80-JGK">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="Zone Cell" id="fNt-ar-NHR" customClass="ZoneCell">
-                                <rect key="frame" x="0.0" y="28" width="400" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fNt-ar-NHR" id="wCF-CR-hFQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="361" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="336" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eS-e0-z0Y" userLabel="Color Detail">
@@ -7014,11 +7014,11 @@ nenhuma carona.</string>
                         <viewControllerLayoutGuide type="bottom" id="pcA-fx-kaF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="27z-nz-vnk">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Digite o nome do bairro" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xyj-Wb-gUe" customClass="CaronaeTextField">
-                                <rect key="frame" x="20" y="84" width="360" height="32"/>
+                                <rect key="frame" x="16" y="84" width="343" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="WI9-5m-6hu"/>
                                 </constraints>
@@ -7146,13 +7146,13 @@ nenhuma carona.</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="emk-CJ-38Y"/>
-        <segue reference="tvA-Ui-5Q1"/>
-        <segue reference="gns-F9-8s8"/>
+        <segue reference="CEp-XF-lJK"/>
         <segue reference="9kE-zS-Odm"/>
+        <segue reference="gns-F9-8s8"/>
+        <segue reference="emk-CJ-38Y"/>
+        <segue reference="sGI-sp-fNN"/>
         <segue reference="H8O-Mc-OH3"/>
         <segue reference="ugX-qh-OjL"/>
-        <segue reference="sGI-sp-fNN"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
