@@ -26,7 +26,6 @@
 		A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C61BF01B9A005BA311 /* MenuViewController.m */; };
 		A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C91BF01C1D005BA311 /* ProfileViewController.m */; };
 		A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312CC1BF01C26005BA311 /* EditProfileViewController.m */; };
-		A34C67581C826280001F6D90 /* NotificationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C67571C826280001F6D90 /* NotificationStore.m */; };
 		A34C675C1C853C4B001F6D90 /* RideRequestsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C675B1C853C4B001F6D90 /* RideRequestsStore.m */; };
 		A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A34CEC4C1C993115006FC41E /* Settings.bundle */; };
 		A357EF331C56C5A100AC8096 /* RideListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF311C56C5A100AC8096 /* RideListController.m */; };
@@ -39,8 +38,6 @@
 		A37E80DE1C5F00D300683F27 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = A37E80DD1C5F00D300683F27 /* Chat.m */; };
 		A37E80E41C5F0C3000683F27 /* MessageBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E31C5F0C3000683F27 /* MessageBubbleTableViewCell.m */; };
 		A37E80E71C5F158600683F27 /* UIImage+imageWithTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */; };
-		A38598451C66D83A00279D6F /* Notification+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = A38598421C66D83A00279D6F /* Notification+CoreDataProperties.m */; };
-		A38598461C66D83A00279D6F /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = A38598441C66D83A00279D6F /* Notification.m */; };
 		A385984B1C6923D000279D6F /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A385984A1C6923D000279D6F /* UserTests.m */; };
 		A389902D1C58734700C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
@@ -53,7 +50,6 @@
 		A39BBD051C06AB9D00EF9EBD /* RideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39BBD041C06AB9D00EF9EBD /* RideCell.xib */; };
 		A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */; };
 		A3A4A4AF1C4C695800CF4CB2 /* NSString+validation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */; };
-		A3AD19CA1BED9BFB003EDA17 /* ActiveRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */; };
 		A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD53BB1E1EBEAA005EAF04 /* RideViewController+rideActions.swift */; };
 		A3AD822D1E1B1E85006D8ABE /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD822C1E1B1E85006D8ABE /* Ride.swift */; };
 		A3AD822F1E1C5BD9006D8ABE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD822E1E1C5BD9006D8ABE /* Message.swift */; };
@@ -70,6 +66,11 @@
 		A3BBF1381DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */; };
 		A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */; };
 		A3CA5DD21E1F46520062522D /* UIWindow+replaceRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */; };
+		A3CA5DD41E22CA370062522D /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD31E22CA370062522D /* NotificationService.swift */; };
+		A3CA5DD61E22CA630062522D /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD51E22CA630062522D /* Notification.swift */; };
+		A3CA5DD81E22D39B0062522D /* ActiveRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD71E22D39B0062522D /* ActiveRidesViewController.swift */; };
+		A3CA5DDA1E22D7200062522D /* ChatViewController+notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD91E22D7200062522D /* ChatViewController+notifications.swift */; };
+		A3CA5DDC1E22DB830062522D /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */; };
 		A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3E7FB1C77AD310094BBAC /* WebViewController.m */; };
 		A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE026B1C17D01000A8407E /* RiderCell.m */; };
 		A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F30EE81C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m */; };
@@ -126,8 +127,6 @@
 		A34312C91BF01C1D005BA311 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		A34312CB1BF01C26005BA311 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		A34312CC1BF01C26005BA311 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
-		A34C67561C826280001F6D90 /* NotificationStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationStore.h; path = Notification/NotificationStore.h; sourceTree = "<group>"; };
-		A34C67571C826280001F6D90 /* NotificationStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationStore.m; path = Notification/NotificationStore.m; sourceTree = "<group>"; };
 		A34C675A1C853C4B001F6D90 /* RideRequestsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideRequestsStore.h; sourceTree = "<group>"; };
 		A34C675B1C853C4B001F6D90 /* RideRequestsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideRequestsStore.m; sourceTree = "<group>"; };
 		A34CEC4C1C993115006FC41E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -151,10 +150,6 @@
 		A37E80E51C5F158600683F27 /* Caronae-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Caronae-Bridging-Header.h"; sourceTree = "<group>"; };
 		A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+imageWithTint.swift"; sourceTree = "<group>"; };
 		A38598401C66D79300279D6F /* Caronae 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Caronae 3.xcdatamodel"; sourceTree = "<group>"; };
-		A38598411C66D83A00279D6F /* Notification+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Notification+CoreDataProperties.h"; sourceTree = "<group>"; };
-		A38598421C66D83A00279D6F /* Notification+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Notification+CoreDataProperties.m"; sourceTree = "<group>"; };
-		A38598431C66D83A00279D6F /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
-		A38598441C66D83A00279D6F /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		A385984A1C6923D000279D6F /* UserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTests.m; sourceTree = "<group>"; };
 		A389902B1C58734700C7CD2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A38F1D4B1C0398B500DEF6B1 /* RideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideCell.h; sourceTree = "<group>"; };
@@ -174,8 +169,6 @@
 		A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideViewController.m; sourceTree = "<group>"; };
 		A3A4A4AD1C4C695800CF4CB2 /* NSString+validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+validation.h"; sourceTree = "<group>"; };
 		A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+validation.m"; sourceTree = "<group>"; };
-		A3AD19C81BED9BFB003EDA17 /* ActiveRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveRidesViewController.h; sourceTree = "<group>"; };
-		A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveRidesViewController.m; sourceTree = "<group>"; };
 		A3AD53BB1E1EBEAA005EAF04 /* RideViewController+rideActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RideViewController+rideActions.swift"; sourceTree = "<group>"; };
 		A3AD822C1E1B1E85006D8ABE /* Ride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		A3AD822E1E1C5BD9006D8ABE /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -198,6 +191,11 @@
 		A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+topViewController.m"; sourceTree = "<group>"; };
 		A3CA5DD01E1F46520062522D /* UIWindow+replaceRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+replaceRootViewController.h"; sourceTree = "<group>"; };
 		A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+replaceRootViewController.m"; sourceTree = "<group>"; };
+		A3CA5DD31E22CA370062522D /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationService.swift; path = Services/NotificationService.swift; sourceTree = "<group>"; };
+		A3CA5DD51E22CA630062522D /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		A3CA5DD71E22D39B0062522D /* ActiveRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRidesViewController.swift; sourceTree = "<group>"; };
+		A3CA5DD91E22D7200062522D /* ChatViewController+notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatViewController+notifications.swift"; sourceTree = "<group>"; };
+		A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		A3D3E7FA1C77AD310094BBAC /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = About/WebViewController.h; sourceTree = "<group>"; };
 		A3D3E7FB1C77AD310094BBAC /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = About/WebViewController.m; sourceTree = "<group>"; };
 		A3D680191DB4016E00135C2B /* Caronae.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Caronae.entitlements; sourceTree = "<group>"; };
@@ -288,13 +286,13 @@
 				A39BBD001C0629E100EF9EBD /* Model */,
 				A3180F841C6066AF007195DF /* Neighborhood selection */,
 				A3BBF1391DDC0E9200765CD7 /* Networking */,
-				A34C67551C826258001F6D90 /* Notification */,
 				A32B80B81C2E075000FC370A /* Ride */,
 				A3AD82341E1C70C6006D8ABE /* Services */,
 				A3169C931BED842D00A0D428 /* Supporting Files */,
 				A32B80B71C2E073000FC370A /* User */,
 				A3169C961BED842D00A0D428 /* AppDelegate.h */,
 				A3169C971BED842D00A0D428 /* AppDelegate.m */,
+				A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */,
 				A3AD823B1E1C8860006D8ABE /* AppDelegate+Realm.swift */,
 				A3169CA21BED842D00A0D428 /* Assets.xcassets */,
 				A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */,
@@ -362,8 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				A34C67591C853A9C001F6D90 /* Custom cells */,
-				A3AD19C81BED9BFB003EDA17 /* ActiveRidesViewController.h */,
-				A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */,
+				A3CA5DD71E22D39B0062522D /* ActiveRidesViewController.swift */,
 				A32C77241C41EEE30098583B /* AllRidesViewController.h */,
 				A32C77251C41EEE30098583B /* AllRidesViewController.m */,
 				A33FABE81BEE8E93008B4F51 /* CreateRideViewController.h */,
@@ -385,15 +382,6 @@
 				A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */,
 			);
 			path = Ride;
-			sourceTree = "<group>";
-		};
-		A34C67551C826258001F6D90 /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-				A34C67561C826280001F6D90 /* NotificationStore.h */,
-				A34C67571C826280001F6D90 /* NotificationStore.m */,
-			);
-			name = Notification;
 			sourceTree = "<group>";
 		};
 		A34C67591C853A9C001F6D90 /* Custom cells */ = {
@@ -418,6 +406,7 @@
 				A3180F861C618DDF007195DF /* ChatStore.m */,
 				A37E80D91C5F007900683F27 /* ChatViewController.h */,
 				A37E80DA1C5F007900683F27 /* ChatViewController.m */,
+				A3CA5DD91E22D7200062522D /* ChatViewController+notifications.swift */,
 				A37E80E21C5F0C3000683F27 /* MessageBubbleTableViewCell.h */,
 				A37E80E31C5F0C3000683F27 /* MessageBubbleTableViewCell.m */,
 			);
@@ -430,10 +419,7 @@
 				A37E80DC1C5F00D300683F27 /* Chat.h */,
 				A37E80DD1C5F00D300683F27 /* Chat.m */,
 				A3AD822E1E1C5BD9006D8ABE /* Message.swift */,
-				A38598411C66D83A00279D6F /* Notification+CoreDataProperties.h */,
-				A38598421C66D83A00279D6F /* Notification+CoreDataProperties.m */,
-				A38598431C66D83A00279D6F /* Notification.h */,
-				A38598441C66D83A00279D6F /* Notification.m */,
+				A3CA5DD51E22CA630062522D /* Notification.swift */,
 				A3AD822C1E1B1E85006D8ABE /* Ride.swift */,
 				A3AD82301E1C6072006D8ABE /* User.swift */,
 			);
@@ -458,6 +444,7 @@
 		A3AD82341E1C70C6006D8ABE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A3CA5DD31E22CA370062522D /* NotificationService.swift */,
 				A3AD82351E1C70D6006D8ABE /* RideService.swift */,
 				A3AD82371E1C7409006D8ABE /* UserService.swift */,
 			);
@@ -748,18 +735,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3AD19CA1BED9BFB003EDA17 /* ActiveRidesViewController.m in Sources */,
 				A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */,
 				A3AD82381E1C7409006D8ABE /* UserService.swift in Sources */,
 				A398BE051C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m in Sources */,
-				A38598451C66D83A00279D6F /* Notification+CoreDataProperties.m in Sources */,
 				A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */,
 				A37E80DE1C5F00D300683F27 /* Chat.m in Sources */,
+				A3CA5DD41E22CA370062522D /* NotificationService.swift in Sources */,
 				A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */,
 				A357EF331C56C5A100AC8096 /* RideListController.m in Sources */,
 				A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */,
 				A3AD822D1E1B1E85006D8ABE /* Ride.swift in Sources */,
 				A34C675C1C853C4B001F6D90 /* RideRequestsStore.m in Sources */,
+				A3CA5DDC1E22DB830062522D /* AppDelegate+Notifications.swift in Sources */,
 				A3034D581DB58A1B00816B79 /* NSDate+isInTheFuture.swift in Sources */,
 				A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */,
 				A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */,
@@ -778,13 +765,14 @@
 				A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */,
 				A32C77261C41EEE30098583B /* AllRidesViewController.m in Sources */,
 				A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */,
+				A3CA5DDA1E22D7200062522D /* ChatViewController+notifications.swift in Sources */,
 				A3B18FFA1C9E713F00980607 /* UIImageView+crn_setImageWithURL.m in Sources */,
-				A38598461C66D83A00279D6F /* Notification.m in Sources */,
 				A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */,
 				A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */,
 				A3AD823F1E1DC631006D8ABE /* MyRidesViewController.swift in Sources */,
 				A3AD82361E1C70D6006D8ABE /* RideService.swift in Sources */,
 				A3AD823A1E1C8049006D8ABE /* TokenViewController.swift in Sources */,
+				A3CA5DD81E22D39B0062522D /* ActiveRidesViewController.swift in Sources */,
 				A369A4EB1C72928700FE5495 /* UIViewController+isVisible.m in Sources */,
 				A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */,
 				A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */,
@@ -794,9 +782,9 @@
 				A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */,
 				A37E80DB1C5F007900683F27 /* ChatViewController.m in Sources */,
 				A3AD82311E1C6072006D8ABE /* User.swift in Sources */,
-				A34C67581C826280001F6D90 /* NotificationStore.m in Sources */,
 				A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */,
 				A3169C951BED842D00A0D428 /* main.m in Sources */,
+				A3CA5DD61E22CA630062522D /* Notification.swift in Sources */,
 				A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */,
 				A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */,
 				A3180F871C618DDF007195DF /* ChatStore.m in Sources */,

@@ -154,6 +154,8 @@ class RideService: NSObject {
                 return
             }
             
+            NotificationService.instance.clearNotifications(forRideID: id, of: .rideJoinRequest)
+            
             let users = usersJson.flatMap { User(JSON: $0) }
             success(users)
         }, failure: { _, err in
@@ -199,7 +201,8 @@ class RideService: NSObject {
                         realm.delete(ride)
                     }
                     
-                    // TODO: Unsubcribe from ride topic and clear notifications
+                    // TODO: Unsubcribe from ride topic
+                    NotificationService.instance.clearNotifications(forRideID: id)
                 } else {
                     NSLog("Ride with id %d not found locally in user's rides", id)
                 }
@@ -222,7 +225,8 @@ class RideService: NSObject {
                         realm.delete(ride)
                     }
                     
-                    // TODO: Unsubcribe from ride topic and clear notifications
+                    // TODO: Unsubcribe from ride topic
+                    NotificationService.instance.clearNotifications(forRideID: id)
                 } else {
                     NSLog("Rides with routine id %d not found locally in user's rides", id)
                 }
@@ -241,12 +245,16 @@ class RideService: NSObject {
             do {
                 let realm = try Realm()
                 let rides = realm.objects(Ride.self).filter("routineID == %@", id)
-                if !rides.isEmpty {
+                if !rides.isEmpty {    
+                    rides.forEach { ride in
+                        NotificationService.instance.clearNotifications(forRideID: ride.id)
+                    }
+                    
                     try realm.write {
                         realm.delete(rides)
                     }
                     
-                    // TODO: Unsubcribe from ride topic and clear notifications
+                    // TODO: Unsubcribe from ride topic
                 } else {
                     NSLog("Ride with id %d not found locally in user's rides", id)
                 }

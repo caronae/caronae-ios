@@ -1,6 +1,3 @@
-import ObjectMapper
-import RealmSwift
-
 import RealmSwift
 import ObjectMapper
 import ObjectMapper_Realm

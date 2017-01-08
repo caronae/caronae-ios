@@ -5,8 +5,6 @@
 #import "ChatStore.h"
 #import "ChatViewController.h"
 #import "JoinRequestCell.h"
-#import "Notification.h"
-#import "NotificationStore.h"
 #import "ProfileViewController.h"
 #import "RideViewController.h"
 #import "RiderCell.h"
@@ -321,7 +319,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         NSLog(@"User left the ride.");
         
         [[ChatStore chatForRide:_ride] unsubscribe];
-        [NotificationStore clearNotificationsForRide:@(_ride.id) ofType:NotificationTypeAll];
         
         [self.navigationController popViewControllerAnimated:YES];
     } error:^(NSError * _Nonnull error) {
@@ -343,7 +340,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         NSLog(@"User finished the ride.");
         
         [[ChatStore chatForRide:_ride] unsubscribe];
-        [NotificationStore clearNotificationsForRide:@(_ride.id) ofType:NotificationTypeAll];
         
         [self.navigationController popViewControllerAnimated:YES];
     } error:^(NSError * _Nonnull error) {
@@ -383,9 +379,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         if (self.requesters.count > 0) {
             [self.requestsTable reloadData];
             [self adjustHeightOfTableview];
-        }
-        
-        [NotificationStore clearNotificationsForRide:@(_ride.id) ofType:NotificationTypeRequest];
+        }        
     } error:^(NSError * _Nullable error) {
         NSLog(@"Error loading join requests for ride %lu: %@", (long)_ride.id, error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível carregar as solicitações da sua carona. (%@)", error.localizedDescription]];

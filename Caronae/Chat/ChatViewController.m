@@ -4,8 +4,6 @@
 #import "Chat.h"
 #import "ChatViewController.h"
 #import "MessageBubbleTableViewCell.h"
-#import "Notification+CoreDataProperties.h"
-#import "NotificationStore.h"
 #import "Caronae-Swift.h"
 
 @interface ChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
@@ -99,8 +97,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
     [notificationCenter addObserver:self selector:@selector(gcmDidReceiveMessage:) name:CaronaeGCMMessageReceivedNotification object:nil];
     
     [self loadChatMessages];
-    
-    [NotificationStore clearNotificationsForRide:@(self.chat.ride.id) ofType:NotificationTypeChat];
+    [self clearNotifications];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

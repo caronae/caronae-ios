@@ -3,7 +3,7 @@ import RealmSwift
 
 class MyRidesViewController: RideListController {
     var ridesNotificationToken: NotificationToken? = nil
-    var unreadNotifications: [Caronae.Notification] = []
+    var unreadNotifications: Results<Notification>!
     
     override func viewDidLoad() {
         hidesDirectionControl = true
@@ -15,13 +15,12 @@ class MyRidesViewController: RideListController {
         
         RideService.instance.getOfferedRides(success: { rides in
             self.rides = rides
-            self.tableView.backgroundView = nil
             self.subscribeToChanges()
         }, error: { error in
-            self.tableView.backgroundView = self.errorLabel
+            self.loadingFailedWithError(error)
         })
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateNotificationBadges), name: Notification.Name.CaronaeDidUpdateNotifications, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateNotificationBadges), name: Foundation.Notification.Name.CaronaeDidUpdateNotifications, object: nil)
         updateNotificationBadges()
     }
     
@@ -74,7 +73,7 @@ class MyRidesViewController: RideListController {
     }
     
     func updateNotificationBadges() {
-        unreadNotifications = NotificationStore.getNotificationsOf(NotificationTypeRequest)
+        unreadNotifications = try! NotificationService.instance.getNotifications(of: .rideJoinRequest)
         if unreadNotifications.isEmpty {
             navigationController?.tabBarItem.badgeValue = nil
         } else {
@@ -90,7 +89,7 @@ class MyRidesViewController: RideListController {
         let ride = filteredRides[indexPath.row]
         
         for notification in unreadNotifications {
-            if Int(notification.rideID!) == ride.id {
+            if notification.rideID == ride.id {
                 unreadCount += 1
             }
         }

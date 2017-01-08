@@ -7,8 +7,6 @@
 #import "Chat.h"
 #import "ChatStore.h"
 #import "ChatViewController.h"
-#import "Notification+CoreDataProperties.h"
-#import "NotificationStore.h"
 #import "TabBarController.h"
 #import "UIWindow+replaceRootViewController.h"
 #import "Caronae-Swift.h"
@@ -59,11 +57,6 @@
     }
     
     return YES;
-}
-
-- (void)updateApplicationBadgeNumber {
-    NSUInteger totalUnreadNotifications = [NotificationStore getNotificationsOfType:NotificationTypeAll].count;
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:totalUnreadNotifications];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -192,19 +185,15 @@
     // Handle 'join request accepted' notifications
     else if ([msgType isEqualToString:@"accepted"]) {
         NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
-        
         [Chat subscribeToTopicID:[Chat topicIDwithRideID:rideID]];
-        
-        if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-            [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]} completionBlock:nil];
-        }
+        [self showMessageIfActive:userInfo[@"message"]];
     }
     // Handle 'ride cancelled' and 'ride finished' notifications
     else if ([msgType isEqualToString:@"cancelled"] || [msgType isEqualToString:@"finished"]) {
         [self handleFinishedNotification:userInfo];
     }
-    else if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive && userInfo[@"message"] && ![userInfo[@"message"] isEqualToString:@""]) {
-        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]} completionBlock:nil];
+    else if (userInfo[@"message"] && ![userInfo[@"message"] isEqualToString:@""]) {
+        [self showMessageIfActive:userInfo[@"message"]];
     }
     
     return YES;
@@ -264,27 +253,6 @@
     
 }
 
-- (void)handleJoinRequestNotification:(NSDictionary *)userInfo {
-    NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
-
-    Notification *caronaeNotification = [Notification notificationWithRideID:rideID date:[NSDate date] type:@"joinRequest" context:self.managedObjectContext];
-    [NotificationStore insertNotification:caronaeNotification];
-    
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]} completionBlock:nil];
-    }
-}
-
-- (void)handleFinishedNotification:(NSDictionary *)userInfo {
-    NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
-    
-    [NotificationStore clearNotificationsForRide:rideID ofType:NotificationTypeAll];
-    
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-        [CRToastManager showNotificationWithOptions:@{kCRToastTextKey: userInfo[@"message"]} completionBlock:nil];
-    }
-}
-
 - (void)setActiveScreenAccordingToNotification:(NSDictionary *)userInfo {
     if (!userInfo[@"msgType"]) return;
     
@@ -305,7 +273,7 @@
         [menuViewController openRidesHistory];
     }
     else if ([msgType isEqualToString:@"chat"]) {
-        NSNumber *rideID = @([userInfo[@"rideId"] intValue]);
+        NSInteger rideID = [userInfo[@"rideId"] integerValue];
         tabBarController.selectedViewController = tabBarController.activeRidesNavigationController;
         ActiveRidesViewController *activeRidesViewController = tabBarController.activeRidesViewController;
         [activeRidesViewController openChatForRideWithID:rideID];

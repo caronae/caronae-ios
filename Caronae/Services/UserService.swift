@@ -77,8 +77,7 @@ class UserService: NSObject {
             self.userToken = token
             UserDefaults.standard.set(user.id, forKey: "user_id")
             
-            // Notify observers that the user has changed
-            NotificationCenter.default.post(name: Notification.Name.CaronaeDidUpdateUser, object: self)
+            self.notifyObservers()
             
             success(user)
             
@@ -111,8 +110,8 @@ class UserService: NSObject {
         }
         
         // Clear notifications
+        NotificationService.instance.clearNotifications()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.deleteAllObjects("Notification")
         appDelegate.updateApplicationBadgeNumber()
         
         // Clear ride requests
@@ -125,8 +124,7 @@ class UserService: NSObject {
         self.user = nil
         UserDefaults.standard.removeObject(forKey: "user_id")
         
-        // Notify observers that the user has changed
-        NotificationCenter.default.post(name: Notification.Name.CaronaeDidUpdateUser, object: self)
+        notifyObservers()
     }
     
     func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error?) -> Void) {
@@ -150,7 +148,7 @@ class UserService: NSObject {
                 error(err)
             }
             
-            NotificationCenter.default.post(name: Notification.Name.CaronaeDidUpdateUser, object: self)
+            NotificationCenter.default.post(name: Foundation.Notification.Name.CaronaeDidUpdateUser, object: self)
             success()
         }, failure: { task, err in
             error(err)
@@ -253,8 +251,10 @@ class UserService: NSObject {
         })
     }
     
+    private func notifyObservers() {
+        NotificationCenter.default.post(name: Foundation.Notification.Name.CaronaeDidUpdateUser, object: self)
+    }
     
-    /// Migrate the user saved in UserDefaults and sign in again
     private func migrateUserToRealm() throws -> User {
         guard let userJson = UserDefaults.standard.dictionary(forKey: "user") else {
             throw CaronaeAuthenticationError.notAuthenticated
