@@ -1,14 +1,36 @@
 import CRToast
 
 extension AppDelegate {
-    func updateApplicationBadgeNumber() {
-        guard let notifications = try? NotificationService.instance.getNotifications() else { return }
-        UIApplication.shared.applicationIconBadgeNumber = notifications.count
+    func handleNotification(_ userInfo: [AnyHashable: Any]) -> Bool {
+        guard let notificationType = userInfo["msgType"] as? String else {
+            handleUnknownNotification(userInfo)
+            return false
+        }
+        
+        switch notificationType {
+        case "chat":
+            handleChatNotification(userInfo)
+        case "joinRequest":
+            handleJoinRequestNotification(userInfo)
+        case "accepted":
+            handleJoinRequestAccepted(userInfo)
+        case "canceled", "cancelled", "finished":
+            handleFinishedNotification(userInfo)
+        default:
+            handleUnknownNotification(userInfo)
+            return false
+        }
+        
+        NotificationCenter.default.post(name: NSNotification.Name.CaronaeNotificationReceived, object: self)
+        
+        return true
     }
     
-    func handleJoinRequestNotification(_ userInfo: [String: Any]) {
-        guard let rideID = userInfo["rideId"] as? Int,
-            let message = userInfo["message"] as? String else { return }
+    private func handleJoinRequestNotification(_ userInfo: [AnyHashable: Any]) {
+        guard let (rideID, message) = rideNotificationInfo(userInfo) else {
+            NSLog("Received ride join request notification but could not parse the notification data")
+            return
+        }
         
         let notification = Notification()
         notification.rideID = rideID
@@ -18,19 +40,36 @@ extension AppDelegate {
         showMessageIfActive(message)
     }
     
-    func handleFinishedNotification(_ userInfo: [String: Any]) {
-        guard let rideID = userInfo["rideId"] as? Int,
-            let message = userInfo["message"] as? String else { return }
+    private func handleJoinRequestAccepted(_ userInfo: [AnyHashable: Any]) {
+        guard let (rideID, message) = rideNotificationInfo(userInfo) else {
+            NSLog("Received ride join request accepted notification but could not parse the notification data")
+            return
+        }
         
-        NotificationService.instance.clearNotifications(forRideID: rideID)
+        let notification = Notification()
+        notification.rideID = rideID
+        notification.kind = .rideJoinRequest
+        
+        NotificationService.instance.createNotification(notification)
+        ChatService.instance.subscribeToRide(withID: rideID)
         showMessageIfActive(message)
     }
     
-    func handleChatNotification(_ userInfo: [String: Any]) {
-        guard let _ = userInfo["senderId"] as? Int,
-        let rideID = userInfo["rideId"] as? Int,
-        let senderName = userInfo["senderName"] as? String,
-        let body = userInfo["message"] as? String else {
+    private func handleFinishedNotification(_ userInfo: [AnyHashable: Any]) {
+        guard let (rideID, message) = rideNotificationInfo(userInfo) else {
+            NSLog("Received ride finished notification but could not parse the notification data")
+            return
+        }
+        
+        NotificationService.instance.clearNotifications(forRideID: rideID)
+        ChatService.instance.unsubscribeFromRide(withID: rideID)
+        showMessageIfActive(message)
+    }
+    
+    private func handleChatNotification(_ userInfo: [AnyHashable: Any]) {
+        guard let (rideID, message) = rideNotificationInfo(userInfo),
+            let _ = userInfo["senderId"] as? Int,
+        let senderName = userInfo["senderName"] as? String else {
             return
         }
         
@@ -54,12 +93,35 @@ extension AppDelegate {
         }
             
         NotificationService.instance.createNotification(notification)
-        showMessageIfActive(String(format: "%@: %@", senderName, body))
+        showMessageIfActive(String(format: "%@: %@", senderName, message))
+    }
+    
+    private func handleUnknownNotification(_ userInfo: [AnyHashable: Any]) {
+        if let message = userInfo["message"] as? String {
+            showMessageIfActive(message)
+        } else {
+            NSLog("Received unknown notification type: (%@)", userInfo)
+        }
     }
     
     func showMessageIfActive(_ message: String) {
         if UIApplication.shared.applicationState == .active {
             CRToastManager.showNotification(options: [kCRToastTextKey: message], completionBlock: nil)
         }
+    }
+    
+    func updateApplicationBadgeNumber() {
+        guard let notifications = try? NotificationService.instance.getNotifications() else { return }
+        UIApplication.shared.applicationIconBadgeNumber = notifications.count
+    }
+    
+    private func rideNotificationInfo(_ userInfo: [AnyHashable: Any]) -> (Int, String)? {
+        guard let rideIDString = userInfo["rideId"] as? String,
+            let rideID = Int(rideIDString),
+            let message = userInfo["message"] as? String else {
+                return nil
+        }
+        
+        return (rideID, message)
     }
 }

@@ -6,7 +6,6 @@
 @property (strong, nonatomic) UIWindow *window;
 
 // Notification support
-- (BOOL)handleNotification:(NSDictionary *)userInfo;
 - (void)setActiveScreenAccordingToNotification:(NSDictionary *)userInfo;
 
 // Core Data support

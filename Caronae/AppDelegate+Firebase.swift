@@ -7,7 +7,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         FIRApp.configure()
         
         NotificationCenter.default.addObserver(self, selector: #selector(tokenRefreshNotification), name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
-
     }
     
     func didRegisterForRemoteNotifications(deviceToken: NSData) {
@@ -29,8 +28,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     
     func connectToFcm() {
         FIRMessaging.messaging().connect { (error) in
-            if (error != nil) {
-                
+            if let error = error {
                 NSLog("Unable to connect with FCM. \(error)")
             } else {
                 NSLog("Connected to FCM.")
@@ -90,7 +88,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         // Let FCM know about the message for analytics etc.
         FIRMessaging.messaging().appDidReceiveMessage(userInfo)
         
-        handleNotification(userInfo)
+        _ = handleNotification(userInfo)
     }
     
     func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any], completionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -104,8 +102,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         if application.applicationState != .inactive {
             if handleNotification(userInfo) {
                 handler(UIBackgroundFetchResult.newData)
-            }
-            else {
+            } else {
                 handler(UIBackgroundFetchResult.noData)
             }
         }
@@ -138,7 +135,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         NSLog("Message ID: \(userInfo["gcm.message_id"]!)")
         // Print full message.
         NSLog("%@", userInfo)
-        handleNotification(userInfo)
+        _ = handleNotification(userInfo)
+        
+        completionHandler([])
     }
     
     // Called when an action was selected by the user for a given notification (app was in background)
@@ -155,7 +154,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         NSLog("Message ID: \(userInfo["gcm.message_id"]!)")
         // Print full message.
         print("%@", userInfo)
-        handleNotification(userInfo)
+        _ = handleNotification(userInfo)
+        
+        completionHandler()
     }
     
     // [START ios_10_data_message_handling]
@@ -166,6 +167,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         // Let FCM know about the message for analytics etc.
         FIRMessaging.messaging().appDidReceiveMessage(remoteMessage.appData)
         
-        handleNotification(remoteMessage.appData)
+        _ = handleNotification(remoteMessage.appData)
     }
 }

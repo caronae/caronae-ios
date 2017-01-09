@@ -19,6 +19,7 @@
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
     [self configureRealm];
+    [self configureFirebase];
     [self configureFacebookWithLaunchOptions:launchOptions];
     
     [CRToastManager setDefaultOptions:@{
@@ -28,7 +29,6 @@
     [self updateStatusBarDebugInfo];
 #endif
     
-    [self configureFirebase];
     // Load the authentication screen if the user is not signed in
     if (UserService.instance.user) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -144,39 +144,6 @@
 
 
 #pragma mark - Notification handling
-
-- (BOOL)handleNotification:(NSDictionary *)userInfo {
-    if (!userInfo[@"msgType"]) return NO;
-    NSString *msgType = userInfo[@"msgType"];
-    
-    // Handle chat messages
-    if ([msgType isEqualToString:@"chat"]) {
-        [self handleChatNotification:userInfo];
-    }
-    // Handle 'join request' notifications
-    else if ([msgType isEqualToString:@"joinRequest"]) {
-        [self handleJoinRequestNotification:userInfo];
-    }
-    // Handle 'join request accepted' notifications
-    else if ([msgType isEqualToString:@"accepted"]) {
-        // Subscribe to ride
-        NSInteger rideID = [userInfo[@"rideId"] integerValue];
-        [ChatService.instance subscribeToRideWithID:rideID];
-        
-        [self showMessageIfActive:userInfo[@"message"]];
-    }
-    // Handle 'ride cancelled' and 'ride finished' notifications
-    else if ([msgType isEqualToString:@"cancelled"] || [msgType isEqualToString:@"finished"]) {
-        [self handleFinishedNotification:userInfo];
-    }
-    else if (userInfo[@"message"] && ![userInfo[@"message"] isEqualToString:@""]) {
-        [self showMessageIfActive:userInfo[@"message"]];
-    }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:CaronaeNotificationReceivedNotification object:self userInfo:userInfo];
-    
-    return YES;
-}
 
 - (void)setActiveScreenAccordingToNotification:(NSDictionary *)userInfo {
     if (!userInfo[@"msgType"]) return;

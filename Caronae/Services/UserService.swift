@@ -111,8 +111,6 @@ class UserService: NSObject {
         
         // Clear notifications
         NotificationService.instance.clearNotifications()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.updateApplicationBadgeNumber()
         
         // Clear ride requests
         RideRequestsStore.clearAllRequests()

@@ -26,9 +26,11 @@ class ActiveRidesViewController: RideListController {
         RideService.instance.getActiveRides(success: { rides in
             self.refreshControl.endRefreshing()
             self.rides = rides
+            self.tableView.reloadData()
         }, error: { error in
             self.refreshControl.endRefreshing()
             self.loadingFailedWithError(error)
+            self.tableView.reloadData()
         })
     }
     
