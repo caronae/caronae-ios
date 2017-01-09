@@ -16,6 +16,10 @@ class Message: Object, Mappable {
     dynamic var sender: User!
     dynamic var ride: Ride!
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
     required convenience init?(map: Map) {
         self.init()
     }
@@ -28,7 +32,7 @@ class Message: Object, Mappable {
     }
     
     var incoming: Bool {
-        return sender == UserService.instance.user
+        return sender != UserService.instance.user
     }
 }
 

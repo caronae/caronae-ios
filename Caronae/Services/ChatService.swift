@@ -23,17 +23,6 @@ class ChatService: NSObject {
     
     // MARK: Message methods
     
-    func storeMessage(_ message: Message, forRideID rideID: Int) {
-        do {
-            let realm = try Realm()
-            try realm.write {
-                realm.add(message)
-            }
-        } catch {
-            NSLog("Error saving message. Could not load Realm")
-        }
-    }
-    
     func messagesForRide(withID rideID: Int, completionBlock: @escaping (Results<Message>?, Error?) -> Void) {
         do {
             let realm = try Realm()
@@ -50,6 +39,42 @@ class ChatService: NSObject {
         }
     }
     
+    func updateMessagesForRide(withID rideID: Int, completionBlock: @escaping (Error?) -> Void) {
+        api.get("/ride/\(rideID)/chat", parameters: nil, success: { _, responseObject in
+            guard let jsonResponse = responseObject as? [String: Any],
+                let messagesJson = jsonResponse["messages"] as? [[String: Any]] else {
+                    NSLog("Error: messages not found in responseObject")
+                    completionBlock(nil)
+                    return
+            }
+            
+            // Deserialize response
+            let messages = messagesJson.flatMap { Message(JSON: $0) }
+            
+            do {
+                let realm = try Realm()
+                guard let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) else {
+                    NSLog("Could not find local ride with ID %ld", rideID)
+                    completionBlock(nil)
+                    return
+                }
+            
+                messages.forEach { $0.ride = ride }
+                
+                try realm.write {
+                    realm.add(messages, update: true)
+                }
+            } catch {
+                completionBlock(error)
+            }
+            
+            completionBlock(nil)
+        }, failure: { _, err in
+            NSLog("Error: Failed to get offered rides: \(err.localizedDescription)")
+            completionBlock(err)
+        })
+    }
+    
     func sendMessage(_ body: String, rideID: Int, completionBlock: @escaping (Message?, Error?) -> Void) {
         let message = Message()
         message.body = body
@@ -58,6 +83,13 @@ class ChatService: NSObject {
         
         let params = [ "message": message.body ]
         api.post("/ride/\(rideID)/chat", parameters: params, success: { _, responseObject in
+            guard let response = responseObject as? [String: Any],
+                let messageID = response["id"] as? Int else {
+                NSLog("Error saving message. Invalid response.")
+                completionBlock(nil, nil)
+                return
+            }
+            
             do {
                 let realm = try Realm()
                 guard let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) else {
@@ -66,6 +98,7 @@ class ChatService: NSObject {
                     return
                 }
                 
+                message.id = messageID
                 message.ride = ride
                 
                 try realm.write {

@@ -75,7 +75,14 @@ extension AppDelegate {
             return
         }
         
-        // TODO: Trigger sync in ride messages
+        ChatService.instance.updateMessagesForRide(withID: rideID) { error in
+            guard error == nil else {
+                NSLog("Error updating messages for ride %ld. (%@)", rideID, error!.localizedDescription)
+                return
+            }
+            
+            NSLog("Updated messages for ride %ld", rideID)
+        }
         
         // Display notification if the chat window is not already open
         
