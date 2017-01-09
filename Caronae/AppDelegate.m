@@ -99,6 +99,8 @@
         // User has logged out. Go to the authentication screen
         UIViewController *authViewController = [TokenViewController tokenViewController];
         [UIApplication.sharedApplication.keyWindow replaceViewControllerWith:authViewController];
+    } else {
+        [self registerForNotifications];
     }
 }
 
