@@ -67,10 +67,9 @@
 		A3CA5DD41E22CA370062522D /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD31E22CA370062522D /* NotificationService.swift */; };
 		A3CA5DD61E22CA630062522D /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD51E22CA630062522D /* Notification.swift */; };
 		A3CA5DD81E22D39B0062522D /* ActiveRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD71E22D39B0062522D /* ActiveRidesViewController.swift */; };
-		A3CA5DDA1E22D7200062522D /* ChatViewController+notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD91E22D7200062522D /* ChatViewController+notifications.swift */; };
 		A3CA5DDC1E22DB830062522D /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */; };
 		A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDF1E22EC570062522D /* ChatService.swift */; };
-		A3CA5DE21E22F2860062522D /* ChatViewController+messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DE11E22F2860062522D /* ChatViewController+messages.swift */; };
+		A3CA5DE21E22F2860062522D /* ChatViewController+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DE11E22F2860062522D /* ChatViewController+Messages.swift */; };
 		A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */; };
 		A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3E7FB1C77AD310094BBAC /* WebViewController.m */; };
 		A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE026B1C17D01000A8407E /* RiderCell.m */; };
@@ -191,10 +190,9 @@
 		A3CA5DD31E22CA370062522D /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationService.swift; path = Services/NotificationService.swift; sourceTree = "<group>"; };
 		A3CA5DD51E22CA630062522D /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		A3CA5DD71E22D39B0062522D /* ActiveRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRidesViewController.swift; sourceTree = "<group>"; };
-		A3CA5DD91E22D7200062522D /* ChatViewController+notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatViewController+notifications.swift"; sourceTree = "<group>"; };
 		A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		A3CA5DDF1E22EC570062522D /* ChatService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatService.swift; path = Services/ChatService.swift; sourceTree = "<group>"; };
-		A3CA5DE11E22F2860062522D /* ChatViewController+messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatViewController+messages.swift"; sourceTree = "<group>"; };
+		A3CA5DE11E22F2860062522D /* ChatViewController+Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatViewController+Messages.swift"; sourceTree = "<group>"; };
 		A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
 		A3D3E7FA1C77AD310094BBAC /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = About/WebViewController.h; sourceTree = "<group>"; };
 		A3D3E7FB1C77AD310094BBAC /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = About/WebViewController.m; sourceTree = "<group>"; };
@@ -405,8 +403,7 @@
 			children = (
 				A37E80D91C5F007900683F27 /* ChatViewController.h */,
 				A37E80DA1C5F007900683F27 /* ChatViewController.m */,
-				A3CA5DE11E22F2860062522D /* ChatViewController+messages.swift */,
-				A3CA5DD91E22D7200062522D /* ChatViewController+notifications.swift */,
+				A3CA5DE11E22F2860062522D /* ChatViewController+Messages.swift */,
 				A37E80E21C5F0C3000683F27 /* MessageBubbleTableViewCell.h */,
 				A37E80E31C5F0C3000683F27 /* MessageBubbleTableViewCell.m */,
 			);
@@ -764,7 +761,6 @@
 				A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */,
 				A32C77261C41EEE30098583B /* AllRidesViewController.m in Sources */,
 				A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */,
-				A3CA5DDA1E22D7200062522D /* ChatViewController+notifications.swift in Sources */,
 				A3B18FFA1C9E713F00980607 /* UIImageView+crn_setImageWithURL.m in Sources */,
 				A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */,
 				A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */,
@@ -782,7 +778,7 @@
 				A37E80DB1C5F007900683F27 /* ChatViewController.m in Sources */,
 				A3AD82311E1C6072006D8ABE /* User.swift in Sources */,
 				A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */,
-				A3CA5DE21E22F2860062522D /* ChatViewController+messages.swift in Sources */,
+				A3CA5DE21E22F2860062522D /* ChatViewController+Messages.swift in Sources */,
 				A3169C951BED842D00A0D428 /* main.m in Sources */,
 				A3CA5DD61E22CA630062522D /* Notification.swift in Sources */,
 				A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */,

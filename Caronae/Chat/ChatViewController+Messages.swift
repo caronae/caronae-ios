@@ -82,5 +82,9 @@ extension ChatViewController {
         let messages = self.messages as! Results<Message>
         return messages[index]
     }
+    
+    func clearNotifications() {
+        NotificationService.instance.clearNotifications(forRideID: ride.id, of: .chat)
+    }
 
 }

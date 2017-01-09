@@ -40,7 +40,23 @@ class ChatService: NSObject {
     }
     
     func updateMessagesForRide(withID rideID: Int, completionBlock: @escaping (Error?) -> Void) {
-        api.get("/ride/\(rideID)/chat", parameters: nil, success: { _, responseObject in
+        // Load the Ride object
+        guard let realm = try? Realm(),
+            let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) else {
+            NSLog("Could not load local ride with ID %ld", rideID)
+            completionBlock(nil)
+            return
+        }
+        
+        // Query only the messages since the date of the last known message
+        var params: [String: Any]?
+        if let lastMessage = realm.objects(Message.self).filter("ride == %@", ride).sorted(byProperty: "date", ascending: false).first {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            params = [ "since": dateFormatter.string(from: lastMessage.date) ]
+        }
+        
+        api.get("/ride/\(rideID)/chat", parameters: params, success: { _, responseObject in
             guard let jsonResponse = responseObject as? [String: Any],
                 let messagesJson = jsonResponse["messages"] as? [[String: Any]] else {
                     NSLog("Error: messages not found in responseObject")
@@ -49,18 +65,14 @@ class ChatService: NSObject {
             }
             
             // Deserialize response
-            let messages = messagesJson.flatMap { Message(JSON: $0) }
+            let messages = messagesJson.flatMap {
+                let message = Message(JSON: $0)
+                message?.ride = ride
+                return message
+            } as [Message]
             
+            // Persist
             do {
-                let realm = try Realm()
-                guard let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) else {
-                    NSLog("Could not find local ride with ID %ld", rideID)
-                    completionBlock(nil)
-                    return
-                }
-            
-                messages.forEach { $0.ride = ride }
-                
                 try realm.write {
                     realm.add(messages, update: true)
                 }
@@ -90,6 +102,7 @@ class ChatService: NSObject {
                 return
             }
             
+            // Persist
             do {
                 let realm = try Realm()
                 guard let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) else {
