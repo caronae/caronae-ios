@@ -17,7 +17,6 @@
 		A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA21BED842D00A0D428 /* Assets.xcassets */; };
 		A3169CA61BED842D00A0D428 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */; };
 		A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */; };
-		A3180F871C618DDF007195DF /* ChatStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A3180F861C618DDF007195DF /* ChatStore.m */; };
 		A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */; };
 		A325DA711C0CAFD700B9124E /* JoinRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */; };
 		A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A32B80B51C2C6EBE00FC370A /* FalaeViewController.m */; };
@@ -70,7 +69,6 @@
 		A3CA5DD81E22D39B0062522D /* ActiveRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD71E22D39B0062522D /* ActiveRidesViewController.swift */; };
 		A3CA5DDA1E22D7200062522D /* ChatViewController+notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD91E22D7200062522D /* ChatViewController+notifications.swift */; };
 		A3CA5DDC1E22DB830062522D /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */; };
-		A3CA5DDE1E22EC3B0062522D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDD1E22EC3B0062522D /* Chat.swift */; };
 		A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDF1E22EC570062522D /* ChatService.swift */; };
 		A3CA5DE21E22F2860062522D /* ChatViewController+messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DE11E22F2860062522D /* ChatViewController+messages.swift */; };
 		A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */; };
@@ -113,8 +111,6 @@
 		A3169CB21BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3169CC91BED893F00A0D428 /* CaronaeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeTextField.h; sourceTree = "<group>"; };
 		A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeTextField.m; sourceTree = "<group>"; };
-		A3180F851C618DDF007195DF /* ChatStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatStore.h; sourceTree = "<group>"; };
-		A3180F861C618DDF007195DF /* ChatStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatStore.m; sourceTree = "<group>"; };
 		A325DA6D1C0CAFD700B9124E /* JoinRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinRequestCell.h; sourceTree = "<group>"; };
 		A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinRequestCell.m; sourceTree = "<group>"; };
 		A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinRequestCell.xib; sourceTree = "<group>"; };
@@ -197,7 +193,6 @@
 		A3CA5DD71E22D39B0062522D /* ActiveRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRidesViewController.swift; sourceTree = "<group>"; };
 		A3CA5DD91E22D7200062522D /* ChatViewController+notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatViewController+notifications.swift"; sourceTree = "<group>"; };
 		A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
-		A3CA5DDD1E22EC3B0062522D /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		A3CA5DDF1E22EC570062522D /* ChatService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatService.swift; path = Services/ChatService.swift; sourceTree = "<group>"; };
 		A3CA5DE11E22F2860062522D /* ChatViewController+messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatViewController+messages.swift"; sourceTree = "<group>"; };
 		A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
@@ -408,8 +403,6 @@
 		A37E80D81C5EFFA600683F27 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				A3180F851C618DDF007195DF /* ChatStore.h */,
-				A3180F861C618DDF007195DF /* ChatStore.m */,
 				A37E80D91C5F007900683F27 /* ChatViewController.h */,
 				A37E80DA1C5F007900683F27 /* ChatViewController.m */,
 				A3CA5DE11E22F2860062522D /* ChatViewController+messages.swift */,
@@ -423,7 +416,6 @@
 		A39BBD001C0629E100EF9EBD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A3CA5DDD1E22EC3B0062522D /* Chat.swift */,
 				A3AD822E1E1C5BD9006D8ABE /* Message.swift */,
 				A3CA5DD51E22CA630062522D /* Notification.swift */,
 				A3AD822C1E1B1E85006D8ABE /* Ride.swift */,
@@ -785,7 +777,6 @@
 				A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */,
 				A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */,
 				A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */,
-				A3CA5DDE1E22EC3B0062522D /* Chat.swift in Sources */,
 				A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */,
 				A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */,
 				A37E80DB1C5F007900683F27 /* ChatViewController.m in Sources */,
@@ -797,7 +788,6 @@
 				A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */,
 				A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */,
 				A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */,
-				A3180F871C618DDF007195DF /* ChatStore.m in Sources */,
 				A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */,
 				A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */,
 				A37E80E41C5F0C3000683F27 /* MessageBubbleTableViewCell.m in Sources */,
