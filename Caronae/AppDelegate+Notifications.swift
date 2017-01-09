@@ -68,7 +68,9 @@ extension AppDelegate {
     
     private func handleChatNotification(_ userInfo: [AnyHashable: Any]) {
         guard let (rideID, message) = rideNotificationInfo(userInfo),
-            let _ = userInfo["senderId"] as? Int,
+            let senderIDString = userInfo["senderId"] as? String,
+            let senderID = Int(senderIDString),
+            senderID != UserService.instance.user?.id,
         let senderName = userInfo["senderName"] as? String else {
             return
         }

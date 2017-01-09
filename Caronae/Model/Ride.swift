@@ -13,6 +13,7 @@ class Ride: Object, Mappable {
     dynamic var going: Bool = true
     dynamic var slots: Int = 0
     dynamic var date: Date! = Date()
+    dynamic var isActive: Bool = false
     
     dynamic var weekDays: String?
     dynamic var repeatsUntil: Date?
@@ -65,10 +66,6 @@ class Ride: Object, Mappable {
         } else {
             return String(format: "%@ → %@", hub, neighborhood)
         }
-    }
-    
-    var isActive: Bool {
-        return riders.count > 0
     }
     
     var isRoutine: Bool {

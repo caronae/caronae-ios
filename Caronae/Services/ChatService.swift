@@ -34,10 +34,16 @@ class ChatService: NSObject {
         }
     }
     
-    func messagesForRide(withID id: Int, completionBlock: @escaping (Results<Message>?, Error?) -> Void) {
+    func messagesForRide(withID rideID: Int, completionBlock: @escaping (Results<Message>?, Error?) -> Void) {
         do {
             let realm = try Realm()
-            let messages = realm.objects(Message.self).filter("ride.id == %@", id)
+            guard let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) else {
+                NSLog("Could not find local ride with ID %ld", rideID)
+                completionBlock(nil, nil)
+                return
+            }
+            
+            let messages = realm.objects(Message.self).filter("ride == %@", ride)
             completionBlock(messages, nil)
         } catch {
             completionBlock(nil, error)
@@ -50,13 +56,12 @@ class ChatService: NSObject {
         message.date = Date()
         message.sender = UserService.instance.user
         
-        let chatRoute = "\(CaronaeAPIBaseURL)/ride/\(rideID)/chat"
-        let payload = [ "message": message.body ]
-        api.post(chatRoute, parameters: payload, success: { operation, responseObject in
+        let params = [ "message": message.body ]
+        api.post("/ride/\(rideID)/chat", parameters: params, success: { _, responseObject in
             do {
                 let realm = try Realm()
                 guard let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) else {
-                    NSLog("Could not find ride to store chat message with ID %ld", rideID)
+                    NSLog("Could not find local ride with ID %ld", rideID)
                     completionBlock(nil, nil)
                     return
                 }

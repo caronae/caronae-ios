@@ -96,8 +96,28 @@ class RideService: NSObject {
                 return
             }
             
-            let rides = ridesJson.flatMap { Ride(JSON: $0) }.sorted { $0.date < $1.date }
-            success(rides)
+            let rides = ridesJson.flatMap { rideJson in
+                let ride = Ride(JSON: rideJson)
+                ride?.isActive = true
+                return ride
+            } as [Ride]
+            
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    // Clear rides previously marked as active
+                    realm.objects(Ride.self).filter("isActive == true").forEach { ride in
+                        ride.isActive = false
+                    }
+                    
+                    realm.add(rides, update: true)
+                }
+            } catch let err {
+                NSLog("Error updating the active rides on the local database")
+                error(err)
+            }
+            
+            success(rides.sorted { $0.date < $1.date })
         }, failure: { _, err in
             NSLog("Error: Failed to get active rides: \(err.localizedDescription)")
             error(err)

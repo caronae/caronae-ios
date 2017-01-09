@@ -31,16 +31,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)appendMessage:(Message *)message {
-    [self.messages addObject:message];
-    
-    [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[self.messages count]-1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView endUpdates];
-    
-    [self tableViewScrollToBottomAnimated:YES];
+    [_messagesNotificationToken stop];
 }
 
 
@@ -71,7 +62,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [notificationCenter addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    [notificationCenter addObserver:self selector:@selector(didReceiveMessage:) name:CaronaeNotificationReceivedNotification object:nil];
     
     [self loadChatMessages];
     [self clearNotifications];
@@ -84,7 +74,7 @@ static const CGFloat toolBarMinHeight = 44.0f;
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    [self tableViewScrollToBottomAnimated:NO];
+    [self scrollToBottomAnimated:NO];
 }
 
 - (UIView *)inputAccessoryView {
@@ -127,55 +117,6 @@ static const CGFloat toolBarMinHeight = 44.0f;
 }
 
 
-#pragma mark - Message methods
-
-- (void)sendMessage {
-    // Hack to trigger autocorrect before sending the text
-    [self.textView resignFirstResponder];
-    [self.textView becomeFirstResponder];
-
-    self.sendButton.enabled = NO;
-    
-    NSString *messageText = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    __weak typeof(self) weakSelf = self;
-    [ChatService.instance sendMessage:messageText rideID:_ride.id completionBlock:^(Message * _Nullable message, NSError * _Nullable error) {
-        if (message) {
-            NSLog(@"Message data delivered.");
-            
-            [weakSelf appendMessage:message];
-            weakSelf.textView.text = @"";
-        } else {
-            NSLog(@"Error sending message data: %@", error.localizedDescription);
-            
-            [CaronaeAlertController presentOkAlertWithTitle:@"Ops!" message:@"Ocorreu um erro enviando sua mensagem."];
-        }
-        
-        weakSelf.sendButton.enabled = YES;
-    }];
-}
-
-- (void)didReceiveMessage:(NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
-    NSString *msgType = userInfo[@"msgType"];
-    
-    // Handle chat messages
-    if (msgType && [msgType isEqualToString:@"chat"]) {
-        NSInteger rideID = [userInfo[@"rideId"] integerValue];
-        NSInteger senderID = [userInfo[@"senderId"] integerValue];
-        NSInteger currentUserId = UserService.instance.user.id;
-        
-        if (rideID == _ride.id && senderID != currentUserId) {
-            NSLog(@"Chat window did receive message: %@", userInfo[@"message"]);
-            
-            [self loadChatMessages];
-            [self.tableView reloadData];
-            [self tableViewScrollToBottomAnimated:YES];
-        }
-    }
-}
-
-
 #pragma mark - Table methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -194,13 +135,13 @@ static const CGFloat toolBarMinHeight = 44.0f;
         cell.tintColor = self.color;
     }
     
-    Message *message = self.messages[indexPath.row];
+    Message *message = [self messageAtIndex:indexPath.row];
     [cell configureWithMessage:message];
     
     return cell;
 }
 
-- (void)tableViewScrollToBottomAnimated:(BOOL)animated {
+- (void)scrollToBottomAnimated:(BOOL)animated {
     long int numberOfRows = [self.tableView numberOfRowsInSection:0];
     if (numberOfRows > 0) {
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:numberOfRows-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:animated];
