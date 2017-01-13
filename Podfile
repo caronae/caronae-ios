@@ -18,6 +18,7 @@ target 'Caronae' do
     pod 'ObjectMapper+Realm', '~> 0.2'
     pod 'UITextView+Placeholder', '~> 1.2'
     pod 'Firebase/Messaging'
+    pod 'JSQMessagesViewController'
     
     target 'CaronaeTests' do
         inherit! :search_paths

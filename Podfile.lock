@@ -62,6 +62,9 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.0)
   - GoogleToolboxForMac/NSData+zlib (2.1.0):
     - GoogleToolboxForMac/Defines (= 2.1.0)
+  - JSQMessagesViewController (7.3.4):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - ObjectMapper (2.2.2)
   - ObjectMapper+Realm (0.2):
     - ObjectMapper
@@ -91,6 +94,7 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase/Messaging
+  - JSQMessagesViewController
   - ObjectMapper (~> 2.2)
   - ObjectMapper+Realm (~> 0.2)
   - RealmSwift (~> 2.1)
@@ -116,6 +120,8 @@ SPEC CHECKSUMS:
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
+  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
   ObjectMapper+Realm: 8b45dbfa1be145e311a6f93a306c183d630b40a9
   RBBAnimation: 4b2d66f6d993febce63cd564da934985313b9c59
@@ -123,12 +129,12 @@ SPEC CHECKSUMS:
   RealmSwift: 17d6ee30b6f9df86364408c2197492e33bfea567
   SDCAlertView: 2e2b0ecc5f1ec367e45d83efa2e512688ca7fa55
   SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   SHSPhoneComponent: 4cec0653a150ad63cbc52b0c8b29ce2d3c9c26f0
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 77d823f923d10416f190843cb62bdfe8f6f21ca3
+PODFILE CHECKSUM: 45969843086503c03225a4f75875bec06d50aa9f
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0.beta.3
