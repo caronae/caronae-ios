@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F2ACBE4EC6F723F1CF2754A /* Pods_CaronaeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDEF024FC27DF0BBC189D320 /* Pods_CaronaeTests.framework */; };
+		71D2B86D1E296AFC000454F7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2B86C1E296AFC000454F7 /* ChatViewController.swift */; };
 		A302B29B1BF4439300FA161D /* CreateRideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A302B29A1BF4439300FA161D /* CreateRideTests.m */; };
 		A3034D581DB58A1B00816B79 /* NSDate+isInTheFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */; };
 		A3169C951BED842D00A0D428 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C941BED842D00A0D428 /* main.m */; };
@@ -95,6 +96,7 @@
 		2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug.xcconfig"; sourceTree = "<group>"; };
 		48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.release.xcconfig"; sourceTree = "<group>"; };
 		4B35A3BD2CCAED11349480AC /* Pods-CaronaeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaronaeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests.release.xcconfig"; sourceTree = "<group>"; };
+		71D2B86C1E296AFC000454F7 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A302B29A1BF4439300FA161D /* CreateRideTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRideTests.m; sourceTree = "<group>"; };
 		A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+isInTheFuture.swift"; sourceTree = "<group>"; };
 		A3169C901BED842D00A0D428 /* Caronae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caronae.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -403,6 +405,7 @@
 			children = (
 				A37E80D91C5F007900683F27 /* ChatViewController.h */,
 				A37E80DA1C5F007900683F27 /* ChatViewController.m */,
+				71D2B86C1E296AFC000454F7 /* ChatViewController.swift */,
 				A3CA5DE11E22F2860062522D /* ChatViewController+Messages.swift */,
 				A37E80E21C5F0C3000683F27 /* MessageBubbleTableViewCell.h */,
 				A37E80E31C5F0C3000683F27 /* MessageBubbleTableViewCell.m */,
@@ -787,6 +790,7 @@
 				A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */,
 				A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */,
 				A37E80E41C5F0C3000683F27 /* MessageBubbleTableViewCell.m in Sources */,
+				71D2B86D1E296AFC000454F7 /* ChatViewController.swift in Sources */,
 				A3CA5DD21E1F46520062522D /* UIWindow+replaceRootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
