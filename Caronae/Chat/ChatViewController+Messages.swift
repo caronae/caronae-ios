@@ -24,28 +24,6 @@ extension ChatViewController {
         }
     }
     
-    func sendMessage() {
-        // Hack to trigger autocorrect before sending the text
-        textView.resignFirstResponder()
-        textView.becomeFirstResponder()
-        
-        let messageText = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !messageText.isEmpty else { return }
-        
-        sendButton.isEnabled = false
-        
-        ChatService.instance.sendMessage(messageText, rideID: ride.id) { message, error in
-            self.sendButton.isEnabled = false
-            guard error == nil else {
-                NSLog("Error sending message data: (%@)", error!.localizedDescription)
-                CaronaeAlertController.presentOkAlert(withTitle: "Ops!", message: "Ocorreu um erro enviando sua mensagem.")
-                return
-            }
-            
-            self.textView.text = ""            
-        }
-    }
-    
     func subscribeToChanges() {
         guard let messages = messages as? Results<Message> else { return }
         

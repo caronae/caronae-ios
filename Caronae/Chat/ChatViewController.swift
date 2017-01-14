@@ -150,5 +150,16 @@ class ChatViewController: JSQMessagesViewController {
         
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
     }
+    
+    override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+        ChatService.instance.sendMessage(text, rideID: ride.id) { message, error in
+            guard error == nil else {
+                NSLog("Error sending message data: (%@)", error!.localizedDescription)
+                CaronaeAlertController.presentOkAlert(withTitle: "Ops!", message: "Ocorreu um erro enviando sua mensagem.")
+                return
+            }
+            self.finishSendingMessage()
+        }
+    }
 
 }
