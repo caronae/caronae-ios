@@ -1,7 +1,6 @@
 @import CoreData;
 @import SVProgressHUD;
 #import "CaronaeAlertController.h"
-#import "ChatViewController.h"
 #import "JoinRequestCell.h"
 #import "ProfileViewController.h"
 #import "RideViewController.h"

@@ -4,7 +4,6 @@
 @import Firebase;
 @import SVProgressHUD;
 #import "AppDelegate.h"
-#import "ChatViewController.h"
 #import "TabBarController.h"
 #import "UIWindow+replaceRootViewController.h"
 #import "Caronae-Swift.h"
