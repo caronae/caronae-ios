@@ -1,4 +1,5 @@
 import UIKit
+import Realm
 import RealmSwift
 import JSQMessagesViewController
 
@@ -9,6 +10,13 @@ class ChatViewController: JSQMessagesViewController {
     var ride: Ride!
     var color: UIColor!
     var messages: Results<Message>!
+    var messagesNotificationToken: RLMNotificationToken!
+    
+    convenience init(ride: Ride, color: UIColor) {
+        self.init()
+        self.ride = ride
+        self.color = color
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

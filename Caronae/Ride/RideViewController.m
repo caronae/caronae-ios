@@ -234,7 +234,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)openChatWindow {
-    ChatViewController *chatVC = [[ChatViewController alloc] initWithRide:_ride andColor:_color];
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithRide:_ride color:_color];
     [self.navigationController pushViewController:chatVC animated:YES];
 }
 
