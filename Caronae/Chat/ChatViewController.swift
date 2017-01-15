@@ -26,16 +26,18 @@ class ChatViewController: JSQMessagesViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "pt_BR")
         dateFormatter.dateFormat = " - dd/MM - HH:mm"
-        
         self.title = ride.title + dateFormatter.string(from: ride.date)
+        
         self.senderId = String(UserService.instance.user!.id)
         self.senderDisplayName = UserService.instance.user!.name
         
-        // Disable/remove attachment button
+        // Setting up inputToolbar
         self.inputToolbar.contentView?.leftBarButtonItem = nil
+        self.inputToolbar.contentView?.rightBarButtonItem.setTitleColor(self.color, for: .normal)
+        self.inputToolbar.maximumHeight = 125
         
         // Setting up message bubble
-        incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.lightGray)
+        incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
         outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: self.color)
         
         // Setting up avatars
@@ -71,6 +73,18 @@ class ChatViewController: JSQMessagesViewController {
         let message = messages[indexPath.item]
         //return getAvatar(message.senderId) //TODO: Get sender avatar image
         return nil
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
+        let message = messages[indexPath.item]
+        
+        if String(message.sender.id) == self.senderId {
+            cell.textView?.textColor = UIColor.white
+        } else {
+            cell.textView?.textColor = UIColor.black
+        }
+        return cell
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, attributedTextForCellTopLabelAt indexPath: IndexPath) -> NSAttributedString? {
@@ -152,10 +166,12 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
+        self.inputToolbar.contentView?.rightBarButtonItem.isEnabled = false
         ChatService.instance.sendMessage(text, rideID: ride.id) { message, error in
             guard error == nil else {
                 NSLog("Error sending message data: (%@)", error!.localizedDescription)
                 CaronaeAlertController.presentOkAlert(withTitle: "Ops!", message: "Ocorreu um erro enviando sua mensagem.")
+                self.inputToolbar.contentView?.rightBarButtonItem.isEnabled = true
                 return
             }
             self.finishSendingMessage()
