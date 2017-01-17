@@ -150,12 +150,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         // Let FCM know about the message for analytics etc.
         FIRMessaging.messaging().appDidReceiveMessage(userInfo)
         
-        // Print message ID.
-        NSLog("Message ID: \(userInfo["gcm.message_id"]!)")
-        // Print full message.
-        print("%@", userInfo)
-        _ = handleNotification(userInfo)
-        
+        setActiveScreenAccordingToNotification(userInfo)
         completionHandler()
     }
     
