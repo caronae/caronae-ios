@@ -90,9 +90,11 @@ class ActiveRidesViewController: RideListController {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 40
+        if filteredRides != nil && !filteredRides.isEmpty {
+            return 40
+        }
         
-        
+        return 0
     }
     
     
