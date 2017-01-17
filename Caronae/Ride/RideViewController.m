@@ -1,4 +1,3 @@
-@import CoreData;
 @import SVProgressHUD;
 #import "CaronaeAlertController.h"
 #import "ChatViewController.h"

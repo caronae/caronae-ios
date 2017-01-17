@@ -13,7 +13,6 @@
 		A3169C951BED842D00A0D428 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C941BED842D00A0D428 /* main.m */; };
 		A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C971BED842D00A0D428 /* AppDelegate.m */; };
 		A3169C9E1BED842D00A0D428 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169C9C1BED842D00A0D428 /* Main.storyboard */; };
-		A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */; };
 		A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA21BED842D00A0D428 /* Assets.xcassets */; };
 		A3169CA61BED842D00A0D428 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */; };
 		A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */; };
@@ -102,7 +101,6 @@
 		A3169C961BED842D00A0D428 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A3169C971BED842D00A0D428 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A3169C9D1BED842D00A0D428 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A3169CA01BED842D00A0D428 /* Caronae.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Caronae.xcdatamodel; sourceTree = "<group>"; };
 		A3169CA21BED842D00A0D428 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3169CA51BED842D00A0D428 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3169CA71BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 		A37E80E31C5F0C3000683F27 /* MessageBubbleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBubbleTableViewCell.m; sourceTree = "<group>"; };
 		A37E80E51C5F158600683F27 /* Caronae-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Caronae-Bridging-Header.h"; sourceTree = "<group>"; };
 		A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+imageWithTint.swift"; sourceTree = "<group>"; };
-		A38598401C66D79300279D6F /* Caronae 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Caronae 3.xcdatamodel"; sourceTree = "<group>"; };
 		A385984A1C6923D000279D6F /* UserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTests.m; sourceTree = "<group>"; };
 		A389902B1C58734700C7CD2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A38F1D4B1C0398B500DEF6B1 /* RideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideCell.h; sourceTree = "<group>"; };
@@ -182,7 +179,6 @@
 		A3B5AF0F1BF2F0560026A889 /* CALayer+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+UIColor.h"; sourceTree = "<group>"; };
 		A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+UIColor.m"; sourceTree = "<group>"; };
 		A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaronaeAPIHTTPSessionManager.swift; path = Networking/CaronaeAPIHTTPSessionManager.swift; sourceTree = "<group>"; };
-		A3C55BDB1C5FD1B700C84204 /* Caronae 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Caronae 2.xcdatamodel"; sourceTree = "<group>"; };
 		A3CA5DCD1E1F3C000062522D /* UIApplication+topViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+topViewController.h"; sourceTree = "<group>"; };
 		A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+topViewController.m"; sourceTree = "<group>"; };
 		A3CA5DD01E1F46520062522D /* UIWindow+replaceRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+replaceRootViewController.h"; sourceTree = "<group>"; };
@@ -294,7 +290,6 @@
 				A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */,
 				A3AD823B1E1C8860006D8ABE /* AppDelegate+Realm.swift */,
 				A3169CA21BED842D00A0D428 /* Assets.xcassets */,
-				A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */,
 				A3B5AEFD1BF1AAC10026A889 /* CaronaeConstants.h */,
 				A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */,
 				A3169CA71BED842D00A0D428 /* Info.plist */,
@@ -757,7 +752,6 @@
 				A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */,
 				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
 				A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */,
-				A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */,
 				A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */,
 				A32C77261C41EEE30098583B /* AllRidesViewController.m in Sources */,
 				A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */,
@@ -1090,21 +1084,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				A3C55BDB1C5FD1B700C84204 /* Caronae 2.xcdatamodel */,
-				A38598401C66D79300279D6F /* Caronae 3.xcdatamodel */,
-				A3169CA01BED842D00A0D428 /* Caronae.xcdatamodel */,
-			);
-			currentVersion = A38598401C66D79300279D6F /* Caronae 3.xcdatamodel */;
-			path = Caronae.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = A3169C881BED842D00A0D428 /* Project object */;
 }

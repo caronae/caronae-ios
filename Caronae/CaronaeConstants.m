@@ -4,7 +4,7 @@
 
 //NSString *const CaronaeAPIBaseURL = @"https://api.caronae.ufrj.br";
 //NSString *const CaronaeAPIBaseURL = @"http://dev.caronae.tic.ufrj.br";
-NSString *const CaronaeAPIBaseURL = @"http://192.168.0.2:8000";
+NSString *const CaronaeAPIBaseURL = @"http://192.168.2.1:8000";
 
 
 #pragma mark - Static pages URLs
@@ -34,7 +34,6 @@ NSString *const CaronaePreferenceLastSearchedDirectionKey = @"lastSearchedDirect
 NSString *const CaronaeErrorDomain = @"CaronaeError";
 const NSInteger CaronaeErrorInvalidResponse = 1;
 const NSInteger CaronaeErrorNoRidesCreated = 2;
-const NSInteger CaronaeErrorOpeningCoreDataStore = 3;
 
 
 #pragma mark - Etc.
