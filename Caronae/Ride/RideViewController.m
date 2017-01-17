@@ -5,7 +5,6 @@
 #import "ProfileViewController.h"
 #import "RideViewController.h"
 #import "RiderCell.h"
-#import "RideRequestsStore.h"
 #import "SHSPhoneNumberFormatter+UserConfig.h"
 #import "UIImageView+crn_setImageWithURL.h"
 #import "Caronae-Swift.h"
@@ -161,11 +160,10 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         self.navigationItem.rightBarButtonItem = nil;
         
         // Update the state of the join request button if the user has already requested to join
-        if ([RideRequestsStore hasRequestedToJoinRide:_ride]) {
+        if ([RideService.instance hasRequestedToJoinRideWithID:_ride.id]) {
             _requestRideButton.enabled = NO;
             [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
-        }
-        else {
+        } else {
             _requestRideButton.enabled = YES;
             [_requestRideButton setTitle:CaronaeRequestButtonStateNew forState:UIControlStateNormal];
         }
@@ -360,7 +358,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     [RideService.instance requestJoinOnRideWithID:_ride.id success:^{
         [SVProgressHUD dismiss];
         NSLog(@"Done requesting ride.");
-        [RideRequestsStore setRideAsRequested:_ride];
         [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
     } error:^(NSError * _Nonnull error) {
         [SVProgressHUD dismiss];

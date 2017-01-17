@@ -11,7 +11,6 @@
 #import "ChatViewController.h"
 #import "RideListController.h"
 #import "RideViewController.h"
-#import "RideRequestsStore.h"
 #import "TabBarController.h"
 
 #import "UIApplication+topViewController.h"
