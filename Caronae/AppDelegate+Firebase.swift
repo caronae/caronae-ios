@@ -93,6 +93,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     
     func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any], completionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
         let application = UIApplication.shared
+        
+        if #available(iOS 10.0, *), application.applicationState == .active  {
+            NSLog("Remote notification received 2 on iOS 10 or greater")
+            handler(UIBackgroundFetchResult.newData)
+            return
+        }
+        
         NSLog("Remote notification received 2: %@", userInfo)
         
         // Let FCM know about the message for analytics etc.
