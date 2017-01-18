@@ -15,4 +15,5 @@
 
 #import "UIApplication+topViewController.h"
 #import "UIWindow+replaceRootViewController.h"
+#import "UIImageView+crn_setImageWithURL.h"
 
