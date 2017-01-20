@@ -44,4 +44,9 @@ extension RideViewController {
             CaronaeAlertController.presentOkAlert(withTitle: "Algo deu errado.", message: String(format: "Não foi possível cancelar sua rotina. (%@)", error.localizedDescription))
         })
     }
+    
+    func clearNotifications() {
+        NotificationService.instance.clearNotifications(forRideID: ride.id, of: .rideJoinRequestAccepted)
+    }
+    
 }
