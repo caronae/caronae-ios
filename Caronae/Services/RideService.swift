@@ -285,18 +285,34 @@ class RideService: NSObject {
             }
             
             success()
-        }, failure: { task, err in
+        }, failure: { _, err in
             error(err)
         })
     }
     
     func requestJoinOnRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         api.post("/ride/requestJoin", parameters: ["rideId": id], success: { task, responseObject in
-            // TODO: Persist join requests
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.add(RideRequest(rideID: id), update: true)
+                }
+            } catch let err {
+                error(err)
+            }
+            
             success()
-        }, failure: { task, err in
+        }, failure: { _, err in
             error(err)
         })
+    }
+    
+    func hasRequestedToJoinRide(withID id: Int) -> Bool {
+        if let realm = try? Realm(), let _ = realm.object(ofType: RideRequest.self, forPrimaryKey: id) {
+            return true
+        }
+        
+        return false
     }
     
     func answerRequestOnRide(withID rideID: Int, fromUser user: User, accepted: Bool, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {

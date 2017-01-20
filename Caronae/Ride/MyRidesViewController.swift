@@ -85,17 +85,11 @@ class MyRidesViewController: RideListController {
     // MARK: Table methods
     
     override func tableView(_ tableView: UITableView!, cellForRowAt indexPath: IndexPath!) -> RideCell! {
-        var unreadCount = 0
         let ride = filteredRides[indexPath.row]
         
-        for notification in unreadNotifications {
-            if notification.rideID == ride.id {
-                unreadCount += 1
-            }
-        }
-        
         let cell = super.tableView(tableView, cellForRowAt: indexPath)!
-        cell.badgeCount = unreadCount
+        cell.badgeCount = unreadNotifications.filter{ $0.rideID == ride.id }.count
+        
         return cell
     }
 }

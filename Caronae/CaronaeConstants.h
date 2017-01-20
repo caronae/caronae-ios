@@ -32,7 +32,6 @@ extern NSNotificationName const CaronaeDidUpdateUserNotification;
 extern NSString *const CaronaeErrorDomain;
 extern const NSInteger CaronaeErrorInvalidResponse;
 extern const NSInteger CaronaeErrorNoRidesCreated;
-extern const NSInteger CaronaeErrorOpeningCoreDataStore;
 
 
 #pragma mark - Etc.
