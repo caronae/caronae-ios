@@ -6796,13 +6796,7 @@ FOTO</string>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Carona" id="SYh-KU-ZDs">
-                        <barButtonItem key="rightBarButtonItem" title="Chat" id="4SH-I9-Hcm">
-                            <connections>
-                                <action selector="didTapChatButton:" destination="SRb-hM-LXF" id="f9R-3L-WAg"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Carona" id="SYh-KU-ZDs"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="1200"/>
                     <connections>
@@ -6814,7 +6808,6 @@ FOTO</string>
                         <outlet property="carIconPlate" destination="bbT-SR-WbA" id="2Tt-c9-Khb"/>
                         <outlet property="carModelLabel" destination="e2a-uF-8Ry" id="wCe-Gu-LRX"/>
                         <outlet property="carPlateLabel" destination="aCx-nb-Rrv" id="gLG-TY-04z"/>
-                        <outlet property="chatButton" destination="4SH-I9-Hcm" id="m0v-43-69Q"/>
                         <outlet property="clockIcon" destination="fQj-VC-R47" id="NL0-NS-oDg"/>
                         <outlet property="dateLabel" destination="1UZ-co-mpB" id="WHY-Lm-nng"/>
                         <outlet property="descriptionLabel" destination="7fD-gY-dO4" id="mSy-Zn-Sza"/>

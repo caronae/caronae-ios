@@ -66,6 +66,7 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - MIBadgeButton-Swift (0.5)
   - ObjectMapper (2.2.2)
   - ObjectMapper+Realm (0.2):
     - ObjectMapper
@@ -96,6 +97,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - Firebase/Messaging
   - JSQMessagesViewController
+  - MIBadgeButton-Swift (from `https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git`, branch `master`)
   - ObjectMapper (~> 2.2)
   - ObjectMapper+Realm (~> 0.2)
   - RealmSwift (~> 2.1)
@@ -105,6 +107,16 @@ DEPENDENCIES:
   - SVProgressHUD
   - TPKeyboardAvoiding (~> 1.2.11)
   - UITextView+Placeholder (~> 1.2)
+
+EXTERNAL SOURCES:
+  MIBadgeButton-Swift:
+    :branch: master
+    :git: https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git
+
+CHECKOUT OPTIONS:
+  MIBadgeButton-Swift:
+    :commit: 44b28fd7c9071439861f9b0c366c84a55ffd7e53
+    :git: https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 8312778b6815578e6a86d630fbcf31dc94c534e7
@@ -123,6 +135,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  MIBadgeButton-Swift: 9e57309b00b168d75ca8fecb45bc75124a8ffddf
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
   ObjectMapper+Realm: 8b45dbfa1be145e311a6f93a306c183d630b40a9
   RBBAnimation: 4b2d66f6d993febce63cd564da934985313b9c59
@@ -136,6 +149,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 45969843086503c03225a4f75875bec06d50aa9f
+PODFILE CHECKSUM: 8023d8ec34fbf2475847d3fd69f718c1a5bfae14
 
 COCOAPODS: 1.1.1

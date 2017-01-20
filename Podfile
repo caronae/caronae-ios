@@ -19,6 +19,7 @@ target 'Caronae' do
     pod 'UITextView+Placeholder', '~> 1.2'
     pod 'Firebase/Messaging'
     pod 'JSQMessagesViewController'
+    pod "MIBadgeButton-Swift", :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
     
     target 'CaronaeTests' do
         inherit! :search_paths
