@@ -7,12 +7,12 @@ class NotificationService: NSObject {
         // This prevents others from using the default '()' initializer for this class.
     }
     
-    func getNotifications(of kind: Notification.Kind? = nil) throws -> Results<Notification> {
+    func getNotifications(of kinds: [Notification.Kind] = []) throws -> Results<Notification> {
         let realm = try Realm()
         
         var notifications = realm.objects(Notification.self)
-        if let kind = kind {
-            notifications = notifications.filter("kind == %@", kind.rawValue)
+        if !kinds.isEmpty {
+            notifications = notifications.filter("kind IN %@", kinds.map { $0.rawValue })
         }
         return notifications
     }

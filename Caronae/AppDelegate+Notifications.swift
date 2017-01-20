@@ -48,7 +48,7 @@ extension AppDelegate {
         
         let notification = Notification()
         notification.rideID = rideID
-        notification.kind = .rideJoinRequest
+        notification.kind = .rideJoinRequestAccepted
         
         NotificationService.instance.createNotification(notification)
         ChatService.instance.subscribeToRide(withID: rideID)

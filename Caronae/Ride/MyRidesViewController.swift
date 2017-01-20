@@ -73,7 +73,7 @@ class MyRidesViewController: RideListController {
     }
     
     func updateNotificationBadges() {
-        unreadNotifications = try! NotificationService.instance.getNotifications(of: .rideJoinRequest)
+        unreadNotifications = try! NotificationService.instance.getNotifications(of: [.rideJoinRequest])
         if unreadNotifications.isEmpty {
             navigationController?.tabBarItem.badgeValue = nil
         } else {
