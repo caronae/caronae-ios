@@ -41,6 +41,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
             } else {
                 print("Connected to FCM.")
                 self.subscribeToUserTopic()
+                self.subscribeToGeneralTopic()
             }
         }
     }
@@ -48,6 +49,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     func disconnectFromFcm() {
         FIRMessaging.messaging().disconnect()
         NSLog("Disconnected from FCM.")
+    }
+    
+    func subscribeToGeneralTopic() {
+        let topic = "/topics/general"
+        NSLog("Subscribing to: \(topic)")
+        FIRMessaging.messaging().subscribe(toTopic: topic)
     }
     
     func subscribeToUserTopic() {
