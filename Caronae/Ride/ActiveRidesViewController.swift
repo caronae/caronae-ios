@@ -44,8 +44,8 @@ class ActiveRidesViewController: RideListController {
             navigationController?.tabBarItem.badgeValue = nil
         } else {
             navigationController?.tabBarItem.badgeValue = String(format: "%ld", unreadNotifications.count)
+            loadRides()
         }
-        tableView.reloadData()
     }
     
     func openChatForRide(withID rideID: Int) {
