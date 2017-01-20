@@ -31,9 +31,10 @@ NSString *const CaronaePreferenceLastSearchedDirectionKey = @"lastSearchedDirect
 
 #pragma mark - Error types
 
-NSString *const CaronaeErrorDomain = @"CaronaeError";
+NSString *const CaronaeErrorDomain = @"br.ufrj.caronae.error";
 const NSInteger CaronaeErrorInvalidResponse = 1;
 const NSInteger CaronaeErrorNoRidesCreated = 2;
+const NSInteger CaronaeErrorUserNotLoggedInWithFacebook = 3;
 
 
 #pragma mark - Etc.
