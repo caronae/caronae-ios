@@ -12,6 +12,7 @@ class ChatViewController: JSQMessagesViewController {
     var color: UIColor!
     var messages: Results<Message>!
     var messagesNotificationToken: RLMNotificationToken!
+    var isSending = false
     
     var tappedMessageIndex: Int?
     
@@ -198,7 +199,10 @@ class ChatViewController: JSQMessagesViewController {
     
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         self.inputToolbar.contentView?.rightBarButtonItem.isEnabled = false
+        self.isSending = true
+        self.inputToolbar.contentView?.textView.delegate = self
         ChatService.instance.sendMessage(text, rideID: ride.id) { message, error in
+            self.isSending = false
             guard error == nil else {
                 NSLog("Error sending message data: (%@)", error!.localizedDescription)
                 CaronaeAlertController.presentOkAlert(withTitle: "Ops!", message: "Ocorreu um erro enviando sua mensagem.")
@@ -283,6 +287,13 @@ class ChatViewController: JSQMessagesViewController {
     
     func clearNotifications() {
         NotificationService.instance.clearNotifications(forRideID: ride.id, of: .chat)
+    }
+    
+    
+    // MARK: UITextViewDelegate methods
+    
+    override func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        return !isSending
     }
     
 }
