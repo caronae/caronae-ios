@@ -168,15 +168,15 @@
     [SVProgressHUD show];
     self.createRideButton.enabled = NO;
     
-    [RideService.instance validateRideDateWithRide:ride success:^(NSNumber * _Nonnull valid, NSString * _Nonnull status) {
+    [RideService.instance validateRideDateWithRide:ride success:^(BOOL isValid, NSString * _Nonnull status) {
         [SVProgressHUD dismiss];
-        if ([valid boolValue]) {
+        if (isValid) {
             [self createRide:ride];
         } else {
             if ([status isEqualToString:@"duplicate"]) {
                 [CaronaeAlertController presentOkAlertWithTitle:@"Você já ofereceu uma carona muito parecida com essa" message:@"Você pode verificar as suas caronas na seção 'Minhas' do aplicativo." handler:^(SDCAlertAction *action){
-                 self.createRideButton.enabled = YES;
-                 }];
+                    self.createRideButton.enabled = YES;
+                }];
             } else {
                 CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Parece que você já ofereceu uma carona para este dia"
                                                                                          message:@"Você pode cancelar e verificar as suas caronas ou continuar e criar a carona mesmo assim."
@@ -194,7 +194,7 @@
         [SVProgressHUD dismiss];
         self.createRideButton.enabled = YES;
         
-        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível validar a carona." message:error.localizedDescription];
+        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível validar sua carona." message:[NSString stringWithFormat:@"Houve um erro de comunicação com nosso servidor. Por favor, tente novamente. (%@)", error.localizedDescription]];
     }];
 }
 

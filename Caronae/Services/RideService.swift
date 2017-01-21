@@ -315,15 +315,27 @@ class RideService: NSObject {
         return false
     }
     
-    func validateRideDate(ride: [String : Any], success: @escaping (_ valid: NSNumber, _ status: String) -> Void, error: @escaping (_ error: Error?) -> Void) {
-        let params = ["date": ride["mydate"]!, "time" : ride["mytime"]!, "going" : ride["going"]!]
+    func validateRideDate(ride: Ride, success: @escaping (_ valid: Bool, _ status: String) -> Void, error: @escaping (_ error: Error?) -> Void) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        let dateString = dateFormatter.string(from: ride.date).components(separatedBy: " ")
         
-        api.get("/ride/validateDuplicate?", parameters: params, success: { task, responseObject in
-            let response = responseObject as! [String : Any]
-            success (response["valid"]! as! NSNumber, response["status"]! as! String)
+        let params = [
+            "date": dateString.first!,
+            "time": dateString.last!,
+            "going": ride.going
+            ] as [String: Any]
+        
+        api.get("/ride/validateDuplicate", parameters: params, success: { _, responseObject in
+            guard let response = responseObject as? [String: Any],
+                let valid = response["valid"] as? Bool,
+                let status = response["status"] as? String else {
+                    error(nil)
+                    return
+            }
             
+            success(valid, status)
         }, failure: { _, err in
-            NSLog("Failed to validate ride date: \(err.localizedDescription)")
             error(err)
         })
     }
