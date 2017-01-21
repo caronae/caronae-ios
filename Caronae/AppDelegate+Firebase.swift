@@ -27,12 +27,21 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     }
     
     func connectToFcm() {
-        FIRMessaging.messaging().connect { (error) in
-            if let error = error {
-                NSLog("Unable to connect with FCM. \(error)")
+        // Won't connect since there is no token
+        guard FIRInstanceID.instanceID().token() != nil else {
+            return;
+        }
+        
+        // Disconnect previous FCM connection if it exists.
+        FIRMessaging.messaging().disconnect()
+        
+        FIRMessaging.messaging().connect { error in
+            if error != nil {
+                print("Unable to connect with FCM. \(error)")
             } else {
-                NSLog("Connected to FCM.")
+                print("Connected to FCM.")
                 self.subscribeToUserTopic()
+                self.subscribeToGeneralTopic()
             }
         }
     }
@@ -40,6 +49,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     func disconnectFromFcm() {
         FIRMessaging.messaging().disconnect()
         NSLog("Disconnected from FCM.")
+    }
+    
+    func subscribeToGeneralTopic() {
+        let topic = "/topics/general"
+        NSLog("Subscribing to: \(topic)")
+        FIRMessaging.messaging().subscribe(toTopic: topic)
     }
     
     func subscribeToUserTopic() {
@@ -93,6 +108,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     
     func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any], completionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
         let application = UIApplication.shared
+        
+        if #available(iOS 10.0, *), application.applicationState == .active  {
+            NSLog("Remote notification received 2 on iOS 10 or greater")
+            handler(UIBackgroundFetchResult.newData)
+            return
+        }
+        
         NSLog("Remote notification received 2: %@", userInfo)
         
         // Let FCM know about the message for analytics etc.

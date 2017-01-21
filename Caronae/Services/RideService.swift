@@ -327,6 +327,7 @@ class RideService: NSObject {
                 let realm = try Realm()
                 if let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) {
                     try realm.write {
+                        realm.add(user, update: true)
                         ride.riders.append(user)
                     }
                 } else {

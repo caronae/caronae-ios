@@ -48,7 +48,7 @@ extension AppDelegate {
         
         let notification = Notification()
         notification.rideID = rideID
-        notification.kind = .rideJoinRequest
+        notification.kind = .rideJoinRequestAccepted
         
         NotificationService.instance.createNotification(notification)
         ChatService.instance.subscribeToRide(withID: rideID)
@@ -70,9 +70,8 @@ extension AppDelegate {
         guard let (rideID, message) = rideNotificationInfo(userInfo),
             let senderIDString = userInfo["senderId"] as? String,
             let senderID = Int(senderIDString),
-            senderID != UserService.instance.user?.id,
-        let senderName = userInfo["senderName"] as? String else {
-            return
+            senderID != UserService.instance.user?.id else {
+                return
         }
         
         ChatService.instance.updateMessagesForRide(withID: rideID) { error in
@@ -102,7 +101,7 @@ extension AppDelegate {
         }
             
         NotificationService.instance.createNotification(notification)
-        showMessageIfActive(String(format: "%@: %@", senderName, message))
+        showMessageIfActive(message)
     }
     
     private func handleUnknownNotification(_ userInfo: [AnyHashable: Any]) {

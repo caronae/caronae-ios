@@ -1,4 +1,5 @@
 import SVProgressHUD
+import MIBadgeButton_Swift
 
 extension RideViewController {
     var riders: Any? {
@@ -24,6 +25,20 @@ extension RideViewController {
         return UserService.instance.user!.id == ride.driver.id
     }
     
+    func updateChatButtonBadge() {
+        guard let unreadNotifications = try? NotificationService.instance.getNotifications(of: [.chat])
+            .filter({ $0.rideID == self.ride.id }) else { return }
+        
+        let button = MIBadgeButton(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
+        button.setTitle("Chat", for: .normal)
+        button.setTitleColor(navigationController?.navigationBar.tintColor, for: .normal)
+        button.addTarget(self, action: #selector(openChatWindow), for: .touchUpInside)
+        button.badgeString = unreadNotifications.isEmpty ? nil : String(unreadNotifications.count)
+        
+        let barButton = UIBarButtonItem(customView: button)
+        navigationItem.rightBarButtonItem = barButton
+    }
+    
     func deleteRoutine() {
         let routineID = self.ride.routineID.value!
         NSLog("Requesting to delete routine with id %ld", routineID)
@@ -44,4 +59,9 @@ extension RideViewController {
             CaronaeAlertController.presentOkAlert(withTitle: "Algo deu errado.", message: String(format: "Não foi possível cancelar sua rotina. (%@)", error.localizedDescription))
         })
     }
+    
+    func clearNotifications() {
+        NotificationService.instance.clearNotifications(forRideID: ride.id, of: .rideJoinRequestAccepted)
+    }
+    
 }

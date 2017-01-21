@@ -13,6 +13,7 @@ class Notification: Object {
     @objc enum Kind: Int {
         case chat
         case rideJoinRequest
+        case rideJoinRequestAccepted
         case other
     }
 }

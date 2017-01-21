@@ -1,6 +1,5 @@
 @import SVProgressHUD;
 #import "CaronaeAlertController.h"
-#import "ChatViewController.h"
 #import "JoinRequestCell.h"
 #import "ProfileViewController.h"
 #import "RideViewController.h"
@@ -43,6 +42,9 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     [super viewDidLoad];
     
     self.title = @"Carona";
+    
+    [self clearNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateChatButtonBadge) name:CaronaeDidUpdateNotifications object:nil];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"HH:mm | E | dd/MM";
@@ -97,6 +99,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     // If the user is the driver of the ride, load pending join requests and hide 'join' button
     if ([self userIsDriver]) {
         [self loadJoinRequests];
+        [self updateChatButtonBadge];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.requestRideButton removeFromSuperview];
@@ -123,6 +126,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     }
     // If the user is already a rider, hide 'join' button
     else if ([self userIsRider]) {
+        [self updateChatButtonBadge];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.requestRideButton removeFromSuperview];
             [self.finishRideView removeFromSuperview];
@@ -143,7 +148,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         
         [self updateMutualFriends];
     }
-    // If the user is not related to the ride, hide 'cancel' button, car details view, riders view, chat button
+    // If the user is not related to the ride, hide 'cancel' button, car details view, riders view
     else {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.cancelButton removeFromSuperview];
@@ -155,9 +160,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         
         // Hide driver's phone number
         _ride.driver.phoneNumber = nil;
-        
-        // Hide chat button
-        self.navigationItem.rightBarButtonItem = nil;
         
         // Update the state of the join request button if the user has already requested to join
         if ([RideService.instance hasRequestedToJoinRideWithID:_ride.id]) {
@@ -178,6 +180,10 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [self openChatWindow];
         self.shouldOpenChatWindow = NO;
     }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setColor:(UIColor *)color {
@@ -228,7 +234,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)openChatWindow {
-    ChatViewController *chatVC = [[ChatViewController alloc] initWithRide:_ride andColor:_color];
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithRide:_ride color:_color];
     [self.navigationController pushViewController:chatVC animated:YES];
 }
 
@@ -276,10 +282,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [self finishRide];
     }]];
     [alert presentWithCompletion:nil];
-}
-
-- (IBAction)didTapChatButton:(id)sender {
-    [self openChatWindow];
 }
 
 

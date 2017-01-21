@@ -8,11 +8,11 @@
 #import "AppDelegate.h"
 #import "CaronaeConstants.h"
 #import "CaronaeAlertController.h"
-#import "ChatViewController.h"
 #import "RideListController.h"
 #import "RideViewController.h"
 #import "TabBarController.h"
 
 #import "UIApplication+topViewController.h"
 #import "UIWindow+replaceRootViewController.h"
+#import "UIImageView+crn_setImageWithURL.h"
 

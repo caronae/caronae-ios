@@ -48,9 +48,13 @@ class ChatService: NSObject {
             return
         }
         
-        // Query only the messages since the date of the last known message
+        // Query only the messages since the date of the last known message by someone else
         var params: [String: Any]?
-        if let lastMessage = realm.objects(Message.self).filter("ride == %@", ride).sorted(byProperty: "date", ascending: false).first {
+        if let user = UserService.instance.user,
+            let lastMessage = realm.objects(Message.self)
+                .filter("ride == %@ AND sender != %@", ride, user)
+                .sorted(byProperty: "date", ascending: false)
+                .first {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             params = [ "since": dateFormatter.string(from: lastMessage.date) ]

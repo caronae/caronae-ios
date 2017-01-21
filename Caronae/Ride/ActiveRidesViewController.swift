@@ -27,10 +27,12 @@ class ActiveRidesViewController: RideListController {
             self.refreshControl.endRefreshing()
             self.rides = rides
             self.tableView.reloadData()
+            self.tableView.tableFooterView = rides.isEmpty ? nil : self.tableFooter
         }, error: { error in
             self.refreshControl.endRefreshing()
             self.loadingFailedWithError(error)
             self.tableView.reloadData()
+            self.tableView.tableFooterView = nil
         })
     }
     
@@ -39,13 +41,13 @@ class ActiveRidesViewController: RideListController {
     }
     
     func updateNotificationBadges() {
-        unreadNotifications = try! NotificationService.instance.getNotifications(of: .chat)
+        unreadNotifications = try! NotificationService.instance.getNotifications(of: [.chat, .rideJoinRequestAccepted])
         if unreadNotifications.isEmpty {
             navigationController?.tabBarItem.badgeValue = nil
         } else {
             navigationController?.tabBarItem.badgeValue = String(format: "%ld", unreadNotifications.count)
         }
-        tableView.reloadData()
+        loadRides()
     }
     
     func openChatForRide(withID rideID: Int) {
@@ -72,24 +74,15 @@ class ActiveRidesViewController: RideListController {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let titleMessage = UILabel()
-        titleMessage.text = "Se você é motorista de alguma carona, não\n esqueça de concluí-la após seu término. :)"
-        titleMessage.numberOfLines = 0
-        titleMessage.backgroundColor = .white
-        titleMessage.font = .systemFont(ofSize: 10)
-        titleMessage.textColor = .lightGray
-        titleMessage.textAlignment = .center
-        return titleMessage
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if filteredRides != nil && !filteredRides.isEmpty {
-            return 40
-        }
-        
-        return 0
-    }
-    
+    lazy var tableFooter: UIView = {
+        let tableFooter = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+        tableFooter.text = "Se você é motorista de alguma carona, não\n esqueça de concluí-la após seu término. :)"
+        tableFooter.numberOfLines = 0
+        tableFooter.backgroundColor = .white
+        tableFooter.font = .systemFont(ofSize: 10)
+        tableFooter.textColor = .lightGray
+        tableFooter.textAlignment = .center
+        return tableFooter
+    }()
     
 }
