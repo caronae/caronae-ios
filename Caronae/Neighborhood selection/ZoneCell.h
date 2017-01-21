@@ -1,4 +1,4 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface ZoneCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *zoneNameLabel;

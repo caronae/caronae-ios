@@ -1,9 +1,9 @@
-#import <AFNetworking/AFHTTPRequestOperation.h>
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <CRToast/CRToast.h>
 #import "CaronaeAlertController.h"
 #import "RideListController.h"
 #import "UIViewController+isVisible.h"
+#import "Caronae-Swift.h"
 
 static NSString *const RideListDefaultEmptyMessage = @"Nenhuma carona\nencontrada.";
 static NSString *const RideListDefaultLoadingMessage = @"Carregando...";
@@ -12,7 +12,7 @@ static NSString *const RideListDefaultErrorMessage = @"Não foi possível\ncarre
 static NSString *const RideListMessageAlternateFontFamily = @"HelveticaNeue-UltraLight";
 static CGFloat const RideListMessageFontSize = 25.0f;
 
-@interface RideListController() <RideDelegate>
+@interface RideListController()
 @property (nonatomic, readwrite) NSArray<Ride *> *filteredRides;
 @end
 
@@ -67,48 +67,39 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     }
 }
 
-+ (NSArray *)filterRides:(NSArray *)rides withDirectionGoing:(BOOL)going {
-    NSMutableArray *filtered = [NSMutableArray arrayWithCapacity:rides.count];
-    
-    for (Ride *ride in rides) {
-        if (ride.going == going) {
-            [filtered addObject:ride];
-        }
-    }
-    
-    return filtered;
-}
-
 - (void)setRides:(NSArray *)rides {
     _rides = rides;
-    if (rides) {
-        if (self.hidesDirectionControl) {
-            self.filteredRides = rides;
-        }
-        else {
-            self.filteredRides = [RideListController filterRides:rides withDirectionGoing:self.ridesDirectionGoing];
-        }
-    }
+    [self updateFilteredRides];
 }
 
-- (void)loadingFailedWithOperation:(AFHTTPRequestOperation *)operation error:(NSError *)error {
-    if (operation) {
-        [self loadingFailedWithStatusCode:operation.response.statusCode andError:error];
+- (void)updateFilteredRides {
+    if (_rides) {
+        _tableView.backgroundView = ([_rides count] == 0) ? self.emptyTableLabel : nil;
+        
+        NSMutableArray *filtered = [NSMutableArray arrayWithCapacity:[_rides count]];
+        for (Ride *ride in _rides) {
+            if (self.hidesDirectionControl || ride.going == self.ridesDirectionGoing) {
+                [filtered addObject:ride];
+            }
+        }
+        
+        self.filteredRides = filtered;
     } else {
-        [self loadingFailedWithStatusCode:0 andError:error];
+        self.filteredRides = @[];
     }
 }
 
-- (void)loadingFailedWithStatusCode:(NSInteger)statusCode andError:(NSError *)error {
+- (void)loadingFailedWithError:(NSError *)error {
     if (self.filteredRides.count == 0) {
         self.tableView.backgroundView = self.errorLabel;
     }
     
     NSLog(@"%@ failed to load rides: %@", NSStringFromClass(self.class), error.localizedDescription);
     
-    if (statusCode == 403) {
-        [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Seu token pode ter sido suspenso ou expirado." handler:^{
-            [[UserController sharedInstance] signOut];
+    NSHTTPURLResponse *urlResponse = [error.userInfo objectForKey:AFNetworkingOperationFailingURLResponseErrorKey];
+    if (urlResponse && urlResponse.statusCode == 403) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Sua chave de acesso pode ter sido alterada ou suspensa.\n\nPara sua segurança, você será levado à tela de login." handler:^{
+            [UserService.instance signOut];
         }];
         return;
     }
@@ -131,25 +122,14 @@ static CGFloat const RideListMessageFontSize = 25.0f;
 }
 
 
-#pragma mark - Navigation
-
-- (RideViewController *)rideViewControllerForRide:(Ride *)ride {
-    RideViewController *rideVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RideViewController"];
-    rideVC.ride = ride;
-    rideVC.delegate = self;
-    
-    return rideVC;
-}
-
-
 #pragma mark - Table methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return (self.filteredRides && self.filteredRides.count > 0) ? 1 : 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return (self.filteredRides && self.filteredRides.count > 0) ? self.filteredRides.count : 0;
+    return [self.filteredRides count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -170,7 +150,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     
     if (!self.historyTable) {
         Ride *ride = self.filteredRides[indexPath.row];
-        RideViewController *rideVC = [self rideViewControllerForRide:ride];
+        RideViewController *rideVC = [RideViewController rideViewControllerForRide:ride];
         
         [self.navigationController pushViewController:rideVC animated:YES];
     }

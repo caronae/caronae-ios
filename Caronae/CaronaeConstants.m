@@ -4,16 +4,6 @@
 
 NSString *const CaronaeAPIBaseURL = @"https://api.caronae.ufrj.br";
 //NSString *const CaronaeAPIBaseURL = @"http://dev.caronae.tic.ufrj.br";
-//NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90";
-//NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
-//NSString *const CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
-//NSString *const CaronaeAPIBaseURL = @"http://localhost:8000";
-
-
-#pragma mark - GCM settings
-
-NSString *const CaronaeGCMAPISendURL = @"https://gcm-http.googleapis.com/gcm/send";
-NSString *const CaronaeGCMAPIKey = @"key=AIzaSyBtGz81bar_LcwtN_fpPTKRMBL5glp2T18";
 
 
 #pragma mark - Static pages URLs
@@ -25,10 +15,9 @@ NSString *const CaronaeTermsOfUsePageURLString = @"https://api.caronae.ufrj.br/s
 
 #pragma mark - Notifications
 
-NSString *const CaronaeGCMConnectedNotification = @"CaronaeGCMConnectedNotification";
-NSString *const CaronaeGCMTokenUpdatedNotification = @"CaronaeGCMTokenUpdatedNotification";
-NSString *const CaronaeGCMMessageReceivedNotification = @"CaronaeGCMMessageReceivedNotification";
-NSString *const CaronaeDidUpdateNotifications = @"CaronaeDidUpdateNotifications";
+NSNotificationName const CaronaeNotificationReceivedNotification = @"CaronaeNotificationReceivedNotification";
+NSNotificationName const CaronaeDidUpdateNotifications = @"CaronaeDidUpdateNotifications";
+NSNotificationName const CaronaeDidUpdateUserNotification = @"CaronaeDidUpdateUserNotification";
 
 
 #pragma mark - Preference keys
@@ -40,10 +29,10 @@ NSString *const CaronaePreferenceLastSearchedDateKey = @"lastSearchedDate";
 
 #pragma mark - Error types
 
-NSString *const CaronaeErrorDomain = @"CaronaeError";
+NSString *const CaronaeErrorDomain = @"br.ufrj.caronae.error";
 const NSInteger CaronaeErrorInvalidResponse = 1;
 const NSInteger CaronaeErrorNoRidesCreated = 2;
-const NSInteger CaronaeErrorOpeningCoreDataStore = 3;
+const NSInteger CaronaeErrorUserNotLoggedInWithFacebook = 3;
 
 
 #pragma mark - Etc.

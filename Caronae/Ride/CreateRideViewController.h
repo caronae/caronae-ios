@@ -1,17 +1,8 @@
-#import <UIKit/UIKit.h>
-#import "Ride.h"
+@import UIKit;
 
-@protocol CreateRideDelegate <NSObject>
-
-- (void)didCreateRides:(NSArray<Ride *> *)rides;
-
-@end
+@class Ride;
 
 @interface CreateRideViewController : UIViewController
-
-@property (nonatomic) id<CreateRideDelegate> delegate;
-
-- (NSDictionary *)generateRideDictionaryFromView;
 
 @property (weak, nonatomic) IBOutlet UIButton *neighborhoodButton;
 @property (weak, nonatomic) IBOutlet UITextField *reference;

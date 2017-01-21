@@ -1,3 +1,5 @@
+import AFNetworking
+
 class CaronaeAPIHTTPSessionManager: AFHTTPSessionManager {
     static let instance = CaronaeAPIHTTPSessionManager()
    
@@ -15,10 +17,10 @@ class CaronaeAPIHTTPSessionManager: AFHTTPSessionManager {
 class CaronaeRequestSerializer: AFJSONRequestSerializer {
     override func request(withMethod method: String, urlString URLString: String, parameters: Any?, error: NSErrorPointer) -> NSMutableURLRequest {
         // Add user token to the HTTP headers
-        self.setValue(UserController.sharedInstance().userToken, forHTTPHeaderField: "token")
+        self.setValue(UserService.instance.userToken, forHTTPHeaderField: "token")
 
         // Add user FB token to the HTTP headers
-        self.setValue(UserController.sharedInstance().userFBToken, forHTTPHeaderField: "Facebook-Token")
+        self.setValue(UserService.instance.userFacebookToken, forHTTPHeaderField: "Facebook-Token")
         
         return super.request(withMethod: method, urlString: URLString, parameters: parameters, error: error)
     }
