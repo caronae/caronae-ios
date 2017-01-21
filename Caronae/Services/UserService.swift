@@ -52,7 +52,7 @@ class UserService: NSObject {
         return FBSDKAccessToken.current()?.tokenString
     }
     
-    func signIn(withID idUFRJ: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeAuthenticationError) -> Void) {
+    func signIn(withID idUFRJ: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
         let params = [ "id_ufrj": idUFRJ, "token": token ]
         api.post("/user/login", parameters: params, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
@@ -68,8 +68,8 @@ class UserService: NSObject {
                 try realm.write {
                     realm.add(user, update: true)
                 }
-            } catch let error {
-                NSLog("Error saving the current user in the Realm: \(error.localizedDescription)")
+            } catch let realmError {
+                NSLog("Error saving the current user in the Realm: \(realmError.localizedDescription)")
             }
 
             // Update the current user
@@ -84,13 +84,13 @@ class UserService: NSObject {
         }, failure: { task, err in
             NSLog("Failed to sign in: \(err.localizedDescription)")
             
-            var authenticationError: CaronaeAuthenticationError = .unknownError
+            var authenticationError: CaronaeError = .invalidResponse
             if let response = task?.response as? HTTPURLResponse {
                 switch response.statusCode {
                 case 403, 401:
                     authenticationError = .invalidCredentials
                 default:
-                    authenticationError = .unknownError
+                    authenticationError = .invalidResponse
                 }
             }
             
@@ -139,13 +139,13 @@ class UserService: NSObject {
                     currentUser.location = user.location
                     currentUser.profilePictureURL = user.profilePictureURL
                 }
-            } catch let err {
-                error(err)
+            } catch let realmError {
+                error(realmError)
             }
             
             NotificationCenter.default.post(name: Foundation.Notification.Name.CaronaeDidUpdateUser, object: self)
             success()
-        }, failure: { task, err in
+        }, failure: { _, err in
             error(err)
         })
     }
@@ -158,7 +158,7 @@ class UserService: NSObject {
         
         api.put("/user/saveFaceId", parameters: params, success: { task, responseObject in
             success()
-        }, failure: { task, err in
+        }, failure: { _, err in
             error(err)
         })
     }
@@ -167,12 +167,12 @@ class UserService: NSObject {
         api.get("/user/intranetPhotoUrl", parameters: nil, success: { task, responseObject in
             guard let response = responseObject as? [String: Any],
                 let url = response["url"] as? String else {
-                    error(nil)
+                    error(CaronaeError.invalidResponse)
                     return
             }
             
             success(url)
-        }, failure: { task, err in
+        }, failure: { _, err in
             error(err)
         })
     }
@@ -184,7 +184,7 @@ class UserService: NSObject {
             let response = result as? [String: Any],
             let data = response["data"] as? [String: Any],
                 let url = data["url"] as? String else {
-                    error(nil)
+                    error(CaronaeError.invalidResponse)
                     return
             }
             
@@ -198,7 +198,7 @@ class UserService: NSObject {
             guard let response = responseObject as? [String: Any],
                 let offered = response["offeredCount"] as? Int,
                 let taken = response["takenCount"] as? Int else {
-                    error(nil)
+                    error(CaronaeError.invalidResponse)
                     return
             }
             
@@ -216,7 +216,6 @@ class UserService: NSObject {
             }
             
             success(offered, taken)
-            
         }, failure: { _, err in
             error(err)
         })
@@ -226,9 +225,7 @@ class UserService: NSObject {
     // but would need to refactor the API...
     func mutualFriendsForUser(withFacebookID facebookID: String, success: @escaping (_ friends: [User], _ totalCount: Int) -> Void, error: @escaping (_ error: Error?) -> Void) {
         guard !facebookID.isEmpty, userFacebookToken != nil else {
-            error(NSError(domain: CaronaeErrorDomain,
-                          code: CaronaeErrorUserNotLoggedInWithFacebook,
-                          userInfo: [NSLocalizedDescriptionKey: "User has not logged in with Facebook"]))
+            error(CaronaeError.notLoggedInWithFacebook)
             return
         }
         
@@ -236,13 +233,12 @@ class UserService: NSObject {
             guard let response = responseObject as? [String: Any],
             let friendsJson = response["mutual_friends"] as? [[String: Any]],
                 let totalCount = response["total_count"] as? Int else {
-                    error(nil)
+                    error(CaronaeError.invalidResponse)
                     return
             }
             
             let friends = friendsJson.flatMap { User(JSON: $0) }
             success(friends, totalCount)
-
         }, failure: { _, err in
             error(err)
         })
@@ -254,11 +250,11 @@ class UserService: NSObject {
     
     private func migrateUserToRealm() throws -> User {
         guard let userJson = UserDefaults.standard.dictionary(forKey: "user") else {
-            throw CaronaeAuthenticationError.notAuthenticated
+            throw CaronaeError.notLoggedIn
         }
         
         guard let user = User(JSON: userJson) else {
-            throw CaronaeAuthenticationError.invalidUser
+            throw CaronaeError.invalidUser
         }
         
         let realm = try Realm()
@@ -283,12 +279,4 @@ class UserService: NSObject {
         
         return user
     }
-}
-
-enum CaronaeAuthenticationError: Error {
-    case invalidCredentials
-    case invalidResponse
-    case invalidUser
-    case notAuthenticated
-    case unknownError
 }

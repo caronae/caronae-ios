@@ -26,14 +26,6 @@ extern NSNotificationName const CaronaeDidUpdateNotifications;
 extern NSNotificationName const CaronaeDidUpdateUserNotification;
 
 
-#pragma mark - Error types
-
-extern NSString *const CaronaeErrorDomain;
-extern const NSInteger CaronaeErrorInvalidResponse;
-extern const NSInteger CaronaeErrorNoRidesCreated;
-extern const NSInteger CaronaeErrorUserNotLoggedInWithFacebook;
-
-
 #pragma mark - Etc.
 
 extern NSString *const Caronae8PhoneNumberPattern;

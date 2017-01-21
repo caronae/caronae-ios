@@ -21,6 +21,7 @@ class ChatService: NSObject {
         FIRMessaging.messaging().unsubscribe(fromTopic: topic)
     }
     
+    
     // MARK: Message methods
     
     func messagesForRide(withID rideID: Int, completionBlock: @escaping (Results<Message>?, Error?) -> Void) {
@@ -63,8 +64,7 @@ class ChatService: NSObject {
         api.get("/ride/\(rideID)/chat", parameters: params, success: { _, responseObject in
             guard let jsonResponse = responseObject as? [String: Any],
                 let messagesJson = jsonResponse["messages"] as? [[String: Any]] else {
-                    NSLog("Error: messages not found in responseObject")
-                    completionBlock(nil)
+                    completionBlock(CaronaeError.invalidResponse)
                     return
             }
             
@@ -86,7 +86,6 @@ class ChatService: NSObject {
             
             completionBlock(nil)
         }, failure: { _, err in
-            NSLog("Error: Failed to get offered rides: \(err.localizedDescription)")
             completionBlock(err)
         })
     }
@@ -102,7 +101,7 @@ class ChatService: NSObject {
             guard let response = responseObject as? [String: Any],
                 let messageID = response["id"] as? Int else {
                 NSLog("Error saving message. Invalid response.")
-                completionBlock(nil, nil)
+                completionBlock(nil, CaronaeError.invalidResponse)
                 return
             }
             

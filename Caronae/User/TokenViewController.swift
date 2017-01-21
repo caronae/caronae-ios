@@ -40,7 +40,7 @@ class TokenViewController: UIViewController {
         }, error: { error in
             var errorMessage: String!
             
-            switch error {
+            switch error.caronaeCode {
             case .invalidCredentials:
                 errorMessage = "Chave não autorizada. Verifique se a mesma foi digitada corretamente e tente de novo."
             case .invalidResponse:
