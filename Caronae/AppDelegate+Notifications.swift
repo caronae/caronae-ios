@@ -101,7 +101,7 @@ extension AppDelegate {
         }
             
         NotificationService.instance.createNotification(notification)
-        showMessageIfActive(String(format: "%@", message))
+        showMessageIfActive(message)
     }
     
     private func handleUnknownNotification(_ userInfo: [AnyHashable: Any]) {
