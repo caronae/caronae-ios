@@ -1,20 +1,13 @@
-#import <UIKit/UIKit.h>
-#import "User.h"
+@import UIKit;
 
+@class User;
 @class CaronaePhoneTextField;
-
-@protocol EditProfileDelegate <NSObject>
-
-- (void)didUpdateUser:(User *)newUser;
-
-@end
 
 @interface EditProfileViewController : UIViewController
 
 - (User *)generateUserFromView;
 
 @property (nonatomic) User *user;
-@property id<EditProfileDelegate> delegate;
 @property (nonatomic) BOOL completeProfileMode;
 
 // Profile

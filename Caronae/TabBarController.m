@@ -1,10 +1,17 @@
 #import "TabBarController.h"
+#import "UIApplication+topViewController.h"
+#import "UIWindow+replaceRootViewController.h"
+#import "Caronae-Swift.h"
 
 @implementation TabBarController
 
+- (instancetype)init {
+    return [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeTabViewController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
     for (UIViewController *viewController in self.viewControllers) {
         if ([viewController isKindOfClass:UINavigationController.class]) {
             UINavigationController *navigationController = (UINavigationController *)viewController;

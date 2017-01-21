@@ -1,17 +1,14 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @class Ride;
 
-@protocol RideDelegate <NSObject>
-
-@end
-
 @interface RideViewController : UIViewController
+
++ (instancetype)rideViewControllerForRide:(Ride *)ride;
 
 - (void)openChatWindow;
 
 @property (nonatomic) Ride *ride;
-@property (nonatomic, assign) id<RideDelegate> delegate;
 @property (nonatomic, assign) BOOL shouldOpenChatWindow;
 
 // Ride info
@@ -51,6 +48,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishRideButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *chatButton;
 
 @end

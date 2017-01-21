@@ -26,33 +26,13 @@
         self.tableView.backgroundView = self.loadingLabel;
     }
     
-    [CaronaeAPIHTTPSessionManager.instance GET:@"/ride/getRidesHistory" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        [self.refreshControl endRefreshing];
-
-        NSError *error;
-        NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
-        if (error) {
-            NSLog(@"Error parsing rides history. %@", error.localizedDescription);
-            NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
-            [self loadingFailedWithStatusCode:response.statusCode andError:error];
-            return;
-        }
-
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
-        self.rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
-        
+    [RideService.instance getRidesHistoryWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
+        self.rides = rides;
         [self.tableView reloadData];
-        
-        if (self.rides.count > 0) {
-            self.tableView.backgroundView = nil;
-        }
-        else {
-            self.tableView.backgroundView = self.emptyTableLabel;
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.refreshControl endRefreshing];
-        NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
-        [self loadingFailedWithStatusCode:response.statusCode andError:error];
+    } error:^(NSError * _Nullable error) {
+        [self.refreshControl endRefreshing];
+        [self loadingFailedWithError:error];
     }];
 }
 

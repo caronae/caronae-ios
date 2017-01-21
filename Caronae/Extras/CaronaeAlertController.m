@@ -1,20 +1,14 @@
 #import "CaronaeAlertController.h"
 
-static UIImageView *_separatorView;
-
 @implementation CaronaeAlertController
 
-+ (UIImageView *)separatorView {
-    if (!_separatorView) {
-        _separatorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SeparatorColor"]];
-    }
-    return _separatorView;
+- (void)viewDidLoad {
+    UIImageView *separatorView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SeparatorColor"]];
+    [self.contentView addSubview:separatorView];
 }
 
 + (instancetype)alertControllerWithTitle:(NSString *)title message:(NSString *)message preferredStyle:(SDCAlertControllerStyle)preferredStyle {
     CaronaeAlertController *alert = [super alertControllerWithTitle:title message:message preferredStyle:preferredStyle];
-    [alert.contentView addSubview:[self separatorView]];
-    
     return alert;
 }
 

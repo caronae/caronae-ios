@@ -1,4 +1,5 @@
-#import <SVProgressHUD/SVProgressHUD.h>
+@import SVProgressHUD;
+
 #import "AllRidesViewController.h"
 #import "EditProfileViewController.h"
 #import "SearchResultsViewController.h"
@@ -15,9 +16,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([UserController sharedInstance].user.isProfileIncomplete) {
-        [self performSelector:@selector(presentFinishProfileScreen) withObject:nil afterDelay:0.0];
-    }
+    self.navigationController.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
 }
@@ -68,19 +67,16 @@
         
         [self.tableView reloadData];
         
-        if (self.rides.count > 0) {
-            self.tableView.backgroundView = nil;
+        if ([self.rides count] > 0) {
             self.tableView.tableFooterView = self.tableFooter;
-        }
-        else {
-            self.tableView.backgroundView = self.emptyTableLabel;
+        } else {
             self.tableView.tableFooterView = nil;
         }
         
         [self.refreshControl endRefreshing];
     } error:^(NSError * _Nullable error) {
-        [self loadingFailedWithStatusCode:0 andError:error];
         [self.refreshControl endRefreshing];
+        [self loadingFailedWithError:error];
     }];
     
 }
@@ -92,11 +88,15 @@
     if ([segue.identifier isEqualToString:@"SearchRide"]) {
         UINavigationController *searchNavController = segue.destinationViewController;
         SearchRideViewController *searchVC = searchNavController.viewControllers.firstObject;
+        searchVC.previouslySelectedSegmentIndex = self.directionControl.selectedSegmentIndex;
         searchVC.delegate = self;
     }
     else if ([segue.identifier isEqualToString:@"ViewSearchResults"]) {
-        SearchResultsViewController *vc = segue.destinationViewController;
-        [vc searchForRidesWithParameters:self.searchParams];
+        SearchResultsViewController *searchViewController = segue.destinationViewController;
+        [searchViewController searchedForRideWithCenter:self.searchParams[@"center"]
+                                       andNeighborhoods:self.searchParams[@"neighborhoods"]
+                                                 onDate:self.searchParams[@"date"]
+                                                  going:[self.searchParams[@"going"] boolValue]];
     }
 }
 
@@ -104,18 +104,10 @@
 #pragma mark - Search methods
 
 - (void)searchedForRideWithCenter:(NSString *)center andNeighborhoods:(NSArray *)neighborhoods onDate:(NSDate *)date going:(BOOL)going {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd";
-    NSString *dateString = [dateFormatter stringFromDate:date];
-    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    timeFormatter.dateFormat = @"HH:mm";
-    NSString *timeString = [timeFormatter stringFromDate:date];
-    
     self.searchParams = @{@"center": center,
-                          @"location": [neighborhoods componentsJoinedByString:@", "],
-                          @"date": dateString,
-                          @"time": timeString,
-                          @"go": @(going)
+                          @"neighborhoods": neighborhoods,
+                          @"date": date,
+                          @"going": @(going)
                           };
     
     [self performSegueWithIdentifier:@"ViewSearchResults" sender:self];

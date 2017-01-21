@@ -1,6 +1,6 @@
 #import "UIImageView+crn_setImageWithURL.h"
-#import "Ride.h"
 #import "RideCell.h"
+#import "Caronae-Swift.h"
 
 @implementation RideCell
 
@@ -11,6 +11,7 @@ static NSDateFormatter *dateFormatter;
     if (self) {
         dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"HH:mm | E | dd/MM";
+        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
     }
     return self;
 }
@@ -43,7 +44,7 @@ static NSDateFormatter *dateFormatter;
     _driverNameLabel.text = displayName;
     
     [self updatePhoto];
-    self.color = [CaronaeConstants colorForZone:_ride.zone];
+    self.color = [CaronaeConstants colorForZone:_ride.region];
     
     _badgeLabel.hidden = YES;
 }
@@ -70,10 +71,10 @@ static NSDateFormatter *dateFormatter;
     self.tintColor = color;
 }
 
-- (void)setBadgeCount:(int)badgeCount {
+- (void)setBadgeCount:(NSInteger)badgeCount {
     _badgeCount = badgeCount;
     if (badgeCount > 0) {
-        _badgeLabel.text = [NSString stringWithFormat:@"%d", badgeCount];
+        _badgeLabel.text = [NSString stringWithFormat:@"%ld", (long)badgeCount];
         _badgeLabel.hidden = NO;
     }
     else {
