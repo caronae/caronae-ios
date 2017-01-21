@@ -42,7 +42,6 @@
     self.segmentedControl.layer.borderColor = [UIColor colorWithWhite:0.690 alpha:1.000].CGColor;
     self.segmentedControl.layer.borderWidth = 2.0f;
     self.segmentedControl.layer.masksToBounds = YES;
-    self.segmentedControl.selectedSegmentIndex = self.previouslySelectedSegmentIndex;
     
     self.notes.layer.cornerRadius = 8.0;
     self.notes.layer.borderColor = [UIColor colorWithWhite:0.902 alpha:1.000].CGColor;
@@ -66,9 +65,10 @@
         }
         if (lastRideLocation[@"place"]) self.reference.text = lastRideLocation[@"place"];
         if (lastRideLocation[@"route"]) self.route.text = lastRideLocation[@"route"];
-        
-        [self directionChanged: self.segmentedControl];
-        
+        if (lastRideLocation[@"hubGoing"]) {
+            self.selectedHub = lastRideLocation[@"hubGoing"];
+            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
+        }
         if (lastRideLocation[@"description"]) self.notes.text = lastRideLocation[@"description"];
     }
 }
@@ -325,19 +325,22 @@
         self.hubs = [CaronaeConstants defaults].centers;
         if (lastRideLocation[@"hubGoing"]) {
             self.selectedHub = lastRideLocation[@"hubGoing"];
+            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
         } else {
             self.selectedHub = self.hubs.firstObject;
+            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
         }
     }
     else {
         self.hubs = [CaronaeConstants defaults].hubs;
         if (lastRideLocation[@"hubReturning"]) {
             self.selectedHub = lastRideLocation[@"hubReturning"];
+            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
         } else {
             self.selectedHub = self.hubs.firstObject;
+            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
         }
     }
-    [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
 }
 
 - (IBAction)selectCenterTapped:(id)sender {
