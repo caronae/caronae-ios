@@ -411,12 +411,12 @@
 			children = (
 				A375D2F91C19175A00795CAE /* CaronaeAlertController.h */,
 				A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */,
+				A3AC169A1E34168A000B5817 /* CaronaeError.swift */,
 				A3169CC91BED893F00A0D428 /* CaronaeTextField.h */,
 				A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */,
 				A398BE031C6D7DEC00CEA6A1 /* CaronaePhoneTextField.h */,
 				A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */,
 				A3AD82321E1C63CD006D8ABE /* DateTimeTransform.swift */,
-				A3AC169A1E34168A000B5817 /* CaronaeError.swift */,
 			);
 			name = Etc;
 			path = Extras;

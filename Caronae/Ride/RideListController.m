@@ -96,8 +96,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     
     NSLog(@"%@ failed to load rides: %@", NSStringFromClass(self.class), error.localizedDescription);
     
-    NSHTTPURLResponse *urlResponse = [error.userInfo objectForKey:AFNetworkingOperationFailingURLResponseErrorKey];
-    if (urlResponse && urlResponse.statusCode == 403) {
+    if ([error.domain isEqualToString:CaronaeErrorDomain] && error.code == CaronaeErrorCodeInvalidCredentials) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Sua chave de acesso pode ter sido alterada ou suspensa.\n\nPara sua segurança, você será levado à tela de login." handler:^{
             [UserService.instance signOut];
         }];

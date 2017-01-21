@@ -1,19 +1,18 @@
 import Foundation
 
-let CaronaeErrorDomain = "br.ufrj.caronae.error"
+@objc enum CaronaeErrorCode: Int {
+    case unknown
+    case invalidResponse
+    case invalidCredentials
+    case invalidUser
+    case notLoggedIn
+    case notLoggedInWithFacebook
+}
 
 class CaronaeError: NSError {
-    private(set) var caronaeCode: Code = .unknown
-    enum Code: Int {
-        case unknown
-        case invalidResponse
-        case invalidCredentials
-        case invalidUser
-        case notLoggedIn
-        case notLoggedInWithFacebook
-    }
+    private(set) var caronaeCode: CaronaeErrorCode = .unknown
     
-    required convenience init(code: Code, description: String) {
+    required convenience init(code: CaronaeErrorCode, description: String) {
         let userInfo = [NSLocalizedDescriptionKey: description]
         self.init(domain: CaronaeErrorDomain, code: code.rawValue, userInfo: userInfo)
         self.caronaeCode = code
