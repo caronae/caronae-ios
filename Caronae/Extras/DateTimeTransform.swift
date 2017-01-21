@@ -1,11 +1,3 @@
-//
-//  DateTimeTransform.swift
-//  Caronae
-//
-//  Created by Mario Cecchi on 03/01/2017.
-//  Copyright © 2017 Mario Cecchi. All rights reserved.
-//
-
 import ObjectMapper
 
 class DateTimeTransform: DateFormatterTransform {

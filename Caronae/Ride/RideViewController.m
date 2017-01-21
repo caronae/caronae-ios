@@ -34,7 +34,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 + (instancetype)rideViewControllerForRide:(Ride *)ride {
     RideViewController *rideVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RideViewController"];
     rideVC.ride = ride;
-    
     return rideVC;
 }
 
@@ -54,15 +53,13 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     _titleLabel.text = [_ride.title uppercaseString];
     if (_ride.going) {
         _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", dateString];
-    }
-    else {
+    } else {
         _dateLabel.text = [NSString stringWithFormat:@"Saindo às %@", dateString];
     }
     
     if ([_ride.place isKindOfClass:[NSString class]] && [_ride.place isEqualToString:@""]) {
         _referenceLabel.text = @"---";
-    }
-    else {
+    } else {
         _referenceLabel.text = _ride.place;
     }
 
@@ -71,15 +68,13 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     
     if ([_ride.route isKindOfClass:[NSString class]] && [_ride.route isEqualToString:@""]) {
         _routeLabel.text = @"---";
-    }
-    else {
+    } else {
         _routeLabel.text = [[_ride.route stringByReplacingOccurrencesOfString:@", " withString:@"\n"] stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
     }
     
     if ([_ride.notes isKindOfClass:NSString.class] && [_ride.notes isEqualToString:@""]) {
         _driverMessageLabel.text = @"---";
-    }
-    else {
+    } else {
         _driverMessageLabel.text = _ride.notes;
     }
     
@@ -211,13 +206,10 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         }
         
         if (totalCount > 0) {
-            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %ld no total e %ld no Caronaê", (long)totalCount
-                                        , (long)mutualFriends.count];
-        }
-        else {
+            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %ld no total e %ld no Caronaê", (long)totalCount, (long)mutualFriends.count];
+        } else {
             _mutualFriendsLabel.text = @"Amigos em comum: 0";
         }
-
     } error:^(NSError * _Nullable error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
     }];
@@ -300,8 +292,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         }]];
         [alert addAction:[UIAlertAction actionWithTitle:@"Cancelar" style:UIAlertActionStyleCancel handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
-    }
-    else {
+    } else {
         [self leaveRide];
     }
 }
@@ -459,8 +450,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (collectionView == _ridersCollectionView) {
         return [self.riders count];
-    }
-    else {
+    } else {
         return _mutualFriends.count;
     }
 }
@@ -472,8 +462,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     if (collectionView == _ridersCollectionView) {
         user = [self riderAtIndex:indexPath.row];
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Rider Cell" forIndexPath:indexPath];
-    }
-    else {
+    } else {
         user = self.mutualFriends[indexPath.row];
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Friend Cell" forIndexPath:indexPath];
     }

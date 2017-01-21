@@ -13,7 +13,7 @@
     self.rootViewController = viewController;
     [UIView animateWithDuration:0.3 animations:^{
         snapshot.layer.opacity = 0;
-//        snapShot.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5);
+        snapshot.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5);
     } completion:^(BOOL finished) {
         [snapshot removeFromSuperview];
     }];
