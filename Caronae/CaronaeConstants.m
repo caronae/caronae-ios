@@ -2,9 +2,8 @@
 
 #pragma mark - API settings
 
-//NSString *const CaronaeAPIBaseURL = @"https://api.caronae.ufrj.br";
+NSString *const CaronaeAPIBaseURL = @"https://api.caronae.ufrj.br";
 //NSString *const CaronaeAPIBaseURL = @"http://dev.caronae.tic.ufrj.br";
-NSString *const CaronaeAPIBaseURL = @"http://192.168.2.1:8000";
 
 
 #pragma mark - Static pages URLs
