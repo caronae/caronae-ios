@@ -4084,12 +4084,12 @@ FOTO</string>
                                                         <exclude reference="2b8-Sr-ItU"/>
                                                         <exclude reference="Jyf-Mo-KOp"/>
                                                         <exclude reference="wNK-zQ-Fvx"/>
+                                                        <exclude reference="QsC-U5-GTe"/>
+                                                        <exclude reference="rjG-HV-tQ6"/>
                                                         <exclude reference="90V-ob-lKK"/>
                                                         <exclude reference="kaN-W4-vbR"/>
                                                         <exclude reference="uw7-sB-eDs"/>
                                                         <exclude reference="wbm-Tr-SFx"/>
-                                                        <exclude reference="QsC-U5-GTe"/>
-                                                        <exclude reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
@@ -4120,12 +4120,12 @@ FOTO</string>
                                                         <include reference="2b8-Sr-ItU"/>
                                                         <include reference="Jyf-Mo-KOp"/>
                                                         <include reference="wNK-zQ-Fvx"/>
+                                                        <include reference="QsC-U5-GTe"/>
+                                                        <include reference="rjG-HV-tQ6"/>
                                                         <include reference="90V-ob-lKK"/>
                                                         <include reference="kaN-W4-vbR"/>
                                                         <include reference="uw7-sB-eDs"/>
                                                         <include reference="wbm-Tr-SFx"/>
-                                                        <include reference="QsC-U5-GTe"/>
-                                                        <include reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -5413,10 +5413,10 @@ FOTO</string>
                                 <rect key="frame" x="0.0" y="64" width="400" height="1136"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zB7-Ma-qJK" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="901.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="893.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmH-vg-yLk" userLabel="Header View">
-                                                <rect key="frame" x="0.0" y="0.0" width="400" height="107"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="400" height="99"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FREGUESIA → CT" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fD-gY-dO4" userLabel="Title">
                                                         <rect key="frame" x="15" y="15" width="370" height="29"/>
@@ -5424,17 +5424,17 @@ FOTO</string>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQA-2y-O6I">
-                                                        <rect key="frame" x="0.0" y="59" width="400" height="48"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQA-2y-O6I" userLabel="Date View">
+                                                        <rect key="frame" x="0.0" y="59" width="400" height="40"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chegando às 16:45 | Seg | 24/11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UZ-co-mpB">
-                                                                <rect key="frame" x="39" y="15" width="226.5" height="18"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chegando às 16:45 | Seg | 24/11" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1UZ-co-mpB">
+                                                                <rect key="frame" x="39" y="11" width="226.5" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                                 <color key="textColor" red="0.11372549086809158" green="0.65490198135375977" blue="0.364705890417099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ClockIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fQj-VC-R47">
-                                                                <rect key="frame" x="15" y="16.5" width="16" height="15"/>
+                                                                <rect key="frame" x="15" y="12.5" width="16" height="15"/>
                                                                 <color key="tintColor" red="0.11372549086809158" green="0.65490198135375977" blue="0.364705890417099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="18" id="MFO-7n-b6Q">
@@ -5457,9 +5457,9 @@ FOTO</string>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCq-V2-p1d">
-                                                                <rect key="frame" x="270.5" y="10" width="114.5" height="28"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCq-V2-p1d">
+                                                                <rect key="frame" x="270.5" y="6" width="114.5" height="28"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                                 <state key="normal" title="CANCELAR">
                                                                     <color key="titleColor" red="0.92941176891326904" green="0.18039216101169586" blue="0.050980392843484879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
@@ -5472,12 +5472,7 @@ FOTO</string>
                                                         <constraints>
                                                             <constraint firstItem="1UZ-co-mpB" firstAttribute="leading" secondItem="fQj-VC-R47" secondAttribute="trailing" constant="8" id="2w5-fb-Bfm"/>
                                                             <constraint firstItem="FCq-V2-p1d" firstAttribute="centerY" secondItem="UQA-2y-O6I" secondAttribute="centerY" id="60b-iH-nXW"/>
-                                                            <constraint firstItem="1UZ-co-mpB" firstAttribute="top" secondItem="UQA-2y-O6I" secondAttribute="top" constant="15" id="7fg-Mr-ffc">
-                                                                <variation key="widthClass=compact" constant="15"/>
-                                                            </constraint>
-                                                            <constraint firstItem="1UZ-co-mpB" firstAttribute="leading" secondItem="UQA-2y-O6I" secondAttribute="leading" constant="15" id="Fmq-eP-B52">
-                                                                <variation key="widthClass=compact" constant="15"/>
-                                                            </constraint>
+                                                            <constraint firstItem="1UZ-co-mpB" firstAttribute="centerY" secondItem="UQA-2y-O6I" secondAttribute="centerY" id="D8N-Dn-a1w"/>
                                                             <constraint firstAttribute="trailing" secondItem="FCq-V2-p1d" secondAttribute="trailing" constant="15" id="GMv-B7-bJr"/>
                                                             <constraint firstItem="fQj-VC-R47" firstAttribute="leading" secondItem="UQA-2y-O6I" secondAttribute="leading" constant="8" id="Jhn-fz-7G3">
                                                                 <variation key="widthClass=compact" constant="15"/>
@@ -5486,12 +5481,7 @@ FOTO</string>
                                                                 <variation key="widthClass=compact" constant="5"/>
                                                             </constraint>
                                                             <constraint firstItem="fQj-VC-R47" firstAttribute="centerY" secondItem="UQA-2y-O6I" secondAttribute="centerY" id="Rjd-IO-zTv"/>
-                                                            <constraint firstAttribute="trailing" secondItem="1UZ-co-mpB" secondAttribute="trailing" constant="15" id="eQW-tb-V5I">
-                                                                <variation key="widthClass=compact" constant="15"/>
-                                                            </constraint>
-                                                            <constraint firstAttribute="bottom" secondItem="1UZ-co-mpB" secondAttribute="bottom" constant="15" id="jsH-gF-lxV">
-                                                                <variation key="widthClass=compact" constant="15"/>
-                                                            </constraint>
+                                                            <constraint firstAttribute="height" constant="40" id="VWm-ex-HFd"/>
                                                         </constraints>
                                                         <variation key="default">
                                                             <mask key="subviews">
@@ -5503,10 +5493,6 @@ FOTO</string>
                                                                 <exclude reference="Jhn-fz-7G3"/>
                                                                 <exclude reference="Rjd-IO-zTv"/>
                                                                 <exclude reference="2w5-fb-Bfm"/>
-                                                                <exclude reference="7fg-Mr-ffc"/>
-                                                                <exclude reference="Fmq-eP-B52"/>
-                                                                <exclude reference="eQW-tb-V5I"/>
-                                                                <exclude reference="jsH-gF-lxV"/>
                                                                 <exclude reference="60b-iH-nXW"/>
                                                                 <exclude reference="GMv-B7-bJr"/>
                                                                 <exclude reference="Pz0-dX-Les"/>
@@ -5522,10 +5508,6 @@ FOTO</string>
                                                                 <include reference="Jhn-fz-7G3"/>
                                                                 <include reference="Rjd-IO-zTv"/>
                                                                 <include reference="2w5-fb-Bfm"/>
-                                                                <include reference="7fg-Mr-ffc"/>
-                                                                <exclude reference="Fmq-eP-B52"/>
-                                                                <exclude reference="eQW-tb-V5I"/>
-                                                                <include reference="jsH-gF-lxV"/>
                                                                 <include reference="60b-iH-nXW"/>
                                                                 <include reference="GMv-B7-bJr"/>
                                                                 <include reference="Pz0-dX-Les"/>
@@ -5584,7 +5566,7 @@ FOTO</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rm7-4R-FPm" userLabel="Finish ride View">
-                                                <rect key="frame" x="0.0" y="107" width="400" height="50"/>
+                                                <rect key="frame" x="0.0" y="99" width="400" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ue-I8-X9c">
                                                         <rect key="frame" x="15" y="10" width="370" height="35"/>
@@ -5661,7 +5643,7 @@ FOTO</string>
                                                 </variation>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DcQ-Df-dgu">
-                                                <rect key="frame" x="0.0" y="157" width="400" height="128"/>
+                                                <rect key="frame" x="0.0" y="149" width="400" height="128"/>
                                                 <color key="backgroundColor" red="0.94901961088180542" green="0.94901961088180542" blue="0.94901961088180542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="48A-Iu-cEZ"/>
@@ -5688,7 +5670,7 @@ FOTO</string>
                                                 </variation>
                                             </tableView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERr-yS-hg4" userLabel="Detail View">
-                                                <rect key="frame" x="0.0" y="285" width="400" height="616.5"/>
+                                                <rect key="frame" x="0.0" y="277" width="400" height="616.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iA1-Kq-194" userLabel="Driver details View">
                                                         <rect key="frame" x="0.0" y="5" width="400" height="95"/>
