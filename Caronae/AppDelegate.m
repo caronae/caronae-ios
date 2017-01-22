@@ -70,7 +70,7 @@
         
         [RideService.instance updateOfferedRidesWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
             NSLog(@"Offered rides updated");
-        } error:^(NSError * _Nullable error) {
+        } error:^(NSError * _Nonnull error) {
             NSLog(@"Couldn't update offered rides");
         }];
     }
@@ -93,14 +93,24 @@
 #endif
     
     if (!UserService.instance.user) {
-        // User has logged out. Go to the authentication screen
-        UIViewController *authViewController = [TokenViewController tokenViewController];
-        [UIApplication.sharedApplication.keyWindow replaceViewControllerWith:authViewController];
+        // Check if the logout was forced by the server
+        id signOutRequired = notification.userInfo[CaronaeSignOutRequiredKey];
+        if (signOutRequired && [signOutRequired boolValue]) {
+            [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Sua chave de acesso pode ter sido redefinida ou suspensa.\n\nPara sua segurança, você será levado à tela de login." handler:^{
+                [self displayAuthenticationScreen];
+            }];
+        } else {
+            [self displayAuthenticationScreen];
+        }
     } else {
         [self registerForNotifications];
     }
 }
 
+- (void)displayAuthenticationScreen {
+    UIViewController *authViewController = [TokenViewController tokenViewController];
+    [UIApplication.sharedApplication.keyWindow replaceViewControllerWith:authViewController];
+}
 
 #pragma mark - Facebook SDK
 
