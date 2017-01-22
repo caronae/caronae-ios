@@ -8,7 +8,6 @@ static NSString *const RideListDefaultEmptyMessage = @"Nenhuma carona\nencontrad
 static NSString *const RideListDefaultLoadingMessage = @"Carregando...";
 static NSString *const RideListDefaultErrorMessage = @"Não foi possível\ncarregar as caronas.";
 
-static NSString *const RideListMessageAlternateFontFamily = @"HelveticaNeue-UltraLight";
 static CGFloat const RideListMessageFontSize = 25.0f;
 
 @interface RideListController()
@@ -187,12 +186,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
         _emptyTableLabel.textColor = [UIColor grayColor];
         _emptyTableLabel.numberOfLines = 0;
         _emptyTableLabel.textAlignment = NSTextAlignmentCenter;
-        if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
-            _emptyTableLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
-        }
-        else {
-            _emptyTableLabel.font = [UIFont fontWithName:RideListMessageAlternateFontFamily size:RideListMessageFontSize];
-        }
+        _emptyTableLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
         [_emptyTableLabel sizeToFit];
     }
     return _emptyTableLabel;
@@ -206,12 +200,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
         _errorLabel.textColor = [UIColor grayColor];
         _errorLabel.numberOfLines = 0;
         _errorLabel.textAlignment = NSTextAlignmentCenter;
-        if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
-            _errorLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
-        }
-        else {
-            _errorLabel.font = [UIFont fontWithName:RideListMessageAlternateFontFamily size:RideListMessageFontSize];
-        }
+        _errorLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
         [_errorLabel sizeToFit];
     }
     return _errorLabel;
@@ -225,12 +214,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
         _loadingLabel.textColor = [UIColor grayColor];
         _loadingLabel.numberOfLines = 0;
         _loadingLabel.textAlignment = NSTextAlignmentCenter;
-        if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
-            _loadingLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
-        }
-        else {
-            _loadingLabel.font = [UIFont fontWithName:RideListMessageAlternateFontFamily size:RideListMessageFontSize];
-        }
+        _loadingLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
         [_loadingLabel sizeToFit];
     }
     return _loadingLabel;
