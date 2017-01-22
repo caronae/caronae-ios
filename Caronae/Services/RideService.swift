@@ -308,6 +308,31 @@ class RideService: NSObject {
         return false
     }
     
+    func validateRideDate(ride: Ride, success: @escaping (_ valid: Bool, _ status: String) -> Void, error: @escaping (_ error: Error?) -> Void) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        let dateString = dateFormatter.string(from: ride.date).components(separatedBy: " ")
+        
+        let params = [
+            "date": dateString.first!,
+            "time": dateString.last!,
+            "going": ride.going
+            ] as [String: Any]
+        
+        api.get("/ride/validateDuplicate", parameters: params, success: { _, responseObject in
+            guard let response = responseObject as? [String: Any],
+                let valid = response["valid"] as? Bool,
+                let status = response["status"] as? String else {
+                    error(nil)
+                    return
+            }
+            
+            success(valid, status)
+        }, failure: { _, err in
+            error(err)
+        })
+    }
+    
     func answerRequestOnRide(withID rideID: Int, fromUser user: User, accepted: Bool, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         let params = [
             "rideId": rideID,
@@ -335,5 +360,5 @@ class RideService: NSObject {
             error(err)
         })
     }
-    
+
 }
