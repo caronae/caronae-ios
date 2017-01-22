@@ -46,6 +46,7 @@
 		A39BBD051C06AB9D00EF9EBD /* RideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39BBD041C06AB9D00EF9EBD /* RideCell.xib */; };
 		A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */; };
 		A3A4A4AF1C4C695800CF4CB2 /* NSString+validation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */; };
+		A3AC169B1E34168A000B5817 /* CaronaeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169A1E34168A000B5817 /* CaronaeError.swift */; };
 		A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD53BB1E1EBEAA005EAF04 /* RideViewController+rideActions.swift */; };
 		A3AD822D1E1B1E85006D8ABE /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD822C1E1B1E85006D8ABE /* Ride.swift */; };
 		A3AD822F1E1C5BD9006D8ABE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD822E1E1C5BD9006D8ABE /* Message.swift */; };
@@ -156,6 +157,7 @@
 		A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideViewController.m; sourceTree = "<group>"; };
 		A3A4A4AD1C4C695800CF4CB2 /* NSString+validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+validation.h"; sourceTree = "<group>"; };
 		A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+validation.m"; sourceTree = "<group>"; };
+		A3AC169A1E34168A000B5817 /* CaronaeError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaronaeError.swift; sourceTree = "<group>"; };
 		A3AD53BB1E1EBEAA005EAF04 /* RideViewController+rideActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RideViewController+rideActions.swift"; sourceTree = "<group>"; };
 		A3AD822C1E1B1E85006D8ABE /* Ride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		A3AD822E1E1C5BD9006D8ABE /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 			children = (
 				A375D2F91C19175A00795CAE /* CaronaeAlertController.h */,
 				A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */,
+				A3AC169A1E34168A000B5817 /* CaronaeError.swift */,
 				A3169CC91BED893F00A0D428 /* CaronaeTextField.h */,
 				A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */,
 				A398BE031C6D7DEC00CEA6A1 /* CaronaePhoneTextField.h */,
@@ -751,6 +754,7 @@
 				A3AD823A1E1C8049006D8ABE /* TokenViewController.swift in Sources */,
 				A3CA5DD81E22D39B0062522D /* ActiveRidesViewController.swift in Sources */,
 				A369A4EB1C72928700FE5495 /* UIViewController+isVisible.m in Sources */,
+				A3AC169B1E34168A000B5817 /* CaronaeError.swift in Sources */,
 				A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */,
 				A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */,
 				A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */,

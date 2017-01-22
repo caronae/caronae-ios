@@ -27,16 +27,9 @@ NSString *const CaronaePreferenceLastSearchedCenterKey = @"lastSearchedCenter";
 NSString *const CaronaePreferenceLastSearchedDateKey = @"lastSearchedDate";
 
 
-#pragma mark - Error types
-
-NSString *const CaronaeErrorDomain = @"br.ufrj.caronae.error";
-const NSInteger CaronaeErrorInvalidResponse = 1;
-const NSInteger CaronaeErrorNoRidesCreated = 2;
-const NSInteger CaronaeErrorUserNotLoggedInWithFacebook = 3;
-
-
 #pragma mark - Etc.
 
+NSString *const CaronaeErrorDomain = @"br.ufrj.caronae.error";
 NSString *const Caronae8PhoneNumberPattern = @"(###) ####-####";
 NSString *const Caronae9PhoneNumberPattern = @"(###) #####-####";
 NSString *const CaronaePlaceholderProfileImage = @"Profile Picture";

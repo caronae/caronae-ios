@@ -1,4 +1,3 @@
-#import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <CRToast/CRToast.h>
 #import "CaronaeAlertController.h"
 #import "RideListController.h"
@@ -96,29 +95,41 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     
     NSLog(@"%@ failed to load rides: %@", NSStringFromClass(self.class), error.localizedDescription);
     
-    NSHTTPURLResponse *urlResponse = [error.userInfo objectForKey:AFNetworkingOperationFailingURLResponseErrorKey];
-    if (urlResponse && urlResponse.statusCode == 403) {
+    if (![self isVisible]) return;
+    
+    if ([error.domain isEqualToString:CaronaeErrorDomain] && error.code == CaronaeErrorCodeInvalidCredentials) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Sua chave de acesso pode ter sido alterada ou suspensa.\n\nPara sua segurança, você será levado à tela de login." handler:^{
             [UserService.instance signOut];
         }];
         return;
     }
     
-    if (![self isVisible]) return;
-    
-    if (![AFNetworkReachabilityManager sharedManager].isReachable) {
-        [CRToastManager showNotificationWithOptions:@{
-                                                      kCRToastTextKey: @"Sem conexão com a internet",
-                                                      kCRToastBackgroundColorKey: [UIColor redColor],
-                                                      }
-                                    completionBlock:nil];
+    if ([error.domain isEqualToString:NSURLErrorDomain]) {
+        if (error.code == NSURLErrorNotConnectedToInternet) {
+            [CRToastManager showNotificationWithOptions:@{
+                                                          kCRToastTextKey: @"Sem conexão com a internet",
+                                                          kCRToastBackgroundColorKey: [UIColor redColor],
+                                                          }
+                                        completionBlock:nil];
+            return;
+        }
         
+        if (error.code == NSURLErrorTimedOut ||
+            error.code == NSURLErrorCannotFindHost ||
+            error.code == NSURLErrorCannotConnectToHost ||
+            error.code == NSURLErrorNetworkConnectionLost) {
+            [CRToastManager showNotificationWithOptions:@{
+                                                          kCRToastTextKey: @"Sem conexão com o Caronaê",
+                                                          kCRToastBackgroundColorKey: [UIColor redColor],
+                                                          }
+                                        completionBlock:nil];
+            return;
+        }
     }
-    else {
-        NSString *errorAlertTitle = @"Algo deu errado.";
-        NSString *errorAlertMessage = @"Não foi possível carregar as caronas. Por favor, tente novamente.";
-        [CaronaeAlertController presentOkAlertWithTitle:errorAlertTitle message:errorAlertMessage];
-    }
+    
+    NSString *errorAlertTitle = @"Algo deu errado";
+    NSString *errorAlertMessage = [NSString stringWithFormat:@"Não foi possível carregar as caronas. Por favor, tente novamente. (%@)", error.localizedDescription];
+    [CaronaeAlertController presentOkAlertWithTitle:errorAlertTitle message:errorAlertMessage];
 }
 
 
