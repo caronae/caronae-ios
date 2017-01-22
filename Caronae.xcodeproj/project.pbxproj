@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F2ACBE4EC6F723F1CF2754A /* Pods_CaronaeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDEF024FC27DF0BBC189D320 /* Pods_CaronaeTests.framework */; };
 		71D2B86D1E296AFC000454F7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2B86C1E296AFC000454F7 /* ChatViewController.swift */; };
-		A302B29B1BF4439300FA161D /* CreateRideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A302B29A1BF4439300FA161D /* CreateRideTests.m */; };
 		A3034D581DB58A1B00816B79 /* NSDate+isInTheFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */; };
 		A3169C951BED842D00A0D428 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C941BED842D00A0D428 /* main.m */; };
 		A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C971BED842D00A0D428 /* AppDelegate.m */; };
@@ -33,8 +31,6 @@
 		A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */; };
 		A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
 		A37E80E71C5F158600683F27 /* UIImage+imageWithTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */; };
-		A385984B1C6923D000279D6F /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A385984A1C6923D000279D6F /* UserTests.m */; };
-		A389902D1C58734700C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F1D4C1C0398B500DEF6B1 /* RideCell.m */; };
 		A39672381E2E813700DD8ED5 /* RideRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39672371E2E813700DD8ED5 /* RideRequest.swift */; };
@@ -78,23 +74,12 @@
 		F91FC5AB2FFB53DBA5F5FDF2 /* Pods_Caronae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B6B5515572591139AACACF /* Pods_Caronae.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A3169CAD1BED842D00A0D428 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A3169C881BED842D00A0D428 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A3169C8F1BED842D00A0D428;
-			remoteInfo = Caronae;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		034368C5C58B7751F19F8886 /* Pods-CaronaeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaronaeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug.xcconfig"; sourceTree = "<group>"; };
 		48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.release.xcconfig"; sourceTree = "<group>"; };
 		4B35A3BD2CCAED11349480AC /* Pods-CaronaeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaronaeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests.release.xcconfig"; sourceTree = "<group>"; };
 		71D2B86C1E296AFC000454F7 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		A302B29A1BF4439300FA161D /* CreateRideTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRideTests.m; sourceTree = "<group>"; };
 		A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+isInTheFuture.swift"; sourceTree = "<group>"; };
 		A3169C901BED842D00A0D428 /* Caronae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caronae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3169C941BED842D00A0D428 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -104,8 +89,6 @@
 		A3169CA21BED842D00A0D428 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3169CA51BED842D00A0D428 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3169CA71BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A3169CAC1BED842D00A0D428 /* CaronaeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaronaeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3169CB21BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3169CC91BED893F00A0D428 /* CaronaeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeTextField.h; sourceTree = "<group>"; };
 		A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeTextField.m; sourceTree = "<group>"; };
 		A325DA6D1C0CAFD700B9124E /* JoinRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinRequestCell.h; sourceTree = "<group>"; };
@@ -137,7 +120,6 @@
 		A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeAlertController.m; sourceTree = "<group>"; };
 		A37E80E51C5F158600683F27 /* Caronae-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Caronae-Bridging-Header.h"; sourceTree = "<group>"; };
 		A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+imageWithTint.swift"; sourceTree = "<group>"; };
-		A385984A1C6923D000279D6F /* UserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTests.m; sourceTree = "<group>"; };
 		A389902B1C58734700C7CD2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A38F1D4B1C0398B500DEF6B1 /* RideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideCell.h; sourceTree = "<group>"; };
 		A38F1D4C1C0398B500DEF6B1 /* RideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideCell.m; sourceTree = "<group>"; };
@@ -211,14 +193,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3169CA91BED842D00A0D428 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4F2ACBE4EC6F723F1CF2754A /* Pods_CaronaeTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -246,7 +220,6 @@
 			isa = PBXGroup;
 			children = (
 				A3169C921BED842D00A0D428 /* Caronae */,
-				A3169CAF1BED842D00A0D428 /* CaronaeTests */,
 				9EEF98FE6EBF502EF2E23188 /* Frameworks */,
 				A3169C911BED842D00A0D428 /* Products */,
 				A34CEC4C1C993115006FC41E /* Settings.bundle */,
@@ -258,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				A3169C901BED842D00A0D428 /* Caronae.app */,
-				A3169CAC1BED842D00A0D428 /* CaronaeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -308,16 +280,6 @@
 				A3169C941BED842D00A0D428 /* main.m */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A3169CAF1BED842D00A0D428 /* CaronaeTests */ = {
-			isa = PBXGroup;
-			children = (
-				A302B29A1BF4439300FA161D /* CreateRideTests.m */,
-				A385984A1C6923D000279D6F /* UserTests.m */,
-				A3169CB21BED842D00A0D428 /* Info.plist */,
-			);
-			path = CaronaeTests;
 			sourceTree = "<group>";
 		};
 		A3180F841C6066AF007195DF /* Neighborhood selection */ = {
@@ -508,27 +470,6 @@
 			productReference = A3169C901BED842D00A0D428 /* Caronae.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A3169CAB1BED842D00A0D428 /* CaronaeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A3169CC31BED842D00A0D428 /* Build configuration list for PBXNativeTarget "CaronaeTests" */;
-			buildPhases = (
-				485B8656E54BC22208C3F5A8 /* [CP] Check Pods Manifest.lock */,
-				A3169CA81BED842D00A0D428 /* Sources */,
-				A3169CA91BED842D00A0D428 /* Frameworks */,
-				A3169CAA1BED842D00A0D428 /* Resources */,
-				7186B0DBF5B7C597766D5AD3 /* [CP] Embed Pods Frameworks */,
-				5707D7E912A312855D002827 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A3169CAE1BED842D00A0D428 /* PBXTargetDependency */,
-			);
-			name = CaronaeTests;
-			productName = CaronaeTests;
-			productReference = A3169CAC1BED842D00A0D428 /* CaronaeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -553,10 +494,6 @@
 							};
 						};
 					};
-					A3169CAB1BED842D00A0D428 = {
-						CreatedOnToolsVersion = 7.1;
-						TestTargetID = A3169C8F1BED842D00A0D428;
-					};
 				};
 			};
 			buildConfigurationList = A3169C8B1BED842D00A0D428 /* Build configuration list for PBXProject "Caronae" */;
@@ -573,7 +510,6 @@
 			projectRoot = "";
 			targets = (
 				A3169C8F1BED842D00A0D428 /* Caronae */,
-				A3169CAB1BED842D00A0D428 /* CaronaeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -595,32 +531,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3169CAA1BED842D00A0D428 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A389902D1C58734700C7CD2D /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		485B8656E54BC22208C3F5A8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		56ED107787C9713DEB010EE6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -634,36 +547,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		5707D7E912A312855D002827 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7186B0DBF5B7C597766D5AD3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9896CD0E11FCA37A83183763 /* [CP] Embed Pods Frameworks */ = {
@@ -775,24 +658,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A3169CA81BED842D00A0D428 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A385984B1C6923D000279D6F /* UserTests.m in Sources */,
-				A302B29B1BF4439300FA161D /* CreateRideTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A3169CAE1BED842D00A0D428 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A3169C8F1BED842D00A0D428 /* Caronae */;
-			targetProxy = A3169CAD1BED842D00A0D428 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A3169C9C1BED842D00A0D428 /* Main.storyboard */ = {
@@ -959,90 +825,6 @@
 			};
 			name = Release;
 		};
-		A3169CC41BED842D00A0D428 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 034368C5C58B7751F19F8886 /* Pods-CaronaeTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Google/Headers",
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/Public/ActionSheetPicker-3.0\"",
-					"\"${PODS_ROOT}/Headers/Public/CRToast\"",
-					"\"${PODS_ROOT}/Headers/Public/GGLInstanceID\"",
-					"\"${PODS_ROOT}/Headers/Public/Google\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleCloudMessaging\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleIPhoneUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/Mantle\"",
-					"\"${PODS_ROOT}/Headers/Public/RBBAnimation\"",
-					"\"${PODS_ROOT}/Headers/Public/SDCAlertView\"",
-					"\"${PODS_ROOT}/Headers/Public/SDCAutoLayout\"",
-					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
-					"\"${PODS_ROOT}/Headers/Public/SHSPhoneComponent\"",
-					"\"${PODS_ROOT}/Headers/Public/SVProgressHUD\"",
-					"\"${PODS_ROOT}/Headers/Public/TPKeyboardAvoiding\"",
-				);
-				INFOPLIST_FILE = CaronaeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.ufrj.caronae.tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Caronae.app/Caronae";
-			};
-			name = Debug;
-		};
-		A3169CC51BED842D00A0D428 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B35A3BD2CCAED11349480AC /* Pods-CaronaeTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Google/Headers",
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/Public/ActionSheetPicker-3.0\"",
-					"\"${PODS_ROOT}/Headers/Public/CRToast\"",
-					"\"${PODS_ROOT}/Headers/Public/GGLInstanceID\"",
-					"\"${PODS_ROOT}/Headers/Public/Google\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleCloudMessaging\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleIPhoneUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/Mantle\"",
-					"\"${PODS_ROOT}/Headers/Public/RBBAnimation\"",
-					"\"${PODS_ROOT}/Headers/Public/SDCAlertView\"",
-					"\"${PODS_ROOT}/Headers/Public/SDCAutoLayout\"",
-					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
-					"\"${PODS_ROOT}/Headers/Public/SHSPhoneComponent\"",
-					"\"${PODS_ROOT}/Headers/Public/SVProgressHUD\"",
-					"\"${PODS_ROOT}/Headers/Public/TPKeyboardAvoiding\"",
-				);
-				INFOPLIST_FILE = CaronaeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.ufrj.caronae.tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Caronae.app/Caronae";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1060,15 +842,6 @@
 			buildConfigurations = (
 				A3169CC11BED842D00A0D428 /* Debug */,
 				A3169CC21BED842D00A0D428 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A3169CC31BED842D00A0D428 /* Build configuration list for PBXNativeTarget "CaronaeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A3169CC41BED842D00A0D428 /* Debug */,
-				A3169CC51BED842D00A0D428 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
