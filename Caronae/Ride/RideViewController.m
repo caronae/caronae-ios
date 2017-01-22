@@ -210,7 +210,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         } else {
             _mutualFriendsLabel.text = @"Amigos em comum: 0";
         }
-    } error:^(NSError * _Nullable error) {
+    } error:^(NSError * _Nonnull error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
     }];
 }
@@ -364,7 +364,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
             [self.requestsTable reloadData];
             [self adjustHeightOfTableview];
         }        
-    } error:^(NSError * _Nullable error) {
+    } error:^(NSError * _Nonnull error) {
         NSLog(@"Error loading join requests for ride %lu: %@", (long)_ride.id, error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível carregar as solicitações da sua carona. (%@)", error.localizedDescription]];
     }];

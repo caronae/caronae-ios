@@ -35,7 +35,7 @@ class MyRidesViewController: RideListController {
             NSLog("Offered rides updated")
         }, error: { error in
             self.refreshControl.endRefreshing()
-            NSLog("Error updating offered rides (\(error?.localizedDescription))")
+            NSLog("Error updating offered rides (\(error.localizedDescription))")
         })
     }
     

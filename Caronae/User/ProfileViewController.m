@@ -103,7 +103,7 @@
     [UserService.instance ridesCountForUserWithID:_user.id success:^(NSInteger offeredCount, NSInteger takenCount) {
         _numDrivesLabel.text = [NSString stringWithFormat:@"%ld", (long)offeredCount];
         _numRidesLabel.text = [NSString stringWithFormat:@"%ld", (long)takenCount];
-    } error:^(NSError * _Nullable error) {
+    } error:^(NSError * _Nonnull error) {
         NSLog(@"Error reading history count for user: %@", error.localizedDescription);
     }];
 }
@@ -115,11 +115,10 @@
         
         if (totalCount > 0) {
             _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %ld no total e %ld no Caronaê", (long)totalCount, (long)mutualFriends.count];
-        }
-        else {
+        } else {
             _mutualFriendsLabel.text = @"Amigos em comum: 0";
         }
-    } error:^(NSError * _Nullable error) {
+    } error:^(NSError * _Nonnull error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
     }];
 }

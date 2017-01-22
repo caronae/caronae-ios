@@ -74,7 +74,7 @@
         }
         
         [self.refreshControl endRefreshing];
-    } error:^(NSError * _Nullable error) {
+    } error:^(NSError * _Nonnull error) {
         [self.refreshControl endRefreshing];
         [self loadingFailedWithError:error];
     }];

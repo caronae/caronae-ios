@@ -9,7 +9,7 @@ class RideService: NSObject {
         // This prevents others from using the default '()' initializer for this class.
     }
     
-    func getAllRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+    func getAllRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
         api.get("/ride/all", parameters: nil, success: { task, responseObject in
             guard let ridesJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
@@ -26,14 +26,13 @@ class RideService: NSObject {
             rides = rides.sorted { $0.date < $1.date }
             
             success(rides)
-
         }, failure: { _, err in
             print("Failed to load all rides: \(err.localizedDescription)")
             error(err)
         })
     }
     
-    func getOfferedRides(success: @escaping (_ rides: Results<Ride>) -> Void, error: @escaping (_ error: Error?) -> Void) {
+    func getOfferedRides(success: @escaping (_ rides: Results<Ride>) -> Void, error: @escaping (_ error: Error) -> Void) {
         let user = UserService.instance.user!
         
         do {
@@ -45,7 +44,7 @@ class RideService: NSObject {
         }
     }
     
-    func updateOfferedRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+    func updateOfferedRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
         guard let user = UserService.instance.user else {
             NSLog("Error: No userID registered")
             return
@@ -84,7 +83,7 @@ class RideService: NSObject {
         })
     }
 
-    func getActiveRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+    func getActiveRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
         api.get("/ride/getMyActiveRides", parameters: nil, success: { task, responseObject in
             guard let ridesJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
@@ -118,7 +117,7 @@ class RideService: NSObject {
         })
     }
     
-    func getRidesHistory(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+    func getRidesHistory(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
         api.get("/ride/getRidesHistory", parameters: nil, success: { task, responseObject in
             guard let ridesJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
@@ -133,7 +132,7 @@ class RideService: NSObject {
         })
     }
 
-    func searchRides(withCenter center: String, neighborhoods: [String], date: Date, going: Bool, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+    func searchRides(withCenter center: String, neighborhoods: [String], date: Date, going: Bool, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let dateString = dateFormatter.string(from: date)
@@ -162,7 +161,7 @@ class RideService: NSObject {
         })
     }
     
-    func getRequestersForRide(withID id: Int, success: @escaping (_ rides: [User]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+    func getRequestersForRide(withID id: Int, success: @escaping (_ rides: [User]) -> Void, error: @escaping (_ error: Error) -> Void) {
         api.get("/ride/getRequesters/\(id)", parameters: nil, success: { task, responseObject in
             guard let usersJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
@@ -178,7 +177,7 @@ class RideService: NSObject {
         })
     }
 
-    func createRide(_ ride: Ride, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error?) -> Void) {
+    func createRide(_ ride: Ride, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
         api.post("/ride", parameters: ride.toJSON(), success: { task, responseObject in
             guard let ridesJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
@@ -359,5 +358,4 @@ class RideService: NSObject {
             error(err)
         })
     }
-
 }

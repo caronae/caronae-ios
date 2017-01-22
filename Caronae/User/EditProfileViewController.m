@@ -124,7 +124,7 @@
         [weakSelf showLoadingHUD:NO];
         NSLog(@"User updated.");
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
-    } error:^(NSError * _Nullable error) {
+    } error:^(NSError * _Nonnull error) {
         [weakSelf showLoadingHUD:NO];
         NSLog(@"Error saving profile: %@", error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando perfil" message:@"Ocorreu um erro salvando as alterações no seu perfil."];
@@ -297,7 +297,7 @@
             [SVProgressHUD dismiss];
         }];
 
-    } error:^(NSError * _Nullable error) {
+    } error:^(NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         NSLog(@"Error loading photo: %@", error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do Facebook."];
@@ -316,7 +316,7 @@
         [_photo crn_setImageWithURL:[NSURL URLWithString:_photoURL] completed:^{
             [SVProgressHUD dismiss];
         }];
-    } error:^(NSError * _Nullable error) {
+    } error:^(NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         NSLog(@"Error loading photo: %@", error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do SIGA."];

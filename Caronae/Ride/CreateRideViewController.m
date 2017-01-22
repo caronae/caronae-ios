@@ -139,7 +139,7 @@
     [RideService.instance createRide:ride success:^(NSArray<Ride *> * _Nonnull createdRides) {
         [SVProgressHUD dismiss];
         [self dismissViewControllerAnimated:YES completion:nil];
-    } error:^(NSError * _Nullable error) {
+    } error:^(NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         self.createRideButton.enabled = YES;
 
@@ -190,7 +190,7 @@
                 [alert presentWithCompletion:nil];
             }
         }
-    } error:^(NSError * _Nullable error) {
+    } error:^(NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         self.createRideButton.enabled = YES;
         

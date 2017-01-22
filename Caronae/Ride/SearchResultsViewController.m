@@ -51,7 +51,7 @@
             });
         }
 
-    } error:^(NSError * _Nullable error) {
+    } error:^(NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         [self loadingFailedWithError:error];
     }];
