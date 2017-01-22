@@ -75,9 +75,7 @@ class RideService: NSObject {
             }
             
             // Subscribe to rides
-            rides.forEach { ride in
-                ChatService.instance.subscribeToRide(withID: ride.id)
-            }
+            rides.forEach { ChatService.instance.subscribeToRide(withID: $0.id) }
             
             success(rides)
         }, failure: { _, err in
@@ -103,15 +101,16 @@ class RideService: NSObject {
                 let realm = try Realm()
                 try realm.write {
                     // Clear rides previously marked as active
-                    realm.objects(Ride.self).filter("isActive == true").forEach { ride in
-                        ride.isActive = false
-                    }
+                    realm.objects(Ride.self).filter("isActive == true").forEach { $0.isActive = false }
                     
                     realm.add(rides, update: true)
                 }
             } catch let realmError {
                 error(realmError)
             }
+            
+            // Subscribe to rides
+            rides.forEach { ChatService.instance.subscribeToRide(withID: $0.id) }
             
             success(rides.sorted { $0.date < $1.date })
         }, failure: { _, err in
