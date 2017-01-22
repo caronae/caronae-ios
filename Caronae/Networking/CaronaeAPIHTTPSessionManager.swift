@@ -15,6 +15,7 @@ class CaronaeAPIHTTPSessionManager: AFHTTPSessionManager {
     }
 }
 
+
 class CaronaeAPIRequestSerializer: AFJSONRequestSerializer {
     override func request(withMethod method: String, urlString URLString: String, parameters: Any?, error: NSErrorPointer) -> NSMutableURLRequest {
         // Add user token to the HTTP headers
@@ -35,6 +36,12 @@ class CaronaeAPIResponseSerializer: AFJSONResponseSerializer {
             let response = response as? HTTPURLResponse,
             (response.statusCode == 403 || response.statusCode == 401) {
             error.pointee = CaronaeError.invalidCredentials
+            
+            DispatchQueue.main.async {
+                if UserService.instance.user != nil {
+                    UserService.instance.signOut(force: true)
+                }
+            }
         }
         return responseObject
     }

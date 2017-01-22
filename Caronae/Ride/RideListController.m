@@ -96,13 +96,6 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     
     if (![self isVisible]) return;
     
-    if ([error.domain isEqualToString:CaronaeErrorDomain] && error.code == CaronaeErrorCodeInvalidCredentials) {
-        [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Sua chave de acesso pode ter sido alterada ou suspensa.\n\nPara sua segurança, você será levado à tela de login." handler:^{
-            [UserService.instance signOut];
-        }];
-        return;
-    }
-    
     if ([error.domain isEqualToString:NSURLErrorDomain]) {
         if (error.code == NSURLErrorNotConnectedToInternet) {
             [CRToastManager showNotificationWithOptions:@{

@@ -30,6 +30,7 @@ NSString *const CaronaePreferenceLastSearchedDateKey = @"lastSearchedDate";
 #pragma mark - Etc.
 
 NSString *const CaronaeErrorDomain = @"br.ufrj.caronae.error";
+NSString *const CaronaeSignOutRequiredKey = @"CaronaeSignOutRequired";
 NSString *const Caronae8PhoneNumberPattern = @"(###) ####-####";
 NSString *const Caronae9PhoneNumberPattern = @"(###) #####-####";
 NSString *const CaronaePlaceholderProfileImage = @"Profile Picture";

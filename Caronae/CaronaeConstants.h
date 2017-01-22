@@ -29,6 +29,7 @@ extern NSNotificationName const CaronaeDidUpdateUserNotification;
 #pragma mark - Etc.
 
 extern NSString *const CaronaeErrorDomain;
+extern NSString *const CaronaeSignOutRequiredKey;
 extern NSString *const Caronae8PhoneNumberPattern;
 extern NSString *const Caronae9PhoneNumberPattern;
 extern NSString *const CaronaePlaceholderProfileImage;

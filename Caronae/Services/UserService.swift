@@ -99,6 +99,10 @@ class UserService: NSObject {
     }
     
     func signOut() {
+        signOut(force: false)
+    }
+    
+    func signOut(force: Bool = false) {
         // Clear database
         do {
             let realm = try Realm()
@@ -119,7 +123,7 @@ class UserService: NSObject {
         self.user = nil
         UserDefaults.standard.removeObject(forKey: "user_id")
         
-        notifyObservers()
+        notifyObservers(force: force)
     }
     
     func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error?) -> Void) {
@@ -244,8 +248,8 @@ class UserService: NSObject {
         })
     }
     
-    private func notifyObservers() {
-        NotificationCenter.default.post(name: Foundation.Notification.Name.CaronaeDidUpdateUser, object: self)
+    private func notifyObservers(force: Bool = false) {
+        NotificationCenter.default.post(name: Foundation.Notification.Name.CaronaeDidUpdateUser, object: self, userInfo: [CaronaeSignOutRequiredKey: force])
     }
     
     private func migrateUserToRealm() throws -> User {
