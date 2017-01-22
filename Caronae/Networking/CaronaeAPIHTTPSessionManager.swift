@@ -7,6 +7,7 @@ class CaronaeAPIHTTPSessionManager: AFHTTPSessionManager {
         super.init(baseURL: URL(string: CaronaeAPIBaseURL), sessionConfiguration: URLSessionConfiguration.default)
         requestSerializer = CaronaeAPIRequestSerializer()
         responseSerializer = CaronaeAPIResponseSerializer()
+        requestSerializer.timeoutInterval = 30
     }
     
     required init?(coder aDecoder: NSCoder) {
