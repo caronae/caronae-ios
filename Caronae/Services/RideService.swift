@@ -34,10 +34,11 @@ class RideService: NSObject {
     
     func getOfferedRides(success: @escaping (_ rides: Results<Ride>) -> Void, error: @escaping (_ error: Error) -> Void) {
         let user = UserService.instance.user!
+        let currentDate = NSDate()
         
         do {
             let realm = try Realm()
-            let rides = realm.objects(Ride.self).filter("driver == %@", user).sorted(byProperty: "date")
+            let rides = realm.objects(Ride.self).filter("driver == %@ AND date > %@", user, currentDate).sorted(byProperty: "date")
             success(rides)
         } catch let realmError {
             error(realmError)
