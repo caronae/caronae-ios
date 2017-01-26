@@ -24,6 +24,11 @@
     [self.webView loadRequest:urlRequest];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:(BOOL)animated];
+    [SVProgressHUD dismiss];
+}
+
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [SVProgressHUD show];
 }

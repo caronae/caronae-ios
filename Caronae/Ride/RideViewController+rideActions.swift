@@ -1,3 +1,4 @@
+import RealmSwift
 import SVProgressHUD
 import MIBadgeButton_Swift
 
@@ -62,6 +63,31 @@ extension RideViewController {
     
     func clearNotifications() {
         NotificationService.instance.clearNotifications(forRideID: ride.id, of: .rideJoinRequestAccepted)
+    }
+    
+    func subscribeToChanges() {
+        ridersNotificationToken = ride.riders.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+            guard let ridersCollectionView = self?.ridersCollectionView else { return }
+            
+            switch changes {
+            case .initial:
+                // Results are now populated and can be accessed without blocking the UI
+                ridersCollectionView.reloadData()
+                break
+            case .update(_, let deletions, let insertions, let modifications):
+                // Query results have changed, so apply them to the UICollectionView
+                ridersCollectionView.performBatchUpdates({
+                    ridersCollectionView.insertItems(at: insertions.map{ IndexPath(row: $0, section: 0) })
+                    ridersCollectionView.deleteItems(at: deletions.map{ IndexPath(row: $0, section: 0) })
+                    ridersCollectionView.reloadItems(at: modifications.map{ IndexPath(row: $0, section: 0) })
+                }, completion: { _ in })
+                break
+            case .error(let error):
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("\(error)")
+                break
+            }
+        }
     }
     
 }

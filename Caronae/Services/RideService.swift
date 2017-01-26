@@ -37,7 +37,7 @@ class RideService: NSObject {
         
         do {
             let realm = try Realm()
-            let rides = realm.objects(Ride.self).filter("driver == %@", user)
+            let rides = realm.objects(Ride.self).filter("driver == %@", user).sorted(byProperty: "date")
             success(rides)
         } catch let realmError {
             error(realmError)
@@ -76,7 +76,7 @@ class RideService: NSObject {
             // Subscribe to rides
             rides.forEach { ChatService.instance.subscribeToRide(withID: $0.id) }
             
-            success(rides)
+            success(rides.sorted { $0.date < $1.date })
         }, failure: { _, err in
             NSLog("Error: Failed to get offered rides: \(err.localizedDescription)")
             error(err)
