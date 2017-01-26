@@ -44,7 +44,7 @@ class RideService: NSObject {
         }
     }
     
-    func updateOfferedRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func updateOfferedRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         guard let user = UserService.instance.user else {
             NSLog("Error: No userID registered")
             return
@@ -76,7 +76,7 @@ class RideService: NSObject {
             // Subscribe to rides
             rides.forEach { ChatService.instance.subscribeToRide(withID: $0.id) }
             
-            success(rides.sorted { $0.date < $1.date })
+            success()
         }, failure: { _, err in
             NSLog("Error: Failed to get offered rides: \(err.localizedDescription)")
             error(err)

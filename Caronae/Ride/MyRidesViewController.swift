@@ -30,7 +30,7 @@ class MyRidesViewController: RideListController {
     }
     
     func refreshTable(_ sender: Any) {
-        RideService.instance.updateOfferedRides(success: { _ in
+        RideService.instance.updateOfferedRides(success: {
             self.refreshControl.endRefreshing()
             NSLog("Offered rides updated")
         }, error: { error in

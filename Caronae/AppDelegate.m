@@ -69,7 +69,7 @@
     if (UserService.instance.user) {
         [self connectToFcm];
         
-        [RideService.instance updateOfferedRidesWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
+        [RideService.instance updateOfferedRidesWithSuccess:^{
             NSLog(@"Offered rides updated");
         } error:^(NSError * _Nonnull error) {
             NSLog(@"Couldn't update offered rides");
