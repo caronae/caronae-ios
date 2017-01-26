@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeViewController" customModule="Caronae" customModuleProvider="target">
+            <connections>
+                <outlet property="titleLabel" destination="KpI-My-jqy" id="Ldw-wh-wEy"/>
+                <outlet property="view" destination="ogs-MZ-Dj3" id="JJJ-oa-Gox"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController id="4kU-VL-gVM" customClass="WelcomeViewController" customModule="Caronae" customModuleProvider="target">
+            <point key="canvasLocation" x="334" y="43"/>
+        </viewController>
+        <view contentMode="scaleToFill" id="ogs-MZ-Dj3">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NF4-cD-hRe">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="EDh-1Z-tVM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="extraLight"/>
+                </visualEffectView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mt0-cg-cZQ" userLabel="Content View">
+                    <rect key="frame" x="42" y="199.5" width="291" height="267.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Olá, Fulano!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KpI-My-jqy">
+                            <rect key="frame" x="60" y="20" width="162" height="36"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                            <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlB-1g-q4d">
+                            <rect key="frame" x="0.0" y="86" width="291" height="81.5"/>
+                            <string key="text">Parece que esta é a primeira vez que você usa o Caronaê.
+Para continuar, por favor complete seu perfil. </string>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QnD-ey-bM3">
+                            <rect key="frame" x="105" y="218" width="67" height="30"/>
+                            <state key="normal" title="Continuar">
+                                <color key="titleColor" red="0.1137254909" green="0.6549019814" blue="0.36470589040000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="continueTapped" destination="4kU-VL-gVM" eventType="touchUpInside" id="d6V-gq-8n2"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="vlB-1g-q4d" firstAttribute="top" secondItem="KpI-My-jqy" secondAttribute="bottom" constant="30" id="4FR-jt-j99"/>
+                        <constraint firstItem="QnD-ey-bM3" firstAttribute="centerX" secondItem="Mt0-cg-cZQ" secondAttribute="centerX" id="I4x-Cq-DNX"/>
+                        <constraint firstItem="KpI-My-jqy" firstAttribute="top" secondItem="Mt0-cg-cZQ" secondAttribute="top" constant="20" id="L6J-QC-bQT"/>
+                        <constraint firstAttribute="bottom" secondItem="QnD-ey-bM3" secondAttribute="bottom" constant="20" id="MXx-5H-njG"/>
+                        <constraint firstItem="QnD-ey-bM3" firstAttribute="top" secondItem="vlB-1g-q4d" secondAttribute="bottom" constant="50" id="Ouf-rl-Cgu"/>
+                        <constraint firstAttribute="trailing" secondItem="vlB-1g-q4d" secondAttribute="trailing" id="SZW-T7-Eyp"/>
+                        <constraint firstItem="KpI-My-jqy" firstAttribute="centerX" secondItem="Mt0-cg-cZQ" secondAttribute="centerX" constant="2.25" id="Tga-Mo-F01"/>
+                        <constraint firstItem="vlB-1g-q4d" firstAttribute="leading" secondItem="Mt0-cg-cZQ" secondAttribute="leading" id="e1L-d4-tyL"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Mt0-cg-cZQ" firstAttribute="centerY" secondItem="ogs-MZ-Dj3" secondAttribute="centerY" id="3Z1-aW-FVJ"/>
+                <constraint firstAttribute="trailing" secondItem="NF4-cD-hRe" secondAttribute="trailing" id="A8h-5a-RZp"/>
+                <constraint firstItem="NF4-cD-hRe" firstAttribute="leading" secondItem="ogs-MZ-Dj3" secondAttribute="leading" id="B4q-ii-Ipl"/>
+                <constraint firstItem="NF4-cD-hRe" firstAttribute="top" secondItem="ogs-MZ-Dj3" secondAttribute="top" id="F0A-Xb-RU2"/>
+                <constraint firstAttribute="bottom" secondItem="NF4-cD-hRe" secondAttribute="bottom" id="Fq0-H7-ngj"/>
+                <constraint firstAttribute="trailingMargin" secondItem="Mt0-cg-cZQ" secondAttribute="trailing" constant="34" id="RUo-uL-NmI"/>
+                <constraint firstItem="NF4-cD-hRe" firstAttribute="top" secondItem="ogs-MZ-Dj3" secondAttribute="top" id="Ta0-Oe-BVq"/>
+                <constraint firstAttribute="trailing" secondItem="NF4-cD-hRe" secondAttribute="trailing" id="Xre-r7-eoi"/>
+                <constraint firstItem="NF4-cD-hRe" firstAttribute="leading" secondItem="ogs-MZ-Dj3" secondAttribute="leading" id="jiu-9p-4WI"/>
+                <constraint firstItem="Mt0-cg-cZQ" firstAttribute="leading" secondItem="ogs-MZ-Dj3" secondAttribute="leadingMargin" constant="34" id="sOA-fS-LEW"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

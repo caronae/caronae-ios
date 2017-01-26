@@ -37,11 +37,7 @@ static NSDateFormatter *dateFormatter;
 - (void)configureBasicCellWithRide:(Ride *)ride {
     _ride = ride;
     _titleLabel.text = [_ride.title uppercaseString];
-    
-    // Display first and last names only
-    NSArray<NSString *> *names = [_ride.driver.name componentsSeparatedByString:@" "];
-    NSString *displayName = names.count > 1 ? [NSString stringWithFormat:@"%@ %@", names.firstObject, names.lastObject] : _ride.driver.name;
-    _driverNameLabel.text = displayName;
+    _driverNameLabel.text = _ride.driver.shortName;
     
     [self updatePhoto];
     self.color = [CaronaeConstants colorForZone:_ride.region];
@@ -56,8 +52,7 @@ static NSDateFormatter *dateFormatter;
 - (void)updatePhoto {
     if (_ride.driver.profilePictureURL.length > 0) {
         [_photo crn_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]];
-    }
-    else {
+    } else {
         _photo.image = [UIImage imageNamed:@"Profile Picture"];
     }
 }

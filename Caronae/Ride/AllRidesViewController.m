@@ -1,7 +1,5 @@
 @import SVProgressHUD;
-
 #import "AllRidesViewController.h"
-#import "EditProfileViewController.h"
 #import "SearchResultsViewController.h"
 #import "SearchRideViewController.h"
 #import "Caronae-Swift.h"
@@ -17,7 +15,6 @@
     [super viewDidLoad];
     
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
-    
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
 }
 
@@ -45,13 +42,6 @@
     if (self.refreshControl.refreshing) {
         [self loadAllRides];
     }
-}
-
-- (void)presentFinishProfileScreen {
-    UINavigationController *editProfileNavController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"EditProfileNavigationController"];;
-    EditProfileViewController *vc = editProfileNavController.viewControllers.firstObject;
-    vc.completeProfileMode = YES;
-    [self presentViewController:editProfileNavController animated:YES completion:nil];
 }
 
 

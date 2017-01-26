@@ -33,8 +33,7 @@ class TokenViewController: UIViewController {
         authButton.isEnabled = false
         SVProgressHUD.show()
         
-        UserService.instance.signIn(withID: id, token: token, success: { user in
-            // TODO: check if we need to show the screen to complete the profile
+        UserService.instance.signIn(withID: id, token: token, success: { _ in
             let rootViewController = TabBarController()
             UIApplication.shared.keyWindow?.replaceViewController(with: rootViewController)
         }, error: { error in

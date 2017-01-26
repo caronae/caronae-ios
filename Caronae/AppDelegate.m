@@ -35,6 +35,7 @@
         self.window.rootViewController = initialViewController;
         [self.window makeKeyAndVisible];
         [self registerForNotifications];
+        [self checkIfUserNeedsToFinishProfile];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdateUser:) name:CaronaeDidUpdateUserNotification object:nil];
     
@@ -104,12 +105,31 @@
         }
     } else {
         [self registerForNotifications];
+        [self checkIfUserNeedsToFinishProfile];
+    }
+}
+
+- (void)checkIfUserNeedsToFinishProfile {
+    if (UserService.instance.user.isProfileIncomplete) {
+        // delay until the view is ready
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self displayFinishProfileScreen];
+        });
     }
 }
 
 - (void)displayAuthenticationScreen {
     UIViewController *authViewController = [TokenViewController tokenViewController];
     [UIApplication.sharedApplication.keyWindow replaceViewControllerWith:authViewController];
+}
+
+- (void)displayFinishProfileScreen {
+    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    WelcomeViewController *welcomeViewController = [[WelcomeViewController alloc] init];
+    UINavigationController *welcomeNavigationController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
+    welcomeNavigationController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    welcomeNavigationController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [rootViewController presentViewController:welcomeNavigationController animated:YES completion:nil];
 }
 
 #pragma mark - Facebook SDK

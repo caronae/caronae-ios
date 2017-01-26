@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "CaronaeConstants.h"
 #import "CaronaeAlertController.h"
+#import "EditProfileViewController.h"
 #import "RideListController.h"
 #import "RideViewController.h"
 #import "TabBarController.h"

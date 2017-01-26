@@ -41,9 +41,9 @@
     self.changePhotoButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     
     if (self.completeProfileMode) {
-        [CaronaeAlertController presentOkAlertWithTitle:@"Olá!" message:@"Parece que esta é sua primeira vez usando o Caronaê. Por favor, complete seu perfil para continuar."];
         self.numDrivesLabel.text = @"0";
         self.numRidesLabel.text = @"0";
+        self.title = @"Cadastro";
     }
 }
 
@@ -196,11 +196,11 @@
         }]];
     }
     else {
-        alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar criação do perfil?"
-                                                         message:@"Você será deslogado do aplicativo e precisará entrar novamente com o token."
+        alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar cadastro?"
+                                                         message:@"Você será deslogado do aplicativo e precisará entrar novamente com sua chave."
                                                   preferredStyle:SDCAlertControllerStyleAlert];
         [alert addAction:[SDCAlertAction actionWithTitle:@"Cont. editando" style:SDCAlertActionStyleCancel handler:nil]];
-        [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
+        [alert addAction:[SDCAlertAction actionWithTitle:@"Sair" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
             [UserService.instance signOut];
         }]];
     }

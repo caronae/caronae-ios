@@ -6,9 +6,9 @@ class User: Object, Mappable {
     dynamic var name: String!
     dynamic var profile: String!
     dynamic var course: String!
-    dynamic var email: String!
-    dynamic var phoneNumber: String!
-    dynamic var location: String!
+    dynamic var email: String?
+    dynamic var phoneNumber: String?
+    dynamic var location: String?
     dynamic var carOwner: Bool = false
     dynamic var carModel: String? = nil
     dynamic var carPlate: String?
@@ -48,5 +48,15 @@ class User: Object, Mappable {
     
     var firstName: String {
         return name.components(separatedBy: " ").first ?? name
+    }
+    
+    var shortName: String {
+        let names = name.components(separatedBy: " ")
+        guard let firstName = names.first, let lastName = names.last, lastName != firstName else { return name }
+        return firstName + " " + lastName
+    }
+    
+    var isProfileIncomplete: Bool {
+        return (phoneNumber?.isEmpty ?? true) || (email?.isEmpty ?? true) || (location?.isEmpty ?? true)
     }
 }

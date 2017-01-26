@@ -2125,13 +2125,13 @@ nenhuma carona.</string>
                                                         <rect key="frame" x="120" y="0.0" width="120" height="30"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dC-bx-97n">
-                                                                <rect key="frame" x="78.5" y="0.0" width="6.5" height="30"/>
+                                                                <rect key="frame" x="79" y="0.0" width="7" height="30"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Z4E-3o-oLI">
-                                                                <rect key="frame" x="46.5" y="7.5" width="27" height="15"/>
+                                                                <rect key="frame" x="47" y="8" width="27" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="kvS-vl-Blq">
                                                                         <variation key="widthClass=compact" constant="15"/>
@@ -2190,7 +2190,7 @@ nenhuma carona.</string>
                                                         <rect key="frame" x="240" y="0.0" width="120" height="30"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RidesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bc4-ub-EWA">
-                                                                <rect key="frame" x="97.5" y="7" width="11" height="16"/>
+                                                                <rect key="frame" x="97" y="7" width="11" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="Ccg-Ep-5fi"/>
                                                                     <constraint firstAttribute="height" constant="30" id="FmX-cU-PVn">
@@ -2211,7 +2211,7 @@ nenhuma carona.</string>
                                                                 </variation>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7LV-WC-GgG">
-                                                                <rect key="frame" x="113.5" y="0.0" width="6.5" height="30"/>
+                                                                <rect key="frame" x="113" y="0.0" width="7" height="30"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -2336,13 +2336,13 @@ nenhuma carona.</string>
                                                 <rect key="frame" x="20" y="164" width="360" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amigos em comum: -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MmR-2o-zB8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="116" height="13.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="116" height="14"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                                                         <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jAg-XN-udr" userLabel="Mutual Friends Collection View">
-                                                        <rect key="frame" x="0.0" y="21.5" width="360" height="40"/>
+                                                        <rect key="frame" x="0.0" y="22" width="360" height="40"/>
                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="82" id="GaO-a8-cN1">
@@ -2527,7 +2527,7 @@ nenhuma carona.</string>
                                                 <rect key="frame" x="20" y="255" width="360" height="132"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOBRE SEU CARRO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRf-ep-z7x">
-                                                        <rect key="frame" x="0.0" y="0.0" width="131.5" height="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="132" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                         <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -2536,7 +2536,7 @@ nenhuma carona.</string>
                                                         <rect key="frame" x="0.0" y="62" width="360" height="20"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="cE3-2w-Ugm" userLabel="CarIcon">
-                                                                <rect key="frame" x="0.0" y="2.5" width="27" height="15"/>
+                                                                <rect key="frame" x="0.0" y="3" width="27" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="Iuk-rS-IcV">
                                                                         <variation key="widthClass=compact" constant="15"/>
@@ -2559,7 +2559,7 @@ nenhuma carona.</string>
                                                                 </variation>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PSR 4567 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukp-LD-rXY" userLabel="Plate">
-                                                                <rect key="frame" x="37" y="1.5" width="70.5" height="17"/>
+                                                                <rect key="frame" x="37" y="2" width="71" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -2605,7 +2605,7 @@ nenhuma carona.</string>
                                                         <rect key="frame" x="0.0" y="87" width="360" height="20"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="5g7-J4-yh1" userLabel="CarIcon">
-                                                                <rect key="frame" x="0.0" y="2.5" width="27" height="15"/>
+                                                                <rect key="frame" x="0.0" y="3" width="27" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="LTz-DQ-wIY">
                                                                         <variation key="widthClass=compact" constant="24"/>
@@ -2628,7 +2628,7 @@ nenhuma carona.</string>
                                                                 </variation>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HONDA CIVIC AZUL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h07-4L-BDZ" userLabel="Model">
-                                                                <rect key="frame" x="37" y="1.5" width="134.5" height="17"/>
+                                                                <rect key="frame" x="37" y="2" width="135" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -2680,7 +2680,7 @@ nenhuma carona.</string>
                                                         <rect key="frame" x="0.0" y="112" width="360" height="20"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="QJW-Jg-fNl" userLabel="CarIcon">
-                                                                <rect key="frame" x="0.0" y="2.5" width="27" height="15"/>
+                                                                <rect key="frame" x="0.0" y="3" width="27" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="Yy7-xN-F7l">
                                                                         <variation key="widthClass=compact" constant="15"/>
@@ -2703,7 +2703,7 @@ nenhuma carona.</string>
                                                                 </variation>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CINZA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMG-kW-a5r" userLabel="Model">
-                                                                <rect key="frame" x="37" y="1.5" width="44" height="17"/>
+                                                                <rect key="frame" x="37" y="2" width="44" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -2827,7 +2827,7 @@ nenhuma carona.</string>
                                                 </variation>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UD9-3b-3BN">
-                                                <rect key="frame" x="164.5" y="412" width="71" height="28"/>
+                                                <rect key="frame" x="165" y="412" width="71" height="28"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="70" id="6aV-FG-3ME">
@@ -3050,7 +3050,7 @@ nenhuma carona.</string>
         <!--Editar Perfil-->
         <scene sceneID="mad-LY-Xsb">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="rv3-vJ-1pf" customClass="EditProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileViewController" automaticallyAdjustsScrollViewInsets="NO" id="rv3-vJ-1pf" customClass="EditProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MT1-A0-c6a"/>
                         <viewControllerLayoutGuide type="bottom" id="2VX-HP-vOC"/>
@@ -3063,10 +3063,10 @@ nenhuma carona.</string>
                                 <rect key="frame" x="0.0" y="64" width="400" height="836"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8i-Rm-FBJ" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="746.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="701.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wC6-CD-nF5" userLabel="ID">
-                                                <rect key="frame" x="20" y="8" width="360" height="80"/>
+                                                <rect key="frame" x="10" y="8" width="380" height="80"/>
                                                 <subviews>
                                                     <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="0R8-uQ-11f" userLabel="Photo">
                                                         <rect key="frame" x="5" y="5" width="70" height="70"/>
@@ -3118,13 +3118,13 @@ FOTO</string>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Renan Souza" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSR-N1-9qq" userLabel="Name">
-                                                        <rect key="frame" x="90" y="20" width="270" height="18"/>
+                                                        <rect key="frame" x="90" y="20" width="290" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aluno | Engenharia Mecatrônica" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="aF0-j7-A42" userLabel="Course">
-                                                        <rect key="frame" x="90" y="42" width="270" height="18"/>
+                                                        <rect key="frame" x="90" y="42" width="290" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -3203,10 +3203,10 @@ FOTO</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NpW-3h-cia" userLabel="Numbers">
-                                                <rect key="frame" x="20" y="98" width="360" height="30"/>
+                                                <rect key="frame" x="15" y="98" width="370" height="30"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8kN-gp-Pr3" userLabel="Joined">
-                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CalendarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="9m4-Cj-dVM">
                                                                 <rect key="frame" x="0.0" y="7" width="16" height="16"/>
@@ -3271,16 +3271,16 @@ FOTO</string>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8H-sa-84f" userLabel="Drives">
-                                                        <rect key="frame" x="120" y="0.0" width="120" height="30"/>
+                                                        <rect key="frame" x="123.5" y="0.0" width="123" height="30"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOs-7S-hSM">
-                                                                <rect key="frame" x="79" y="0.0" width="9" height="30"/>
+                                                                <rect key="frame" x="80.5" y="0.0" width="9" height="30"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Uxs-ti-wdp">
-                                                                <rect key="frame" x="47" y="8" width="27" height="15"/>
+                                                                <rect key="frame" x="48.5" y="8" width="27" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="Ges-wl-Nqa">
                                                                         <variation key="widthClass=compact" constant="15"/>
@@ -3336,10 +3336,10 @@ FOTO</string>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iwn-cp-VMy" userLabel="Rides">
-                                                        <rect key="frame" x="240" y="0.0" width="120" height="30"/>
+                                                        <rect key="frame" x="246" y="0.0" width="124" height="30"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RidesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="VLN-hu-yZt">
-                                                                <rect key="frame" x="95" y="7" width="11" height="16"/>
+                                                                <rect key="frame" x="99" y="7" width="11" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="XR7-L0-E1T">
                                                                         <variation key="widthClass=compact" constant="16"/>
@@ -3357,7 +3357,7 @@ FOTO</string>
                                                                 </variation>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkB-Rm-KZu">
-                                                                <rect key="frame" x="111" y="0.0" width="9" height="30"/>
+                                                                <rect key="frame" x="115" y="0.0" width="9" height="30"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -3457,7 +3457,7 @@ FOTO</string>
                                                 </variation>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SeparatorColor" translatesAutoresizingMaskIntoConstraints="NO" id="vaG-sm-ZF5" userLabel="Separator">
-                                                <rect key="frame" x="20" y="133" width="360" height="4"/>
+                                                <rect key="frame" x="15" y="133" width="370" height="4"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="73f-mV-U5Q">
                                                         <variation key="widthClass=compact" constant="4"/>
@@ -3475,7 +3475,7 @@ FOTO</string>
                                                 </variation>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lxD-8o-v5s" userLabel="Facebook">
-                                                <rect key="frame" x="20" y="147" width="360" height="50"/>
+                                                <rect key="frame" x="15" y="152" width="370" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="e3c-Gv-7Nf"/>
                                                 </constraints>
@@ -3490,61 +3490,8 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8jW-cY-0SJ" userLabel="Notifications">
-                                                <rect key="frame" x="15" y="207" width="370" height="50"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alertas e notificações" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CyA-ZG-8At">
-                                                        <rect key="frame" x="0.0" y="16" width="318" height="18"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                        <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mar-jU-UOC">
-                                                        <rect key="frame" x="318" y="10" width="51" height="31"/>
-                                                    </switch>
-                                                </subviews>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="CyA-ZG-8At" firstAttribute="leading" secondItem="8jW-cY-0SJ" secondAttribute="leading" id="6vr-Ld-bOT"/>
-                                                    <constraint firstItem="mar-jU-UOC" firstAttribute="leading" secondItem="CyA-ZG-8At" secondAttribute="trailing" id="Bbl-nB-2Xs"/>
-                                                    <constraint firstAttribute="centerY" secondItem="mar-jU-UOC" secondAttribute="centerY" id="Lub-kw-TTU"/>
-                                                    <constraint firstAttribute="centerY" secondItem="CyA-ZG-8At" secondAttribute="centerY" id="PqN-eJ-o1e"/>
-                                                    <constraint firstAttribute="trailing" secondItem="mar-jU-UOC" secondAttribute="trailing" id="VpD-n5-HyA">
-                                                        <variation key="widthClass=compact" constant="3"/>
-                                                    </constraint>
-                                                    <constraint firstAttribute="height" constant="50" id="XUJ-aI-WxZ"/>
-                                                </constraints>
-                                                <variation key="default">
-                                                    <mask key="subviews">
-                                                        <exclude reference="CyA-ZG-8At"/>
-                                                        <exclude reference="mar-jU-UOC"/>
-                                                    </mask>
-                                                    <mask key="constraints">
-                                                        <exclude reference="XUJ-aI-WxZ"/>
-                                                        <exclude reference="6vr-Ld-bOT"/>
-                                                        <exclude reference="PqN-eJ-o1e"/>
-                                                        <exclude reference="Bbl-nB-2Xs"/>
-                                                        <exclude reference="Lub-kw-TTU"/>
-                                                        <exclude reference="VpD-n5-HyA"/>
-                                                    </mask>
-                                                </variation>
-                                                <variation key="widthClass=compact">
-                                                    <mask key="subviews">
-                                                        <include reference="CyA-ZG-8At"/>
-                                                        <include reference="mar-jU-UOC"/>
-                                                    </mask>
-                                                    <mask key="constraints">
-                                                        <include reference="XUJ-aI-WxZ"/>
-                                                        <include reference="6vr-Ld-bOT"/>
-                                                        <include reference="PqN-eJ-o1e"/>
-                                                        <include reference="Bbl-nB-2Xs"/>
-                                                        <include reference="Lub-kw-TTU"/>
-                                                        <include reference="VpD-n5-HyA"/>
-                                                    </mask>
-                                                </variation>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWq-sz-O1O" userLabel="Contacts">
-                                                <rect key="frame" x="15" y="267" width="370" height="124.5"/>
+                                                <rect key="frame" x="15" y="222" width="370" height="124.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONTATO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjM-je-3ke">
                                                         <rect key="frame" x="0.0" y="0.0" width="68" height="17"/>
@@ -3693,8 +3640,8 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2a-DZ-ZsW" userLabel="Locale">
-                                                <rect key="frame" x="15" y="416.5" width="370" height="85"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2a-DZ-ZsW" userLabel="Location">
+                                                <rect key="frame" x="15" y="371.5" width="370" height="85"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCALIDADE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftJ-lK-bEs" userLabel="Localidade">
                                                         <rect key="frame" x="0.0" y="0.0" width="89" height="17"/>
@@ -3833,7 +3780,7 @@ FOTO</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9E-Xw-3cg" userLabel="Has Car">
-                                                <rect key="frame" x="15" y="506.5" width="370" height="50"/>
+                                                <rect key="frame" x="15" y="461.5" width="370" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Possui carro?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8h-kP-2X5">
                                                         <rect key="frame" x="0.0" y="16" width="318" height="18"/>
@@ -3889,7 +3836,7 @@ FOTO</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQY-BS-Gqj" userLabel="Car details">
-                                                <rect key="frame" x="15" y="566.5" width="370" height="165"/>
+                                                <rect key="frame" x="15" y="521.5" width="370" height="165"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOBRE SEU CARRO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8t-lO-Jqk">
                                                         <rect key="frame" x="0.0" y="0.0" width="132" height="17"/>
@@ -4084,12 +4031,12 @@ FOTO</string>
                                                         <exclude reference="2b8-Sr-ItU"/>
                                                         <exclude reference="Jyf-Mo-KOp"/>
                                                         <exclude reference="wNK-zQ-Fvx"/>
-                                                        <exclude reference="QsC-U5-GTe"/>
-                                                        <exclude reference="rjG-HV-tQ6"/>
                                                         <exclude reference="90V-ob-lKK"/>
                                                         <exclude reference="kaN-W4-vbR"/>
                                                         <exclude reference="uw7-sB-eDs"/>
                                                         <exclude reference="wbm-Tr-SFx"/>
+                                                        <exclude reference="QsC-U5-GTe"/>
+                                                        <exclude reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
@@ -4120,12 +4067,12 @@ FOTO</string>
                                                         <include reference="2b8-Sr-ItU"/>
                                                         <include reference="Jyf-Mo-KOp"/>
                                                         <include reference="wNK-zQ-Fvx"/>
-                                                        <include reference="QsC-U5-GTe"/>
-                                                        <include reference="rjG-HV-tQ6"/>
                                                         <include reference="90V-ob-lKK"/>
                                                         <include reference="kaN-W4-vbR"/>
                                                         <include reference="uw7-sB-eDs"/>
                                                         <include reference="wbm-Tr-SFx"/>
+                                                        <include reference="QsC-U5-GTe"/>
+                                                        <include reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -4133,55 +4080,40 @@ FOTO</string>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="NpW-3h-cia" firstAttribute="top" secondItem="wC6-CD-nF5" secondAttribute="bottom" constant="10" id="2gK-0N-G6r"/>
-                                            <constraint firstAttribute="trailing" secondItem="wC6-CD-nF5" secondAttribute="trailing" constant="20" id="8gU-B1-IMC"/>
+                                            <constraint firstAttribute="trailing" secondItem="NpW-3h-cia" secondAttribute="trailing" constant="15" id="3VS-3P-veV"/>
+                                            <constraint firstAttribute="trailing" secondItem="wC6-CD-nF5" secondAttribute="trailing" constant="10" id="8gU-B1-IMC"/>
                                             <constraint firstItem="UQY-BS-Gqj" firstAttribute="top" secondItem="Z9E-Xw-3cg" secondAttribute="bottom" constant="-1" id="BUe-cO-2mA">
                                                 <variation key="widthClass=compact" constant="10"/>
                                             </constraint>
-                                            <constraint firstItem="8jW-cY-0SJ" firstAttribute="width" secondItem="UWq-sz-O1O" secondAttribute="width" id="CzX-9h-zfZ"/>
-                                            <constraint firstItem="wC6-CD-nF5" firstAttribute="leading" secondItem="NpW-3h-cia" secondAttribute="leading" id="EiF-yE-X0t"/>
-                                            <constraint firstItem="UWq-sz-O1O" firstAttribute="top" secondItem="8jW-cY-0SJ" secondAttribute="bottom" constant="74" id="IVE-44-fVx">
-                                                <variation key="widthClass=compact" constant="10"/>
-                                            </constraint>
+                                            <constraint firstAttribute="trailing" secondItem="UWq-sz-O1O" secondAttribute="trailing" constant="15" id="Bvw-bc-hbs"/>
                                             <constraint firstItem="vaG-sm-ZF5" firstAttribute="leading" secondItem="NpW-3h-cia" secondAttribute="leading" id="LE8-tv-wLQ"/>
-                                            <constraint firstItem="8jW-cY-0SJ" firstAttribute="leading" secondItem="UWq-sz-O1O" secondAttribute="leading" constant="-15" id="LEB-xP-z5j">
-                                                <variation key="widthClass=compact" constant="0.0"/>
-                                            </constraint>
                                             <constraint firstItem="lxD-8o-v5s" firstAttribute="top" secondItem="vaG-sm-ZF5" secondAttribute="bottom" constant="8" id="OTc-Rk-Y6j">
-                                                <variation key="widthClass=compact" constant="10"/>
-                                            </constraint>
-                                            <constraint firstItem="Z9E-Xw-3cg" firstAttribute="leading" secondItem="8jW-cY-0SJ" secondAttribute="leading" constant="-34" id="SmO-Iu-2NN">
-                                                <variation key="widthClass=compact" constant="0.0"/>
-                                            </constraint>
-                                            <constraint firstAttribute="trailing" secondItem="8jW-cY-0SJ" secondAttribute="trailing" constant="10" id="TMU-02-YGE">
                                                 <variation key="widthClass=compact" constant="15"/>
                                             </constraint>
+                                            <constraint firstAttribute="trailing" secondItem="UQY-BS-Gqj" secondAttribute="trailing" constant="15" id="SQ1-Fk-jgX"/>
+                                            <constraint firstAttribute="trailing" secondItem="Z9E-Xw-3cg" secondAttribute="trailing" constant="15" id="TjD-uU-uOx"/>
                                             <constraint firstAttribute="trailing" secondItem="eDe-Qb-t67" secondAttribute="trailing" constant="15" id="WWb-XO-FuT"/>
-                                            <constraint firstItem="B2a-DZ-ZsW" firstAttribute="width" secondItem="8jW-cY-0SJ" secondAttribute="width" id="Wgs-xa-QPb"/>
-                                            <constraint firstItem="8jW-cY-0SJ" firstAttribute="leading" secondItem="D8i-Rm-FBJ" secondAttribute="leading" constant="10" id="bAT-Cu-aqX">
-                                                <variation key="widthClass=compact" constant="15"/>
-                                            </constraint>
                                             <constraint firstAttribute="bottom" secondItem="UQY-BS-Gqj" secondAttribute="bottom" constant="135" id="bnN-5V-23s">
                                                 <variation key="widthClass=compact" constant="15"/>
                                             </constraint>
+                                            <constraint firstItem="B2a-DZ-ZsW" firstAttribute="leading" secondItem="D8i-Rm-FBJ" secondAttribute="leading" constant="15" id="brQ-k6-JFn"/>
                                             <constraint firstItem="B2a-DZ-ZsW" firstAttribute="top" secondItem="UWq-sz-O1O" secondAttribute="bottom" constant="5" id="dgt-hr-Q53">
                                                 <variation key="widthClass=compact" constant="25"/>
                                             </constraint>
-                                            <constraint firstItem="UQY-BS-Gqj" firstAttribute="width" secondItem="8jW-cY-0SJ" secondAttribute="width" id="gLs-6S-he1"/>
-                                            <constraint firstItem="UQY-BS-Gqj" firstAttribute="leading" secondItem="8jW-cY-0SJ" secondAttribute="leading" id="idg-JB-CXx"/>
+                                            <constraint firstItem="NpW-3h-cia" firstAttribute="leading" secondItem="D8i-Rm-FBJ" secondAttribute="leading" constant="15" id="eDV-s7-rh0"/>
+                                            <constraint firstAttribute="trailing" secondItem="B2a-DZ-ZsW" secondAttribute="trailing" constant="15" id="iRV-zP-LhO"/>
                                             <constraint firstItem="Z9E-Xw-3cg" firstAttribute="top" secondItem="B2a-DZ-ZsW" secondAttribute="bottom" constant="5" id="jUf-NA-fct"/>
-                                            <constraint firstItem="lxD-8o-v5s" firstAttribute="leading" secondItem="vaG-sm-ZF5" secondAttribute="leading" id="kC1-xo-GcX"/>
                                             <constraint firstItem="vaG-sm-ZF5" firstAttribute="width" secondItem="NpW-3h-cia" secondAttribute="width" id="kEi-8v-Iww"/>
-                                            <constraint firstItem="B2a-DZ-ZsW" firstAttribute="leading" secondItem="8jW-cY-0SJ" secondAttribute="leading" constant="-129" id="lvc-f3-hiD">
-                                                <variation key="widthClass=compact" constant="0.0"/>
-                                            </constraint>
-                                            <constraint firstItem="Z9E-Xw-3cg" firstAttribute="width" secondItem="8jW-cY-0SJ" secondAttribute="width" id="mcY-z8-94F"/>
+                                            <constraint firstAttribute="trailing" secondItem="lxD-8o-v5s" secondAttribute="trailing" constant="15" id="msS-eb-NaH"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Z9E-Xw-3cg" secondAttribute="bottom" constant="10" id="ohA-9y-V6E"/>
-                                            <constraint firstItem="wC6-CD-nF5" firstAttribute="leading" secondItem="D8i-Rm-FBJ" secondAttribute="leading" constant="20" id="p2D-VW-Usy"/>
-                                            <constraint firstItem="NpW-3h-cia" firstAttribute="trailing" secondItem="wC6-CD-nF5" secondAttribute="trailing" id="pKL-cC-0hI"/>
+                                            <constraint firstItem="wC6-CD-nF5" firstAttribute="leading" secondItem="D8i-Rm-FBJ" secondAttribute="leading" constant="10" id="p2D-VW-Usy"/>
+                                            <constraint firstItem="UWq-sz-O1O" firstAttribute="leading" secondItem="D8i-Rm-FBJ" secondAttribute="leading" constant="15" id="r5X-oW-QrI"/>
                                             <constraint firstItem="vaG-sm-ZF5" firstAttribute="top" secondItem="NpW-3h-cia" secondAttribute="bottom" constant="5" id="srk-u8-wdh"/>
-                                            <constraint firstItem="lxD-8o-v5s" firstAttribute="width" secondItem="vaG-sm-ZF5" secondAttribute="width" id="tsb-F8-dTV"/>
+                                            <constraint firstItem="Z9E-Xw-3cg" firstAttribute="leading" secondItem="D8i-Rm-FBJ" secondAttribute="leading" constant="15" id="uPI-qt-z3G"/>
+                                            <constraint firstItem="UWq-sz-O1O" firstAttribute="top" secondItem="lxD-8o-v5s" secondAttribute="bottom" constant="20" id="ucM-cl-8EF"/>
+                                            <constraint firstItem="UQY-BS-Gqj" firstAttribute="leading" secondItem="D8i-Rm-FBJ" secondAttribute="leading" constant="15" id="uyW-By-cyl"/>
                                             <constraint firstItem="wC6-CD-nF5" firstAttribute="top" secondItem="D8i-Rm-FBJ" secondAttribute="top" constant="8" id="vqv-Ea-ive"/>
-                                            <constraint firstItem="8jW-cY-0SJ" firstAttribute="top" secondItem="lxD-8o-v5s" secondAttribute="bottom" constant="10" id="xhM-bC-Jpz"/>
+                                            <constraint firstItem="lxD-8o-v5s" firstAttribute="leading" secondItem="D8i-Rm-FBJ" secondAttribute="leading" constant="15" id="zLd-YT-CWB"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
@@ -4189,7 +4121,6 @@ FOTO</string>
                                                 <exclude reference="NpW-3h-cia"/>
                                                 <exclude reference="vaG-sm-ZF5"/>
                                                 <exclude reference="lxD-8o-v5s"/>
-                                                <exclude reference="8jW-cY-0SJ"/>
                                                 <exclude reference="UWq-sz-O1O"/>
                                                 <exclude reference="B2a-DZ-ZsW"/>
                                                 <exclude reference="Z9E-Xw-3cg"/>
@@ -4197,35 +4128,19 @@ FOTO</string>
                                             </mask>
                                             <mask key="constraints">
                                                 <exclude reference="8gU-B1-IMC"/>
-                                                <exclude reference="EiF-yE-X0t"/>
                                                 <exclude reference="p2D-VW-Usy"/>
                                                 <exclude reference="vqv-Ea-ive"/>
                                                 <exclude reference="2gK-0N-G6r"/>
-                                                <exclude reference="pKL-cC-0hI"/>
                                                 <exclude reference="LE8-tv-wLQ"/>
                                                 <exclude reference="kEi-8v-Iww"/>
                                                 <exclude reference="srk-u8-wdh"/>
                                                 <exclude reference="WWb-XO-FuT"/>
                                                 <exclude reference="OTc-Rk-Y6j"/>
-                                                <exclude reference="kC1-xo-GcX"/>
-                                                <exclude reference="tsb-F8-dTV"/>
-                                                <exclude reference="CzX-9h-zfZ"/>
-                                                <exclude reference="LEB-xP-z5j"/>
-                                                <exclude reference="TMU-02-YGE"/>
-                                                <exclude reference="bAT-Cu-aqX"/>
-                                                <exclude reference="xhM-bC-Jpz"/>
-                                                <exclude reference="IVE-44-fVx"/>
-                                                <exclude reference="Wgs-xa-QPb"/>
                                                 <exclude reference="dgt-hr-Q53"/>
-                                                <exclude reference="lvc-f3-hiD"/>
-                                                <exclude reference="SmO-Iu-2NN"/>
                                                 <exclude reference="jUf-NA-fct"/>
-                                                <exclude reference="mcY-z8-94F"/>
                                                 <exclude reference="ohA-9y-V6E"/>
                                                 <exclude reference="BUe-cO-2mA"/>
                                                 <exclude reference="bnN-5V-23s"/>
-                                                <exclude reference="gLs-6S-he1"/>
-                                                <exclude reference="idg-JB-CXx"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
@@ -4234,7 +4149,6 @@ FOTO</string>
                                                 <include reference="NpW-3h-cia"/>
                                                 <include reference="vaG-sm-ZF5"/>
                                                 <include reference="lxD-8o-v5s"/>
-                                                <include reference="8jW-cY-0SJ"/>
                                                 <include reference="UWq-sz-O1O"/>
                                                 <include reference="B2a-DZ-ZsW"/>
                                                 <include reference="Z9E-Xw-3cg"/>
@@ -4242,35 +4156,19 @@ FOTO</string>
                                             </mask>
                                             <mask key="constraints">
                                                 <include reference="8gU-B1-IMC"/>
-                                                <include reference="EiF-yE-X0t"/>
                                                 <include reference="p2D-VW-Usy"/>
                                                 <include reference="vqv-Ea-ive"/>
                                                 <include reference="2gK-0N-G6r"/>
-                                                <include reference="pKL-cC-0hI"/>
                                                 <include reference="LE8-tv-wLQ"/>
                                                 <include reference="kEi-8v-Iww"/>
                                                 <include reference="srk-u8-wdh"/>
                                                 <include reference="WWb-XO-FuT"/>
                                                 <include reference="OTc-Rk-Y6j"/>
-                                                <include reference="kC1-xo-GcX"/>
-                                                <include reference="tsb-F8-dTV"/>
-                                                <include reference="CzX-9h-zfZ"/>
-                                                <include reference="LEB-xP-z5j"/>
-                                                <include reference="TMU-02-YGE"/>
-                                                <include reference="bAT-Cu-aqX"/>
-                                                <include reference="xhM-bC-Jpz"/>
-                                                <include reference="IVE-44-fVx"/>
-                                                <include reference="Wgs-xa-QPb"/>
                                                 <include reference="dgt-hr-Q53"/>
-                                                <include reference="lvc-f3-hiD"/>
-                                                <include reference="SmO-Iu-2NN"/>
                                                 <include reference="jUf-NA-fct"/>
-                                                <include reference="mcY-z8-94F"/>
                                                 <include reference="ohA-9y-V6E"/>
                                                 <include reference="BUe-cO-2mA"/>
                                                 <include reference="bnN-5V-23s"/>
-                                                <include reference="gLs-6S-he1"/>
-                                                <include reference="idg-JB-CXx"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -4368,7 +4266,6 @@ FOTO</string>
                         <outlet property="joinedDateLabel" destination="d10-91-ta5" id="Wd4-91-gne"/>
                         <outlet property="nameLabel" destination="SSR-N1-9qq" id="eRy-Yi-5Zh"/>
                         <outlet property="neighborhoodButton" destination="W4u-AX-cDq" id="sHq-hZ-xbu"/>
-                        <outlet property="notificationsSwitch" destination="mar-jU-UOC" id="LFp-NL-UiV"/>
                         <outlet property="numDrivesLabel" destination="mOs-7S-hSM" id="mKq-iH-kcE"/>
                         <outlet property="numRidesLabel" destination="PkB-Rm-KZu" id="45n-cY-Ha8"/>
                         <outlet property="phoneTextField" destination="cCO-zR-zbO" id="Rke-nD-BJR"/>
@@ -4414,7 +4311,7 @@ FOTO</string>
                                         </variation>
                                     </imageView>
                                     <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="IhH-eB-lWM" userLabel="Photo">
-                                        <rect key="frame" x="157.5" y="20" width="60" height="60"/>
+                                        <rect key="frame" x="158" y="20" width="60" height="60"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="IhH-eB-lWM" secondAttribute="height" multiplier="1:1" id="Ffx-CC-hQG"/>
@@ -4848,7 +4745,7 @@ FOTO</string>
                                                         </variation>
                                                     </view>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="SoF-Bd-YaS" userLabel="Location Icon">
-                                                        <rect key="frame" x="0.0" y="12.5" width="16" height="15"/>
+                                                        <rect key="frame" x="0.0" y="13" width="16" height="15"/>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4930,7 +4827,7 @@ FOTO</string>
                                                         </variation>
                                                     </view>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="u2P-te-zHD" userLabel="Location Icon">
-                                                        <rect key="frame" x="0.0" y="12.5" width="16" height="15"/>
+                                                        <rect key="frame" x="0.0" y="13" width="16" height="15"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mm-CF-Oik" userLabel="Neighborhood Button">
                                                         <rect key="frame" x="24" y="5" width="311" height="30"/>
@@ -4999,7 +4896,7 @@ FOTO</string>
                                                 <rect key="frame" x="20" y="168" width="335" height="45"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HkZ-Ki-Ucb">
-                                                        <rect key="frame" x="206" y="7.5" width="129" height="30"/>
+                                                        <rect key="frame" x="206" y="8" width="129" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <state key="normal" title="Qua 7 Out 17h00m"/>
                                                         <connections>
@@ -5024,7 +4921,7 @@ FOTO</string>
                                                         </variation>
                                                     </view>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CalendarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="e2q-ra-X7Z">
-                                                        <rect key="frame" x="0.0" y="14.5" width="17" height="16"/>
+                                                        <rect key="frame" x="0.0" y="15" width="17" height="16"/>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ClockIcon" translatesAutoresizingMaskIntoConstraints="NO" id="qkY-H0-RCV">
                                                         <rect key="frame" x="25" y="15" width="16" height="15"/>
@@ -5295,15 +5192,15 @@ FOTO</string>
             <objects>
                 <tableViewController id="m4b-ln-3hN" customClass="ZoneSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VjV-fS-glM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Zone Cell" id="igM-m5-EON" customClass="ZoneCell">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="400" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="igM-m5-EON" id="hkP-M9-PyM">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="367" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ny-zh-u1W" userLabel="Color Detail">
@@ -5326,7 +5223,7 @@ FOTO</string>
                                             </variation>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zona Sul" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWb-6p-vlo">
-                                            <rect key="frame" x="20" y="12" width="67.5" height="20.5"/>
+                                            <rect key="frame" x="20" y="12" width="68" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -5413,7 +5310,7 @@ FOTO</string>
                                 <rect key="frame" x="0.0" y="64" width="400" height="1136"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zB7-Ma-qJK" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="893.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="894"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmH-vg-yLk" userLabel="Header View">
                                                 <rect key="frame" x="0.0" y="0.0" width="400" height="99"/>
@@ -5428,13 +5325,13 @@ FOTO</string>
                                                         <rect key="frame" x="0.0" y="59" width="400" height="40"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chegando às 16:45 | Seg | 24/11" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1UZ-co-mpB">
-                                                                <rect key="frame" x="39" y="11" width="226.5" height="18"/>
+                                                                <rect key="frame" x="39" y="11" width="227" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                                 <color key="textColor" red="0.11372549086809158" green="0.65490198135375977" blue="0.364705890417099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ClockIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fQj-VC-R47">
-                                                                <rect key="frame" x="15" y="12.5" width="16" height="15"/>
+                                                                <rect key="frame" x="15" y="13" width="16" height="15"/>
                                                                 <color key="tintColor" red="0.11372549086809158" green="0.65490198135375977" blue="0.364705890417099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="18" id="MFO-7n-b6Q">
@@ -5458,7 +5355,7 @@ FOTO</string>
                                                                 </variation>
                                                             </imageView>
                                                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCq-V2-p1d">
-                                                                <rect key="frame" x="270.5" y="6" width="114.5" height="28"/>
+                                                                <rect key="frame" x="271" y="6" width="114" height="28"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                                 <state key="normal" title="CANCELAR">
                                                                     <color key="titleColor" red="0.92941176891326904" green="0.18039216101169586" blue="0.050980392843484879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5670,7 +5567,7 @@ FOTO</string>
                                                 </variation>
                                             </tableView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERr-yS-hg4" userLabel="Detail View">
-                                                <rect key="frame" x="0.0" y="277" width="400" height="616.5"/>
+                                                <rect key="frame" x="0.0" y="277" width="400" height="617"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iA1-Kq-194" userLabel="Driver details View">
                                                         <rect key="frame" x="0.0" y="5" width="400" height="95"/>
@@ -5890,16 +5787,16 @@ FOTO</string>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKN-I8-wX4" userLabel="Mutual friends View">
-                                                        <rect key="frame" x="0.0" y="105" width="400" height="22.5"/>
+                                                        <rect key="frame" x="0.0" y="105" width="400" height="23"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amigos em comum: -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vV-zN-OD0" userLabel="Mutual friends">
-                                                                <rect key="frame" x="25" y="0.0" width="125" height="14.5"/>
+                                                                <rect key="frame" x="25" y="0.0" width="125" height="15"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                                 <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ftH-lv-bWG" userLabel="Mutual friends Collection View">
-                                                                <rect key="frame" x="25" y="22.5" width="350" height="0.0"/>
+                                                                <rect key="frame" x="25" y="23" width="350" height="0.0"/>
                                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" id="S1C-Ma-dGD"/>
@@ -6017,7 +5914,7 @@ FOTO</string>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RX5-Kp-EcW" userLabel="Route details View">
-                                                        <rect key="frame" x="0.0" y="137.5" width="400" height="175"/>
+                                                        <rect key="frame" x="0.0" y="138" width="400" height="175"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PONTO DE REFERÊNCIA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xVk-8T-Xcd" userLabel="Location title">
                                                                 <rect key="frame" x="25" y="10" width="162" height="17"/>
@@ -6185,7 +6082,7 @@ FOTO</string>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13z-QP-0ab" userLabel="Car details View">
-                                                        <rect key="frame" x="0.0" y="312.5" width="400" height="112"/>
+                                                        <rect key="frame" x="0.0" y="313" width="400" height="112"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DETALHES DO CARRO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0KW-WR-0iS" userLabel="Car details title">
                                                                 <rect key="frame" x="25" y="5" width="150" height="17"/>
@@ -6194,7 +6091,7 @@ FOTO</string>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PSR 4567" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCx-nb-Rrv">
-                                                                <rect key="frame" x="60" y="31.5" width="60.5" height="16"/>
+                                                                <rect key="frame" x="60" y="32" width="61" height="16"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -6204,7 +6101,7 @@ FOTO</string>
                                                                 <color key="tintColor" red="0.11372549086809158" green="0.65490198135375977" blue="0.364705890417099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Honda Civic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2a-uF-8Ry">
-                                                                <rect key="frame" x="60" y="56.5" width="73" height="16"/>
+                                                                <rect key="frame" x="60" y="57" width="73" height="16"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -6214,7 +6111,7 @@ FOTO</string>
                                                                 <color key="tintColor" red="0.1137254909" green="0.6549019814" blue="0.36470589040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJJ-2B-yFq">
-                                                                <rect key="frame" x="60" y="81.5" width="32.5" height="16"/>
+                                                                <rect key="frame" x="60" y="82" width="33" height="16"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -6311,10 +6208,10 @@ FOTO</string>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Clv-S0-8oi" userLabel="Riders View">
-                                                        <rect key="frame" x="0.0" y="424.5" width="400" height="117"/>
+                                                        <rect key="frame" x="0.0" y="425" width="400" height="117"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CARONISTAS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVU-XC-1u2" userLabel="Car details title">
-                                                                <rect key="frame" x="25" y="10" width="90.5" height="17"/>
+                                                                <rect key="frame" x="25" y="10" width="91" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -6374,7 +6271,7 @@ FOTO</string>
                                                                                     </variation>
                                                                                 </imageView>
                                                                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Renan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNe-KX-IxR" userLabel="Rider name">
-                                                                                    <rect key="frame" x="0.0" y="55" width="50" height="13.5"/>
+                                                                                    <rect key="frame" x="0.0" y="55" width="50" height="14"/>
                                                                                     <gestureRecognizers/>
                                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                                                                                     <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -6485,7 +6382,7 @@ FOTO</string>
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kxV-cn-8YF" userLabel="Request ride View">
-                                                        <rect key="frame" x="0.0" y="551.5" width="400" height="65"/>
+                                                        <rect key="frame" x="0.0" y="552" width="400" height="65"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qc-Bw-Oem">
                                                                 <rect key="frame" x="115" y="10" width="170" height="45"/>
@@ -6881,15 +6778,15 @@ nenhuma carona.</string>
             <objects>
                 <tableViewController id="J0r-pk-iNO" customClass="ZoneSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="q3z-80-JGK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="Zone Cell" id="fNt-ar-NHR" customClass="ZoneCell">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="400" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fNt-ar-NHR" id="wCF-CR-hFQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="336" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="361" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eS-e0-z0Y" userLabel="Color Detail">
@@ -6912,7 +6809,7 @@ nenhuma carona.</string>
                                             </variation>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ipanema" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJm-qm-ITb">
-                                            <rect key="frame" x="20" y="12" width="65.5" height="20.5"/>
+                                            <rect key="frame" x="20" y="12" width="66" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -6991,11 +6888,11 @@ nenhuma carona.</string>
                         <viewControllerLayoutGuide type="bottom" id="pcA-fx-kaF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="27z-nz-vnk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Digite o nome do bairro" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xyj-Wb-gUe" customClass="CaronaeTextField">
-                                <rect key="frame" x="16" y="84" width="343" height="32"/>
+                                <rect key="frame" x="20" y="84" width="360" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="WI9-5m-6hu"/>
                                 </constraints>
@@ -7123,13 +7020,13 @@ nenhuma carona.</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CEp-XF-lJK"/>
         <segue reference="9kE-zS-Odm"/>
         <segue reference="gns-F9-8s8"/>
-        <segue reference="emk-CJ-38Y"/>
         <segue reference="sGI-sp-fNN"/>
         <segue reference="H8O-Mc-OH3"/>
         <segue reference="ugX-qh-OjL"/>
+        <segue reference="VJh-c3-WKd"/>
+        <segue reference="7VR-Dw-svl"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
