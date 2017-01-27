@@ -5462,7 +5462,7 @@ FOTO</string>
                                                     </mask>
                                                 </variation>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rm7-4R-FPm" userLabel="Finish ride View">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rm7-4R-FPm" userLabel="Finish ride View">
                                                 <rect key="frame" x="0.0" y="99" width="400" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ue-I8-X9c">
@@ -5504,12 +5504,13 @@ FOTO</string>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="4ue-I8-X9c" firstAttribute="top" secondItem="rm7-4R-FPm" secondAttribute="top" constant="10" id="P4N-64-626"/>
+                                                    <constraint firstItem="4ue-I8-X9c" firstAttribute="top" secondItem="rm7-4R-FPm" secondAttribute="top" priority="900" constant="10" id="P4N-64-626"/>
                                                     <constraint firstItem="4ue-I8-X9c" firstAttribute="centerX" secondItem="rm7-4R-FPm" secondAttribute="centerX" id="P4r-lZ-qxx"/>
-                                                    <constraint firstAttribute="bottom" secondItem="4ue-I8-X9c" secondAttribute="bottom" constant="5" id="QRx-Nw-sU6"/>
+                                                    <constraint firstAttribute="bottom" secondItem="4ue-I8-X9c" secondAttribute="bottom" priority="900" constant="5" id="QRx-Nw-sU6"/>
                                                     <constraint firstItem="4ue-I8-X9c" firstAttribute="leading" secondItem="rm7-4R-FPm" secondAttribute="leading" constant="128" id="RQp-XN-6nJ">
                                                         <variation key="widthClass=compact" constant="15"/>
                                                     </constraint>
+                                                    <constraint firstAttribute="height" id="TDK-3E-bVJ"/>
                                                     <constraint firstAttribute="trailing" secondItem="4ue-I8-X9c" secondAttribute="trailing" constant="127" id="jKh-Fs-RcC">
                                                         <variation key="widthClass=compact" constant="15"/>
                                                     </constraint>
@@ -5519,6 +5520,7 @@ FOTO</string>
                                                         <exclude reference="4ue-I8-X9c"/>
                                                     </mask>
                                                     <mask key="constraints">
+                                                        <exclude reference="TDK-3E-bVJ"/>
                                                         <exclude reference="P4N-64-626"/>
                                                         <exclude reference="P4r-lZ-qxx"/>
                                                         <exclude reference="QRx-Nw-sU6"/>
@@ -6698,6 +6700,7 @@ FOTO</string>
                         <outlet property="driverPhoto" destination="C3d-pJ-uoK" id="JCU-Jd-aWQ"/>
                         <outlet property="finishRideButton" destination="4ue-I8-X9c" id="WEa-q2-Q1U"/>
                         <outlet property="finishRideView" destination="rm7-4R-FPm" id="tgN-hq-epu"/>
+                        <outlet property="finishRideViewHeightZero" destination="TDK-3E-bVJ" id="yL3-i7-LR9"/>
                         <outlet property="headerView" destination="hmH-vg-yLk" id="vyJ-Wc-ftD"/>
                         <outlet property="mutualFriendsCollectionHeight" destination="S1C-Ma-dGD" id="G03-B4-H78"/>
                         <outlet property="mutualFriendsCollectionView" destination="ftH-lv-bWG" id="JGn-xi-JNz"/>

@@ -43,7 +43,11 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     self.title = @"Carona";
     
     [self clearNotifications];
-    [self subscribeToChanges];
+    
+    if ([self userIsDriver] || [self userIsRider]) {
+        [self subscribeToChanges];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateChatButtonBadge) name:CaronaeDidUpdateNotifications object:nil];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -103,7 +107,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
             [self.phoneView removeFromSuperview];
             
             if (!_ride.isActive) {
-                [self.finishRideView removeFromSuperview];
+                [self.finishRideViewHeightZero setActive:YES];
             }
         });
         
