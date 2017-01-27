@@ -105,17 +105,33 @@ class RideService: NSObject {
                 return ride
             } as [Ride]
             
+            var finishedRideIDs = [Int]()
+            
             do {
                 let realm = try Realm()
                 try realm.write {
                     // Clear rides previously marked as active
                     realm.objects(Ride.self).filter("isActive == true").forEach { $0.isActive = false }
                     
+                    // Delete Ride Object for finished/canceled rides and save RideIDs
+                    let currentActivesID = rides.flatMap { $0.id }
+                    let unreadNotifications = try! NotificationService.instance.getNotifications(of: [.chat, .rideJoinRequestAccepted])
+                    unreadNotifications.forEach { notification in
+                        if !currentActivesID.contains(notification.rideID) {
+                            finishedRideIDs.append(notification.rideID)
+                            let ride = realm.objects(Ride.self).filter("id == %@", notification.rideID)
+                            realm.delete(ride)
+                        }
+                    }
+                    
                     realm.add(rides, update: true)
                 }
             } catch let realmError {
                 error(realmError)
             }
+            
+            // Clear notifications for finished/canceled rides
+            finishedRideIDs.forEach { id in NotificationService.instance.clearNotifications(forRideID: id) }
             
             // Subscribe to rides
             rides.forEach { ChatService.instance.subscribeToRide(withID: $0.id) }
