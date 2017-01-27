@@ -34,17 +34,15 @@ class RideService: NSObject {
     
     func getOfferedRides(success: @escaping (_ rides: Results<Ride>) -> Void, error: @escaping (_ error: Error) -> Void) {
         let user = UserService.instance.user!
-        let currentDate = NSDate()
+        let currentDate = Date()
         
         do {
             let realm = try Realm()
             let userRides = realm.objects(Ride.self).filter("driver == %@", user)
             
             let ridesInThePast = userRides.filter("date < %@", currentDate)
-            if !ridesInThePast.isEmpty {
-                ridesInThePast.forEach { ride in
-                    NotificationService.instance.clearNotifications(forRideID: ride.id, of: .rideJoinRequest)
-                }
+            ridesInThePast.forEach { ride in
+                NotificationService.instance.clearNotifications(forRideID: ride.id, of: .rideJoinRequest)
             }
 
             let rides = userRides.filter("date >= %@", currentDate).sorted(byProperty: "date")
