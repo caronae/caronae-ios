@@ -34,7 +34,7 @@ class CaronaeAPIResponseSerializer: AFJSONResponseSerializer {
         let responseObject = super.responseObject(for: response, data: data, error: error)
         if let error = error,
             let response = response as? HTTPURLResponse,
-            (response.statusCode == 403 || response.statusCode == 401) {
+            response.statusCode == 401 {
             error.pointee = CaronaeError.invalidCredentials
             
             DispatchQueue.main.async {
