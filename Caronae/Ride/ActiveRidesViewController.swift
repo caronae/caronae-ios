@@ -2,6 +2,7 @@ import UIKit
 import RealmSwift
 
 class ActiveRidesViewController: RideListController {
+    var ridesNotificationToken: NotificationToken? = nil
     var unreadNotifications: Results<Notification>!
     
     override func viewDidLoad() {
@@ -11,32 +12,63 @@ class ActiveRidesViewController: RideListController {
         self.navigationController?.view.backgroundColor = UIColor.white
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
-        loadRides()
+        RideService.instance.getActiveRides(success: { rides in
+            self.rides = rides
+            self.subscribeToChanges()
+        }, error: { error in
+            self.loadingFailedWithError(error)
+        })
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateNotificationBadges), name: Foundation.Notification.Name.CaronaeDidUpdateNotifications, object: nil)
         updateNotificationBadges()
     }
     
     deinit {
+        ridesNotificationToken?.stop()
         NotificationCenter.default.removeObserver(self)
     }
     
-    func loadRides() {
-        RideService.instance.getActiveRides(success: { rides in
+    func refreshTable(_ sender: Any) {
+        RideService.instance.updateActiveRides(success: {
             self.refreshControl.endRefreshing()
-            self.rides = rides
-            self.tableView.reloadData()
-            self.tableView.tableFooterView = rides.isEmpty ? nil : self.tableFooter
+            NSLog("Offered rides updated")
         }, error: { error in
             self.refreshControl.endRefreshing()
-            self.loadingFailedWithError(error)
-            self.tableView.reloadData()
-            self.tableView.tableFooterView = nil
+            NSLog("Error updating offered rides (\(error.localizedDescription))")
         })
     }
     
-    func refreshTable(_ sender: Any) {
-        loadRides()
+    func subscribeToChanges() {
+        guard let rides = rides as? Results<Ride> else {
+            return
+        }
+        
+        ridesNotificationToken = rides.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+            guard let tableView = self?.tableView else { return }
+            self?.updateFilteredRides()
+            
+            switch changes {
+            case .initial:
+                // Results are now populated and can be accessed without blocking the UI
+                tableView.reloadData()
+                break
+            case .update(_, let deletions, let insertions, let modifications):
+                // Query results have changed, so apply them to the UITableView
+                tableView.beginUpdates()
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                                     with: .automatic)
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.endUpdates()
+                break
+            case .error(let error):
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("\(error)")
+                break
+            }
+        }
     }
     
     func updateNotificationBadges() {
@@ -46,7 +78,7 @@ class ActiveRidesViewController: RideListController {
         } else {
             navigationController?.tabBarItem.badgeValue = String(format: "%ld", unreadNotifications.count)
         }
-        loadRides()
+        tableView.reloadData()
     }
     
     func openChatForRide(withID rideID: Int) {

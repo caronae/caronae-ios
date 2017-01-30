@@ -26,7 +26,7 @@
     self.hubs = [CaronaeConstants defaults].centers;
     self.selectedHub = self.hubs.firstObject;
     
-    self.rideDate = [NSDate nextHour];
+    self.rideDate = MAX([NSDate nextHour], [NSDate currentTimePlus:5]);
     self.weekDays = [NSMutableArray arrayWithCapacity:7];
     self.routineDurationMonths = 2;
     
@@ -321,7 +321,7 @@
 - (IBAction)selectDateTapped:(id)sender {
     [self.view endEditing:YES];
     ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle: (self.segmentedControl.selectedSegmentIndex == 0)? @"Chegada ao destino" : @"Saída da UFRJ" datePickerMode:UIDatePickerModeDateAndTime selectedDate:self.rideDate target:self action:@selector(timeWasSelected:element:) origin:sender];
-    ((UIDatePicker *)datePicker).minimumDate = [NSDate currentHour];
+    ((UIDatePicker *)datePicker).minimumDate = [NSDate currentTimePlus:5];
     [datePicker showActionSheetPicker];
 }
 

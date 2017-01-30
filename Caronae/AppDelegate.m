@@ -74,6 +74,12 @@
         } error:^(NSError * _Nonnull error) {
             NSLog(@"Couldn't update offered rides");
         }];
+        
+        [RideService.instance updateActiveRidesWithSuccess:^{
+            NSLog(@"Offered rides updated");
+        } error:^(NSError * _Nonnull error) {
+            NSLog(@"Couldn't update offered rides");
+        }];
     }
 }
 
