@@ -55,13 +55,18 @@ class ChatViewController: JSQMessagesViewController {
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
         
         self.loadChatMessages()
-        self.clearNotifications()
         
         automaticallyScrollsToMostRecentMessage = true
         
         self.collectionView?.reloadData()
         self.collectionView?.layoutIfNeeded()
         self.scrollToBottom(animated: false)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.clearNotifications()
     }
     
     
