@@ -92,7 +92,18 @@ class RideService: NSObject {
         })
     }
 
-    func getActiveRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func getActiveRides(success: @escaping (_ rides: Results<Ride>) -> Void, error: @escaping (_ error: Error) -> Void) {
+        do {
+            let realm = try Realm()
+            let rides = realm.objects(Ride.self).filter("isActive == true").sorted(byProperty: "date")
+            
+            success(rides)
+        } catch let realmError {
+            error(realmError)
+        }
+    }
+    
+    func updateActiveRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         api.get("/ride/getMyActiveRides", parameters: nil, success: { task, responseObject in
             guard let ridesJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
@@ -136,7 +147,7 @@ class RideService: NSObject {
             // Subscribe to rides
             rides.forEach { ChatService.instance.subscribeToRide(withID: $0.id) }
             
-            success(rides.sorted { $0.date < $1.date })
+            success()
         }, failure: { _, err in
             error(err)
         })
@@ -242,6 +253,7 @@ class RideService: NSObject {
                     
                     ChatService.instance.unsubscribeFromRide(withID: id)
                     NotificationService.instance.clearNotifications(forRideID: id)
+                    self.updateActiveRides(success: {} , error: {_ in })
                 } else {
                     NSLog("Ride with id %d not found locally in user's rides", id)
                 }
