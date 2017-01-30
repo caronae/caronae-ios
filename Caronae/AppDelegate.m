@@ -103,8 +103,11 @@
         } else {
             [self displayAuthenticationScreen];
         }
+        
+        [self disconnectFromFcm];
     } else {
         [self registerForNotifications];
+        [self connectToFcm];
         [self checkIfUserNeedsToFinishProfile];
     }
 }
