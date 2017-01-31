@@ -82,9 +82,6 @@ class RideService: NSObject {
                 error(realmError)
             }
             
-            // Subscribe to rides
-            rides.forEach { ChatService.instance.subscribeToRide(withID: $0.id) }
-            
             success()
         }, failure: { _, err in
             NSLog("Error: Failed to get offered rides: \(err.localizedDescription)")
@@ -143,9 +140,6 @@ class RideService: NSObject {
             
             // Clear notifications for finished/canceled rides
             finishedRideIDs.forEach { id in NotificationService.instance.clearNotifications(forRideID: id) }
-            
-            // Subscribe to rides
-            rides.forEach { ChatService.instance.subscribeToRide(withID: $0.id) }
             
             success()
         }, failure: { _, err in
@@ -251,7 +245,6 @@ class RideService: NSObject {
                         realm.delete(ride)
                     }
                     
-                    ChatService.instance.unsubscribeFromRide(withID: id)
                     NotificationService.instance.clearNotifications(forRideID: id)
                     self.updateActiveRides(success: {} , error: {_ in })
                 } else {
@@ -276,7 +269,6 @@ class RideService: NSObject {
                         realm.delete(ride)
                     }
                     
-                    ChatService.instance.unsubscribeFromRide(withID: id)
                     NotificationService.instance.clearNotifications(forRideID: id)
                 } else {
                     NSLog("Rides with routine id %d not found locally in user's rides", id)
@@ -298,7 +290,6 @@ class RideService: NSObject {
                 let rides = realm.objects(Ride.self).filter("routineID == %@", id)
                 if !rides.isEmpty {    
                     rides.forEach { ride in
-                        ChatService.instance.unsubscribeFromRide(withID: ride.id)
                         NotificationService.instance.clearNotifications(forRideID: ride.id)
                     }
                     

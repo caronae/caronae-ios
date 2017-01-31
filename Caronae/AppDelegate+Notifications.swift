@@ -51,7 +51,6 @@ extension AppDelegate {
         notification.kind = .rideJoinRequestAccepted
         
         NotificationService.instance.createNotification(notification)
-        ChatService.instance.subscribeToRide(withID: rideID)
         showMessageIfActive(message)
     }
     
@@ -62,7 +61,6 @@ extension AppDelegate {
         }
         
         NotificationService.instance.clearNotifications(forRideID: rideID)
-        ChatService.instance.unsubscribeFromRide(withID: rideID)
         showMessageIfActive(message)
     }
     

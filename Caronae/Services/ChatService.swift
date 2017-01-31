@@ -9,18 +9,6 @@ class ChatService: NSObject {
         // This prevents others from using the default '()' initializer for this class.
     }
     
-    func subscribeToRide(withID id: Int) {
-        let topic = topicID(withRideID: id)
-        NSLog("Subscribing to \(topic)")
-        FIRMessaging.messaging().subscribe(toTopic: topic)
-    }
-    
-    func unsubscribeFromRide(withID id: Int) {
-        let topic = topicID(withRideID: id)
-        NSLog("Unsubscribing from \(topic)")
-        FIRMessaging.messaging().unsubscribe(fromTopic: topic)
-    }
-    
     
     // MARK: Message methods
     
@@ -129,9 +117,5 @@ class ChatService: NSObject {
             NSLog("Error sending message data: \(err.localizedDescription)")
             completionBlock(nil, err)
         })
-    }
-    
-    private func topicID(withRideID id: Int) -> String {
-        return "/topics/\(id)"
     }
 }
