@@ -24,6 +24,7 @@ class ChatViewController: JSQMessagesViewController {
     
     deinit {
         messagesNotificationToken.stop()
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidLoad() {
@@ -55,18 +56,16 @@ class ChatViewController: JSQMessagesViewController {
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
         
         self.loadChatMessages()
+        self.clearNotifications()
+        
+        // Clear notifications when ApplicationWillEnterForeground
+        NotificationCenter.default.addObserver(self, selector:#selector(self.clearNotifications), name: .UIApplicationWillEnterForeground, object: nil)
         
         automaticallyScrollsToMostRecentMessage = true
         
         self.collectionView?.reloadData()
         self.collectionView?.layoutIfNeeded()
         self.scrollToBottom(animated: false)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.clearNotifications()
     }
     
     
