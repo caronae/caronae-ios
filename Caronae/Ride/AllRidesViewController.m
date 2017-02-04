@@ -38,10 +38,8 @@
     return _tableFooter;
 }
 
-- (void)refreshTable:(id)sender {
-    if (self.refreshControl.refreshing) {
-        [self loadAllRides];
-    }
+- (void)refreshTable {
+    [self loadAllRides];
 }
 
 

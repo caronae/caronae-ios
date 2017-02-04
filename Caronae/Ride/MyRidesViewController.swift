@@ -29,7 +29,7 @@ class MyRidesViewController: RideListController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func refreshTable(_ sender: Any) {
+    func refreshTable() {
         RideService.instance.updateOfferedRides(success: {
             self.refreshControl.endRefreshing()
             NSLog("Offered rides updated")

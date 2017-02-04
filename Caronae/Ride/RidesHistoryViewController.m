@@ -13,10 +13,8 @@
     [self loadRidesHistory];
 }
 
-- (void)refreshTable:(id)sender {
-    if (self.refreshControl.refreshing) {
-        [self loadRidesHistory];
-    }
+- (void)refreshTable {
+    [self loadRidesHistory];
 }
 
 

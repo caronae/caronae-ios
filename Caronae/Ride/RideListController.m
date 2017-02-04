@@ -27,17 +27,14 @@ static CGFloat const RideListMessageFontSize = 25.0f;
         self.ridesDirectionGoing = YES;
         self.hidesDirectionControl = NO;
         
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-        if ([self respondsToSelector:@selector(refreshTable:)]) {
+        if ([self respondsToSelector:NSSelectorFromString(@"refreshTable")]) {
             self.refreshControl = [[UIRefreshControl alloc] init];
             self.refreshControl.tintColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
             [self.refreshControl addTarget:self
-                                    action:@selector(refreshTable:)
+                                    action:NSSelectorFromString(@"refreshTable")
                           forControlEvents:UIControlEventValueChanged];
             [self.tableView addSubview:self.refreshControl];
         }
-#pragma clang diagnostic pop
     }
     return self;
 }
