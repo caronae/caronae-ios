@@ -8,6 +8,7 @@
 @implementation RidesHistoryViewController
 
 - (void)viewDidLoad {
+    self.hidesDirectionControl = YES;
     [super viewDidLoad];
     [self loadRidesHistory];
 }
