@@ -24,9 +24,6 @@
     [CRToastManager setDefaultOptions:@{
                                         kCRToastBackgroundColorKey: [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000],
                                         }];
-#ifdef DEBUG
-    [self updateStatusBarDebugInfo];
-#endif
     
     // Load the authentication screen if the user is not signed in
     if (UserService.instance.user) {
@@ -95,10 +92,6 @@
 }
 
 - (void)didUpdateUser:(NSNotification *)notification {
-#ifdef DEBUG
-    [self updateStatusBarDebugInfo];
-#endif
-    
     if (!UserService.instance.user) {
         // Check if the logout was forced by the server
         id signOutRequired = notification.userInfo[CaronaeSignOutRequiredKey];
@@ -228,27 +221,5 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     [self didReceiveLocalNotification:notification];
 }
-
-
-#pragma mark - Etc.
-
-#ifdef DEBUG
-- (void)updateStatusBarDebugInfo {
-    // Show the current API server on the status bar
-    NSString *debugMessage = [NSString stringWithFormat:@"API: %@", CaronaeAPIBaseURL];
-    if (UserService.instance.user) {
-        debugMessage = [NSString stringWithFormat:@"%@ User: %ld", debugMessage, (long)UserService.instance.user.id];
-    }
-    [CRToastManager dismissAllNotifications:false];
-    [CRToastManager showNotificationWithOptions:@{
-                                                  kCRToastTextKey: debugMessage,
-                                                  kCRToastBackgroundColorKey: [UIColor colorWithWhite:0.96 alpha:1],
-                                                  kCRToastTextColorKey: [UIColor blackColor],
-                                                  kCRToastAnimationInTimeIntervalKey: @0,
-                                                  kCRToastTimeIntervalKey: @DBL_MAX
-                                                  }
-                                completionBlock:nil];
-}
-#endif
 
 @end
