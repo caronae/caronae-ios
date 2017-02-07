@@ -32,10 +32,10 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.16.1):
     - FBSDKCoreKit
-  - Firebase/Core (3.11.1):
+  - Firebase/Core (3.12.0):
     - FirebaseAnalytics (= 3.6.0)
     - FirebaseCore (= 3.4.7)
-  - Firebase/Messaging (3.11.1):
+  - Firebase/Messaging (3.12.0):
     - Firebase/Core
     - FirebaseMessaging (= 1.2.1)
   - FirebaseAnalytics (3.6.0):
@@ -131,7 +131,7 @@ SPEC CHECKSUMS:
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   FBSDKCoreKit: 6feac4e8921ccd7afa83fb1df6291dc6eec42c7c
   FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
-  Firebase: 53b2343db1ebfa3eb16bdb4318b8bb65360b2220
+  Firebase: 8e99eb1ff553ad5bcc6072cc3d925bb89c1244d6
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
   FirebaseCore: 46afaf2c2e0419ea7d3acfb08cf26a461a75fe85
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
@@ -149,7 +149,7 @@ SPEC CHECKSUMS:
   RealmSwift: 17d6ee30b6f9df86364408c2197492e33bfea567
   SDCAlertView: 2e2b0ecc5f1ec367e45d83efa2e512688ca7fa55
   SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   SHSPhoneComponent: 4cec0653a150ad63cbc52b0c8b29ce2d3c9c26f0
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
@@ -157,4 +157,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f2699f2e896d13a08d0078f8b26ad119badb4291
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0
