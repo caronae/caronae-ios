@@ -58,7 +58,7 @@ class UserService: NSObject {
             guard let responseObject = responseObject as? [String: Any],
             let userJson = responseObject["user"] as? [String: Any],
             let user = User(JSON: userJson) else {
-                print("Error parsing user response")
+                NSLog("Error parsing user response")
                 error(.invalidResponse)
                 return
             }

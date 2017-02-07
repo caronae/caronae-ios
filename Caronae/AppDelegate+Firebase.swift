@@ -37,9 +37,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         
         FIRMessaging.messaging().connect { error in
             if error != nil {
-                print("Unable to connect with FCM. \(error)")
+                NSLog("Unable to connect with FCM. \(error)")
             } else {
-                print("Connected to FCM.")
+                NSLog("Connected to FCM.")
                 self.subscribeToUserTopic()
                 self.subscribeToGeneralTopic()
             }

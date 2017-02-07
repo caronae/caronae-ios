@@ -27,7 +27,7 @@ class RideService: NSObject {
             
             success(rides)
         }, failure: { _, err in
-            print("Failed to load all rides: \(err.localizedDescription)")
+            NSLog("Failed to load all rides: \(err.localizedDescription)")
             error(err)
         })
     }
