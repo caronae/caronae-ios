@@ -31,10 +31,10 @@ class ActiveRidesViewController: RideListController {
     func refreshTable() {
         RideService.instance.updateActiveRides(success: {
             self.refreshControl.endRefreshing()
-            NSLog("Offered rides updated")
+            NSLog("Active rides updated")
         }, error: { error in
             self.refreshControl.endRefreshing()
-            NSLog("Error updating offered rides (\(error.localizedDescription))")
+            NSLog("Error updating active rides (\(error.localizedDescription))")
         })
     }
     
