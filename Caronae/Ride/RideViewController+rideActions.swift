@@ -68,7 +68,7 @@ extension RideViewController {
     func subscribeToChanges() {
         ridersNotificationToken = ride.riders.addNotificationBlock { (changes: RealmCollectionChange) in
             
-            if (self.userIsDriver() && self.finishRideViewHeightZero.isActive && self.ride.isActive) {
+            if (self.userIsDriver() && self.finishRideViewHeightZero.isActive && self.ride.isActive && !self.ride.date.isInTheFuture()) {
                 self.finishRideViewHeightZero.isActive = false
                 UIView.animate(withDuration: 0.25) {
                     self.view.layoutIfNeeded()
