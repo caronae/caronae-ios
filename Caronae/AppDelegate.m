@@ -107,6 +107,20 @@
     } else {
         [self registerForNotifications];
         [self connectToFcm];
+        
+        // Update offered and active rides after login
+        [RideService.instance updateOfferedRidesWithSuccess:^{
+            NSLog(@"Offered rides updated");
+        } error:^(NSError * _Nonnull error) {
+            NSLog(@"Couldn't update offered rides");
+        }];
+        
+        [RideService.instance updateActiveRidesWithSuccess:^{
+            NSLog(@"Active rides updated");
+        } error:^(NSError * _Nonnull error) {
+            NSLog(@"Couldn't update active rides");
+        }];
+        
         [self checkIfUserNeedsToFinishProfile];
     }
 }
@@ -197,6 +211,26 @@
     }
     else if ([msgType isEqualToString:@"chat"]) {
         NSInteger rideID = [userInfo[@"rideId"] integerValue];
+        
+//        if ([UIApplication sharedApplication].topViewController) {
+//        UIViewController *topViewController = [UIApplication sharedApplication].topViewController;
+//        NSLog(@"########## class topVC %@", [topViewController class]);
+////            if ((ChatViewController *) topViewController) {
+//                ChatViewController *chatViewController = (ChatViewController *) topViewController;
+//                if ([chatViewController ride].id == rideID) {
+//                    return;
+//                }
+//            }
+//        }
+        
+        
+//        if let topViewController = UIApplication.shared.topViewController(),
+//            let chatViewController = topViewController as? ChatViewController,
+//            chatViewController.ride.id == rideID {
+//                return
+//            }
+        
+        
         tabBarController.selectedViewController = tabBarController.activeRidesNavigationController;
         ActiveRidesViewController *activeRidesViewController = tabBarController.activeRidesViewController;
         [activeRidesViewController openChatForRideWithID:rideID];
