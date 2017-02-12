@@ -58,18 +58,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     }
     
     func subscribeToUserTopic() {
-        if let user = UserService.instance.user {
-            let topic = "/topics/user-\(user.id)"
-            NSLog("Subscribing to: \(topic)")
-            FIRMessaging.messaging().subscribe(toTopic: topic)
-        }
-    }
-    
-    func unsubscribeFromUserTopic() {
-        if let user = UserService.instance.user {
-            let topic = "/topics/user-\(user.id)"
-            NSLog("Unsubscribing from: \(topic)")
-            FIRMessaging.messaging().unsubscribe(fromTopic: topic)
+        if let userTopic = UserService.instance.userTopic {
+            NSLog("Subscribing to: \(userTopic)")
+            FIRMessaging.messaging().subscribe(toTopic: userTopic)
         }
     }
     

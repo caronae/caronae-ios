@@ -2,6 +2,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Foundation
 import RealmSwift
+import Firebase
 
 class UserService: NSObject {
     static let instance = UserService()
@@ -50,6 +51,13 @@ class UserService: NSObject {
     
     var userFacebookToken: String? {
         return FBSDKAccessToken.current()?.tokenString
+    }
+    
+    var userTopic: String? {
+        guard let user = self.user else {
+            return nil
+        }
+        return "/topics/user-\(user.id)"
     }
     
     func signIn(withID idUFRJ: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
@@ -103,6 +111,12 @@ class UserService: NSObject {
     }
     
     func signOut(force: Bool = false) {
+        // Unsubscribe from FCM user topic
+        if let userTopic = self.userTopic {
+            NSLog("Unsubscribing from: \(userTopic)")
+            FIRMessaging.messaging().unsubscribe(fromTopic: userTopic)
+        }
+        
         // Clear database
         do {
             let realm = try Realm()
