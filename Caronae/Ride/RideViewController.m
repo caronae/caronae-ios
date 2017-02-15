@@ -40,6 +40,9 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Load ride from realm database if available
+    [self loadRealmRide];
+    
     self.title = @"Carona";
     
     [self clearNotifications];
