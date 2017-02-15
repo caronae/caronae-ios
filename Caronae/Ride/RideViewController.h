@@ -1,5 +1,4 @@
 @import UIKit;
-@import Realm;
 
 @class Ride;
 
@@ -49,8 +48,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishRideButton;
-
-// Realm Notification
-@property (nonatomic) RLMNotificationToken *ridersNotificationToken;
 
 @end

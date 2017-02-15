@@ -46,7 +46,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     self.title = @"Carona";
     
     [self clearNotifications];
-    [self subscribeToChanges];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateChatButtonBadge) name:CaronaeDidUpdateNotifications object:nil];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -183,7 +182,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [_ridersNotificationToken stop];
 }
 
 - (void)setColor:(UIColor *)color {
