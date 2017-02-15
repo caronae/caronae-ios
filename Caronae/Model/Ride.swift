@@ -52,7 +52,7 @@ class Ride: Object, Mappable {
         _dateString <- map["mydate"]
         _timeString <- map["mytime"]
         
-        routineID <- map["routine_id"]
+        routineID.value <- map["routine_id"]
         weekDays <- map["week_days"]
         repeatsUntil <- (map["repeats_until"], dateFormatter)
         
