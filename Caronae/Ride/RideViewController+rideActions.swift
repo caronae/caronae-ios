@@ -74,26 +74,20 @@ extension RideViewController {
     }
     
     func subscribeToChanges() {
-        ridersNotificationToken = ride.riders.addNotificationBlock { (changes: RealmCollectionChange) in
-            
-            if (self.userIsDriver() && self.finishRideViewHeightZero.isActive && self.ride.isActive && !self.ride.date.isInTheFuture()) {
-                self.finishRideViewHeightZero.isActive = false
-                UIView.animate(withDuration: 0.25) {
-                    self.view.layoutIfNeeded()
-                }
-            }
+        ridersNotificationToken = ride.riders.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+            guard let ridersCollectionView = self?.ridersCollectionView else { return }
             
             switch changes {
             case .initial:
                 // Results are now populated and can be accessed without blocking the UI
-                self.ridersCollectionView.reloadData()
+                ridersCollectionView.reloadData()
                 break
             case .update(_, let deletions, let insertions, let modifications):
                 // Query results have changed, so apply them to the UICollectionView
-                self.ridersCollectionView.performBatchUpdates({
-                    self.ridersCollectionView.insertItems(at: insertions.map{ IndexPath(row: $0, section: 0) })
-                    self.ridersCollectionView.deleteItems(at: deletions.map{ IndexPath(row: $0, section: 0) })
-                    self.ridersCollectionView.reloadItems(at: modifications.map{ IndexPath(row: $0, section: 0) })
+                ridersCollectionView.performBatchUpdates({
+                    ridersCollectionView.insertItems(at: insertions.map{ IndexPath(row: $0, section: 0) })
+                    ridersCollectionView.deleteItems(at: deletions.map{ IndexPath(row: $0, section: 0) })
+                    ridersCollectionView.reloadItems(at: modifications.map{ IndexPath(row: $0, section: 0) })
                 }, completion: { _ in })
                 break
             case .error(let error):
@@ -105,4 +99,3 @@ extension RideViewController {
     }
     
 }
-

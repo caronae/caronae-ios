@@ -44,7 +44,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *carIconColor;
 @property (weak, nonatomic) IBOutlet UITableView *requestsTable;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *requestsTableHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *finishRideViewHeightZero;
 
 // Buttons
 @property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
