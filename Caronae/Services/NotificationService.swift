@@ -30,15 +30,15 @@ class NotificationService: NSObject {
         notifyObservers()
     }
     
-    func clearNotifications(forRideID rideID: Int? = nil, of kind: Notification.Kind? = nil) {
+    func clearNotifications(forRideID rideID: Int? = nil, of kinds: [Notification.Kind] = []) {
         do {
             let realm = try Realm()
             var notifications = realm.objects(Notification.self)
             if let rideID = rideID {
                 notifications = notifications.filter("rideID == %@", rideID)
             }
-            if let kind = kind {
-                notifications = notifications.filter("kind == %@", kind.rawValue)
+            if !kinds.isEmpty {
+                notifications = notifications.filter("kind IN %@", kinds.map { $0.rawValue })
             }
             
             try realm.write {

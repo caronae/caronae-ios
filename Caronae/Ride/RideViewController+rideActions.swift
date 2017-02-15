@@ -62,7 +62,7 @@ extension RideViewController {
     }
     
     func clearNotifications() {
-        NotificationService.instance.clearNotifications(forRideID: ride.id, of: .rideJoinRequestAccepted)
+        NotificationService.instance.clearNotifications(forRideID: ride.id, of: [.rideJoinRequestAccepted])
     }
     
     func subscribeToChanges() {

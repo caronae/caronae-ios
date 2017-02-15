@@ -269,7 +269,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func clearNotifications() {
-        NotificationService.instance.clearNotifications(forRideID: ride.id, of: .chat)
+        NotificationService.instance.clearNotifications(forRideID: ride.id, of: [.chat])
     }
     
     

@@ -33,19 +33,15 @@ class RideService: NSObject {
     }
     
     func getOfferedRides(success: @escaping (_ rides: Results<Ride>) -> Void, error: @escaping (_ error: Error) -> Void) {
-        let user = UserService.instance.user!
-        let currentDate = Date()
+        guard let user = UserService.instance.user else {
+            NSLog("Error: No userID registered")
+            return
+        }
         
         do {
             let realm = try Realm()
-            let userRides = realm.objects(Ride.self).filter("driver == %@", user)
-            
-            let ridesInThePast = userRides.filter("date < %@", currentDate)
-            ridesInThePast.forEach { ride in
-                NotificationService.instance.clearNotifications(forRideID: ride.id, of: .rideJoinRequest)
-            }
-
-            let rides = userRides.filter("date >= %@", currentDate).sorted(byProperty: "date")
+            let currentDate = Date()
+            let rides = realm.objects(Ride.self).filter("driver == %@ AND date >= %@", user, currentDate).sorted(byProperty: "date")
             
             success(rides)
         } catch let realmError {
@@ -67,14 +63,33 @@ class RideService: NSObject {
             }
             
             // Deserialize response
-            let rides = ridesJson.flatMap {
-                let ride = Ride(JSON: $0)
+            let rides = ridesJson.flatMap { rideJson in
+                let ride = Ride(JSON: rideJson)
                 ride?.driver = user
+                if let riders = ride?.riders, !riders.isEmpty {
+                    ride?.isActive = true
+                }
                 return ride
             } as [Ride]
             
             do {
                 let realm = try Realm()
+                let currentDate = Date()
+                let ridesInThePast = realm.objects(Ride.self).filter("date < %@ AND isActive == false", currentDate)
+                
+                // Clear notifications for inactive rides in the past
+                ridesInThePast.forEach { ride in
+                    NotificationService.instance.clearNotifications(forRideID: ride.id)
+                }
+                
+                // Delete inactive rides in the past
+                try realm.write {
+                    ridesInThePast.forEach { ride in
+                        realm.delete(ride)
+                    }
+                }
+                
+                // Update offered rides
                 try realm.write {
                     realm.add(rides, update: true)
                 }
@@ -107,39 +122,36 @@ class RideService: NSObject {
                 return
             }
             
+            // Deserialize response
             let rides = ridesJson.flatMap { rideJson in
                 let ride = Ride(JSON: rideJson)
                 ride?.isActive = true
                 return ride
             } as [Ride]
             
-            var finishedRideIDs = [Int]()
-            
             do {
                 let realm = try Realm()
+                // Clear rides previously marked as active
+                let previouslyActives = realm.objects(Ride.self).filter("isActive == true")
                 try realm.write {
-                    // Clear rides previously marked as active
-                    realm.objects(Ride.self).filter("isActive == true").forEach { $0.isActive = false }
-                    
-                    // Delete Ride Object for finished/canceled rides and save RideIDs
-                    let currentActivesID = rides.flatMap { $0.id }
-                    let unreadNotifications = try! NotificationService.instance.getNotifications(of: [.chat, .rideJoinRequestAccepted])
-                    unreadNotifications.forEach { notification in
-                        if !currentActivesID.contains(notification.rideID) {
-                            finishedRideIDs.append(notification.rideID)
-                            let ride = realm.objects(Ride.self).filter("id == %@", notification.rideID)
-                            realm.delete(ride)
-                        }
-                    }
-                    
+                    previouslyActives.forEach { $0.isActive = false }
+                }
+                
+                // Clear notifications for finished/canceled rides
+                let currentActiveIDs = rides.flatMap { $0.id }
+                var previouslyActiveIDs = Set(previouslyActives.enumerated().flatMap { $0.1.id })
+                previouslyActiveIDs.subtract(currentActiveIDs)
+                previouslyActiveIDs.forEach { id in
+                    NotificationService.instance.clearNotifications(forRideID: id, of: [.chat, .rideJoinRequestAccepted])
+                }
+                
+                // Update active rides
+                try realm.write {
                     realm.add(rides, update: true)
                 }
             } catch let realmError {
                 error(realmError)
             }
-            
-            // Clear notifications for finished/canceled rides
-            finishedRideIDs.forEach { id in NotificationService.instance.clearNotifications(forRideID: id) }
             
             success()
         }, failure: { _, err in
@@ -198,7 +210,7 @@ class RideService: NSObject {
                 return
             }
             
-            NotificationService.instance.clearNotifications(forRideID: id, of: .rideJoinRequest)
+            NotificationService.instance.clearNotifications(forRideID: id, of: [.rideJoinRequest])
             
             let users = usersJson.flatMap { User(JSON: $0) }
             success(users)
