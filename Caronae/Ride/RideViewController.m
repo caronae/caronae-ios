@@ -452,6 +452,14 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (collectionView == _ridersCollectionView) {
+        
+        // Show message if there is no riders
+        if ([self.riders count] == 0) {
+            [_noRidersLabel setHidden: NO];
+        } else {
+            [_noRidersLabel setHidden: YES];
+        }
+        
         return [self.riders count];
     } else {
         return _mutualFriends.count;

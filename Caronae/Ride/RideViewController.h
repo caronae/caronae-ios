@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *carPlateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *carModelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *carColorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noRidersLabel;
 
 // Assets
 @property (weak, nonatomic) IBOutlet UIView *headerView;
