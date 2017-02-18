@@ -47,8 +47,6 @@
     self.notesPlaceholder = self.notes.text;
     self.notesTextColor = self.notes.textColor;
     
-    self.slotsLabel.text = [NSString stringWithFormat:@"%.f", self.slotsStepper.value];
-    
     // Dismiss keyboard when tapping the view
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
     
@@ -65,8 +63,11 @@
             self.selectedHub = lastRideLocation[@"hubGoing"];
             [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
         }
+        if (lastRideLocation[@"slots"]) self.slotsStepper.value = [lastRideLocation[@"slots"] integerValue];
         if (lastRideLocation[@"description"]) self.notes.text = lastRideLocation[@"description"];
     }
+    
+    self.slotsLabel.text = [NSString stringWithFormat:@"%.f", self.slotsStepper.value];
 }
 
 - (void)checkIfUserHasCar {
@@ -112,9 +113,9 @@
     return ride;
 }
 
-- (void)savePresetLocationZone:(NSString *)zone neighborhood:(NSString *)neighborhood place:(NSString *)place route:(NSString *)route hub:(NSString *)hub description:(NSString *)description going:(BOOL)going {
+- (void)savePresetLocationZone:(NSString *)zone neighborhood:(NSString *)neighborhood place:(NSString *)place route:(NSString *)route hub:(NSString *)hub description:(NSString *)description slots:(NSNumber*)slots going:(BOOL)going {
     NSDictionary *lastRidePresets = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
-    NSMutableDictionary *newPresets = [NSDictionaryOfVariableBindings(zone, neighborhood, place, route, description) mutableCopy];
+    NSMutableDictionary *newPresets = [NSDictionaryOfVariableBindings(zone, neighborhood, place, route, description, slots) mutableCopy];
 
     if (going) {
         newPresets[@"hubGoing"] = hub;
@@ -157,7 +158,7 @@
     }
     
     Ride *ride = [self generateRideFromView];
-    [self savePresetLocationZone:ride.region neighborhood:ride.neighborhood place:ride.place route:ride.route hub:ride.hub description:ride.notes going:ride.going];
+    [self savePresetLocationZone:ride.region neighborhood:ride.neighborhood place:ride.place route:ride.route hub:ride.hub description:ride.notes slots:[NSNumber numberWithInteger: ride.slots] going:ride.going];
     
     // Check if the user has selected the routine details
     if (ride.repeatsUntil && ride.weekDays.length == 0) {
