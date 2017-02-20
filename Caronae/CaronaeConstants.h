@@ -10,6 +10,7 @@ extern NSString *const CaronaeAPIBaseURL;
 extern NSString *const CaronaeIntranetURLString;
 extern NSString *const CaronaeAboutPageURLString;
 extern NSString *const CaronaeTermsOfUsePageURLString;
+extern NSString *const CaronaeFAQPageURLString;
 
 
 #pragma mark - Preference keys

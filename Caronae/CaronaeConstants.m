@@ -11,6 +11,7 @@ NSString *const CaronaeAPIBaseURL = @"https://api.caronae.ufrj.br";
 NSString *const CaronaeIntranetURLString = @"https://api.caronae.ufrj.br/chave";
 NSString *const CaronaeAboutPageURLString = @"https://api.caronae.ufrj.br/static_pages/sobre.html";
 NSString *const CaronaeTermsOfUsePageURLString = @"https://api.caronae.ufrj.br/static_pages/termos.html";
+NSString *const CaronaeFAQPageURLString = @"https://api.caronae.ufrj.br/static_pages/faq.html";
 
 
 #pragma mark - Notifications
