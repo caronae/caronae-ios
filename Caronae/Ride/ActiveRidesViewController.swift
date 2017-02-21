@@ -12,6 +12,8 @@ class ActiveRidesViewController: RideListController {
         self.navigationController?.view.backgroundColor = UIColor.white
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
+        self.tableView.tableFooterView = tableFooter
+        
         RideService.instance.getActiveRides(success: { rides in
             self.rides = rides
             self.subscribeToChanges()
