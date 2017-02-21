@@ -84,10 +84,17 @@ class ActiveRidesViewController: RideListController {
     }
     
     func openChatForRide(withID rideID: Int) {
-        var rides = self.rides as! [Ride]
-        rides = rides.filter { $0.id == rideID }
-        guard let ride = rides.first else {
-            return
+        let realm = try! Realm()
+        var ride: Ride
+        
+        if let realmRide = realm.objects(Ride.self).filter("id == %@", rideID).first {
+            ride = realmRide
+        } else {
+            let rides = self.rides as? [Ride]
+            guard let rideFiltered = rides?.filter({ $0.id == rideID }).first else {
+                return
+            }
+            ride = rideFiltered
         }
         
         let rideViewController = RideViewController(for: ride)!
