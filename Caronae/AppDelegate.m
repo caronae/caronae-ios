@@ -211,6 +211,14 @@
     }
     else if ([msgType isEqualToString:@"chat"]) {
         NSInteger rideID = [userInfo[@"rideId"] integerValue];
+        // Check if chat for rideID is already opened
+        UIViewController *topViewController = [UIApplication sharedApplication].topViewController;
+        if ([topViewController isKindOfClass:[ChatViewController class]]) {
+            if ([((ChatViewController *)topViewController) ride].id == rideID) {
+                return;
+            }
+        }
+        // Open chat for rideID
         tabBarController.selectedViewController = tabBarController.activeRidesNavigationController;
         ActiveRidesViewController *activeRidesViewController = tabBarController.activeRidesViewController;
         [activeRidesViewController openChatForRideWithID:rideID];
