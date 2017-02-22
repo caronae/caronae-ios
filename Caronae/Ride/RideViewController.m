@@ -379,6 +379,9 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     [RideService.instance answerRequestOnRideWithID:_ride.id fromUser:requestingUser accepted:accepted success:^{
         NSLog(@"Request for user %@ was %@", requestingUser.name, accepted ? @"accepted" : @"not accepted");
         [self removeJoinRequest:requestingUser];
+        if (accepted) {
+            [_ridersCollectionView reloadData];
+        }
     } error:^(NSError * _Nonnull error) {
         NSLog(@"Error accepting join request: %@", error.localizedDescription);
         [cell setButtonsEnabled:YES];
