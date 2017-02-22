@@ -91,9 +91,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any]) {
         NSLog("Remote notification received 1: %@", userInfo)
         
-        // Let FCM know about the message for analytics etc.
-        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
-        
         _ = handleNotification(userInfo)
     }
     
@@ -107,9 +104,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         }
         
         NSLog("Remote notification received 2: %@", userInfo)
-        
-        // Let FCM know about the message for analytics etc.
-        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
         
         // If the application received the notification on the background or foreground
         if application.applicationState != .inactive {
@@ -141,13 +135,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
         
-        // Let FCM know about the message for analytics etc.
-        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
-        
-        // Print message ID.
-        NSLog("Message ID: \(userInfo["gcm.message_id"]!)")
-        // Print full message.
-        NSLog("%@", userInfo)
+        NSLog("Notification received on iOS 10 or greater: %@", userInfo)
         _ = handleNotification(userInfo)
         
         completionHandler([])
@@ -159,10 +147,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
-        
-        // Let FCM know about the message for analytics etc.
-        FIRMessaging.messaging().appDidReceiveMessage(userInfo)
-        
+        NSLog("Opening app from local notification on iOS 10 or greater")
         setActiveScreenAccordingToNotification(userInfo)
         completionHandler()
     }
@@ -170,11 +155,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     // [START ios_10_data_message_handling]
     // Receive data message on iOS 10 devices while app is in the foreground.
     public func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
-        NSLog("%@", remoteMessage.appData)
-        
-        // Let FCM know about the message for analytics etc.
-        FIRMessaging.messaging().appDidReceiveMessage(remoteMessage.appData)
-        
+        NSLog("Data message received on iOS 10 or greater: %@", remoteMessage.appData)
         _ = handleNotification(remoteMessage.appData)
     }
 }
