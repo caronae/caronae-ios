@@ -51,6 +51,7 @@ extension AppDelegate {
         notification.kind = .rideJoinRequestAccepted
         
         NotificationService.instance.createNotification(notification)
+        updateActiveRidesIfActive()
         showMessageIfActive(message)
     }
     
@@ -61,6 +62,7 @@ extension AppDelegate {
         }
         
         NotificationService.instance.clearNotifications(forRideID: rideID)
+        updateActiveRidesIfActive()
         showMessageIfActive(message)
     }
     
@@ -113,6 +115,16 @@ extension AppDelegate {
     func showMessageIfActive(_ message: String) {
         if UIApplication.shared.applicationState == .active {
             CRToastManager.showNotification(options: [kCRToastTextKey: message], completionBlock: nil)
+        }
+    }
+    
+    func updateActiveRidesIfActive () {
+        if UIApplication.shared.applicationState == .active {
+            RideService.instance.updateActiveRides(success: {
+                NSLog("Active rides updated")
+            }, error: { error in
+                NSLog("Error updating active rides (\(error.localizedDescription))")
+            })
         }
     }
     
