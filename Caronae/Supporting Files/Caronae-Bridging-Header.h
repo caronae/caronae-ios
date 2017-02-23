@@ -11,6 +11,8 @@
 #import "EditProfileViewController.h"
 #import "RideListController.h"
 #import "RideViewController.h"
+#import "SearchResultsViewController.h"
+#import "SearchRideViewController.h"
 #import "TabBarController.h"
 
 #import "UIApplication+topViewController.h"

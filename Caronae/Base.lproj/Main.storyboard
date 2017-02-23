@@ -6986,7 +6986,7 @@ nenhuma carona.</string>
         <!--Todas-->
         <scene sceneID="Rt6-sC-yON">
             <objects>
-                <viewController id="cgK-sI-zYQ" customClass="AllRidesViewController" sceneMemberID="viewController">
+                <viewController id="cgK-sI-zYQ" customClass="AllRidesViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Todas" id="g6m-K6-JjX">
                         <barButtonItem key="rightBarButtonItem" image="SearchRide" id="yHa-PK-yef">
                             <connections>
@@ -7050,13 +7050,13 @@ nenhuma carona.</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9kE-zS-Odm"/>
-        <segue reference="gns-F9-8s8"/>
+        <segue reference="kXd-xG-sw3"/>
         <segue reference="emk-CJ-38Y"/>
+        <segue reference="DwZ-AK-niy"/>
+        <segue reference="hM9-nM-k0Y"/>
+        <segue reference="7VR-Dw-svl"/>
         <segue reference="IgS-9T-cpR"/>
         <segue reference="U3D-Zh-YLa"/>
-        <segue reference="kXd-xG-sw3"/>
-        <segue reference="7VR-Dw-svl"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
