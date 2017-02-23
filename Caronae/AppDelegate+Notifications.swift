@@ -16,6 +16,8 @@ extension AppDelegate {
             handleJoinRequestAccepted(userInfo)
         case "canceled", "cancelled", "finished":
             handleFinishedNotification(userInfo)
+        case "quitter":
+            handleQuitterNotification(userInfo)
         default:
             handleUnknownNotification(userInfo)
             return false
@@ -63,6 +65,16 @@ extension AppDelegate {
         
         NotificationService.instance.clearNotifications(forRideID: rideID)
         updateActiveRidesIfActive()
+        showMessageIfActive(message)
+    }
+    
+    private func handleQuitterNotification(_ userInfo: [AnyHashable: Any]) {
+        guard let (_, message) = rideNotificationInfo(userInfo) else {
+            NSLog("Received quitter notification but could not parse the notification data")
+            return
+        }
+        
+        updateOfferedRidesIfActive()
         showMessageIfActive(message)
     }
     
@@ -136,12 +148,22 @@ extension AppDelegate {
         }
     }
     
-    func updateActiveRidesIfActive () {
+    func updateActiveRidesIfActive() {
         if UIApplication.shared.applicationState == .active {
             RideService.instance.updateActiveRides(success: {
                 NSLog("Active rides updated")
             }, error: { error in
                 NSLog("Error updating active rides (\(error.localizedDescription))")
+            })
+        }
+    }
+    
+    func updateOfferedRidesIfActive() {
+        if UIApplication.shared.applicationState == .active {
+            RideService.instance.updateOfferedRides(success: {
+                NSLog("Offered rides updated")
+            }, error: { error in
+                NSLog("Error updating offered rides (\(error.localizedDescription))")
             })
         }
     }
