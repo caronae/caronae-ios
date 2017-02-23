@@ -379,18 +379,21 @@ class RideService: NSObject {
         ] as [String: Any]
         
         api.post("/ride/answerJoinRequest", parameters: params, success: { task, responseObject in
-            do {
-                let realm = try Realm()
-                if let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) {
-                    try realm.write {
-                        realm.add(user, update: true)
-                        ride.riders.append(user)
+            if accepted {
+                do {
+                    let realm = try Realm()
+                    if let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) {
+                        try realm.write {
+                            realm.add(user, update: true)
+                            ride.riders.append(user)
+                            ride.isActive = true
+                        }
+                    } else {
+                        NSLog("Ride with id %d not found locally in user's rides", rideID)
                     }
-                } else {
-                    NSLog("Ride with id %d not found locally in user's rides", rideID)
+                } catch let realmError {
+                    error(realmError)
                 }
-            } catch let realmError {
-                error(realmError)
             }
 
             success()
