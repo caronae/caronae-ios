@@ -112,8 +112,26 @@ extension AppDelegate {
         }
     }
     
+    func playNotificationSound() {
+        guard let url = Bundle.main.url(forResource: "beep", withExtension: "wav") else {
+            NSLog("Notification sound not found")
+            return
+        }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            soundPlayer = try AVAudioPlayer(contentsOf: url)
+            soundPlayer.play()
+        } catch let error {
+            NSLog("Error: %@", error.localizedDescription)
+        }
+    }
+    
     func showMessageIfActive(_ message: String) {
         if UIApplication.shared.applicationState == .active {
+            playNotificationSound()
             CRToastManager.showNotification(options: [kCRToastTextKey: message], completionBlock: nil)
         }
     }
