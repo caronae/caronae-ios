@@ -19,3 +19,5 @@
 #import "UIWindow+replaceRootViewController.h"
 #import "UIImageView+crn_setImageWithURL.h"
 
+#import <UIScrollView_InfiniteScroll/UIScrollView+InfiniteScroll.h>
+

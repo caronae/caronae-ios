@@ -20,6 +20,7 @@ target 'Caronae' do
     pod 'Firebase/Messaging'
     pod 'JSQMessagesViewController', :git => 'https://github.com/caronae/JSQMessagesViewController.git', :branch => 'issue-1864'
     pod "MIBadgeButton-Swift", :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
+    pod 'UIScrollView-InfiniteScroll'
     
     class ::Pod::Generator::Acknowledgements
         def header_title
