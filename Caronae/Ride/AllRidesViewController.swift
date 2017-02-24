@@ -2,12 +2,22 @@ import UIKit
 
 class AllRidesViewController: RideListController, SearchRideDelegate {
     var searchParams: [String: Any] = [:]
+    fileprivate var nextPage = 2
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationController?.view.backgroundColor = UIColor.white
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
+        
+        // Setting up infinite scroll
+        tableView.infiniteScrollIndicatorMargin = 40
+        tableView.infiniteScrollTriggerOffset = 500
+        
+        tableView.addInfiniteScroll { (tableView) -> Void in
+            self.loadAllRides(page: self.nextPage)
+            tableView.finishInfiniteScroll()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -37,13 +47,22 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     // MARK: Rides methods
     
-    func loadAllRides() {
+    func loadAllRides(page: Int = 1) {
         if self.tableView.backgroundView != nil {
             self.tableView.backgroundView = self.loadingLabel;
         }
         
-        RideService.instance.getAllRides(success: { rides in
-            self.rides = rides
+        RideService.instance.getAllRides(page: page, success: { rides in
+            
+            if page == 1 {
+                self.nextPage = 2
+                self.rides = rides
+            } else {
+                self.nextPage += 1
+                var allRides = self.rides as! [Ride]
+                allRides.append(contentsOf: rides)
+                self.rides = allRides
+            }
             
             self.tableView.reloadData()
             
