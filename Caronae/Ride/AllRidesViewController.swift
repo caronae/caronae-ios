@@ -11,7 +11,6 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
         // Setting up infinite scroll
-        tableView.infiniteScrollIndicatorMargin = 40
         tableView.infiniteScrollTriggerOffset = 500
         
         tableView.addInfiniteScroll { (tableView) -> Void in
@@ -57,14 +56,25 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             if page == 1 {
                 self.nextPage = 2
                 self.rides = rides
+                self.tableView.reloadData()
             } else {
                 self.nextPage += 1
+                let ridesCount = self.filteredRides.count
+                
+                // Update rides
                 var allRides = self.rides as! [Ride]
                 allRides.append(contentsOf: rides)
                 self.rides = allRides
+                
+                // Create new index paths
+                let (start, end) = (ridesCount, self.filteredRides.count)
+                let indexPaths = (start..<end).map { return IndexPath(row: $0, section: 0) }
+                
+                // Update table view
+                self.tableView.beginUpdates()
+                self.tableView.insertRows(at: indexPaths, with: .automatic)
+                self.tableView.endUpdates()
             }
-            
-            self.tableView.reloadData()
             
             if rides.count > 0 {
                 self.tableView.tableFooterView = self.tableFooter
