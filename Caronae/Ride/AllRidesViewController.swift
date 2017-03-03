@@ -56,8 +56,19 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             if page == 1 {
                 self.nextPage = 2
                 self.rides = rides
+                
+                if rides.count > 0 {
+                    self.tableView.tableFooterView = self.tableFooter
+                } else {
+                    self.tableView.tableFooterView = nil
+                }
+                
                 self.tableView.reloadData()
             } else {
+                guard rides.count > 0 else {
+                    return
+                }
+                
                 self.nextPage += 1
                 let ridesCount = self.filteredRides.count
                 
@@ -74,12 +85,6 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 self.tableView.beginUpdates()
                 self.tableView.insertRows(at: indexPaths, with: .automatic)
                 self.tableView.endUpdates()
-            }
-            
-            if rides.count > 0 {
-                self.tableView.tableFooterView = self.tableFooter
-            } else {
-                self.tableView.tableFooterView = nil
             }
             
             self.refreshControl.endRefreshing()
