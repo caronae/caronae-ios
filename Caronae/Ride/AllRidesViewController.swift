@@ -14,19 +14,20 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         tableView.infiniteScrollTriggerOffset = 500
         
         tableView.addInfiniteScroll { (tableView) -> Void in
-            self.loadAllRides(page: self.nextPage)
-            tableView.finishInfiniteScroll()
+            self.loadAllRides(page: self.nextPage) {
+                tableView.finishInfiniteScroll()
+            }
         }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.loadAllRides()
+        self.loadAllRides() {}
     }
     
     func refreshTable() {
-        self.loadAllRides()
+        self.loadAllRides() {}
     }
     
     
@@ -46,7 +47,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     // MARK: Rides methods
     
-    func loadAllRides(page: Int = 1) {
+    func loadAllRides(page: Int = 1, _ completionHandler: ((Void) -> Void)?) {
         if self.tableView.backgroundView != nil {
             self.tableView.backgroundView = self.loadingLabel;
         }
@@ -66,6 +67,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 self.tableView.reloadData()
             } else {
                 guard rides.count > 0 else {
+                    completionHandler?()
                     return
                 }
                 
@@ -88,8 +90,10 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             }
             
             self.refreshControl.endRefreshing()
+            completionHandler?()
         }, error: { error in
             self.refreshControl.endRefreshing()
+            completionHandler?()
             self.loadingFailedWithError(error)
         })
     }
