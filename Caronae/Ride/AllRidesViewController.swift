@@ -3,6 +3,7 @@ import UIKit
 class AllRidesViewController: RideListController, SearchRideDelegate {
     var searchParams: [String: Any] = [:]
     fileprivate var nextPage = 2
+    fileprivate var lastUpdate = Date.distantPast
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,10 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.loadAllRides() {}
+        // loadAllRides if the last update was made more than 5 minutes ago
+        if lastUpdate.timeIntervalSinceNow.isLess(than: -300) {
+            self.loadAllRides() {}
+        }
     }
     
     func refreshTable() {
@@ -56,6 +60,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             
             if page == 1 {
                 self.nextPage = 2
+                self.lastUpdate = Date()
                 self.rides = rides
                 
                 if rides.count > 0 {
