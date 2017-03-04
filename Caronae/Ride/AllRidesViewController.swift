@@ -11,27 +11,30 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         self.navigationController?.view.backgroundColor = UIColor.white
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
+        NotificationCenter.default.addObserver(self, selector:#selector(self.reloadRidesIfNecessary), name: .UIApplicationWillEnterForeground, object: nil)
+        
         // Setting up infinite scroll
         tableView.infiniteScrollTriggerOffset = 500
         
-        tableView.addInfiniteScroll { (tableView) -> Void in
+        tableView.addInfiniteScroll { tableView in
             self.loadAllRides(page: self.nextPage) {
                 tableView.finishInfiniteScroll()
             }
         }
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // loadAllRides if the last update was made more than 5 minutes ago
-        if lastUpdate.timeIntervalSinceNow.isLess(than: -300) {
-            self.loadAllRides() {}
-        }
+        reloadRidesIfNecessary()
     }
     
     func refreshTable() {
-        self.loadAllRides() {}
+        loadAllRides()
     }
     
     
@@ -51,9 +54,9 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     // MARK: Rides methods
     
-    func loadAllRides(page: Int = 1, _ completionHandler: ((Void) -> Void)?) {
-        if self.tableView.backgroundView != nil {
-            self.tableView.backgroundView = self.loadingLabel;
+    func loadAllRides(page: Int = 1, _ completionHandler: ((Void) -> Void)? = nil) {
+        if tableView.backgroundView != nil {
+            tableView.backgroundView = loadingLabel
         }
         
         RideService.instance.getAllRides(page: page, success: { rides in
@@ -103,6 +106,12 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         })
     }
     
+    func reloadRidesIfNecessary() {
+        if lastUpdate.timeIntervalSinceNow.isLess(than: -5*60) {
+            loadAllRides()
+        }
+    }
+    
     
     // MARK: Navigation
 
@@ -115,10 +124,10 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             }
         } else if segue.identifier == "ViewSearchResults" {
             if let searchViewController = segue.destination as? SearchResultsViewController {
-                searchViewController.searchedForRide(withCenter: self.searchParams["center"] as! String!,
-                                                     andNeighborhoods: self.searchParams["neighborhoods"] as! [Any]!,
-                                                     on: self.searchParams["date"] as! Date!,
-                                                     going: self.searchParams["going"] as! Bool)
+                searchViewController.searchedForRide(withCenter: searchParams["center"] as! String!,
+                                                     andNeighborhoods: searchParams["neighborhoods"] as! [Any]!,
+                                                     on: searchParams["date"] as! Date!,
+                                                     going: searchParams["going"] as! Bool)
             }
         }
     }
@@ -127,13 +136,12 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     // MARK: Search methods
     
     func searchedForRide(withCenter center: String, andNeighborhoods neighborhoods: [Any], on date: Date, going: Bool) {
-    self.searchParams = ["center": center,
-        "neighborhoods": neighborhoods,
-        "date": date,
-        "going": going
-    ]
-    
-    self.performSegue(withIdentifier: "ViewSearchResults", sender: self)
+        searchParams = ["center": center,
+                        "neighborhoods": neighborhoods,
+                        "date": date,
+                        "going": going]
+        
+        performSegue(withIdentifier: "ViewSearchResults", sender: self)
     }
-
+    
 }
