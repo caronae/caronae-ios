@@ -9,8 +9,8 @@ class RideService: NSObject {
         // This prevents others from using the default '()' initializer for this class.
     }
     
-    func getAllRides(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/ride/all", parameters: nil, success: { task, responseObject in
+    func getAllRides(page: Int, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
+        api.get("/ride/all?page=\(page)", parameters: nil, success: { task, responseObject in
             guard let ridesJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
                 return

@@ -11,9 +11,13 @@
 #import "EditProfileViewController.h"
 #import "RideListController.h"
 #import "RideViewController.h"
+#import "SearchResultsViewController.h"
+#import "SearchRideViewController.h"
 #import "TabBarController.h"
 
 #import "UIApplication+topViewController.h"
 #import "UIWindow+replaceRootViewController.h"
 #import "UIImageView+crn_setImageWithURL.h"
+
+#import <UIScrollView_InfiniteScroll/UIScrollView+InfiniteScroll.h>
 

@@ -80,6 +80,7 @@ PODS:
   - SHSPhoneComponent (2.15)
   - SVProgressHUD (2.0.3)
   - TPKeyboardAvoiding (1.2.11)
+  - UIScrollView-InfiniteScroll (0.9.1)
   - UITextView+Placeholder (1.2.0)
 
 DEPENDENCIES:
@@ -99,6 +100,7 @@ DEPENDENCIES:
   - SHSPhoneComponent
   - SVProgressHUD
   - TPKeyboardAvoiding (~> 1.2.11)
+  - UIScrollView-InfiniteScroll
   - UITextView+Placeholder (~> 1.2)
 
 EXTERNAL SOURCES:
@@ -141,12 +143,13 @@ SPEC CHECKSUMS:
   RealmSwift: 30d49739ccb3385d201242736ca4dda56aec9dfc
   SDCAlertView: 2e2b0ecc5f1ec367e45d83efa2e512688ca7fa55
   SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
-  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   SHSPhoneComponent: 4cec0653a150ad63cbc52b0c8b29ce2d3c9c26f0
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
+  UIScrollView-InfiniteScroll: 14e204c50ca4040467e1cbfa141dad7a18919b56
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 6e51f55cbcef54a116917f6bb90248bf888df0bb
+PODFILE CHECKSUM: 7338310d6f2e20fade4902a7f5d0936254aadf99
 
 COCOAPODS: 1.2.0
