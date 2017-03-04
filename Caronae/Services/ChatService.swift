@@ -42,7 +42,7 @@ class ChatService: NSObject {
         if let user = UserService.instance.user,
             let lastMessage = realm.objects(Message.self)
                 .filter("ride == %@ AND sender != %@", ride, user)
-                .sorted(byProperty: "date", ascending: false)
+                .sorted(byKeyPath: "date", ascending: false)
                 .first {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

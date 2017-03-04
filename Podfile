@@ -13,7 +13,7 @@ target 'Caronae' do
     pod 'CRToast', '~> 0.0.7'
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
-    pod 'RealmSwift', '~> 2.1'
+    pod 'RealmSwift', '~> 2.4'
     pod 'ObjectMapper', '~> 2.2'
     pod 'ObjectMapper+Realm', '~> 0.2'
     pod 'UITextView+Placeholder', '~> 1.2'

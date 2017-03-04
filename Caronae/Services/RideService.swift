@@ -41,7 +41,7 @@ class RideService: NSObject {
         do {
             let realm = try Realm()
             let currentDate = Date()
-            let rides = realm.objects(Ride.self).filter("driver == %@ AND date >= %@", user, currentDate).sorted(byProperty: "date")
+            let rides = realm.objects(Ride.self).filter("driver == %@ AND date >= %@", user, currentDate).sorted(byKeyPath: "date")
             
             success(rides)
         } catch let realmError {
@@ -107,7 +107,7 @@ class RideService: NSObject {
     func getActiveRides(success: @escaping (_ rides: Results<Ride>) -> Void, error: @escaping (_ error: Error) -> Void) {
         do {
             let realm = try Realm()
-            let rides = realm.objects(Ride.self).filter("isActive == true").sorted(byProperty: "date")
+            let rides = realm.objects(Ride.self).filter("isActive == true").sorted(byKeyPath: "date")
             
             success(rides)
         } catch let realmError {
