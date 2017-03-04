@@ -38,6 +38,7 @@
 		A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */; };
 		A39A4D5E1E6B50190030DAF2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39A4D5D1E6B50190030DAF2 /* SignInViewController.swift */; };
 		A39A4D601E6B583E0030DAF2 /* CaronaeGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39A4D5F1E6B583E0030DAF2 /* CaronaeGradientButton.swift */; };
+		A39A4D621E6B61F90030DAF2 /* UIColor+Caronae.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39A4D611E6B61F90030DAF2 /* UIColor+Caronae.swift */; };
 		A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */; };
 		A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */; };
 		A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBD021C06378E00EF9EBD /* NSDate+nextHour.m */; };
@@ -138,6 +139,7 @@
 		A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
 		A39A4D5D1E6B50190030DAF2 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		A39A4D5F1E6B583E0030DAF2 /* CaronaeGradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaronaeGradientButton.swift; sourceTree = "<group>"; };
+		A39A4D611E6B61F90030DAF2 /* UIColor+Caronae.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Caronae.swift"; sourceTree = "<group>"; };
 		A39BA2EA1C6C0F3A0063DDD1 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		A39BBCF41C048E4D00EF9EBD /* SearchRideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRideViewController.h; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */,
 				A3B18FF81C9E713F00980607 /* UIImageView+crn_setImageWithURL.h */,
 				A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */,
+				A39A4D611E6B61F90030DAF2 /* UIColor+Caronae.swift */,
 				A369A4E91C72928700FE5495 /* UIViewController+isVisible.h */,
 				A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */,
 				A3CA5DD01E1F46520062522D /* UIWindow+replaceRootViewController.h */,
@@ -640,6 +643,7 @@
 				A3CA5DD41E22CA370062522D /* NotificationService.swift in Sources */,
 				A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */,
 				A357EF331C56C5A100AC8096 /* RideListController.m in Sources */,
+				A39A4D621E6B61F90030DAF2 /* UIColor+Caronae.swift in Sources */,
 				A39672381E2E813700DD8ED5 /* RideRequest.swift in Sources */,
 				A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */,
 				A3AD822D1E1B1E85006D8ABE /* Ride.swift in Sources */,

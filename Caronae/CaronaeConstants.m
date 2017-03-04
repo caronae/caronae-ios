@@ -1,4 +1,5 @@
 #import "CaronaeConstants.h"
+#import "Caronae-Swift.h"
 
 #pragma mark - Static pages URLs
 
@@ -81,13 +82,13 @@ NSString *const CaronaeDateLocaleIdentifier = @"pt_BR";
 
 - (NSDictionary *)zoneColors {
     if (!_zoneColors) {
-        _zoneColors = @{@"Baixada": [UIColor colorWithRed:0.890 green:0.145 blue:0.165 alpha:1.000],
-                        @"Centro": [UIColor colorWithRed:0.906 green:0.424 blue:0.114 alpha:1.000],
-                        @"Grande Niterói": [UIColor colorWithRed:0.898 green:0.349 blue:0.620 alpha:1.000],
-                        @"Zona Norte": [UIColor colorWithRed:0.353 green:0.157 blue:0.094 alpha:1.000],
-                        @"Zona Oeste": [UIColor colorWithRed:0.125 green:0.145 blue:0.467 alpha:1.000],
-                        @"Zona Sul": [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000],
-                        @"Outra": [UIColor colorWithWhite:0.541 alpha:1.000]
+        _zoneColors = @{@"Baixada": [UIColor caronaeRed],
+                        @"Centro": [UIColor caronaeOrange],
+                        @"Grande Niterói": [UIColor caronaePink],
+                        @"Zona Norte": [UIColor caronaeBrown],
+                        @"Zona Oeste": [UIColor caronaeBlue],
+                        @"Zona Sul": [UIColor caronaeGreen],
+                        @"Outra": [UIColor caronaeGray]
                         };
     }
     return _zoneColors;
