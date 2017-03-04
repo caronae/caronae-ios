@@ -22,7 +22,7 @@ class CaronaeGradientButton: UIButton {
         gradient.startPoint = CGPoint(x: 0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1, y: 0.5)
         
-        gradient.colors = [UIColor.white.cgColor, UIColor.black.cgColor]
+        gradient.colors = [UIColor.caronaeRed.cgColor, UIColor.caronaePink.cgColor]
         
         layer.insertSublayer(gradient, at: 0)
     }

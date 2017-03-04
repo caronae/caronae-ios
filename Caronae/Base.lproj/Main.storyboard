@@ -29,12 +29,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVq-3z-13h">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="548"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="625"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AuthBackground" translatesAutoresizingMaskIntoConstraints="NO" id="zej-9f-2CU" userLabel="Background">
-                                                <rect key="frame" x="0.0" y="385" width="375" height="258"/>
+                                                <rect key="frame" x="0.0" y="425" width="375" height="200"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="258" id="FSR-iX-UEn"/>
+                                                    <constraint firstAttribute="height" constant="200" id="FSR-iX-UEn"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="375" id="ogL-3S-kdL"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -81,10 +82,10 @@ Cgo
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sJ-FF-AsJ" userLabel="Buttons">
-                                                <rect key="frame" x="60" y="380" width="265" height="126"/>
+                                                <rect key="frame" x="58.5" y="390" width="258" height="126"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xx6-BW-RT8" customClass="CaronaeGradientButton" customModule="Caronae" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="265" height="65"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="258" height="65"/>
                                                         <color key="backgroundColor" red="0.89019608500000003" green="0.14509804549999999" blue="0.1647058874" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="65" id="8FM-9Y-lPI"/>
@@ -98,7 +99,7 @@ Cgo
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5B-sd-r4J">
-                                                        <rect key="frame" x="46.5" y="90" width="172" height="26"/>
+                                                        <rect key="frame" x="43" y="90" width="172" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <state key="normal" title="Entrar utilizando usuário e senha"/>
                                                         <connections>
@@ -112,25 +113,24 @@ Cgo
                                                     <constraint firstAttribute="bottom" secondItem="Q5B-sd-r4J" secondAttribute="bottom" constant="10" id="Gqp-VK-H7g"/>
                                                     <constraint firstItem="Xx6-BW-RT8" firstAttribute="top" secondItem="4sJ-FF-AsJ" secondAttribute="top" id="T86-J4-dch"/>
                                                     <constraint firstItem="Xx6-BW-RT8" firstAttribute="leading" secondItem="4sJ-FF-AsJ" secondAttribute="leading" id="mEB-FI-7Th"/>
+                                                    <constraint firstAttribute="width" constant="258" id="oGA-Lw-P1S"/>
                                                     <constraint firstAttribute="trailing" secondItem="Xx6-BW-RT8" secondAttribute="trailing" id="uh0-ur-Wwx"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="TQy-c2-48w" firstAttribute="centerX" secondItem="mVq-3z-13h" secondAttribute="centerX" id="4Dg-SA-AvI"/>
+                                            <constraint firstItem="4sJ-FF-AsJ" firstAttribute="centerX" secondItem="mVq-3z-13h" secondAttribute="centerX" id="Bwd-YR-ctm"/>
                                             <constraint firstItem="pyv-Ne-S5g" firstAttribute="leading" secondItem="mVq-3z-13h" secondAttribute="leading" constant="40" id="Cfn-lO-D6b"/>
-                                            <constraint firstAttribute="trailing" secondItem="zej-9f-2CU" secondAttribute="trailing" id="KrT-vL-wou"/>
-                                            <constraint firstAttribute="bottom" secondItem="zej-9f-2CU" secondAttribute="bottom" constant="-95" id="Kwa-Na-tAm"/>
-                                            <constraint firstItem="zej-9f-2CU" firstAttribute="top" secondItem="pyv-Ne-S5g" secondAttribute="bottom" constant="80" id="LNU-8m-b7f"/>
+                                            <constraint firstItem="zej-9f-2CU" firstAttribute="top" secondItem="pyv-Ne-S5g" secondAttribute="bottom" constant="120" id="FRo-Zq-b9P"/>
+                                            <constraint firstAttribute="bottom" secondItem="zej-9f-2CU" secondAttribute="bottom" id="Kwa-Na-tAm"/>
                                             <constraint firstItem="TQy-c2-48w" firstAttribute="top" secondItem="mVq-3z-13h" secondAttribute="top" constant="-24" id="UOn-dS-Rcv">
                                                 <variation key="widthClass=compact" constant="70"/>
                                             </constraint>
                                             <constraint firstItem="pyv-Ne-S5g" firstAttribute="centerX" secondItem="mVq-3z-13h" secondAttribute="centerX" id="Vao-C4-n5v"/>
-                                            <constraint firstItem="4sJ-FF-AsJ" firstAttribute="leading" secondItem="mVq-3z-13h" secondAttribute="leading" constant="60" id="dUw-Ic-m0P"/>
-                                            <constraint firstItem="4sJ-FF-AsJ" firstAttribute="top" secondItem="zej-9f-2CU" secondAttribute="top" constant="-5" id="kMu-ss-PTt"/>
+                                            <constraint firstItem="zej-9f-2CU" firstAttribute="centerX" secondItem="mVq-3z-13h" secondAttribute="centerX" id="ZWb-CU-5wD"/>
+                                            <constraint firstItem="4sJ-FF-AsJ" firstAttribute="top" secondItem="zej-9f-2CU" secondAttribute="top" constant="-35" id="kMu-ss-PTt"/>
                                             <constraint firstItem="pyv-Ne-S5g" firstAttribute="top" secondItem="TQy-c2-48w" secondAttribute="bottom" constant="80" id="ke0-Dc-38b"/>
-                                            <constraint firstAttribute="trailing" secondItem="4sJ-FF-AsJ" secondAttribute="trailing" constant="50" id="kzz-Lx-g4n"/>
-                                            <constraint firstItem="zej-9f-2CU" firstAttribute="leading" secondItem="mVq-3z-13h" secondAttribute="leading" id="zFs-Xe-b9X"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
@@ -142,8 +142,6 @@ Cgo
                                                 <exclude reference="UOn-dS-Rcv"/>
                                                 <exclude reference="Cfn-lO-D6b"/>
                                                 <exclude reference="Vao-C4-n5v"/>
-                                                <exclude reference="KrT-vL-wou"/>
-                                                <exclude reference="zFs-Xe-b9X"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
@@ -157,8 +155,6 @@ Cgo
                                                 <include reference="Cfn-lO-D6b"/>
                                                 <include reference="Vao-C4-n5v"/>
                                                 <include reference="ke0-Dc-38b"/>
-                                                <include reference="KrT-vL-wou"/>
-                                                <include reference="zFs-Xe-b9X"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -5840,7 +5836,7 @@ FOTO</string>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
                                                                                 <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="twK-5y-Mx5" userLabel="Friend photo">
-                                                                                    <rect key="frame" x="480" y="0.0" width="40" height="40"/>
+                                                                                    <rect key="frame" x="-20" y="0.0" width="40" height="40"/>
                                                                                     <gestureRecognizers/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="twK-5y-Mx5" secondAttribute="height" multiplier="1:1" id="Pyu-eX-zyw"/>
