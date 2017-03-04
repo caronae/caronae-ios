@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>FooterText</key>
-			<string>Este app faz uso das seguintes bibiliotecas de terceiros:</string>
+			<string>Este app faz uso das seguintes bibiliotecas de terceiros, cujas licenças encontram-se abaixo:</string>
 			<key>Title</key>
 			<string>Agradecimentos</string>
 			<key>Type</key>

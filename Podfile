@@ -27,7 +27,7 @@ target 'Caronae' do
         end
 
         def header_text
-            "Este app faz uso das seguintes bibiliotecas de terceiros:"
+            "Este app faz uso das seguintes bibiliotecas de terceiros, cujas licenças encontram-se abaixo:"
         end
     end
 
