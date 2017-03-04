@@ -1,10 +1,5 @@
 @import UIKit;
 
-#pragma mark - API settings
-
-extern NSString *const CaronaeAPIBaseURL;
-
-
 #pragma mark - Static pages URLs
 
 extern NSString *const CaronaeIntranetURLString;

@@ -1,0 +1,3 @@
+SLASH = /
+HTTP = http:${SLASH}${SLASH}
+HTTPS = https:${SLASH}${SLASH}

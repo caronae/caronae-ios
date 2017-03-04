@@ -8,18 +8,18 @@ target 'Caronae' do
     pod 'TPKeyboardAvoiding', '~> 1.2.11'
     pod 'SDCAlertView', '2.5.4'
     pod 'SVProgressHUD'
-    pod 'SDWebImage', '~>3.8.2'
+    pod 'SDWebImage', '~> 3.8.2'
     pod 'SHSPhoneComponent'
     pod 'CRToast', '~> 0.0.7'
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
-    pod 'RealmSwift', '~> 2.1'
+    pod 'RealmSwift', '~> 2.4'
     pod 'ObjectMapper', '~> 2.2'
     pod 'ObjectMapper+Realm', '~> 0.2'
     pod 'UITextView+Placeholder', '~> 1.2'
     pod 'Firebase/Messaging'
     pod 'JSQMessagesViewController', :git => 'https://github.com/caronae/JSQMessagesViewController.git', :branch => 'issue-1864'
-    pod "MIBadgeButton-Swift", :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
+    pod 'MIBadgeButton-Swift', :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
     pod 'UIScrollView-InfiniteScroll'
     
     class ::Pod::Generator::Acknowledgements
@@ -28,7 +28,7 @@ target 'Caronae' do
         end
 
         def header_text
-            "Este app faz uso das seguintes bibiliotecas de terceiros:"
+            "Este app faz uso das seguintes bibiliotecas de terceiros, cujas licenças encontram-se abaixo:"
         end
     end
 

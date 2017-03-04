@@ -1,11 +1,5 @@
 #import "CaronaeConstants.h"
 
-#pragma mark - API settings
-
-NSString *const CaronaeAPIBaseURL = @"https://api.caronae.ufrj.br";
-//NSString *const CaronaeAPIBaseURL = @"https://dev.caronae.tic.ufrj.br";
-
-
 #pragma mark - Static pages URLs
 
 NSString *const CaronaeIntranetURLString = @"https://api.caronae.ufrj.br/chave";
