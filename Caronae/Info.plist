@@ -34,9 +34,9 @@
 	<key>CFBundleVersion</key>
 	<string>16</string>
 	<key>FacebookAppID</key>
-	<string>933455893356973</string>
+	<string>$(FACEBOOK_APP_ID)</string>
 	<key>FacebookDisplayName</key>
-	<string>Caronae</string>
+	<string>$(FACEBOOK_DISPLAY_NAME)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
