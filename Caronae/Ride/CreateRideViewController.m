@@ -1,6 +1,6 @@
-#import <ActionSheetDatePicker.h>
-#import <ActionSheetStringPicker.h>
-#import <SVProgressHUD/SVProgressHUD.h>
+@import ActionSheetPicker_3_0;
+@import SVProgressHUD;
+
 #import "CaronaeAlertController.h"
 #import "CreateRideViewController.h"
 #import "NSDate+nextHour.h"
@@ -19,10 +19,6 @@
 @implementation CreateRideViewController
 
 - (void)viewDidLoad {
-    if (!self.delegate) {
-        NSLog(@"WARNING: No delegate for CreateRideViewController");
-    }
-    
     [super viewDidLoad];
     
     [self checkIfUserHasCar];
@@ -30,7 +26,7 @@
     self.hubs = [CaronaeConstants defaults].centers;
     self.selectedHub = self.hubs.firstObject;
     
-    self.rideDate = [NSDate nextHour];
+    self.rideDate = MAX([NSDate nextHour], [NSDate currentTimePlus:5]);
     self.weekDays = [NSMutableArray arrayWithCapacity:7];
     self.routineDurationMonths = 2;
     
@@ -51,8 +47,6 @@
     self.notesPlaceholder = self.notes.text;
     self.notesTextColor = self.notes.textColor;
     
-    self.slotsLabel.text = [NSString stringWithFormat:@"%.f", self.slotsStepper.value];
-    
     // Dismiss keyboard when tapping the view
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
     
@@ -69,12 +63,15 @@
             self.selectedHub = lastRideLocation[@"hubGoing"];
             [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
         }
+        if (lastRideLocation[@"slots"]) self.slotsStepper.value = [lastRideLocation[@"slots"] integerValue];
         if (lastRideLocation[@"description"]) self.notes.text = lastRideLocation[@"description"];
     }
+    
+    self.slotsLabel.text = [NSString stringWithFormat:@"%.f", self.slotsStepper.value];
 }
 
 - (void)checkIfUserHasCar {
-    if (![UserController sharedInstance].user.carOwner) {
+    if (!UserService.instance.user.carOwner) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Você possui carro?" message:@"Parece que você marcou no seu perfil que não possui um carro.\n\nPara criar uma carona, preencha os dados do seu carro no seu perfil." handler:^{
             [self goBack:nil];
         }];
@@ -86,81 +83,69 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (NSDictionary *)generateRideDictionaryFromView {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    dateFormat.dateFormat = @"dd/MM/yyyy";
-    NSDateFormatter *timeFormat = [[NSDateFormatter alloc] init];
-    timeFormat.dateFormat = @"HH:mm:ss";
-    NSString *weekDaysString = [[self.weekDays sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] componentsJoinedByString:@","];
+- (Ride *)generateRideFromView {
     NSString *description = [self.notes.text isEqualToString:_notesPlaceholder] ? @"" : self.notes.text;
-    BOOL isRoutine = self.routineSwitch.on;
     BOOL going = (self.segmentedControl.selectedSegmentIndex == 0);
     
-    // Calculate final date for event based on the selected duration
-    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-    dateComponents.month = self.routineDurationMonths;
-    NSDate *repeatsUntilDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self.rideDate options:0];
+    Ride *ride = [[Ride alloc] init];
+    ride.region = self.zone;
+    ride.neighborhood = self.neighborhood;
+    ride.place = self.reference.text;
+    ride.route = self.route.text;
+    ride.hub = self.selectedHub;
+    ride.notes = description;
+    ride.going = going;
+    ride.date = self.rideDate;
+    ride.slots = self.slotsStepper.value;
     
-    NSDictionary *ride = @{
-                           @"myzone": self.zone,
-                           @"neighborhood": self.neighborhood,
-                           @"place": self.reference.text,
-                           @"route": self.route.text,
-                           @"mydate": [dateFormat stringFromDate:self.rideDate],
-                           @"mytime": [timeFormat stringFromDate:self.rideDate],
-                           @"week_days": isRoutine ? weekDaysString : [NSNull null],
-                           @"repeats_until": isRoutine ? [dateFormat stringFromDate:repeatsUntilDate] : [NSNull null],
-                           @"slots": @((int)self.slotsStepper.value),
-                           @"hub": self.selectedHub,
-                           @"description": description,
-                           @"going": @(going)
-                           };
+    // Routine fields
+    if (self.routineSwitch.on) {
+        NSString *weekDaysString = [[self.weekDays sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] componentsJoinedByString:@","];
+        ride.weekDays = weekDaysString;
+        
+        // Calculate final date for event based on the selected duration
+        NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+        dateComponents.month = self.routineDurationMonths;
+        NSDate *repeatsUntilDate = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:self.rideDate options:0];
+        ride.repeatsUntil = repeatsUntilDate;
+    }
+    
     return ride;
 }
 
-- (void)savePresetLocationZone:(NSString *)zone neighborhood:(NSString *)neighborhood place:(NSString *)place route:(NSString *)route hub:(NSString *)hub description:(NSString *)description going:(NSNumber *)going {
-    NSDictionary *location = [NSDictionary dictionary];
-    NSDictionary *lastRideLocation = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
-    if (lastRideLocation) {
-        location = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
-    }
-    if ([going boolValue]) {
-        NSString *hubGoing = hub;
-        NSDictionary *newLocation = NSDictionaryOfVariableBindings(zone, neighborhood, place, route, hubGoing, description);
-        location = [location mtl_dictionaryByAddingEntriesFromDictionary:newLocation];
+- (void)savePresetLocationZone:(NSString *)zone neighborhood:(NSString *)neighborhood place:(NSString *)place route:(NSString *)route hub:(NSString *)hub description:(NSString *)description slots:(NSNumber*)slots going:(BOOL)going {
+    NSDictionary *lastRidePresets = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
+    NSMutableDictionary *newPresets = [NSDictionaryOfVariableBindings(zone, neighborhood, place, route, description, slots) mutableCopy];
+
+    if (going) {
+        newPresets[@"hubGoing"] = hub;
+        if (lastRidePresets[@"hubReturning"]) {
+            newPresets[@"hubReturning"] = lastRidePresets[@"hubReturning"];
+        }
     } else {
-        NSString *hubReturning = hub;
-        NSDictionary *newLocation = NSDictionaryOfVariableBindings(zone, neighborhood, place, route, hubReturning, description);
-        location = [location mtl_dictionaryByAddingEntriesFromDictionary:newLocation];
+        newPresets[@"hubReturning"] = hub;
+        if (lastRidePresets[@"hubGoing"]) {
+            newPresets[@"hubGoing"] = lastRidePresets[@"hubGoing"];
+        }
+
     }
-    [[NSUserDefaults standardUserDefaults] setObject:location forKey:@"lastOfferedRideLocation"];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:newPresets forKey:@"lastOfferedRideLocation"];
 }
 
-- (void)createRide:(NSDictionary *)ride {
+- (void)createRide:(Ride *)ride {
     [SVProgressHUD show];
     self.createRideButton.enabled = NO;
-    
-    [CaronaeAPIHTTPSessionManager.instance POST:@"/ride" parameters:ride success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+
+    [RideService.instance createRide:ride success:^(NSArray<Ride *> * _Nonnull createdRides) {
         [SVProgressHUD dismiss];
-        NSError *error;
-        NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
-        if (error) {
-            NSLog(@"Error parsing my rides. %@", error.localizedDescription);
-            self.createRideButton.enabled = YES;
-            [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:error.localizedDescription];
-            return;
-        }
-        
-        [self.delegate didCreateRides:rides];
-        
         [self dismissViewControllerAnimated:YES completion:nil];
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } error:^(NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         self.createRideButton.enabled = YES;
-        
+
         NSLog(@"Error creating ride: %@", error.localizedDescription);
-        
+
         [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível criar a carona." message:error.localizedDescription];
     }];
 }
@@ -172,16 +157,46 @@
         return;
     }
     
-    NSDictionary *ride = [self generateRideDictionaryFromView];
-    [self savePresetLocationZone:ride[@"myzone"] neighborhood:ride[@"neighborhood"] place:ride[@"place"] route:ride[@"route"] hub:ride[@"hub"] description:ride[@"description"] going:ride[@"going"]];
+    Ride *ride = [self generateRideFromView];
+    [self savePresetLocationZone:ride.region neighborhood:ride.neighborhood place:ride.place route:ride.route hub:ride.hub description:ride.notes slots:[NSNumber numberWithInteger: ride.slots] going:ride.going];
     
     // Check if the user has selected the routine details
-    if (![ride[@"repeats_until"] isKindOfClass:[NSNull class]] && [ride[@"week_days"] isEqualToString:@""]) {
+    if (ride.repeatsUntil && ride.weekDays.length == 0) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que você esqueceu de marcar os dias da rotina."];
         return;
     }
     
-    [self createRide:ride];
+    [SVProgressHUD show];
+    self.createRideButton.enabled = NO;
+    
+    [RideService.instance validateRideDateWithRide:ride success:^(BOOL isValid, NSString * _Nonnull status) {
+        [SVProgressHUD dismiss];
+        if (isValid) {
+            [self createRide:ride];
+        } else {
+            if ([status isEqualToString:@"duplicate"]) {
+                [CaronaeAlertController presentOkAlertWithTitle:@"Você já ofereceu uma carona muito parecida com essa" message:@"Você pode verificar as suas caronas na seção 'Minhas' do aplicativo." handler:^(SDCAlertAction *action){
+                    self.createRideButton.enabled = YES;
+                }];
+            } else {
+                CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Parece que você já ofereceu uma carona para este dia"
+                                                                                         message:@"Você pode cancelar e verificar as suas caronas ou continuar e criar a carona mesmo assim."
+                                                                                  preferredStyle:SDCAlertControllerStyleAlert];
+                [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:^(SDCAlertAction *action){
+                    self.createRideButton.enabled = YES;
+                }]];
+                [alert addAction:[SDCAlertAction actionWithTitle:@"Criar" style:SDCAlertActionStyleRecommended handler:^(SDCAlertAction *action){
+                    [self createRide:ride];
+                }]];
+                [alert presentWithCompletion:nil];
+            }
+        }
+    } error:^(NSError * _Nonnull error) {
+        [SVProgressHUD dismiss];
+        self.createRideButton.enabled = YES;
+        
+        [CaronaeAlertController presentOkAlertWithTitle:@"Não foi possível validar sua carona." message:[NSString stringWithFormat:@"Houve um erro de comunicação com nosso servidor. Por favor, tente novamente. (%@)", error.localizedDescription]];
+    }];
 }
 
 - (IBAction)slotsStepperChanged:(UIStepper *)sender {
@@ -307,7 +322,7 @@
 - (IBAction)selectDateTapped:(id)sender {
     [self.view endEditing:YES];
     ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle: (self.segmentedControl.selectedSegmentIndex == 0)? @"Chegada ao destino" : @"Saída da UFRJ" datePickerMode:UIDatePickerModeDateAndTime selectedDate:self.rideDate target:self action:@selector(timeWasSelected:element:) origin:sender];
-    ((UIDatePicker *)datePicker).minimumDate = [NSDate currentHour];
+    ((UIDatePicker *)datePicker).minimumDate = [NSDate currentTimePlus:5];
     [datePicker showActionSheetPicker];
 }
 

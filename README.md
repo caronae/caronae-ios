@@ -5,8 +5,8 @@ Aplicativo para iPhone do Caronaê.
 **Requisitos:**
 
 * Xcode 8+
-* iOS 8.0+
-* [CocoaPods](https://cocoapods.org) 1.1.1
+* iOS 8.2+
+* [CocoaPods](https://cocoapods.org) 1.2.0
 
 
 ## Instalação

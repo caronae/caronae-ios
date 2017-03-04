@@ -1,4 +1,5 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
+
 #import "RideListController.h"
 
 @interface AllRidesViewController : RideListController

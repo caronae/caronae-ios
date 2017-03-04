@@ -1,20 +1,13 @@
-#import <UIKit/UIKit.h>
-#import "User.h"
+@import UIKit;
 
+@class User;
 @class CaronaePhoneTextField;
-
-@protocol EditProfileDelegate <NSObject>
-
-- (void)didUpdateUser:(User *)newUser;
-
-@end
 
 @interface EditProfileViewController : UIViewController
 
 - (User *)generateUserFromView;
 
 @property (nonatomic) User *user;
-@property id<EditProfileDelegate> delegate;
 @property (nonatomic) BOOL completeProfileMode;
 
 // Profile
@@ -24,13 +17,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *joinedDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numDrivesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numRidesLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *notificationsSwitch;
 
 // Contacts
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet CaronaePhoneTextField *phoneTextField;
 
-// Locale
+// Location
 @property (weak, nonatomic) IBOutlet UIButton *neighborhoodButton;
 
 // Car details

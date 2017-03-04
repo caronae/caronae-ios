@@ -1,7 +1,7 @@
 import UIKit
 import WebKit
+import SVProgressHUD
 
-@objc
 protocol CaronaeSignInDelegate: class {
     func caronaeDidSignInWithSuccess(user: String, token: String)
     func caronaeSignInFailed()

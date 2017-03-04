@@ -1,18 +1,16 @@
-#import <AFNetworking/AFHTTPRequestOperation.h>
-#import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <CRToast/CRToast.h>
 #import "CaronaeAlertController.h"
 #import "RideListController.h"
 #import "UIViewController+isVisible.h"
+#import "Caronae-Swift.h"
 
 static NSString *const RideListDefaultEmptyMessage = @"Nenhuma carona\nencontrada.";
 static NSString *const RideListDefaultLoadingMessage = @"Carregando...";
 static NSString *const RideListDefaultErrorMessage = @"Não foi possível\ncarregar as caronas.";
 
-static NSString *const RideListMessageAlternateFontFamily = @"HelveticaNeue-UltraLight";
 static CGFloat const RideListMessageFontSize = 25.0f;
 
-@interface RideListController() <RideDelegate>
+@interface RideListController()
 @property (nonatomic, readwrite) NSArray<Ride *> *filteredRides;
 @end
 
@@ -29,17 +27,14 @@ static CGFloat const RideListMessageFontSize = 25.0f;
         self.ridesDirectionGoing = YES;
         self.hidesDirectionControl = NO;
         
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-        if ([self respondsToSelector:@selector(refreshTable:)]) {
+        if ([self respondsToSelector:NSSelectorFromString(@"refreshTable")]) {
             self.refreshControl = [[UIRefreshControl alloc] init];
             self.refreshControl.tintColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
             [self.refreshControl addTarget:self
-                                    action:@selector(refreshTable:)
+                                    action:NSSelectorFromString(@"refreshTable")
                           forControlEvents:UIControlEventValueChanged];
             [self.tableView addSubview:self.refreshControl];
         }
-#pragma clang diagnostic pop
     }
     return self;
 }
@@ -67,89 +62,74 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     }
 }
 
-+ (NSArray *)filterRides:(NSArray *)rides withDirectionGoing:(BOOL)going {
-    NSMutableArray *filtered = [NSMutableArray arrayWithCapacity:rides.count];
-    
-    for (Ride *ride in rides) {
-        if (ride.going == going) {
-            [filtered addObject:ride];
-        }
-    }
-    
-    return filtered;
-}
-
 - (void)setRides:(NSArray *)rides {
     _rides = rides;
-    if (rides) {
-        if (self.hidesDirectionControl) {
-            self.filteredRides = rides;
-        }
-        else {
-            self.filteredRides = [RideListController filterRides:rides withDirectionGoing:self.ridesDirectionGoing];
-        }
-    }
+    [self updateFilteredRides];
 }
 
-- (void)loadingFailedWithOperation:(AFHTTPRequestOperation *)operation error:(NSError *)error {
-    if (operation) {
-        [self loadingFailedWithStatusCode:operation.response.statusCode andError:error];
+- (void)updateFilteredRides {
+    if (_rides) {
+        _tableView.backgroundView = ([_rides count] == 0) ? self.emptyTableLabel : nil;
+        
+        NSMutableArray *filtered = [NSMutableArray arrayWithCapacity:[_rides count]];
+        for (Ride *ride in _rides) {
+            if (self.hidesDirectionControl || ride.going == self.ridesDirectionGoing) {
+                [filtered addObject:ride];
+            }
+        }
+        
+        self.filteredRides = filtered;
     } else {
-        [self loadingFailedWithStatusCode:0 andError:error];
+        self.filteredRides = @[];
     }
 }
 
-- (void)loadingFailedWithStatusCode:(NSInteger)statusCode andError:(NSError *)error {
+- (void)loadingFailedWithError:(NSError *)error {
     if (self.filteredRides.count == 0) {
         self.tableView.backgroundView = self.errorLabel;
     }
     
     NSLog(@"%@ failed to load rides: %@", NSStringFromClass(self.class), error.localizedDescription);
     
-    if (statusCode == 403) {
-        [CaronaeAlertController presentOkAlertWithTitle:@"Erro de autorização" message:@"Ocorreu um erro autenticando seu usuário. Seu token pode ter sido suspenso ou expirado." handler:^{
-            [[UserController sharedInstance] signOut];
-        }];
-        return;
-    }
-    
     if (![self isVisible]) return;
     
-    if (![AFNetworkReachabilityManager sharedManager].isReachable) {
-        [CRToastManager showNotificationWithOptions:@{
-                                                      kCRToastTextKey: @"Sem conexão com a internet",
-                                                      kCRToastBackgroundColorKey: [UIColor redColor],
-                                                      }
-                                    completionBlock:nil];
+    if ([error.domain isEqualToString:NSURLErrorDomain]) {
+        if (error.code == NSURLErrorNotConnectedToInternet) {
+            [CRToastManager showNotificationWithOptions:@{
+                                                          kCRToastTextKey: @"Sem conexão com a internet",
+                                                          kCRToastBackgroundColorKey: [UIColor redColor],
+                                                          }
+                                        completionBlock:nil];
+            return;
+        }
         
+        if (error.code == NSURLErrorTimedOut ||
+            error.code == NSURLErrorCannotFindHost ||
+            error.code == NSURLErrorCannotConnectToHost ||
+            error.code == NSURLErrorNetworkConnectionLost) {
+            [CRToastManager showNotificationWithOptions:@{
+                                                          kCRToastTextKey: @"Sem conexão com o Caronaê",
+                                                          kCRToastBackgroundColorKey: [UIColor redColor],
+                                                          }
+                                        completionBlock:nil];
+            return;
+        }
     }
-    else {
-        NSString *errorAlertTitle = @"Algo deu errado.";
-        NSString *errorAlertMessage = @"Não foi possível carregar as caronas. Por favor, tente novamente.";
-        [CaronaeAlertController presentOkAlertWithTitle:errorAlertTitle message:errorAlertMessage];
-    }
-}
-
-
-#pragma mark - Navigation
-
-- (RideViewController *)rideViewControllerForRide:(Ride *)ride {
-    RideViewController *rideVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RideViewController"];
-    rideVC.ride = ride;
-    rideVC.delegate = self;
     
-    return rideVC;
+    NSString *errorAlertTitle = @"Algo deu errado";
+    NSString *errorAlertMessage = [NSString stringWithFormat:@"Não foi possível carregar as caronas. Por favor, tente novamente. (%@)", error.localizedDescription];
+    [CaronaeAlertController presentOkAlertWithTitle:errorAlertTitle message:errorAlertMessage];
 }
 
 
 #pragma mark - Table methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return (self.filteredRides && self.filteredRides.count > 0) ? 1 : 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return (self.filteredRides && self.filteredRides.count > 0) ? self.filteredRides.count : 0;
+    return [self.filteredRides count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -170,7 +150,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     
     if (!self.historyTable) {
         Ride *ride = self.filteredRides[indexPath.row];
-        RideViewController *rideVC = [self rideViewControllerForRide:ride];
+        RideViewController *rideVC = [RideViewController rideViewControllerForRide:ride];
         
         [self.navigationController pushViewController:rideVC animated:YES];
     }
@@ -196,12 +176,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
         _emptyTableLabel.textColor = [UIColor grayColor];
         _emptyTableLabel.numberOfLines = 0;
         _emptyTableLabel.textAlignment = NSTextAlignmentCenter;
-        if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
-            _emptyTableLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
-        }
-        else {
-            _emptyTableLabel.font = [UIFont fontWithName:RideListMessageAlternateFontFamily size:RideListMessageFontSize];
-        }
+        _emptyTableLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
         [_emptyTableLabel sizeToFit];
     }
     return _emptyTableLabel;
@@ -215,12 +190,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
         _errorLabel.textColor = [UIColor grayColor];
         _errorLabel.numberOfLines = 0;
         _errorLabel.textAlignment = NSTextAlignmentCenter;
-        if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
-            _errorLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
-        }
-        else {
-            _errorLabel.font = [UIFont fontWithName:RideListMessageAlternateFontFamily size:RideListMessageFontSize];
-        }
+        _errorLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
         [_errorLabel sizeToFit];
     }
     return _errorLabel;
@@ -234,12 +204,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
         _loadingLabel.textColor = [UIColor grayColor];
         _loadingLabel.numberOfLines = 0;
         _loadingLabel.textAlignment = NSTextAlignmentCenter;
-        if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
-            _loadingLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
-        }
-        else {
-            _loadingLabel.font = [UIFont fontWithName:RideListMessageAlternateFontFamily size:RideListMessageFontSize];
-        }
+        _loadingLabel.font = [UIFont systemFontOfSize:RideListMessageFontSize weight:UIFontWeightUltraLight];
         [_loadingLabel sizeToFit];
     }
     return _loadingLabel;

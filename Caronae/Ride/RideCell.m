@@ -1,6 +1,6 @@
 #import "UIImageView+crn_setImageWithURL.h"
-#import "Ride.h"
 #import "RideCell.h"
+#import "Caronae-Swift.h"
 
 @implementation RideCell
 
@@ -11,6 +11,7 @@ static NSDateFormatter *dateFormatter;
     if (self) {
         dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"HH:mm | E | dd/MM";
+        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
     }
     return self;
 }
@@ -36,14 +37,10 @@ static NSDateFormatter *dateFormatter;
 - (void)configureBasicCellWithRide:(Ride *)ride {
     _ride = ride;
     _titleLabel.text = [_ride.title uppercaseString];
-    
-    // Display first and last names only
-    NSArray<NSString *> *names = [_ride.driver.name componentsSeparatedByString:@" "];
-    NSString *displayName = names.count > 1 ? [NSString stringWithFormat:@"%@ %@", names.firstObject, names.lastObject] : _ride.driver.name;
-    _driverNameLabel.text = displayName;
+    _driverNameLabel.text = _ride.driver.shortName;
     
     [self updatePhoto];
-    self.color = [CaronaeConstants colorForZone:_ride.zone];
+    self.color = [CaronaeConstants colorForZone:_ride.region];
     
     _badgeLabel.hidden = YES;
 }
@@ -55,8 +52,7 @@ static NSDateFormatter *dateFormatter;
 - (void)updatePhoto {
     if (_ride.driver.profilePictureURL.length > 0) {
         [_photo crn_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]];
-    }
-    else {
+    } else {
         _photo.image = [UIImage imageNamed:@"Profile Picture"];
     }
 }
@@ -70,10 +66,10 @@ static NSDateFormatter *dateFormatter;
     self.tintColor = color;
 }
 
-- (void)setBadgeCount:(int)badgeCount {
+- (void)setBadgeCount:(NSInteger)badgeCount {
     _badgeCount = badgeCount;
     if (badgeCount > 0) {
-        _badgeLabel.text = [NSString stringWithFormat:@"%d", badgeCount];
+        _badgeLabel.text = [NSString stringWithFormat:@"%ld", (long)badgeCount];
         _badgeLabel.hidden = NO;
     }
     else {

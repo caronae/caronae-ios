@@ -1,4 +1,4 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "ZoneSelectionViewController.h"
 
 @interface ZoneSelectionInputViewController : UIViewController

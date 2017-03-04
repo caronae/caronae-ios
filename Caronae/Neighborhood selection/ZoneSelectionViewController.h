@@ -1,4 +1,4 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 typedef enum {
     ZoneSelectionZone,

@@ -1,6 +1,5 @@
-#import <SVProgressHUD/SVProgressHUD.h>
+@import SVProgressHUD;
 #import "AllRidesViewController.h"
-#import "EditProfileViewController.h"
 #import "SearchResultsViewController.h"
 #import "SearchRideViewController.h"
 #import "Caronae-Swift.h"
@@ -15,10 +14,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([UserController sharedInstance].user.isProfileIncomplete) {
-        [self performSelector:@selector(presentFinishProfileScreen) withObject:nil afterDelay:0.0];
-    }
-    
+    self.navigationController.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavigationBarLogo"]];
 }
 
@@ -42,17 +38,8 @@
     return _tableFooter;
 }
 
-- (void)refreshTable:(id)sender {
-    if (self.refreshControl.refreshing) {
-        [self loadAllRides];
-    }
-}
-
-- (void)presentFinishProfileScreen {
-    UINavigationController *editProfileNavController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"EditProfileNavigationController"];;
-    EditProfileViewController *vc = editProfileNavController.viewControllers.firstObject;
-    vc.completeProfileMode = YES;
-    [self presentViewController:editProfileNavController animated:YES completion:nil];
+- (void)refreshTable {
+    [self loadAllRides];
 }
 
 
@@ -63,46 +50,23 @@
         self.tableView.backgroundView = self.loadingLabel;
     }
     
-    [CaronaeAPIHTTPSessionManager.instance GET:@"/ride/all" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        [self.refreshControl endRefreshing];
-        
-        NSError *error;
-        NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
-        if (error) {
-            NSLog(@"Error parsing all rides. %@", error.localizedDescription);
-            NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
-            [self loadingFailedWithStatusCode:response.statusCode andError:error];
-            return;
-        }
-        
-        // Skip rides in the past
-        NSMutableArray<Ride *> *futureRides = [NSMutableArray arrayWithCapacity:rides.count];
-        for (Ride *ride in rides) {
-            if ([ride.date compare:NSDate.date] != NSOrderedAscending) {
-                [futureRides addObject:ride];
-            }
-        }
-        
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
-        self.rides = [futureRides sortedArrayUsingDescriptors:@[sortDescriptor]];
+    [RideService.instance getAllRidesWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
+        self.rides = rides;
         
         [self.tableView reloadData];
         
-        if (self.rides.count > 0) {
-            self.tableView.backgroundView = nil;
+        if ([self.rides count] > 0) {
             self.tableView.tableFooterView = self.tableFooter;
-        }
-        else {
-            self.tableView.backgroundView = self.emptyTableLabel;
+        } else {
             self.tableView.tableFooterView = nil;
         }
-
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [self.refreshControl endRefreshing];
         
-        NSHTTPURLResponse *response = (NSHTTPURLResponse*)task.response;
-        [self loadingFailedWithStatusCode:response.statusCode andError:error];
+        [self.refreshControl endRefreshing];
+    } error:^(NSError * _Nonnull error) {
+        [self.refreshControl endRefreshing];
+        [self loadingFailedWithError:error];
     }];
+    
 }
 
 
@@ -112,11 +76,15 @@
     if ([segue.identifier isEqualToString:@"SearchRide"]) {
         UINavigationController *searchNavController = segue.destinationViewController;
         SearchRideViewController *searchVC = searchNavController.viewControllers.firstObject;
+        searchVC.previouslySelectedSegmentIndex = self.directionControl.selectedSegmentIndex;
         searchVC.delegate = self;
     }
     else if ([segue.identifier isEqualToString:@"ViewSearchResults"]) {
-        SearchResultsViewController *vc = segue.destinationViewController;
-        [vc searchForRidesWithParameters:self.searchParams];
+        SearchResultsViewController *searchViewController = segue.destinationViewController;
+        [searchViewController searchedForRideWithCenter:self.searchParams[@"center"]
+                                       andNeighborhoods:self.searchParams[@"neighborhoods"]
+                                                 onDate:self.searchParams[@"date"]
+                                                  going:[self.searchParams[@"going"] boolValue]];
     }
 }
 
@@ -124,18 +92,10 @@
 #pragma mark - Search methods
 
 - (void)searchedForRideWithCenter:(NSString *)center andNeighborhoods:(NSArray *)neighborhoods onDate:(NSDate *)date going:(BOOL)going {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd";
-    NSString *dateString = [dateFormatter stringFromDate:date];
-    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    timeFormatter.dateFormat = @"HH:mm";
-    NSString *timeString = [timeFormatter stringFromDate:date];
-    
     self.searchParams = @{@"center": center,
-                          @"location": [neighborhoods componentsJoinedByString:@", "],
-                          @"date": dateString,
-                          @"time": timeString,
-                          @"go": @(going)
+                          @"neighborhoods": neighborhoods,
+                          @"date": date,
+                          @"going": @(going)
                           };
     
     [self performSegueWithIdentifier:@"ViewSearchResults" sender:self];
