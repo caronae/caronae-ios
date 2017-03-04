@@ -8,7 +8,7 @@ target 'Caronae' do
     pod 'TPKeyboardAvoiding', '~> 1.2.11'
     pod 'SDCAlertView', '2.5.4'
     pod 'SVProgressHUD'
-    pod 'SDWebImage', '~>3.8.2'
+    pod 'SDWebImage', '~> 3.8.2'
     pod 'SHSPhoneComponent'
     pod 'CRToast', '~> 0.0.7'
     pod 'FBSDKCoreKit'
@@ -19,7 +19,7 @@ target 'Caronae' do
     pod 'UITextView+Placeholder', '~> 1.2'
     pod 'Firebase/Messaging'
     pod 'JSQMessagesViewController', :git => 'https://github.com/caronae/JSQMessagesViewController.git', :branch => 'issue-1864'
-    pod "MIBadgeButton-Swift", :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
+    pod 'MIBadgeButton-Swift', :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
     
     class ::Pod::Generator::Acknowledgements
         def header_title
