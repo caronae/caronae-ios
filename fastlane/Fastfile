@@ -83,9 +83,6 @@ platform :ios do
     # Make sure our directory is clean, except for changes Fastlane has made
     clean_build_artifacts
 
-    version_number = get_version_number
-    build_number = get_build_number
-
     commit_build_bump(push: true)
     tag(type: "appstore")
   end
