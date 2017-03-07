@@ -7,6 +7,9 @@ class TokenViewController: UIViewController {
     @IBOutlet weak var authButton: UIButton!
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var tokenTextField: UITextField!
+    @IBOutlet weak var authFieldsView: UIView!
+    @IBOutlet weak var buttonsView: UIView!
+    @IBOutlet weak var bottomBackgroundView: UIImageView!
     
     static func tokenViewController() -> TokenViewController {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InitialTokenScreen") as! TokenViewController
@@ -60,8 +63,13 @@ class TokenViewController: UIViewController {
         SignInViewController.presentFromViewController(self, delegate: self)
     }
     
-    @IBAction func signInWithCredentials() {
-    
+    @IBAction func signInWithCredentials() {        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            self.bottomBackgroundView.frame.origin.y += 30
+            self.authFieldsView.frame.origin.y += 30
+            self.buttonsView.alpha = 0
+            self.authFieldsView.alpha = 1
+        })
     }
     
     @IBAction func didTapAuthenticateButton() {
