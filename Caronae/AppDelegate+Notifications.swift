@@ -29,12 +29,14 @@ extension AppDelegate {
     }
     
     private func handleJoinRequestNotification(_ userInfo: [AnyHashable: Any]) {
-        guard let (rideID, message) = rideNotificationInfo(userInfo) else {
+        guard let (id, senderID, rideID, message) = rideNotificationInfo(userInfo) else {
             NSLog("Received ride join request notification but could not parse the notification data")
             return
         }
         
         let notification = Notification()
+        notification.id = id
+        notification.senderID = senderID
         notification.rideID = rideID
         notification.kind = .rideJoinRequest
         
@@ -43,12 +45,14 @@ extension AppDelegate {
     }
     
     private func handleJoinRequestAccepted(_ userInfo: [AnyHashable: Any]) {
-        guard let (rideID, message) = rideNotificationInfo(userInfo) else {
+        guard let (id, senderID, rideID, message) = rideNotificationInfo(userInfo) else {
             NSLog("Received ride join request accepted notification but could not parse the notification data")
             return
         }
         
         let notification = Notification()
+        notification.id = id
+        notification.senderID = senderID
         notification.rideID = rideID
         notification.kind = .rideJoinRequestAccepted
         
@@ -58,7 +62,7 @@ extension AppDelegate {
     }
     
     private func handleFinishedNotification(_ userInfo: [AnyHashable: Any]) {
-        guard let (rideID, message) = rideNotificationInfo(userInfo) else {
+        guard let (_, _, rideID, message) = rideNotificationInfo(userInfo) else {
             NSLog("Received ride finished notification but could not parse the notification data")
             return
         }
@@ -69,7 +73,7 @@ extension AppDelegate {
     }
     
     private func handleQuitterNotification(_ userInfo: [AnyHashable: Any]) {
-        guard let (_, message) = rideNotificationInfo(userInfo) else {
+        guard let (_, _, _, message) = rideNotificationInfo(userInfo) else {
             NSLog("Received quitter notification but could not parse the notification data")
             return
         }
@@ -79,9 +83,7 @@ extension AppDelegate {
     }
     
     private func handleChatNotification(_ userInfo: [AnyHashable: Any]) {
-        guard let (rideID, message) = rideNotificationInfo(userInfo),
-            let senderIDString = userInfo["senderId"] as? String,
-            let senderID = Int(senderIDString),
+        guard let (id, senderID, rideID, message) = rideNotificationInfo(userInfo),
             senderID != UserService.instance.user?.id else {
                 return
         }
@@ -99,6 +101,8 @@ extension AppDelegate {
         
         let notification = Notification()
         notification.kind = .chat
+        notification.id = id
+        notification.senderID = senderID
         notification.rideID = rideID
         
         if UIApplication.shared.applicationState != .active {
@@ -173,13 +177,16 @@ extension AppDelegate {
         UIApplication.shared.applicationIconBadgeNumber = notifications.count
     }
     
-    private func rideNotificationInfo(_ userInfo: [AnyHashable: Any]) -> (Int, String)? {
-        guard let rideIDString = userInfo["rideId"] as? String,
+    private func rideNotificationInfo(_ userInfo: [AnyHashable: Any]) -> (String, Int, Int, String)? {
+        guard let id = userInfo["id"] as? String,
+            let senderIDString = userInfo["senderId"] as? String,
+            let senderID = Int(senderIDString),
+            let rideIDString = userInfo["rideId"] as? String,
             let rideID = Int(rideIDString),
             let message = userInfo["message"] as? String else {
                 return nil
         }
         
-        return (rideID, message)
+        return (id, senderID, rideID, message)
     }
 }
