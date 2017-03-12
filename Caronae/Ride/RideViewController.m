@@ -398,6 +398,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     self.requesters = joinRequestsMutable;
     [self.requestsTable endUpdates];
     [self adjustHeightOfTableview];
+    [self clearNotificationOfJoinRequestFrom:requestingUser.id];
 }
 
 - (void)tappedUserDetailsForRequest:(User *)user {

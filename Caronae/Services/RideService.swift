@@ -210,8 +210,6 @@ class RideService: NSObject {
                 return
             }
             
-            NotificationService.instance.clearNotifications(forRideID: id, of: [.rideJoinRequest])
-            
             let users = usersJson.flatMap { User(JSON: $0) }
             success(users)
         }, failure: { _, err in
