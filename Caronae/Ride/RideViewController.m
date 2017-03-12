@@ -440,7 +440,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (void)adjustHeightOfTableview {
     [self.view layoutIfNeeded];
-    CGFloat height = self.requesters.count > 0 ? self.requestsTable.contentSize.height : 0;
+    CGFloat height = self.requesters.count * self.requestsTable.rowHeight;
     self.requestsTableHeight.constant = height;
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
