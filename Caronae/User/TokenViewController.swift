@@ -57,7 +57,7 @@ class TokenViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func signInWithIntranet() {
-        SignInViewController.presentFromViewController(self, delegate: self)
+        ExternalSignInViewController.presentFromViewController(self, delegate: self)
     }
     
     @IBAction func signInWithCredentials() {
@@ -72,12 +72,12 @@ class TokenViewController: UIViewController {
     }
 }
 
-extension TokenViewController: CaronaeSignInDelegate {
-    func caronaeDidSignInWithSuccess(user: String, token: String) {
+extension TokenViewController: ExternalSignInDelegate {
+    func externalSignInWasSuccessful(user: String, token: String) {
         authenticate(withUser: user, token: token)
     }
     
-    func caronaeSignInFailed() {
+    func externalSignInFailed() {
         NSLog("Authentication failed")
     }
 }

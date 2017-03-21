@@ -36,7 +36,7 @@
 		A39672381E2E813700DD8ED5 /* RideRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39672371E2E813700DD8ED5 /* RideRequest.swift */; };
 		A398BE051C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */; };
 		A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */; };
-		A39A4D5E1E6B50190030DAF2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39A4D5D1E6B50190030DAF2 /* SignInViewController.swift */; };
+		A39A4D5E1E6B50190030DAF2 /* ExternalSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39A4D5D1E6B50190030DAF2 /* ExternalSignInViewController.swift */; };
 		A39A4D601E6B583E0030DAF2 /* CaronaeGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39A4D5F1E6B583E0030DAF2 /* CaronaeGradientButton.swift */; };
 		A39A4D621E6B61F90030DAF2 /* UIColor+Caronae.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39A4D611E6B61F90030DAF2 /* UIColor+Caronae.swift */; };
 		A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */; };
@@ -137,7 +137,7 @@
 		A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaePhoneTextField.m; sourceTree = "<group>"; };
 		A3996D2B1C13AC0900D2E890 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
 		A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
-		A39A4D5D1E6B50190030DAF2 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		A39A4D5D1E6B50190030DAF2 /* ExternalSignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalSignInViewController.swift; sourceTree = "<group>"; };
 		A39A4D5F1E6B583E0030DAF2 /* CaronaeGradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaronaeGradientButton.swift; sourceTree = "<group>"; };
 		A39A4D611E6B61F90030DAF2 /* UIColor+Caronae.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Caronae.swift"; sourceTree = "<group>"; };
 		A39BA2EA1C6C0F3A0063DDD1 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
@@ -322,7 +322,7 @@
 				A34312CC1BF01C26005BA311 /* EditProfileViewController.m */,
 				A34312C81BF01C1D005BA311 /* ProfileViewController.h */,
 				A34312C91BF01C1D005BA311 /* ProfileViewController.m */,
-				A39A4D5D1E6B50190030DAF2 /* SignInViewController.swift */,
+				A39A4D5D1E6B50190030DAF2 /* ExternalSignInViewController.swift */,
 				A3AD82391E1C8049006D8ABE /* TokenViewController.swift */,
 				A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */,
 				A3AC169E1E357828000B5817 /* WelcomeViewController.xib */,
@@ -685,7 +685,7 @@
 				A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */,
 				A3AD82311E1C6072006D8ABE /* User.swift in Sources */,
 				A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */,
-				A39A4D5E1E6B50190030DAF2 /* SignInViewController.swift in Sources */,
+				A39A4D5E1E6B50190030DAF2 /* ExternalSignInViewController.swift in Sources */,
 				A3169C951BED842D00A0D428 /* main.m in Sources */,
 				A3CA5DD61E22CA630062522D /* Notification.swift in Sources */,
 				A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */,
