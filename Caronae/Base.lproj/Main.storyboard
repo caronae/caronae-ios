@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12113" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12078"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -25,7 +25,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uke-9y-Skb" customClass="TPKeyboardAvoidingScrollView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uke-9y-Skb">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVq-3z-13h">
@@ -52,7 +52,7 @@
                                                 <rect key="frame" x="85.5" y="70" width="205" height="53"/>
                                             </imageView>
                                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="752" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyv-Ne-S5g">
-                                                <rect key="frame" x="40" y="203" width="295" height="104"/>
+                                                <rect key="frame" x="40" y="203" width="295" height="124"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Olá :)">
                                                         <attributes>
@@ -118,7 +118,7 @@ Cgo
                                                 </constraints>
                                             </view>
                                             <view alpha="0.0" contentMode="scaleToFill" verticalHuggingPriority="248" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="YSC-Sd-gAc" userLabel="Auth Fields">
-                                                <rect key="frame" x="40" y="327" width="295" height="182"/>
+                                                <rect key="frame" x="40" y="220" width="295" height="130"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sua identificação aqui" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZBE-h4-ywG" userLabel="ID Text Field" customClass="CaronaeTextField">
                                                         <rect key="frame" x="0.0" y="0.0" width="295" height="32"/>
@@ -127,6 +127,9 @@ Cgo
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="o19-4H-VWq"/>
+                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sua chave aqui" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-HP-hhp" userLabel="Token Text Field" customClass="CaronaeTextField">
                                                         <rect key="frame" x="0.0" y="40" width="295" height="32"/>
@@ -134,25 +137,13 @@ Cgo
                                                             <constraint firstAttribute="height" constant="30" id="7v7-j9-6O8"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdC-RO-82W">
-                                                        <rect key="frame" x="97.5" y="97" width="100" height="42"/>
-                                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="42" id="0Iz-Qc-ZaC"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                                        <state key="normal" title="ACESSAR" backgroundImage="ButtonColor">
-                                                            <color key="titleColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                                         <connections>
-                                                            <action selector="didTapAuthenticateButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wim-QW-dXX"/>
-                                                            <action selector="didTapAuthenticateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="da5-pN-Iyk"/>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="V3Y-Mk-t1S"/>
                                                         </connections>
-                                                    </button>
+                                                    </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebI-8t-eLo">
-                                                        <rect key="frame" x="76" y="156" width="142" height="26"/>
+                                                        <rect key="frame" x="76" y="104" width="142" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                         <state key="normal" title="Entrar com a Intranet UFRJ"/>
                                                         <connections>
@@ -162,24 +153,22 @@ Cgo
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="nW8-HP-hhp" secondAttribute="trailing" id="2MA-Tx-pHf"/>
-                                                    <constraint firstItem="GdC-RO-82W" firstAttribute="top" secondItem="nW8-HP-hhp" secondAttribute="bottom" constant="27" id="8PN-LN-lmo"/>
                                                     <constraint firstItem="ZBE-h4-ywG" firstAttribute="leading" secondItem="YSC-Sd-gAc" secondAttribute="leading" id="Agx-5C-Iip"/>
                                                     <constraint firstAttribute="bottom" secondItem="ebI-8t-eLo" secondAttribute="bottom" id="E2W-vn-ELH"/>
-                                                    <constraint firstItem="GdC-RO-82W" firstAttribute="centerX" secondItem="YSC-Sd-gAc" secondAttribute="centerX" id="anb-Zv-vt1"/>
                                                     <constraint firstAttribute="trailing" secondItem="ZBE-h4-ywG" secondAttribute="trailing" id="b14-0c-2pe"/>
                                                     <constraint firstItem="ebI-8t-eLo" firstAttribute="centerX" secondItem="YSC-Sd-gAc" secondAttribute="centerX" id="haL-iY-l8j"/>
                                                     <constraint firstItem="nW8-HP-hhp" firstAttribute="leading" secondItem="YSC-Sd-gAc" secondAttribute="leading" id="r22-CU-CCX"/>
                                                     <constraint firstItem="nW8-HP-hhp" firstAttribute="top" secondItem="ZBE-h4-ywG" secondAttribute="bottom" constant="10" id="vrh-qY-CUh"/>
-                                                    <constraint firstItem="ebI-8t-eLo" firstAttribute="top" secondItem="GdC-RO-82W" secondAttribute="bottom" constant="17" id="xfc-OI-RJD"/>
+                                                    <constraint firstAttribute="height" constant="130" id="yBC-c5-Ip5"/>
                                                     <constraint firstItem="ZBE-h4-ywG" firstAttribute="top" secondItem="YSC-Sd-gAc" secondAttribute="top" id="zIc-dV-qtA"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="YSC-Sd-gAc" firstAttribute="top" secondItem="pyv-Ne-S5g" secondAttribute="bottom" constant="20" id="2Vc-q4-O84"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4sJ-FF-AsJ" secondAttribute="bottom" constant="30" id="3ZC-bd-h9J"/>
                                             <constraint firstItem="TQy-c2-48w" firstAttribute="centerX" secondItem="mVq-3z-13h" secondAttribute="centerX" id="4Dg-SA-AvI"/>
                                             <constraint firstAttribute="trailing" secondItem="YSC-Sd-gAc" secondAttribute="trailing" constant="40" id="65J-oM-rXp"/>
+                                            <constraint firstItem="YSC-Sd-gAc" firstAttribute="centerY" secondItem="pyv-Ne-S5g" secondAttribute="centerY" constant="20" id="6B3-Bm-Myw"/>
                                             <constraint firstItem="4sJ-FF-AsJ" firstAttribute="centerX" secondItem="mVq-3z-13h" secondAttribute="centerX" id="Bwd-YR-ctm"/>
                                             <constraint firstItem="pyv-Ne-S5g" firstAttribute="leading" secondItem="mVq-3z-13h" secondAttribute="leading" constant="40" id="Cfn-lO-D6b"/>
                                             <constraint firstItem="zej-9f-2CU" firstAttribute="top" secondItem="pyv-Ne-S5g" secondAttribute="bottom" priority="750" constant="120" id="FRo-Zq-b9P"/>
@@ -192,7 +181,6 @@ Cgo
                                             <constraint firstItem="YSC-Sd-gAc" firstAttribute="leading" secondItem="mVq-3z-13h" secondAttribute="leading" constant="40" id="fuH-QJ-OII"/>
                                             <constraint firstItem="4sJ-FF-AsJ" firstAttribute="top" secondItem="zej-9f-2CU" secondAttribute="top" constant="-35" id="kMu-ss-PTt"/>
                                             <constraint firstItem="pyv-Ne-S5g" firstAttribute="top" relation="lessThanOrEqual" secondItem="TQy-c2-48w" secondAttribute="bottom" constant="80" id="ke0-Dc-38b"/>
-                                            <constraint firstItem="zej-9f-2CU" firstAttribute="top" secondItem="YSC-Sd-gAc" secondAttribute="bottom" constant="-62" id="p1d-p6-wTu"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
@@ -238,11 +226,11 @@ Cgo
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="authButton" destination="GdC-RO-82W" id="6rv-vl-LiA"/>
                         <outlet property="authFieldsView" destination="YSC-Sd-gAc" id="EXC-By-b7K"/>
                         <outlet property="bottomBackgroundView" destination="zej-9f-2CU" id="2AT-E7-sdG"/>
                         <outlet property="buttonsView" destination="4sJ-FF-AsJ" id="zX8-Ik-TdK"/>
                         <outlet property="idTextField" destination="ZBE-h4-ywG" id="BAY-ar-wQe"/>
+                        <outlet property="scrollView" destination="uke-9y-Skb" id="vn4-UJ-AOi"/>
                         <outlet property="tokenTextField" destination="nW8-HP-hhp" id="nbL-Gr-mxx"/>
                         <outlet property="welcomeLabel" destination="pyv-Ne-S5g" id="VsB-tZ-Sjd"/>
                         <segue destination="NVj-Xk-m80" kind="presentation" identifier="CompleteProfile" id="VJh-c3-WKd"/>
