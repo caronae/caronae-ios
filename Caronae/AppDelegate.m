@@ -135,8 +135,8 @@
 }
 
 - (void)displayAuthenticationScreen {
-    UIViewController *authViewController = [TokenViewController tokenViewController];
-    [UIApplication.sharedApplication.keyWindow replaceViewControllerWith:authViewController];
+    UIViewController *signInViewController = [SignInViewController signInViewController];
+    [UIApplication.sharedApplication.keyWindow replaceViewControllerWith:signInViewController];
 }
 
 - (void)displayFinishProfileScreen {

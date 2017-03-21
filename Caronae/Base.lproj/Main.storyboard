@@ -13,10 +13,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Token View Controller-->
+        <!--Sign In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="InitialTokenScreen" id="BYZ-38-t0r" customClass="TokenViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" id="BYZ-38-t0r" customClass="SignInViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -143,11 +143,11 @@ Cgo
                                                         </connections>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebI-8t-eLo">
-                                                        <rect key="frame" x="76" y="104" width="142" height="26"/>
+                                                        <rect key="frame" x="123.5" y="104" width="47" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                        <state key="normal" title="Entrar com a Intranet UFRJ"/>
+                                                        <state key="normal" title="Cancelar"/>
                                                         <connections>
-                                                            <action selector="signInWithIntranet" destination="BYZ-38-t0r" eventType="touchUpInside" id="jdc-ff-IWt"/>
+                                                            <action selector="cancelSignInWithCredentials" destination="BYZ-38-t0r" eventType="touchUpInside" id="KjJ-4X-R0E"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

@@ -2,7 +2,7 @@ import SafariServices
 import SVProgressHUD
 import UIKit
 
-class TokenViewController: UIViewController {
+class SignInViewController: UIViewController {
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var tokenTextField: UITextField!
@@ -11,8 +11,19 @@ class TokenViewController: UIViewController {
     @IBOutlet weak var bottomBackgroundView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    static func tokenViewController() -> TokenViewController {
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InitialTokenScreen") as! TokenViewController
+    private var signInMode = CaronaeSignInMode.external {
+        didSet {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+                self.buttonsView.alpha = self.signInMode == .credentials ? 0 : 1
+                self.welcomeLabel.alpha = self.signInMode == .credentials ? 0 : 1
+                self.bottomBackgroundView.alpha = self.signInMode == .credentials ? 0 : 1
+                self.authFieldsView.alpha = self.signInMode == .credentials ? 1 : 0
+            })
+        }
+    }
+    
+    static func signInViewController() -> SignInViewController {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String(describing: SignInViewController.self)) as! SignInViewController
         viewController.modalTransitionStyle = .flipHorizontal
         return viewController
     }
@@ -62,17 +73,17 @@ class TokenViewController: UIViewController {
     
     @IBAction func signInWithCredentials() {
         idTextField.becomeFirstResponder()
-        
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-            self.buttonsView.alpha = 0
-            self.authFieldsView.alpha = 1
-            self.welcomeLabel.alpha = 0
-            self.bottomBackgroundView.alpha = 0
-        })
+        signInMode = .credentials
+    }
+    
+    @IBAction func cancelSignInWithCredentials() {
+        idTextField.resignFirstResponder()
+        tokenTextField.resignFirstResponder()
+        signInMode = .external
     }
 }
 
-extension TokenViewController: ExternalSignInDelegate {
+extension SignInViewController: ExternalSignInDelegate {
     func externalSignInWasSuccessful(user: String, token: String) {
         authenticate(withUser: user, token: token)
     }
@@ -82,7 +93,7 @@ extension TokenViewController: ExternalSignInDelegate {
     }
 }
 
-extension TokenViewController: UITextFieldDelegate {
+extension SignInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == idTextField {
             tokenTextField.becomeFirstResponder()
@@ -91,4 +102,9 @@ extension TokenViewController: UITextFieldDelegate {
         
         return true
     }
+}
+
+enum CaronaeSignInMode {
+    case external
+    case credentials
 }
