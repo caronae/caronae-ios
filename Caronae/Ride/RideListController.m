@@ -24,6 +24,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
                                                  options:nil] objectAtIndex:0];
         
         self.historyTable = NO;
+        self.filterIsEnabled = NO;
         self.ridesDirectionGoing = YES;
         self.hidesDirectionControl = NO;
         
@@ -59,6 +60,31 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     
     if (self.historyTable) {
         self.tableView.allowsSelection = NO;
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self adjustFilterView];
+}
+
+- (void)adjustFilterView {
+    if (self.hidesDirectionControl) {
+        [self.view layoutIfNeeded];
+        [self.filterViewHeightZero setActive:YES];
+        return;
+    }
+    
+    if (self.filterIsEnabled) {
+        [self.view layoutIfNeeded];
+        [self.filterViewHeightZero setActive:NO];
+        self.tableView.contentInset = UIEdgeInsetsMake(109.0f + 44.0f, 0.0f, 0.0f, 0.0f);
+    }
+    else {
+        [self.view layoutIfNeeded];
+        [self.filterViewHeightZero setActive:YES];
+        self.tableView.contentInset = UIEdgeInsetsMake(109.0f, 0.0f, 0.0f, 0.0f);
     }
 }
 
@@ -164,6 +190,13 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     [self setRides:self.rides];
     [self.tableView reloadData];
 }
+
+- (IBAction)didTapClearFilterButton:(UIButton *)sender {
+    self.filterIsEnabled = NO;
+    [self adjustFilterView];
+    //TODO: update Rides
+}
+
 
 
 #pragma mark - Extra views

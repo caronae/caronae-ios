@@ -14,6 +14,7 @@
 #import "SearchResultsViewController.h"
 #import "SearchRideViewController.h"
 #import "TabBarController.h"
+#import "ZoneSelectionViewController.h"
 
 #import "UIApplication+topViewController.h"
 #import "UIWindow+replaceRootViewController.h"

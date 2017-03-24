@@ -23,12 +23,14 @@
 @property (nonatomic, strong) id<UITableViewDataSource> dataSource;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *directionControl;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterViewHeightZero;
 
 @property (nonatomic) UILabel *emptyTableLabel;
 @property (nonatomic) UILabel *errorLabel;
 @property (nonatomic) UILabel *loadingLabel;
 
 @property (nonatomic) IBInspectable BOOL historyTable;
+@property (nonatomic) IBInspectable BOOL filterIsEnabled;
 @property (nonatomic, strong) IBInspectable NSString *emptyMessage;
 
 @end
