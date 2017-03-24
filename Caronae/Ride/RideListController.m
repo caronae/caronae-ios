@@ -192,6 +192,8 @@ static CGFloat const RideListMessageFontSize = 25.0f;
 }
 
 - (IBAction)didTapClearFilterButton:(UIButton *)sender {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:NO forKey:CaronaePreferenceFilterIsEnabledKey];
     self.filterIsEnabled = NO;
     [self adjustFilterView];
     //TODO: update Rides

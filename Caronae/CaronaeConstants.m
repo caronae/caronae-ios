@@ -21,6 +21,10 @@ NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey = @"lastSearchedNe
 NSString *const CaronaePreferenceLastSearchedCenterKey = @"lastSearchedCenter";
 NSString *const CaronaePreferenceLastSearchedDateKey = @"lastSearchedDate";
 
+NSString *const CaronaePreferenceFilterIsEnabledKey = @"filterIsEnabled";
+NSString *const CaronaePreferenceLastFilteredNeighborhoodsKey = @"lastFilteredNeighborhoods";
+NSString *const CaronaePreferenceLastFilteredCenterKey = @"lastFilteredCenter";
+
 
 #pragma mark - Etc.
 

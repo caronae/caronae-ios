@@ -14,6 +14,10 @@ extern NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey;
 extern NSString *const CaronaePreferenceLastSearchedCenterKey;
 extern NSString *const CaronaePreferenceLastSearchedDateKey;
 
+extern NSString *const CaronaePreferenceFilterIsEnabledKey;
+extern NSString *const CaronaePreferenceLastFilteredNeighborhoodsKey;
+extern NSString *const CaronaePreferenceLastFilteredCenterKey;
+
 
 #pragma mark - Notifications
 

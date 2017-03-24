@@ -21,6 +21,8 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 tableView.finishInfiniteScroll()
             }
         }
+        
+        self.filterIsEnabled = UserDefaults.standard.bool(forKey: CaronaePreferenceFilterIsEnabledKey)
     }
     
     deinit {

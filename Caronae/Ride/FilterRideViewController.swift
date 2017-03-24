@@ -32,27 +32,19 @@ class FilterRideViewController: UIViewController, ZoneSelectionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //TODO: Load last filter (or active)
         self.hubs = ["Todos os Centros"]
         self.hubs?.append(contentsOf: CaronaeConstants.defaults().centers as! [String])
-        self.selectedHub = self.hubs?.first
+        
+        // Load last filtered neighborhoods and center
+        if let lastFilteredNeighborhoods = self.userDefaults.array(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) as? [String],
+            let lastFilteredCenter = self.userDefaults.string(forKey: CaronaePreferenceLastFilteredCenterKey) {
+            self.selectedNeighborhoods = lastFilteredNeighborhoods
+            self.selectedHub = lastFilteredCenter
+        } else {
+            self.selectedHub = self.hubs?.first
+        }
+        
         self.centerButton.setTitle(self.selectedHub, for: .normal)
-        
-        //// Load last searched neighborhoods
-        //NSArray *lastSearchedNeighborhoods = [self.userDefaults arrayForKey:CaronaePreferenceLastSearchedNeighborhoodsKey];
-        //if (lastSearchedNeighborhoods) {
-        //    self.neighborhoods = lastSearchedNeighborhoods;
-        //}
-        
-        //// Load last searched center
-        //NSString *lastSearchedCenter = [self.userDefaults stringForKey:CaronaePreferenceLastSearchedCenterKey];
-        //self.hubs = [@[@"Todos os Centros"] arrayByAddingObjectsFromArray:[CaronaeConstants defaults].centers];
-        //if (lastSearchedCenter) {
-        //    self.selectedHub = lastSearchedCenter;
-        //} else {
-        //    self.selectedHub = self.hubs.firstObject;
-        //}
-        //[self.centerButton setTitle:self.selectedHub forState:UIControlStateNormal];
     }
     
     
@@ -68,13 +60,13 @@ class FilterRideViewController: UIViewController, ZoneSelectionDelegate {
             return
         }
         
-        //TODO: save filter
+        // Save filter parameters
+        self.userDefaults.setValuesForKeys([CaronaePreferenceFilterIsEnabledKey: true,
+                                            CaronaePreferenceLastFilteredNeighborhoodsKey: self.selectedNeighborhoods!,
+                                            CaronaePreferenceLastFilteredCenterKey: self.selectedHub!])
         
-        // Save search parameters for the next search
-        //[self.userDefaults setObject:self.neighborhoods forKey:CaronaePreferenceLastSearchedNeighborhoodsKey];
-        //[self.userDefaults setObject:self.selectedHub forKey:CaronaePreferenceLastSearchedCenterKey];
-        //[self.userDefaults setObject:self.searchedDate forKey:CaronaePreferenceLastSearchedDateKey];
         
+        //TODO: apply filter
         //var going = true
         //[self.delegate searchedForRideWithCenter: ([self.selectedHub isEqual: self.hubs[0]] ? @"" : self.selectedHub) andNeighborhoods:self.neighborhoods onDate:self.searchedDate going:going];
         
