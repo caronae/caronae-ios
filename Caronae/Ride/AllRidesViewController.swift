@@ -134,6 +134,8 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         filterLabel.text = label
         
         loadAllRides()
+        // workaround to not cover cell after enabling filter
+        tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: true)
     }
     
     override func didTapClearFilterButton(_ sender: UIButton!) {

@@ -69,6 +69,12 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     [self adjustFilterView];
 }
 
+-(void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    [self adjustTableView];
+}
+
 - (void)adjustFilterView {
     if (self.hidesDirectionControl) {
         [self.view layoutIfNeeded];
@@ -79,11 +85,24 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     if (self.filterIsEnabled) {
         [self.view layoutIfNeeded];
         [self.filterViewHeightZero setActive:NO];
-        self.tableView.contentInset = UIEdgeInsetsMake(109.0f + 44.0f, 0.0f, 0.0f, 0.0f);
     }
     else {
         [self.view layoutIfNeeded];
         [self.filterViewHeightZero setActive:YES];
+    }
+}
+
+- (void)adjustTableView {
+    if (self.hidesDirectionControl) {
+        return;
+    }
+    
+    if (self.filterIsEnabled) {
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0f + 44.0f, 0.0f, 49.0f, 0.0f);
+        self.tableView.contentInset = UIEdgeInsetsMake(109.0f + 44.0f, 0.0f, 0.0f, 0.0f);
+    }
+    else {
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0f, 0.0f, 49.0f, 0.0f);
         self.tableView.contentInset = UIEdgeInsetsMake(109.0f, 0.0f, 0.0f, 0.0f);
     }
 }
