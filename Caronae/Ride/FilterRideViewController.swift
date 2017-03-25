@@ -26,7 +26,7 @@ class FilterRideViewController: UIViewController, ZoneSelectionDelegate {
     var selectedZone: String?
     var selectedHub: String?
     var hubs: [String]?
-    var userDefaults = UserDefaults.standard
+    let userDefaults = UserDefaults.standard
 
     
     override func viewDidLoad() {
@@ -65,15 +65,7 @@ class FilterRideViewController: UIViewController, ZoneSelectionDelegate {
                                             CaronaePreferenceLastFilteredNeighborhoodsKey: self.selectedNeighborhoods!,
                                             CaronaePreferenceLastFilteredCenterKey: self.selectedHub!])
         
-        
-        //TODO: apply filter
-        //var going = true
-        //[self.delegate searchedForRideWithCenter: ([self.selectedHub isEqual: self.hubs[0]] ? @"" : self.selectedHub) andNeighborhoods:self.neighborhoods onDate:self.searchedDate going:going];
-        
-        //[self performSegueWithIdentifier:@"showResultsUnwind" sender:nil];
-        
-        self.dismiss(animated: true, completion: nil)
-        
+        self.performSegue(withIdentifier: "didTapFilterUnwind", sender: self)
     }
     
     @IBAction func selectCenterTapped(_ sender: Any) {
@@ -112,9 +104,9 @@ class FilterRideViewController: UIViewController, ZoneSelectionDelegate {
             zoneSelectionVC.type = ZoneSelectionZone
             zoneSelectionVC.neighborhoodSelectionType = NeighborhoodSelectionMany
             zoneSelectionVC.delegate = self
-        //} else if segue.identifier == "showResultsUnwind" {
-            //SearchResultsViewController *vc = segue.destinationViewController;
-            //vc.previouslySelectedSegmentIndex = self.directionControl.selectedSegmentIndex;
+        } else if segue.identifier == "didTapFilterUnwind" {
+            let allRidesVC = segue.destination as! AllRidesViewController
+            allRidesVC.enableFilterRides()
         }
     }
 

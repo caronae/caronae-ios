@@ -1,7 +1,9 @@
 import UIKit
 
 class AllRidesViewController: RideListController, SearchRideDelegate {
+    let userDefaults = UserDefaults.standard
     var searchParams: [String: Any] = [:]
+    var filterParams: [String: Any] = [:]
     fileprivate var nextPage = 2
     fileprivate var lastUpdate = Date.distantPast
 
@@ -22,7 +24,11 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             }
         }
         
-        self.filterIsEnabled = UserDefaults.standard.bool(forKey: CaronaePreferenceFilterIsEnabledKey)
+        self.filterIsEnabled = userDefaults.bool(forKey: CaronaePreferenceFilterIsEnabledKey)
+        
+        if self.filterIsEnabled {
+            enableFilterRides()
+        }
     }
     
     deinit {
@@ -114,6 +120,30 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         }
     }
     
+    func enableFilterRides() {
+        guard let center = userDefaults.string(forKey: CaronaePreferenceLastFilteredCenterKey),
+            let neighborhoods = userDefaults.array(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) as? [String] else {
+                return
+        }
+        
+        self.filterIsEnabled = true
+        filterParams = ["center": center,
+                        "neighborhoods": neighborhoods]
+        
+        let label = center + ", " + neighborhoods.joined(separator: ", ")
+        filterLabel.text = label
+        
+        loadAllRides()
+    }
+    
+    override func didTapClearFilterButton(_ sender: UIButton!) {
+        super.didTapClearFilterButton(sender);
+        
+        userDefaults.set(false, forKey: CaronaePreferenceFilterIsEnabledKey)
+        self.filterParams = [:]
+        loadAllRides()
+    }
+    
     
     // MARK: Navigation
 
@@ -132,6 +162,9 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                                                      going: searchParams["going"] as! Bool)
             }
         }
+    }
+    
+    @IBAction func didTapFilterUnwind(segue:UIStoryboardSegue) {
     }
     
     

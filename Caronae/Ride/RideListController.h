@@ -12,6 +12,8 @@
 - (RideCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
+- (IBAction)didTapClearFilterButton:(UIButton *)sender;
+
 @property (nonatomic) id rides;
 @property (nonatomic, readonly) NSArray<Ride *> *filteredRides;
 
@@ -23,6 +25,7 @@
 @property (nonatomic, strong) id<UITableViewDataSource> dataSource;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *directionControl;
+@property (weak, nonatomic) IBOutlet UILabel *filterLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterViewHeightZero;
 
 @property (nonatomic) UILabel *emptyTableLabel;

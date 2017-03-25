@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RideListController">
             <connections>
                 <outlet property="directionControl" destination="EV6-FJ-bWI" id="6os-mv-9Pg"/>
+                <outlet property="filterLabel" destination="g7Q-xw-iaC" id="Uhy-PG-2pW"/>
                 <outlet property="filterViewHeightZero" destination="KkT-80-EcW" id="5Wf-bl-c9Z"/>
                 <outlet property="tableView" destination="6Ac-hY-QKJ" id="WUU-Ci-sdD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -67,7 +68,7 @@
                                 <action selector="didTapClearFilterButton:" destination="-1" eventType="touchUpInside" id="r5a-bM-RPL"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filtrando:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETP-H5-MAv">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Filtrando:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETP-H5-MAv">
                             <rect key="frame" x="8" y="15" width="55.5" height="15"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                             <color key="textColor" red="0.33725490196078434" green="0.33725490196078434" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>

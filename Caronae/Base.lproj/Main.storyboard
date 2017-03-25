@@ -7383,9 +7383,11 @@ nenhuma carona.</string>
                     <connections>
                         <outlet property="centerButton" destination="HmZ-UX-tFm" id="bLa-wn-wNO"/>
                         <outlet property="neighborhoodButton" destination="hVB-Ls-RQU" id="2g8-JT-X1o"/>
+                        <segue destination="o5J-M4-aHo" kind="unwind" identifier="didTapFilterUnwind" unwindAction="didTapFilterUnwindWithSegue:" id="gYy-Bl-Tgc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hfm-pO-9SL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="o5J-M4-aHo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5126" y="785"/>
         </scene>
