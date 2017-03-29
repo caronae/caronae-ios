@@ -1,8 +1,10 @@
 #import "RideListController.h"
 
+@class FilterParameters;
+
 @interface SearchResultsViewController : RideListController
 
-- (void)searchedForRideWithCenter:(NSString *)center andNeighborhoods:(NSArray *)neighborhoods onDate:(NSDate *)date going:(BOOL)going;
+- (void)searchedForRideWithParameters:(FilterParameters *)parameters;
 
 @property (nonatomic) NSInteger previouslySelectedSegmentIndex;
 

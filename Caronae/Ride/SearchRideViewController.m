@@ -102,8 +102,14 @@
     [self.userDefaults setObject:self.searchedDate forKey:CaronaePreferenceLastSearchedDateKey];
     
     BOOL going = (self.directionControl.selectedSegmentIndex == 0);
-    [self.delegate searchedForRideWithCenter: ([self.selectedHub isEqual: self.hubs[0]] ? @"" : self.selectedHub) andNeighborhoods:self.neighborhoods onDate:self.searchedDate going:going];
     
+    FilterParameters *params = [FilterParameters alloc];
+    params.hub = [self.selectedHub isEqual: self.hubs[0]] ? @"" : self.selectedHub;
+    params.neighborhoods = self.neighborhoods;
+    params.date = self.searchedDate;
+    [params setGoingWithBool:going];
+    
+    [self.delegate searchedForRideWithParameters:params];
     [self performSegueWithIdentifier:@"showResultsUnwind" sender:nil];
 }
 

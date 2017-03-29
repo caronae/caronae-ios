@@ -66,7 +66,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self adjustFilterView];
+    [self adjustFilterViewWithAnimation:NO];
 }
 
 -(void)viewDidLayoutSubviews {
@@ -75,7 +75,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     [self adjustTableView];
 }
 
-- (void)adjustFilterView {
+- (void)adjustFilterViewWithAnimation:(BOOL)animated {
     if (self.hidesDirectionControl) {
         [self.view layoutIfNeeded];
         [self.filterViewHeightZero setActive:YES];
@@ -87,8 +87,15 @@ static CGFloat const RideListMessageFontSize = 25.0f;
         [self.filterViewHeightZero setActive:NO];
     }
     else {
-        [self.view layoutIfNeeded];
-        [self.filterViewHeightZero setActive:YES];
+        if (animated) {
+            [self.filterViewHeightZero setActive:YES];
+            [UIView animateWithDuration:0.2 animations:^{
+                [self.view layoutIfNeeded];
+            }];
+        } else {
+            [self.view layoutIfNeeded];
+            [self.filterViewHeightZero setActive:YES];
+        }
     }
 }
 
@@ -98,8 +105,9 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     }
     
     if (self.filterIsEnabled) {
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0f + 44.0f, 0.0f, 49.0f, 0.0f);
-        self.tableView.contentInset = UIEdgeInsetsMake(109.0f + 44.0f, 0.0f, 0.0f, 0.0f);
+        float filterViewHeight = _filterViewHeight.constant;
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0f + filterViewHeight, 0.0f, 49.0f, 0.0f);
+        self.tableView.contentInset = UIEdgeInsetsMake(109.0f + filterViewHeight, 0.0f, 0.0f, 0.0f);
     }
     else {
         self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0f, 0.0f, 49.0f, 0.0f);
@@ -212,7 +220,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
 
 - (IBAction)didTapClearFilterButton:(UIButton *)sender {
     self.filterIsEnabled = NO;
-    [self adjustFilterView];
+    [self adjustFilterViewWithAnimation:YES];
 }
 
 

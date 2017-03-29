@@ -26,6 +26,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *directionControl;
 @property (weak, nonatomic) IBOutlet UILabel *filterLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterViewHeightZero;
 
 @property (nonatomic) UILabel *emptyTableLabel;

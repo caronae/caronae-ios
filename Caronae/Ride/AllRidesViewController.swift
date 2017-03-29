@@ -2,8 +2,8 @@ import UIKit
 
 class AllRidesViewController: RideListController, SearchRideDelegate {
     let userDefaults = UserDefaults.standard
-    var searchParams: [String: Any] = [:]
-    var filterParams: [String: Any] = [:]
+    var searchParams = FilterParameters()
+    var filterParams = FilterParameters()
     fileprivate var nextPage = 2
     fileprivate var lastUpdate = Date.distantPast
 
@@ -67,7 +67,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             tableView.backgroundView = loadingLabel
         }
         
-        RideService.instance.getAllRides(page: page, success: { rides in
+        RideService.instance.getRides(page: page, filterParameters: filterParams,success: { rides in
             
             if page == 1 {
                 self.nextPage = 2
@@ -127,8 +127,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         }
         
         self.filterIsEnabled = true
-        filterParams = ["center": center,
-                        "neighborhoods": neighborhoods]
+        filterParams = FilterParameters(neighborhoods: neighborhoods, hub: center)
         
         let label = center + ", " + neighborhoods.joined(separator: ", ")
         filterLabel.text = label
@@ -142,7 +141,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         super.didTapClearFilterButton(sender);
         
         userDefaults.set(false, forKey: CaronaePreferenceFilterIsEnabledKey)
-        self.filterParams = [:]
+        self.filterParams = FilterParameters()
         loadAllRides()
     }
     
@@ -158,10 +157,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             }
         } else if segue.identifier == "ViewSearchResults" {
             if let searchViewController = segue.destination as? SearchResultsViewController {
-                searchViewController.searchedForRide(withCenter: searchParams["center"] as! String!,
-                                                     andNeighborhoods: searchParams["neighborhoods"] as! [Any]!,
-                                                     on: searchParams["date"] as! Date!,
-                                                     going: searchParams["going"] as! Bool)
+                searchViewController.searchedForRide(with: searchParams);
             }
         }
     }
@@ -172,11 +168,8 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     // MARK: Search methods
     
-    func searchedForRide(withCenter center: String, andNeighborhoods neighborhoods: [Any], on date: Date, going: Bool) {
-        searchParams = ["center": center,
-                        "neighborhoods": neighborhoods,
-                        "date": date,
-                        "going": going]
+    func searchedForRide(with parameters: FilterParameters) {
+        searchParams = parameters
         
         performSegue(withIdentifier: "ViewSearchResults", sender: self)
     }

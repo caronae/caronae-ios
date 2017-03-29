@@ -9,11 +9,18 @@ class RideService: NSObject {
         // This prevents others from using the default '()' initializer for this class.
     }
     
-    func getAllRides(page: Int, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/ride/all?page=\(page)", parameters: nil, success: { task, responseObject in
-            guard let ridesJson = responseObject as? [[String: Any]] else {
-                error(CaronaeError.invalidResponse)
-                return
+    func getRides(page: Int, filterParameters: FilterParameters? = nil, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
+        var params: [String: Any] = [:]
+        
+        if let filterParameters = filterParameters {
+            params = filterParameters.dictionary()
+        }
+        
+        api.get("/rides?page=\(page)", parameters: params, success: { task, responseObject in
+            guard let responde = responseObject as? [String: Any],
+                let ridesJson = responde["data"] as? [[String: Any]] else {
+                    error(CaronaeError.invalidResponse)
+                    return
             }
             
             // Deserialize response
@@ -27,7 +34,7 @@ class RideService: NSObject {
             
             success(rides)
         }, failure: { _, err in
-            NSLog("Failed to load all rides: \(err.localizedDescription)")
+            NSLog("Failed to load rides: \(err.localizedDescription)")
             error(err)
         })
     }
@@ -170,35 +177,6 @@ class RideService: NSObject {
             let rides = ridesJson.flatMap { Ride(JSON: $0) }.sorted { $0.date > $1.date }
             success(rides)
         }, failure: { _, err in
-            error(err)
-        })
-    }
-
-    func searchRides(withCenter center: String, neighborhoods: [String], date: Date, going: Bool, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateString = dateFormatter.string(from: date)
-        dateFormatter.dateFormat = "HH:mm"
-        let timeString = dateFormatter.string(from: date)
-        
-        let params = [
-            "center": center,
-            "location": neighborhoods.joined(separator: ", "),
-            "date": dateString,
-            "time": timeString,
-            "go": going
-        ] as [String : Any]
-        
-        api.post("/ride/listFiltered", parameters: params, success: { task, responseObject in
-            guard let ridesJson = responseObject as? [[String: Any]] else {
-                error(CaronaeError.invalidResponse)
-                return
-            }
-            
-            let rides = ridesJson.flatMap { Ride(JSON: $0) }.sorted { $0.date < $1.date }
-            success(rides)
-        }, failure: { _, err in
-            NSLog("Error: Failed to search rides: \(err.localizedDescription)")
             error(err)
         })
     }
