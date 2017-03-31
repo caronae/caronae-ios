@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="directionControl" destination="EV6-FJ-bWI" id="6os-mv-9Pg"/>
                 <outlet property="filterLabel" destination="g7Q-xw-iaC" id="Uhy-PG-2pW"/>
+                <outlet property="filterView" destination="0Ip-RW-iit" id="5ue-XB-Ap1"/>
                 <outlet property="filterViewHeight" destination="Snl-jF-m6s" id="9po-xJ-OJR"/>
                 <outlet property="filterViewHeightZero" destination="KkT-80-EcW" id="5Wf-bl-c9Z"/>
                 <outlet property="tableView" destination="6Ac-hY-QKJ" id="WUU-Ci-sdD"/>
@@ -59,10 +60,9 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ip-RW-iit" userLabel="FilterView">
                     <rect key="frame" x="0.0" y="64" width="375" height="37"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hah-mc-HGX">
-                            <rect key="frame" x="154.5" y="5" width="205.5" height="28"/>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                            <state key="normal" title="LIMPAR">
+                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hah-mc-HGX">
+                            <rect key="frame" x="154.5" y="8" width="205.5" height="22"/>
+                            <state key="normal" image="ButtonClose">
                                 <color key="titleColor" red="0.92941176470588238" green="0.1803921568627451" blue="0.050980392156862744" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -75,7 +75,7 @@
                             <color key="textColor" red="0.33725490196078434" green="0.33725490196078434" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CT, Freguesia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7Q-xw-iaC">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CT, Freguesia" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7Q-xw-iaC">
                             <rect key="frame" x="71.5" y="11" width="78" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -94,6 +94,17 @@
                         <constraint firstItem="g7Q-xw-iaC" firstAttribute="centerY" secondItem="0Ip-RW-iit" secondAttribute="centerY" id="n5t-qE-UQE"/>
                         <constraint firstItem="Hah-mc-HGX" firstAttribute="leading" secondItem="g7Q-xw-iaC" secondAttribute="trailing" constant="5" id="y5m-OA-Wzk"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                            <size key="value" width="0.0" height="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                            <real key="value" value="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                            <real key="value" value="0.69999999999999996"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="KkT-80-EcW"/>
@@ -118,4 +129,7 @@
             <point key="canvasLocation" x="-4457.5" y="3201.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="ButtonClose" width="16" height="16"/>
+    </resources>
 </document>

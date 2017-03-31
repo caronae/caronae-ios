@@ -70,18 +70,7 @@
 - (void)setNeighborhoods:(NSArray *)neighborhoods {
     _neighborhoods = neighborhoods;
     
-    NSString *buttonTitle = @"";
-    for (unsigned int i = 0; i < neighborhoods.count; i++) {
-        if (i > 2) {
-            buttonTitle = [NSString stringWithFormat:@"%@ + %lu", buttonTitle, (long)neighborhoods.count-i];
-            break;
-        }
-        buttonTitle = [buttonTitle stringByAppendingString:neighborhoods[i]];
-        if (i < neighborhoods.count - 1 && i < 2) {
-            buttonTitle = [buttonTitle stringByAppendingString:@", "];
-        }
-    }
-    
+    NSString *buttonTitle = neighborhoods.compactString;
     [self.neighborhoodButton setTitle:buttonTitle forState:UIControlStateNormal];
 }
 

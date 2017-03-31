@@ -128,9 +128,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         
         self.filterIsEnabled = true
         filterParams = FilterParameters(neighborhoods: neighborhoods, hub: center)
-        
-        let label = center + ", " + neighborhoods.joined(separator: ", ")
-        filterLabel.text = label
+        filterLabel.text = filterParams.activeFiltersText()
         
         loadAllRides()
         // workaround to not cover cell after enabling filter

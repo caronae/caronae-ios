@@ -41,6 +41,11 @@ class FilterParameters: NSObject {
         return params
     }
     
+    func activeFiltersText() -> String {
+        let label = self.hub! + ", " + self.neighborhoods!.compactString()
+        return label
+    }
+    
     func setGoing(bool: Bool) {
         self.going = bool
     }

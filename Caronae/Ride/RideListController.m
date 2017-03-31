@@ -85,8 +85,10 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     if (self.filterIsEnabled) {
         [self.view layoutIfNeeded];
         [self.filterViewHeightZero setActive:NO];
+        self.filterView.layer.masksToBounds = NO;
     }
     else {
+        self.filterView.layer.masksToBounds = YES;
         if (animated) {
             [self.filterViewHeightZero setActive:YES];
             [UIView animateWithDuration:0.2 animations:^{

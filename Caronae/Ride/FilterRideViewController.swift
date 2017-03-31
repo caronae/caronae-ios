@@ -7,18 +7,7 @@ class FilterRideViewController: UIViewController, ZoneSelectionDelegate {
     
     var selectedNeighborhoods: [String]? {
         didSet {
-            var buttonTitle = String()
-            
-            for i in 0..<selectedNeighborhoods!.count {
-                if i > 2 {
-                    buttonTitle = String(format: "%@ + %lu", buttonTitle, selectedNeighborhoods!.count-i)
-                    break;
-                }
-                buttonTitle = buttonTitle.appending(selectedNeighborhoods![i])
-                if i < selectedNeighborhoods!.count - 1 && i < 2 {
-                    buttonTitle = buttonTitle.appending(", ")
-                }
-            }
+            let buttonTitle = selectedNeighborhoods?.compactString()
             self.neighborhoodButton.setTitle(buttonTitle, for: .normal)
         }
     }
