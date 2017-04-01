@@ -2,6 +2,7 @@
 #import "ZoneSelectionInputViewController.h"
 
 @interface ZoneSelectionInputViewController ()
+
 @property (weak, nonatomic) IBOutlet UINavigationItem *doneButton;
 @property (weak, nonatomic) IBOutlet CaronaeTextField *neighborhoodTextField;
 

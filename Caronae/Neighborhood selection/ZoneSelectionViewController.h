@@ -25,6 +25,6 @@ typedef enum {
 @property (nonatomic) NSString *selectedZone;
 @property (nonatomic) ZoneSelectionType type;
 @property (nonatomic) NeighborhoodSelectionType neighborhoodSelectionType;
-@property (nonatomic, assign) id<ZoneSelectionDelegate> delegate;
+@property (nonatomic, weak) id<ZoneSelectionDelegate> delegate;
 
 @end

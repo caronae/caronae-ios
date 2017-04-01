@@ -3,9 +3,8 @@
 #import "ZoneSelectionInputViewController.h"
 
 @interface ZoneSelectionViewController ()
-@property (nonatomic) NSArray *zones;
+@property (nonatomic) NSArray *places;
 @property (nonatomic) UIBarButtonItem *doneButton;
-@property (nonatomic) NSMutableArray *selectedNeighborhoods;
 @end
 
 @implementation ZoneSelectionViewController
@@ -16,132 +15,116 @@
     if (self.type == ZoneSelectionZone) {
         self.title = @"Zonas";
         if (self.neighborhoodSelectionType == NeighborhoodSelectionMany) {
-            self.zones = [@[CaronaeAllNeighborhoodsText] arrayByAddingObjectsFromArray:[CaronaeConstants defaults].zones];
-        }
-        else {
-            self.zones = [CaronaeConstants defaults].zones;
+            self.places = [@[CaronaeAllNeighborhoodsText] arrayByAddingObjectsFromArray:[CaronaeConstants defaults].zones];
+        } else {
+            self.places = [CaronaeConstants defaults].zones;
         }
     }
     else {
         self.title = self.selectedZone;
-        self.zones = [CaronaeConstants defaults].neighborhoods[self.selectedZone];
-        self.selectedNeighborhoods = [[NSMutableArray alloc] init];
+        self.places = [CaronaeConstants defaults].neighborhoods[self.selectedZone];
+        
         if (self.neighborhoodSelectionType == NeighborhoodSelectionMany) {
             self.doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Sel. todos" style:UIBarButtonItemStyleDone target:self action:@selector(finishSelection)];
             self.navigationItem.rightBarButtonItem = self.doneButton;
+            self.tableView.allowsMultipleSelection = YES;
         }
     }
 }
 
 - (void)finishSelection {
     [self.navigationController popToRootViewControllerAnimated:YES];
+    
     if (self.neighborhoodSelectionType == NeighborhoodSelectionMany && [self.delegate respondsToSelector:@selector(hasSelectedNeighborhoods:inZone:)]) {
-        NSArray *selectedNeighborhoods;
-        if (self.selectedNeighborhoods.count == 0) {
-            selectedNeighborhoods = @[self.selectedZone];
-        }
-        else {
-            if (self.selectedNeighborhoods.count == self.zones.count) {
-                selectedNeighborhoods = @[self.selectedZone];
-            }
-            else {
-                selectedNeighborhoods = self.selectedNeighborhoods;
+        NSArray *selectedIndexPaths = self.tableView.indexPathsForSelectedRows;
+        
+        NSArray *selections;
+        if (selectedIndexPaths.count == 0) {
+            selections = @[self.selectedZone];
+        } else {
+            if (selectedIndexPaths.count == self.places.count) {
+                selections = @[self.selectedZone];
+            } else {
+                NSMutableArray *selectedNeighborhoods = [NSMutableArray arrayWithCapacity:selectedIndexPaths.count];
+                for (NSIndexPath *indexPath in selectedIndexPaths) {
+                    [selectedNeighborhoods addObject:self.places[indexPath.row]];
+                }
+                selections = selectedNeighborhoods;
             }
         }
 
-        [self.delegate hasSelectedNeighborhoods:selectedNeighborhoods inZone:self.selectedZone];
+        [self.delegate hasSelectedNeighborhoods:selections inZone:self.selectedZone];
     }
+    
     else if (self.neighborhoodSelectionType == NeighborhoodSelectionOne && [self.delegate respondsToSelector:@selector(hasSelectedNeighborhood:inZone:)]) {
-        [self.delegate hasSelectedNeighborhood:self.selectedNeighborhoods.firstObject inZone:self.selectedZone];
+        NSString *selection = self.places[self.tableView.indexPathForSelectedRow.row];
+        [self.delegate hasSelectedNeighborhood:selection inZone:self.selectedZone];
     }
 }
 
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.zones.count;
+    return self.places.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZoneCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Zone Cell" forIndexPath:indexPath];
+    ZoneCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Zone Cell"];
     
-    NSString *zone = self.zones[indexPath.row];
+    NSString *zone = self.places[indexPath.row];
+    
     UIColor *cellColor;
-    
     if (self.type == ZoneSelectionZone) {
         cellColor = [CaronaeConstants colorForZone:zone];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    else {
+    } else {
         cellColor = [CaronaeConstants colorForZone:self.selectedZone];
-        if (self.neighborhoodSelectionType == NeighborhoodSelectionMany && cell.selected) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }
-        else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
     }
     
-    cell.zoneNameLabel.text = zone;
-    cell.colorDetail.backgroundColor = cellColor;
-    cell.zoneNameLabel.textColor = cellColor;
-    
+    [cell setupCellWithTitle:zone color:cellColor type:self.type];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.type == ZoneSelectionNeighborhood && self.neighborhoodSelectionType == NeighborhoodSelectionOne) {
+        [self finishSelection];
+        return;
+    }
+    
+    if ([self.places[indexPath.row] isEqualToString:CaronaeAllNeighborhoodsText]) {
+        self.selectedZone = @"";
+        [self finishSelection];
+        return;
+    }
+    
     if (self.type == ZoneSelectionZone) {
-        if (![self.zones[indexPath.row] isEqualToString:@"Outra"]) {
-            if (![self.zones[indexPath.row] isEqualToString:CaronaeAllNeighborhoodsText]) {
-                self.selectedZone = self.zones[indexPath.row];
-                [self performSegueWithIdentifier:@"ViewNeighborhoods" sender:self];
-            }
-            else {
-                self.selectedZone = @"";
-                self.selectedNeighborhoods = [NSMutableArray arrayWithObject:CaronaeAllNeighborhoodsText];
-                [self finishSelection];
-            }
-            
-        }
-        else {
+        if ([self.places[indexPath.row] isEqualToString:@"Outra"]) {
             self.selectedZone = @"Outros";
             if (self.neighborhoodSelectionType == NeighborhoodSelectionOne) {
                 [self performSegueWithIdentifier:@"OtherNeighborhood" sender:self];
-            }
-            else if (self.neighborhoodSelectionType == NeighborhoodSelectionMany) {
-                self.selectedNeighborhoods = [NSMutableArray arrayWithObject:@"Outros"];
+            } else {
                 [self finishSelection];
             }
+            
+            return;
         }
-    }
-    else {
-        NSString *selectedNeighborhood = self.zones[indexPath.row];
-        [self.selectedNeighborhoods addObject:selectedNeighborhood];
         
-        if (self.neighborhoodSelectionType == NeighborhoodSelectionOne) {
-            [self finishSelection];
-        }
-        else if (self.neighborhoodSelectionType == NeighborhoodSelectionMany) {
-            UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            self.doneButton.title = (self.selectedNeighborhoods.count > 0) ? @"OK" : @"Sel. todos";
-        }
+        
+        self.selectedZone = self.places[indexPath.row];
+        [self performSegueWithIdentifier:@"ViewNeighborhoods" sender:self];
+
+        return;
     }
+    
+    [self updateFinishButton];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
-    NSString *selectedNeighborhood = self.zones[indexPath.row];
-    [self.selectedNeighborhoods removeObject:selectedNeighborhood];
-    
-    self.doneButton.title = (self.selectedNeighborhoods.count > 0) ? @"OK" : @"Sel. todos";
+    [self updateFinishButton];
+}
+
+- (void)updateFinishButton {
+    self.doneButton.title = (self.tableView.indexPathsForSelectedRows.count > 0) ? @"OK" : @"Sel. todos";
 }
 
 #pragma mark - Navigation
