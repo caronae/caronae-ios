@@ -18,10 +18,12 @@ NSNotificationName const CaronaeDidUpdateUserNotification = @"CaronaeDidUpdateUs
 #pragma mark - Preference keys
 
 NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey = @"lastSearchedNeighborhoods";
+NSString *const CaronaePreferenceLastSearchedZoneKey = @"lastSearchedZone";
 NSString *const CaronaePreferenceLastSearchedCenterKey = @"lastSearchedCenter";
 NSString *const CaronaePreferenceLastSearchedDateKey = @"lastSearchedDate";
 
 NSString *const CaronaePreferenceFilterIsEnabledKey = @"filterIsEnabled";
+NSString *const CaronaePreferenceLastFilteredZoneKey = @"lastFilteredZone";
 NSString *const CaronaePreferenceLastFilteredNeighborhoodsKey = @"lastFilteredNeighborhoods";
 NSString *const CaronaePreferenceLastFilteredCenterKey = @"lastFilteredCenter";
 
@@ -35,6 +37,7 @@ NSString *const Caronae9PhoneNumberPattern = @"(###) #####-####";
 NSString *const CaronaePlaceholderProfileImage = @"Profile Picture";
 NSString *const CaronaeSearchDateFormat = @"EEEE, dd/MM/yyyy HH:mm";
 NSString *const CaronaeDateLocaleIdentifier = @"pt_BR";
+NSString *const CaronaeAllNeighborhoodsText = @"Todos os Bairros";
 
 
 @interface CaronaeConstants ()
@@ -58,7 +61,7 @@ NSString *const CaronaeDateLocaleIdentifier = @"pt_BR";
 
 + (UIColor *)colorForZone:(NSString *)zone {
     UIColor *color = [CaronaeConstants defaults].zoneColors[zone];
-    if (!color) color = [UIColor darkTextColor];
+    if (!color) color = [UIColor darkGrayColor];
     return color;
 }
 

@@ -25,11 +25,15 @@ class FilterRideViewController: UIViewController, ZoneSelectionDelegate {
         self.hubs?.append(contentsOf: CaronaeConstants.defaults().centers as! [String])
         
         // Load last filtered neighborhoods and center
-        if let lastFilteredNeighborhoods = self.userDefaults.array(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) as? [String],
-            let lastFilteredCenter = self.userDefaults.string(forKey: CaronaePreferenceLastFilteredCenterKey) {
+        if let lastFilteredZone = self.userDefaults.string(forKey: CaronaePreferenceLastFilteredZoneKey),
+           let lastFilteredNeighborhoods = self.userDefaults.array(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) as? [String],
+           let lastFilteredCenter = self.userDefaults.string(forKey: CaronaePreferenceLastFilteredCenterKey) {
+            self.selectedZone = lastFilteredZone
             self.selectedNeighborhoods = lastFilteredNeighborhoods
             self.selectedHub = lastFilteredCenter
         } else {
+            self.selectedZone = ""
+            self.selectedNeighborhoods = [CaronaeAllNeighborhoodsText]
             self.selectedHub = self.hubs?.first
         }
         
@@ -44,13 +48,9 @@ class FilterRideViewController: UIViewController, ZoneSelectionDelegate {
     }
     
     @IBAction func didTapFilterButton(_ sender: Any) {
-        guard isSearchValid() else {
-            CaronaeAlertController.presentOkAlert(withTitle: "Nenhum bairro selecionado", message: "Ops! Parece que você esqueceu de selecionar em quais bairros está pesquisando a carona.")
-            return
-        }
-        
         // Save filter parameters
         self.userDefaults.setValuesForKeys([CaronaePreferenceFilterIsEnabledKey: true,
+                                            CaronaePreferenceLastFilteredZoneKey: self.selectedZone!,
                                             CaronaePreferenceLastFilteredNeighborhoodsKey: self.selectedNeighborhoods!,
                                             CaronaePreferenceLastFilteredCenterKey: self.selectedHub!])
         
@@ -77,8 +77,8 @@ class FilterRideViewController: UIViewController, ZoneSelectionDelegate {
     }
     
     func isSearchValid() -> Bool {
-        // Test if user has selected a neighborhood
-        if let selectedNeighborhoods = self.selectedNeighborhoods, selectedNeighborhoods.count > 0 {
+        // Test if user has selected a neighborhood and/or hub
+        if self.selectedNeighborhoods?[0] != CaronaeAllNeighborhoodsText || self.selectedHub != "Todos os Centros" {
             return true
         }
         return false
@@ -95,6 +95,10 @@ class FilterRideViewController: UIViewController, ZoneSelectionDelegate {
             zoneSelectionVC.delegate = self
         } else if segue.identifier == "didTapFilterUnwind" {
             let allRidesVC = segue.destination as! AllRidesViewController
+            guard isSearchValid() else {
+                allRidesVC.disableFilterRides()
+                return
+            }
             allRidesVC.enableFilterRides()
         }
     }

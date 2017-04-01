@@ -20,14 +20,15 @@ class FilterParameters: NSObject {
         if let going = self.going {
             params["going"] = going
         }
-        if let neighborhoods = self.neighborhoods {
-            params["neighborhoods"] = neighborhoods.joined(separator: ", ")
-        }
-        if let zone = self.selectedZone {
+        if let zone = self.selectedZone, !zone.isEmpty {
             params["zone"] = zone
+            if let neighborhoods = self.neighborhoods?.joined(separator: ", "), neighborhoods != zone {
+                // User didn't select all neighborhoods of selected zone
+                params["neighborhoods"] = neighborhoods
+            }
         }
         if let hub = self.hub {
-            params["hub"] = hub
+            params["hub"] = (hub == "Todos os Centros") ? "" : hub
         }
         if let date = self.date {
             let dateFormatter = DateFormatter()

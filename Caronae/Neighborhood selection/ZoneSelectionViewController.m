@@ -15,7 +15,12 @@
     
     if (self.type == ZoneSelectionZone) {
         self.title = @"Zonas";
-        self.zones = [CaronaeConstants defaults].zones;
+        if (self.neighborhoodSelectionType == NeighborhoodSelectionMany) {
+            self.zones = [@[CaronaeAllNeighborhoodsText] arrayByAddingObjectsFromArray:[CaronaeConstants defaults].zones];
+        }
+        else {
+            self.zones = [CaronaeConstants defaults].zones;
+        }
     }
     else {
         self.title = self.selectedZone;
@@ -33,10 +38,15 @@
     if (self.neighborhoodSelectionType == NeighborhoodSelectionMany && [self.delegate respondsToSelector:@selector(hasSelectedNeighborhoods:inZone:)]) {
         NSArray *selectedNeighborhoods;
         if (self.selectedNeighborhoods.count == 0) {
-            selectedNeighborhoods = self.zones;
+            selectedNeighborhoods = @[self.selectedZone];
         }
         else {
-            selectedNeighborhoods = self.selectedNeighborhoods;
+            if (self.selectedNeighborhoods.count == self.zones.count) {
+                selectedNeighborhoods = @[self.selectedZone];
+            }
+            else {
+                selectedNeighborhoods = self.selectedNeighborhoods;
+            }
         }
 
         [self.delegate hasSelectedNeighborhoods:selectedNeighborhoods inZone:self.selectedZone];
@@ -87,8 +97,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.type == ZoneSelectionZone) {
         if (![self.zones[indexPath.row] isEqualToString:@"Outra"]) {
-            self.selectedZone = self.zones[indexPath.row];
-            [self performSegueWithIdentifier:@"ViewNeighborhoods" sender:self];
+            if (![self.zones[indexPath.row] isEqualToString:CaronaeAllNeighborhoodsText]) {
+                self.selectedZone = self.zones[indexPath.row];
+                [self performSegueWithIdentifier:@"ViewNeighborhoods" sender:self];
+            }
+            else {
+                self.selectedZone = @"";
+                self.selectedNeighborhoods = [NSMutableArray arrayWithObject:CaronaeAllNeighborhoodsText];
+                [self finishSelection];
+            }
+            
         }
         else {
             self.selectedZone = @"Outros";

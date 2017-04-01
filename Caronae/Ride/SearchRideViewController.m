@@ -39,10 +39,20 @@
     // Load last direction
     self.directionControl.selectedSegmentIndex = self.previouslySelectedSegmentIndex;
     
+    // Load last searched zone
+    NSString *lastSearchedZone = [self.userDefaults stringForKey:CaronaePreferenceLastSearchedZoneKey];
+    if (lastSearchedZone) {
+        self.zone = lastSearchedZone;
+    } else {
+        self.zone = @"";
+    }
+    
     // Load last searched neighborhoods
     NSArray *lastSearchedNeighborhoods = [self.userDefaults arrayForKey:CaronaePreferenceLastSearchedNeighborhoodsKey];
     if (lastSearchedNeighborhoods) {
         self.neighborhoods = lastSearchedNeighborhoods;
+    } else {
+        self.neighborhoods = @[CaronaeAllNeighborhoodsText];
     }
     
     // Load last searched center
@@ -79,13 +89,8 @@
 }
 
 - (IBAction)didTapSearchButton:(id)sender {
-    // Validate form
-    if (![self isSearchValid]) {
-        [CaronaeAlertController presentOkAlertWithTitle:@"Nenhum bairro selecionado" message:@"Ops! Parece que você esqueceu de selecionar em quais bairros está pesquisando a carona."];
-        return;
-    }
-
     // Save search parameters for the next search
+    [self.userDefaults setObject:self.zone forKey:CaronaePreferenceLastSearchedZoneKey];
     [self.userDefaults setObject:self.neighborhoods forKey:CaronaePreferenceLastSearchedNeighborhoodsKey];
     [self.userDefaults setObject:self.selectedHub forKey:CaronaePreferenceLastSearchedCenterKey];
     [self.userDefaults setObject:self.searchedDate forKey:CaronaePreferenceLastSearchedDateKey];
@@ -93,7 +98,8 @@
     BOOL going = (self.directionControl.selectedSegmentIndex == 0);
     
     FilterParameters *params = [FilterParameters alloc];
-    params.hub = [self.selectedHub isEqual: self.hubs[0]] ? @"" : self.selectedHub;
+    params.hub = self.selectedHub;
+    params.selectedZone = self.zone;
     params.neighborhoods = self.neighborhoods;
     params.date = self.searchedDate;
     [params setGoingWithBool:going];
@@ -132,15 +138,6 @@
 - (void)hasSelectedNeighborhoods:(NSArray *)neighborhoods inZone:(NSString *)zone {
     self.zone = zone;
     self.neighborhoods = neighborhoods;
-}
-
-- (BOOL)isSearchValid {
-    // Test if user has selected a neighborhood
-    if (self.neighborhoods && self.neighborhoods.count > 0) {
-        return true;
-    }
-
-    return false;
 }
 
 #pragma mark - Navigation

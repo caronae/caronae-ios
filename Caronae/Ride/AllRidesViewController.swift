@@ -122,12 +122,13 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     func enableFilterRides() {
         guard let center = userDefaults.string(forKey: CaronaePreferenceLastFilteredCenterKey),
+            let zone = userDefaults.string(forKey: CaronaePreferenceLastFilteredZoneKey),
             let neighborhoods = userDefaults.array(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) as? [String] else {
                 return
         }
         
         self.filterIsEnabled = true
-        filterParams = FilterParameters(neighborhoods: neighborhoods, hub: center)
+        filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hub: center)
         filterLabel.text = filterParams.activeFiltersText()
         
         loadAllRides()
@@ -135,12 +136,17 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: true)
     }
     
+    func disableFilterRides() {
+        userDefaults.set(false, forKey: CaronaePreferenceFilterIsEnabledKey)
+        self.filterIsEnabled = false
+        self.filterParams = FilterParameters()
+        loadAllRides()
+    }
+    
     override func didTapClearFilterButton(_ sender: UIButton!) {
         super.didTapClearFilterButton(sender);
         
-        userDefaults.set(false, forKey: CaronaePreferenceFilterIsEnabledKey)
-        self.filterParams = FilterParameters()
-        loadAllRides()
+        disableFilterRides()
     }
     
     
