@@ -13,6 +13,12 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         self.navigationController?.view.backgroundColor = UIColor.white
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
+        // Organize bar button items on navigation bar
+        let searchButton = navigationItem.rightBarButtonItem!
+        let filterButton = navigationItem.leftBarButtonItem!
+        navigationItem.setLeftBarButton(nil, animated: false)
+        navigationItem.setRightBarButtonItems([searchButton, filterButton], animated: false)
+        
         NotificationCenter.default.addObserver(self, selector:#selector(self.reloadRidesIfNecessary), name: .UIApplicationWillEnterForeground, object: nil)
         
         // Setting up infinite scroll

@@ -225,6 +225,10 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     [self adjustFilterViewWithAnimation:YES];
 }
 
+- (IBAction)didTapFilterView:(id)sender {
+    [self performSegueWithIdentifier:@"FilterRide" sender:self];
+}
+
 
 #pragma mark - Extra views
 
