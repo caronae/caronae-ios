@@ -17,19 +17,13 @@ class RideService: NSObject {
         }
         
         api.get("/rides?page=\(page)", parameters: params, success: { task, responseObject in
-            guard let responde = responseObject as? [String: Any],
-                let ridesJson = responde["data"] as? [[String: Any]] else {
+            guard let response = responseObject as? [String: Any],
+                let ridesJson = response["data"] as? [[String: Any]] else {
                     error(CaronaeError.invalidResponse)
                     return
             }
             
-            // Deserialize response
             var rides = ridesJson.flatMap { Ride(JSON: $0) }
-            
-            // Skip rides in the past
-            rides = rides.filter { $0.date.isInTheFuture() }
-            
-            // Sort rides by date/time
             rides = rides.sorted { $0.date < $1.date }
             
             success(rides)
