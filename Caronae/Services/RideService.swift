@@ -9,7 +9,7 @@ class RideService: NSObject {
         // This prevents others from using the default '()' initializer for this class.
     }
     
-    func getRides(page: Int, filterParameters: FilterParameters? = nil, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func getRides(page: Int, filterParameters: FilterParameters? = nil, success: @escaping (_ rides: [Ride], _ lastPage: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
         var params: [String: Any] = [:]
         
         if let filterParameters = filterParameters {
@@ -18,7 +18,8 @@ class RideService: NSObject {
         
         api.get("/rides?page=\(page)", parameters: params, success: { task, responseObject in
             guard let response = responseObject as? [String: Any],
-                let ridesJson = response["data"] as? [[String: Any]] else {
+                let ridesJson = response["data"] as? [[String: Any]],
+                let lastPage = response["last_page"] as? Int else {
                     error(CaronaeError.invalidResponse)
                     return
             }
@@ -26,7 +27,7 @@ class RideService: NSObject {
             var rides = ridesJson.flatMap { Ride(JSON: $0) }
             rides = rides.sorted { $0.date < $1.date }
             
-            success(rides)
+            success(rides, lastPage)
         }, failure: { _, err in
             NSLog("Failed to load rides: \(err.localizedDescription)")
             error(err)

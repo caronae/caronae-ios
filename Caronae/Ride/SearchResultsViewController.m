@@ -39,7 +39,7 @@
         self.tableView.backgroundView = self.loadingLabel;
     }
     
-    [RideService.instance getRidesWithPage:1 filterParameters:parameters success:^(NSArray<Ride *> * _Nonnull rides) {
+    [RideService.instance getRidesWithPage:1 filterParameters:parameters success:^(NSArray<Ride *> * _Nonnull rides, NSInteger lastPage) {
         self.rides = rides;
         [self.tableView reloadData];
         [SVProgressHUD dismiss];

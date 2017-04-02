@@ -5,6 +5,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     var searchParams = FilterParameters()
     var filterParams = FilterParameters()
     fileprivate var nextPage = 2
+    fileprivate var lastPage = 2
     fileprivate var lastUpdate = Date.distantPast
 
     override func viewDidLoad() {
@@ -28,6 +29,10 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             self.loadAllRides(page: self.nextPage) {
                 tableView.finishInfiniteScroll()
             }
+        }
+        
+        tableView.setShouldShowInfiniteScrollHandler { _ -> Bool in
+            return self.nextPage <= self.lastPage
         }
         
         self.filterIsEnabled = userDefaults.bool(forKey: CaronaePreferenceFilterIsEnabledKey)
@@ -73,7 +78,9 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             tableView.backgroundView = loadingLabel
         }
         
-        RideService.instance.getRides(page: page, filterParameters: filterParams,success: { rides in
+        RideService.instance.getRides(page: page, filterParameters: filterParams,success: { rides, lastPage in
+            
+            self.lastPage = lastPage
             
             if page == 1 {
                 self.nextPage = 2
