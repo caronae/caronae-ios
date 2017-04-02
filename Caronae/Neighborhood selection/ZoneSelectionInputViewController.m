@@ -18,12 +18,7 @@
 
 - (void)finishSelection {
     [self.navigationController popToRootViewControllerAnimated:YES];
-    if (self.neighborhoodSelectionType == NeighborhoodSelectionMany && [self.delegate respondsToSelector:@selector(hasSelectedNeighborhoods:inZone:)]) {
-        [self.delegate hasSelectedNeighborhoods:@[self.neighborhoodTextField.text] inZone:@"Outros"];
-    }
-    else if (self.neighborhoodSelectionType == NeighborhoodSelectionOne && [self.delegate respondsToSelector:@selector(hasSelectedNeighborhood:inZone:)]) {
-        [self.delegate hasSelectedNeighborhood:self.neighborhoodTextField.text inZone:@"Outros"];
-    }
+    [self.delegate hasSelectedNeighborhoods:@[self.neighborhoodTextField.text] inZone:@"Outros"];
 }
 
 - (IBAction)didTapDoneButton:(id)sender {

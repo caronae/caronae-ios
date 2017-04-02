@@ -1,19 +1,29 @@
 #import "ZoneCell.h"
 
 @interface ZoneCell ()
+
 @property (weak, nonatomic) IBOutlet UILabel *zoneNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *colorDetail;
+@property (nonatomic) UIColor *zoneColor;
+@property (nonatomic) BOOL isNeighborhoodCell;
 
-@property (nonatomic, strong) UIColor *zoneColor;
-@property (nonatomic) ZoneSelectionType type;
 @end
 
 @implementation ZoneCell
 
-- (void)setupCellWithTitle:(NSString *)title color:(UIColor *)color type:(ZoneSelectionType)type {
+- (void)setupCellWithZone:(NSString *)zone color:(UIColor *)color {
+    self.isNeighborhoodCell = NO;
+    [self setupCellWithTitle:zone color:color];
+}
+
+- (void)setupCellWithNeighborhood:(NSString *)neighborhood color:(UIColor *)color {
+    self.isNeighborhoodCell = YES;
+    [self setupCellWithTitle:neighborhood color:color];
+}
+
+- (void)setupCellWithTitle:(NSString *)title color:(UIColor *)color {
     self.zoneNameLabel.text = title;
     self.zoneColor = color;
-    self.type = type;
     
     [self updateStyle];
 }
@@ -32,10 +42,10 @@
     self.colorDetail.backgroundColor = self.zoneColor;
     self.zoneNameLabel.textColor = self.zoneColor;
     
-    if (self.type == ZoneSelectionZone) {
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else {
+    if (self.isNeighborhoodCell) {
         self.accessoryType = self.isSelected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    } else {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
 }

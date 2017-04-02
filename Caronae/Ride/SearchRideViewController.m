@@ -145,7 +145,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ViewZones"]) {
         ZoneSelectionViewController *vc = segue.destinationViewController;
-        vc.type = ZoneSelectionZone;
         vc.neighborhoodSelectionType = NeighborhoodSelectionMany;
         vc.delegate = self;
     } else if ([segue.identifier isEqualToString:@"showResultsUnwind"]) {

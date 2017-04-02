@@ -78,7 +78,8 @@ class FilterRideViewController: UIViewController, ZoneSelectionDelegate {
     
     func isSearchValid() -> Bool {
         // Test if user has selected a neighborhood and/or hub
-        if self.selectedNeighborhoods?[0] != CaronaeAllNeighborhoodsText || self.selectedHub != "Todos os Centros" {
+        if let neighborhood = selectedNeighborhoods?.first,
+            neighborhood != CaronaeAllNeighborhoodsText || self.selectedHub != "Todos os Centros" {
             return true
         }
         return false
@@ -90,7 +91,6 @@ class FilterRideViewController: UIViewController, ZoneSelectionDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewZones" {
             let zoneSelectionVC = segue.destination as! ZoneSelectionViewController
-            zoneSelectionVC.type = ZoneSelectionZone
             zoneSelectionVC.neighborhoodSelectionType = NeighborhoodSelectionMany
             zoneSelectionVC.delegate = self
         } else if segue.identifier == "didTapFilterUnwind" {

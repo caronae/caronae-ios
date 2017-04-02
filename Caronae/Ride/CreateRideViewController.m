@@ -376,9 +376,9 @@
                                      cancelBlock:nil origin:sender];
 }
 
-- (void)hasSelectedNeighborhood:(NSString *)neighborhood inZone:(NSString *)zone {
+- (void)hasSelectedNeighborhoods:(NSArray *)neighborhoods inZone:(NSString *)zone {
     self.zone = zone;
-    self.neighborhood = neighborhood;
+    self.neighborhood = [neighborhoods firstObject];
     [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
 }
 
@@ -407,7 +407,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ViewZones"]) {
         ZoneSelectionViewController *vc = segue.destinationViewController;
-        vc.type = ZoneSelectionZone;
         vc.delegate = self;
     }
 }

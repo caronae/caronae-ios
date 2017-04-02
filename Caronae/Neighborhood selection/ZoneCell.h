@@ -4,6 +4,7 @@
 
 @interface ZoneCell : UITableViewCell
 
-- (void)setupCellWithTitle:(NSString *)title color:(UIColor *)color type:(ZoneSelectionType)type;
+- (void)setupCellWithZone:(NSString *)zone color:(UIColor *)color;
+- (void)setupCellWithNeighborhood:(NSString *)neighborhood color:(UIColor *)color;
 
 @end
