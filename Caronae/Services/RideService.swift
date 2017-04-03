@@ -10,13 +10,8 @@ class RideService: NSObject {
     }
     
     func getRides(page: Int, filterParameters: FilterParameters? = nil, success: @escaping (_ rides: [Ride], _ lastPage: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
-        var params: [String: Any] = [:]
         
-        if let filterParameters = filterParameters {
-            params = filterParameters.dictionary()
-        }
-        
-        api.get("/rides?page=\(page)", parameters: params, success: { task, responseObject in
+        api.get("/rides?page=\(page)", parameters: filterParameters?.dictionary(), success: { task, responseObject in
             guard let response = responseObject as? [String: Any],
                 let ridesJson = response["data"] as? [[String: Any]],
                 let lastPage = response["last_page"] as? Int else {
