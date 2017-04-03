@@ -49,7 +49,7 @@
         if (self.neighborhoodSelectionType == NeighborhoodSelectionOne) {
             [self performSegueWithIdentifier:@"OtherNeighborhood" sender:self];
         } else {
-            [self hasSelectedNeighborhoods:@[]];
+            [self hasSelectedNeighborhoods:@[@"Outros"]];
         }
         
         return;
