@@ -95,10 +95,6 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 
                 self.tableView.reloadData()
             } else {
-                guard rides.count > 0 else {
-                    completionHandler?()
-                    return
-                }
                 
                 self.nextPage += 1
                 let ridesCount = self.filteredRides.count
