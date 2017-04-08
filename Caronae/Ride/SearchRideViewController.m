@@ -102,7 +102,7 @@
     params.selectedZone = self.zone;
     params.neighborhoods = self.neighborhoods;
     params.date = self.searchedDate;
-    [params setGoingWithBool:going];
+    [params setGoing:going];
     
     [self.delegate searchedForRideWithParameters:params];
     [self performSegueWithIdentifier:@"showResultsUnwind" sender:nil];

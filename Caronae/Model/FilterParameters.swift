@@ -47,7 +47,7 @@ class FilterParameters: NSObject {
         return label
     }
     
-    func setGoing(bool: Bool) {
+    func setGoing(_ bool: Bool) {
         self.going = bool
     }
     
