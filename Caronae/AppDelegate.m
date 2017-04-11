@@ -21,6 +21,10 @@
     [self configureFirebase];
     [self configureFacebookWithLaunchOptions:launchOptions];
     
+    // Prepare beepSound for notifications while app is in foreground
+    NSURL *soundURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep" ofType:@"wav"]];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_beepSound);
+    
     [CRToastManager setDefaultOptions:@{
                                         kCRToastBackgroundColorKey: [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000],
                                         }];

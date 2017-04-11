@@ -1,5 +1,5 @@
 @import UIKit;
-#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioServices.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -7,7 +7,7 @@
 
 // Notification support
 - (void)setActiveScreenAccordingToNotification:(NSDictionary *)userInfo;
-@property (nonatomic) AVAudioPlayer *soundPlayer;
+@property (nonatomic) SystemSoundID beepSound;
 
 @end
 

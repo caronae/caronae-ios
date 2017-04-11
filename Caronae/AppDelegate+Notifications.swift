@@ -1,4 +1,5 @@
 import CRToast
+import AudioToolbox
 
 extension AppDelegate {
     func handleNotification(_ userInfo: [AnyHashable: Any]) -> Bool {
@@ -129,20 +130,7 @@ extension AppDelegate {
     }
     
     func playNotificationSound() {
-        guard let url = Bundle.main.url(forResource: "beep", withExtension: "wav") else {
-            NSLog("Notification sound not found")
-            return
-        }
-        
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
-            
-            soundPlayer = try AVAudioPlayer(contentsOf: url)
-            soundPlayer.play()
-        } catch let error {
-            NSLog("Error: %@", error.localizedDescription)
-        }
+        AudioServicesPlayAlertSound(beepSound)
     }
     
     func showMessageIfActive(_ message: String) {
