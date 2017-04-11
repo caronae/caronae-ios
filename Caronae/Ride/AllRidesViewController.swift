@@ -1,8 +1,11 @@
 import UIKit
 
 class AllRidesViewController: RideListController, SearchRideDelegate {
-    var searchParams: [String: Any] = [:]
+    let userDefaults = UserDefaults.standard
+    var searchParams = FilterParameters()
+    var filterParams = FilterParameters()
     fileprivate var nextPage = 2
+    fileprivate var lastPage = 2
     fileprivate var lastUpdate = Date.distantPast
 
     override func viewDidLoad() {
@@ -10,6 +13,12 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
 
         self.navigationController?.view.backgroundColor = UIColor.white
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
+        
+        // Organize bar button items on navigation bar
+        let searchButton = navigationItem.rightBarButtonItem!
+        let filterButton = navigationItem.leftBarButtonItem!
+        navigationItem.setLeftBarButton(nil, animated: false)
+        navigationItem.setRightBarButtonItems([searchButton, filterButton], animated: false)
         
         NotificationCenter.default.addObserver(self, selector:#selector(self.reloadRidesIfNecessary), name: .UIApplicationWillEnterForeground, object: nil)
         
@@ -20,6 +29,16 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             self.loadAllRides(page: self.nextPage) {
                 tableView.finishInfiniteScroll()
             }
+        }
+        
+        tableView.setShouldShowInfiniteScrollHandler { _ -> Bool in
+            return self.nextPage <= self.lastPage
+        }
+        
+        self.filterIsEnabled = userDefaults.bool(forKey: CaronaePreferenceFilterIsEnabledKey)
+        
+        if self.filterIsEnabled {
+            enableFilterRides()
         }
     }
     
@@ -59,7 +78,9 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             tableView.backgroundView = loadingLabel
         }
         
-        RideService.instance.getAllRides(page: page, success: { rides in
+        RideService.instance.getRides(page: page, filterParameters: filterParams,success: { rides, lastPage in
+            
+            self.lastPage = lastPage
             
             if page == 1 {
                 self.nextPage = 2
@@ -74,10 +95,6 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 
                 self.tableView.reloadData()
             } else {
-                guard rides.count > 0 else {
-                    completionHandler?()
-                    return
-                }
                 
                 self.nextPage += 1
                 let ridesCount = self.filteredRides.count
@@ -112,6 +129,35 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         }
     }
     
+    func enableFilterRides() {
+        guard let center = userDefaults.string(forKey: CaronaePreferenceLastFilteredCenterKey),
+            let zone = userDefaults.string(forKey: CaronaePreferenceLastFilteredZoneKey),
+            let neighborhoods = userDefaults.array(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) as? [String] else {
+                return
+        }
+        
+        self.filterIsEnabled = true
+        filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hub: center)
+        filterLabel.text = filterParams.activeFiltersText()
+        
+        loadAllRides()
+        // workaround to not cover cell after enabling filter
+        tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: true)
+    }
+    
+    func disableFilterRides() {
+        userDefaults.set(false, forKey: CaronaePreferenceFilterIsEnabledKey)
+        self.filterIsEnabled = false
+        self.filterParams = FilterParameters()
+        loadAllRides()
+    }
+    
+    override func didTapClearFilterButton(_ sender: UIButton!) {
+        super.didTapClearFilterButton(sender);
+        
+        disableFilterRides()
+    }
+    
     
     // MARK: Navigation
 
@@ -124,22 +170,19 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             }
         } else if segue.identifier == "ViewSearchResults" {
             if let searchViewController = segue.destination as? SearchResultsViewController {
-                searchViewController.searchedForRide(withCenter: searchParams["center"] as! String!,
-                                                     andNeighborhoods: searchParams["neighborhoods"] as! [Any]!,
-                                                     on: searchParams["date"] as! Date!,
-                                                     going: searchParams["going"] as! Bool)
+                searchViewController.searchedForRide(with: searchParams);
             }
         }
+    }
+    
+    @IBAction func didTapFilterUnwind(segue:UIStoryboardSegue) {
     }
     
     
     // MARK: Search methods
     
-    func searchedForRide(withCenter center: String, andNeighborhoods neighborhoods: [Any], on date: Date, going: Bool) {
-        searchParams = ["center": center,
-                        "neighborhoods": neighborhoods,
-                        "date": date,
-                        "going": going]
+    func searchedForRide(with parameters: FilterParameters) {
+        searchParams = parameters
         
         performSegue(withIdentifier: "ViewSearchResults", sender: self)
     }

@@ -165,8 +165,8 @@
 
 #pragma mark - Zone selection methods
 
-- (void)hasSelectedNeighborhood:(NSString *)neighborhood inZone:(NSString *)zone {
-    self.neighborhood = neighborhood;
+- (void)hasSelectedNeighborhoods:(NSArray *)neighborhoods inZone:(NSString *)zone {
+    self.neighborhood = [neighborhoods firstObject];
     [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
 }
 
@@ -265,7 +265,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ViewZones"]) {
         ZoneSelectionViewController *vc = segue.destinationViewController;
-        vc.type = ZoneSelectionZone;
         vc.delegate = self;
     }
 }

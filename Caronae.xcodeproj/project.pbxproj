@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		713E99B91E8D5FA900F3C9E0 /* Array+compactString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */; };
+		716BF8981E90B8300019F0CA /* NeighborhoodSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 716BF8971E90B8300019F0CA /* NeighborhoodSelectionViewController.m */; };
 		718C9B751E5F923A0037A78B /* AllRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C9B741E5F923A0037A78B /* AllRidesViewController.swift */; };
+		71AE13E41E8200D8008ACB06 /* FilterRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */; };
+		71C908FE1E88C3E9009B7BFE /* FilterParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */; };
 		71D2B86D1E296AFC000454F7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2B86C1E296AFC000454F7 /* ChatViewController.swift */; };
 		A3034D581DB58A1B00816B79 /* NSDate+isInTheFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */; };
 		A3169C951BED842D00A0D428 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C941BED842D00A0D428 /* main.m */; };
@@ -82,7 +86,12 @@
 		2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug.xcconfig"; sourceTree = "<group>"; };
 		48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.release.xcconfig"; sourceTree = "<group>"; };
 		4B35A3BD2CCAED11349480AC /* Pods-CaronaeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaronaeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests.release.xcconfig"; sourceTree = "<group>"; };
+		713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+compactString.swift"; sourceTree = "<group>"; };
+		716BF8961E90B8300019F0CA /* NeighborhoodSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeighborhoodSelectionViewController.h; sourceTree = "<group>"; };
+		716BF8971E90B8300019F0CA /* NeighborhoodSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeighborhoodSelectionViewController.m; sourceTree = "<group>"; };
 		718C9B741E5F923A0037A78B /* AllRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRidesViewController.swift; sourceTree = "<group>"; };
+		71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRideViewController.swift; sourceTree = "<group>"; };
+		71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterParameters.swift; sourceTree = "<group>"; };
 		71D2B86C1E296AFC000454F7 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		A0D86D64B619914BEDBEFB9A /* Pods-Caronae.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.production.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.production.xcconfig"; sourceTree = "<group>"; };
 		A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+isInTheFuture.swift"; sourceTree = "<group>"; };
@@ -304,6 +313,8 @@
 				A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */,
 				A3F30EEE1C0891520024BE37 /* ZoneSelectionViewController.h */,
 				A3F30EEF1C0891520024BE37 /* ZoneSelectionViewController.m */,
+				716BF8961E90B8300019F0CA /* NeighborhoodSelectionViewController.h */,
+				716BF8971E90B8300019F0CA /* NeighborhoodSelectionViewController.m */,
 			);
 			path = "Neighborhood selection";
 			sourceTree = "<group>";
@@ -343,6 +354,7 @@
 				A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */,
 				A39BBCF41C048E4D00EF9EBD /* SearchRideViewController.h */,
 				A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */,
+				71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */,
 			);
 			path = Ride;
 			sourceTree = "<group>";
@@ -378,6 +390,7 @@
 				A3AD822C1E1B1E85006D8ABE /* Ride.swift */,
 				A39672371E2E813700DD8ED5 /* RideRequest.swift */,
 				A3AD82301E1C6072006D8ABE /* User.swift */,
+				71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -430,6 +443,7 @@
 				A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */,
 				A3CA5DD01E1F46520062522D /* UIWindow+replaceRootViewController.h */,
 				A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */,
+				713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -646,6 +660,7 @@
 				A3AD822F1E1C5BD9006D8ABE /* Message.swift in Sources */,
 				A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */,
 				A3A4A4AF1C4C695800CF4CB2 /* NSString+validation.m in Sources */,
+				71C908FE1E88C3E9009B7BFE /* FilterParameters.swift in Sources */,
 				718C9B751E5F923A0037A78B /* AllRidesViewController.swift in Sources */,
 				A3AD82331E1C63CD006D8ABE /* DateTimeTransform.swift in Sources */,
 				A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */,
@@ -653,10 +668,12 @@
 				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
 				A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */,
 				A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */,
+				716BF8981E90B8300019F0CA /* NeighborhoodSelectionViewController.m in Sources */,
 				A3AC169D1E35781C000B5817 /* WelcomeViewController.swift in Sources */,
 				A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */,
 				A3B18FFA1C9E713F00980607 /* UIImageView+crn_setImageWithURL.m in Sources */,
 				A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */,
+				71AE13E41E8200D8008ACB06 /* FilterRideViewController.swift in Sources */,
 				A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */,
 				A3AD823F1E1DC631006D8ABE /* MyRidesViewController.swift in Sources */,
 				A3AD82361E1C70D6006D8ABE /* RideService.swift in Sources */,
@@ -678,6 +695,7 @@
 				A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */,
 				A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */,
 				A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */,
+				713E99B91E8D5FA900F3C9E0 /* Array+compactString.swift in Sources */,
 				A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */,
 				71D2B86D1E296AFC000454F7 /* ChatViewController.swift in Sources */,
 				A3CA5DD21E1F46520062522D /* UIWindow+replaceRootViewController.m in Sources */,

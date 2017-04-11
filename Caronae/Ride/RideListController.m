@@ -24,6 +24,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
                                                  options:nil] objectAtIndex:0];
         
         self.historyTable = NO;
+        self.filterIsEnabled = NO;
         self.ridesDirectionGoing = YES;
         self.hidesDirectionControl = NO;
         
@@ -59,6 +60,60 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     
     if (self.historyTable) {
         self.tableView.allowsSelection = NO;
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self adjustFilterViewWithAnimation:NO];
+}
+
+-(void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    [self adjustTableView];
+}
+
+- (void)adjustFilterViewWithAnimation:(BOOL)animated {
+    if (self.hidesDirectionControl) {
+        [self.view layoutIfNeeded];
+        [self.filterViewHeightZero setActive:YES];
+        return;
+    }
+    
+    if (self.filterIsEnabled) {
+        [self.view layoutIfNeeded];
+        [self.filterViewHeightZero setActive:NO];
+        self.filterView.layer.masksToBounds = NO;
+    }
+    else {
+        self.filterView.layer.masksToBounds = YES;
+        if (animated) {
+            [self.filterViewHeightZero setActive:YES];
+            [UIView animateWithDuration:0.2 animations:^{
+                [self.view layoutIfNeeded];
+            }];
+        } else {
+            [self.view layoutIfNeeded];
+            [self.filterViewHeightZero setActive:YES];
+        }
+    }
+}
+
+- (void)adjustTableView {
+    if (self.hidesDirectionControl) {
+        return;
+    }
+    
+    if (self.filterIsEnabled) {
+        float filterViewHeight = _filterViewHeight.constant;
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0f + filterViewHeight, 0.0f, 49.0f, 0.0f);
+        self.tableView.contentInset = UIEdgeInsetsMake(109.0f + filterViewHeight, 0.0f, 0.0f, 0.0f);
+    }
+    else {
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0f, 0.0f, 49.0f, 0.0f);
+        self.tableView.contentInset = UIEdgeInsetsMake(109.0f, 0.0f, 0.0f, 0.0f);
     }
 }
 
@@ -163,6 +218,15 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     self.ridesDirectionGoing = (sender.selectedSegmentIndex == 0);
     [self setRides:self.rides];
     [self.tableView reloadData];
+}
+
+- (IBAction)didTapClearFilterButton:(UIButton *)sender {
+    self.filterIsEnabled = NO;
+    [self adjustFilterViewWithAnimation:YES];
+}
+
+- (IBAction)didTapFilterView:(id)sender {
+    [self performSegueWithIdentifier:@"FilterRide" sender:self];
 }
 
 

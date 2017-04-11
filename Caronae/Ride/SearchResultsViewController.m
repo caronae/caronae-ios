@@ -33,13 +33,13 @@
 
 #pragma mark - Search methods
 
-- (void)searchedForRideWithCenter:(NSString *)center andNeighborhoods:(NSArray *)neighborhoods onDate:(NSDate *)date going:(BOOL)going {
+- (void)searchedForRideWithParameters:(FilterParameters*)parameters {
     [SVProgressHUD show];
     if (self.tableView.backgroundView != nil) {
         self.tableView.backgroundView = self.loadingLabel;
     }
     
-    [RideService.instance searchRidesWithCenter:center neighborhoods:neighborhoods date:date going:going success:^(NSArray<Ride *> * _Nonnull rides) {
+    [RideService.instance getRidesWithPage:1 filterParameters:parameters success:^(NSArray<Ride *> * _Nonnull rides, NSInteger lastPage) {
         self.rides = rides;
         [self.tableView reloadData];
         [SVProgressHUD dismiss];

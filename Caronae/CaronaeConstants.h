@@ -10,9 +10,15 @@ extern NSString *const CaronaeFAQPageURLString;
 
 #pragma mark - Preference keys
 
+extern NSString *const CaronaePreferenceLastSearchedZoneKey;
 extern NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey;
 extern NSString *const CaronaePreferenceLastSearchedCenterKey;
 extern NSString *const CaronaePreferenceLastSearchedDateKey;
+
+extern NSString *const CaronaePreferenceFilterIsEnabledKey;
+extern NSString *const CaronaePreferenceLastFilteredZoneKey;
+extern NSString *const CaronaePreferenceLastFilteredNeighborhoodsKey;
+extern NSString *const CaronaePreferenceLastFilteredCenterKey;
 
 
 #pragma mark - Notifications
@@ -31,6 +37,7 @@ extern NSString *const Caronae9PhoneNumberPattern;
 extern NSString *const CaronaePlaceholderProfileImage;
 extern NSString *const CaronaeSearchDateFormat;
 extern NSString *const CaronaeDateLocaleIdentifier;
+extern NSString *const CaronaeAllNeighborhoodsText;
 
 
 @interface CaronaeConstants : NSObject
