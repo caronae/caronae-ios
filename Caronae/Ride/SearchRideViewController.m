@@ -1,9 +1,10 @@
-#import <ActionSheetDatePicker.h>
-#import <ActionSheetStringPicker.h>
+@import ActionSheetPicker_3_0;
+
 #import "CaronaeAlertController.h"
 #import "NSDate+nextHour.h"
 #import "SearchRideViewController.h"
 #import "ZoneSelectionViewController.h"
+#import "SearchResultsViewController.h"
 #import "Caronae-Swift.h"
 
 @interface SearchRideViewController () <ZoneSelectionDelegate>
@@ -35,14 +36,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Load last searched direction
-    BOOL lastSearchedDirection = [self.userDefaults boolForKey:CaronaePreferenceLastSearchedDirectionKey];
-    self.directionControl.selectedSegmentIndex = lastSearchedDirection;
+    // Load last direction
+    self.directionControl.selectedSegmentIndex = self.previouslySelectedSegmentIndex;
+    
+    // Load last searched zone
+    NSString *lastSearchedZone = [self.userDefaults stringForKey:CaronaePreferenceLastSearchedZoneKey];
+    if (lastSearchedZone) {
+        self.zone = lastSearchedZone;
+    } else {
+        self.zone = @"";
+    }
     
     // Load last searched neighborhoods
     NSArray *lastSearchedNeighborhoods = [self.userDefaults arrayForKey:CaronaePreferenceLastSearchedNeighborhoodsKey];
     if (lastSearchedNeighborhoods) {
         self.neighborhoods = lastSearchedNeighborhoods;
+    } else {
+        self.neighborhoods = @[CaronaeAllNeighborhoodsText];
     }
     
     // Load last searched center
@@ -70,18 +80,7 @@
 - (void)setNeighborhoods:(NSArray *)neighborhoods {
     _neighborhoods = neighborhoods;
     
-    NSString *buttonTitle = @"";
-    for (unsigned int i = 0; i < neighborhoods.count; i++) {
-        if (i > 2) {
-            buttonTitle = [NSString stringWithFormat:@"%@ + %lu", buttonTitle, (long)neighborhoods.count-i];
-            break;
-        }
-        buttonTitle = [buttonTitle stringByAppendingString:neighborhoods[i]];
-        if (i < neighborhoods.count - 1 && i < 2) {
-            buttonTitle = [buttonTitle stringByAppendingString:@", "];
-        }
-    }
-    
+    NSString *buttonTitle = neighborhoods.compactString;
     [self.neighborhoodButton setTitle:buttonTitle forState:UIControlStateNormal];
 }
 
@@ -90,22 +89,23 @@
 }
 
 - (IBAction)didTapSearchButton:(id)sender {
-    // Validate form
-    if (![self isSearchValid]) {
-        [CaronaeAlertController presentOkAlertWithTitle:@"Nenhum bairro selecionado" message:@"Ops! Parece que você esqueceu de selecionar em quais bairros está pesquisando a carona."];
-        return;
-    }
-
     // Save search parameters for the next search
+    [self.userDefaults setObject:self.zone forKey:CaronaePreferenceLastSearchedZoneKey];
     [self.userDefaults setObject:self.neighborhoods forKey:CaronaePreferenceLastSearchedNeighborhoodsKey];
     [self.userDefaults setObject:self.selectedHub forKey:CaronaePreferenceLastSearchedCenterKey];
     [self.userDefaults setObject:self.searchedDate forKey:CaronaePreferenceLastSearchedDateKey];
-    [self.userDefaults setBool:self.directionControl.selectedSegmentIndex forKey:CaronaePreferenceLastSearchedDirectionKey];
     
     BOOL going = (self.directionControl.selectedSegmentIndex == 0);
-    [self.delegate searchedForRideWithCenter: ([self.selectedHub isEqual: self.hubs[0]] ? @"" : self.selectedHub) andNeighborhoods:self.neighborhoods onDate:self.searchedDate going:going];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    FilterParameters *params = [FilterParameters alloc];
+    params.hub = self.selectedHub;
+    params.selectedZone = self.zone;
+    params.neighborhoods = self.neighborhoods;
+    params.date = self.searchedDate;
+    [params setGoing:going];
+    
+    [self.delegate searchedForRideWithParameters:params];
+    [self performSegueWithIdentifier:@"showResultsUnwind" sender:nil];
 }
 
 - (IBAction)didTapDate:(id)sender {
@@ -140,23 +140,16 @@
     self.neighborhoods = neighborhoods;
 }
 
-- (BOOL)isSearchValid {
-    // Test if user has selected a neighborhood
-    if (self.neighborhoods && self.neighborhoods.count > 0) {
-        return true;
-    }
-
-    return false;
-}
-
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ViewZones"]) {
         ZoneSelectionViewController *vc = segue.destinationViewController;
-        vc.type = ZoneSelectionZone;
         vc.neighborhoodSelectionType = NeighborhoodSelectionMany;
         vc.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"showResultsUnwind"]) {
+        SearchResultsViewController *vc = segue.destinationViewController;
+        vc.previouslySelectedSegmentIndex = self.directionControl.selectedSegmentIndex;
     }
 }
 

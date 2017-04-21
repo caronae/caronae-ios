@@ -1,7 +1,10 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
+
+#import "ZoneSelectionViewController.h"
 
 @interface ZoneCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *zoneNameLabel;
-@property (weak, nonatomic) IBOutlet UIView *colorDetail;
+
+- (void)setupCellWithZone:(NSString *)zone color:(UIColor *)color;
+- (void)setupCellWithNeighborhood:(NSString *)neighborhood color:(UIColor *)color;
 
 @end

@@ -1,4 +1,6 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
+
+@class User;
 
 @interface ProfileViewController : UIViewController
 

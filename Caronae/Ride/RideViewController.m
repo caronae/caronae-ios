@@ -1,24 +1,24 @@
-#import <AFNetworking/AFNetworking.h>
-#import <CoreData/CoreData.h>
-#import <SVProgressHUD/SVProgressHUD.h>
+@import SVProgressHUD;
 #import "CaronaeAlertController.h"
-#import "Chat.h"
-#import "ChatStore.h"
-#import "ChatViewController.h"
 #import "JoinRequestCell.h"
-#import "Notification.h"
-#import "NotificationStore.h"
 #import "ProfileViewController.h"
-#import "Ride.h"
 #import "RideViewController.h"
 #import "RiderCell.h"
-#import "RideRequestsStore.h"
 #import "SHSPhoneNumberFormatter+UserConfig.h"
 #import "UIImageView+crn_setImageWithURL.h"
+#import "Caronae-Swift.h"
 
-@interface RideViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, JoinRequestDelegate, UIGestureRecognizerDelegate>
+@interface RideViewController ()
+<
+    JoinRequestDelegate,
+    UITableViewDelegate,
+    UITableViewDataSource,
+    UICollectionViewDelegate,
+    UICollectionViewDataSource,
+    UIGestureRecognizerDelegate
+>
 
-@property (nonatomic) NSArray<User *> *joinRequests;
+@property (nonatomic) NSArray<User *> *requesters;
 @property (nonatomic) NSArray<User *> *mutualFriends;
 @property (nonatomic) User *selectedUser;
 @property (nonatomic) UIColor *color;
@@ -31,27 +31,38 @@ static NSString *CaronaeRequestButtonStateNew              = @"PEGAR CARONA";
 static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    SOLICITAÇÃO ENVIADA    ";
 static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluída";
 
++ (instancetype)rideViewControllerForRide:(Ride *)ride {
+    RideViewController *rideVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"RideViewController"];
+    rideVC.ride = ride;
+    return rideVC;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Load ride from realm database if available
+    [self loadRealmRide];
+    
     self.title = @"Carona";
+    
+    [self clearNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateChatButtonBadge) name:CaronaeDidUpdateNotifications object:nil];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"HH:mm | E | dd/MM";
+    dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
     NSString *dateString = [dateFormatter stringFromDate:_ride.date].capitalizedString;
     
     _titleLabel.text = [_ride.title uppercaseString];
     if (_ride.going) {
         _dateLabel.text = [NSString stringWithFormat:@"Chegando às %@", dateString];
-    }
-    else {
+    } else {
         _dateLabel.text = [NSString stringWithFormat:@"Saindo às %@", dateString];
     }
     
     if ([_ride.place isKindOfClass:[NSString class]] && [_ride.place isEqualToString:@""]) {
         _referenceLabel.text = @"---";
-    }
-    else {
+    } else {
         _referenceLabel.text = _ride.place;
     }
 
@@ -60,15 +71,13 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     
     if ([_ride.route isKindOfClass:[NSString class]] && [_ride.route isEqualToString:@""]) {
         _routeLabel.text = @"---";
-    }
-    else {
+    } else {
         _routeLabel.text = [[_ride.route stringByReplacingOccurrencesOfString:@", " withString:@"\n"] stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
     }
     
     if ([_ride.notes isKindOfClass:NSString.class] && [_ride.notes isEqualToString:@""]) {
         _driverMessageLabel.text = @"---";
-    }
-    else {
+    } else {
         _driverMessageLabel.text = _ride.notes;
     }
     
@@ -76,7 +85,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [_driverPhoto crn_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]];
     }
     
-    self.color = [CaronaeConstants colorForZone:_ride.zone];
+    self.color = [CaronaeConstants colorForZone:_ride.region];
     
     UINib *cellNib = [UINib nibWithNibName:NSStringFromClass(JoinRequestCell.class) bundle:nil];
     [self.requestsTable registerNib:cellNib forCellReuseIdentifier:@"Request Cell"];
@@ -88,25 +97,26 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     // If the user is the driver of the ride, load pending join requests and hide 'join' button
     if ([self userIsDriver]) {
         [self loadJoinRequests];
+        [self updateChatButtonBadge];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.requestRideButton removeFromSuperview];
             [self.mutualFriendsView removeFromSuperview];
             [self.phoneView removeFromSuperview];
             
-            if (!_ride.active) {
+            if (!_ride.isActive || [_ride.date isInTheFuture]) {
                 [self.finishRideView removeFromSuperview];
             }
         });
         
         // Car details
-        User *user = [UserController sharedInstance].user;
+        User *user = UserService.instance.user;
         _carPlateLabel.text = user.carPlate.uppercaseString;
         _carModelLabel.text = user.carModel;
         _carColorLabel.text = user.carColor;
         
         // If the riders aren't provided then hide the riders view
-        if (!_ride.users) {
+        if (!self.riders) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.ridersView removeFromSuperview];
             });
@@ -114,6 +124,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     }
     // If the user is already a rider, hide 'join' button
     else if ([self userIsRider]) {
+        [self updateChatButtonBadge];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.requestRideButton removeFromSuperview];
             [self.finishRideView removeFromSuperview];
@@ -134,7 +146,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         
         [self updateMutualFriends];
     }
-    // If the user is not related to the ride, hide 'cancel' button, car details view, riders view, chat button
+    // If the user is not related to the ride, hide 'cancel' button, car details view, riders view
     else {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.cancelButton removeFromSuperview];
@@ -147,15 +159,11 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         // Hide driver's phone number
         _ride.driver.phoneNumber = nil;
         
-        // Hide chat button
-        self.navigationItem.rightBarButtonItem = nil;
-        
         // Update the state of the join request button if the user has already requested to join
-        if ([RideRequestsStore hasRequestedToJoinRide:_ride]) {
+        if ([RideService.instance hasRequestedToJoinRideWithID:_ride.id]) {
             _requestRideButton.enabled = NO;
             [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
-        }
-        else {
+        } else {
             _requestRideButton.enabled = YES;
             [_requestRideButton setTitle:CaronaeRequestButtonStateNew forState:UIControlStateNormal];
         }
@@ -170,6 +178,10 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [self openChatWindow];
         self.shouldOpenChatWindow = NO;
     }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setColor:(UIColor *)color {
@@ -187,40 +199,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     [_finishRideButton setTitleColor:color forState:UIControlStateNormal];
 }
 
-- (BOOL)userIsDriver {
-    return [[UserController sharedInstance].user.userID isEqualToNumber:_ride.driver.userID];
-}
-
-- (BOOL)userIsRider {
-    for (User *user in _ride.users) {
-        if ([user.userID isEqualToNumber:[UserController sharedInstance].user.userID]) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
 - (void)updateMutualFriends {
-    // Abort if the Facebook accounts are not connected.
-    if (![UserController sharedInstance].userFBToken || _ride.driver.facebookID.length == 0) {
-        return;
-    }
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userFBToken forHTTPHeaderField:@"Facebook-Token"];
-    
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _ride.driver.facebookID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
-        int totalMutualFriends = [responseObject[@"total_count"] intValue];
-        NSError *error;
-        NSArray<User *> *mutualFriends = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:mutualFriendsJSON error:&error];
-        
-        if (error) {
-            NSLog(@"Error parsing mutual friends. %@", error.localizedDescription);
-        }
-        
+    [UserService.instance mutualFriendsForUserWithFacebookID:_ride.driver.facebookID success:^(NSArray<User *> * _Nonnull mutualFriends, NSInteger totalCount) {
         if (mutualFriends.count > 0) {
             _mutualFriends = mutualFriends;
             _mutualFriendsCollectionHeight.constant = 40.0f;
@@ -228,13 +208,12 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
             [_mutualFriendsCollectionView reloadData];
         }
         
-        if (totalMutualFriends > 0) {
-            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d no total e %d no Caronaê", totalMutualFriends, (int)mutualFriends.count];
-        }
-        else {
+        if (totalCount > 0) {
+            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %ld no total e %ld no Caronaê", (long)totalCount, (long)mutualFriends.count];
+        } else {
             _mutualFriendsLabel.text = @"Amigos em comum: 0";
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } error:^(NSError * _Nonnull error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
     }];
 }
@@ -250,11 +229,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)openChatWindow {
-    Chat *chat = [ChatStore chatForRide:_ride];
-    if (chat) {
-        ChatViewController *chatVC = [[ChatViewController alloc] initWithChat:chat andColor:_color];
-        [self.navigationController pushViewController:chatVC animated:YES];
-    }
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithRide:_ride color:_color];
+    [self.navigationController pushViewController:chatVC animated:YES];
 }
 
 #pragma mark - IBActions
@@ -303,37 +279,39 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     [alert presentWithCompletion:nil];
 }
 
-- (IBAction)didTapChatButton:(id)sender {
-    [self openChatWindow];
-}
-
 
 #pragma mark - Ride operations
 
 - (void)cancelRide {
-    NSLog(@"Requesting to leave/cancel ride %ld", _ride.rideID);
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    NSDictionary *params = @{@"rideId": @(_ride.rideID)};
+    if (_ride.isRoutine) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Esta carona pertence a uma rotina."
+                                                                       message:nil
+                                                                preferredStyle:UIAlertControllerStyleActionSheet];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Desistir somente desta" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+            [self leaveRide];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Desistir da rotina" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+            [self deleteRoutine];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Cancelar" style:UIAlertActionStyleCancel handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        [self leaveRide];
+    }
+}
+
+- (void)leaveRide {
+    NSLog(@"Requesting to leave/cancel ride %ld", (long)_ride.id);
     
     _cancelButton.enabled = NO;
     [SVProgressHUD show];
     
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/leaveRide"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [RideService.instance leaveRideWithID:_ride.id success:^{
         [SVProgressHUD dismiss];
-        NSLog(@"User left the ride. (Message: %@)", responseObject[@"message"]);
-        
-        [[ChatStore chatForRide:_ride] unsubscribe];
-        [NotificationStore clearNotificationsForRide:@(_ride.rideID) ofType:NotificationTypeAll];
-        
-        if (_delegate && [_delegate respondsToSelector:@selector(didDeleteRide:)]) {
-            [_delegate didDeleteRide:_ride];
-        }
+        NSLog(@"User left the ride.");
         
         [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } error:^(NSError * _Nonnull error) {
         NSLog(@"Error leaving/cancelling ride: %@", error.localizedDescription);
         [SVProgressHUD dismiss];
         _cancelButton.enabled = YES;
@@ -342,28 +320,17 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)finishRide {
-    NSLog(@"Requesting to finish ride %ld", _ride.rideID);
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    NSDictionary *params = @{@"rideId": @(_ride.rideID)};
+    NSLog(@"Requesting to finish ride %ld", (long)_ride.id);
     
     _finishRideButton.enabled = NO;
     [SVProgressHUD show];
     
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/finishRide"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {        [SVProgressHUD dismiss];
-        NSLog(@"User finished the ride. (Message: %@)", responseObject[@"message"]);
-        
-        [[ChatStore chatForRide:_ride] unsubscribe];
-        [NotificationStore clearNotificationsForRide:@(_ride.rideID) ofType:NotificationTypeAll];
-        
-        if (_delegate && [_delegate respondsToSelector:@selector(didFinishRide:)]) {
-            [_delegate didFinishRide:_ride];
-        }
+    [RideService.instance finishRideWithID:_ride.id success:^{
+        [SVProgressHUD dismiss];
+        NSLog(@"User finished the ride.");
         
         [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } error:^(NSError * _Nonnull error) {
         NSLog(@"Error finishing ride: %@", error.localizedDescription);
         [SVProgressHUD dismiss];
         _finishRideButton.enabled = YES;
@@ -375,87 +342,63 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 #pragma mark - Join request methods
 
 - (void)requestJoinRide {
-    NSLog(@"Requesting to join ride %ld", _ride.rideID);
-    NSDictionary *params = @{@"rideId": @(_ride.rideID)};
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
+    NSLog(@"Requesting to join ride %ld", (long)_ride.id);
     
     _requestRideButton.enabled = NO;
     [SVProgressHUD show];
     
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/requestJoin"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [RideService.instance requestJoinOnRideWithID:_ride.id success:^{
         [SVProgressHUD dismiss];
-        NSLog(@"Done requesting ride. (Message: %@)", responseObject[@"message"]);
-        [RideRequestsStore setRideAsRequested:_ride];
+        NSLog(@"Done requesting ride.");
         [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } error:^(NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
         NSLog(@"Error requesting to join ride: %@", error.localizedDescription);
         _requestRideButton.enabled = YES;
         [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível solicitar a carona. (%@)", error.localizedDescription]];
     }];
+
 }
 
 - (void)loadJoinRequests {
-    long rideID = _ride.rideID;
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/getRequesters/%ld", rideID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSError *error;
-        NSArray<User *> *joinRequests = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:responseObject error:&error];
-        
-        if (!error) {
-            self.joinRequests = joinRequests;
-            if (joinRequests.count > 0) {
-                [self.requestsTable reloadData];
-                [self adjustHeightOfTableview];
-            }
-            
-            [NotificationStore clearNotificationsForRide:@(self.ride.rideID) ofType:NotificationTypeRequest];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error loading join requests for ride %lu: %@", rideID, error.localizedDescription);
+    [RideService.instance getRequestersForRideWithID:_ride.id success:^(NSArray<User *> * _Nonnull users) {
+        self.requesters = users;
+        if (self.requesters.count > 0) {
+            [self.requestsTable reloadData];
+            [self adjustHeightOfTableview];
+        }        
+    } error:^(NSError * _Nonnull error) {
+        NSLog(@"Error loading join requests for ride %lu: %@", (long)_ride.id, error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Algo deu errado." message:[NSString stringWithFormat:@"Não foi possível carregar as solicitações da sua carona. (%@)", error.localizedDescription]];
     }];
 }
 
 - (void)joinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(JoinRequestCell *)cell {
-    NSLog(@"Request for user %@ was %@", requestingUser.name, accepted ? @"accepted" : @"not accepted");
-    NSDictionary *params = @{@"userId": requestingUser.userID,
-                             @"rideId": @(_ride.rideID),
-                             @"accepted": @(accepted)};
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
     [cell setButtonsEnabled:NO];
     
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/answerJoinRequest"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Answer to join request successfully sent.");
+    [RideService.instance answerRequestOnRideWithID:_ride.id fromUser:requestingUser accepted:accepted success:^{
+        NSLog(@"Request for user %@ was %@", requestingUser.name, accepted ? @"accepted" : @"not accepted");
         [self removeJoinRequest:requestingUser];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (accepted) {
+            [_ridersCollectionView reloadData];
+        }
+    } error:^(NSError * _Nonnull error) {
         NSLog(@"Error accepting join request: %@", error.localizedDescription);
         [cell setButtonsEnabled:YES];
     }];
 }
 
 - (void)removeJoinRequest:(User *)requestingUser {
-    NSMutableArray *joinRequestsMutable = [NSMutableArray arrayWithArray:self.joinRequests];
+    NSMutableArray *joinRequestsMutable = [NSMutableArray arrayWithArray:self.requesters];
     [joinRequestsMutable removeObject:requestingUser];
     
     [self.requestsTable beginUpdates];
-    unsigned long index = [self.joinRequests indexOfObject:requestingUser];
+    unsigned long index = [self.requesters indexOfObject:requestingUser];
     [self.requestsTable deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    self.joinRequests = joinRequestsMutable;
+    self.requesters = joinRequestsMutable;
     [self.requestsTable endUpdates];
     [self adjustHeightOfTableview];
+    [self clearNotificationOfJoinRequestFrom:requestingUser.id];
 }
 
 - (void)tappedUserDetailsForRequest:(User *)user {
@@ -471,14 +414,14 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.joinRequests.count;
+    return self.requesters.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     JoinRequestCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Request Cell" forIndexPath:indexPath];
     
     cell.delegate = self;
-    [cell configureCellWithUser:self.joinRequests[indexPath.row]];
+    [cell configureCellWithUser:self.requesters[indexPath.row]];
     [cell setColor:self.color];
     
     return cell;
@@ -497,7 +440,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (void)adjustHeightOfTableview {
     [self.view layoutIfNeeded];
-    CGFloat height = self.joinRequests.count > 0 ? self.requestsTable.contentSize.height : 0;
+    CGFloat height = self.requesters.count * self.requestsTable.rowHeight;
     self.requestsTableHeight.constant = height;
     [UIView animateWithDuration:0.25 animations:^{
         [self.view layoutIfNeeded];
@@ -505,7 +448,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 
-#pragma mark - Collection methods (Riders)
+#pragma mark - Collection methods (Riders, Mutual friends)
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -513,9 +456,16 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (collectionView == _ridersCollectionView) {
-        return _ride.users.count;
-    }
-    else {
+        
+        // Show message if there is no riders
+        if ([self.riders count] == 0) {
+            [_noRidersLabel setHidden: NO];
+        } else {
+            [_noRidersLabel setHidden: YES];
+        }
+        
+        return [self.riders count];
+    } else {
         return _mutualFriends.count;
     }
 }
@@ -525,21 +475,14 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     User *user;
     
     if (collectionView == _ridersCollectionView) {
-        user = _ride.users[indexPath.row];
+        user = [self riderAtIndex:indexPath.row];
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Rider Cell" forIndexPath:indexPath];
-    }
-    else {
-        user = _mutualFriends[indexPath.row];
-        user.phoneNumber = nil;
+    } else {
+        user = self.mutualFriends[indexPath.row];
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Friend Cell" forIndexPath:indexPath];
     }
     
-    cell.user = user;
-    cell.nameLabel.text = user.firstName;
-    
-    if (user.profilePictureURL.length > 0) {
-        [cell.photo crn_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]];
-    }
+    [cell configureWithUser:user];    
     
     return cell;
 }

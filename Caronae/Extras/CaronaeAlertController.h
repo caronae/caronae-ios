@@ -1,4 +1,4 @@
-#import <SDCAlertView/SDCAlertController.h>
+@import SDCAlertView;
 
 @interface CaronaeAlertController : SDCAlertController
 

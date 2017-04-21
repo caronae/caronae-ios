@@ -1,8 +1,9 @@
-#import <ActionSheetStringPicker.h>
-#import <AFNetworking/AFNetworking.h>
+@import ActionSheetPicker_3_0;
+
 #import <sys/utsname.h>
 #import "CaronaeAlertController.h"
 #import "FalaeViewController.h"
+#import "Caronae-Swift.h"
 
 /**
  * Returns the model of the current device.
@@ -14,10 +15,8 @@ NSString *deviceName() {
     return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
 }
 
-@interface FalaeViewController () <UITextViewDelegate>
+@interface FalaeViewController ()
 
-@property (nonatomic) NSString *messagePlaceholder;
-@property (nonatomic) UIColor *messageTextColor;
 @property (nonatomic) NSString *selectedType;
 @property (nonatomic) NSString *selectedTypeCute;
 @property (nonatomic) int selectedTypeInitialIndex;
@@ -33,17 +32,12 @@ NSString *deviceName() {
     
     _messageTypes = @[@"Sugestão", @"Denúncia", @"Dúvida"];
     
-    _messageTextView.delegate = self;
-    _messagePlaceholder = _messageTextView.text;
-    _messageTextColor =  _messageTextView.textColor;
-    _messageTextView.textColor = [UIColor lightGrayColor];
-    
     if (_reportedUser) {
         _selectedType = @"report";
         _selectedTypeCute = @"Denúncia";
         _selectedTypeInitialIndex = (int)[_messageTypes indexOfObject:_selectedTypeCute];
         [_typeButton setTitle:@"Denúncia" forState:UIControlStateNormal];
-        _subjectTextField.text = [NSString stringWithFormat:@"Denúncia sobre usuário %@ (id: %d)", _reportedUser.name, [_reportedUser.userID intValue]];
+        _subjectTextField.text = [NSString stringWithFormat:@"Denúncia sobre usuário %@ (id: %ld)", _reportedUser.name, (long)_reportedUser.id];
         _subjectTextField.enabled = NO;
     }
     else {
@@ -51,11 +45,6 @@ NSString *deviceName() {
         _selectedTypeCute = @"Denúncia";
         _selectedTypeInitialIndex = (int)[_messageTypes indexOfObject:_selectedTypeCute];
     }
-    
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
-                                        initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [spinner startAnimating];
-    _loadingButton = [[UIBarButtonItem alloc] initWithCustomView:spinner];
 }
 
 - (void)setReport:(User *)user {
@@ -63,19 +52,16 @@ NSString *deviceName() {
 }
 
 - (void)sendMessage:(NSDictionary *)message {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
     
     [self showLoadingHUD:YES];
-    [manager POST:[CaronaeAPIBaseURL stringByAppendingString:@"/falae/sendMessage"] parameters:message success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CaronaeAPIHTTPSessionManager.instance POST:@"/falae/sendMessage" parameters:message success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [self showLoadingHUD:NO];
         
         [CaronaeAlertController presentOkAlertWithTitle:@"Mensagem enviada!" message:@"Obrigado por nos mandar uma mensagem. Nossa equipe irá entrar em contato em breve." handler:^{
             [self.navigationController popViewControllerAnimated:YES];
         }];
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self showLoadingHUD:NO];
         NSLog(@"Error: %@", error.localizedDescription);
         
@@ -112,8 +98,8 @@ NSString *deviceName() {
     [self.view endEditing:YES];
     
     NSString *messageText = [_messageTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if ([messageText isEqualToString:_messagePlaceholder] || messageText.length == 0) {
-        [CaronaeAlertController presentOkAlertWithTitle:@"" message:@"Ops! Parece que você esqueceu de preencher sua mensagem."];
+    if (messageText.length == 0) {
+        [CaronaeAlertController presentOkAlertWithTitle:@"Ops!" message:@"Parece que você esqueceu de preencher sua mensagem."];
         return;
     }
     
@@ -136,34 +122,20 @@ NSString *deviceName() {
 }
 
 
-#pragma mark - UITextView delegate
-
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    if ([textView.text isEqualToString:_messagePlaceholder]) {
-        textView.text = @"";
-        textView.textColor = _messageTextColor;
-    }
-    [textView becomeFirstResponder];
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView {
-    if ([textView.text isEqualToString:@""]) {
-        textView.text = _messagePlaceholder;
-        textView.textColor = [UIColor lightGrayColor];
-    }
-    [textView resignFirstResponder];
-}
-
-
 #pragma mark - Etc
 
 - (void)showLoadingHUD:(BOOL)loading {
-    if (!loading) {
-        self.navigationItem.rightBarButtonItem = self.sendButton;
+    self.navigationItem.rightBarButtonItem = loading ? self.loadingButton : self.sendButton;
+}
+
+- (UIBarButtonItem *)loadingButton {
+    if (!_loadingButton) {
+        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]
+                                            initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [spinner startAnimating];
+        _loadingButton = [[UIBarButtonItem alloc] initWithCustomView:spinner];
     }
-    else {
-        self.navigationItem.rightBarButtonItem = self.loadingButton;
-    }
+    return _loadingButton;
 }
 
 @end

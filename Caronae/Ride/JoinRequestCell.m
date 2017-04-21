@@ -1,5 +1,6 @@
 #import "JoinRequestCell.h"
 #import "UIImageView+crn_setImageWithURL.h"
+#import "Caronae-Swift.h"
 
 @implementation JoinRequestCell
 

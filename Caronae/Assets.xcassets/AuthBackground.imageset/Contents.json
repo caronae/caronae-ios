@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Screen Shot 2015-10-07 at 1.30.49 AM.png",
+      "filename" : "AuthBackground.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Screen Shot 2015-10-07 at 1.30.49 AM@2x.png",
+      "filename" : "AuthBackground@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Screen Shot 2015-10-07 at 1.30.49 AM@3x.png",
+      "filename" : "AuthBackground@3x.png",
       "scale" : "3x"
     }
   ],

@@ -1,9 +1,13 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
+@class FilterParameters;
 
 @protocol SearchRideDelegate <NSObject>
-- (void)searchedForRideWithCenter:(NSString *)center andNeighborhoods:(NSArray *)neighborhoods onDate:(NSDate *)date going:(BOOL)going;
+- (void)searchedForRideWithParameters:(FilterParameters *)parameters;
 @end
 
 @interface SearchRideViewController : UIViewController
 @property (nonatomic, assign) id<SearchRideDelegate> delegate;
+
+@property (nonatomic) NSInteger previouslySelectedSegmentIndex;
+
 @end

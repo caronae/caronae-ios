@@ -1,5 +1,4 @@
-#import <AFNetworking/AFNetworking.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
+@import FBSDKCoreKit;
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
 #import "FalaeViewController.h"
@@ -8,8 +7,9 @@
 #import "RiderCell.h"
 #import "SHSPhoneNumberFormatter+UserConfig.h"
 #import "UIImageView+crn_setImageWithURL.h"
+#import "Caronae-Swift.h"
 
-@interface ProfileViewController () <EditProfileDelegate, UICollectionViewDataSource>
+@interface ProfileViewController () <UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *signoutButton;
 @property (weak, nonatomic) IBOutlet UIView *reportView;
@@ -22,21 +22,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self updateProfileFields];
+    
+    if ([UserService.instance.user isEqual:_user]) {
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateProfileFields) name:CaronaeDidUpdateUserNotification object:nil];
+    }
 }
 
-- (BOOL)isMyProfile {
-    UINavigationController *navigationVC = self.navigationController;
-    if (navigationVC.viewControllers.count >= 2) {
-        UIViewController *previousVC = navigationVC.viewControllers[navigationVC.viewControllers.count - 2];
-        if ([previousVC isKindOfClass:[MenuViewController class]]) {
-            return YES;
-        }
-    }
-    return NO;
+- (void)dealloc {
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)updateProfileFields {
-    if ([self isMyProfile]) {
+    User *currentUser = UserService.instance.user;
+    if (!currentUser) {
+        return;
+    }
+    
+    if ([currentUser isEqual:_user]) {
         self.title = @"Meu Perfil";
         
         if (_user.carOwner) {
@@ -73,8 +75,8 @@
     
     _nameLabel.text = _user.name;
     _courseLabel.text = _user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", _user.profile, _user.course] : _user.profile;
-    _numDrivesLabel.text = _user.numDrives > -1 ? [NSString stringWithFormat:@"%d", _user.numDrives] : @"-";
-    _numRidesLabel.text = _user.numRides > -1 ? [NSString stringWithFormat:@"%d", _user.numRides] : @"-";
+    _numDrivesLabel.text = _user.numDrives > -1 ? [NSString stringWithFormat:@"%ld", (long)_user.numDrives] : @"-";
+    _numRidesLabel.text = _user.numRides > -1 ? [NSString stringWithFormat:@"%ld", (long)_user.numRides] : @"-";
     
     if (_user.phoneNumber.length > 0) {
         SHSPhoneNumberFormatter *phoneFormatter = [[SHSPhoneNumberFormatter alloc] init];
@@ -98,64 +100,31 @@
 }
 
 - (void)updateRidesOfferedCount {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/ride/getRidesHistoryCount/%@", _user.userID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        int numDrives = [responseObject[@"offeredCount"] intValue];
-        int numRides = [responseObject[@"takenCount"] intValue];
-        
-        _numDrivesLabel.text = [NSString stringWithFormat:@"%d", numDrives];
-        _numRidesLabel.text = [NSString stringWithFormat:@"%d", numRides];
-        
-        _user.numDrives = numDrives;
-        _user.numRides = numRides;
-        if ([self isMyProfile]) {
-            [UserController sharedInstance].user = _user;
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [UserService.instance ridesCountForUserWithID:_user.id success:^(NSInteger offeredCount, NSInteger takenCount) {
+        _numDrivesLabel.text = [NSString stringWithFormat:@"%ld", (long)offeredCount];
+        _numRidesLabel.text = [NSString stringWithFormat:@"%ld", (long)takenCount];
+    } error:^(NSError * _Nonnull error) {
         NSLog(@"Error reading history count for user: %@", error.localizedDescription);
     }];
 }
 
 - (void)updateMutualFriends {
-    // Abort if the Facebook accounts are not connected.
-    if (![UserController sharedInstance].userFBToken || _user.facebookID.length == 0) {
-        return;
-    }
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userFBToken forHTTPHeaderField:@"Facebook-Token"];
-    
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"/user/%@/mutualFriends", _user.facebookID]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *mutualFriendsJSON = responseObject[@"mutual_friends"];
-        int totalMutualFriends = [responseObject[@"total_count"] intValue];
-        NSError *error;
-        NSArray<User *> *mutualFriends = [MTLJSONAdapter modelsOfClass:User.class fromJSONArray:mutualFriendsJSON error:&error];
-        
-        if (error) {
-            NSLog(@"Error parsing user from mutual friends: %@", error.localizedDescription);
-        }
-        
+    [UserService.instance mutualFriendsForUserWithFacebookID:_user.facebookID success:^(NSArray<User *> * _Nonnull mutualFriends, NSInteger totalCount) {
         self.mutualFriends = mutualFriends;
         [self.mutualFriendsCollectionView reloadData];
-
-        if (totalMutualFriends > 0) {
-            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %d no total e %d no Caronaê", totalMutualFriends, (int)mutualFriends.count];
-        }
-        else {
+        
+        if (totalCount > 0) {
+            _mutualFriendsLabel.text = [NSString stringWithFormat:@"Amigos em comum: %ld no total e %ld no Caronaê", (long)totalCount, (long)mutualFriends.count];
+        } else {
             _mutualFriendsLabel.text = @"Amigos em comum: 0";
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } error:^(NSError * _Nonnull error) {
         NSLog(@"Error loading mutual friends for user: %@", error.localizedDescription);
     }];
 }
 
 
-#pragma mark - Edit profile methods
+#pragma mark - IBActions
 
 - (IBAction)didTapPhoneButton:(id)sender {
     NSString *phoneNumber = _user.phoneNumber;
@@ -163,21 +132,13 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumberURLString]];
 }
 
-- (void)didUpdateUser:(User *)updatedUser {
-    self.user = updatedUser;
-    [self updateProfileFields];
-}
-
-
-#pragma mark - IBActions
-
 - (IBAction)didTapLogoutButton:(id)sender {
     CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Você deseja mesmo sair da sua conta?"
                                                                              message: nil
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Sair" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
-        [[UserController sharedInstance] signOut];
+        [UserService.instance signOut];
     }]];
     [alert presentWithCompletion:nil];
 }
@@ -186,12 +147,7 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"EditProfile"]) {
-        UINavigationController *navigationVC = segue.destinationViewController;
-        EditProfileViewController *vc = (EditProfileViewController *)navigationVC.topViewController;
-        vc.delegate = self;
-    }
-    else if ([segue.identifier isEqualToString:@"ReportUser"]) {
+    if ([segue.identifier isEqualToString:@"ReportUser"]) {
         FalaeViewController *vc = segue.destinationViewController;
         [vc setReport:_user];
     }
@@ -209,16 +165,10 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    User *user = _mutualFriends[indexPath.row];
-    
     RiderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Friend Cell" forIndexPath:indexPath];
     
-    cell.user = user;
-    cell.nameLabel.text = user.firstName;
-    
-    if (user.profilePictureURL.length > 0) {
-        [cell.photo crn_setImageWithURL:[NSURL URLWithString:user.profilePictureURL]];
-    }
+    User *user = _mutualFriends[indexPath.row];
+    [cell configureWithUser:user];
     
     return cell;
 }

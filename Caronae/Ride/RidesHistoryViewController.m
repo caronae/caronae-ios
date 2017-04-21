@@ -1,5 +1,5 @@
-#import <AFNetworking/AFNetworking.h>
 #import "RidesHistoryViewController.h"
+#import "Caronae-Swift.h"
 
 @interface RidesHistoryViewController ()
 
@@ -8,14 +8,13 @@
 @implementation RidesHistoryViewController
 
 - (void)viewDidLoad {
+    self.hidesDirectionControl = YES;
     [super viewDidLoad];
     [self loadRidesHistory];
 }
 
-- (void)refreshTable:(id)sender {
-    if (self.refreshControl.refreshing) {
-        [self loadRidesHistory];
-    }
+- (void)refreshTable {
+    [self loadRidesHistory];
 }
 
 
@@ -26,35 +25,13 @@
         self.tableView.backgroundView = self.loadingLabel;
     }
     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/ride/getRidesHistory"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self.refreshControl endRefreshing];
-
-        NSError *error;
-        NSArray<Ride *> *rides = [MTLJSONAdapter modelsOfClass:Ride.class fromJSONArray:responseObject error:&error];
-        if (error) {
-            NSLog(@"Error parsing rides history. %@", error.localizedDescription);
-            [self loadingFailedWithOperation:operation error:error];
-            return;
-        }
-
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
-        self.rides = [rides sortedArrayUsingDescriptors:@[sortDescriptor]];
-        
+    [RideService.instance getRidesHistoryWithSuccess:^(NSArray<Ride *> * _Nonnull rides) {
+        self.rides = rides;
         [self.tableView reloadData];
-        
-        if (self.rides.count > 0) {
-            self.tableView.backgroundView = nil;
-        }
-        else {
-            self.tableView.backgroundView = self.emptyTableLabel;
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.refreshControl endRefreshing];
-        [self loadingFailedWithOperation:operation error:error];
+    } error:^(NSError * _Nonnull error) {
+        [self.refreshControl endRefreshing];
+        [self loadingFailedWithError:error];
     }];
 }
 

@@ -1,0 +1,8 @@
+// App settings
+FACEBOOK_APP_ID = 933455893356973
+FACEBOOK_DISPLAY_NAME = Caronae
+
+// Helpers
+SLASH = /
+HTTP = http:${SLASH}${SLASH}
+HTTPS = https:${SLASH}${SLASH}

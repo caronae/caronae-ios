@@ -7,112 +7,109 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B703899BB09FEE6DC0710D9 /* libPods-Caronae.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82527D52981AFEFBE68EA15D /* libPods-Caronae.a */; };
-		A302B29B1BF4439300FA161D /* CreateRideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A302B29A1BF4439300FA161D /* CreateRideTests.m */; };
+		713E99B91E8D5FA900F3C9E0 /* Array+compactString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */; };
+		716BF8981E90B8300019F0CA /* NeighborhoodSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 716BF8971E90B8300019F0CA /* NeighborhoodSelectionViewController.m */; };
+		718C9B751E5F923A0037A78B /* AllRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C9B741E5F923A0037A78B /* AllRidesViewController.swift */; };
+		71AE13E41E8200D8008ACB06 /* FilterRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */; };
+		71C908FE1E88C3E9009B7BFE /* FilterParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */; };
+		71D2B86D1E296AFC000454F7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2B86C1E296AFC000454F7 /* ChatViewController.swift */; };
 		A3034D581DB58A1B00816B79 /* NSDate+isInTheFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */; };
 		A3169C951BED842D00A0D428 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C941BED842D00A0D428 /* main.m */; };
 		A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C971BED842D00A0D428 /* AppDelegate.m */; };
-		A3169C9B1BED842D00A0D428 /* TokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169C9A1BED842D00A0D428 /* TokenViewController.m */; };
 		A3169C9E1BED842D00A0D428 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169C9C1BED842D00A0D428 /* Main.storyboard */; };
-		A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */; };
 		A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA21BED842D00A0D428 /* Assets.xcassets */; };
 		A3169CA61BED842D00A0D428 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */; };
 		A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */; };
-		A3180F871C618DDF007195DF /* ChatStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A3180F861C618DDF007195DF /* ChatStore.m */; };
 		A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */; };
 		A325DA711C0CAFD700B9124E /* JoinRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */; };
 		A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A32B80B51C2C6EBE00FC370A /* FalaeViewController.m */; };
-		A32C77261C41EEE30098583B /* AllRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A32C77251C41EEE30098583B /* AllRidesViewController.m */; };
 		A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */; };
 		A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C61BF01B9A005BA311 /* MenuViewController.m */; };
 		A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C91BF01C1D005BA311 /* ProfileViewController.m */; };
 		A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312CC1BF01C26005BA311 /* EditProfileViewController.m */; };
-		A34C67581C826280001F6D90 /* NotificationStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C67571C826280001F6D90 /* NotificationStore.m */; };
-		A34C675C1C853C4B001F6D90 /* RideRequestsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C675B1C853C4B001F6D90 /* RideRequestsStore.m */; };
-		A34C675F1C854EA7001F6D90 /* UserController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34C675E1C854EA7001F6D90 /* UserController.m */; };
 		A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A34CEC4C1C993115006FC41E /* Settings.bundle */; };
 		A357EF331C56C5A100AC8096 /* RideListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF311C56C5A100AC8096 /* RideListController.m */; };
 		A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A357EF321C56C5A100AC8096 /* RideListController.xib */; };
-		A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF361C57168D00AC8096 /* SignupViewController.m */; };
 		A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35D472A1C2092A300501647 /* RidesHistoryViewController.m */; };
 		A369A4EB1C72928700FE5495 /* UIViewController+isVisible.m in Sources */ = {isa = PBXBuildFile; fileRef = A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */; };
 		A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */; };
 		A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
-		A37E80DB1C5F007900683F27 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A37E80DA1C5F007900683F27 /* ChatViewController.m */; };
-		A37E80DE1C5F00D300683F27 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = A37E80DD1C5F00D300683F27 /* Chat.m */; };
-		A37E80E11C5F011100683F27 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E01C5F011100683F27 /* Message.m */; };
-		A37E80E41C5F0C3000683F27 /* MessageBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E31C5F0C3000683F27 /* MessageBubbleTableViewCell.m */; };
 		A37E80E71C5F158600683F27 /* UIImage+imageWithTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */; };
-		A38598451C66D83A00279D6F /* Notification+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = A38598421C66D83A00279D6F /* Notification+CoreDataProperties.m */; };
-		A38598461C66D83A00279D6F /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = A38598441C66D83A00279D6F /* Notification.m */; };
-		A38598491C691D1400279D6F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = A38598481C691D1400279D6F /* User.m */; };
-		A385984B1C6923D000279D6F /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A385984A1C6923D000279D6F /* UserTests.m */; };
-		A389902D1C58734700C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F1D4C1C0398B500DEF6B1 /* RideCell.m */; };
+		A39672381E2E813700DD8ED5 /* RideRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39672371E2E813700DD8ED5 /* RideRequest.swift */; };
 		A398BE051C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */; };
 		A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */; };
 		A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */; };
 		A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */; };
-		A39BBCFF1C06296200EF9EBD /* Ride.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBCFE1C06296200EF9EBD /* Ride.m */; };
 		A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBD021C06378E00EF9EBD /* NSDate+nextHour.m */; };
 		A39BBD051C06AB9D00EF9EBD /* RideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39BBD041C06AB9D00EF9EBD /* RideCell.xib */; };
 		A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */; };
 		A3A4A4AF1C4C695800CF4CB2 /* NSString+validation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */; };
-		A3AD19CA1BED9BFB003EDA17 /* ActiveRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */; };
+		A3AC169B1E34168A000B5817 /* CaronaeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169A1E34168A000B5817 /* CaronaeError.swift */; };
+		A3AC169D1E35781C000B5817 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */; };
+		A3AC169F1E357828000B5817 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3AC169E1E357828000B5817 /* WelcomeViewController.xib */; };
+		A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD53BB1E1EBEAA005EAF04 /* RideViewController+rideActions.swift */; };
+		A3AD822D1E1B1E85006D8ABE /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD822C1E1B1E85006D8ABE /* Ride.swift */; };
+		A3AD822F1E1C5BD9006D8ABE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD822E1E1C5BD9006D8ABE /* Message.swift */; };
+		A3AD82311E1C6072006D8ABE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82301E1C6072006D8ABE /* User.swift */; };
+		A3AD82331E1C63CD006D8ABE /* DateTimeTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82321E1C63CD006D8ABE /* DateTimeTransform.swift */; };
+		A3AD82361E1C70D6006D8ABE /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82351E1C70D6006D8ABE /* RideService.swift */; };
+		A3AD82381E1C7409006D8ABE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82371E1C7409006D8ABE /* UserService.swift */; };
+		A3AD823A1E1C8049006D8ABE /* TokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82391E1C8049006D8ABE /* TokenViewController.swift */; };
+		A3AD823C1E1C8860006D8ABE /* AppDelegate+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD823B1E1C8860006D8ABE /* AppDelegate+Realm.swift */; };
+		A3AD823F1E1DC631006D8ABE /* MyRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD823E1E1DC631006D8ABE /* MyRidesViewController.swift */; };
 		A3B18FFA1C9E713F00980607 /* UIImageView+crn_setImageWithURL.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */; };
 		A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */; };
-		A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */; };
 		A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */; };
-		A3C55BDA1C5FB19A00C84204 /* Message+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C55BD91C5FB19A00C84204 /* Message+CoreDataProperties.m */; };
+		A3BBF1381DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */; };
+		A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */; };
+		A3CA5DD21E1F46520062522D /* UIWindow+replaceRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */; };
+		A3CA5DD41E22CA370062522D /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD31E22CA370062522D /* NotificationService.swift */; };
+		A3CA5DD61E22CA630062522D /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD51E22CA630062522D /* Notification.swift */; };
+		A3CA5DD81E22D39B0062522D /* ActiveRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD71E22D39B0062522D /* ActiveRidesViewController.swift */; };
+		A3CA5DDC1E22DB830062522D /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */; };
+		A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDF1E22EC570062522D /* ChatService.swift */; };
+		A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */; };
 		A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3E7FB1C77AD310094BBAC /* WebViewController.m */; };
 		A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE026B1C17D01000A8407E /* RiderCell.m */; };
 		A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F30EE81C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m */; };
 		A3F30EED1C0890C10024BE37 /* ZoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F30EEC1C0890C10024BE37 /* ZoneCell.m */; };
 		A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F30EEF1C0891520024BE37 /* ZoneSelectionViewController.m */; };
 		A3F30EF21C08ABDC0024BE37 /* bairros.csv in Resources */ = {isa = PBXBuildFile; fileRef = A3F30EF11C08ABDC0024BE37 /* bairros.csv */; };
+		F91FC5AB2FFB53DBA5F5FDF2 /* Pods_Caronae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B6B5515572591139AACACF /* Pods_Caronae.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A3169CAD1BED842D00A0D428 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A3169C881BED842D00A0D428 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A3169C8F1BED842D00A0D428;
-			remoteInfo = Caronae;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		034368C5C58B7751F19F8886 /* Pods-CaronaeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaronaeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		149B16103BA6D59F2E8120B8 /* Pods-Caronae.debug - development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug - development.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug - development.xcconfig"; sourceTree = "<group>"; };
 		2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug.xcconfig"; sourceTree = "<group>"; };
 		48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.release.xcconfig"; sourceTree = "<group>"; };
-		82527D52981AFEFBE68EA15D /* libPods-Caronae.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Caronae.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A302B29A1BF4439300FA161D /* CreateRideTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRideTests.m; sourceTree = "<group>"; };
+		4B35A3BD2CCAED11349480AC /* Pods-CaronaeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaronaeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests.release.xcconfig"; sourceTree = "<group>"; };
+		713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+compactString.swift"; sourceTree = "<group>"; };
+		716BF8961E90B8300019F0CA /* NeighborhoodSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeighborhoodSelectionViewController.h; sourceTree = "<group>"; };
+		716BF8971E90B8300019F0CA /* NeighborhoodSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeighborhoodSelectionViewController.m; sourceTree = "<group>"; };
+		718C9B741E5F923A0037A78B /* AllRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRidesViewController.swift; sourceTree = "<group>"; };
+		71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRideViewController.swift; sourceTree = "<group>"; };
+		71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterParameters.swift; sourceTree = "<group>"; };
+		71D2B86C1E296AFC000454F7 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		A0D86D64B619914BEDBEFB9A /* Pods-Caronae.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.production.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.production.xcconfig"; sourceTree = "<group>"; };
 		A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+isInTheFuture.swift"; sourceTree = "<group>"; };
 		A3169C901BED842D00A0D428 /* Caronae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caronae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3169C941BED842D00A0D428 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A3169C961BED842D00A0D428 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A3169C971BED842D00A0D428 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A3169C991BED842D00A0D428 /* TokenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TokenViewController.h; sourceTree = "<group>"; };
-		A3169C9A1BED842D00A0D428 /* TokenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TokenViewController.m; sourceTree = "<group>"; };
 		A3169C9D1BED842D00A0D428 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A3169CA01BED842D00A0D428 /* Caronae.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Caronae.xcdatamodel; sourceTree = "<group>"; };
 		A3169CA21BED842D00A0D428 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3169CA51BED842D00A0D428 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A3169CA71BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A3169CAC1BED842D00A0D428 /* CaronaeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaronaeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3169CB21BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3169CA71BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		A3169CC91BED893F00A0D428 /* CaronaeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeTextField.h; sourceTree = "<group>"; };
 		A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeTextField.m; sourceTree = "<group>"; };
-		A3180F851C618DDF007195DF /* ChatStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatStore.h; sourceTree = "<group>"; };
-		A3180F861C618DDF007195DF /* ChatStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatStore.m; sourceTree = "<group>"; };
 		A325DA6D1C0CAFD700B9124E /* JoinRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinRequestCell.h; sourceTree = "<group>"; };
 		A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinRequestCell.m; sourceTree = "<group>"; };
 		A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinRequestCell.xib; sourceTree = "<group>"; };
 		A32B80B41C2C6EBE00FC370A /* FalaeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FalaeViewController.h; sourceTree = "<group>"; };
 		A32B80B51C2C6EBE00FC370A /* FalaeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FalaeViewController.m; sourceTree = "<group>"; };
-		A32C77241C41EEE30098583B /* AllRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllRidesViewController.h; sourceTree = "<group>"; };
-		A32C77251C41EEE30098583B /* AllRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllRidesViewController.m; sourceTree = "<group>"; };
 		A33FABE81BEE8E93008B4F51 /* CreateRideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRideViewController.h; sourceTree = "<group>"; };
 		A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRideViewController.m; sourceTree = "<group>"; };
 		A34312C51BF01B9A005BA311 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -121,18 +118,11 @@
 		A34312C91BF01C1D005BA311 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		A34312CB1BF01C26005BA311 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		A34312CC1BF01C26005BA311 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
-		A34C67561C826280001F6D90 /* NotificationStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationStore.h; path = Notification/NotificationStore.h; sourceTree = "<group>"; };
-		A34C67571C826280001F6D90 /* NotificationStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationStore.m; path = Notification/NotificationStore.m; sourceTree = "<group>"; };
-		A34C675A1C853C4B001F6D90 /* RideRequestsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideRequestsStore.h; sourceTree = "<group>"; };
-		A34C675B1C853C4B001F6D90 /* RideRequestsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideRequestsStore.m; sourceTree = "<group>"; };
-		A34C675D1C854EA7001F6D90 /* UserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserController.h; sourceTree = "<group>"; };
-		A34C675E1C854EA7001F6D90 /* UserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserController.m; sourceTree = "<group>"; };
-		A34CEC4C1C993115006FC41E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		A34CEC4C1C993115006FC41E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../../Settings.bundle; sourceTree = "<group>"; };
+		A34DCBCE1E6B41F300A2D427 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Production.xcconfig; path = Config/Production.xcconfig; sourceTree = "<group>"; };
 		A357EF301C56C5A100AC8096 /* RideListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideListController.h; sourceTree = "<group>"; };
 		A357EF311C56C5A100AC8096 /* RideListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideListController.m; sourceTree = "<group>"; };
 		A357EF321C56C5A100AC8096 /* RideListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideListController.xib; sourceTree = "<group>"; };
-		A357EF351C57168D00AC8096 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
-		A357EF361C57168D00AC8096 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		A35D47291C2092A300501647 /* RidesHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RidesHistoryViewController.h; sourceTree = "<group>"; };
 		A35D472A1C2092A300501647 /* RidesHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RidesHistoryViewController.m; sourceTree = "<group>"; };
 		A369A4E91C72928700FE5495 /* UIViewController+isVisible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+isVisible.h"; sourceTree = "<group>"; };
@@ -141,27 +131,13 @@
 		A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoneSelectionInputViewController.m; sourceTree = "<group>"; };
 		A375D2F91C19175A00795CAE /* CaronaeAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeAlertController.h; sourceTree = "<group>"; };
 		A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeAlertController.m; sourceTree = "<group>"; };
-		A37E80D91C5F007900683F27 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
-		A37E80DA1C5F007900683F27 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
-		A37E80DC1C5F00D300683F27 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
-		A37E80DD1C5F00D300683F27 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
-		A37E80DF1C5F011100683F27 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		A37E80E01C5F011100683F27 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
-		A37E80E21C5F0C3000683F27 /* MessageBubbleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBubbleTableViewCell.h; sourceTree = "<group>"; };
-		A37E80E31C5F0C3000683F27 /* MessageBubbleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBubbleTableViewCell.m; sourceTree = "<group>"; };
 		A37E80E51C5F158600683F27 /* Caronae-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Caronae-Bridging-Header.h"; sourceTree = "<group>"; };
 		A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+imageWithTint.swift"; sourceTree = "<group>"; };
-		A38598401C66D79300279D6F /* Caronae 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Caronae 3.xcdatamodel"; sourceTree = "<group>"; };
-		A38598411C66D83A00279D6F /* Notification+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Notification+CoreDataProperties.h"; sourceTree = "<group>"; };
-		A38598421C66D83A00279D6F /* Notification+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Notification+CoreDataProperties.m"; sourceTree = "<group>"; };
-		A38598431C66D83A00279D6F /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
-		A38598441C66D83A00279D6F /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
-		A38598471C691D1400279D6F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		A38598481C691D1400279D6F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		A385984A1C6923D000279D6F /* UserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTests.m; sourceTree = "<group>"; };
 		A389902B1C58734700C7CD2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A38F1D4B1C0398B500DEF6B1 /* RideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideCell.h; sourceTree = "<group>"; };
 		A38F1D4C1C0398B500DEF6B1 /* RideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideCell.m; sourceTree = "<group>"; };
+		A39672371E2E813700DD8ED5 /* RideRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideRequest.swift; sourceTree = "<group>"; };
+		A39743EB1E6B18F2006E469A /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Common.xcconfig; path = Config/Common.xcconfig; sourceTree = "<group>"; };
 		A398BE031C6D7DEC00CEA6A1 /* CaronaePhoneTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaePhoneTextField.h; sourceTree = "<group>"; };
 		A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaePhoneTextField.m; sourceTree = "<group>"; };
 		A3996D2B1C13AC0900D2E890 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
@@ -170,8 +146,6 @@
 		A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		A39BBCF41C048E4D00EF9EBD /* SearchRideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRideViewController.h; sourceTree = "<group>"; };
 		A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRideViewController.m; sourceTree = "<group>"; };
-		A39BBCFD1C06296200EF9EBD /* Ride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ride.h; sourceTree = "<group>"; };
-		A39BBCFE1C06296200EF9EBD /* Ride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ride.m; sourceTree = "<group>"; };
 		A39BBD011C06378E00EF9EBD /* NSDate+nextHour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+nextHour.h"; sourceTree = "<group>"; };
 		A39BBD021C06378E00EF9EBD /* NSDate+nextHour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+nextHour.m"; sourceTree = "<group>"; };
 		A39BBD041C06AB9D00EF9EBD /* RideCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideCell.xib; sourceTree = "<group>"; };
@@ -179,22 +153,40 @@
 		A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideViewController.m; sourceTree = "<group>"; };
 		A3A4A4AD1C4C695800CF4CB2 /* NSString+validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+validation.h"; sourceTree = "<group>"; };
 		A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+validation.m"; sourceTree = "<group>"; };
-		A3AD19C81BED9BFB003EDA17 /* ActiveRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveRidesViewController.h; sourceTree = "<group>"; };
-		A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveRidesViewController.m; sourceTree = "<group>"; };
+		A3AC169A1E34168A000B5817 /* CaronaeError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaronaeError.swift; sourceTree = "<group>"; };
+		A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		A3AC169E1E357828000B5817 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
+		A3AD53BB1E1EBEAA005EAF04 /* RideViewController+rideActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RideViewController+rideActions.swift"; sourceTree = "<group>"; };
+		A3AD822C1E1B1E85006D8ABE /* Ride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
+		A3AD822E1E1C5BD9006D8ABE /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		A3AD82301E1C6072006D8ABE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A3AD82321E1C63CD006D8ABE /* DateTimeTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeTransform.swift; sourceTree = "<group>"; };
+		A3AD82351E1C70D6006D8ABE /* RideService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RideService.swift; path = Services/RideService.swift; sourceTree = "<group>"; };
+		A3AD82371E1C7409006D8ABE /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = Services/UserService.swift; sourceTree = "<group>"; };
+		A3AD82391E1C8049006D8ABE /* TokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenViewController.swift; sourceTree = "<group>"; };
+		A3AD823B1E1C8860006D8ABE /* AppDelegate+Realm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Realm.swift"; sourceTree = "<group>"; };
+		A3AD823E1E1DC631006D8ABE /* MyRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRidesViewController.swift; sourceTree = "<group>"; };
 		A3B18FF81C9E713F00980607 /* UIImageView+crn_setImageWithURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+crn_setImageWithURL.h"; sourceTree = "<group>"; };
 		A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+crn_setImageWithURL.m"; sourceTree = "<group>"; };
 		A3B5AEFD1BF1AAC10026A889 /* CaronaeConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeConstants.h; sourceTree = "<group>"; };
 		A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeConstants.m; sourceTree = "<group>"; };
-		A3B5AF041BF1ADF30026A889 /* MyRidesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRidesViewController.h; sourceTree = "<group>"; };
-		A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRidesViewController.m; sourceTree = "<group>"; };
 		A3B5AF0F1BF2F0560026A889 /* CALayer+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+UIColor.h"; sourceTree = "<group>"; };
 		A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+UIColor.m"; sourceTree = "<group>"; };
-		A3C55BD81C5FB19A00C84204 /* Message+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Message+CoreDataProperties.h"; sourceTree = "<group>"; };
-		A3C55BD91C5FB19A00C84204 /* Message+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Message+CoreDataProperties.m"; sourceTree = "<group>"; };
-		A3C55BDB1C5FD1B700C84204 /* Caronae 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Caronae 2.xcdatamodel"; sourceTree = "<group>"; };
+		A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaronaeAPIHTTPSessionManager.swift; path = Networking/CaronaeAPIHTTPSessionManager.swift; sourceTree = "<group>"; };
+		A3CA5DCD1E1F3C000062522D /* UIApplication+topViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+topViewController.h"; sourceTree = "<group>"; };
+		A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+topViewController.m"; sourceTree = "<group>"; };
+		A3CA5DD01E1F46520062522D /* UIWindow+replaceRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+replaceRootViewController.h"; sourceTree = "<group>"; };
+		A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+replaceRootViewController.m"; sourceTree = "<group>"; };
+		A3CA5DD31E22CA370062522D /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationService.swift; path = Services/NotificationService.swift; sourceTree = "<group>"; };
+		A3CA5DD51E22CA630062522D /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		A3CA5DD71E22D39B0062522D /* ActiveRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRidesViewController.swift; sourceTree = "<group>"; };
+		A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
+		A3CA5DDF1E22EC570062522D /* ChatService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatService.swift; path = Services/ChatService.swift; sourceTree = "<group>"; };
+		A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
 		A3D3E7FA1C77AD310094BBAC /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = About/WebViewController.h; sourceTree = "<group>"; };
 		A3D3E7FB1C77AD310094BBAC /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = About/WebViewController.m; sourceTree = "<group>"; };
 		A3D680191DB4016E00135C2B /* Caronae.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Caronae.entitlements; sourceTree = "<group>"; };
+		A3E459D21E6B102B00D844FF /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Development.xcconfig; path = Config/Development.xcconfig; sourceTree = "<group>"; };
 		A3EE026A1C17D01000A8407E /* RiderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RiderCell.h; sourceTree = "<group>"; };
 		A3EE026B1C17D01000A8407E /* RiderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RiderCell.m; sourceTree = "<group>"; };
 		A3F30EE71C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+dictionaryWithoutNulls.h"; sourceTree = "<group>"; };
@@ -205,6 +197,9 @@
 		A3F30EEE1C0891520024BE37 /* ZoneSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoneSelectionViewController.h; sourceTree = "<group>"; };
 		A3F30EEF1C0891520024BE37 /* ZoneSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoneSelectionViewController.m; sourceTree = "<group>"; };
 		A3F30EF11C08ABDC0024BE37 /* bairros.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bairros.csv; sourceTree = "<group>"; };
+		B935F3BB53907682C1EF3A28 /* Pods-Caronae.debug - production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug - production.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug - production.xcconfig"; sourceTree = "<group>"; };
+		D3B6B5515572591139AACACF /* Pods_Caronae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Caronae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDEF024FC27DF0BBC189D320 /* Pods_CaronaeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaronaeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,14 +207,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B703899BB09FEE6DC0710D9 /* libPods-Caronae.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3169CA91BED842D00A0D428 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				F91FC5AB2FFB53DBA5F5FDF2 /* Pods_Caronae.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +219,11 @@
 			children = (
 				2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */,
 				48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */,
+				034368C5C58B7751F19F8886 /* Pods-CaronaeTests.debug.xcconfig */,
+				4B35A3BD2CCAED11349480AC /* Pods-CaronaeTests.release.xcconfig */,
+				A0D86D64B619914BEDBEFB9A /* Pods-Caronae.production.xcconfig */,
+				149B16103BA6D59F2E8120B8 /* Pods-Caronae.debug - development.xcconfig */,
+				B935F3BB53907682C1EF3A28 /* Pods-Caronae.debug - production.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -238,7 +231,8 @@
 		9EEF98FE6EBF502EF2E23188 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				82527D52981AFEFBE68EA15D /* libPods-Caronae.a */,
+				D3B6B5515572591139AACACF /* Pods_Caronae.framework */,
+				EDEF024FC27DF0BBC189D320 /* Pods_CaronaeTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -247,10 +241,9 @@
 			isa = PBXGroup;
 			children = (
 				A3169C921BED842D00A0D428 /* Caronae */,
-				A3169CAF1BED842D00A0D428 /* CaronaeTests */,
+				A3E459D11E6B101300D844FF /* Config */,
 				9EEF98FE6EBF502EF2E23188 /* Frameworks */,
 				A3169C911BED842D00A0D428 /* Products */,
-				A34CEC4C1C993115006FC41E /* Settings.bundle */,
 				70FE0ED744CA3C4A67F995BC /* Pods */,
 			);
 			sourceTree = "<group>";
@@ -259,7 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				A3169C901BED842D00A0D428 /* Caronae.app */,
-				A3169CAC1BED842D00A0D428 /* CaronaeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -275,17 +267,19 @@
 				A3DF39BC1C66CFAE005D22FD /* Falae */,
 				A39BBD001C0629E100EF9EBD /* Model */,
 				A3180F841C6066AF007195DF /* Neighborhood selection */,
-				A34C67551C826258001F6D90 /* Notification */,
+				A3BBF1391DDC0E9200765CD7 /* Networking */,
 				A32B80B81C2E075000FC370A /* Ride */,
+				A3AD82341E1C70C6006D8ABE /* Services */,
 				A3169C931BED842D00A0D428 /* Supporting Files */,
 				A32B80B71C2E073000FC370A /* User */,
 				A3169C961BED842D00A0D428 /* AppDelegate.h */,
 				A3169C971BED842D00A0D428 /* AppDelegate.m */,
+				A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */,
+				A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */,
+				A3AD823B1E1C8860006D8ABE /* AppDelegate+Realm.swift */,
 				A3169CA21BED842D00A0D428 /* Assets.xcassets */,
-				A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */,
 				A3B5AEFD1BF1AAC10026A889 /* CaronaeConstants.h */,
 				A3B5AEFE1BF1AAC10026A889 /* CaronaeConstants.m */,
-				A3169CA71BED842D00A0D428 /* Info.plist */,
 				A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */,
 				A3169C9C1BED842D00A0D428 /* Main.storyboard */,
 				A34312C51BF01B9A005BA311 /* MenuViewController.h */,
@@ -299,23 +293,15 @@
 		A3169C931BED842D00A0D428 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A3F30EF11C08ABDC0024BE37 /* bairros.csv */,
 				A37E80E51C5F158600683F27 /* Caronae-Bridging-Header.h */,
 				A389902B1C58734700C7CD2D /* GoogleService-Info.plist */,
+				A3169CA71BED842D00A0D428 /* Info.plist */,
 				A3F30EEA1C0823CA0024BE37 /* PrefixHeader.pch */,
-				A3F30EF11C08ABDC0024BE37 /* bairros.csv */,
 				A3169C941BED842D00A0D428 /* main.m */,
+				A34CEC4C1C993115006FC41E /* Settings.bundle */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A3169CAF1BED842D00A0D428 /* CaronaeTests */ = {
-			isa = PBXGroup;
-			children = (
-				A302B29A1BF4439300FA161D /* CreateRideTests.m */,
-				A385984A1C6923D000279D6F /* UserTests.m */,
-				A3169CB21BED842D00A0D428 /* Info.plist */,
-			);
-			path = CaronaeTests;
 			sourceTree = "<group>";
 		};
 		A3180F841C6066AF007195DF /* Neighborhood selection */ = {
@@ -327,6 +313,8 @@
 				A374623E1C4D7B59000B802C /* ZoneSelectionInputViewController.m */,
 				A3F30EEE1C0891520024BE37 /* ZoneSelectionViewController.h */,
 				A3F30EEF1C0891520024BE37 /* ZoneSelectionViewController.m */,
+				716BF8961E90B8300019F0CA /* NeighborhoodSelectionViewController.h */,
+				716BF8971E90B8300019F0CA /* NeighborhoodSelectionViewController.m */,
 			);
 			path = "Neighborhood selection";
 			sourceTree = "<group>";
@@ -338,12 +326,9 @@
 				A34312CC1BF01C26005BA311 /* EditProfileViewController.m */,
 				A34312C81BF01C1D005BA311 /* ProfileViewController.h */,
 				A34312C91BF01C1D005BA311 /* ProfileViewController.m */,
-				A357EF351C57168D00AC8096 /* SignupViewController.h */,
-				A357EF361C57168D00AC8096 /* SignupViewController.m */,
-				A3169C991BED842D00A0D428 /* TokenViewController.h */,
-				A3169C9A1BED842D00A0D428 /* TokenViewController.m */,
-				A34C675D1C854EA7001F6D90 /* UserController.h */,
-				A34C675E1C854EA7001F6D90 /* UserController.m */,
+				A3AD82391E1C8049006D8ABE /* TokenViewController.swift */,
+				A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */,
+				A3AC169E1E357828000B5817 /* WelcomeViewController.xib */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -352,38 +337,26 @@
 			isa = PBXGroup;
 			children = (
 				A34C67591C853A9C001F6D90 /* Custom cells */,
-				A3AD19C81BED9BFB003EDA17 /* ActiveRidesViewController.h */,
-				A3AD19C91BED9BFB003EDA17 /* ActiveRidesViewController.m */,
-				A32C77241C41EEE30098583B /* AllRidesViewController.h */,
-				A32C77251C41EEE30098583B /* AllRidesViewController.m */,
+				A3CA5DD71E22D39B0062522D /* ActiveRidesViewController.swift */,
+				718C9B741E5F923A0037A78B /* AllRidesViewController.swift */,
 				A33FABE81BEE8E93008B4F51 /* CreateRideViewController.h */,
 				A33FABE91BEE8E93008B4F51 /* CreateRideViewController.m */,
-				A3B5AF041BF1ADF30026A889 /* MyRidesViewController.h */,
-				A3B5AF051BF1ADF30026A889 /* MyRidesViewController.m */,
+				A3AD823E1E1DC631006D8ABE /* MyRidesViewController.swift */,
 				A357EF301C56C5A100AC8096 /* RideListController.h */,
 				A357EF311C56C5A100AC8096 /* RideListController.m */,
 				A357EF321C56C5A100AC8096 /* RideListController.xib */,
 				A39BBD091C06B94E00EF9EBD /* RideViewController.h */,
 				A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */,
+				A3AD53BB1E1EBEAA005EAF04 /* RideViewController+rideActions.swift */,
 				A35D47291C2092A300501647 /* RidesHistoryViewController.h */,
 				A35D472A1C2092A300501647 /* RidesHistoryViewController.m */,
-				A34C675A1C853C4B001F6D90 /* RideRequestsStore.h */,
-				A34C675B1C853C4B001F6D90 /* RideRequestsStore.m */,
 				A3996D2B1C13AC0900D2E890 /* SearchResultsViewController.h */,
 				A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */,
 				A39BBCF41C048E4D00EF9EBD /* SearchRideViewController.h */,
 				A39BBCF51C048E4D00EF9EBD /* SearchRideViewController.m */,
+				71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */,
 			);
 			path = Ride;
-			sourceTree = "<group>";
-		};
-		A34C67551C826258001F6D90 /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-				A34C67561C826280001F6D90 /* NotificationStore.h */,
-				A34C67571C826280001F6D90 /* NotificationStore.m */,
-			);
-			name = Notification;
 			sourceTree = "<group>";
 		};
 		A34C67591C853A9C001F6D90 /* Custom cells */ = {
@@ -404,12 +377,7 @@
 		A37E80D81C5EFFA600683F27 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				A3180F851C618DDF007195DF /* ChatStore.h */,
-				A3180F861C618DDF007195DF /* ChatStore.m */,
-				A37E80D91C5F007900683F27 /* ChatViewController.h */,
-				A37E80DA1C5F007900683F27 /* ChatViewController.m */,
-				A37E80E21C5F0C3000683F27 /* MessageBubbleTableViewCell.h */,
-				A37E80E31C5F0C3000683F27 /* MessageBubbleTableViewCell.m */,
+				71D2B86C1E296AFC000454F7 /* ChatViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -417,20 +385,12 @@
 		A39BBD001C0629E100EF9EBD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A37E80DC1C5F00D300683F27 /* Chat.h */,
-				A37E80DD1C5F00D300683F27 /* Chat.m */,
-				A3C55BD81C5FB19A00C84204 /* Message+CoreDataProperties.h */,
-				A3C55BD91C5FB19A00C84204 /* Message+CoreDataProperties.m */,
-				A37E80DF1C5F011100683F27 /* Message.h */,
-				A37E80E01C5F011100683F27 /* Message.m */,
-				A38598411C66D83A00279D6F /* Notification+CoreDataProperties.h */,
-				A38598421C66D83A00279D6F /* Notification+CoreDataProperties.m */,
-				A38598431C66D83A00279D6F /* Notification.h */,
-				A38598441C66D83A00279D6F /* Notification.m */,
-				A39BBCFD1C06296200EF9EBD /* Ride.h */,
-				A39BBCFE1C06296200EF9EBD /* Ride.m */,
-				A38598471C691D1400279D6F /* User.h */,
-				A38598481C691D1400279D6F /* User.m */,
+				A3AD822E1E1C5BD9006D8ABE /* Message.swift */,
+				A3CA5DD51E22CA630062522D /* Notification.swift */,
+				A3AD822C1E1B1E85006D8ABE /* Ride.swift */,
+				A39672371E2E813700DD8ED5 /* RideRequest.swift */,
+				A3AD82301E1C6072006D8ABE /* User.swift */,
+				71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -440,13 +400,26 @@
 			children = (
 				A375D2F91C19175A00795CAE /* CaronaeAlertController.h */,
 				A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */,
+				A3AC169A1E34168A000B5817 /* CaronaeError.swift */,
 				A3169CC91BED893F00A0D428 /* CaronaeTextField.h */,
 				A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */,
 				A398BE031C6D7DEC00CEA6A1 /* CaronaePhoneTextField.h */,
 				A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */,
+				A3AD82321E1C63CD006D8ABE /* DateTimeTransform.swift */,
 			);
 			name = Etc;
 			path = Extras;
+			sourceTree = "<group>";
+		};
+		A3AD82341E1C70C6006D8ABE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A3CA5DDF1E22EC570062522D /* ChatService.swift */,
+				A3CA5DD31E22CA370062522D /* NotificationService.swift */,
+				A3AD82351E1C70D6006D8ABE /* RideService.swift */,
+				A3AD82371E1C7409006D8ABE /* UserService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		A3B5AF121BF2F1050026A889 /* Categories */ = {
@@ -461,13 +434,26 @@
 				A3F30EE81C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m */,
 				A3A4A4AD1C4C695800CF4CB2 /* NSString+validation.h */,
 				A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */,
+				A3CA5DCD1E1F3C000062522D /* UIApplication+topViewController.h */,
+				A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */,
 				A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */,
-				A369A4E91C72928700FE5495 /* UIViewController+isVisible.h */,
-				A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */,
 				A3B18FF81C9E713F00980607 /* UIImageView+crn_setImageWithURL.h */,
 				A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */,
+				A369A4E91C72928700FE5495 /* UIViewController+isVisible.h */,
+				A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */,
+				A3CA5DD01E1F46520062522D /* UIWindow+replaceRootViewController.h */,
+				A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */,
+				713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		A3BBF1391DDC0E9200765CD7 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 		A3D3E7FD1C77AD350094BBAC /* About */ = {
@@ -488,6 +474,16 @@
 			path = Falae;
 			sourceTree = "<group>";
 		};
+		A3E459D11E6B101300D844FF /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				A39743EB1E6B18F2006E469A /* Common.xcconfig */,
+				A3E459D21E6B102B00D844FF /* Development.xcconfig */,
+				A34DCBCE1E6B41F300A2D427 /* Production.xcconfig */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -496,6 +492,7 @@
 			buildConfigurationList = A3169CC01BED842D00A0D428 /* Build configuration list for PBXNativeTarget "Caronae" */;
 			buildPhases = (
 				56ED107787C9713DEB010EE6 /* [CP] Check Pods Manifest.lock */,
+				A3590CC31E1543C200D191CD /* Convert TODOs and FIXMEs to warnings and ERRORs to errors */,
 				A3169C8C1BED842D00A0D428 /* Sources */,
 				A3169C8D1BED842D00A0D428 /* Frameworks */,
 				A3169C8E1BED842D00A0D428 /* Resources */,
@@ -510,24 +507,6 @@
 			productName = Caronae;
 			productReference = A3169C901BED842D00A0D428 /* Caronae.app */;
 			productType = "com.apple.product-type.application";
-		};
-		A3169CAB1BED842D00A0D428 /* CaronaeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A3169CC31BED842D00A0D428 /* Build configuration list for PBXNativeTarget "CaronaeTests" */;
-			buildPhases = (
-				A3169CA81BED842D00A0D428 /* Sources */,
-				A3169CA91BED842D00A0D428 /* Frameworks */,
-				A3169CAA1BED842D00A0D428 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A3169CAE1BED842D00A0D428 /* PBXTargetDependency */,
-			);
-			name = CaronaeTests;
-			productName = CaronaeTests;
-			productReference = A3169CAC1BED842D00A0D428 /* CaronaeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -553,10 +532,6 @@
 							};
 						};
 					};
-					A3169CAB1BED842D00A0D428 = {
-						CreatedOnToolsVersion = 7.1;
-						TestTargetID = A3169C8F1BED842D00A0D428;
-					};
 				};
 			};
 			buildConfigurationList = A3169C8B1BED842D00A0D428 /* Build configuration list for PBXProject "Caronae" */;
@@ -573,7 +548,6 @@
 			projectRoot = "";
 			targets = (
 				A3169C8F1BED842D00A0D428 /* Caronae */,
-				A3169CAB1BED842D00A0D428 /* CaronaeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -584,6 +558,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */,
+				A3AC169F1E357828000B5817 /* WelcomeViewController.xib in Resources */,
 				A3169CA61BED842D00A0D428 /* LaunchScreen.storyboard in Resources */,
 				A39BBD051C06AB9D00EF9EBD /* RideCell.xib in Resources */,
 				A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */,
@@ -592,14 +567,6 @@
 				A3169C9E1BED842D00A0D428 /* Main.storyboard in Resources */,
 				A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */,
 				A325DA711C0CAFD700B9124E /* JoinRequestCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3169CAA1BED842D00A0D428 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A389902D1C58734700C7CD2D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,6 +603,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Caronae/Pods-Caronae-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A3590CC31E1543C200D191CD /* Convert TODOs and FIXMEs to warnings and ERRORs to errors */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Convert TODOs and FIXMEs to warnings and ERRORs to errors";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}/Caronae\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
+		};
 		AC4048482FADAF52D42EED1B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -658,78 +639,70 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3AD19CA1BED9BFB003EDA17 /* ActiveRidesViewController.m in Sources */,
 				A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */,
+				A3AD82381E1C7409006D8ABE /* UserService.swift in Sources */,
 				A398BE051C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m in Sources */,
-				A38598451C66D83A00279D6F /* Notification+CoreDataProperties.m in Sources */,
 				A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */,
-				A37E80DE1C5F00D300683F27 /* Chat.m in Sources */,
+				A3CA5DD41E22CA370062522D /* NotificationService.swift in Sources */,
 				A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */,
 				A357EF331C56C5A100AC8096 /* RideListController.m in Sources */,
-				A34C675F1C854EA7001F6D90 /* UserController.m in Sources */,
+				A39672381E2E813700DD8ED5 /* RideRequest.swift in Sources */,
 				A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */,
-				A38598491C691D1400279D6F /* User.m in Sources */,
-				A357EF371C57168D00AC8096 /* SignupViewController.m in Sources */,
-				A34C675C1C853C4B001F6D90 /* RideRequestsStore.m in Sources */,
+				A3AD822D1E1B1E85006D8ABE /* Ride.swift in Sources */,
+				A3CA5DDC1E22DB830062522D /* AppDelegate+Notifications.swift in Sources */,
 				A3034D581DB58A1B00816B79 /* NSDate+isInTheFuture.swift in Sources */,
 				A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */,
 				A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */,
 				A3F30EED1C0890C10024BE37 /* ZoneCell.m in Sources */,
-				A3169C9B1BED842D00A0D428 /* TokenViewController.m in Sources */,
 				A37E80E71C5F158600683F27 /* UIImage+imageWithTint.swift in Sources */,
+				A3AD823C1E1C8860006D8ABE /* AppDelegate+Realm.swift in Sources */,
+				A3BBF1381DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift in Sources */,
+				A3AD822F1E1C5BD9006D8ABE /* Message.swift in Sources */,
 				A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */,
 				A3A4A4AF1C4C695800CF4CB2 /* NSString+validation.m in Sources */,
-				A39BBCFF1C06296200EF9EBD /* Ride.m in Sources */,
+				71C908FE1E88C3E9009B7BFE /* FilterParameters.swift in Sources */,
+				718C9B751E5F923A0037A78B /* AllRidesViewController.swift in Sources */,
+				A3AD82331E1C63CD006D8ABE /* DateTimeTransform.swift in Sources */,
 				A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */,
 				A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */,
 				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
 				A39BBCF61C048E4D00EF9EBD /* SearchRideViewController.m in Sources */,
-				A37E80E11C5F011100683F27 /* Message.m in Sources */,
-				A3169CA11BED842D00A0D428 /* Caronae.xcdatamodeld in Sources */,
-				A32C77261C41EEE30098583B /* AllRidesViewController.m in Sources */,
+				A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */,
+				716BF8981E90B8300019F0CA /* NeighborhoodSelectionViewController.m in Sources */,
+				A3AC169D1E35781C000B5817 /* WelcomeViewController.swift in Sources */,
 				A32B80B61C2C6EBE00FC370A /* FalaeViewController.m in Sources */,
 				A3B18FFA1C9E713F00980607 /* UIImageView+crn_setImageWithURL.m in Sources */,
-				A38598461C66D83A00279D6F /* Notification.m in Sources */,
 				A39BBD031C06378E00EF9EBD /* NSDate+nextHour.m in Sources */,
-				A3C55BDA1C5FB19A00C84204 /* Message+CoreDataProperties.m in Sources */,
+				71AE13E41E8200D8008ACB06 /* FilterRideViewController.swift in Sources */,
 				A3F30EF01C0891520024BE37 /* ZoneSelectionViewController.m in Sources */,
+				A3AD823F1E1DC631006D8ABE /* MyRidesViewController.swift in Sources */,
+				A3AD82361E1C70D6006D8ABE /* RideService.swift in Sources */,
+				A3AD823A1E1C8049006D8ABE /* TokenViewController.swift in Sources */,
+				A3CA5DD81E22D39B0062522D /* ActiveRidesViewController.swift in Sources */,
 				A369A4EB1C72928700FE5495 /* UIViewController+isVisible.m in Sources */,
+				A3AC169B1E34168A000B5817 /* CaronaeError.swift in Sources */,
 				A3169C981BED842D00A0D428 /* AppDelegate.m in Sources */,
 				A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */,
+				A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */,
 				A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */,
 				A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */,
 				A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */,
-				A37E80DB1C5F007900683F27 /* ChatViewController.m in Sources */,
-				A34C67581C826280001F6D90 /* NotificationStore.m in Sources */,
+				A3AD82311E1C6072006D8ABE /* User.swift in Sources */,
 				A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */,
 				A3169C951BED842D00A0D428 /* main.m in Sources */,
-				A3B5AF061BF1ADF30026A889 /* MyRidesViewController.m in Sources */,
+				A3CA5DD61E22CA630062522D /* Notification.swift in Sources */,
 				A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */,
+				A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */,
 				A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */,
-				A3180F871C618DDF007195DF /* ChatStore.m in Sources */,
+				A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */,
+				713E99B91E8D5FA900F3C9E0 /* Array+compactString.swift in Sources */,
 				A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */,
-				A37E80E41C5F0C3000683F27 /* MessageBubbleTableViewCell.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A3169CA81BED842D00A0D428 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A385984B1C6923D000279D6F /* UserTests.m in Sources */,
-				A302B29B1BF4439300FA161D /* CreateRideTests.m in Sources */,
+				71D2B86D1E296AFC000454F7 /* ChatViewController.swift in Sources */,
+				A3CA5DD21E1F46520062522D /* UIWindow+replaceRootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A3169CAE1BED842D00A0D428 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A3169C8F1BED842D00A0D428 /* Caronae */;
-			targetProxy = A3169CAD1BED842D00A0D428 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A3169C9C1BED842D00A0D428 /* Main.storyboard */ = {
@@ -753,8 +726,9 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A3169CBE1BED842D00A0D428 /* Debug */ = {
+		A3169CBE1BED842D00A0D428 /* Debug - Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3E459D21E6B102B00D844FF /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -790,16 +764,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Debug;
+			name = "Debug - Development";
 		};
 		A3169CBF1BED842D00A0D428 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A34DCBCE1E6B41F300A2D427 /* Production.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -829,7 +804,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -838,16 +813,16 @@
 			};
 			name = Release;
 		};
-		A3169CC11BED842D00A0D428 /* Debug */ = {
+		A3169CC11BED842D00A0D428 /* Debug - Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */;
+			baseConfigurationReference = 149B16103BA6D59F2E8120B8 /* Pods-Caronae.debug - development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Caronae/Caronae.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 5JHLCV2DBL;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -865,7 +840,7 @@
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Debug;
+			name = "Debug - Development";
 		};
 		A3169CC21BED842D00A0D428 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -876,7 +851,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Caronae/Caronae.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Mario  Cecchi (5JHLCV2DBL)";
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 5JHLCV2DBL;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -896,87 +871,80 @@
 			};
 			name = Release;
 		};
-		A3169CC41BED842D00A0D428 /* Debug */ = {
+		A34DCBCC1E6B1C5D00A2D427 /* Debug - Production */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A34DCBCE1E6B41F300A2D427 /* Production.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
 					"$(inherited)",
-					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Google/Headers",
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/Public/ActionSheetPicker-3.0\"",
-					"\"${PODS_ROOT}/Headers/Public/CRToast\"",
-					"\"${PODS_ROOT}/Headers/Public/GGLInstanceID\"",
-					"\"${PODS_ROOT}/Headers/Public/Google\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleCloudMessaging\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleIPhoneUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/Mantle\"",
-					"\"${PODS_ROOT}/Headers/Public/RBBAnimation\"",
-					"\"${PODS_ROOT}/Headers/Public/SDCAlertView\"",
-					"\"${PODS_ROOT}/Headers/Public/SDCAutoLayout\"",
-					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
-					"\"${PODS_ROOT}/Headers/Public/SHSPhoneComponent\"",
-					"\"${PODS_ROOT}/Headers/Public/SVProgressHUD\"",
-					"\"${PODS_ROOT}/Headers/Public/TPKeyboardAvoiding\"",
-				);
-				INFOPLIST_FILE = CaronaeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.ufrj.caronae.tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Caronae.app/Caronae";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Debug;
+			name = "Debug - Production";
 		};
-		A3169CC51BED842D00A0D428 /* Release */ = {
+		A34DCBCD1E6B1C5D00A2D427 /* Debug - Production */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B935F3BB53907682C1EF3A28 /* Pods-Caronae.debug - production.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Caronae/Caronae.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 18;
+				DEVELOPMENT_TEAM = 5JHLCV2DBL;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Google/Headers",
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/Public/ActionSheetPicker-3.0\"",
-					"\"${PODS_ROOT}/Headers/Public/CRToast\"",
-					"\"${PODS_ROOT}/Headers/Public/GGLInstanceID\"",
-					"\"${PODS_ROOT}/Headers/Public/Google\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleCloudMessaging\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleIPhoneUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/Mantle\"",
-					"\"${PODS_ROOT}/Headers/Public/RBBAnimation\"",
-					"\"${PODS_ROOT}/Headers/Public/SDCAlertView\"",
-					"\"${PODS_ROOT}/Headers/Public/SDCAutoLayout\"",
-					"\"${PODS_ROOT}/Headers/Public/SDWebImage\"",
-					"\"${PODS_ROOT}/Headers/Public/SHSPhoneComponent\"",
-					"\"${PODS_ROOT}/Headers/Public/SVProgressHUD\"",
-					"\"${PODS_ROOT}/Headers/Public/TPKeyboardAvoiding\"",
-				);
-				INFOPLIST_FILE = CaronaeTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.ufrj.caronae.tests;
+				GCC_PREFIX_HEADER = "Caronae/Supporting Files/PrefixHeader.pch";
+				INFOPLIST_FILE = Caronae/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.ufrj.caronae;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Caronae.app/Caronae";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development br.ufrj.caronae";
+				SWIFT_OBJC_BRIDGING_HEADER = "Caronae/Supporting Files/Caronae-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Release;
+			name = "Debug - Production";
 		};
 /* End XCBuildConfiguration section */
 
@@ -984,7 +952,8 @@
 		A3169C8B1BED842D00A0D428 /* Build configuration list for PBXProject "Caronae" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A3169CBE1BED842D00A0D428 /* Debug */,
+				A3169CBE1BED842D00A0D428 /* Debug - Development */,
+				A34DCBCC1E6B1C5D00A2D427 /* Debug - Production */,
 				A3169CBF1BED842D00A0D428 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -993,37 +962,14 @@
 		A3169CC01BED842D00A0D428 /* Build configuration list for PBXNativeTarget "Caronae" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A3169CC11BED842D00A0D428 /* Debug */,
+				A3169CC11BED842D00A0D428 /* Debug - Development */,
+				A34DCBCD1E6B1C5D00A2D427 /* Debug - Production */,
 				A3169CC21BED842D00A0D428 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A3169CC31BED842D00A0D428 /* Build configuration list for PBXNativeTarget "CaronaeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A3169CC41BED842D00A0D428 /* Debug */,
-				A3169CC51BED842D00A0D428 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		A3169C9F1BED842D00A0D428 /* Caronae.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				A3C55BDB1C5FD1B700C84204 /* Caronae 2.xcdatamodel */,
-				A38598401C66D79300279D6F /* Caronae 3.xcdatamodel */,
-				A3169CA01BED842D00A0D428 /* Caronae.xcdatamodel */,
-			);
-			currentVersion = A38598401C66D79300279D6F /* Caronae 3.xcdatamodel */;
-			path = Caronae.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = A3169C881BED842D00A0D428 /* Project object */;
 }

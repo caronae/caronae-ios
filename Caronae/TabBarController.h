@@ -1,8 +1,7 @@
-#import <UIKit/UIKit.h>
-#import "ActiveRidesViewController.h"
-#import "AllRidesViewController.h"
+@import UIKit;
 #import "MenuViewController.h"
-#import "MyRidesViewController.h"
+
+@class ActiveRidesViewController, MyRidesViewController, AllRidesViewController;
 
 @interface TabBarController : UITabBarController
 

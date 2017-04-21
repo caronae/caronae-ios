@@ -1,8 +1,11 @@
-#import <UIKit/UIKit.h>
 #import "RideListController.h"
+
+@class FilterParameters;
 
 @interface SearchResultsViewController : RideListController
 
-- (void)searchForRidesWithParameters:(NSDictionary *)params;
+- (void)searchedForRideWithParameters:(FilterParameters *)parameters;
+
+@property (nonatomic) NSInteger previouslySelectedSegmentIndex;
 
 @end

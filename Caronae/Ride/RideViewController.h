@@ -1,23 +1,14 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @class Ride;
 
-@protocol RideDelegate <NSObject>
-
-@optional
-- (void)didDeleteRide:(Ride *)ride;
-
-@optional
-- (void)didFinishRide:(Ride *)ride;
-
-@end
-
 @interface RideViewController : UIViewController
+
++ (instancetype)rideViewControllerForRide:(Ride *)ride;
 
 - (void)openChatWindow;
 
 @property (nonatomic) Ride *ride;
-@property (nonatomic, assign) id<RideDelegate> delegate;
 @property (nonatomic, assign) BOOL shouldOpenChatWindow;
 
 // Ride info
@@ -36,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *carPlateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *carModelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *carColorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noRidersLabel;
 
 // Assets
 @property (weak, nonatomic) IBOutlet UIView *headerView;
@@ -57,6 +49,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishRideButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *chatButton;
 
 @end

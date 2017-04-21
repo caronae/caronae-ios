@@ -1,7 +1,6 @@
-#import <AFNetworking/AFNetworking.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import <SVProgressHUD/SVProgressHUD.h>
+@import FBSDKCoreKit;
+@import FBSDKLoginKit;
+@import SVProgressHUD;
 #import "CaronaeAlertController.h"
 #import "CaronaeTextField.h"
 #import "CaronaePhoneTextField.h"
@@ -9,6 +8,7 @@
 #import "EditProfileViewController.h"
 #import "UIImageView+crn_setImageWithURL.h"
 #import "ZoneSelectionViewController.h"
+#import "Caronae-Swift.h"
 
 @interface EditProfileViewController () <ZoneSelectionDelegate, UIActionSheetDelegate, UITextFieldDelegate>
 @property (nonatomic) IBOutlet UIBarButtonItem *saveButton;
@@ -40,12 +40,10 @@
     
     self.changePhotoButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(FBTokenChanged:) name:FBSDKAccessTokenDidChangeNotification object:nil];
-    
     if (self.completeProfileMode) {
-        [CaronaeAlertController presentOkAlertWithTitle:@"Olá!" message:@"Parece que esta é sua primeira vez usando o Caronaê. Por favor, complete seu perfil para continuar."];
         self.numDrivesLabel.text = @"0";
         self.numRidesLabel.text = @"0";
+        self.title = @"Cadastro";
     }
 }
 
@@ -59,7 +57,7 @@
 }
 
 - (void)updateProfileFields {
-    User *user = [UserController sharedInstance].user;
+    User *user = UserService.instance.user;
     self.user = user;
     
     self.joinedDateFormatter = [[NSDateFormatter alloc] init];
@@ -69,8 +67,8 @@
     self.courseLabel.text = user.course.length > 0 ? [NSString stringWithFormat:@"%@ | %@", user.profile, user.course] : user.profile;
     
     self.joinedDateLabel.text = [self.joinedDateFormatter stringFromDate:user.createdAt];
-    self.numDrivesLabel.text = user.numDrives > -1 ? [NSString stringWithFormat:@"%d", user.numDrives] : @"-";
-    self.numRidesLabel.text = user.numRides > -1 ? [NSString stringWithFormat:@"%d", user.numRides] : @"-";
+    self.numDrivesLabel.text = user.numDrives > -1 ? [NSString stringWithFormat:@"%ld", (long)user.numDrives] : @"-";
+    self.numRidesLabel.text = user.numRides > -1 ? [NSString stringWithFormat:@"%ld", (long)user.numRides] : @"-";
     
     self.emailTextField.text = user.email;
     [self.phoneTextField setFormattedText:user.phoneNumber];
@@ -119,42 +117,15 @@
 
 - (void)saveProfile {
     User *updatedUser = [self generateUserFromView];
-    NSError *error = nil;
-    NSDictionary *updatedUserJSON = [MTLJSONAdapter JSONDictionaryFromModel:updatedUser error:&error];
-    if (error) {
-        NSLog(@"User serialization error: %@", error.localizedDescription);
-        [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando perfil" message:@"Ocorreu um erro editando seu perfil."];
-        return;
-    }
-
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
     [self showLoadingHUD:YES];
     
-    [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user"] parameters:updatedUserJSON success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self showLoadingHUD:NO];
-        
+    __weak typeof(self) weakSelf = self;
+    [UserService.instance updateUser:updatedUser success:^{
+        [weakSelf showLoadingHUD:NO];
         NSLog(@"User updated.");
-        self.user.phoneNumber = updatedUser.phoneNumber;
-        self.user.email = updatedUser.email;
-        self.user.carOwner = updatedUser.carOwner;
-        self.user.carModel = updatedUser.carModel;
-        self.user.carPlate = updatedUser.carPlate;
-        self.user.carColor = updatedUser.carColor;
-        self.user.location = updatedUser.location;
-        self.user.profilePictureURL = updatedUser.profilePictureURL;
-        
-        [UserController sharedInstance].user = self.user;
-                
-        if ([self.delegate respondsToSelector:@selector(didUpdateUser:)]) {
-            [self.delegate didUpdateUser:self.user];
-        }
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self showLoadingHUD:NO];
+        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+    } error:^(NSError * _Nonnull error) {
+        [weakSelf showLoadingHUD:NO];
         NSLog(@"Error saving profile: %@", error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando perfil" message:@"Ocorreu um erro salvando as alterações no seu perfil."];
     }];
@@ -194,8 +165,8 @@
 
 #pragma mark - Zone selection methods
 
-- (void)hasSelectedNeighborhood:(NSString *)neighborhood inZone:(NSString *)zone {
-    self.neighborhood = neighborhood;
+- (void)hasSelectedNeighborhoods:(NSArray *)neighborhoods inZone:(NSString *)zone {
+    self.neighborhood = [neighborhoods firstObject];
     [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
 }
 
@@ -225,12 +196,12 @@
         }]];
     }
     else {
-        alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar criação do perfil?"
-                                                         message:@"Você será deslogado do aplicativo e precisará entrar novamente com o token."
+        alert = [CaronaeAlertController alertControllerWithTitle:@"Cancelar cadastro?"
+                                                         message:@"Você será deslogado do aplicativo e precisará entrar novamente com sua chave."
                                                   preferredStyle:SDCAlertControllerStyleAlert];
         [alert addAction:[SDCAlertAction actionWithTitle:@"Cont. editando" style:SDCAlertActionStyleCancel handler:nil]];
-        [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
-            [[UserController sharedInstance] signOut];
+        [alert addAction:[SDCAlertAction actionWithTitle:@"Sair" style:SDCAlertActionStyleDestructive handler:^(SDCAlertAction *action){
+            [UserService.instance signOut];
         }]];
     }
     
@@ -238,28 +209,21 @@
 }
 
 - (IBAction)didTapPhoto:(id)sender {
-    // TODO: support for iOS 7
-    if ([UIAlertController class]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"De onde deseja importar sua foto?" preferredStyle:UIAlertControllerStyleActionSheet];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Cancelar" style:UIAlertActionStyleCancel handler:nil]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do Facebook" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self importPhotoFromFacebook];
-        }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do SIGA" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self importPhotoFromSIGA];
-        }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Remover minha foto" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            NSLog(@"Removendo foto...");
-            _photoURL = nil;
-            _photo.image = [UIImage imageNamed:@"Profile Picture"];
-        }]];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    }
-    else {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"De onde deseja importar sua foto?" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:@"Remover minha foto" otherButtonTitles:@"Usar foto do Facebook", @"Usar foto do SIGA", nil];
-        [actionSheet showInView:self.view];
-    }
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"De onde deseja importar sua foto?" preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancelar" style:UIAlertActionStyleCancel handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do Facebook" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self importPhotoFromFacebook];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do SIGA" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self importPhotoFromSIGA];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Remover minha foto" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Removendo foto...");
+        _photoURL = nil;
+        _photo.image = [UIImage imageNamed:@"Profile Picture"];
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)hasCarSwitchChanged:(UISwitch *)sender {
@@ -286,31 +250,6 @@
 }
 
 
-#pragma mark - UIActionSheet methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    switch (buttonIndex) {
-            // Remove photo
-        case 0:
-            NSLog(@"Removendo foto...");
-            _photoURL = nil;
-            _photo.image = [UIImage imageNamed:@"Profile Picture"];
-            break;
-            // Import from Facebook
-        case 1:
-            [self importPhotoFromFacebook];
-            break;
-            // Import from SIGA
-        case 2:
-            [self importPhotoFromSIGA];
-            break;
-        default:
-            break;
-    }
-    
-}
-
-
 #pragma mark - UITextField methods
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -326,7 +265,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ViewZones"]) {
         ZoneSelectionViewController *vc = segue.destinationViewController;
-        vc.type = ZoneSelectionZone;
         vc.delegate = self;
     }
 }
@@ -343,65 +281,6 @@
     }
 }
 
-
-#pragma mark - Facebook integration
-
-- (void)FBTokenChanged:(NSNotification *)notification {
-    FBSDKAccessToken *token = [FBSDKAccessToken currentAccessToken];
-    NSLog(@"Facebook Access Token did change. New access token is %@", token.tokenString);
-    
-    id fbToken;
-    if (token.tokenString) {
-        fbToken = token.tokenString;
-    }
-    else {
-        fbToken = [NSNull null];
-    }
-    
-    id fbID;
-    if (notification.userInfo[FBSDKAccessTokenDidChangeUserID]) {
-        if (token.userID) {
-            NSLog(@"Facebook has loogged in with Facebook ID %@.", token.userID);
-            fbID = token.userID;
-        }
-        else {
-            NSLog(@"User has logged out from Facebook.");
-            fbID = [NSNull null];
-        }
-    }
-    
-    [self updateUsersFacebookID:fbID token:fbToken success:^(id responseObject) {
-        NSLog(@"Updated user's Facebook credentials on server.");
-    } failure:^(NSError *error) {
-        NSLog(@"Error updating user's Facebook credentials on server: %@", error.localizedDescription);
-    } tries:3];
-}
-
-- (void)updateUsersFacebookID:(id)fbID token:(id)token success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure tries:(NSUInteger)times {
-    if (times <= 0) {
-        failure([NSError errorWithDomain:CaronaeErrorDomain code:3 userInfo:@{@"localizedDescription":@"Failed updating user's Facebook ID remotely."}]);
-    }
-    else {
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
-        [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-        
-        NSDictionary *params;
-        if (fbID) {
-            params = @{@"id": fbID, @"token": token};
-        }
-        else {
-            params = @{@"token": token};
-        }
-        
-        [manager PUT:[CaronaeAPIBaseURL stringByAppendingString:@"/user/saveFaceId"] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            success(operation);
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self updateUsersFacebookID:fbID token:token success:success failure:failure tries:times-1];
-        }];
-    }
-}
-
 - (void)importPhotoFromFacebook {
     if (![FBSDKAccessToken currentAccessToken]) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Conta do Facebook não autorizada." message:@"Você precisa ter feito login com sua conta do Facebook."];
@@ -411,25 +290,16 @@
     NSLog(@"Importing profile picture from Facebook...");
     
     [SVProgressHUD show];
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:@"me/picture?type=large&redirect=false"
-                                  parameters:@{@"fields": @"url"}
-                                  HTTPMethod:@"GET"];
-    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
-                                          id result,
-                                          NSError *error) {
-        if (!error) {
-            NSDictionary *data = result[@"data"];
-            _photoURL = data[@"url"];
-            [_photo crn_setImageWithURL:[NSURL URLWithString:_photoURL] completed:^{
-                [SVProgressHUD dismiss];
-            }];
-        }
-        else {
+    [UserService.instance getPhotoFromFacebookWithSuccess:^(NSString * _Nonnull url) {
+        _photoURL = url;
+        [_photo crn_setImageWithURL:[NSURL URLWithString:_photoURL] completed:^{
             [SVProgressHUD dismiss];
-            NSLog(@"result: %@", error.localizedDescription);
-            [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do Facebook."];
-        }
+        }];
+
+    } error:^(NSError * _Nonnull error) {
+        [SVProgressHUD dismiss];
+        NSLog(@"Error loading photo: %@", error.localizedDescription);
+        [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do Facebook."];
     }];
 }
 
@@ -440,18 +310,14 @@
     NSLog(@"Importing profile picture from SIGA...");
     
     [SVProgressHUD show];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserController sharedInstance].userToken forHTTPHeaderField:@"token"];
-    
-    [manager GET:[CaronaeAPIBaseURL stringByAppendingString:@"/user/intranetPhotoUrl"] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        _photoURL = responseObject[@"url"];
+    [UserService.instance getPhotoFromUFRJWithSuccess:^(NSString * _Nonnull url) {
+        _photoURL = url;
         [_photo crn_setImageWithURL:[NSURL URLWithString:_photoURL] completed:^{
             [SVProgressHUD dismiss];
         }];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } error:^(NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
-        NSLog(@"result: %@", error.localizedDescription);
+        NSLog(@"Error loading photo: %@", error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do SIGA."];
     }];
 }

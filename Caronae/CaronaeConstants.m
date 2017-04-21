@@ -1,58 +1,43 @@
 #import "CaronaeConstants.h"
 
-#pragma mark - API settings
-
-NSString *const CaronaeAPIBaseURL = @"https://api.caronae.ufrj.br";
-//NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90";
-//NSString *const CaronaeAPIBaseURL = @"http://45.55.46.90:8080";
-//NSString *const CaronaeAPIBaseURL = @"http://192.168.1.19:8000";
-//NSString *const CaronaeAPIBaseURL = @"http://localhost:8000";
-
-
-#pragma mark - GCM settings
-
-NSString *const CaronaeGCMAPISendURL = @"https://gcm-http.googleapis.com/gcm/send";
-NSString *const CaronaeGCMAPIKey = @"key=AIzaSyBtGz81bar_LcwtN_fpPTKRMBL5glp2T18";
-
-
 #pragma mark - Static pages URLs
 
 NSString *const CaronaeIntranetURLString = @"https://api.caronae.ufrj.br/chave";
 NSString *const CaronaeAboutPageURLString = @"https://api.caronae.ufrj.br/static_pages/sobre.html";
 NSString *const CaronaeTermsOfUsePageURLString = @"https://api.caronae.ufrj.br/static_pages/termos.html";
+NSString *const CaronaeFAQPageURLString = @"https://api.caronae.ufrj.br/static_pages/faq.html";
 
 
 #pragma mark - Notifications
 
-NSString *const CaronaeGCMConnectedNotification = @"CaronaeGCMConnectedNotification";
-NSString *const CaronaeGCMTokenUpdatedNotification = @"CaronaeGCMTokenUpdatedNotification";
-NSString *const CaronaeGCMMessageReceivedNotification = @"CaronaeGCMMessageReceivedNotification";
-NSString *const CaronaeDidUpdateNotifications = @"CaronaeDidUpdateNotifications";
+NSNotificationName const CaronaeNotificationReceivedNotification = @"CaronaeNotificationReceivedNotification";
+NSNotificationName const CaronaeDidUpdateNotifications = @"CaronaeDidUpdateNotifications";
+NSNotificationName const CaronaeDidUpdateUserNotification = @"CaronaeDidUpdateUserNotification";
 
 
 #pragma mark - Preference keys
 
 NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey = @"lastSearchedNeighborhoods";
+NSString *const CaronaePreferenceLastSearchedZoneKey = @"lastSearchedZone";
 NSString *const CaronaePreferenceLastSearchedCenterKey = @"lastSearchedCenter";
 NSString *const CaronaePreferenceLastSearchedDateKey = @"lastSearchedDate";
-NSString *const CaronaePreferenceLastSearchedDirectionKey = @"lastSearchedDirection";
 
-
-#pragma mark - Error types
-
-NSString *const CaronaeErrorDomain = @"CaronaeError";
-const NSInteger CaronaeErrorInvalidResponse = 1;
-const NSInteger CaronaeErrorNoRidesCreated = 2;
-const NSInteger CaronaeErrorOpeningCoreDataStore = 3;
+NSString *const CaronaePreferenceFilterIsEnabledKey = @"filterIsEnabled";
+NSString *const CaronaePreferenceLastFilteredZoneKey = @"lastFilteredZone";
+NSString *const CaronaePreferenceLastFilteredNeighborhoodsKey = @"lastFilteredNeighborhoods";
+NSString *const CaronaePreferenceLastFilteredCenterKey = @"lastFilteredCenter";
 
 
 #pragma mark - Etc.
 
+NSString *const CaronaeErrorDomain = @"br.ufrj.caronae.error";
+NSString *const CaronaeSignOutRequiredKey = @"CaronaeSignOutRequired";
 NSString *const Caronae8PhoneNumberPattern = @"(###) ####-####";
 NSString *const Caronae9PhoneNumberPattern = @"(###) #####-####";
 NSString *const CaronaePlaceholderProfileImage = @"Profile Picture";
 NSString *const CaronaeSearchDateFormat = @"EEEE, dd/MM/yyyy HH:mm";
 NSString *const CaronaeDateLocaleIdentifier = @"pt_BR";
+NSString *const CaronaeAllNeighborhoodsText = @"Todos os Bairros";
 
 
 @interface CaronaeConstants ()
@@ -76,7 +61,7 @@ NSString *const CaronaeDateLocaleIdentifier = @"pt_BR";
 
 + (UIColor *)colorForZone:(NSString *)zone {
     UIColor *color = [CaronaeConstants defaults].zoneColors[zone];
-    if (!color) color = [UIColor darkTextColor];
+    if (!color) color = [UIColor darkGrayColor];
     return color;
 }
 
