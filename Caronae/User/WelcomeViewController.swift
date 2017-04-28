@@ -24,6 +24,6 @@ class WelcomeViewController: UIViewController {
     @IBAction func continueTapped() {
         let editProfileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
         editProfileViewController.completeProfileMode = true
-        navigationController?.pushViewController(editProfileViewController, animated: true)
+        navigationController?.setViewControllers([editProfileViewController], animated: true)
     }
 }
