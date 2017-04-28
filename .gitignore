@@ -63,3 +63,6 @@ fastlane/test_output
 **/*.dSYM.zip
 **/*.app
 *.mobileprovision
+
+# Google/Firebase Cloud Message
+GoogleService-Info.plist
