@@ -4,16 +4,14 @@
 #import "CaronaeAlertController.h"
 #import "CreateRideViewController.h"
 #import "NSDate+nextHour.h"
-#import "ZoneSelectionViewController.h"
 #import "Caronae-Swift.h"
 
-@interface CreateRideViewController () <UITextViewDelegate, ZoneSelectionDelegate>
+@interface CreateRideViewController () <UITextViewDelegate, NeighborhoodSelectionDelegate, HubSelectionDelegate>
 
 @property (nonatomic) CGFloat routinePatternHeightOriginal;
 @property (nonatomic) NSString *notesPlaceholder;
 @property (nonatomic) UIColor *notesTextColor;
 @property (nonatomic) NSDateFormatter *arrivalDateLabelFormatter;
-@property (nonatomic) NSArray *hubs;
 @end
 
 @implementation CreateRideViewController
@@ -22,9 +20,6 @@
     [super viewDidLoad];
     
     [self checkIfUserHasCar];
-    
-    self.hubs = [CaronaeConstants defaults].centers;
-    self.selectedHub = self.hubs.firstObject;
     
     self.rideDate = MAX([NSDate nextHour], [NSDate currentTimePlus:5]);
     self.weekDays = [NSMutableArray arrayWithCapacity:7];
@@ -337,46 +332,48 @@
     [self.view endEditing:YES];
     NSDictionary *lastRideLocation = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
     if (sender.selectedSegmentIndex == 0) {
-        self.hubs = [CaronaeConstants defaults].centers;
         if (lastRideLocation[@"hubGoing"]) {
             self.selectedHub = lastRideLocation[@"hubGoing"];
             [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
         } else {
-            self.selectedHub = self.hubs.firstObject;
-            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
+            self.selectedHub = @"";
+            [self.center setTitle:@"Centro Univeristário" forState:UIControlStateNormal];
         }
     }
     else {
-        self.hubs = [CaronaeConstants defaults].hubs;
         if (lastRideLocation[@"hubReturning"]) {
             self.selectedHub = lastRideLocation[@"hubReturning"];
             [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
         } else {
-            self.selectedHub = self.hubs.firstObject;
-            [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
+            self.selectedHub = @"";
+            [self.center setTitle:@"Centro Univeristário" forState:UIControlStateNormal];
         }
     }
 }
 
 - (IBAction)selectCenterTapped:(id)sender {
-    [self.view endEditing:YES];
-    
-    NSUInteger selectedIndex = [self.hubs indexOfObject:self.selectedHub];
-    if (selectedIndex == NSNotFound) {
-        selectedIndex = 0;
+    HubSelectionViewController *selectionVC;
+    if (_segmentedControl.selectedSegmentIndex == 0) {
+        selectionVC = [HubSelectionViewController makeVCWithSelectionType:SelectionTypeOneSelection hubTypeDirection:HubTypeDirectionCenters];
+    } else {
+        selectionVC = [HubSelectionViewController makeVCWithSelectionType:SelectionTypeOneSelection hubTypeDirection:HubTypeDirectionHubs];
     }
-    
-    [ActionSheetStringPicker showPickerWithTitle:@"Selecione um centro"
-                                            rows:self.hubs
-                                initialSelection:selectedIndex
-                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           self.selectedHub = selectedValue;
-                                           [self.center setTitle:selectedValue forState:UIControlStateNormal];
-                                       }
-                                     cancelBlock:nil origin:sender];
+    [selectionVC setDelegate:self];
+    [self.navigationController pushViewController:selectionVC animated:YES];
 }
 
-- (void)hasSelectedNeighborhoods:(NSArray *)neighborhoods inZone:(NSString *)zone {
+- (IBAction)selectNeighborhoodTapped:(id)sender {
+    NeighborhoodSelectionViewController *selectionVC = [NeighborhoodSelectionViewController makeVCWithSelectionType:SelectionTypeOneSelection];
+    [selectionVC setDelegate:self];
+    [self.navigationController pushViewController:selectionVC animated:YES];
+}
+
+- (void)hasSelectedWithHubs:(NSArray<NSString *> *)hubs {
+    self.selectedHub = [hubs firstObject];
+    [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
+}
+
+- (void)hasSelectedWithNeighborhoods:(NSArray<NSString *> *)neighborhoods inZone:(NSString *)zone {
     self.zone = zone;
     self.neighborhood = [neighborhoods firstObject];
     [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
@@ -399,16 +396,6 @@
         textView.textColor = [UIColor lightGrayColor];
     }
     [textView resignFirstResponder];
-}
-
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ViewZones"]) {
-        ZoneSelectionViewController *vc = segue.destinationViewController;
-        vc.delegate = self;
-    }
 }
 
 @end

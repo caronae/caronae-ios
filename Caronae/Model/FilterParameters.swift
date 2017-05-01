@@ -4,14 +4,14 @@ class FilterParameters: NSObject {
     var going: Bool?
     var neighborhoods: [String]?
     var selectedZone: String?
-    var hub: String?
+    var hubs: [String]?
     var date: Date?
     
-    init(going: Bool? = nil, neighborhoods: [String]? = nil, zone: String? = nil, hub: String? = nil, date: Date? = nil) {
+    init(going: Bool? = nil, neighborhoods: [String]? = nil, zone: String? = nil, hubs: [String]? = nil, date: Date? = nil) {
         self.going = going
         self.neighborhoods = neighborhoods
         self.selectedZone = zone
-        self.hub = hub
+        self.hubs = hubs
         self.date = date
     }
     
@@ -27,8 +27,8 @@ class FilterParameters: NSObject {
                 params["neighborhoods"] = neighborhoods
             }
         }
-        if let hub = self.hub {
-            params["hub"] = (hub == "Todos os Centros") ? "" : hub
+        if let hubs = self.hubs {
+            params["hubs"] = (hubs == [CaronaeAllHubsText]) ? "" : hubs.joined(separator: ", ")
         }
         if let date = self.date {
             let dateFormatter = DateFormatter()
@@ -43,7 +43,7 @@ class FilterParameters: NSObject {
     }
     
     func activeFiltersText() -> String {
-        let label = self.hub! + ", " + self.neighborhoods!.compactString()
+        let label = self.hubs!.compactString() + ", " + self.neighborhoods!.compactString()
         return label
     }
     

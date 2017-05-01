@@ -18,7 +18,7 @@ extern NSString *const CaronaePreferenceLastSearchedDateKey;
 extern NSString *const CaronaePreferenceFilterIsEnabledKey;
 extern NSString *const CaronaePreferenceLastFilteredZoneKey;
 extern NSString *const CaronaePreferenceLastFilteredNeighborhoodsKey;
-extern NSString *const CaronaePreferenceLastFilteredCenterKey;
+extern NSString *const CaronaePreferenceLastFilteredCentersKey;
 
 
 #pragma mark - Notifications
@@ -38,6 +38,7 @@ extern NSString *const CaronaePlaceholderProfileImage;
 extern NSString *const CaronaeSearchDateFormat;
 extern NSString *const CaronaeDateLocaleIdentifier;
 extern NSString *const CaronaeAllNeighborhoodsText;
+extern NSString *const CaronaeAllHubsText;
 
 
 @interface CaronaeConstants : NSObject
@@ -46,8 +47,11 @@ extern NSString *const CaronaeAllNeighborhoodsText;
 
 + (UIColor *)colorForZone:(NSString *)zone;
 
-@property (nonatomic, readonly) NSArray *centers;
-@property (nonatomic, readonly) NSArray *hubs;
+@property (nonatomic, readonly) NSArray *campuses;
+@property (nonatomic, readonly) NSDictionary *campusColors;
+@property (nonatomic, readonly) NSDictionary *centers;
+@property (nonatomic, readonly) NSDictionary *hubs;
+
 @property (nonatomic, readonly) NSArray *zones;
 @property (nonatomic, readonly) NSDictionary *zoneColors;
 @property (nonatomic, readonly) NSDictionary *neighborhoods;

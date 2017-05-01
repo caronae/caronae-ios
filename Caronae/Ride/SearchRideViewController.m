@@ -3,11 +3,10 @@
 #import "CaronaeAlertController.h"
 #import "NSDate+nextHour.h"
 #import "SearchRideViewController.h"
-#import "ZoneSelectionViewController.h"
 #import "SearchResultsViewController.h"
 #import "Caronae-Swift.h"
 
-@interface SearchRideViewController () <ZoneSelectionDelegate>
+@interface SearchRideViewController () <NeighborhoodSelectionDelegate, HubSelectionDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *directionControl;
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
 @property (weak, nonatomic) IBOutlet UIButton *neighborhoodButton;
@@ -15,9 +14,8 @@
 @property (nonatomic) NSArray *neighborhoods;
 @property (nonatomic) NSString *zone;
 @property (nonatomic) NSDate *searchedDate;
-@property (nonatomic) NSString *selectedHub;
+@property (nonatomic) NSArray *selectedHubs;
 @property (nonatomic) NSDateFormatter *dateFormatter;
-@property (nonatomic) NSArray *hubs;
 @property (nonatomic) NSUserDefaults *userDefaults;
 @end
 
@@ -56,14 +54,12 @@
     }
     
     // Load last searched center
-    NSString *lastSearchedCenter = [self.userDefaults stringForKey:CaronaePreferenceLastSearchedCenterKey];
-    self.hubs = [@[@"Todos os Centros"] arrayByAddingObjectsFromArray:[CaronaeConstants defaults].centers];
-    if (lastSearchedCenter) {
-        self.selectedHub = lastSearchedCenter;
+    NSArray *lastSearchedCenters = [self.userDefaults arrayForKey:CaronaePreferenceLastFilteredCentersKey];
+    if (lastSearchedCenters) {
+        self.selectedHubs = lastSearchedCenters;
     } else {
-        self.selectedHub = self.hubs.firstObject;
+        self.selectedHubs = @[CaronaeAllHubsText];
     }
-    [self.centerButton setTitle:self.selectedHub forState:UIControlStateNormal];
     
     // Load last searched date
     NSDate *lastSearchedDate = [self.userDefaults objectForKey:CaronaePreferenceLastSearchedDateKey];
@@ -84,6 +80,13 @@
     [self.neighborhoodButton setTitle:buttonTitle forState:UIControlStateNormal];
 }
 
+- (void)setSelectedHubs:(NSArray *)selectedHubs {
+    _selectedHubs = selectedHubs;
+    
+    NSString *buttonTitle = selectedHubs.compactString;
+    [self.centerButton setTitle:buttonTitle forState:UIControlStateNormal];
+}
+
 - (IBAction)didTapCancelButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -92,13 +95,13 @@
     // Save search parameters for the next search
     [self.userDefaults setObject:self.zone forKey:CaronaePreferenceLastSearchedZoneKey];
     [self.userDefaults setObject:self.neighborhoods forKey:CaronaePreferenceLastSearchedNeighborhoodsKey];
-    [self.userDefaults setObject:self.selectedHub forKey:CaronaePreferenceLastSearchedCenterKey];
+    [self.userDefaults setObject:self.selectedHubs forKey:CaronaePreferenceLastFilteredCentersKey];
     [self.userDefaults setObject:self.searchedDate forKey:CaronaePreferenceLastSearchedDateKey];
     
     BOOL going = (self.directionControl.selectedSegmentIndex == 0);
     
     FilterParameters *params = [FilterParameters alloc];
-    params.hub = self.selectedHub;
+    params.hubs = self.selectedHubs;
     params.selectedZone = self.zone;
     params.neighborhoods = self.neighborhoods;
     params.date = self.searchedDate;
@@ -123,19 +126,22 @@
 }
 
 - (IBAction)selectCenterTapped:(id)sender {
-    [self.view endEditing:YES];
-    long lastSearchedCenterIndex = [self.hubs indexOfObject:self.selectedHub];
-    [ActionSheetStringPicker showPickerWithTitle:@"Selecione um centro"
-                                            rows:self.hubs
-                                initialSelection:lastSearchedCenterIndex
-                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           self.selectedHub = selectedValue;
-                                           [self.centerButton setTitle:selectedValue forState:UIControlStateNormal];
-                                       }
-                                     cancelBlock:nil origin:sender];
+    HubSelectionViewController *selectionVC = [HubSelectionViewController makeVCWithSelectionType:SelectionTypeManySelection hubTypeDirection:HubTypeDirectionCenters];
+    [selectionVC setDelegate:self];
+    [self.navigationController pushViewController:selectionVC animated:YES];
 }
 
-- (void)hasSelectedNeighborhoods:(NSArray *)neighborhoods inZone:(NSString *)zone {
+- (IBAction)selectNeighborhoodTapped:(id)sender {
+    NeighborhoodSelectionViewController *selectionVC = [NeighborhoodSelectionViewController makeVCWithSelectionType:SelectionTypeManySelection];
+    [selectionVC setDelegate:self];
+    [self.navigationController pushViewController:selectionVC animated:YES];
+}
+
+- (void)hasSelectedWithHubs:(NSArray<NSString *> *)hubs {
+    self.selectedHubs = hubs;
+}
+
+- (void)hasSelectedWithNeighborhoods:(NSArray<NSString *> *)neighborhoods inZone:(NSString *)zone {
     self.zone = zone;
     self.neighborhoods = neighborhoods;
 }
@@ -143,15 +149,10 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ViewZones"]) {
-        ZoneSelectionViewController *vc = segue.destinationViewController;
-        vc.neighborhoodSelectionType = NeighborhoodSelectionMany;
-        vc.delegate = self;
-    } else if ([segue.identifier isEqualToString:@"showResultsUnwind"]) {
+    if ([segue.identifier isEqualToString:@"showResultsUnwind"]) {
         SearchResultsViewController *vc = segue.destinationViewController;
         vc.previouslySelectedSegmentIndex = self.directionControl.selectedSegmentIndex;
     }
 }
-
 
 @end

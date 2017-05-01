@@ -1,5 +1,7 @@
 @import UIKit;
 @class FilterParameters;
+@protocol NeighborhoodSelectionDelegate;
+@protocol HubSelectionDelegate;
 
 @protocol SearchRideDelegate <NSObject>
 - (void)searchedForRideWithParameters:(FilterParameters *)parameters;

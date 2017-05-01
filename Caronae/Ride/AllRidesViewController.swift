@@ -130,14 +130,14 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     }
     
     func enableFilterRides() {
-        guard let center = userDefaults.string(forKey: CaronaePreferenceLastFilteredCenterKey),
+        guard let centers = userDefaults.array(forKey: CaronaePreferenceLastFilteredCentersKey) as? [String],
             let zone = userDefaults.string(forKey: CaronaePreferenceLastFilteredZoneKey),
             let neighborhoods = userDefaults.array(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) as? [String] else {
                 return
         }
         
         self.filterIsEnabled = true
-        filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hub: center)
+        filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hubs: centers)
         filterLabel.text = filterParams.activeFiltersText()
         
         loadAllRides()

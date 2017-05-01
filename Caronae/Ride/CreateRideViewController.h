@@ -1,6 +1,8 @@
 @import UIKit;
 
 @class Ride;
+@protocol NeighborhoodSelectionDelegate;
+@protocol HubSelectionDelegate;
 
 @interface CreateRideViewController : UIViewController
 

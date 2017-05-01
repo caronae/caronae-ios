@@ -25,7 +25,7 @@ NSString *const CaronaePreferenceLastSearchedDateKey = @"lastSearchedDate";
 NSString *const CaronaePreferenceFilterIsEnabledKey = @"filterIsEnabled";
 NSString *const CaronaePreferenceLastFilteredZoneKey = @"lastFilteredZone";
 NSString *const CaronaePreferenceLastFilteredNeighborhoodsKey = @"lastFilteredNeighborhoods";
-NSString *const CaronaePreferenceLastFilteredCenterKey = @"lastFilteredCenter";
+NSString *const CaronaePreferenceLastFilteredCentersKey = @"lastFilteredCenters";
 
 
 #pragma mark - Etc.
@@ -38,11 +38,14 @@ NSString *const CaronaePlaceholderProfileImage = @"Profile Picture";
 NSString *const CaronaeSearchDateFormat = @"EEEE, dd/MM/yyyy HH:mm";
 NSString *const CaronaeDateLocaleIdentifier = @"pt_BR";
 NSString *const CaronaeAllNeighborhoodsText = @"Todos os Bairros";
+NSString *const CaronaeAllHubsText = @"Todos os Campi";
 
 
 @interface CaronaeConstants ()
-@property (nonatomic, readwrite) NSArray *centers;
-@property (nonatomic, readwrite) NSArray *hubs;
+@property (nonatomic, readwrite) NSArray *campuses;
+@property (nonatomic, readwrite) NSDictionary *campusColors;
+@property (nonatomic, readwrite) NSDictionary *centers;
+@property (nonatomic, readwrite) NSDictionary *hubs;
 @property (nonatomic, readwrite) NSArray *zones;
 @property (nonatomic, readwrite) NSDictionary *zoneColors;
 @property (nonatomic, readwrite) NSDictionary *neighborhoods;
@@ -63,20 +66,6 @@ NSString *const CaronaeAllNeighborhoodsText = @"Todos os Bairros";
     UIColor *color = [CaronaeConstants defaults].zoneColors[zone];
     if (!color) color = [UIColor darkGrayColor];
     return color;
-}
-
-- (NSArray *)centers {
-    if (!_centers) {
-        _centers = @[@"CT", @"CCMN", @"CCS", @"EEFD", @"Reitoria", @"Letras"];
-    }
-    return _centers;
-}
-
-- (NSArray *)hubs {
-    if (!_hubs) {
-        _hubs = @[@"CT: Bloco A", @"CT: Bloco D", @"CT: Bloco H", @"CCMN: Frente", @"CCMN: Fundos", @"Letras", @"Reitoria", @"EEFD", @"CCS: Frente", @"CCS: HUCFF"];
-    }
-    return _hubs;
 }
 
 - (NSArray *)zones {
@@ -127,6 +116,40 @@ NSString *const CaronaeAllNeighborhoodsText = @"Todos os Bairros";
         _neighborhoods = neighborhoods;
     }
     return _neighborhoods;
+}
+
+- (NSDictionary *)campusColors {
+    if (!_campusColors) {
+        _campusColors = @{@"Cidade Universitária": [UIColor colorWithRed:0.890 green:0.145 blue:0.165 alpha:1.000],
+                        @"Praia Vermelha": [UIColor colorWithRed:0.906 green:0.424 blue:0.114 alpha:1.000],
+                        };
+    }
+    return _campusColors;
+}
+
+- (NSDictionary *)centers {
+    if (!_centers) {
+        _centers = @{@"Cidade Universitária": @[@"CT", @"CCMN", @"CCS", @"EEFD", @"Reitoria", @"Letras"],
+                     @"Praia Vermelha": @[@"Center - Frente", @"Center - Trás"]
+                     };
+    }
+    return _centers;
+}
+
+- (NSDictionary *)hubs {
+    if (!_hubs) {
+        _hubs = @{@"Cidade Universitária": @[@"CT: Bloco A", @"CT: Bloco D", @"CT: Bloco H", @"CCMN: Frente", @"CCMN: Fundos", @"Letras", @"Reitoria", @"EEFD", @"CCS: Frente", @"CCS: HUCFF"],
+                  @"Praia Vermelha": @[@"Hub - Frente", @"Hub - Trás"]
+                  };
+    }
+    return _hubs;
+}
+
+- (NSArray *)campuses {
+    if (!_campuses) {
+        _campuses = @[@"Cidade Universitária", @"Praia Vermelha"];
+    }
+    return _campuses;
 }
 
 @end
