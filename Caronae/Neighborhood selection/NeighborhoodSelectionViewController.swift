@@ -24,7 +24,7 @@ import UIKit
         
         self.title = "Zonas"
         
-        if selectionType == .ManySelection {
+        if selectionType == .manySelection {
             firstLevelOptions = [CaronaeAllNeighborhoodsText]
         }
         

@@ -19,24 +19,24 @@ import UIKit
     }
     
     @objc enum HubTypeDirection: Int {
-        case Hubs
-        case Centers
+        case hubs
+        case centers
     }
 
     weak var delegate: HubSelectionDelegate?
     
-    var hubTypeDirection: HubTypeDirection!
+    var hubTypeDirection: HubTypeDirection?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Campi"
         
-        if selectionType == .ManySelection {
+        if selectionType == .manySelection {
             firstLevelOptions = [CaronaeAllHubsText]
         }
         
-        if hubTypeDirection == .Hubs {
+        if hubTypeDirection == .hubs {
             dictionarySelection = CaronaeConstants.defaults().hubs as! [String : [String]]
         } else {
             dictionarySelection = CaronaeConstants.defaults().centers as! [String : [String]]

@@ -8,7 +8,7 @@ class SecondSelectionViewController: UITableViewController {
     
     weak var delegate: SecondSelectionDelegate?
     
-    var selectionType: SelectionType = .OneSelection
+    var selectionType: SelectionType = .oneSelection
     var selectedFirstLevel = String()
     var secondLevelOptions: [String] = []
     var dictionarySelection: [String :[String]] = [:]
@@ -22,7 +22,7 @@ class SecondSelectionViewController: UITableViewController {
         
         secondLevelOptions = dictionarySelection[selectedFirstLevel]!
         
-        if selectionType == .ManySelection {
+        if selectionType == .manySelection {
             self.doneButton = UIBarButtonItem(title: "Sel. todos", style: .done, target: self, action: #selector(finishSelection))
             self.navigationItem.rightBarButtonItem = self.doneButton
             self.tableView.allowsMultipleSelection = true
@@ -58,13 +58,13 @@ class SecondSelectionViewController: UITableViewController {
         
         let title = secondLevelOptions[indexPath.row]
         
-        cell.setupCell(on: .SecondLevel, withTitle: title, andColor: cellColor)
+        cell.setupCell(on: .secondLevel, withTitle: title, andColor: cellColor)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if selectionType == .OneSelection {
+        if selectionType == .oneSelection {
             finishSelection()
             return
         }

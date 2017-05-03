@@ -1,13 +1,13 @@
 import UIKit
 
 @objc enum SelectionType: Int {
-    case OneSelection
-    case ManySelection
+    case oneSelection
+    case manySelection
 }
 
 class FirstSelectionViewController: UITableViewController, SecondSelectionDelegate {
     
-    var selectionType: SelectionType = .OneSelection
+    var selectionType: SelectionType = .oneSelection
     var selectedFirstLevel = String()
     var firstLevelOptions: [String] = []
     var dictionarySelection: [String :[String]] = [:]
@@ -23,11 +23,7 @@ class FirstSelectionViewController: UITableViewController, SecondSelectionDelega
     }
     
     func color(forCell cell: String) -> UIColor {
-        var color = dictionaryColors[cell]
-        if color == nil {
-            color = UIColor.darkGray
-        }
-        return color!
+        return  dictionaryColors[cell] ?? .darkGray
     }
 
 
@@ -43,7 +39,7 @@ class FirstSelectionViewController: UITableViewController, SecondSelectionDelega
         let cellTitle = firstLevelOptions[indexPath.row]
         let cellColor = color(forCell: cellTitle)
         
-        cell.setupCell(on: .FirstLevel, withTitle: cellTitle, andColor: cellColor)
+        cell.setupCell(on: .firstLevel, withTitle: cellTitle, andColor: cellColor)
         
         return cell
     }
@@ -52,7 +48,7 @@ class FirstSelectionViewController: UITableViewController, SecondSelectionDelega
         selectedFirstLevel = self.firstLevelOptions[indexPath.row]
         
         if dictionarySelection[selectedFirstLevel] == nil {
-            if selectionType == .ManySelection {
+            if selectionType == .manySelection {
                 self.hasSelected(selections: [selectedFirstLevel], inFirstLevel: selectedFirstLevel)
             } else {
                 if selectedFirstLevel == "Outra" {

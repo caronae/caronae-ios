@@ -120,8 +120,8 @@ NSString *const CaronaeAllHubsText = @"Todos os Campi";
 
 - (NSDictionary *)campusColors {
     if (!_campusColors) {
-        _campusColors = @{@"Cidade Universitária": [UIColor colorWithRed:0.890 green:0.145 blue:0.165 alpha:1.000],
-                        @"Praia Vermelha": [UIColor colorWithRed:0.906 green:0.424 blue:0.114 alpha:1.000],
+        _campusColors = @{@"Cidade Universitária": [CaronaeConstants colorForZone:@"Zona Norte"],
+                        @"Praia Vermelha": [CaronaeConstants colorForZone:@"Zona Sul"],
                         };
     }
     return _campusColors;

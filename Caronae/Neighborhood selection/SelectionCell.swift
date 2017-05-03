@@ -2,16 +2,16 @@ import UIKit
 
 class SelectionCell: UITableViewCell {
 
-    @objc enum CellLevel: Int {
-        case FirstLevel
-        case SecondLevel
+    enum CellLevel {
+        case firstLevel
+        case secondLevel
     }
     
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var colorDetail: UIView!
     
     var cellColor: UIColor = UIColor.black
-    var cellLevel: CellLevel = .FirstLevel
+    var cellLevel: CellLevel = .firstLevel
     
     func setupCell(on level: CellLevel, withTitle title: String, andColor color: UIColor) {
         self.cellLevel = level
@@ -25,7 +25,7 @@ class SelectionCell: UITableViewCell {
         self.colorDetail.backgroundColor = self.cellColor
         self.cellLabel.textColor = self.cellColor
         
-        if self.cellLevel == .SecondLevel {
+        if self.cellLevel == .secondLevel {
             self.accessoryType = self.isSelected ? .checkmark : .none
         } else {
             self.accessoryType = .disclosureIndicator
