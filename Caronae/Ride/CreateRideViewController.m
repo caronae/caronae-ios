@@ -3,7 +3,6 @@
 
 #import "CaronaeAlertController.h"
 #import "CreateRideViewController.h"
-#import "NSDate+nextHour.h"
 #import "Caronae-Swift.h"
 
 @interface CreateRideViewController () <UITextViewDelegate, NeighborhoodSelectionDelegate, HubSelectionDelegate>

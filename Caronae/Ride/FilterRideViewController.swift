@@ -1,5 +1,4 @@
 import UIKit
-import ActionSheetPicker_3_0
 
 class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate, HubSelectionDelegate {
     
@@ -24,7 +23,6 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     }
     
     var selectedZone: String?
-    var hubs: [String]?
     let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
@@ -32,8 +30,8 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         
         // Load last filtered neighborhoods and center
         if let lastFilteredZone = self.userDefaults.string(forKey: CaronaePreferenceLastFilteredZoneKey),
-           let lastFilteredNeighborhoods = self.userDefaults.array(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) as? [String],
-           let lastFilteredCenters = self.userDefaults.array(forKey: CaronaePreferenceLastFilteredCentersKey) as? [String] {
+           let lastFilteredNeighborhoods = self.userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey),
+           let lastFilteredCenters = self.userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredCentersKey) {
             self.selectedZone = lastFilteredZone
             self.selectedNeighborhoods = lastFilteredNeighborhoods
             self.selectedHubs = lastFilteredCenters
@@ -73,6 +71,9 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         self.navigationController?.show(selectionVC, sender: self)
     }
     
+    
+    // MARK: Selection Methods
+    
     func hasSelected(hubs: [String]) {
         self.selectedHubs = hubs
     }
@@ -91,7 +92,7 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     }
 
     
-    // MARK: - Navigation
+    // MARK: Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "didTapFilterUnwind" {

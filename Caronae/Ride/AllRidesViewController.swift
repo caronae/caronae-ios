@@ -130,9 +130,9 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     }
     
     func enableFilterRides() {
-        guard let centers = userDefaults.array(forKey: CaronaePreferenceLastFilteredCentersKey) as? [String],
+        guard let centers = userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredCentersKey),
             let zone = userDefaults.string(forKey: CaronaePreferenceLastFilteredZoneKey),
-            let neighborhoods = userDefaults.array(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) as? [String] else {
+            let neighborhoods = userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) else {
                 return
         }
         
@@ -181,7 +181,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     // MARK: Search methods
     
-    func searchedForRide(with parameters: FilterParameters) {
+    func searchedForRide(withParameters parameters: FilterParameters) {
         searchParams = parameters
         
         performSegue(withIdentifier: "ViewSearchResults", sender: self)

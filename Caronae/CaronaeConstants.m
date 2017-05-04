@@ -19,7 +19,7 @@ NSNotificationName const CaronaeDidUpdateUserNotification = @"CaronaeDidUpdateUs
 
 NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey = @"lastSearchedNeighborhoods";
 NSString *const CaronaePreferenceLastSearchedZoneKey = @"lastSearchedZone";
-NSString *const CaronaePreferenceLastSearchedCenterKey = @"lastSearchedCenter";
+NSString *const CaronaePreferenceLastSearchedCentersKey = @"lastSearchedCenters";
 NSString *const CaronaePreferenceLastSearchedDateKey = @"lastSearchedDate";
 
 NSString *const CaronaePreferenceFilterIsEnabledKey = @"filterIsEnabled";

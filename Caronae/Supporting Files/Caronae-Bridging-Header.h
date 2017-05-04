@@ -12,7 +12,6 @@
 #import "RideListController.h"
 #import "RideViewController.h"
 #import "SearchResultsViewController.h"
-#import "SearchRideViewController.h"
 #import "TabBarController.h"
 
 #import "CaronaeTextField.h"

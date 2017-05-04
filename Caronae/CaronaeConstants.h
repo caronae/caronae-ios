@@ -12,7 +12,7 @@ extern NSString *const CaronaeFAQPageURLString;
 
 extern NSString *const CaronaePreferenceLastSearchedZoneKey;
 extern NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey;
-extern NSString *const CaronaePreferenceLastSearchedCenterKey;
+extern NSString *const CaronaePreferenceLastSearchedCentersKey;
 extern NSString *const CaronaePreferenceLastSearchedDateKey;
 
 extern NSString *const CaronaePreferenceFilterIsEnabledKey;
