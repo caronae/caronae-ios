@@ -78,7 +78,6 @@
 		A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */; };
 		A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3E7FB1C77AD310094BBAC /* WebViewController.m */; };
 		A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE026B1C17D01000A8407E /* RiderCell.m */; };
-		A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F30EE81C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m */; };
 		A3F30EF21C08ABDC0024BE37 /* bairros.csv in Resources */ = {isa = PBXBuildFile; fileRef = A3F30EF11C08ABDC0024BE37 /* bairros.csv */; };
 		F91FC5AB2FFB53DBA5F5FDF2 /* Pods_Caronae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B6B5515572591139AACACF /* Pods_Caronae.framework */; };
 /* End PBXBuildFile section */
@@ -193,8 +192,6 @@
 		A3E459D21E6B102B00D844FF /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Development.xcconfig; path = Config/Development.xcconfig; sourceTree = "<group>"; };
 		A3EE026A1C17D01000A8407E /* RiderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RiderCell.h; sourceTree = "<group>"; };
 		A3EE026B1C17D01000A8407E /* RiderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RiderCell.m; sourceTree = "<group>"; };
-		A3F30EE71C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+dictionaryWithoutNulls.h"; sourceTree = "<group>"; };
-		A3F30EE81C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+dictionaryWithoutNulls.m"; sourceTree = "<group>"; };
 		A3F30EEA1C0823CA0024BE37 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A3F30EF11C08ABDC0024BE37 /* bairros.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bairros.csv; sourceTree = "<group>"; };
 		B935F3BB53907682C1EF3A28 /* Pods-Caronae.debug - production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug - production.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug - production.xcconfig"; sourceTree = "<group>"; };
@@ -427,8 +424,6 @@
 				A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */,
 				A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */,
 				71C60AAF1EBACCA300E84318 /* NSDate+nextHour.swift */,
-				A3F30EE71C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.h */,
-				A3F30EE81C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m */,
 				A3A4A4AD1C4C695800CF4CB2 /* NSString+validation.h */,
 				A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */,
 				A3CA5DCD1E1F3C000062522D /* UIApplication+topViewController.h */,
@@ -690,7 +685,6 @@
 				A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */,
 				A3169C951BED842D00A0D428 /* main.m in Sources */,
 				A3CA5DD61E22CA630062522D /* Notification.swift in Sources */,
-				A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */,
 				A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */,
 				A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */,
 				A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */,
