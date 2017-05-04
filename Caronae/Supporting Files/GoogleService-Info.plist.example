@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>1012033032693-bustlbdd9dbfjkes7dpudu07o9opdttp.apps.googleusercontent.com</string>
+	<string>YOUR CLIENT ID HERE</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1012033032693-bustlbdd9dbfjkes7dpudu07o9opdttp</string>
+	<string>YOUR REVERSED CLIENT ID HERE</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDqsk0-8r2TSHB2yII5gwqAukCr6d9WZuc</string>
+	<string>YOUR API KEY HERE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1012033032693</string>
+	<string>YOUR GCM SENDER ID HERE</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>br.ufrj.caronae</string>
 	<key>PROJECT_ID</key>
-	<string>caronae-b5965</string>
+	<string>YOUR PROJECT ID HERE</string>
 	<key>STORAGE_BUCKET</key>
-	<string>caronae-b5965.appspot.com</string>
+	<string>YOUR STORAGE BUCKET HERE</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1012033032693:ios:45e1b15fa9a65457</string>
+	<string>YOUR GOOGLE APP ID HERE</string>
 	<key>DATABASE_URL</key>
-	<string>https://caronae-b5965.firebaseio.com</string>
+	<string>YOUR DATABSE URL HERE</string>
 </dict>
 </plist>
