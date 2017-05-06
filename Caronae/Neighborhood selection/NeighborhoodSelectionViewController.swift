@@ -8,7 +8,7 @@ import UIKit
     
     static func makeVC(selectionType: SelectionType) -> NeighborhoodSelectionViewController {
         let selectionStoryboard = UIStoryboard(name: "SelectionViewController", bundle: nil)
-        let selectionBaseVC = selectionStoryboard.instantiateViewController(withIdentifier: "FirstSelectionViewController") as! FirstSelectionViewController
+        let selectionBaseVC = selectionStoryboard.instantiateViewController(withIdentifier: "FirstSelectionViewController")
         object_setClass(selectionBaseVC, NeighborhoodSelectionViewController.self)
         
         let selectionVC = selectionBaseVC as! NeighborhoodSelectionViewController

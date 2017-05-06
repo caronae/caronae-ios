@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--First Selection View Controller-->
+        <!--Hub Selection View Controller-->
         <scene sceneID="Dv9-jN-XAK">
             <objects>
-                <tableViewController storyboardIdentifier="FirstSelectionViewController" id="oCl-iK-H70" customClass="FirstSelectionViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FirstSelectionViewController" id="oCl-iK-H70" customClass="HubSelectionViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kNU-zX-x0F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -104,10 +104,6 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="oCl-iK-H70" id="0kI-jW-ZqJ"/>
-                            <outlet property="delegate" destination="oCl-iK-H70" id="NTb-bp-vNr"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="VqS-Pd-jKl"/>
                     <connections>
@@ -214,10 +210,6 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="C9J-nn-wpf" id="6ac-YC-Pz7"/>
-                            <outlet property="delegate" destination="C9J-nn-wpf" id="Ogp-ML-bGt"/>
-                        </connections>
                     </tableView>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>

@@ -77,7 +77,9 @@ class SecondSelectionViewController: UITableViewController {
     }
 
     func updateFinishButton() {
-        doneButton.title = (tableView.indexPathsForSelectedRows!.count > 0) ? "OK" : "Sel. todos"
+        if let numberOfSelections = tableView.indexPathsForSelectedRows?.count {
+            doneButton.title = (numberOfSelections > 0) ? "OK" : "Sel. todos"
+        }
     }
 
 }
