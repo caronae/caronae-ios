@@ -4,8 +4,47 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     let userDefaults = UserDefaults.standard
     var searchParams = FilterParameters()
     var filterParams = FilterParameters()
-    fileprivate var nextPage = 2
-    fileprivate var lastPage = 2
+    
+    var nextPage: Int {
+        get {
+            if ridesDirectionGoing {
+                return nextPageGoing
+            } else {
+                return nextPageReturning
+            }
+        }
+        set(newValue) {
+            if ridesDirectionGoing {
+                nextPageGoing = newValue
+            } else {
+                nextPageReturning = newValue
+            }
+        }
+    }
+    
+    var lastPage: Int {
+        get {
+            if ridesDirectionGoing {
+                return lastPageGoing
+            } else {
+                return lastPageReturning
+            }
+        }
+        set(newValue) {
+            if ridesDirectionGoing {
+                lastPageGoing = newValue
+            } else {
+                lastPageReturning = newValue
+            }
+        }
+    }
+    
+    fileprivate var nextPageGoing = 2
+    fileprivate var nextPageReturning = 2
+    
+    fileprivate var lastPageGoing = 2
+    fileprivate var lastPageReturning = 2
+    
     fileprivate var lastUpdate = Date.distantPast
 
     override func viewDidLoad() {
@@ -73,27 +112,44 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     // MARK: Rides methods
     
-    func loadAllRides(page: Int = 1, _ completionHandler: ((Void) -> Void)? = nil) {
+    func loadAllRides(page: Int = 1, direction: Bool? = nil, _ completionHandler: ((Void) -> Void)? = nil) {
         if tableView.backgroundView != nil {
             tableView.backgroundView = loadingLabel
         }
+        
+        filterParams.going = direction ?? self.ridesDirectionGoing
         
         RideService.instance.getRides(page: page, filterParameters: filterParams,success: { rides, lastPage in
             
             self.lastPage = lastPage
             
             if page == 1 {
-                self.nextPage = 2
+                self.nextPageGoing = 2
+                self.nextPageReturning = 2
                 self.lastUpdate = Date()
-                self.rides = rides
                 
-                if rides.count > 0 {
+                // Update rides from both directions
+                if direction == nil {
+                    self.rides = rides
+                } else {
+                    var allRides = self.rides as! [Ride]
+                    allRides.append(contentsOf: rides)
+                    self.rides = allRides
+                }
+                
+                if (self.rides as AnyObject).count > 0 {
                     self.tableView.tableFooterView = self.tableFooter
                 } else {
                     self.tableView.tableFooterView = nil
                 }
                 
                 self.tableView.reloadData()
+                
+                if direction == nil {
+                    // Load first page of the other direction
+                    self.loadAllRides(direction: !(self.ridesDirectionGoing))
+                }
+                
             } else {
                 
                 self.nextPage += 1
