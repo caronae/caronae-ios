@@ -4,46 +4,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     let userDefaults = UserDefaults.standard
     var searchParams = FilterParameters()
     var filterParams = FilterParameters()
-    
-    var nextPage: Int {
-        get {
-            if ridesDirectionGoing {
-                return nextPageGoing
-            } else {
-                return nextPageReturning
-            }
-        }
-        set(newValue) {
-            if ridesDirectionGoing {
-                nextPageGoing = newValue
-            } else {
-                nextPageReturning = newValue
-            }
-        }
-    }
-    
-    var lastPage: Int {
-        get {
-            if ridesDirectionGoing {
-                return lastPageGoing
-            } else {
-                return lastPageReturning
-            }
-        }
-        set(newValue) {
-            if ridesDirectionGoing {
-                lastPageGoing = newValue
-            } else {
-                lastPageReturning = newValue
-            }
-        }
-    }
-    
-    fileprivate var nextPageGoing = 2
-    fileprivate var nextPageReturning = 2
-    
-    fileprivate var lastPageGoing = 2
-    fileprivate var lastPageReturning = 2
+    var pagination = PaginationState()
     
     fileprivate var lastUpdate = Date.distantPast
 
@@ -65,13 +26,13 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         tableView.infiniteScrollTriggerOffset = 500
         
         tableView.addInfiniteScroll { tableView in
-            self.loadAllRides(page: self.nextPage) {
+            self.loadAllRides() {
                 tableView.finishInfiniteScroll()
             }
         }
         
-        tableView.setShouldShowInfiniteScrollHandler { _ -> Bool in
-            return self.nextPage <= self.lastPage
+        tableView.setShouldShowInfiniteScrollHandler { _ in
+            return self.pagination.hasNextPage
         }
         
         self.filterIsEnabled = userDefaults.bool(forKey: CaronaePreferenceFilterIsEnabledKey)
@@ -92,40 +53,28 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     }
     
     func refreshTable() {
+        pagination = PaginationState()
         loadAllRides()
     }
     
     
-    // MARK: Table methods
-    
-    lazy var tableFooter: UIView = {
-        let tableFooter = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-        tableFooter.text = "Quer encontrar mais caronas? Use a pesquisa! 🔍"
-        tableFooter.numberOfLines = 0
-        tableFooter.backgroundColor = .white
-        tableFooter.font = .systemFont(ofSize: 10)
-        tableFooter.textColor = .lightGray
-        tableFooter.textAlignment = .center
-        return tableFooter
-    }()
-    
-    
     // MARK: Rides methods
     
-    func loadAllRides(page: Int = 1, direction: Bool? = nil, _ completionHandler: ((Void) -> Void)? = nil) {
+    func loadAllRides(direction: Bool? = nil, _ completionHandler: ((Void) -> Void)? = nil) {
         if tableView.backgroundView != nil {
             tableView.backgroundView = loadingLabel
         }
         
         filterParams.going = direction ?? self.ridesDirectionGoing
+        pagination.directionGoing = filterParams.going!
+        let page = pagination.nextPage
         
-        RideService.instance.getRides(page: page, filterParameters: filterParams,success: { rides, lastPage in
+        RideService.instance.getRides(page: page, filterParameters: filterParams, success: { rides, lastPage in
             
-            self.lastPage = lastPage
+            self.pagination.lastPage = lastPage
+            self.pagination.incrementPage()
             
             if page == 1 {
-                self.nextPageGoing = 2
-                self.nextPageReturning = 2
                 self.lastUpdate = Date()
                 
                 // Update rides from both directions
@@ -151,8 +100,6 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 }
                 
             } else {
-                
-                self.nextPage += 1
                 let ridesCount = self.filteredRides.count
                 
                 // Update rides
@@ -181,6 +128,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     func reloadRidesIfNecessary() {
         if lastUpdate.timeIntervalSinceNow.isLess(than: -5*60) {
+            pagination = PaginationState()
             loadAllRides()
         }
     }
@@ -213,6 +161,20 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         
         disableFilterRides()
     }
+    
+    
+    // MARK: Table methods
+    
+    lazy var tableFooter: UIView = {
+        let tableFooter = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+        tableFooter.text = "Quer encontrar mais caronas? Use a pesquisa! 🔍"
+        tableFooter.numberOfLines = 0
+        tableFooter.backgroundColor = .white
+        tableFooter.font = .systemFont(ofSize: 10)
+        tableFooter.textColor = .lightGray
+        tableFooter.textAlignment = .center
+        return tableFooter
+    }()
     
     
     // MARK: Navigation
