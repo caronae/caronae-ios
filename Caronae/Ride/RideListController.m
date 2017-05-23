@@ -109,11 +109,11 @@ static CGFloat const RideListMessageFontSize = 25.0f;
     if (self.filterIsEnabled) {
         float filterViewHeight = _filterViewHeight.constant;
         self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0f + filterViewHeight, 0.0f, 49.0f, 0.0f);
-        self.tableView.contentInset = UIEdgeInsetsMake(109.0f + filterViewHeight, 0.0f, 0.0f, 0.0f);
+        self.tableView.contentInset = UIEdgeInsetsMake(109.0f + filterViewHeight, 0.0f, 49.0f, 0.0f);
     }
     else {
         self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(64.0f, 0.0f, 49.0f, 0.0f);
-        self.tableView.contentInset = UIEdgeInsetsMake(109.0f, 0.0f, 0.0f, 0.0f);
+        self.tableView.contentInset = UIEdgeInsetsMake(109.0f, 0.0f, 49.0f, 0.0f);
     }
 }
 
