@@ -32,6 +32,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         }
         
         tableView.setShouldShowInfiniteScrollHandler { _ in
+            self.pagination.directionGoing = self.ridesDirectionGoing
             return self.pagination.hasNextPage
         }
         
