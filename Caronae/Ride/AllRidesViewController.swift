@@ -145,6 +145,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hub: center)
         filterLabel.text = filterParams.activeFiltersText()
         
+        pagination = PaginationState()
         loadAllRides()
         // workaround to not cover cell after enabling filter
         tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: true)
@@ -154,6 +155,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         userDefaults.set(false, forKey: CaronaePreferenceFilterIsEnabledKey)
         self.filterIsEnabled = false
         self.filterParams = FilterParameters()
+        pagination = PaginationState()
         loadAllRides()
     }
     
