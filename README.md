@@ -43,16 +43,3 @@ sudo gem install fastlane
 Este projeto faz uso da plataforma [Firebase](https://firebase.google.com/) para receber notificações push. Para fazer uso desse recurso é necessário gerar e adicionar o arquivo `GoogleService-Info.plist` dentro do diretório deste projeto.
 
 Consulte a [documentação](https://firebase.google.com/docs/ios/setup) para saber mais informações. Um exemplo do arquivo pode ser encontrado em: `Caronae/Supporting Files/GoogleService-Info.plist.example`.
-
-
-## Certificados / Provisioning Profiles / App Store
-
-Graças ao fastlane, há ações pré-configuradas para a configuração dos certificados e provisioning profiles necessários. Uma vez que tiver o fastlane instalado, basta executar a lane `match_everything`, que irá fazer o download do que for necessário e garantir que todos os arquivos ainda são válidos no Developer Portal.
-
-```bash
-fastlane match_everything
-```
-
-Os arquivos são sincronizados através de um repositório privado no GitHub e criptografados com uma senha.
-
-O comando acima só precisa ser executado uma vez no Mac de desenvolvimento. Como o projeto do Xcode já está configurado para utilizar os arquivos gerados por ele, as configurações de Code Signing do projeto **não** devem ser alteradas.
