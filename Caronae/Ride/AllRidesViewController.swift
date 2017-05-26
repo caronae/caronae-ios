@@ -4,8 +4,8 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     let userDefaults = UserDefaults.standard
     var searchParams = FilterParameters()
     var filterParams = FilterParameters()
-    fileprivate var nextPage = 2
-    fileprivate var lastPage = 2
+    var pagination = PaginationState()
+    
     fileprivate var lastUpdate = Date.distantPast
 
     override func viewDidLoad() {
@@ -26,13 +26,14 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         tableView.infiniteScrollTriggerOffset = 500
         
         tableView.addInfiniteScroll { tableView in
-            self.loadAllRides(page: self.nextPage) {
+            self.loadAllRides() {
                 tableView.finishInfiniteScroll()
             }
         }
         
-        tableView.setShouldShowInfiniteScrollHandler { _ -> Bool in
-            return self.nextPage <= self.lastPage
+        tableView.setShouldShowInfiniteScrollHandler { _ in
+            self.pagination.directionGoing = self.ridesDirectionGoing
+            return self.pagination.hasNextPage
         }
         
         self.filterIsEnabled = userDefaults.bool(forKey: CaronaePreferenceFilterIsEnabledKey)
@@ -53,50 +54,53 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     }
     
     func refreshTable() {
+        pagination = PaginationState()
         loadAllRides()
     }
     
     
-    // MARK: Table methods
-    
-    lazy var tableFooter: UIView = {
-        let tableFooter = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-        tableFooter.text = "Quer encontrar mais caronas? Use a pesquisa! 🔍"
-        tableFooter.numberOfLines = 0
-        tableFooter.backgroundColor = .white
-        tableFooter.font = .systemFont(ofSize: 10)
-        tableFooter.textColor = .lightGray
-        tableFooter.textAlignment = .center
-        return tableFooter
-    }()
-    
-    
     // MARK: Rides methods
     
-    func loadAllRides(page: Int = 1, _ completionHandler: ((Void) -> Void)? = nil) {
+    func loadAllRides(direction: Bool? = nil, _ completionHandler: ((Void) -> Void)? = nil) {
         if tableView.backgroundView != nil {
             tableView.backgroundView = loadingLabel
         }
         
-        RideService.instance.getRides(page: page, filterParameters: filterParams,success: { rides, lastPage in
+        filterParams.going = direction ?? self.ridesDirectionGoing
+        pagination.directionGoing = filterParams.going!
+        let page = pagination.nextPage
+        
+        RideService.instance.getRides(page: page, filterParameters: filterParams, success: { rides, lastPage in
             
-            self.lastPage = lastPage
+            self.pagination.lastPage = lastPage
+            self.pagination.incrementPage()
             
             if page == 1 {
-                self.nextPage = 2
                 self.lastUpdate = Date()
-                self.rides = rides
                 
-                if rides.count > 0 {
+                // Update rides from both directions
+                if direction == nil {
+                    self.rides = rides
+                } else {
+                    var allRides = self.rides as! [Ride]
+                    allRides.append(contentsOf: rides)
+                    self.rides = allRides
+                }
+                
+                if (self.rides as AnyObject).count > 0 {
                     self.tableView.tableFooterView = self.tableFooter
                 } else {
                     self.tableView.tableFooterView = nil
                 }
                 
                 self.tableView.reloadData()
-            } else {
                 
-                self.nextPage += 1
+                if direction == nil {
+                    // Load first page of the other direction
+                    self.loadAllRides(direction: !(self.ridesDirectionGoing))
+                }
+                
+            } else {
                 let ridesCount = self.filteredRides.count
                 
                 // Update rides
@@ -125,6 +129,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     func reloadRidesIfNecessary() {
         if lastUpdate.timeIntervalSinceNow.isLess(than: -5*60) {
+            pagination = PaginationState()
             loadAllRides()
         }
     }
@@ -140,6 +145,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hub: center)
         filterLabel.text = filterParams.activeFiltersText()
         
+        pagination = PaginationState()
         loadAllRides()
         // workaround to not cover cell after enabling filter
         tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: true)
@@ -149,6 +155,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         userDefaults.set(false, forKey: CaronaePreferenceFilterIsEnabledKey)
         self.filterIsEnabled = false
         self.filterParams = FilterParameters()
+        pagination = PaginationState()
         loadAllRides()
     }
     
@@ -157,6 +164,20 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         
         disableFilterRides()
     }
+    
+    
+    // MARK: Table methods
+    
+    lazy var tableFooter: UIView = {
+        let tableFooter = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+        tableFooter.text = "Quer encontrar mais caronas? Use a pesquisa! 🔍"
+        tableFooter.numberOfLines = 0
+        tableFooter.backgroundColor = .white
+        tableFooter.font = .systemFont(ofSize: 10)
+        tableFooter.textColor = .lightGray
+        tableFooter.textAlignment = .center
+        return tableFooter
+    }()
     
     
     // MARK: Navigation
