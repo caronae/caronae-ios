@@ -11,7 +11,6 @@ static NSDateFormatter *dateFormatter;
     if (self) {
         dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"HH:mm | E | dd/MM";
-        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
     }
     return self;
 }

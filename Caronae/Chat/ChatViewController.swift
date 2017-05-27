@@ -14,6 +14,7 @@ class ChatViewController: JSQMessagesViewController {
     var messagesNotificationToken: RLMNotificationToken!
     var isSending = false
     
+    let timestampFormatter = JSQMessagesTimestampFormatter.init()
     var tappedMessageIndex: Int?
     
     convenience init(ride: Ride, color: UIColor) {
@@ -33,7 +34,6 @@ class ChatViewController: JSQMessagesViewController {
         self.hidesBottomBarWhenPushed = true
         
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "pt_BR")
         dateFormatter.dateFormat = " - dd/MM - HH:mm"
         self.title = ride.title + dateFormatter.string(from: ride.date)
         
@@ -129,7 +129,7 @@ class ChatViewController: JSQMessagesViewController {
         
         guard shouldShowTimestamp(atIndex: indexPath.item) else { return nil }
         let message = messages[indexPath.item]
-        return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
+        return timestampFormatter.attributedTimestamp(for: message.date)
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath) -> NSAttributedString? {
@@ -167,7 +167,6 @@ class ChatViewController: JSQMessagesViewController {
         
         let message = self.messages[index]
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "pt_BR")
         dateFormatter.timeStyle = .short
         dateFormatter.dateStyle = .medium
         return NSAttributedString(string: dateFormatter.string(from: message.date))
