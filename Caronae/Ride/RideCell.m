@@ -45,7 +45,7 @@ static NSDateFormatter *dateFormatter;
 }
 
 - (NSString *)dateString {
-    return [dateFormatter stringFromDate:_ride.date].capitalizedString;
+    return [[dateFormatter stringFromDate:_ride.date] capitalizedAfter:@"|"];
 }
 
 - (void)updatePhoto {

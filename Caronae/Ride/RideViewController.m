@@ -50,7 +50,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"HH:mm | E | dd/MM";
-    NSString *dateString = [dateFormatter stringFromDate:_ride.date].capitalizedString;
+    NSString *dateString = [[dateFormatter stringFromDate:_ride.date] capitalizedAfter:@"|"];
     
     _titleLabel.text = [_ride.title uppercaseString];
     if (_ride.going) {
