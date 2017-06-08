@@ -29,7 +29,6 @@
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     
     self.dateFormatter = [[NSDateFormatter alloc] init];
-    self.dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:CaronaeDateLocaleIdentifier];
     [self.dateFormatter setDateFormat:CaronaeSearchDateFormat];
 }
 

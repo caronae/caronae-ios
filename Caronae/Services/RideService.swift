@@ -314,6 +314,7 @@ class RideService: NSObject {
     
     func validateRideDate(ride: Ride, success: @escaping (_ valid: Bool, _ status: String) -> Void, error: @escaping (_ error: Error?) -> Void) {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
         let dateString = dateFormatter.string(from: ride.date).components(separatedBy: " ")
         
