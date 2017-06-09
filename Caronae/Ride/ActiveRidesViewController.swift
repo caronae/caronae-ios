@@ -12,12 +12,12 @@ class ActiveRidesViewController: RideListController {
         self.navigationController?.view.backgroundColor = UIColor.white
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
-        RideService.instance.getActiveRides(success: { rides in
-            self.rides = rides
-            self.subscribeToChanges()
-        }, error: { error in
-            self.loadingFailedWithError(error)
-        })
+//        RideService.instance.getActiveRides(success: { rides in
+//            self.rides = rides
+//            self.subscribeToChanges()
+//        }, error: { error in
+//            self.loadingFailedWithError(error)
+//        })
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateNotificationBadges), name: Foundation.Notification.Name.CaronaeDidUpdateNotifications, object: nil)
         updateNotificationBadges()

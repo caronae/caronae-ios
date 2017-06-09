@@ -29,7 +29,7 @@ class RideService: NSObject {
         })
     }
     
-    func getOfferedRides(success: @escaping (_ rides: Results<Ride>) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func getMyRides(success: @escaping (_ pending: Results<Ride>, _ active: Results<Ride>, _ offered: Results<Ride>) -> Void, error: @escaping (_ error: Error) -> Void) {
         guard let user = UserService.instance.user else {
             NSLog("Error: No userID registered")
             return
@@ -38,12 +38,38 @@ class RideService: NSObject {
         do {
             let realm = try Realm()
             let currentDate = Date()
-            let rides = realm.objects(Ride.self).filter("driver == %@ AND date >= %@", user, currentDate).sorted(byKeyPath: "date")
             
-            success(rides)
+            let futureNotActiveRides = realm.objects(Ride.self).filter("date >= %@ AND isActive == false", currentDate)
+            let pending = futureNotActiveRides.filter("driver != %@", user).sorted(byKeyPath: "date")
+            let offered = futureNotActiveRides.filter("driver == %@", user).sorted(byKeyPath: "date")
+            let active = realm.objects(Ride.self).filter("isActive == true").sorted(byKeyPath: "date")
+            
+            success(pending, active, offered)
         } catch let realmError {
             error(realmError)
         }
+    }
+    
+    func updateMyRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+//        guard let user = UserService.instance.user else {
+//            NSLog("Error: No userID registered")
+//            return
+//        }
+        
+        updateActiveRides(success: {
+            NSLog("Active rides updated")
+        }, error: { error in
+            NSLog("Error updating active rides (\(error.localizedDescription))")
+        })
+        
+        updateOfferedRides(success: {
+            NSLog("Offered rides updated")
+        }, error: { error in
+            NSLog("Error updating offered rides (\(error.localizedDescription))")
+        })
+        
+        success()
+        
     }
     
     func updateOfferedRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
@@ -99,17 +125,6 @@ class RideService: NSObject {
             NSLog("Error: Failed to get offered rides: \(err.localizedDescription)")
             error(err)
         })
-    }
-
-    func getActiveRides(success: @escaping (_ rides: Results<Ride>) -> Void, error: @escaping (_ error: Error) -> Void) {
-        do {
-            let realm = try Realm()
-            let rides = realm.objects(Ride.self).filter("isActive == true").sorted(byKeyPath: "date")
-            
-            success(rides)
-        } catch let realmError {
-            error(realmError)
-        }
     }
     
     func updateActiveRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {

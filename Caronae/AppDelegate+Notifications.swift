@@ -58,7 +58,7 @@ extension AppDelegate {
         notification.kind = .rideJoinRequestAccepted
         
         NotificationService.instance.createNotification(notification)
-        updateActiveRidesIfActive()
+        updateMyRidesIfActive()
         showMessageIfActive(message)
     }
     
@@ -69,7 +69,7 @@ extension AppDelegate {
         }
         
         NotificationService.instance.clearNotifications(forRideID: rideID)
-        updateActiveRidesIfActive()
+        updateMyRidesIfActive()
         showMessageIfActive(message)
     }
     
@@ -79,7 +79,7 @@ extension AppDelegate {
             return
         }
         
-        updateOfferedRidesIfActive()
+        updateMyRidesIfActive()
         showMessageIfActive(message)
     }
     
@@ -140,22 +140,12 @@ extension AppDelegate {
         }
     }
     
-    func updateActiveRidesIfActive() {
+    func updateMyRidesIfActive() {
         if UIApplication.shared.applicationState == .active {
             RideService.instance.updateActiveRides(success: {
-                NSLog("Active rides updated")
+                NSLog("My rides updated")
             }, error: { error in
-                NSLog("Error updating active rides (\(error.localizedDescription))")
-            })
-        }
-    }
-    
-    func updateOfferedRidesIfActive() {
-        if UIApplication.shared.applicationState == .active {
-            RideService.instance.updateOfferedRides(success: {
-                NSLog("Offered rides updated")
-            }, error: { error in
-                NSLog("Error updating offered rides (\(error.localizedDescription))")
+                NSLog("Error updating my rides (\(error.localizedDescription))")
             })
         }
     }

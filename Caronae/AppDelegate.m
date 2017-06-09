@@ -112,17 +112,11 @@
         [self registerForNotifications];
         [self connectToFcm];
         
-        // Update offered and active rides after login
-        [RideService.instance updateOfferedRidesWithSuccess:^{
-            NSLog(@"Offered rides updated");
+        // Update my rides after login
+        [RideService.instance updateMyRidesWithSuccess:^{
+            NSLog(@"My rides updated");
         } error:^(NSError * _Nonnull error) {
-            NSLog(@"Couldn't update offered rides");
-        }];
-        
-        [RideService.instance updateActiveRidesWithSuccess:^{
-            NSLog(@"Active rides updated");
-        } error:^(NSError * _Nonnull error) {
-            NSLog(@"Couldn't update active rides");
+            NSLog(@"Couldn't update my rides");
         }];
         
         [self checkIfUserNeedsToFinishProfile];
