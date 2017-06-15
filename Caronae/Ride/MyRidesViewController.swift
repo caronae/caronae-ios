@@ -15,8 +15,7 @@ class MyRidesViewController: RideListController {
         self.navigationController?.view.backgroundColor = UIColor.white
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
-        // Hides loadingLabel
-        self.tableView.backgroundView = nil
+        changeBackgroundIfNeeded()
         
         RideService.instance.getMyRides(success: { pending, active, offered in
             self.sectionRides = [pending, active, offered]
@@ -80,6 +79,13 @@ class MyRidesViewController: RideListController {
             tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: section) }),
                                  with: .automatic)
             tableView.endUpdates()
+
+            if emptyBackgroundIsVisible() {
+                // Workaround to display tableview correctly when leaving the emptyBackground
+                changeBackgroundIfNeeded()
+                tableView.reloadData()
+            }
+            changeBackgroundIfNeeded()
             break
         case .error(let error):
             // An error occurred while opening the Realm file on the background worker thread
@@ -97,6 +103,14 @@ class MyRidesViewController: RideListController {
         }
         tableView.reloadData()
     }
+    
+    func changeBackgroundIfNeeded() {
+        tableView.backgroundView = (sectionRides.contains(where: { !$0.isEmpty })) ? nil : emptyTableLabel
+    }
+    
+    func emptyBackgroundIsVisible() -> Bool {
+        return (tableView.backgroundView != nil) ? true : false
+    }
 
     
     // MARK: Table methods
@@ -106,6 +120,10 @@ class MyRidesViewController: RideListController {
     }
     
     func tableView(_ tableView: UITableView!, titleForHeaderInSection section: Int) -> String! {
+        guard !emptyBackgroundIsVisible() else {
+            return nil
+        }
+        
         return sectionTitles[section]
     }
     
@@ -138,7 +156,7 @@ class MyRidesViewController: RideListController {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        guard sectionRides[section].isEmpty || sectionTitles[section] == "Ativas" else {
+        guard !emptyBackgroundIsVisible() && (sectionRides[section].isEmpty || sectionTitles[section] == "Ativas") else {
             return 0.0
         }
         
