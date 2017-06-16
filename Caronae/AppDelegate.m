@@ -70,16 +70,10 @@
     if (UserService.instance.user) {
         [self connectToFcm];
         
-        [RideService.instance updateOfferedRidesWithSuccess:^{
-            NSLog(@"Offered rides updated");
+        [RideService.instance updateMyRidesWithSuccess:^{
+            NSLog(@"My rides updated");
         } error:^(NSError * _Nonnull error) {
-            NSLog(@"Couldn't update offered rides");
-        }];
-        
-        [RideService.instance updateActiveRidesWithSuccess:^{
-            NSLog(@"Active rides updated");
-        } error:^(NSError * _Nonnull error) {
-            NSLog(@"Couldn't update active rides");
+            NSLog(@"Couldn't update my rides");
         }];
     }
 }
@@ -193,14 +187,12 @@
     
     TabBarController *tabBarController = (TabBarController *)self.window.rootViewController;
     NSString *msgType = userInfo[@"msgType"];
-    if ([msgType isEqualToString:@"joinRequest"]) {
+    if ([msgType isEqualToString:@"joinRequest"] ||
+        [msgType isEqualToString:@"accepted"] ||
+        [msgType isEqualToString:@"refused"] ||
+        [msgType isEqualToString:@"cancelled"] ||
+        [msgType isEqualToString:@"quitter"]) {
         tabBarController.selectedViewController = tabBarController.myRidesNavigationController;
-    }
-    else if ([msgType isEqualToString:@"accepted"] ||
-             [msgType isEqualToString:@"refused"] ||
-             [msgType isEqualToString:@"cancelled"] ||
-             [msgType isEqualToString:@"quitter"]) {
-        tabBarController.selectedViewController = tabBarController.activeRidesNavigationController;
     }
     else if ([msgType isEqualToString:@"finished"]) {
         tabBarController.selectedViewController = tabBarController.menuNavigationController;
@@ -217,9 +209,9 @@
             }
         }
         // Open chat for rideID
-        tabBarController.selectedViewController = tabBarController.activeRidesNavigationController;
-        ActiveRidesViewController *activeRidesViewController = tabBarController.activeRidesViewController;
-        [activeRidesViewController openChatForRideWithID:rideID];
+        tabBarController.selectedViewController = tabBarController.myRidesNavigationController;
+        MyRidesViewController *myRidesViewController = tabBarController.myRidesViewController;
+        [myRidesViewController openChatForRideWithID:rideID];
     }
 }
 

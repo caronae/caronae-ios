@@ -142,7 +142,7 @@ extension AppDelegate {
     
     func updateMyRidesIfActive() {
         if UIApplication.shared.applicationState == .active {
-            RideService.instance.updateActiveRides(success: {
+            RideService.instance.updateMyRides(success: {
                 NSLog("My rides updated")
             }, error: { error in
                 NSLog("Error updating my rides (\(error.localizedDescription))")

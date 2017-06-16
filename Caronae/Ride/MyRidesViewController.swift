@@ -111,6 +111,26 @@ class MyRidesViewController: RideListController {
     func emptyBackgroundIsVisible() -> Bool {
         return (tableView.backgroundView != nil) ? true : false
     }
+    
+    func openChatForRide(withID rideID: Int) {
+        let realm = try! Realm()
+        var ride: Ride
+        
+        if let realmRide = realm.objects(Ride.self).filter("id == %@", rideID).first {
+            ride = realmRide
+        } else {
+            let rides = self.rides as? [Ride]
+            guard let rideFiltered = rides?.filter({ $0.id == rideID }).first else {
+                return
+            }
+            ride = rideFiltered
+        }
+        
+        let rideViewController = RideViewController(for: ride)!
+        rideViewController.shouldOpenChatWindow = true
+        _ = navigationController?.popToRootViewController(animated: false)
+        navigationController?.pushViewController(rideViewController, animated: true)
+    }
 
     
     // MARK: Table methods
