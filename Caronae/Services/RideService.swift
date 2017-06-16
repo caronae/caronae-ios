@@ -327,6 +327,14 @@ class RideService: NSObject {
         return false
     }
     
+    func getRideFromRealm(withID id: Int) -> Ride? {
+        guard let realm = try? Realm(), let ride = realm.object(ofType: Ride.self, forPrimaryKey: id) else {
+            return nil
+        }
+        
+        return ride
+    }
+    
     func validateRideDate(ride: Ride, success: @escaping (_ valid: Bool, _ status: String) -> Void, error: @escaping (_ error: Error?) -> Void) {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")

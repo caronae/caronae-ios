@@ -113,10 +113,8 @@ class MyRidesViewController: RideListController {
     }
     
     func openChatForRide(withID rideID: Int) {
-        let realm = try! Realm()
         var ride: Ride
-        
-        if let realmRide = realm.objects(Ride.self).filter("id == %@", rideID).first {
+        if let realmRide = RideService.instance.getRideFromRealm(withID: rideID) {
             ride = realmRide
         } else {
             let rides = self.rides as? [Ride]

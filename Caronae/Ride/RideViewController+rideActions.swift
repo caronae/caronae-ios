@@ -70,8 +70,7 @@ extension RideViewController {
     }
     
     func loadRealmRide() {
-        let realm = try! Realm()
-        if let realmRide = realm.objects(Ride.self).filter("id == %@", self.ride.id).first {
+        if let realmRide = RideService.instance.getRideFromRealm(withID: self.ride.id) {
             NSLog("Ride loaded from realm database")
             self.ride = realmRide
         }
