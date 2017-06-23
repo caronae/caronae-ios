@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7128B69E1EFB0B2F00A34587 /* ZoneSelectionInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7128B69D1EFB0B2F00A34587 /* ZoneSelectionInput.xib */; };
 		712A6E7D1EB527CA00EBDB80 /* ZoneSelectionInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712A6E7C1EB527CA00EBDB80 /* ZoneSelectionInputViewController.swift */; };
 		713E99B91E8D5FA900F3C9E0 /* Array+compactString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */; };
+		718B6B021EFCA57900E055F7 /* SelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 718B6B011EFCA57900E055F7 /* SelectionCell.xib */; };
 		718C9B751E5F923A0037A78B /* AllRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C9B741E5F923A0037A78B /* AllRidesViewController.swift */; };
 		719C53681EB298930029A448 /* FirstSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719C53671EB298930029A448 /* FirstSelectionViewController.swift */; };
 		719C536A1EB298AE0029A448 /* SecondSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719C53691EB298AE0029A448 /* SecondSelectionViewController.swift */; };
 		719C536F1EB2B3570029A448 /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719C536E1EB2B3570029A448 /* SelectionCell.swift */; };
-		719C53731EB3F6420029A448 /* SelectionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 719C53721EB3F6420029A448 /* SelectionViewController.storyboard */; };
 		719C53751EB4054E0029A448 /* HubsSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719C53741EB4054E0029A448 /* HubsSelectionViewController.swift */; };
 		719C53771EB432E60029A448 /* NeighborhoodSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719C53761EB432E60029A448 /* NeighborhoodSelectionViewController.swift */; };
 		71AE13E41E8200D8008ACB06 /* FilterRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */; };
@@ -88,13 +89,14 @@
 		2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug.xcconfig"; sourceTree = "<group>"; };
 		48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.release.xcconfig"; sourceTree = "<group>"; };
 		4B35A3BD2CCAED11349480AC /* Pods-CaronaeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaronaeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests.release.xcconfig"; sourceTree = "<group>"; };
+		7128B69D1EFB0B2F00A34587 /* ZoneSelectionInput.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZoneSelectionInput.xib; sourceTree = "<group>"; };
 		712A6E7C1EB527CA00EBDB80 /* ZoneSelectionInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneSelectionInputViewController.swift; sourceTree = "<group>"; };
 		713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+compactString.swift"; sourceTree = "<group>"; };
+		718B6B011EFCA57900E055F7 /* SelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectionCell.xib; sourceTree = "<group>"; };
 		718C9B741E5F923A0037A78B /* AllRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRidesViewController.swift; sourceTree = "<group>"; };
 		719C53671EB298930029A448 /* FirstSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstSelectionViewController.swift; sourceTree = "<group>"; };
 		719C53691EB298AE0029A448 /* SecondSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondSelectionViewController.swift; sourceTree = "<group>"; };
 		719C536E1EB2B3570029A448 /* SelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionCell.swift; sourceTree = "<group>"; };
-		719C53721EB3F6420029A448 /* SelectionViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SelectionViewController.storyboard; sourceTree = "<group>"; };
 		719C53741EB4054E0029A448 /* HubsSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HubsSelectionViewController.swift; sourceTree = "<group>"; };
 		719C53761EB432E60029A448 /* NeighborhoodSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeighborhoodSelectionViewController.swift; sourceTree = "<group>"; };
 		71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRideViewController.swift; sourceTree = "<group>"; };
@@ -305,10 +307,11 @@
 			isa = PBXGroup;
 			children = (
 				719C536E1EB2B3570029A448 /* SelectionCell.swift */,
+				718B6B011EFCA57900E055F7 /* SelectionCell.xib */,
 				712A6E7C1EB527CA00EBDB80 /* ZoneSelectionInputViewController.swift */,
+				7128B69D1EFB0B2F00A34587 /* ZoneSelectionInput.xib */,
 				719C53761EB432E60029A448 /* NeighborhoodSelectionViewController.swift */,
 				719C53741EB4054E0029A448 /* HubsSelectionViewController.swift */,
-				719C53721EB3F6420029A448 /* SelectionViewController.storyboard */,
 				719C53671EB298930029A448 /* FirstSelectionViewController.swift */,
 				719C53691EB298AE0029A448 /* SecondSelectionViewController.swift */,
 			);
@@ -550,8 +553,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */,
+				7128B69E1EFB0B2F00A34587 /* ZoneSelectionInput.xib in Resources */,
+				718B6B021EFCA57900E055F7 /* SelectionCell.xib in Resources */,
 				A3AC169F1E357828000B5817 /* WelcomeViewController.xib in Resources */,
-				719C53731EB3F6420029A448 /* SelectionViewController.storyboard in Resources */,
 				A3169CA61BED842D00A0D428 /* LaunchScreen.storyboard in Resources */,
 				A39BBD051C06AB9D00EF9EBD /* RideCell.xib in Resources */,
 				A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */,

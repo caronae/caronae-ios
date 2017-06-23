@@ -353,16 +353,16 @@
 - (IBAction)selectCenterTapped:(id)sender {
     HubSelectionViewController *selectionVC;
     if (_segmentedControl.selectedSegmentIndex == 0) {
-        selectionVC = [HubSelectionViewController makeVCWithSelectionType:SelectionTypeOneSelection hubTypeDirection:HubTypeDirectionCenters];
+        selectionVC = [[HubSelectionViewController alloc] initWithSelectionType:SelectionTypeOneSelection hubTypeDirection:HubTypeDirectionCenters];
     } else {
-        selectionVC = [HubSelectionViewController makeVCWithSelectionType:SelectionTypeOneSelection hubTypeDirection:HubTypeDirectionHubs];
+        selectionVC = [[HubSelectionViewController alloc] initWithSelectionType:SelectionTypeOneSelection hubTypeDirection:HubTypeDirectionHubs];
     }
     [selectionVC setDelegate:self];
     [self.navigationController pushViewController:selectionVC animated:YES];
 }
 
 - (IBAction)selectNeighborhoodTapped:(id)sender {
-    NeighborhoodSelectionViewController *selectionVC = [NeighborhoodSelectionViewController makeVCWithSelectionType:SelectionTypeOneSelection];
+    NeighborhoodSelectionViewController *selectionVC = [[NeighborhoodSelectionViewController alloc] initWithSelectionType:SelectionTypeOneSelection];
     [selectionVC setDelegate:self];
     [self.navigationController pushViewController:selectionVC animated:YES];
 }

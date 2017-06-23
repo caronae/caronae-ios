@@ -6,16 +6,10 @@ import UIKit
 
 @objc class HubSelectionViewController: FirstSelectionViewController {
     
-    static func makeVC(selectionType: SelectionType, hubTypeDirection: HubTypeDirection) -> HubSelectionViewController {
-        let selectionStoryboard = UIStoryboard(name: "SelectionViewController", bundle: nil)
-        let selectionBaseVC = selectionStoryboard.instantiateViewController(withIdentifier: "FirstSelectionViewController")
-        object_setClass(selectionBaseVC, HubSelectionViewController.self)
-        
-        let selectionVC = selectionBaseVC as! HubSelectionViewController
-        selectionVC.selectionType = selectionType
-        selectionVC.hubTypeDirection = hubTypeDirection
-        
-        return selectionVC
+    required convenience init(selectionType: SelectionType, hubTypeDirection: HubTypeDirection) {
+        self.init()
+        self.selectionType = selectionType
+        self.hubTypeDirection = hubTypeDirection
     }
     
     @objc enum HubTypeDirection: Int {

@@ -6,15 +6,9 @@ import UIKit
 
 @objc class NeighborhoodSelectionViewController: FirstSelectionViewController {
     
-    static func makeVC(selectionType: SelectionType) -> NeighborhoodSelectionViewController {
-        let selectionStoryboard = UIStoryboard(name: "SelectionViewController", bundle: nil)
-        let selectionBaseVC = selectionStoryboard.instantiateViewController(withIdentifier: "FirstSelectionViewController")
-        object_setClass(selectionBaseVC, NeighborhoodSelectionViewController.self)
-        
-        let selectionVC = selectionBaseVC as! NeighborhoodSelectionViewController
-        selectionVC.selectionType = selectionType
-        
-        return selectionVC
+    required convenience init(selectionType: SelectionType) {
+        self.init()
+        self.selectionType = selectionType
     }
 
     weak var delegate: NeighborhoodSelectionDelegate?

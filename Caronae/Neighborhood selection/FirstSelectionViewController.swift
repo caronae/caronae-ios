@@ -16,6 +16,9 @@ class FirstSelectionViewController: UITableViewController, SecondSelectionDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.separatorStyle = .none
+        let cellNib = UINib.init(nibName: "SelectionCell", bundle: nil)
+        self.tableView.register(cellNib, forCellReuseIdentifier: "Selection Cell")
     }
     
     func hasSelected(selections: [String], inFirstLevel firstLevel: String) {
@@ -52,7 +55,9 @@ class FirstSelectionViewController: UITableViewController, SecondSelectionDelega
                 self.hasSelected(selections: [selectedFirstLevel], inFirstLevel: selectedFirstLevel)
             } else {
                 if selectedFirstLevel == "Outra" {
-                    self.performSegue(withIdentifier: "OtherNeighborhood", sender: self)
+                    let otherNeighborhoodVC = ZoneSelectionInputViewController()
+                    otherNeighborhoodVC.delegate = self
+                    self.navigationController?.show(otherNeighborhoodVC, sender: self)
                 } else {
                     self.hasSelected(selections: [selectedFirstLevel], inFirstLevel: selectedFirstLevel)
                 }
@@ -60,24 +65,14 @@ class FirstSelectionViewController: UITableViewController, SecondSelectionDelega
             return
         }
         
-        performSegue(withIdentifier: "ViewSecondLevel", sender: self)
-    }
-
-    
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ViewSecondLevel" {
-            let secondVC = segue.destination as! SecondSelectionViewController
-            secondVC.selectedFirstLevel = self.selectedFirstLevel
-            secondVC.selectionType = self.selectionType
-            secondVC.dictionarySelection = self.dictionarySelection
-            secondVC.cellColor = color(forCell: selectedFirstLevel)
-            secondVC.delegate = self
-        } else if segue.identifier == "OtherNeighborhood" {
-            let zoneSelectionInputVC = segue.destination as! ZoneSelectionInputViewController
-            zoneSelectionInputVC.delegate = self
-        }
+        // Open SecondSelectionViewController
+        let secondVC = SecondSelectionViewController()
+        secondVC.selectedFirstLevel = self.selectedFirstLevel
+        secondVC.selectionType = self.selectionType
+        secondVC.dictionarySelection = self.dictionarySelection
+        secondVC.cellColor = color(forCell: selectedFirstLevel)
+        secondVC.delegate = self
+        self.navigationController?.show(secondVC, sender: self)
     }
 
 }

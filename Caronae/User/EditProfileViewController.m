@@ -249,7 +249,7 @@
 }
 
 - (IBAction)selectNeighborhoodTapped:(id)sender {
-    NeighborhoodSelectionViewController *selectionVC = [NeighborhoodSelectionViewController makeVCWithSelectionType:SelectionTypeOneSelection];
+    NeighborhoodSelectionViewController *selectionVC = [[NeighborhoodSelectionViewController alloc] initWithSelectionType:SelectionTypeOneSelection];
     [selectionVC setDelegate:self];
     [self.navigationController pushViewController:selectionVC animated:YES];
 }

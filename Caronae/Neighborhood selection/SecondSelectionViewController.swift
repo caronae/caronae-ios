@@ -27,6 +27,10 @@ class SecondSelectionViewController: UITableViewController {
             self.navigationItem.rightBarButtonItem = self.doneButton
             self.tableView.allowsMultipleSelection = true
         }
+        
+        self.tableView.separatorStyle = .none
+        let cellNib = UINib.init(nibName: "SelectionCell", bundle: nil)
+        self.tableView.register(cellNib, forCellReuseIdentifier: "Selection Cell")
     }
     
     func finishSelection() {
@@ -77,8 +81,10 @@ class SecondSelectionViewController: UITableViewController {
     }
 
     func updateFinishButton() {
-        if let numberOfSelections = tableView.indexPathsForSelectedRows?.count {
-            doneButton.title = (numberOfSelections > 0) ? "OK" : "Sel. todos"
+        if let _ = tableView.indexPathsForSelectedRows {
+            doneButton.title = "OK"
+        } else {
+            doneButton.title = "Sel. todos"
         }
     }
 

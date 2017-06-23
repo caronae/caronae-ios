@@ -18,6 +18,10 @@ class SelectionCell: UITableViewCell {
         self.cellLabel.text = title
         self.cellColor = color
         
+        if level == .secondLevel {
+            self.selectionStyle = .none
+        }
+        
         updateStyle()
     }
     

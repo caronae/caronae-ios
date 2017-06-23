@@ -102,13 +102,13 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     }
     
     @IBAction func selectCenterTapped(_ sender: Any) {
-        let selectionVC = HubSelectionViewController.makeVC(selectionType: .manySelection, hubTypeDirection: .centers)
+        let selectionVC = HubSelectionViewController.init(selectionType: .manySelection, hubTypeDirection: .centers)
         selectionVC.delegate = self
         self.navigationController?.show(selectionVC, sender: self)
     }
     
     @IBAction func selectNeighborhoodTapped(_ sender: Any) {
-        let selectionVC = NeighborhoodSelectionViewController.makeVC(selectionType: .manySelection)
+        let selectionVC = NeighborhoodSelectionViewController.init(selectionType: .manySelection)
         selectionVC.delegate = self
         self.navigationController?.show(selectionVC, sender: self)
     }
