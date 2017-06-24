@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIView *mutualFriendsView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mutualFriendsCollectionHeight;
 @property (weak, nonatomic) IBOutlet UIView *finishRideView;
+@property (weak, nonatomic) IBOutlet UIView *shareRideView;
 @property (weak, nonatomic) IBOutlet UICollectionView *ridersCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *mutualFriendsCollectionView;
 @property (weak, nonatomic) IBOutlet UIImageView *clockIcon;
@@ -49,5 +50,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *requestRideButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishRideButton;
+@property (weak, nonatomic) IBOutlet UIButton *shareRideButton;
 
 @end

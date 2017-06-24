@@ -93,6 +93,12 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     self.requestsTable.rowHeight = 95.0f;
     self.requestsTableHeight.constant = 0;
     
+    if (![_ride.date isInTheFuture]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.shareRideView removeFromSuperview];
+        });
+    }
+    
     // If the user is the driver of the ride, load pending join requests and hide 'join' button
     if ([self userIsDriver]) {
         [self loadJoinRequests];
@@ -194,8 +200,11 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     _carIconColor.tintColor = color;
     _finishRideButton.layer.borderColor = color.CGColor;
     _finishRideButton.tintColor = color;
+    _shareRideButton.layer.borderColor = color.CGColor;
+    _shareRideButton.tintColor = color;
     _requestRideButton.backgroundColor = color;
     [_finishRideButton setTitleColor:color forState:UIControlStateNormal];
+    [_shareRideButton setTitleColor:color forState:UIControlStateNormal];
 }
 
 - (void)updateMutualFriends {
@@ -276,6 +285,18 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [self finishRide];
     }]];
     [alert presentWithCompletion:nil];
+}
+
+- (IBAction)didTapShareRide:(id)sender {
+    NSString *rideTitle = [NSString stringWithFormat:@"Carona: %@", _titleLabel.text];
+    NSURL *rideLink = [NSURL URLWithString:[NSString stringWithFormat:@"https://caronae.com.br/ride/%ld", (long)_ride.id]];
+    NSArray *rideToShare = @[rideTitle, _dateLabel.text, rideLink];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:rideToShare applicationActivities:nil];
+    NSArray *excludeActivities = @[UIActivityTypeAddToReadingList];
+    activityVC.excludedActivityTypes = excludeActivities;
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 
