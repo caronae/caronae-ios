@@ -1,0 +1,252 @@
+import UIKit
+import SVProgressHUD
+import AFNetworking
+import AudioToolbox
+import CRToast
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var window: UIWindow?
+    var beepSound: SystemSoundID = 0
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        SVProgressHUD.setBackgroundColor(UIColor(white: 0.0, alpha: 0.75))
+        SVProgressHUD.setForegroundColor(.white)
+        
+        AFNetworkActivityIndicatorManager.shared().isEnabled = true
+        AFNetworkReachabilityManager.shared().startMonitoring()
+        
+        configureRealm()
+        configureFirebase()
+        configureFacebook(WithLaunchOptions: launchOptions)
+        
+        // Prepare beepSound for notifications while app is in foreground
+        if let soundURL = Bundle.main.url(forResource: "beep", withExtension: "wav") {
+            AudioServicesCreateSystemSoundID(soundURL as CFURL, &beepSound)
+        }
+        
+        CRToastManager.setDefaultOptions([kCRToastBackgroundColorKey: UIColor(red: 0.114, green: 0.655, blue: 0.365, alpha: 1.0)])
+        
+        // Load the authentication screen if the user is not signed in
+        if UserService.instance.user != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "HomeTabViewController")
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+            self.registerForNotifications()
+            self.checkIfUserNeedsToFinishProfile()
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateUser(notification:)), name: .CaronaeDidUpdateUser, object: nil)
+        
+        // Update application badge number and listen to notification updates
+        self.updateApplicationBadgeNumber()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateApplicationBadgeNumber), name: .CaronaeDidUpdateNotifications, object: nil)
+        
+        // Check if the app was opened by a remote notification
+        if let remoteNotification = launchOptions?[.remoteNotification] as? [AnyHashable : Any] {
+            self.application(application, didReceiveRemoteNotification: remoteNotification)
+        }
+        
+        return true
+    }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        self.disconnectFromFcm()
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        if UserService.instance.user != nil {
+            self.connectToFcm()
+            
+            RideService.instance.updateOfferedRides(success: {
+                NSLog("Offered rides updated")
+            }, error: { error in
+                NSLog("Error updating offered rides (\(error.localizedDescription))")
+            })
+            
+            RideService.instance.updateActiveRides(success: {
+                NSLog("Active rides updated")
+            }, error: { error in
+                NSLog("Error updating active rides (\(error.localizedDescription))")
+            })
+        }
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, options: options)
+    }
+    
+    func didUpdateUser(notification: NSNotification) {
+        if UserService.instance.user != nil {
+            self.registerForNotifications()
+            self.connectToFcm()
+            
+            // Update offered and active rides after login
+            RideService.instance.updateOfferedRides(success: {
+                NSLog("Offered rides updated")
+            }, error: { error in
+                NSLog("Error updating offered rides (\(error.localizedDescription))")
+            })
+            
+            RideService.instance.updateActiveRides(success: {
+                NSLog("Active rides updated")
+            }, error: { error in
+                NSLog("Error updating active rides (\(error.localizedDescription))")
+            })
+            self.checkIfUserNeedsToFinishProfile()
+        } else {
+            // Check if the logout was forced by the server
+            if let signOutRequired = notification.userInfo?[CaronaeSignOutRequiredKey] as? Bool, signOutRequired {
+                CaronaeAlertController.presentOkAlert(withTitle: "Erro de autorização", message: "Ocorreu um erro autenticando seu usuário. Sua chave de acesso pode ter sido redefinida ou suspensa.\n\nPara sua segurança, você será levado à tela de login.", handler: {
+                    self.displayAuthenticationScreen()
+                })
+            } else {
+                self.displayAuthenticationScreen()
+            }
+            
+            self.disconnectFromFcm()
+        }
+    }
+    
+    func checkIfUserNeedsToFinishProfile() {
+        if let user = UserService.instance.user, user.isProfileIncomplete {
+            DispatchQueue.main.async {
+                self.displayFinishProfileScreen()
+            }
+        }
+    }
+    
+    func displayAuthenticationScreen() {
+        let authViewController = TokenViewController.tokenViewController()
+        UIApplication.shared.keyWindow?.replaceViewController(with: authViewController)
+    }
+    
+    func displayFinishProfileScreen() {
+        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+        let welcomeViewController = WelcomeViewController.init()
+        let welcomeNavigationController = UINavigationController.init(rootViewController: welcomeViewController)
+        welcomeNavigationController.modalTransitionStyle = .coverVertical
+        welcomeNavigationController.modalPresentationStyle = .overCurrentContext
+        rootViewController?.present(welcomeNavigationController, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: Facebook SDK
+    
+    func configureFacebook(WithLaunchOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        FBSDKApplicationDelegate.sharedInstance().application(UIApplication.shared, didFinishLaunchingWithOptions: launchOptions)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(FBTokenChanged(notification:)), name: .FBSDKAccessTokenDidChange, object: nil)
+    }
+    
+    func FBTokenChanged(notification: NSNotification) {
+        guard let token = FBSDKAccessToken.current() else {
+            NSLog("User has logged out from Facebook.")
+            return
+        }
+        
+        NSLog("Facebook Access Token did change.")
+        var fbToken = String()
+        if let tokenString = token.tokenString {
+            fbToken = tokenString
+            NSLog("New Facebook Access Token is %@", tokenString)
+        }
+        
+        var fbID = String()
+        if notification.userInfo?[FBSDKAccessTokenDidChangeUserID] != nil {
+            if let userID = token.userID {
+                NSLog("Facebook has loogged in with Facebook ID %@.", userID)
+                fbID = userID
+            }
+        }
+        
+        UserService.instance.updateFacebookID(fbID, token: fbToken, success: {
+            NSLog("Updated user's Facebook credentials on server.")
+        }, error: { error in
+            NSLog("Error updating user's Facebook credentials on server: %@", error.localizedDescription)
+        })
+    }
+    
+    
+    // MARK: Notification handling
+    
+    func setActiveScreenAccordingToNotification(_ userInfo: [AnyHashable : Any]?) {
+        guard let msgType = userInfo?["msgType"] as? String, let tabBarController = self.window?.rootViewController as? TabBarController else {
+            return
+        }
+        
+        switch (msgType) {
+        case "joinRequest":
+            tabBarController.selectedViewController = tabBarController.myRidesNavigationController
+        case "accepted",
+             "refused",
+             "cancelled",
+             "quitter":
+            tabBarController.selectedViewController = tabBarController.activeRidesNavigationController
+        case "finished":
+            tabBarController.selectedViewController = tabBarController.menuNavigationController
+            let menuViewController = tabBarController.menuViewController
+            menuViewController?.openRidesHistory()
+        case "chat":
+            guard let rideID = userInfo?["rideId"] as? Int, let topViewController = UIApplication.shared.topViewController() else {
+                return
+            }
+            
+            // Check if chat for rideID is already opened
+            if topViewController.isKind(of: ChatViewController.self), let chatVC = topViewController as? ChatViewController {
+                if chatVC.ride.id == rideID {
+                    return
+                }
+            }
+            
+            // Open chat for rideID
+            tabBarController.selectedViewController = tabBarController.activeRidesNavigationController
+            let activeRidesViewController = tabBarController.activeRidesViewController
+            activeRidesViewController?.openChatForRide(withID: rideID)
+            
+        default:
+            NSLog("Cannot setActiveScreenAccordingToNotification, msgType unknown")
+            return
+        }
+    }
+    
+    
+    // MARK: Firebase Messaging (FCM)
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        NSLog("Registration for remote notification failed with error: %@", error.localizedDescription)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        self.didReceiveRemoteNotification(userInfo)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        self.didReceiveRemoteNotification(userInfo, completionHandler: completionHandler)
+    }
+    
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        didReceiveLocalNotification(notification)
+    }
+    
+}
+

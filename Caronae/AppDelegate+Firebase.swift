@@ -13,10 +13,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: FIRInstanceIDAPNSTokenType.sandbox)
     }
     
-    func didFailToRegisterForRemoteNotifications(error: NSError) {
-        NSLog("Registration for remote notification failed with error: %@", error.localizedDescription)
-    }
-    
     func tokenRefreshNotification(_ notification: Notification) {
         if let refreshedToken = FIRInstanceID.instanceID().token() {
             NSLog("InstanceID token: \(refreshedToken)")

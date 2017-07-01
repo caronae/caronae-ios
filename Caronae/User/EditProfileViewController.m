@@ -49,6 +49,7 @@
 
 - (void)configureFacebookLoginButton {
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    [loginButton removeConstraints:loginButton.constraints];
     loginButton.readPermissions = @[@"public_profile", @"user_friends"];
     [self.fbButtonView addSubview:loginButton];
     loginButton.translatesAutoresizingMaskIntoConstraints = NO;
