@@ -10,6 +10,7 @@
 
 @property (nonatomic) Ride *ride;
 @property (nonatomic, assign) BOOL shouldOpenChatWindow;
+@property (nonatomic, assign) BOOL rideIsFull;
 
 // Ride info
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

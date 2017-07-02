@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7106CFCD1F098BBB0071C4AE /* DeepLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7106CFC91F098BBB0071C4AE /* DeepLinkManager.swift */; };
+		7106CFCE1F098BBB0071C4AE /* DeeplinkNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7106CFCA1F098BBB0071C4AE /* DeeplinkNavigator.swift */; };
+		7106CFCF1F098BBB0071C4AE /* NotificationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7106CFCB1F098BBB0071C4AE /* NotificationParser.swift */; };
+		7106CFD01F098BBB0071C4AE /* UniversalLinkParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7106CFCC1F098BBB0071C4AE /* UniversalLinkParser.swift */; };
 		713E99B91E8D5FA900F3C9E0 /* Array+compactString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */; };
 		7148D5621EDA1D0A00D85B7D /* String+capitalizedAfter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7148D5611EDA1D0A00D85B7D /* String+capitalizedAfter.swift */; };
 		716BF8981E90B8300019F0CA /* NeighborhoodSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 716BF8971E90B8300019F0CA /* NeighborhoodSelectionViewController.m */; };
@@ -87,6 +91,10 @@
 		2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug.xcconfig"; sourceTree = "<group>"; };
 		48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.release.xcconfig"; sourceTree = "<group>"; };
 		4B35A3BD2CCAED11349480AC /* Pods-CaronaeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaronaeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests.release.xcconfig"; sourceTree = "<group>"; };
+		7106CFC91F098BBB0071C4AE /* DeepLinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeepLinkManager.swift; path = DeepLink/DeepLinkManager.swift; sourceTree = "<group>"; };
+		7106CFCA1F098BBB0071C4AE /* DeeplinkNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeeplinkNavigator.swift; path = DeepLink/DeeplinkNavigator.swift; sourceTree = "<group>"; };
+		7106CFCB1F098BBB0071C4AE /* NotificationParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationParser.swift; path = DeepLink/NotificationParser.swift; sourceTree = "<group>"; };
+		7106CFCC1F098BBB0071C4AE /* UniversalLinkParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UniversalLinkParser.swift; path = DeepLink/UniversalLinkParser.swift; sourceTree = "<group>"; };
 		713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+compactString.swift"; sourceTree = "<group>"; };
 		7148D5611EDA1D0A00D85B7D /* String+capitalizedAfter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+capitalizedAfter.swift"; sourceTree = "<group>"; };
 		716BF8961E90B8300019F0CA /* NeighborhoodSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeighborhoodSelectionViewController.h; sourceTree = "<group>"; };
@@ -229,6 +237,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7106CFC61F09443D0071C4AE /* DeepLink */ = {
+			isa = PBXGroup;
+			children = (
+				7106CFC91F098BBB0071C4AE /* DeepLinkManager.swift */,
+				7106CFCA1F098BBB0071C4AE /* DeeplinkNavigator.swift */,
+				7106CFCB1F098BBB0071C4AE /* NotificationParser.swift */,
+				7106CFCC1F098BBB0071C4AE /* UniversalLinkParser.swift */,
+			);
+			name = DeepLink;
+			sourceTree = "<group>";
+		};
 		9EEF98FE6EBF502EF2E23188 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +292,7 @@
 				A3AD82341E1C70C6006D8ABE /* Services */,
 				A3169C931BED842D00A0D428 /* Supporting Files */,
 				A32B80B71C2E073000FC370A /* User */,
+				7106CFC61F09443D0071C4AE /* DeepLink */,
 				7185362F1F047FFF00C30B97 /* AppDelegate.swift */,
 				A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */,
 				A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */,
@@ -531,6 +551,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
 						};
 					};
 				};
@@ -647,6 +670,7 @@
 				A3CA5DD41E22CA370062522D /* NotificationService.swift in Sources */,
 				A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */,
 				A357EF331C56C5A100AC8096 /* RideListController.m in Sources */,
+				7106CFCF1F098BBB0071C4AE /* NotificationParser.swift in Sources */,
 				A39672381E2E813700DD8ED5 /* RideRequest.swift in Sources */,
 				718536301F047FFF00C30B97 /* AppDelegate.swift in Sources */,
 				A33FABEA1BEE8E93008B4F51 /* CreateRideViewController.m in Sources */,
@@ -686,13 +710,16 @@
 				A3AC169B1E34168A000B5817 /* CaronaeError.swift in Sources */,
 				A374623F1C4D7B59000B802C /* ZoneSelectionInputViewController.m in Sources */,
 				A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */,
+				7106CFD01F098BBB0071C4AE /* UniversalLinkParser.swift in Sources */,
 				A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */,
 				A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */,
 				A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */,
 				A3AD82311E1C6072006D8ABE /* User.swift in Sources */,
 				A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */,
+				7106CFCD1F098BBB0071C4AE /* DeepLinkManager.swift in Sources */,
 				A3CA5DD61E22CA630062522D /* Notification.swift in Sources */,
 				A3F30EE91C08166F0024BE37 /* NSDictionary+dictionaryWithoutNulls.m in Sources */,
+				7106CFCE1F098BBB0071C4AE /* DeeplinkNavigator.swift in Sources */,
 				A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */,
 				A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */,
 				A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */,

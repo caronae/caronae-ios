@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.updateApplicationBadgeNumber()
         NotificationCenter.default.addObserver(self, selector: #selector(updateApplicationBadgeNumber), name: .CaronaeDidUpdateNotifications, object: nil)
         
+        // TODO: check if we still need this
         // Check if the app was opened by a remote notification
         if let remoteNotification = launchOptions?[.remoteNotification] as? [AnyHashable : Any] {
             self.application(application, didReceiveRemoteNotification: remoteNotification)
@@ -80,6 +81,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NSLog("Error updating active rides (\(error.localizedDescription))")
             })
         }
+        
+        // Handle any deeplink
+        deepLinkManager.checkDeepLink()
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -187,49 +191,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    // MARK: Notification handling
-    
-    func setActiveScreenAccordingToNotification(_ userInfo: [AnyHashable : Any]?) {
-        guard let msgType = userInfo?["msgType"] as? String, let tabBarController = self.window?.rootViewController as? TabBarController else {
-            return
-        }
-        
-        switch (msgType) {
-        case "joinRequest":
-            tabBarController.selectedViewController = tabBarController.myRidesNavigationController
-        case "accepted",
-             "refused",
-             "cancelled",
-             "quitter":
-            tabBarController.selectedViewController = tabBarController.activeRidesNavigationController
-        case "finished":
-            tabBarController.selectedViewController = tabBarController.menuNavigationController
-            let menuViewController = tabBarController.menuViewController
-            menuViewController?.openRidesHistory()
-        case "chat":
-            guard let rideID = userInfo?["rideId"] as? Int, let topViewController = UIApplication.shared.topViewController() else {
-                return
-            }
-            
-            // Check if chat for rideID is already opened
-            if topViewController.isKind(of: ChatViewController.self), let chatVC = topViewController as? ChatViewController {
-                if chatVC.ride.id == rideID {
-                    return
-                }
-            }
-            
-            // Open chat for rideID
-            tabBarController.selectedViewController = tabBarController.activeRidesNavigationController
-            let activeRidesViewController = tabBarController.activeRidesViewController
-            activeRidesViewController?.openChatForRide(withID: rideID)
-            
-        default:
-            NSLog("Cannot setActiveScreenAccordingToNotification, msgType unknown")
-            return
-        }
-    }
-    
-    
     // MARK: Firebase Messaging (FCM)
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -246,6 +207,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         didReceiveLocalNotification(notification)
+    }
+    
+    
+    // MARK: Universal Links
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let url = userActivity.webpageURL else {
+                return false
+        }
+        deepLinkManager.handleUniversalLink(url: url)
+        return true
     }
     
 }

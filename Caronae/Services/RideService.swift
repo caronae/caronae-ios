@@ -156,6 +156,21 @@ class RideService: NSObject {
         })
     }
     
+    func getRide(withID id: Int, success: @escaping (_ ride: Ride, _ availableSlots: Int) -> Void, error: @escaping (_ error: Error?) -> Void) {
+        api.get("/ride/\(id)", parameters: nil, success: { task, responseObject in
+            guard let rideJson = responseObject as? [String: Any],
+                let ride = Ride(JSON: rideJson),
+                let availableSlots = rideJson["availableSlots"] as? Int else {
+                    error(CaronaeError.invalidResponse)
+                    return
+            }
+            
+            success(ride, availableSlots)
+        }, failure: { _, err in
+            error(err)
+        })
+    }
+    
     func getRidesHistory(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
         api.get("/ride/getRidesHistory", parameters: nil, success: { task, responseObject in
             guard let ridesJson = responseObject as? [[String: Any]] else {

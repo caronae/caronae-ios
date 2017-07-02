@@ -111,7 +111,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
         }
         // If the app is opening through the notification
         else {
-            setActiveScreenAccordingToNotification(userInfo)
+            deepLinkManager.handleRemoteNotification(userInfo)
             handler(UIBackgroundFetchResult.newData)
         }
     }
@@ -119,7 +119,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     func didReceiveLocalNotification(_ notification: UILocalNotification) {
         if UIApplication.shared.applicationState == .inactive {
             NSLog("Opening app from local notification")
-            setActiveScreenAccordingToNotification(notification.userInfo)
+            deepLinkManager.handleRemoteNotification(notification.userInfo)
         }
     }
     
@@ -144,7 +144,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         NSLog("Opening app from local notification on iOS 10 or greater")
-        setActiveScreenAccordingToNotification(userInfo)
+        deepLinkManager.handleRemoteNotification(userInfo)
         completionHandler()
     }
     

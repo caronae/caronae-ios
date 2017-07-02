@@ -29,6 +29,7 @@
 
 static NSString *CaronaeRequestButtonStateNew              = @"PEGAR CARONA";
 static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    SOLICITAÇÃO ENVIADA    ";
+static NSString *CaronaeRequestButtonStateFullRide         = @"       CARONA CHEIA       ";
 static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluída";
 
 + (instancetype)rideViewControllerForRide:(Ride *)ride {
@@ -168,6 +169,10 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         if ([RideService.instance hasRequestedToJoinRideWithID:_ride.id]) {
             _requestRideButton.enabled = NO;
             [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
+        } else if (_rideIsFull) {
+            _requestRideButton.enabled = NO;
+            [_requestRideButton setTitle:CaronaeRequestButtonStateFullRide forState:UIControlStateNormal];
+            _rideIsFull = NO;
         } else {
             _requestRideButton.enabled = YES;
             [_requestRideButton setTitle:CaronaeRequestButtonStateNew forState:UIControlStateNormal];
@@ -289,7 +294,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (IBAction)didTapShareRide:(id)sender {
     NSString *rideTitle = [NSString stringWithFormat:@"Carona: %@", _titleLabel.text];
-    NSURL *rideLink = [NSURL URLWithString:[NSString stringWithFormat:@"https://caronae.com.br/ride/%ld", (long)_ride.id]];
+    NSURL *rideLink = [NSURL URLWithString:[NSString stringWithFormat:@"https://caronae.com.br/carona/%ld", (long)_ride.id]];
     NSArray *rideToShare = @[rideTitle, _dateLabel.text, rideLink];
     
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:rideToShare applicationActivities:nil];
