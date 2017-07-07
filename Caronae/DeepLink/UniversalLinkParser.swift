@@ -5,18 +5,18 @@ class UniversalLinkParser {
     private init() { }
     
     func parseLink(_ url: URL) -> DeeplinkType? {
-        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true), let host = components.host else {
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
             return nil
         }
         
-        var pathComponents = components.path.components(separatedBy: "/")
-
-        // The first component is empty
-        pathComponents.removeFirst()
+        var pathComponents = components.path.components(separatedBy: "/").dropFirst()
+        guard let resource = pathComponents.popFirst() else {
+            return nil
+        }
         
-        switch host {
+        switch resource {
         case "carona":
-            guard let idString = pathComponents.first, let id = Int(idString) else {
+            guard let idString = pathComponents.popFirst(), let id = Int(idString) else {
                 return nil
             }
             return .loadRide(withID: id)
