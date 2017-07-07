@@ -156,18 +156,30 @@ class RideService: NSObject {
         })
     }
     
-    func getRide(withID id: Int, success: @escaping (_ ride: Ride, _ availableSlots: Int) -> Void, error: @escaping (_ error: Error?) -> Void) {
+    func getRide(withID id: Int, success: @escaping (_ ride: Ride, _ availableSlots: Int) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
         api.get("/ride/\(id)", parameters: nil, success: { task, responseObject in
             guard let rideJson = responseObject as? [String: Any],
                 let ride = Ride(JSON: rideJson),
                 let availableSlots = rideJson["availableSlots"] as? Int else {
-                    error(CaronaeError.invalidResponse)
+                    error(CaronaeError.invalidRide)
                     return
             }
             
             success(ride, availableSlots)
-        }, failure: { _, err in
-            error(err)
+        }, failure: { task, err in
+            NSLog("Failed to load ride with id \(id): \(err.localizedDescription)")
+            
+            var caronaeError: CaronaeError = .invalidResponse
+            if let response = task?.response as? HTTPURLResponse {
+                switch response.statusCode {
+                case 404:
+                    caronaeError = .invalidRide
+                default:
+                    caronaeError = .invalidResponse
+                }
+            }
+            
+            error(caronaeError)
         })
     }
     

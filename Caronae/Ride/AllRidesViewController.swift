@@ -137,7 +137,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     func loadRide(withID id: Int) {
         RideService.instance.getRide(withID: id, success: { ride, availableSlots in
             guard ride.date.isInTheFuture() else {
-                CaronaeAlertController.presentOkAlert(withTitle: "A Carona desejada já oconteceu", message: "Você tentou abrir uma carona que já ocorreu. Você pode encontrar novas caronas através da busca.")
+                CaronaeAlertController.presentOkAlert(withTitle: "Carona encerrada", message: "A carona que você tentou abrir já foi encerrada. Você pode encontrar novas caronas através da busca.")
                 return
             }
             
@@ -146,8 +146,16 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             _ = self.navigationController?.popToRootViewController(animated: false)
             self.navigationController?.pushViewController(rideViewController, animated: true)
         }, error: { error in
-            CaronaeAlertController.presentOkAlert(withTitle: "Falha ao Carregar Carona", message: "Talvez a Carona que você está procurando não exista mais.")
-            NSLog("Failed to load ride \(id). \(error?.localizedDescription ?? "")")
+            var errorMessage: String!
+            
+            switch error.caronaeCode {
+            case .invalidRide:
+                errorMessage = "Talvez a carona que você está procurando não exista mais."
+            default:
+                errorMessage = "Ocorreu um erro ao tentar carregar a carona. Por favor, tente novamente."
+            }
+            
+            CaronaeAlertController.presentOkAlert(withTitle: "Falha ao carregar carona", message: errorMessage)
         })
     }
     

@@ -5,6 +5,7 @@ import Foundation
     case invalidResponse
     case invalidCredentials
     case invalidUser
+    case invalidRide
     case notLoggedIn
     case notLoggedInWithFacebook
 }
@@ -31,6 +32,11 @@ class CaronaeError: NSError {
     class var invalidUser: CaronaeError {
         return self.init(code: .invalidUser,
                          description: "O formato do usuário salvo é inválido.")
+    }
+    
+    class var invalidRide: CaronaeError {
+        return self.init(code: .invalidRide,
+                         description: "O servidor não encontrou a carona solicitada.")
     }
     
     class var notLoggedIn: CaronaeError {
