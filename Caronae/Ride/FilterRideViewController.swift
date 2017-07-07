@@ -23,6 +23,7 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     }
     
     var selectedZone: String?
+    var selectedCampus: String?
     let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
@@ -31,14 +32,17 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         // Load last filtered neighborhoods and center
         if let lastFilteredZone = self.userDefaults.string(forKey: CaronaePreferenceLastFilteredZoneKey),
            let lastFilteredNeighborhoods = self.userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey),
+           let lastFilteredCampus = self.userDefaults.string(forKey: CaronaePreferenceLastFilteredCampusKey),
            let lastFilteredCenters = self.userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredCentersKey) {
             self.selectedZone = lastFilteredZone
             self.selectedNeighborhoods = lastFilteredNeighborhoods
+            self.selectedCampus = lastFilteredCampus
             self.selectedHubs = lastFilteredCenters
         } else {
             self.selectedZone = ""
             self.selectedNeighborhoods = [CaronaeAllNeighborhoodsText]
-            self.selectedHubs = [CaronaeAllHubsText]
+            self.selectedCampus = ""
+            self.selectedHubs = [CaronaeAllCampusesText]
         }
     }
     
@@ -54,6 +58,7 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         self.userDefaults.setValuesForKeys([CaronaePreferenceFilterIsEnabledKey: true,
                                             CaronaePreferenceLastFilteredZoneKey: self.selectedZone!,
                                             CaronaePreferenceLastFilteredNeighborhoodsKey: self.selectedNeighborhoods!,
+                                            CaronaePreferenceLastFilteredCampusKey: self.selectedCampus!,
                                             CaronaePreferenceLastFilteredCentersKey: self.selectedHubs!])
         
         self.performSegue(withIdentifier: "didTapFilterUnwind", sender: self)
@@ -74,7 +79,8 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     // MARK: Selection Methods
     
-    func hasSelected(hubs: [String]) {
+    func hasSelected(hubs: [String], inCampus campus: String) {
+        self.selectedCampus = campus
         self.selectedHubs = hubs
     }
     
@@ -85,7 +91,7 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     func isSearchValid() -> Bool {
         // Test if user has selected a neighborhood and/or hub
-        if self.selectedNeighborhoods! != [CaronaeAllNeighborhoodsText] || self.selectedHubs! != [CaronaeAllHubsText] {
+        if self.selectedNeighborhoods! != [CaronaeAllNeighborhoodsText] || self.selectedHubs! != [CaronaeAllCampusesText] {
             return true
         }
         return false

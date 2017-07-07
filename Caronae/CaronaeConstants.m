@@ -19,12 +19,14 @@ NSNotificationName const CaronaeDidUpdateUserNotification = @"CaronaeDidUpdateUs
 
 NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey = @"lastSearchedNeighborhoods";
 NSString *const CaronaePreferenceLastSearchedZoneKey = @"lastSearchedZone";
+NSString *const CaronaePreferenceLastSearchedCampusKey = @"lastSearchedCampus";
 NSString *const CaronaePreferenceLastSearchedCentersKey = @"lastSearchedCenters";
 NSString *const CaronaePreferenceLastSearchedDateKey = @"lastSearchedDate";
 
 NSString *const CaronaePreferenceFilterIsEnabledKey = @"filterIsEnabled";
 NSString *const CaronaePreferenceLastFilteredZoneKey = @"lastFilteredZone";
 NSString *const CaronaePreferenceLastFilteredNeighborhoodsKey = @"lastFilteredNeighborhoods";
+NSString *const CaronaePreferenceLastFilteredCampusKey = @"lastFilteredCampus";
 NSString *const CaronaePreferenceLastFilteredCentersKey = @"lastFilteredCenters";
 
 
@@ -38,7 +40,7 @@ NSString *const CaronaePlaceholderProfileImage = @"Profile Picture";
 NSString *const CaronaeSearchDateFormat = @"EEEE, dd/MM/yyyy HH:mm";
 NSString *const CaronaeDateLocaleIdentifier = @"pt_BR";
 NSString *const CaronaeAllNeighborhoodsText = @"Todos os Bairros";
-NSString *const CaronaeAllHubsText = @"Todos os Campi";
+NSString *const CaronaeAllCampusesText = @"Todos os Campi";
 
 
 @interface CaronaeConstants ()
@@ -129,8 +131,7 @@ NSString *const CaronaeAllHubsText = @"Todos os Campi";
 
 - (NSDictionary *)centers {
     if (!_centers) {
-        _centers = @{@"Cidade Universitária": @[@"CT", @"CCMN", @"CCS", @"EEFD", @"Reitoria", @"Letras"],
-                     @"Praia Vermelha": @[@"Center - Frente", @"Center - Trás"]
+        _centers = @{@"Cidade Universitária": @[@"CT", @"CCMN", @"CCS", @"EEFD", @"Reitoria", @"Letras"]
                      };
     }
     return _centers;

@@ -39,6 +39,7 @@
 
 @property (nonatomic) NSString *selectedHub;
 @property (nonatomic) NSString *neighborhood;
+@property (nonatomic) NSString *selectedCampus;
 @property (nonatomic) NSString *zone;
 
 @end

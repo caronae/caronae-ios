@@ -53,6 +53,7 @@
         }
         if (lastRideLocation[@"place"]) self.reference.text = lastRideLocation[@"place"];
         if (lastRideLocation[@"route"]) self.route.text = lastRideLocation[@"route"];
+        self.selectedCampus = lastRideLocation[@"campus"];
         if (lastRideLocation[@"hubGoing"]) {
             self.selectedHub = lastRideLocation[@"hubGoing"];
             [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
@@ -86,6 +87,7 @@
     ride.neighborhood = self.neighborhood;
     ride.place = self.reference.text;
     ride.route = self.route.text;
+    ride.campus = self.selectedCampus;
     ride.hub = self.selectedHub;
     ride.notes = description;
     ride.going = going;
@@ -107,9 +109,9 @@
     return ride;
 }
 
-- (void)savePresetLocationZone:(NSString *)zone neighborhood:(NSString *)neighborhood place:(NSString *)place route:(NSString *)route hub:(NSString *)hub description:(NSString *)description slots:(NSNumber*)slots going:(BOOL)going {
+- (void)savePresetLocationZone:(NSString *)zone neighborhood:(NSString *)neighborhood place:(NSString *)place route:(NSString *)route campus:(NSString *)campus hub:(NSString *)hub description:(NSString *)description slots:(NSNumber*)slots going:(BOOL)going {
     NSDictionary *lastRidePresets = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastOfferedRideLocation"];
-    NSMutableDictionary *newPresets = [NSDictionaryOfVariableBindings(zone, neighborhood, place, route, description, slots) mutableCopy];
+    NSMutableDictionary *newPresets = [NSDictionaryOfVariableBindings(zone, neighborhood, place, route, campus, description, slots) mutableCopy];
 
     if (going) {
         newPresets[@"hubGoing"] = hub;
@@ -146,13 +148,13 @@
 
 - (IBAction)didTapCreateButton:(id)sender {
     // Check if the user selected the location and hub
-    if (!self.zone || !self.neighborhood || !self.selectedHub) {
+    if (!self.zone || !self.neighborhood || !self.selectedCampus || !self.selectedHub) {
         [CaronaeAlertController presentOkAlertWithTitle:@"Dados incompletos" message:@"Ops! Parece que você esqueceu de preencher o local da sua carona."];
         return;
     }
     
     Ride *ride = [self generateRideFromView];
-    [self savePresetLocationZone:ride.region neighborhood:ride.neighborhood place:ride.place route:ride.route hub:ride.hub description:ride.notes slots:[NSNumber numberWithInteger: ride.slots] going:ride.going];
+    [self savePresetLocationZone:ride.region neighborhood:ride.neighborhood place:ride.place route:ride.route campus:ride.campus hub:ride.hub description:ride.notes slots:[NSNumber numberWithInteger: ride.slots] going:ride.going];
     
     // Check if the user has selected the routine details
     if (ride.repeatsUntil && ride.weekDays.length == 0) {
@@ -367,7 +369,8 @@
     [self.navigationController pushViewController:selectionVC animated:YES];
 }
 
-- (void)hasSelectedWithHubs:(NSArray<NSString *> *)hubs {
+- (void)hasSelectedWithHubs:(NSArray<NSString *> *)hubs inCampus:(NSString *)campus {
+    self.selectedCampus = campus;
     self.selectedHub = [hubs firstObject];
     [self.center setTitle:self.selectedHub forState:UIControlStateNormal];
 }

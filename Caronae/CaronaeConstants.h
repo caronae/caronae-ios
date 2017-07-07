@@ -12,12 +12,14 @@ extern NSString *const CaronaeFAQPageURLString;
 
 extern NSString *const CaronaePreferenceLastSearchedZoneKey;
 extern NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey;
+extern NSString *const CaronaePreferenceLastSearchedCampusKey;
 extern NSString *const CaronaePreferenceLastSearchedCentersKey;
 extern NSString *const CaronaePreferenceLastSearchedDateKey;
 
 extern NSString *const CaronaePreferenceFilterIsEnabledKey;
 extern NSString *const CaronaePreferenceLastFilteredZoneKey;
 extern NSString *const CaronaePreferenceLastFilteredNeighborhoodsKey;
+extern NSString *const CaronaePreferenceLastFilteredCampusKey;
 extern NSString *const CaronaePreferenceLastFilteredCentersKey;
 
 
@@ -38,7 +40,7 @@ extern NSString *const CaronaePlaceholderProfileImage;
 extern NSString *const CaronaeSearchDateFormat;
 extern NSString *const CaronaeDateLocaleIdentifier;
 extern NSString *const CaronaeAllNeighborhoodsText;
-extern NSString *const CaronaeAllHubsText;
+extern NSString *const CaronaeAllCampusesText;
 
 
 @interface CaronaeConstants : NSObject

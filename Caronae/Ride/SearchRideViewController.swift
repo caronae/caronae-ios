@@ -32,6 +32,7 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     }
     
     var selectedZone: String?
+    var selectedCampus: String?
     var searchedDate: Date?
     let userDefaults = UserDefaults.standard
     let dateFormatter = DateFormatter()
@@ -47,17 +48,20 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         // Load last direction
         directionControl.selectedSegmentIndex = previouslySelectedSegmentIndex
         
-        // Load last searched zone, neighborhoods and neighborhoods
+        // Load last searched zone, neighborhoods, campus and centers
         if let lastSearchedZone = self.userDefaults.string(forKey: CaronaePreferenceLastSearchedZoneKey),
             let lastSearchedNeighborhoods = self.userDefaults.stringArray(forKey: CaronaePreferenceLastSearchedNeighborhoodsKey),
+            let lastSearchedCampus = self.userDefaults.string(forKey: CaronaePreferenceLastSearchedCampusKey),
             let lastSearchedCenters = self.userDefaults.stringArray(forKey: CaronaePreferenceLastSearchedCentersKey) {
             selectedZone = lastSearchedZone
             selectedNeighborhoods = lastSearchedNeighborhoods
+            selectedCampus = lastSearchedCampus
             selectedHubs = lastSearchedCenters
         } else {
             selectedZone = ""
             selectedNeighborhoods = [CaronaeAllNeighborhoodsText]
-            selectedHubs = [CaronaeAllHubsText]
+            selectedCampus = ""
+            selectedHubs = [CaronaeAllCampusesText]
         }
         
         // Load last searched date
@@ -82,12 +86,13 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         // Save search parameters for the next search
         self.userDefaults.setValuesForKeys([CaronaePreferenceLastSearchedZoneKey: self.selectedZone!,
                                             CaronaePreferenceLastSearchedNeighborhoodsKey: self.selectedNeighborhoods!,
+                                            CaronaePreferenceLastSearchedCampusKey: self.selectedCampus!,
                                             CaronaePreferenceLastSearchedCentersKey: self.selectedHubs!,
                                             CaronaePreferenceLastSearchedDateKey: self.searchedDate!])
         
         let going = (self.directionControl.selectedSegmentIndex == 0)
         
-        let searchParams = FilterParameters(going: going, neighborhoods: selectedNeighborhoods, zone: selectedZone, hubs: selectedHubs, date: searchedDate)
+        let searchParams = FilterParameters(going: going, neighborhoods: selectedNeighborhoods, zone: selectedZone, hubs: selectedHubs, campus: selectedCampus, date: searchedDate)
         delegate?.searchedForRide(withParameters: searchParams)
         
         self.performSegue(withIdentifier: "showResultsUnwind", sender: self)
@@ -122,7 +127,8 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         dateButton.setTitle(dateString, for: .normal)
     }
     
-    func hasSelected(hubs: [String]) {
+    func hasSelected(hubs: [String], inCampus campus: String) {
+        self.selectedCampus = campus
         self.selectedHubs = hubs
     }
     

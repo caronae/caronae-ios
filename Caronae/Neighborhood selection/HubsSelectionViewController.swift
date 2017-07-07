@@ -1,7 +1,7 @@
 import UIKit
 
 @objc protocol HubSelectionDelegate: class {
-    func hasSelected(hubs: [String])
+    func hasSelected(hubs: [String], inCampus campus: String)
 }
 
 @objc class HubSelectionViewController: FirstSelectionViewController {
@@ -27,7 +27,7 @@ import UIKit
         self.title = "Campi"
         
         if selectionType == .manySelection {
-            firstLevelOptions = [CaronaeAllHubsText]
+            firstLevelOptions = [CaronaeAllCampusesText]
         }
         
         if hubTypeDirection == .hubs {
@@ -42,7 +42,7 @@ import UIKit
     override func hasSelected(selections: [String], inFirstLevel firstLevel: String) {
         super.hasSelected(selections: selections, inFirstLevel: firstLevel)
         
-        delegate?.hasSelected(hubs: selections)
+        delegate?.hasSelected(hubs: selections, inCampus: firstLevel)
     }
 
 }
