@@ -185,7 +185,7 @@ class RideService: NSObject {
         })
     }
 
-    func createRide(_ ride: Ride, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func createRide(_ ride: Ride, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         api.post("/ride", parameters: ride.toJSON(), success: { task, responseObject in
             guard let ridesJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
@@ -208,7 +208,7 @@ class RideService: NSObject {
                 error(realmError)
             }
             
-            success(rides)
+            success()
         }, failure: { _, err in
             error(err)
         })

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -100,7 +100,7 @@ Cgo
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sua identificação aqui" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZBE-h4-ywG" userLabel="ID Text Field" customClass="CaronaeTextField">
-                                                <rect key="frame" x="40" y="346" width="295" height="30"/>
+                                                <rect key="frame" x="40" y="346" width="295" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="sVR-jG-HbO"/>
                                                 </constraints>
@@ -108,7 +108,7 @@ Cgo
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sua chave aqui" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nW8-HP-hhp" userLabel="Token Text Field" customClass="CaronaeTextField">
-                                                <rect key="frame" x="40" y="386" width="295" height="30"/>
+                                                <rect key="frame" x="40" y="386" width="295" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="7v7-j9-6O8"/>
                                                 </constraints>
@@ -350,7 +350,7 @@ caronas ativas.</string>
         <!--Criar carona-->
         <scene sceneID="SI7-YK-2jS">
             <objects>
-                <viewController storyboardIdentifier="CreateRide" automaticallyAdjustsScrollViewInsets="NO" id="Frl-vE-K7W" customClass="CreateRideViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateRide" automaticallyAdjustsScrollViewInsets="NO" id="Frl-vE-K7W" customClass="CreateRideViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="taK-q3-UBl"/>
                         <viewControllerLayoutGuide type="bottom" id="1y9-Cn-qo1"/>
@@ -465,7 +465,7 @@ caronas ativas.</string>
                                                 <rect key="frame" x="20" y="103" width="360" height="40"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Referência Ex: Shopping Tijuca" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ah4-oz-Cgc" customClass="CaronaeTextField">
-                                                        <rect key="frame" x="0.0" y="5" width="360" height="30"/>
+                                                        <rect key="frame" x="0.0" y="14" width="360" height="32"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textField>
@@ -506,7 +506,7 @@ caronas ativas.</string>
                                                 <rect key="frame" x="20" y="153" width="360" height="40"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rota Ex: Maracanã, Leopoldina, Linha Vermelha" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L9i-M2-F5w" customClass="CaronaeTextField">
-                                                        <rect key="frame" x="0.0" y="5" width="360" height="30"/>
+                                                        <rect key="frame" x="0.0" y="14" width="360" height="32"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                     </textField>
@@ -722,7 +722,7 @@ caronas ativas.</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lel-3x-aaS" userLabel="Week buttons">
                                                         <rect key="frame" x="51" y="33" width="258" height="30"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0u-Of-kIS">
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0u-Of-kIS">
                                                                 <rect key="frame" x="8" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Seg">
@@ -732,10 +732,10 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineMondayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="dWw-Uv-5lg"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="pcG-Xp-URI"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JH2-vq-jd4">
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JH2-vq-jd4">
                                                                 <rect key="frame" x="43" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Ter">
@@ -745,10 +745,10 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineTuesdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="cLv-mo-pvV"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="Ts2-NH-P7Y"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJg-q1-hZ7">
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJg-q1-hZ7">
                                                                 <rect key="frame" x="78" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Qua">
@@ -758,10 +758,10 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineWednesdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="BHJ-Rb-Xvb"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="PQu-3e-Ndx"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLA-ws-d1e">
+                                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLA-ws-d1e">
                                                                 <rect key="frame" x="113" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Qui">
@@ -771,10 +771,10 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineThursdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="7s2-Fu-k4a"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="EVU-Lv-KW3"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBC-l1-G8T">
+                                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBC-l1-G8T">
                                                                 <rect key="frame" x="148" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Sex">
@@ -784,10 +784,10 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineFridayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="vZ0-P4-fE9"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="6j8-aO-Rxi"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hW-ff-mhz">
+                                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hW-ff-mhz">
                                                                 <rect key="frame" x="183" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Sab">
@@ -797,10 +797,10 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineSaturdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="8te-7a-hkg"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="xnR-5K-hDt"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eim-cd-0J5">
+                                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eim-cd-0J5">
                                                                 <rect key="frame" x="218" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Dom">
@@ -810,7 +810,7 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineSundayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="dcS-0M-nQF"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="hnV-Vo-6f2"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -913,7 +913,7 @@ caronas ativas.</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RFV-cv-WBa" userLabel="Duration selection">
                                                         <rect key="frame" x="51" y="101" width="258" height="20"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleAspectFit" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSP-Jw-oid">
+                                                            <button opaque="NO" tag="2" contentMode="scaleAspectFit" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSP-Jw-oid">
                                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="  2 meses" image="Radio">
@@ -924,7 +924,7 @@ caronas ativas.</string>
                                                                     <action selector="routineDurationButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="Lry-iR-hH7"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzb-D4-cJJ">
+                                                            <button opaque="NO" tag="3" contentMode="scaleAspectFit" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzb-D4-cJJ">
                                                                 <rect key="frame" x="92" y="0.0" width="75" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="  3 meses" image="Radio">
@@ -935,7 +935,7 @@ caronas ativas.</string>
                                                                     <action selector="routineDurationButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="4cd-Rn-2BS"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMq-jd-Jok" userLabel="4 meses">
+                                                            <button opaque="NO" tag="4" contentMode="scaleAspectFit" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMq-jd-Jok" userLabel="4 meses">
                                                                 <rect key="frame" x="183" y="0.0" width="75" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="  4 meses" image="Radio">
@@ -1517,16 +1517,16 @@ caronas ativas.</string>
                         <barButtonItem key="leftBarButtonItem" title="Cancelar" id="oHO-Oe-5U4">
                             <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="goBack:" destination="Frl-vE-K7W" id="HCi-uo-aWP"/>
+                                <action selector="didTapCancelButton:" destination="Frl-vE-K7W" id="hxc-mM-hHs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="900"/>
                     <connections>
-                        <outlet property="arrivalTimeButton" destination="5VK-HF-o3E" id="bQW-Nw-HE5"/>
-                        <outlet property="center" destination="vII-kc-e4x" id="eTU-7w-7IQ"/>
+                        <outlet property="centerButton" destination="vII-kc-e4x" id="PpV-zR-rGr"/>
                         <outlet property="createRideButton" destination="dRa-H4-Av0" id="m82-Iu-44R"/>
+                        <outlet property="dateButton" destination="5VK-HF-o3E" id="mCw-5b-Qbo"/>
                         <outlet property="neighborhoodButton" destination="vvR-Qc-Z9E" id="emf-Fl-yng"/>
                         <outlet property="notes" destination="R6l-zH-LMn" id="cRY-La-vfi"/>
                         <outlet property="reference" destination="Ah4-oz-Cgc" id="OUH-Ry-aeX"/>
@@ -1534,16 +1534,9 @@ caronas ativas.</string>
                         <outlet property="routineDuration2MonthsButton" destination="gSP-Jw-oid" id="fQf-EW-Znd"/>
                         <outlet property="routineDuration3MonthsButton" destination="Zzb-D4-cJJ" id="l9e-hK-Y9x"/>
                         <outlet property="routineDuration4MonthsButton" destination="LMq-jd-Jok" id="T6G-Ji-xX8"/>
-                        <outlet property="routineFriButton" destination="NBC-l1-G8T" id="LfP-dM-C3o"/>
-                        <outlet property="routineMonButton" destination="e0u-Of-kIS" id="G0b-1G-COi"/>
                         <outlet property="routinePatternHeight" destination="oVb-37-Jvl" id="P5D-oM-Ied"/>
                         <outlet property="routinePatternView" destination="cMq-cP-Q5E" id="jk5-yJ-Xnd"/>
-                        <outlet property="routineSatButton" destination="3hW-ff-mhz" id="hgj-LI-270"/>
-                        <outlet property="routineSunButton" destination="eim-cd-0J5" id="HPf-hL-UFs"/>
                         <outlet property="routineSwitch" destination="lia-S3-6b7" id="LSb-rp-Yhg"/>
-                        <outlet property="routineThuButton" destination="HLA-ws-d1e" id="694-pp-JjZ"/>
-                        <outlet property="routineTueButton" destination="JH2-vq-jd4" id="APP-tm-yBC"/>
-                        <outlet property="routineWedButton" destination="gJg-q1-hZ7" id="Wto-CA-J4L"/>
                         <outlet property="segmentedControl" destination="wWF-a6-BXF" id="iB5-jJ-3M4"/>
                         <outlet property="slotsLabel" destination="w8D-Fs-Xhk" id="uo8-nY-nI2"/>
                         <outlet property="slotsStepper" destination="yHO-6g-1Vp" id="f6y-gZ-jgi"/>
@@ -1696,7 +1689,7 @@ nenhuma carona.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RWO-JP-mny" userLabel="Assunto">
-                                                <rect key="frame" x="20" y="83" width="360" height="67"/>
+                                                <rect key="frame" x="20" y="83" width="360" height="55"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASSUNTO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E20-6x-IkA">
                                                         <rect key="frame" x="0.0" y="10" width="69" height="17"/>
@@ -1705,7 +1698,7 @@ nenhuma carona.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Assunto (opcional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bPu-xJ-teJ" customClass="CaronaeTextField">
-                                                        <rect key="frame" x="0.0" y="32" width="360" height="30"/>
+                                                        <rect key="frame" x="0.0" y="32" width="360" height="32"/>
                                                         <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1721,7 +1714,7 @@ nenhuma carona.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niF-RV-GOB" userLabel="Mensagem">
-                                                <rect key="frame" x="20" y="165" width="360" height="417"/>
+                                                <rect key="frame" x="20" y="153" width="360" height="429"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MENSAGEM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXm-bY-nhq">
                                                         <rect key="frame" x="0.0" y="10" width="82" height="17"/>
@@ -1730,7 +1723,7 @@ nenhuma carona.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ysw-F7-F0j">
-                                                        <rect key="frame" x="0.0" y="32" width="360" height="380"/>
+                                                        <rect key="frame" x="0.0" y="32" width="360" height="392"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="mS0-3w-NhH"/>
@@ -3067,7 +3060,7 @@ nenhuma carona.</string>
                                 <rect key="frame" x="0.0" y="64" width="400" height="836"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8i-Rm-FBJ" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="727.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="701.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wC6-CD-nF5" userLabel="ID">
                                                 <rect key="frame" x="10" y="8" width="380" height="80"/>
@@ -3495,7 +3488,7 @@ FOTO</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UWq-sz-O1O" userLabel="Contacts">
-                                                <rect key="frame" x="15" y="222" width="370" height="150.5"/>
+                                                <rect key="frame" x="15" y="222" width="370" height="124.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONTATO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjM-je-3ke">
                                                         <rect key="frame" x="0.0" y="0.0" width="68" height="17"/>
@@ -3504,13 +3497,13 @@ FOTO</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Gfe-eh-A7H" userLabel="Email icon">
-                                                        <rect key="frame" x="0.0" y="69.5" width="17" height="16"/>
+                                                        <rect key="frame" x="0.0" y="63" width="17" height="16"/>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Mds-A1-ZMf" userLabel="Phone icon">
-                                                        <rect key="frame" x="0.0" y="117.5" width="16" height="20"/>
+                                                        <rect key="frame" x="0.0" y="98" width="16" height="20"/>
                                                     </imageView>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21 99875-5678" borderStyle="roundedRect" placeholder="Telefone celular" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-zR-zbO" userLabel="Phone" customClass="CaronaePhoneTextField">
-                                                        <rect key="frame" x="27" y="105.5" width="343" height="30"/>
+                                                        <rect key="frame" x="27" y="92.5" width="343" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="Hvq-Jb-OBD"/>
                                                         </constraints>
@@ -3535,7 +3528,7 @@ FOTO</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="renan@hotmail.com" borderStyle="roundedRect" placeholder="E-mail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nyH-l3-oLF" userLabel="Email" customClass="CaronaeTextField">
-                                                        <rect key="frame" x="27" y="55.5" width="343" height="30"/>
+                                                        <rect key="frame" x="27" y="55.5" width="343" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="rmS-ns-3Lz"/>
                                                         </constraints>
@@ -3645,7 +3638,7 @@ FOTO</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2a-DZ-ZsW" userLabel="Location">
-                                                <rect key="frame" x="15" y="397.5" width="370" height="85"/>
+                                                <rect key="frame" x="15" y="371.5" width="370" height="85"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCALIDADE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftJ-lK-bEs" userLabel="Localidade">
                                                         <rect key="frame" x="0.0" y="0.0" width="89" height="17"/>
@@ -3784,7 +3777,7 @@ FOTO</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9E-Xw-3cg" userLabel="Has Car">
-                                                <rect key="frame" x="15" y="487.5" width="370" height="50"/>
+                                                <rect key="frame" x="15" y="461.5" width="370" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Possui carro?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8h-kP-2X5">
                                                         <rect key="frame" x="0.0" y="16" width="318" height="18"/>
@@ -3840,7 +3833,7 @@ FOTO</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQY-BS-Gqj" userLabel="Car details">
-                                                <rect key="frame" x="15" y="547.5" width="370" height="165"/>
+                                                <rect key="frame" x="15" y="521.5" width="370" height="165"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOBRE SEU CARRO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8t-lO-Jqk">
                                                         <rect key="frame" x="0.0" y="0.0" width="132" height="17"/>
@@ -3849,7 +3842,7 @@ FOTO</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="PSR 4567" borderStyle="roundedRect" placeholder="Placa" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZA1-8O-6ah" userLabel="Plate" customClass="CaronaeTextField">
-                                                        <rect key="frame" x="37" y="55.5" width="333" height="30"/>
+                                                        <rect key="frame" x="37" y="55.5" width="333" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="478-cx-0T8"/>
                                                         </constraints>
@@ -3868,7 +3861,7 @@ FOTO</string>
                                                         </variation>
                                                     </textField>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="aA3-hm-80U" userLabel="Car Icon">
-                                                        <rect key="frame" x="0.0" y="121" width="27" height="15"/>
+                                                        <rect key="frame" x="0.0" y="101.5" width="27" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="mrX-gz-9pd">
                                                                 <variation key="widthClass=compact" constant="30"/>
@@ -3891,7 +3884,7 @@ FOTO</string>
                                                         </variation>
                                                     </imageView>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="HONDA CIVIC" borderStyle="roundedRect" placeholder="Modelo" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ack-vy-A7z" userLabel="Model" customClass="CaronaeTextField">
-                                                        <rect key="frame" x="37" y="105.5" width="333" height="30"/>
+                                                        <rect key="frame" x="37" y="92.5" width="333" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="QeR-UZ-a3h"/>
                                                         </constraints>
@@ -3916,7 +3909,7 @@ FOTO</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ColorIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7cO-dW-lj8" userLabel="Car Color Icon">
-                                                        <rect key="frame" x="3" y="169.5" width="20" height="20"/>
+                                                        <rect key="frame" x="3" y="137" width="20" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="15" id="f8y-eS-b9V">
                                                                 <variation key="widthClass=compact" constant="30"/>
@@ -3945,7 +3938,7 @@ FOTO</string>
                                                         </variation>
                                                     </imageView>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Azul" borderStyle="roundedRect" placeholder="Cor" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eDe-Qb-t67" userLabel="Color" customClass="CaronaeTextField">
-                                                        <rect key="frame" x="37" y="155.5" width="333" height="30"/>
+                                                        <rect key="frame" x="37" y="129.5" width="333" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="JsV-ht-chF"/>
                                                             <constraint firstAttribute="width" constant="330" id="tf4-Lm-ctF"/>
@@ -3967,7 +3960,7 @@ FOTO</string>
                                                         </variation>
                                                     </textField>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="oTl-se-EDm" userLabel="Car Icon">
-                                                        <rect key="frame" x="0.0" y="71" width="27" height="15"/>
+                                                        <rect key="frame" x="0.0" y="64.5" width="27" height="15"/>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
@@ -4036,12 +4029,12 @@ FOTO</string>
                                                         <exclude reference="2b8-Sr-ItU"/>
                                                         <exclude reference="Jyf-Mo-KOp"/>
                                                         <exclude reference="wNK-zQ-Fvx"/>
+                                                        <exclude reference="QsC-U5-GTe"/>
+                                                        <exclude reference="rjG-HV-tQ6"/>
                                                         <exclude reference="90V-ob-lKK"/>
                                                         <exclude reference="kaN-W4-vbR"/>
                                                         <exclude reference="uw7-sB-eDs"/>
                                                         <exclude reference="wbm-Tr-SFx"/>
-                                                        <exclude reference="QsC-U5-GTe"/>
-                                                        <exclude reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
@@ -4072,12 +4065,12 @@ FOTO</string>
                                                         <include reference="2b8-Sr-ItU"/>
                                                         <include reference="Jyf-Mo-KOp"/>
                                                         <include reference="wNK-zQ-Fvx"/>
+                                                        <include reference="QsC-U5-GTe"/>
+                                                        <include reference="rjG-HV-tQ6"/>
                                                         <include reference="90V-ob-lKK"/>
                                                         <include reference="kaN-W4-vbR"/>
                                                         <include reference="uw7-sB-eDs"/>
                                                         <include reference="wbm-Tr-SFx"/>
-                                                        <include reference="QsC-U5-GTe"/>
-                                                        <include reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -7153,12 +7146,12 @@ nenhuma carona.</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="IgS-9T-cpR"/>
         <segue reference="hM9-nM-k0Y"/>
         <segue reference="DwZ-AK-niy"/>
         <segue reference="H8O-Mc-OH3"/>
-        <segue reference="yIa-C3-QN8"/>
         <segue reference="ugX-qh-OjL"/>
-        <segue reference="IgS-9T-cpR"/>
+        <segue reference="VJh-c3-WKd"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
