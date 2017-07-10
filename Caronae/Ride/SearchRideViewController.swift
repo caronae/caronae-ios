@@ -33,7 +33,12 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     var selectedZone: String?
     var selectedCampus: String?
-    var searchedDate: Date?
+    var selectedDate: Date? {
+        didSet {
+            let dateString = dateFormatter.string(from: selectedDate!)
+            dateButton.setTitle(dateString, for: .normal)
+        }
+    }
     let userDefaults = UserDefaults.standard
     let dateFormatter = DateFormatter()
     
@@ -66,13 +71,10 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         
         // Load last searched date
         if let lastSearchedDate = self.userDefaults.object(forKey: CaronaePreferenceLastSearchedDateKey) as? Date, lastSearchedDate.isInTheFuture() {
-            searchedDate = lastSearchedDate
+            selectedDate = lastSearchedDate
         } else {
-            searchedDate = Date.nextHour
+            selectedDate = Date.nextHour
         }
-        
-        let dateString = dateFormatter.string(from: searchedDate!)
-        dateButton.setTitle(dateString, for: .normal)
     }
     
     
@@ -88,11 +90,11 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
                                             CaronaePreferenceLastSearchedNeighborhoodsKey: self.selectedNeighborhoods!,
                                             CaronaePreferenceLastSearchedCampusKey: self.selectedCampus!,
                                             CaronaePreferenceLastSearchedCentersKey: self.selectedHubs!,
-                                            CaronaePreferenceLastSearchedDateKey: self.searchedDate!])
+                                            CaronaePreferenceLastSearchedDateKey: self.selectedDate!])
         
         let going = (self.directionControl.selectedSegmentIndex == 0)
         
-        let searchParams = FilterParameters(going: going, neighborhoods: selectedNeighborhoods, zone: selectedZone, hubs: selectedHubs, campus: selectedCampus, date: searchedDate)
+        let searchParams = FilterParameters(going: going, neighborhoods: selectedNeighborhoods, zone: selectedZone, hubs: selectedHubs, campus: selectedCampus, date: selectedDate)
         delegate?.searchedForRide(withParameters: searchParams)
         
         self.performSegue(withIdentifier: "showResultsUnwind", sender: self)
@@ -100,7 +102,7 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     @IBAction func didTapDate(_ sender: Any) {
         self.view.endEditing(true)
-        let datePicker = ActionSheetDatePicker.init(title: "Hora", datePickerMode: .dateAndTime, selectedDate: self.searchedDate, target: self, action: #selector(timeWasSelected(selectedTime:)), origin: sender)
+        let datePicker = ActionSheetDatePicker.init(title: "Hora", datePickerMode: .dateAndTime, selectedDate: self.selectedDate, target: self, action: #selector(timeWasSelected(selectedTime:)), origin: sender)
         datePicker?.minuteInterval = 30
         datePicker?.minimumDate = Date.currentHour
         datePicker?.show()
@@ -122,9 +124,7 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     // MARK: Selection Methods
     
     func timeWasSelected(selectedTime: Date) {
-        searchedDate = selectedTime
-        let dateString = dateFormatter.string(from: searchedDate!)
-        dateButton.setTitle(dateString, for: .normal)
+        selectedDate = selectedTime
     }
     
     func hasSelected(hubs: [String], inCampus campus: String) {
