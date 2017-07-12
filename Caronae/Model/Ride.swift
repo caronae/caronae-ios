@@ -7,7 +7,6 @@ class Ride: Object, Mappable {
     dynamic var region: String!
     dynamic var neighborhood: String!
     dynamic var place: String!
-    dynamic var campus: String!
     dynamic var hub: String!
     dynamic var route: String!
     dynamic var notes: String!
@@ -44,7 +43,6 @@ class Ride: Object, Mappable {
         region <- map["myzone"]
         neighborhood <- map["neighborhood"]
         place <- map["place"]
-        campus <- map["campus"]
         hub <- map["hub"]
         route <- map["route"]
         notes <- map["description"]

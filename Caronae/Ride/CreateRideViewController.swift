@@ -54,7 +54,6 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     }
     
     var selectedZone = String()
-    var selectedCampus = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,9 +95,7 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
                 }
             }
             
-            if let lastCampusGoing = lastRideLocation["campusGoing"] as? String,
-               let lastHubGoing = lastRideLocation["hubGoing"] as? String {
-                selectedCampus = lastCampusGoing
+            if let lastHubGoing = lastRideLocation["hubGoing"] as? String {
                 selectedHub = lastHubGoing
             }
         }
@@ -123,7 +120,6 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         ride.neighborhood = selectedNeighborhood
         ride.place = reference.text
         ride.route = route.text
-        ride.campus = selectedCampus
         ride.hub = selectedHub
         ride.notes = description;
         ride.going = going;
@@ -157,17 +153,13 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         
         if ride.going {
             newPresets["hubGoing"] = ride.hub
-            newPresets["campusGoing"] = ride.campus
-            if let lastHubReturning = lastRidePresets?["hubReturning"], let lastCampusReturning = lastRidePresets?["campusReturning"] {
+            if let lastHubReturning = lastRidePresets?["hubReturning"] {
                 newPresets["hubReturning"] = lastHubReturning
-                newPresets["campusReturning"] = lastCampusReturning
             }
         } else {
             newPresets["hubReturning"] = ride.hub
-            newPresets["campusReturning"] = ride.campus
-            if let lastHubGoing = lastRidePresets?["hubGoing"], let lastCampusGoing = lastRidePresets?["campusGoing"] {
+            if let lastHubGoing = lastRidePresets?["hubGoing"] {
                 newPresets["hubGoing"] = lastHubGoing
-                newPresets["campusGoing"] = lastCampusGoing
             }
         }
         
@@ -195,7 +187,7 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     @IBAction func didTapCreateButton(_ sender: Any) {
         // Check if the user selected the location and hub
-        if selectedZone.isEmpty || selectedNeighborhood.isEmpty || selectedCampus.isEmpty || selectedHub.isEmpty {
+        if selectedZone.isEmpty || selectedNeighborhood.isEmpty || selectedHub.isEmpty {
             CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que você esqueceu de preencher o local da sua carona.")
             return
         }
@@ -291,19 +283,15 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         view.endEditing(true)
         guard let lastRideLocation = userDefaults.dictionary(forKey: "lastOfferedRideLocation") else {
             selectedHub = ""
-            selectedCampus = ""
             return
         }
         
-        if sender.selectedSegmentIndex == 0, let hubGoing = lastRideLocation["hubGoing"] as? String, let campusGoing = lastRideLocation["campusGoing"] as? String {
+        if sender.selectedSegmentIndex == 0, let hubGoing = lastRideLocation["hubGoing"] as? String {
             selectedHub = hubGoing
-            selectedCampus = campusGoing
-        } else if sender.selectedSegmentIndex == 1, let hubReturning = lastRideLocation["hubReturning"] as? String, let campusReturning = lastRideLocation["campusReturning"] as? String {
+        } else if sender.selectedSegmentIndex == 1, let hubReturning = lastRideLocation["hubReturning"] as? String {
             selectedHub = hubReturning
-            selectedCampus = campusReturning
         } else {
             selectedHub = ""
-            selectedCampus = ""
         }
     }
     
@@ -336,7 +324,6 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     }
     
     func hasSelected(hubs: [String], inCampus campus: String) {
-        self.selectedCampus = campus
         self.selectedHub = hubs.first!
     }
     
