@@ -43,12 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.updateApplicationBadgeNumber()
         NotificationCenter.default.addObserver(self, selector: #selector(updateApplicationBadgeNumber), name: .CaronaeDidUpdateNotifications, object: nil)
         
-        // TODO: check if we still need this
-        // Check if the app was opened by a remote notification
-        if let remoteNotification = launchOptions?[.remoteNotification] as? [AnyHashable : Any] {
-            self.application(application, didReceiveRemoteNotification: remoteNotification)
-        }
-        
         return true
     }
     

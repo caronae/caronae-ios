@@ -293,7 +293,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (IBAction)didTapShareRide:(id)sender {
-    NSString *rideTitle = [NSString stringWithFormat:@"Carona: %@", _titleLabel.text];
+    NSString *rideTitle = [NSString stringWithFormat:@"Carona: %@", _ride.title];
     NSURL *rideLink = [NSURL URLWithString:[NSString stringWithFormat:@"https://caronae.com.br/carona/%ld", (long)_ride.id]];
     NSArray *rideToShare = @[rideTitle, _dateLabel.text, rideLink];
     
