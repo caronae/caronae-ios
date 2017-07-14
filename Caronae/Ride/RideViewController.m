@@ -256,7 +256,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (IBAction)didTapRequestRide:(UIButton *)sender {
     CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Deseja mesmo solicitar a carona?"
-                                                                             message:@"Ao confirmar, você estará ocupando uma vaga nesta carona."
+                                                                             message:@"Ao confirmar, o motorista receberá uma notificação e poderá aceitar ou recusar."
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Solicitar" style:SDCAlertActionStyleRecommended handler:^(SDCAlertAction *action){
@@ -398,7 +398,26 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     }];
 }
 
-- (void)joinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(JoinRequestCell *)cell {
+- (void)handleAcceptedJoinRequest:(User *)requestingUser cell:(JoinRequestCell *)cell {
+    [cell setButtonsEnabled:NO];
+    
+    if ([self availableSlots] == 1 && _requesters.count > 1) {
+        CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Deseja mesmo aceitar caronista?"
+                                                                                 message:@"Ao aceitar, sua carona estará cheia e você irá recusar os outros caronistas."
+                                                                          preferredStyle:SDCAlertControllerStyleAlert];
+        [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:^(SDCAlertAction *action){
+            [cell setButtonsEnabled:YES];
+        }]];
+        [alert addAction:[SDCAlertAction actionWithTitle:@"Aceitar" style:SDCAlertActionStyleRecommended handler:^(SDCAlertAction *action){
+            [self answerJoinRequest:requestingUser hasAccepted:YES cell:cell];
+        }]];
+        [alert presentWithCompletion:nil];
+    } else {
+        [self answerJoinRequest:requestingUser hasAccepted:YES cell:cell];
+    }
+}
+
+- (void)answerJoinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(JoinRequestCell *)cell {
     [cell setButtonsEnabled:NO];
     
     [RideService.instance answerRequestOnRideWithID:_ride.id fromUser:requestingUser accepted:accepted success:^{
@@ -406,11 +425,20 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [self removeJoinRequest:requestingUser];
         if (accepted) {
             [_ridersCollectionView reloadData];
+            [self removeAllJoinRequestIfNeeded];
         }
     } error:^(NSError * _Nonnull error) {
         NSLog(@"Error accepting join request: %@", error.localizedDescription);
         [cell setButtonsEnabled:YES];
     }];
+}
+
+- (void)removeAllJoinRequestIfNeeded {
+    if ([self availableSlots] == 0) {
+        for (User *requester in _requesters) {
+            [self removeJoinRequest:requester];
+        }
+    }
 }
 
 - (void)removeJoinRequest:(User *)requestingUser {

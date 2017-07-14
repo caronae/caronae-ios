@@ -6,7 +6,8 @@
 
 @protocol JoinRequestDelegate <NSObject>
 
-- (void)joinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(JoinRequestCell *)cell;
+- (void)handleAcceptedJoinRequest:(User *)requestingUser cell:(JoinRequestCell *)cell;
+- (void)answerJoinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(JoinRequestCell *)cell;
 - (void)tappedUserDetailsForRequest:(User *)user;
 
 @end

@@ -77,4 +77,8 @@ extension RideViewController {
         }
     }
     
+    func availableSlots() -> Int {
+        return ride.slots - ride.riders.count
+    }
+    
 }
