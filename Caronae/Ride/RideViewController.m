@@ -256,7 +256,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (IBAction)didTapRequestRide:(UIButton *)sender {
     CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Deseja mesmo solicitar a carona?"
-                                                                             message:@"Ao confirmar, o motorista receberá uma notificação e poderá aceitar ou recusar."
+                                                                             message:@"Ao confirmar, o motorista receberá uma notificação e poderá aceitar ou recusar a carona."
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Solicitar" style:SDCAlertActionStyleRecommended handler:^(SDCAlertAction *action){
@@ -401,8 +401,8 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 - (void)handleAcceptedJoinRequest:(User *)requestingUser cell:(JoinRequestCell *)cell {
     [cell setButtonsEnabled:NO];
     
-    if ([self availableSlots] == 1 && _requesters.count > 1) {
-        CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Deseja mesmo aceitar caronista?"
+    if (_ride.availableSlots == 1 && _requesters.count > 1) {
+        CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:[NSString stringWithFormat:@"Deseja mesmo aceitar %@?", requestingUser.firstName]
                                                                                  message:@"Ao aceitar, sua carona estará cheia e você irá recusar os outros caronistas."
                                                                           preferredStyle:SDCAlertControllerStyleAlert];
         [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:^(SDCAlertAction *action){
@@ -434,7 +434,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 - (void)removeAllJoinRequestIfNeeded {
-    if ([self availableSlots] == 0) {
+    if (_ride.availableSlots == 0) {
         for (User *requester in _requesters) {
             [self removeJoinRequest:requester];
         }
