@@ -11,9 +11,13 @@ class DeepLinkManager {
         deeplinkType = NotificationParser.shared.handleNotification(notification)
     }
     
-    @discardableResult
     func handleUniversalLink(url: URL) -> Bool {
         deeplinkType = UniversalLinkParser.shared.parseLink(url)
+        return deeplinkType != nil
+    }
+    
+    func handleDeepLink(url: URL) -> Bool {
+        deeplinkType = UniversalLinkParser.shared.parseDeeplink(url)
         return deeplinkType != nil
     }
     

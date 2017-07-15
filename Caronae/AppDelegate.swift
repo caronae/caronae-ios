@@ -84,15 +84,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
-    }
-    
-    @available(iOS 9.0, *)
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, options: options)
-    }
-    
     func didUpdateUser(notification: NSNotification) {
         if UserService.instance.user != nil {
             self.registerForNotifications()
@@ -204,6 +195,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    // MARK: Deeplinks
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation) ||
+            deepLinkManager.handleDeepLink(url: url)
+    }
+    
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, options: options) ||
+            deepLinkManager.handleDeepLink(url: url)
+    }
+    
+    
     // MARK: Universal Links
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
@@ -211,8 +216,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let url = userActivity.webpageURL else {
                 return false
         }
-        deepLinkManager.handleUniversalLink(url: url)
-        return true
+        return deepLinkManager.handleUniversalLink(url: url)
     }
     
 }
