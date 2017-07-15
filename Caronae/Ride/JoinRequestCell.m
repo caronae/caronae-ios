@@ -50,11 +50,11 @@
 #pragma mark - IBActions
 
 - (IBAction)didTapAcceptButton:(id)sender {
-    [self.delegate joinRequest:self.requestingUser hasAccepted:YES cell:self];
+    [self.delegate handleAcceptedJoinRequest:self.requestingUser cell:self];
 }
 
 - (IBAction)didTapDeclineButton:(id)sender {
-    [self.delegate joinRequest:self.requestingUser hasAccepted:NO cell:self];
+    [self.delegate answerJoinRequest:self.requestingUser hasAccepted:NO cell:self];
 }
 
 - (IBAction)didTapUserDetails:(id)sender {

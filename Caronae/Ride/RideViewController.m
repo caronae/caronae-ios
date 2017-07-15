@@ -29,6 +29,7 @@
 
 static NSString *CaronaeRequestButtonStateNew              = @"PEGAR CARONA";
 static NSString *CaronaeRequestButtonStateAlreadyRequested = @"    SOLICITAÇÃO ENVIADA    ";
+static NSString *CaronaeRequestButtonStateFullRide         = @"       CARONA CHEIA       ";
 static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluída";
 
 + (instancetype)rideViewControllerForRide:(Ride *)ride {
@@ -92,6 +93,12 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     self.requestsTable.delegate = self;
     self.requestsTable.rowHeight = 95.0f;
     self.requestsTableHeight.constant = 0;
+    
+    if (![_ride.date isInTheFuture]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.shareRideView removeFromSuperview];
+        });
+    }
     
     // If the user is the driver of the ride, load pending join requests and hide 'join' button
     if ([self userIsDriver]) {
@@ -162,6 +169,10 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         if ([RideService.instance hasRequestedToJoinRideWithID:_ride.id]) {
             _requestRideButton.enabled = NO;
             [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];
+        } else if (_rideIsFull) {
+            _requestRideButton.enabled = NO;
+            [_requestRideButton setTitle:CaronaeRequestButtonStateFullRide forState:UIControlStateNormal];
+            _rideIsFull = NO;
         } else {
             _requestRideButton.enabled = YES;
             [_requestRideButton setTitle:CaronaeRequestButtonStateNew forState:UIControlStateNormal];
@@ -194,8 +205,11 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     _carIconColor.tintColor = color;
     _finishRideButton.layer.borderColor = color.CGColor;
     _finishRideButton.tintColor = color;
+    _shareRideButton.layer.borderColor = color.CGColor;
+    _shareRideButton.tintColor = color;
     _requestRideButton.backgroundColor = color;
     [_finishRideButton setTitleColor:color forState:UIControlStateNormal];
+    [_shareRideButton setTitleColor:color forState:UIControlStateNormal];
 }
 
 - (void)updateMutualFriends {
@@ -242,7 +256,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 
 - (IBAction)didTapRequestRide:(UIButton *)sender {
     CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:@"Deseja mesmo solicitar a carona?"
-                                                                             message:@"Ao confirmar, você estará ocupando uma vaga nesta carona."
+                                                                             message:@"Ao confirmar, o motorista receberá uma notificação e poderá aceitar ou recusar a carona."
                                                                       preferredStyle:SDCAlertControllerStyleAlert];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:nil]];
     [alert addAction:[SDCAlertAction actionWithTitle:@"Solicitar" style:SDCAlertActionStyleRecommended handler:^(SDCAlertAction *action){
@@ -276,6 +290,18 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [self finishRide];
     }]];
     [alert presentWithCompletion:nil];
+}
+
+- (IBAction)didTapShareRide:(id)sender {
+    NSString *rideTitle = [NSString stringWithFormat:@"Carona: %@", _ride.title];
+    NSURL *rideLink = [NSURL URLWithString:[NSString stringWithFormat:@"https://caronae.com.br/carona/%ld", (long)_ride.id]];
+    NSArray *rideToShare = @[rideTitle, _dateLabel.text, rideLink];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:rideToShare applicationActivities:nil];
+    NSArray *excludeActivities = @[UIActivityTypeAddToReadingList];
+    activityVC.excludedActivityTypes = excludeActivities;
+    
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 
@@ -372,7 +398,26 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     }];
 }
 
-- (void)joinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(JoinRequestCell *)cell {
+- (void)handleAcceptedJoinRequest:(User *)requestingUser cell:(JoinRequestCell *)cell {
+    [cell setButtonsEnabled:NO];
+    
+    if (_ride.availableSlots == 1 && _requesters.count > 1) {
+        CaronaeAlertController *alert = [CaronaeAlertController alertControllerWithTitle:[NSString stringWithFormat:@"Deseja mesmo aceitar %@?", requestingUser.firstName]
+                                                                                 message:@"Ao aceitar, sua carona estará cheia e você irá recusar os outros caronistas."
+                                                                          preferredStyle:SDCAlertControllerStyleAlert];
+        [alert addAction:[SDCAlertAction actionWithTitle:@"Cancelar" style:SDCAlertActionStyleCancel handler:^(SDCAlertAction *action){
+            [cell setButtonsEnabled:YES];
+        }]];
+        [alert addAction:[SDCAlertAction actionWithTitle:@"Aceitar" style:SDCAlertActionStyleRecommended handler:^(SDCAlertAction *action){
+            [self answerJoinRequest:requestingUser hasAccepted:YES cell:cell];
+        }]];
+        [alert presentWithCompletion:nil];
+    } else {
+        [self answerJoinRequest:requestingUser hasAccepted:YES cell:cell];
+    }
+}
+
+- (void)answerJoinRequest:(User *)requestingUser hasAccepted:(BOOL)accepted cell:(JoinRequestCell *)cell {
     [cell setButtonsEnabled:NO];
     
     [RideService.instance answerRequestOnRideWithID:_ride.id fromUser:requestingUser accepted:accepted success:^{
@@ -380,11 +425,20 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         [self removeJoinRequest:requestingUser];
         if (accepted) {
             [_ridersCollectionView reloadData];
+            [self removeAllJoinRequestIfNeeded];
         }
     } error:^(NSError * _Nonnull error) {
         NSLog(@"Error accepting join request: %@", error.localizedDescription);
         [cell setButtonsEnabled:YES];
     }];
+}
+
+- (void)removeAllJoinRequestIfNeeded {
+    if (_ride.availableSlots == 0) {
+        for (User *requester in _requesters) {
+            [self removeJoinRequest:requester];
+        }
+    }
 }
 
 - (void)removeJoinRequest:(User *)requestingUser {

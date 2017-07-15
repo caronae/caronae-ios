@@ -134,6 +134,31 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         }
     }
     
+    func loadRide(withID id: Int) {
+        RideService.instance.getRide(withID: id, success: { ride, availableSlots in
+            guard ride.date.isInTheFuture() else {
+                CaronaeAlertController.presentOkAlert(withTitle: "Carona encerrada", message: "A carona que você tentou abrir já foi encerrada. Você pode encontrar novas caronas através da busca.")
+                return
+            }
+            
+            let rideViewController = RideViewController(for: ride)!
+            rideViewController.rideIsFull = (availableSlots == 0)
+            _ = self.navigationController?.popToRootViewController(animated: false)
+            self.navigationController?.pushViewController(rideViewController, animated: true)
+        }, error: { error in
+            var errorMessage: String!
+            
+            switch error.caronaeCode {
+            case .invalidRide:
+                errorMessage = "Talvez a carona que você está procurando não exista mais."
+            default:
+                errorMessage = "Ocorreu um erro ao tentar carregar a carona. Por favor, tente novamente."
+            }
+            
+            CaronaeAlertController.presentOkAlert(withTitle: "Falha ao carregar carona", message: errorMessage)
+        })
+    }
+    
     func enableFilterRides() {
         guard let center = userDefaults.string(forKey: CaronaePreferenceLastFilteredCenterKey),
             let zone = userDefaults.string(forKey: CaronaePreferenceLastFilteredZoneKey),

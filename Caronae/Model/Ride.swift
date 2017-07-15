@@ -72,6 +72,9 @@ class Ride: Object, Mappable {
         return routineID.value != nil
     }
     
+    var availableSlots: Int {
+        return slots - riders.count
+    }
     
     private var _dateString: String? {
         get {
