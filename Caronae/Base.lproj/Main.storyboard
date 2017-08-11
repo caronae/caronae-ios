@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,6 +10,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -5907,7 +5908,7 @@ FOTO</string>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
                                                                                 <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="twK-5y-Mx5" userLabel="Friend photo">
-                                                                                    <rect key="frame" x="-20" y="0.0" width="40" height="40"/>
+                                                                                    <rect key="frame" x="480" y="0.0" width="40" height="40"/>
                                                                                     <gestureRecognizers/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="twK-5y-Mx5" secondAttribute="height" multiplier="1:1" id="Pyu-eX-zyw"/>
@@ -6694,14 +6695,14 @@ FOTO</string>
                                                 <exclude reference="rm7-4R-FPm"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <exclude reference="2Mx-35-wWx"/>
-                                                <exclude reference="sdE-cC-tSr"/>
-                                                <exclude reference="xN5-zu-3PQ"/>
                                                 <exclude reference="0Jp-0Y-D5U"/>
                                                 <exclude reference="582-h6-8ID"/>
                                                 <exclude reference="ZKr-Mc-L7p"/>
                                                 <exclude reference="JA9-UH-9mb"/>
                                                 <exclude reference="JYZ-5q-yqO"/>
+                                                <exclude reference="2Mx-35-wWx"/>
+                                                <exclude reference="sdE-cC-tSr"/>
+                                                <exclude reference="xN5-zu-3PQ"/>
                                                 <exclude reference="Bxx-nw-jgx"/>
                                                 <exclude reference="OvA-jd-4pH"/>
                                                 <exclude reference="owB-Ey-xfn"/>
@@ -6713,14 +6714,14 @@ FOTO</string>
                                                 <include reference="rm7-4R-FPm"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <include reference="2Mx-35-wWx"/>
-                                                <include reference="sdE-cC-tSr"/>
-                                                <include reference="xN5-zu-3PQ"/>
                                                 <include reference="0Jp-0Y-D5U"/>
                                                 <exclude reference="582-h6-8ID"/>
                                                 <include reference="ZKr-Mc-L7p"/>
                                                 <include reference="JA9-UH-9mb"/>
                                                 <include reference="JYZ-5q-yqO"/>
+                                                <include reference="2Mx-35-wWx"/>
+                                                <include reference="sdE-cC-tSr"/>
+                                                <include reference="xN5-zu-3PQ"/>
                                                 <exclude reference="Bxx-nw-jgx"/>
                                                 <include reference="OvA-jd-4pH"/>
                                                 <include reference="owB-Ey-xfn"/>
@@ -7060,16 +7061,18 @@ nenhuma carona.</string>
             <objects>
                 <viewController id="cgK-sI-zYQ" customClass="AllRidesViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Todas" id="g6m-K6-JjX">
-                        <barButtonItem key="leftBarButtonItem" image="FilterRide" id="klv-br-xsC">
-                            <connections>
-                                <segue destination="O3N-dq-DoL" kind="presentation" identifier="FilterRide" id="n9O-W0-6to"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="SearchRide" id="yHa-PK-yef">
-                            <connections>
-                                <segue destination="K5N-ci-Dp7" kind="presentation" identifier="SearchRide" id="hM9-nM-k0Y"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="SearchRide" id="yHa-PK-yef">
+                                <connections>
+                                    <segue destination="K5N-ci-Dp7" kind="presentation" identifier="SearchRide" id="hM9-nM-k0Y"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="FilterRide" id="klv-br-xsC">
+                                <connections>
+                                    <segue destination="O3N-dq-DoL" kind="presentation" identifier="FilterRide" id="n9O-W0-6to"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <segue destination="63o-N6-NEe" kind="show" identifier="ViewSearchResults" id="DwZ-AK-niy"/>
