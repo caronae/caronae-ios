@@ -180,6 +180,10 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
         
         [self updateMutualFriends];
     }
+    
+    // Add gesture recognizer to phoneButton for longpress
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPressPhoneButton)];
+    [_phoneButton addGestureRecognizer:longPressGesture];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -247,6 +251,11 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 }
 
 #pragma mark - IBActions
+
+-(void)didLongPressPhoneButton {
+    UIAlertController *alert = [[PhoneNumberAlert alloc] actionSheetWithView:self buttonText:_phoneButton.titleLabel.text user:_ride.driver];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 - (IBAction)didTapPhoneButton:(id)sender {
     NSString *phoneNumber = _ride.driver.phoneNumber;
