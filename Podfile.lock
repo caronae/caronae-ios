@@ -65,11 +65,11 @@ PODS:
     - RealmSwift
   - Protobuf (3.2.0)
   - RBBAnimation (0.4.0)
-  - Realm (2.4.3):
-    - Realm/Headers (= 2.4.3)
-  - Realm/Headers (2.4.3)
-  - RealmSwift (2.4.3):
-    - Realm (= 2.4.3)
+  - Realm (2.9.1):
+    - Realm/Headers (= 2.9.1)
+  - Realm/Headers (2.9.1)
+  - RealmSwift (2.9.1):
+    - Realm (= 2.9.1)
   - SDCAlertView (2.5.4):
     - RBBAnimation (~> 0.3)
     - SDCAutoLayout (~> 2.0)
@@ -94,7 +94,7 @@ DEPENDENCIES:
   - MIBadgeButton-Swift (from `https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git`, branch `master`)
   - ObjectMapper (~> 2.2)
   - ObjectMapper+Realm (~> 0.2)
-  - RealmSwift (~> 2.4)
+  - RealmSwift (~> 2.9)
   - SDCAlertView (= 2.5.4)
   - SDWebImage (~> 3.8.2)
   - SHSPhoneComponent
@@ -139,8 +139,8 @@ SPEC CHECKSUMS:
   ObjectMapper+Realm: 8b45dbfa1be145e311a6f93a306c183d630b40a9
   Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
   RBBAnimation: 4b2d66f6d993febce63cd564da934985313b9c59
-  Realm: e08d60b0048ccccd3949c8c28a92c4db5712d7e9
-  RealmSwift: 30d49739ccb3385d201242736ca4dda56aec9dfc
+  Realm: f91fb43bd474c4f731a116ebf7392c75dd015920
+  RealmSwift: 207f12a4a36b696c5183c60a1c06d70234a23e56
   SDCAlertView: 2e2b0ecc5f1ec367e45d83efa2e512688ca7fa55
   SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
   SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
@@ -150,6 +150,6 @@ SPEC CHECKSUMS:
   UIScrollView-InfiniteScroll: 14e204c50ca4040467e1cbfa141dad7a18919b56
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 7338310d6f2e20fade4902a7f5d0936254aadf99
+PODFILE CHECKSUM: 4077706b6d13e11031f6ef031549fed933c37600
 
 COCOAPODS: 1.2.0
