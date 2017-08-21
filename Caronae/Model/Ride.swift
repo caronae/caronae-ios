@@ -14,6 +14,7 @@ class Ride: Object, Mappable {
     dynamic var slots: Int = 0
     dynamic var date: Date! = Date()
     dynamic var isActive: Bool = false
+    dynamic var isPending: Bool = false
     
     dynamic var weekDays: String?
     dynamic var repeatsUntil: Date?

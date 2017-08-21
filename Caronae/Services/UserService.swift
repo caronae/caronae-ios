@@ -283,17 +283,7 @@ class UserService: NSObject {
         UserDefaults.standard.set(user.id, forKey: "user_id")
         UserDefaults.standard.removeObject(forKey: "user")
         UserDefaults.standard.removeObject(forKey: "userCreatedRides")
-        
-        // Migrate requested rides
-        if let requests = UserDefaults.standard.array(forKey: "cachedJoinRequests") as? [Int] {
-            let migratedRequests = requests.map { RideRequest(rideID: $0) }
-
-            try realm.write {
-                realm.add(migratedRequests, update: true)
-            }
-            
-            UserDefaults.standard.removeObject(forKey: "cachedJoinRequests")
-        }
+        UserDefaults.standard.removeObject(forKey: "cachedJoinRequests")
         
         return user
     }

@@ -155,9 +155,6 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
             [self.ridersView removeFromSuperview];
         });
         
-        // Hide driver's phone number
-        _ride.driver.phoneNumber = nil;
-        
         // Update the state of the join request button if the user has already requested to join
         if ([RideService.instance hasRequestedToJoinRideWithID:_ride.id]) {
             _requestRideButton.enabled = NO;
@@ -346,7 +343,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     _requestRideButton.enabled = NO;
     [SVProgressHUD show];
     
-    [RideService.instance requestJoinOnRideWithID:_ride.id success:^{
+    [RideService.instance requestJoinOnRide:_ride success:^{
         [SVProgressHUD dismiss];
         NSLog(@"Done requesting ride.");
         [_requestRideButton setTitle:CaronaeRequestButtonStateAlreadyRequested forState:UIControlStateNormal];

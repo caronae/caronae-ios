@@ -39,9 +39,9 @@ class RideService: NSObject {
             let realm = try Realm()
             let currentDate = Date()
             
-            let futureNotActiveRides = realm.objects(Ride.self).filter("date >= %@ AND isActive == false", currentDate)
-            let pending = futureNotActiveRides.filter("driver != %@", user).sorted(byKeyPath: "date")
-            let offered = futureNotActiveRides.filter("driver == %@", user).sorted(byKeyPath: "date")
+            let futureRides = realm.objects(Ride.self).filter("date >= %@", currentDate)
+            let pending = futureRides.filter("isPending == true").sorted(byKeyPath: "date")
+            let offered = futureRides.filter("driver == %@ AND isActive == false", user).sorted(byKeyPath: "date")
             let active = realm.objects(Ride.self).filter("isActive == true").sorted(byKeyPath: "date")
             
             success(pending, active, offered)
@@ -302,12 +302,13 @@ class RideService: NSObject {
         })
     }
     
-    func requestJoinOnRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.post("/ride/requestJoin", parameters: ["rideId": id], success: { task, responseObject in
+    func requestJoinOnRide(_ ride: Ride, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+        api.post("/ride/requestJoin", parameters: ["rideId": ride.id], success: { task, responseObject in
             do {
                 let realm = try Realm()
                 try realm.write {
-                    realm.add(RideRequest(rideID: id), update: true)
+                    ride.isPending = true
+                    realm.add(ride, update: true)
                 }
             } catch let realmError {
                 error(realmError)
@@ -320,7 +321,7 @@ class RideService: NSObject {
     }
     
     func hasRequestedToJoinRide(withID id: Int) -> Bool {
-        if let realm = try? Realm(), let _ = realm.object(ofType: RideRequest.self, forPrimaryKey: id) {
+        if let realm = try? Realm(), let ride = realm.object(ofType: Ride.self, forPrimaryKey: id), ride.isPending {
             return true
         }
         
