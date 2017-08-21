@@ -88,7 +88,7 @@ class MyRidesViewController: RideListController {
         let ride = filteredRides[indexPath.row]
         
         let cell = super.tableView(tableView, cellForRowAt: indexPath)!
-        cell.badgeCount = unreadNotifications.filter{ $0.rideID == ride.id }.count
+        cell.badgeCount = unreadNotifications.filter("rideID == %@", ride.id).count
         
         return cell
     }
