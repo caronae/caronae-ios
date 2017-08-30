@@ -181,20 +181,6 @@ class UserService: NSObject {
         })
     }
     
-    func getPhotoFromUFRJ(success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/user/intranetPhotoUrl", parameters: nil, success: { task, responseObject in
-            guard let response = responseObject as? [String: Any],
-                let url = response["url"] as? String else {
-                    error(CaronaeError.invalidResponse)
-                    return
-            }
-            
-            success(url)
-        }, failure: { _, err in
-            error(err)
-        })
-    }
-    
     func getPhotoFromFacebook(success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
         let request = FBSDKGraphRequest(graphPath: "me/picture?type=large&redirect=false", parameters: ["fields": "url"])!
         request.start(completionHandler: { connection, result, err in
