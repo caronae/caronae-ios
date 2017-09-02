@@ -317,7 +317,7 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
 #pragma mark - Ride operations
 
 - (void)cancelRide {
-    if (_ride.isRoutine) {
+    if ([self userIsDriver] && _ride.isRoutine) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Esta carona pertence a uma rotina."
                                                                        message:nil
                                                                 preferredStyle:UIAlertControllerStyleActionSheet];
