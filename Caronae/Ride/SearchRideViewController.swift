@@ -47,7 +47,6 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dateFormatter.locale = Locale(identifier: CaronaeDateLocaleIdentifier)
         dateFormatter.dateFormat = CaronaeSearchDateFormat
         
         // Load last direction

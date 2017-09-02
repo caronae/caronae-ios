@@ -11,7 +11,6 @@ static NSDateFormatter *dateFormatter;
     if (self) {
         dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"HH:mm | E | dd/MM";
-        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"pt_BR"];
     }
     return self;
 }
@@ -46,7 +45,7 @@ static NSDateFormatter *dateFormatter;
 }
 
 - (NSString *)dateString {
-    return [dateFormatter stringFromDate:_ride.date].capitalizedString;
+    return [[dateFormatter stringFromDate:_ride.date] capitalizedAfter:@"|"];
 }
 
 - (void)updatePhoto {

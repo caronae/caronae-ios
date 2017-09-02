@@ -28,9 +28,9 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
   - CRToast (0.0.9)
-  - FBSDKCoreKit (4.16.1):
+  - FBSDKCoreKit (4.24.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.16.1):
+  - FBSDKLoginKit (4.24.0):
     - FBSDKCoreKit
   - Firebase/Core (3.15.0):
     - FirebaseAnalytics (= 3.7.0)
@@ -124,8 +124,8 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
-  FBSDKCoreKit: 6feac4e8921ccd7afa83fb1df6291dc6eec42c7c
-  FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
+  FBSDKCoreKit: f8c9eb0dd34a9cd277c7b60da4b32226d142502d
+  FBSDKLoginKit: 1214c6d5a1c4995b694d8db8a9ba6910c6028acf
   Firebase: 2b1cdfba1cda8589f32904a697cc753322bff9d8
   FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
   FirebaseCore: a024587e43778508700af8c6b1209f7c4516ba02

@@ -5,7 +5,6 @@
 @import FBSDKCoreKit;
 @import FBSDKLoginKit;
 
-#import "AppDelegate.h"
 #import "CaronaeConstants.h"
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"

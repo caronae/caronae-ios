@@ -48,6 +48,7 @@
 
 - (void)configureFacebookLoginButton {
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    [loginButton removeConstraints:loginButton.constraints];
     loginButton.readPermissions = @[@"public_profile", @"user_friends"];
     [self.fbButtonView addSubview:loginButton];
     loginButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -213,9 +214,6 @@
     [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do Facebook" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self importPhotoFromFacebook];
     }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do SIGA" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self importPhotoFromSIGA];
-    }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"Remover minha foto" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"Removendo foto...");
         _photoURL = nil;
@@ -295,25 +293,6 @@
         [SVProgressHUD dismiss];
         NSLog(@"Error loading photo: %@", error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do Facebook."];
-    }];
-}
-
-
-#pragma mark - SIGA integration
-
-- (void)importPhotoFromSIGA {
-    NSLog(@"Importing profile picture from SIGA...");
-    
-    [SVProgressHUD show];
-    [UserService.instance getPhotoFromUFRJWithSuccess:^(NSString * _Nonnull url) {
-        _photoURL = url;
-        [_photo crn_setImageWithURL:[NSURL URLWithString:_photoURL] completed:^{
-            [SVProgressHUD dismiss];
-        }];
-    } error:^(NSError * _Nonnull error) {
-        [SVProgressHUD dismiss];
-        NSLog(@"Error loading photo: %@", error.localizedDescription);
-        [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do SIGA."];
     }];
 }
 
