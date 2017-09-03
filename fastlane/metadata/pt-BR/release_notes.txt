@@ -1,6 +1,5 @@
-O desenvolvimento do Caronaê voltou e estamos ouvindo todo o feedback que recebemos!
-Neste update, fizemos algumas melhorias na pesquisa por caronas:
+Quer avisar a um amigo sobre uma carona? Agora você pode compartilhar o link de uma carona com outra pessoa.
 
-- Encontre caronas em todos os centros! Sabemos que pra alguns, o que basta é conseguir 
-chegar ao Fundão, então agora você pode selecionar 'Todos os Centros' na pesquisa.
-- Salvamos os dados da última pesquisa para que você não precise selecionar tudo de novo.
+Corrigimos um problema que poderia acontecer ao cancelar uma carona que pertence a uma rotina.
+
+Caso você encontre algum problema, por favor nos avise através do Falaê, no menu do app, pela nossa página do Facebook ou pelo email caronae@fundoverde.ufrj.br :)
