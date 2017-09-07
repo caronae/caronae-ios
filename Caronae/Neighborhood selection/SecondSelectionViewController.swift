@@ -11,7 +11,6 @@ class SecondSelectionViewController: UITableViewController {
     var selectionType: SelectionType = .oneSelection
     var selectedFirstLevel = String()
     var secondLevelOptions: [String] = []
-    var dictionarySelection: [String :[String]] = [:]
     var doneButton: UIBarButtonItem = UIBarButtonItem()
     var cellColor = UIColor.black
     
@@ -19,8 +18,6 @@ class SecondSelectionViewController: UITableViewController {
         super.viewDidLoad()
         
         self.title = self.selectedFirstLevel
-        
-        secondLevelOptions = dictionarySelection[selectedFirstLevel]!
         
         if selectionType == .manySelection {
             self.doneButton = UIBarButtonItem(title: "Sel. todos", style: .done, target: self, action: #selector(finishSelection))

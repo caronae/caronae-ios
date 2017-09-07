@@ -50,7 +50,7 @@ class FirstSelectionViewController: UITableViewController, SecondSelectionDelega
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedFirstLevel = self.firstLevelOptions[indexPath.row]
         
-        if dictionarySelection[selectedFirstLevel] == nil {
+        guard let secondLevelOptions = dictionarySelection[selectedFirstLevel] else {
             if selectionType == .manySelection {
                 self.hasSelected(selections: [selectedFirstLevel], inFirstLevel: selectedFirstLevel)
             } else {
@@ -69,7 +69,7 @@ class FirstSelectionViewController: UITableViewController, SecondSelectionDelega
         let secondVC = SecondSelectionViewController()
         secondVC.selectedFirstLevel = self.selectedFirstLevel
         secondVC.selectionType = self.selectionType
-        secondVC.dictionarySelection = self.dictionarySelection
+        secondVC.secondLevelOptions = secondLevelOptions.sorted()
         secondVC.cellColor = color(forCell: selectedFirstLevel)
         secondVC.delegate = self
         self.navigationController?.show(secondVC, sender: self)
