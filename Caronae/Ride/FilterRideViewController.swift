@@ -8,8 +8,8 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     var selectedNeighborhoods: [String]? {
         didSet {
             var buttonTitle = selectedNeighborhoods?.compactString()
-            if buttonTitle == "Outra" {
-                buttonTitle = "Outros"
+            if buttonTitle == CaronaeOtherZoneText {
+                buttonTitle = CaronaeOtherNeighborhoodsText
             }
             self.neighborhoodButton.setTitle(buttonTitle, for: .normal)
         }
@@ -42,7 +42,7 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
             self.selectedZone = ""
             self.selectedNeighborhoods = [CaronaeAllNeighborhoodsText]
             self.selectedCampus = ""
-            self.selectedHubs = [CaronaeAllCampusesText]
+            self.selectedHubs = [CaronaeAllCampiText]
         }
     }
     
@@ -91,7 +91,7 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     func isSearchValid() -> Bool {
         // Test if user has selected a neighborhood and/or hub
-        if self.selectedNeighborhoods! != [CaronaeAllNeighborhoodsText] || self.selectedHubs! != [CaronaeAllCampusesText] {
+        if self.selectedNeighborhoods! != [CaronaeAllNeighborhoodsText] || self.selectedHubs! != [CaronaeAllCampiText] {
             return true
         }
         return false

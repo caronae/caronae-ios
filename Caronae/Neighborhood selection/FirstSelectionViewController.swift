@@ -26,7 +26,37 @@ class FirstSelectionViewController: UITableViewController, SecondSelectionDelega
     }
     
     func color(forCell cell: String) -> UIColor {
-        return  dictionaryColors[cell] ?? .darkGray
+        return dictionaryColors[cell] ?? .darkGray
+    }
+    
+    func handleSelection(_ selectedFirstLevel: String) {
+        self.selectedFirstLevel = selectedFirstLevel
+        
+        guard let secondLevelOptions = dictionarySelection[selectedFirstLevel] else {
+            if selectionType == .manySelection {
+                self.hasSelected(selections: [selectedFirstLevel], inFirstLevel: selectedFirstLevel)
+            } else {
+                // selectedFirstLevel == CaronaeOtherZoneText
+                let otherNeighborhoodVC = ZoneSelectionInputViewController()
+                otherNeighborhoodVC.delegate = self
+                self.navigationController?.show(otherNeighborhoodVC, sender: self)
+            }
+            return
+        }
+        
+        if secondLevelOptions.count == 1 {
+            self.hasSelected(selections: secondLevelOptions, inFirstLevel: selectedFirstLevel)
+            return
+        }
+        
+        // Open SecondSelectionViewController
+        let secondVC = SecondSelectionViewController()
+        secondVC.selectedFirstLevel = self.selectedFirstLevel
+        secondVC.selectionType = self.selectionType
+        secondVC.secondLevelOptions = secondLevelOptions.sorted()
+        secondVC.cellColor = color(forCell: selectedFirstLevel)
+        secondVC.delegate = self
+        self.navigationController?.show(secondVC, sender: self)
     }
 
 
@@ -48,31 +78,7 @@ class FirstSelectionViewController: UITableViewController, SecondSelectionDelega
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedFirstLevel = self.firstLevelOptions[indexPath.row]
-        
-        guard let secondLevelOptions = dictionarySelection[selectedFirstLevel] else {
-            if selectionType == .manySelection {
-                self.hasSelected(selections: [selectedFirstLevel], inFirstLevel: selectedFirstLevel)
-            } else {
-                if selectedFirstLevel == "Outra" {
-                    let otherNeighborhoodVC = ZoneSelectionInputViewController()
-                    otherNeighborhoodVC.delegate = self
-                    self.navigationController?.show(otherNeighborhoodVC, sender: self)
-                } else {
-                    self.hasSelected(selections: [selectedFirstLevel], inFirstLevel: selectedFirstLevel)
-                }
-            }
-            return
-        }
-        
-        // Open SecondSelectionViewController
-        let secondVC = SecondSelectionViewController()
-        secondVC.selectedFirstLevel = self.selectedFirstLevel
-        secondVC.selectionType = self.selectionType
-        secondVC.secondLevelOptions = secondLevelOptions.sorted()
-        secondVC.cellColor = color(forCell: selectedFirstLevel)
-        secondVC.delegate = self
-        self.navigationController?.show(secondVC, sender: self)
+        handleSelection(self.firstLevelOptions[indexPath.row])
     }
 
 }

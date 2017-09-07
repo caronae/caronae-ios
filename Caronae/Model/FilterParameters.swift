@@ -29,7 +29,7 @@ class FilterParameters: NSObject {
                 params["neighborhoods"] = neighborhoods
             }
         }
-        if let campus = self.campus, !campus.isEmpty, campus != CaronaeAllCampusesText {
+        if let campus = self.campus, !campus.isEmpty, campus != CaronaeAllCampiText {
             params["campus"] = campus
             if let hubs = self.hubs?.joined(separator: ", "), hubs != campus {
                 // User didn't select all hubs of selected campus
@@ -53,7 +53,7 @@ class FilterParameters: NSObject {
         var label = String()
         if let zone = self.selectedZone, zone.isEmpty || zone == CaronaeAllNeighborhoodsText {
             label = hubs!.compactString()
-        } else if let campus = self.campus, campus.isEmpty || campus == CaronaeAllCampusesText {
+        } else if let campus = self.campus, campus.isEmpty || campus == CaronaeAllCampiText {
             label = neighborhoods!.compactString()
         } else {
             label = hubs!.compactString() + ", " + neighborhoods!.compactString()

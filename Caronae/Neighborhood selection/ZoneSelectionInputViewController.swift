@@ -24,7 +24,7 @@ class ZoneSelectionInputViewController: UIViewController {
     
     func finishSelection() {
         self.navigationController?.popToRootViewController(animated: true)
-        delegate?.hasSelected(selections: [self.neighborhoodTextField.text!], inFirstLevel: "Outros")
+        delegate?.hasSelected(selections: [self.neighborhoodTextField.text!], inFirstLevel: CaronaeOtherNeighborhoodsText)
     }
 
     func didTapDoneButton() {

@@ -74,6 +74,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }, error: { error in
                 NSLog("Error updating active rides (\(error.localizedDescription))")
             })
+            
+            PlaceService.instance.updatePlaces(success: {
+                NSLog("Places updated")
+            }, error: { error in
+                NSLog("Error updating places (\(error.localizedDescription))")
+            })
         }
         
         // Handle any deeplink

@@ -17,8 +17,8 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     var selectedNeighborhoods: [String]? {
         didSet {
             var buttonTitle = selectedNeighborhoods?.compactString()
-            if buttonTitle == "Outra" {
-                buttonTitle = "Outros"
+            if buttonTitle == CaronaeOtherZoneText {
+                buttonTitle = CaronaeOtherNeighborhoodsText
             }
             self.neighborhoodButton.setTitle(buttonTitle, for: .normal)
         }
@@ -65,7 +65,7 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
             selectedZone = ""
             selectedNeighborhoods = [CaronaeAllNeighborhoodsText]
             selectedCampus = ""
-            selectedHubs = [CaronaeAllCampusesText]
+            selectedHubs = [CaronaeAllCampiText]
         }
         
         // Load last searched date

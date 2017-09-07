@@ -22,9 +22,13 @@ import UIKit
             firstLevelOptions = [CaronaeAllNeighborhoodsText]
         }
         
-        dictionarySelection = CaronaeConstants.defaults().neighborhoods as! [String : [String]]
-        dictionaryColors = CaronaeConstants.defaults().zoneColors as! [String : UIColor]
-        firstLevelOptions.append(contentsOf: CaronaeConstants.defaults().zones as! [String])
+        PlaceService.instance.getZones(success: { zones, options, colors in
+            self.firstLevelOptions.append(contentsOf: zones)
+            self.dictionarySelection = options
+            self.dictionaryColors = colors
+        }, error: { error in
+            NSLog("Error updating places (\(error.localizedDescription))")
+        })
     }
     
     override func hasSelected(selections: [String], inFirstLevel firstLevel: String) {

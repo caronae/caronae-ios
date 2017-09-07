@@ -19,6 +19,7 @@ import UIKit
 
     weak var delegate: HubSelectionDelegate?
     
+    var numberOfCampi = 0
     var hubTypeDirection: HubTypeDirection?
     
     override func viewDidLoad() {
@@ -26,21 +27,30 @@ import UIKit
         
         self.title = "Campi"
         
-        if selectionType == .manySelection {
-            firstLevelOptions = [CaronaeAllCampusesText]
-        }
-        
-        if hubTypeDirection == .hubs {
-            dictionarySelection = CaronaeConstants.defaults().hubs as! [String : [String]]
-        } else {
-            dictionarySelection = CaronaeConstants.defaults().centers as! [String : [String]]
-        }
-        dictionaryColors = CaronaeConstants.defaults().campusColors as! [String : UIColor]
-        firstLevelOptions.append(contentsOf: CaronaeConstants.defaults().campuses as! [String])
+        PlaceService.instance.getCampi(hubTypeDirection: hubTypeDirection!, success: { campi, options, colors in
+            self.numberOfCampi = campi.count
+            if self.selectionType == .manySelection && self.numberOfCampi > 1 {
+                self.firstLevelOptions = [CaronaeAllCampiText]
+            }
+            self.firstLevelOptions.append(contentsOf: campi)
+            self.dictionarySelection = options
+            self.dictionaryColors = colors
+            if self.numberOfCampi == 1 {
+                self.handleSelection(campi.first!)
+            }
+        }, error: { error in
+            NSLog("Error updating places (\(error.localizedDescription))")
+        })
     }
     
     override func hasSelected(selections: [String], inFirstLevel firstLevel: String) {
         super.hasSelected(selections: selections, inFirstLevel: firstLevel)
+        
+        if self.numberOfCampi == 1 && selections == [firstLevel] {
+            // Selected all hubs of the single campus. Behavior of selecting all campi.
+            delegate?.hasSelected(hubs: [CaronaeAllCampiText], inCampus: CaronaeAllCampiText)
+            return
+        }
         
         delegate?.hasSelected(hubs: selections, inCampus: firstLevel)
     }
