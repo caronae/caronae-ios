@@ -1,4 +1,5 @@
 import UIKit
+import SVProgressHUD
 
 @objc protocol NeighborhoodSelectionDelegate: class {
     func hasSelected(neighborhoods: [String], inZone zone: String)
@@ -18,16 +19,24 @@ import UIKit
         
         self.title = "Zonas"
         
-        if selectionType == .manySelection {
-            firstLevelOptions = [CaronaeAllNeighborhoodsText]
-        }
-        
-        PlaceService.instance.getZones(success: { zones, options, colors in
+        SVProgressHUD.show()
+        PlaceService.instance.getZones(success: { zones, options, colors, shouldReload in
+            if self.selectionType == .manySelection {
+                self.firstLevelOptions = [CaronaeAllNeighborhoodsText]
+            }
             self.firstLevelOptions.append(contentsOf: zones)
             self.dictionarySelection = options
             self.dictionaryColors = colors
+            if shouldReload {
+                self.tableView.reloadData()
+            }
+            SVProgressHUD.dismiss()
         }, error: { error in
-            NSLog("Error updating places (\(error.localizedDescription))")
+            SVProgressHUD.dismiss()
+            NSLog("Error getting zones (\(error.localizedDescription))")
+            CaronaeAlertController.presentOkAlert(withTitle: "Não foi possível carregar as localidades", message: "Por favor, tente novamente. \(error.localizedDescription).", handler: {
+                self.navigationController?.popToRootViewController(animated: true)
+            })
         })
     }
     

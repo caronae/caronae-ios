@@ -9,43 +9,65 @@ class PlaceService: NSObject {
         // This prevents others from using the default '()' initializer for this class.
     }
 
-    func getCampi(hubTypeDirection: HubSelectionViewController.HubTypeDirection, success: @escaping (_ campi: [String], _ options: [String: [String]], _ colors: [String: UIColor]) -> Void, error: @escaping (_ error: Error) -> Void) {
-        do {
-            let realm = try Realm()
-            let campusObjects = realm.objects(Campus.self)
-            let campi = campusObjects.flatMap { $0.name }.sorted()
-            var options = [String: [String]]()
-            if hubTypeDirection == .hubs {
-                campusObjects.forEach { options[$0.name] = $0.hubs }
-            } else {
-                campusObjects.forEach { options[$0.name] = $0.centers }
-            }
-            var colors = [String: UIColor]()
-            campusObjects.forEach { colors[$0.name] = $0.color }
-            
-            success(campi, options, colors)
-        } catch let realmError {
-            error(realmError)
+    func getCampi(hubTypeDirection: HubSelectionViewController.HubTypeDirection, success: @escaping (_ campi: [String], _ options: [String: [String]], _ colors: [String: UIColor], _ shouldReload: Bool) -> Void, error: @escaping (_ error: Error) -> Void) {
+        if let realm = try? Realm(), realm.objects(Place.self).isEmpty {
+            updatePlaces(success: {
+                let (campi, options, colors) = self.loadCampiFromRealm(hubTypeDirection: hubTypeDirection)
+                success(campi, options, colors, true)
+            }, error: { err in
+                error(err)
+                return
+            })
+        } else {
+            let (campi, options, colors) = self.loadCampiFromRealm(hubTypeDirection: hubTypeDirection)
+            success(campi, options, colors, false)
         }
     }
     
-    func getZones(success: @escaping (_ zones: [String], _ options: [String: [String]], _ colors: [String: UIColor]) -> Void, error: @escaping (_ error: Error) -> Void) {
-        do {
-            let realm = try Realm()
-            let zoneObjects = realm.objects(Zone.self)
-            var zones = zoneObjects.flatMap { $0.name }.sorted()
-            var options = [String: [String]]()
-            zoneObjects.forEach { options[$0.name] = $0.neighborhoods }
-            var colors = [String: UIColor]()
-            zoneObjects.forEach { colors[$0.name] = $0.color }
-            
-            zones.append(CaronaeOtherZoneText)
-            colors[CaronaeOtherZoneText] = CaronaeConstants.defaults().otherZoneColor
-            
-            success(zones, options, colors)
-        } catch let realmError {
-            error(realmError)
+    func loadCampiFromRealm(hubTypeDirection: HubSelectionViewController.HubTypeDirection) -> ([String], [String: [String]], [String: UIColor]) {
+        let realm = try! Realm()
+        let campusObjects = realm.objects(Campus.self)
+        let campi = campusObjects.flatMap { $0.name }.sorted()
+        var options = [String: [String]]()
+        if hubTypeDirection == .hubs {
+            campusObjects.forEach { options[$0.name] = $0.hubs }
+        } else {
+            campusObjects.forEach { options[$0.name] = $0.centers }
         }
+        var colors = [String: UIColor]()
+        campusObjects.forEach { colors[$0.name] = $0.color }
+            
+        return (campi, options, colors)
+    }
+    
+    func getZones(success: @escaping (_ zones: [String], _ options: [String: [String]], _ colors: [String: UIColor], _ shouldReload: Bool) -> Void, error: @escaping (_ error: Error) -> Void) {
+        if let realm = try? Realm(), realm.objects(Place.self).isEmpty {
+            updatePlaces(success: {
+                let (zones, options, colors) = self.loadZonesFromRealm()
+                success(zones, options, colors, true)
+            }, error: { err in
+                error(err)
+                return
+            })
+        } else {
+            let (zones, options, colors) = self.loadZonesFromRealm()
+            success(zones, options, colors, false)
+        }
+    }
+    
+    func loadZonesFromRealm() -> ([String], [String: [String]], [String: UIColor]) {
+        let realm = try! Realm()
+        let zoneObjects = realm.objects(Zone.self)
+        var zones = zoneObjects.flatMap { $0.name }.sorted()
+        var options = [String: [String]]()
+        zoneObjects.forEach { options[$0.name] = $0.neighborhoods }
+        var colors = [String: UIColor]()
+        zoneObjects.forEach { colors[$0.name] = $0.color }
+            
+        zones.append(CaronaeOtherZoneText)
+        colors[CaronaeOtherZoneText] = CaronaeConstants.defaults().otherZoneColor
+            
+        return (zones, options, colors)
     }
     
     func color(forZone zone: String) -> UIColor {

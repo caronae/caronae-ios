@@ -1,4 +1,5 @@
 import UIKit
+import SVProgressHUD
 
 @objc protocol HubSelectionDelegate: class {
     func hasSelected(hubs: [String], inCampus campus: String)
@@ -27,7 +28,8 @@ import UIKit
         
         self.title = "Campi"
         
-        PlaceService.instance.getCampi(hubTypeDirection: hubTypeDirection!, success: { campi, options, colors in
+        SVProgressHUD.show()
+        PlaceService.instance.getCampi(hubTypeDirection: hubTypeDirection!, success: { campi, options, colors, shouldReload in
             self.numberOfCampi = campi.count
             if self.selectionType == .manySelection && self.numberOfCampi > 1 {
                 self.firstLevelOptions = [CaronaeAllCampiText]
@@ -35,11 +37,19 @@ import UIKit
             self.firstLevelOptions.append(contentsOf: campi)
             self.dictionarySelection = options
             self.dictionaryColors = colors
+            if shouldReload {
+                self.tableView.reloadData()
+            }
             if self.numberOfCampi == 1 {
                 self.handleSelection(campi.first!)
             }
+            SVProgressHUD.dismiss()
         }, error: { error in
-            NSLog("Error updating places (\(error.localizedDescription))")
+            SVProgressHUD.dismiss()
+            NSLog("Error getting campi (\(error.localizedDescription))")
+            CaronaeAlertController.presentOkAlert(withTitle: "Não foi possível carregar as localidades", message: "Por favor, tente novamente. \(error.localizedDescription).", handler: {
+                self.navigationController?.popToRootViewController(animated: true)
+            })
         })
     }
     
