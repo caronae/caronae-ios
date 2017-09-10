@@ -56,7 +56,7 @@ import SVProgressHUD
     override func hasSelected(selections: [String], inFirstLevel firstLevel: String) {
         super.hasSelected(selections: selections, inFirstLevel: firstLevel)
         
-        if self.numberOfCampi == 1 && selections == [firstLevel] {
+        if self.selectionType == .manySelection && self.numberOfCampi == 1 && selections == [firstLevel] {
             // Selected all hubs of the single campus. Behavior of selecting all campi.
             delegate?.hasSelected(hubs: [CaronaeAllCampiText], inCampus: CaronaeAllCampiText)
             return

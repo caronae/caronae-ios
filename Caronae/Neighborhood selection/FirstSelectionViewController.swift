@@ -45,7 +45,11 @@ class FirstSelectionViewController: UITableViewController, SecondSelectionDelega
         }
         
         if secondLevelOptions.count == 1 {
-            self.hasSelected(selections: secondLevelOptions, inFirstLevel: selectedFirstLevel)
+            var selections = secondLevelOptions
+            if selectionType == .manySelection {
+                selections = [selectedFirstLevel]
+            }
+            self.hasSelected(selections: selections, inFirstLevel: selectedFirstLevel)
             return
         }
         
