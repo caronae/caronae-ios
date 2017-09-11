@@ -3,9 +3,9 @@
 #pragma mark - Static pages URLs
 
 NSString *const CaronaeIntranetURLString = @"https://api.caronae.com.br/login";
-NSString *const CaronaeAboutPageURLString = @"https://api.caronae.ufrj.br/static_pages/sobre.html";
-NSString *const CaronaeTermsOfUsePageURLString = @"https://api.caronae.ufrj.br/static_pages/termos.html";
-NSString *const CaronaeFAQPageURLString = @"https://api.caronae.ufrj.br/static_pages/faq.html";
+NSString *const CaronaeAboutPageURLString = @"https://api.caronae.com.br/static_pages/sobre.html";
+NSString *const CaronaeTermsOfUsePageURLString = @"https://api.caronae.com.br/static_pages/termos.html";
+NSString *const CaronaeFAQPageURLString = @"https://api.caronae.com.br/static_pages/faq.html";
 
 
 #pragma mark - Notifications
