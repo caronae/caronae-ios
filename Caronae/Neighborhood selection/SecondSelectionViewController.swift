@@ -36,7 +36,7 @@ class SecondSelectionViewController: UITableViewController {
         let selectedIndexPaths = tableView.indexPathsForSelectedRows
         var selections: [String] = []
         
-        if (selectedIndexPaths == nil || selectedIndexPaths?.count == secondLevelOptions.count) {
+        if (selectionType == .manySelection && (selectedIndexPaths == nil || selectedIndexPaths?.count == secondLevelOptions.count)) {
             selections = [selectedFirstLevel]
         } else {
             for indexPath in selectedIndexPaths! {

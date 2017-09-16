@@ -17,7 +17,7 @@ import SVProgressHUD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Zonas"
+        self.title = "Zona"
         
         SVProgressHUD.show()
         PlaceService.instance.getZones(success: { zones, options, colors, shouldReload in

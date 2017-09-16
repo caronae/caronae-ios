@@ -26,7 +26,7 @@ import SVProgressHUD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Campi"
+        self.title = "Campus"
         
         SVProgressHUD.show()
         PlaceService.instance.getCampi(hubTypeDirection: hubTypeDirection!, success: { campi, options, colors, shouldReload in
