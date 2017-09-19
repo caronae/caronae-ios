@@ -5,7 +5,7 @@ import SVProgressHUD
     func hasSelected(neighborhoods: [String], inZone zone: String)
 }
 
-@objc class NeighborhoodSelectionViewController: FirstSelectionViewController {
+@objc class NeighborhoodSelectionViewController: SelectionViewController {
     
     required convenience init(selectionType: SelectionType) {
         self.init()
@@ -22,9 +22,9 @@ import SVProgressHUD
         SVProgressHUD.show()
         PlaceService.instance.getZones(success: { zones, options, colors, shouldReload in
             if self.selectionType == .manySelection {
-                self.firstLevelOptions = [CaronaeAllNeighborhoodsText]
+                self.levelOptions = [CaronaeAllNeighborhoodsText]
             }
-            self.firstLevelOptions.append(contentsOf: zones)
+            self.levelOptions.append(contentsOf: zones)
             self.dictionarySelection = options
             self.dictionaryColors = colors
             if shouldReload {

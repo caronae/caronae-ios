@@ -1,19 +1,14 @@
 import UIKit
 
 class SelectionCell: UITableViewCell {
-
-    enum CellLevel {
-        case firstLevel
-        case secondLevel
-    }
     
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var colorDetail: UIView!
     
     var cellColor: UIColor = UIColor.black
-    var cellLevel: CellLevel = .firstLevel
+    var cellLevel: SelectionLevel = .firstLevel
     
-    func setupCell(on level: CellLevel, withTitle title: String, andColor color: UIColor) {
+    func setupCell(on level: SelectionLevel, withTitle title: String, andColor color: UIColor) {
         self.cellLevel = level
         self.cellLabel.text = title
         self.cellColor = color

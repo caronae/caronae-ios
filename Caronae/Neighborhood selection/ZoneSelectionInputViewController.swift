@@ -2,7 +2,7 @@ import UIKit
 
 class ZoneSelectionInputViewController: UIViewController {
     
-    weak var delegate: SecondSelectionDelegate?
+    weak var delegate: SelectionDelegate?
 
     @IBOutlet weak var neighborhoodTextField: CaronaeTextField!
     

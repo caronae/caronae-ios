@@ -5,7 +5,7 @@ import SVProgressHUD
     func hasSelected(hubs: [String], inCampus campus: String)
 }
 
-@objc class HubSelectionViewController: FirstSelectionViewController {
+@objc class HubSelectionViewController: SelectionViewController {
     
     required convenience init(selectionType: SelectionType, hubTypeDirection: HubTypeDirection) {
         self.init()
@@ -31,17 +31,24 @@ import SVProgressHUD
         SVProgressHUD.show()
         PlaceService.instance.getCampi(hubTypeDirection: hubTypeDirection!, success: { campi, options, colors, shouldReload in
             self.numberOfCampi = campi.count
-            if self.selectionType == .manySelection && self.numberOfCampi > 1 {
-                self.firstLevelOptions = [CaronaeAllCampiText]
-            }
-            self.firstLevelOptions.append(contentsOf: campi)
-            self.dictionarySelection = options
             self.dictionaryColors = colors
+            if self.numberOfCampi == 1 {
+                self.selectionLevel = .secondLevel
+                self.selectedFirstLevel = campi.first!
+                self.levelOptions = options[self.selectedFirstLevel]!.sorted()
+                self.colorFirstLevel = self.color(forCell: self.selectedFirstLevel)
+                self.secondDelegate = self
+                self.configureSecondSelectionIfNeeded()
+            } else {
+                if self.selectionType == .manySelection {
+                    self.levelOptions = [CaronaeAllCampiText]
+                }
+                self.levelOptions.append(contentsOf: campi)
+                self.dictionarySelection = options
+            }
+            
             if shouldReload {
                 self.tableView.reloadData()
-            }
-            if self.numberOfCampi == 1 {
-                self.handleSelection(campi.first!)
             }
             SVProgressHUD.dismiss()
         }, error: { error in
