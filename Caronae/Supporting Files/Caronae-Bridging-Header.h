@@ -11,10 +11,9 @@
 #import "RideListController.h"
 #import "RideViewController.h"
 #import "SearchResultsViewController.h"
-#import "SearchRideViewController.h"
 #import "TabBarController.h"
-#import "ZoneSelectionViewController.h"
 
+#import "CaronaeTextField.h"
 #import "UIApplication+topViewController.h"
 #import "UIWindow+replaceRootViewController.h"
 #import "UIImageView+crn_setImageWithURL.h"

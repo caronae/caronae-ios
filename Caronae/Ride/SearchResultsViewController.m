@@ -2,7 +2,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
 #import "SearchResultsViewController.h"
-#import "SearchRideViewController.h"
 #import "Caronae-Swift.h"
 
 @interface SearchResultsViewController () <SearchRideDelegate>

@@ -8,7 +8,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -353,7 +352,7 @@ caronas ativas.</string>
         <!--Criar carona-->
         <scene sceneID="SI7-YK-2jS">
             <objects>
-                <viewController storyboardIdentifier="CreateRide" automaticallyAdjustsScrollViewInsets="NO" id="Frl-vE-K7W" customClass="CreateRideViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateRide" automaticallyAdjustsScrollViewInsets="NO" id="Frl-vE-K7W" customClass="CreateRideViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="taK-q3-UBl"/>
                         <viewControllerLayoutGuide type="bottom" id="1y9-Cn-qo1"/>
@@ -406,7 +405,7 @@ caronas ativas.</string>
                                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="m4b-ln-3hN" kind="show" identifier="ViewZones" id="tvA-Ui-5Q1"/>
+                                                            <action selector="selectNeighborhoodTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="N1c-YG-fGo"/>
                                                         </connections>
                                                     </button>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="uVb-Vb-QvB" userLabel="Location Icon">
@@ -551,12 +550,12 @@ caronas ativas.</string>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vII-kc-e4x">
                                                         <rect key="frame" x="24" y="5" width="336" height="30"/>
-                                                        <state key="normal" title="CT">
+                                                        <state key="normal" title="Centro Universitário">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="selectCenterTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="WsB-2U-F00"/>
+                                                            <action selector="selectCenterTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="fxD-fV-O8q"/>
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VnG-s1-gVC" userLabel="Separator">
@@ -725,7 +724,7 @@ caronas ativas.</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lel-3x-aaS" userLabel="Week buttons">
                                                         <rect key="frame" x="51" y="33" width="258" height="30"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0u-Of-kIS">
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0u-Of-kIS">
                                                                 <rect key="frame" x="8" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Seg">
@@ -735,10 +734,10 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineMondayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="dWw-Uv-5lg"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="pcG-Xp-URI"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JH2-vq-jd4">
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JH2-vq-jd4">
                                                                 <rect key="frame" x="43" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Ter">
@@ -748,10 +747,10 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineTuesdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="cLv-mo-pvV"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="Ts2-NH-P7Y"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJg-q1-hZ7">
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJg-q1-hZ7">
                                                                 <rect key="frame" x="78" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Qua">
@@ -761,10 +760,10 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineWednesdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="BHJ-Rb-Xvb"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="PQu-3e-Ndx"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLA-ws-d1e">
+                                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLA-ws-d1e">
                                                                 <rect key="frame" x="113" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Qui">
@@ -774,10 +773,10 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineThursdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="7s2-Fu-k4a"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="EVU-Lv-KW3"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBC-l1-G8T">
+                                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBC-l1-G8T">
                                                                 <rect key="frame" x="148" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Sex">
@@ -787,10 +786,10 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineFridayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="vZ0-P4-fE9"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="6j8-aO-Rxi"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hW-ff-mhz">
+                                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hW-ff-mhz">
                                                                 <rect key="frame" x="183" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Sab">
@@ -800,10 +799,10 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineSaturdayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="8te-7a-hkg"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="xnR-5K-hDt"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eim-cd-0J5">
+                                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eim-cd-0J5">
                                                                 <rect key="frame" x="218" y="2" width="30" height="27"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="Dom">
@@ -813,7 +812,7 @@ caronas ativas.</string>
                                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="routineSundayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="dcS-0M-nQF"/>
+                                                                    <action selector="routineWeekDayButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="hnV-Vo-6f2"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -916,7 +915,7 @@ caronas ativas.</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RFV-cv-WBa" userLabel="Duration selection">
                                                         <rect key="frame" x="51" y="101" width="258" height="20"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleAspectFit" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSP-Jw-oid">
+                                                            <button opaque="NO" tag="2" contentMode="scaleAspectFit" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSP-Jw-oid">
                                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="  2 meses" image="Radio">
@@ -927,7 +926,7 @@ caronas ativas.</string>
                                                                     <action selector="routineDurationButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="Lry-iR-hH7"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzb-D4-cJJ">
+                                                            <button opaque="NO" tag="3" contentMode="scaleAspectFit" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzb-D4-cJJ">
                                                                 <rect key="frame" x="92" y="0.0" width="75" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="  3 meses" image="Radio">
@@ -938,7 +937,7 @@ caronas ativas.</string>
                                                                     <action selector="routineDurationButtonTapped:" destination="Frl-vE-K7W" eventType="touchUpInside" id="4cd-Rn-2BS"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMq-jd-Jok" userLabel="4 meses">
+                                                            <button opaque="NO" tag="4" contentMode="scaleAspectFit" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMq-jd-Jok" userLabel="4 meses">
                                                                 <rect key="frame" x="183" y="0.0" width="75" height="20"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <state key="normal" title="  4 meses" image="Radio">
@@ -1520,16 +1519,16 @@ caronas ativas.</string>
                         <barButtonItem key="leftBarButtonItem" title="Cancelar" id="oHO-Oe-5U4">
                             <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="goBack:" destination="Frl-vE-K7W" id="HCi-uo-aWP"/>
+                                <action selector="didTapCancelButton:" destination="Frl-vE-K7W" id="hxc-mM-hHs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="900"/>
                     <connections>
-                        <outlet property="arrivalTimeButton" destination="5VK-HF-o3E" id="bQW-Nw-HE5"/>
-                        <outlet property="center" destination="vII-kc-e4x" id="eTU-7w-7IQ"/>
+                        <outlet property="centerButton" destination="vII-kc-e4x" id="PpV-zR-rGr"/>
                         <outlet property="createRideButton" destination="dRa-H4-Av0" id="m82-Iu-44R"/>
+                        <outlet property="dateButton" destination="5VK-HF-o3E" id="mCw-5b-Qbo"/>
                         <outlet property="neighborhoodButton" destination="vvR-Qc-Z9E" id="emf-Fl-yng"/>
                         <outlet property="notes" destination="R6l-zH-LMn" id="cRY-La-vfi"/>
                         <outlet property="reference" destination="Ah4-oz-Cgc" id="OUH-Ry-aeX"/>
@@ -1537,16 +1536,9 @@ caronas ativas.</string>
                         <outlet property="routineDuration2MonthsButton" destination="gSP-Jw-oid" id="fQf-EW-Znd"/>
                         <outlet property="routineDuration3MonthsButton" destination="Zzb-D4-cJJ" id="l9e-hK-Y9x"/>
                         <outlet property="routineDuration4MonthsButton" destination="LMq-jd-Jok" id="T6G-Ji-xX8"/>
-                        <outlet property="routineFriButton" destination="NBC-l1-G8T" id="LfP-dM-C3o"/>
-                        <outlet property="routineMonButton" destination="e0u-Of-kIS" id="G0b-1G-COi"/>
                         <outlet property="routinePatternHeight" destination="oVb-37-Jvl" id="P5D-oM-Ied"/>
                         <outlet property="routinePatternView" destination="cMq-cP-Q5E" id="jk5-yJ-Xnd"/>
-                        <outlet property="routineSatButton" destination="3hW-ff-mhz" id="hgj-LI-270"/>
-                        <outlet property="routineSunButton" destination="eim-cd-0J5" id="HPf-hL-UFs"/>
                         <outlet property="routineSwitch" destination="lia-S3-6b7" id="LSb-rp-Yhg"/>
-                        <outlet property="routineThuButton" destination="HLA-ws-d1e" id="694-pp-JjZ"/>
-                        <outlet property="routineTueButton" destination="JH2-vq-jd4" id="APP-tm-yBC"/>
-                        <outlet property="routineWedButton" destination="gJg-q1-hZ7" id="Wto-CA-J4L"/>
                         <outlet property="segmentedControl" destination="wWF-a6-BXF" id="iB5-jJ-3M4"/>
                         <outlet property="slotsLabel" destination="w8D-Fs-Xhk" id="uo8-nY-nI2"/>
                         <outlet property="slotsStepper" destination="yHO-6g-1Vp" id="f6y-gZ-jgi"/>
@@ -3686,7 +3678,7 @@ FOTO</string>
                                                             <color key="titleColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="m4b-ln-3hN" kind="show" identifier="ViewZones" id="7VR-Dw-svl"/>
+                                                            <action selector="selectNeighborhoodTapped:" destination="rv3-vJ-1pf" eventType="touchUpInside" id="49M-AX-V3n"/>
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LYE-NN-4Pp" userLabel="Separator Bairro">
@@ -4284,7 +4276,7 @@ FOTO</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssv-9e-mXa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5085" y="1533"/>
+            <point key="canvasLocation" x="5106" y="1544"/>
         </scene>
         <!--Menu-->
         <scene sceneID="8xb-bu-pIx">
@@ -4696,7 +4688,7 @@ FOTO</string>
         <!--Buscar carona-->
         <scene sceneID="LSF-Pe-Bnb">
             <objects>
-                <viewController storyboardIdentifier="SearchRide" automaticallyAdjustsScrollViewInsets="NO" id="ygN-Ct-tDz" customClass="SearchRideViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchRide" automaticallyAdjustsScrollViewInsets="NO" id="ygN-Ct-tDz" customClass="SearchRideViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qhg-BF-eEm"/>
                         <viewControllerLayoutGuide type="bottom" id="i6I-aj-3UA"/>
@@ -4736,7 +4728,7 @@ FOTO</string>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NrO-mC-qNO">
                                                         <rect key="frame" x="24" y="5" width="311" height="30"/>
-                                                        <state key="normal" title="CT">
+                                                        <state key="normal" title="Todos os Campi">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
@@ -4848,12 +4840,12 @@ FOTO</string>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mm-CF-Oik" userLabel="Neighborhood Button">
                                                         <rect key="frame" x="24" y="5" width="311" height="30"/>
-                                                        <state key="normal" title="Selecione os bairros">
+                                                        <state key="normal" title="Todos os Bairros">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="m4b-ln-3hN" kind="show" identifier="ViewZones" id="CEp-XF-lJK"/>
+                                                            <action selector="selectNeighborhoodTapped:" destination="ygN-Ct-tDz" eventType="touchUpInside" id="Qd6-zC-4N5"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -5187,15 +5179,15 @@ FOTO</string>
                         <barButtonItem key="leftBarButtonItem" title="Cancelar" id="T5F-y9-QJ8">
                             <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <action selector="didTapCancelButton:" destination="ygN-Ct-tDz" id="hVn-cy-RFK"/>
+                                <action selector="didTapCancelButton:" destination="ygN-Ct-tDz" id="Q5Z-2S-1Gj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="centerButton" destination="NrO-mC-qNO" id="GWo-UP-E1w"/>
+                        <outlet property="centerButton" destination="NrO-mC-qNO" id="suO-lU-XWe"/>
                         <outlet property="dateButton" destination="HkZ-Ki-Ucb" id="g2v-dM-Kr8"/>
                         <outlet property="directionControl" destination="ymB-Vw-rcK" id="TVH-49-egP"/>
-                        <outlet property="neighborhoodButton" destination="4mm-CF-Oik" id="Jfa-t8-2WY"/>
+                        <outlet property="neighborhoodButton" destination="4mm-CF-Oik" id="YSy-8R-IfQ"/>
                         <segue destination="xgS-4R-DWG" kind="unwind" identifier="showResultsUnwind" unwindAction="showResultsUnwind:" id="5si-PI-ipL"/>
                     </connections>
                 </viewController>
@@ -5203,113 +5195,6 @@ FOTO</string>
                 <exit id="xgS-4R-DWG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5127" y="104"/>
-        </scene>
-        <!--Zone Selection View Controller-->
-        <scene sceneID="vFK-v6-nIe">
-            <objects>
-                <tableViewController id="m4b-ln-3hN" customClass="ZoneSelectionViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VjV-fS-glM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Zone Cell" id="igM-m5-EON" customClass="ZoneCell">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="igM-m5-EON" id="hkP-M9-PyM">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ny-zh-u1W" userLabel="Color Detail">
-                                            <rect key="frame" x="0.0" y="0.0" width="5" height="44"/>
-                                            <color key="backgroundColor" red="0.11372549086809158" green="0.65490198135375977" blue="0.364705890417099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="19" id="d0c-nH-dkg">
-                                                    <variation key="widthClass=compact" constant="5"/>
-                                                </constraint>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="d0c-nH-dkg"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="d0c-nH-dkg"/>
-                                                </mask>
-                                            </variation>
-                                        </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zona Sul" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWb-6p-vlo">
-                                            <rect key="frame" x="20" y="12" width="68" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="CWb-6p-vlo" firstAttribute="leading" secondItem="1ny-zh-u1W" secondAttribute="trailing" constant="16" id="Rzp-fl-lRt">
-                                            <variation key="widthClass=compact" constant="15"/>
-                                        </constraint>
-                                        <constraint firstItem="CWb-6p-vlo" firstAttribute="centerY" secondItem="hkP-M9-PyM" secondAttribute="centerY" id="SEE-0C-93Y"/>
-                                        <constraint firstItem="1ny-zh-u1W" firstAttribute="leading" secondItem="hkP-M9-PyM" secondAttribute="leading" id="Taf-Jt-Nwx"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="1ny-zh-u1W" secondAttribute="bottom" constant="-8" id="VnQ-eC-XU9"/>
-                                        <constraint firstItem="1ny-zh-u1W" firstAttribute="leading" secondItem="hkP-M9-PyM" secondAttribute="leadingMargin" constant="-8" id="WME-6G-RES"/>
-                                        <constraint firstItem="1ny-zh-u1W" firstAttribute="top" secondItem="hkP-M9-PyM" secondAttribute="top" id="YHd-zx-h0O"/>
-                                        <constraint firstAttribute="bottom" secondItem="1ny-zh-u1W" secondAttribute="bottom" id="Yh3-Cr-Xnq"/>
-                                        <constraint firstItem="1ny-zh-u1W" firstAttribute="top" secondItem="hkP-M9-PyM" secondAttribute="topMargin" constant="-8" id="lfH-31-a6l"/>
-                                    </constraints>
-                                    <variation key="default">
-                                        <mask key="subviews">
-                                            <exclude reference="1ny-zh-u1W"/>
-                                            <exclude reference="CWb-6p-vlo"/>
-                                        </mask>
-                                        <mask key="constraints">
-                                            <exclude reference="Rzp-fl-lRt"/>
-                                            <exclude reference="SEE-0C-93Y"/>
-                                            <exclude reference="Taf-Jt-Nwx"/>
-                                            <exclude reference="VnQ-eC-XU9"/>
-                                            <exclude reference="WME-6G-RES"/>
-                                            <exclude reference="YHd-zx-h0O"/>
-                                            <exclude reference="Yh3-Cr-Xnq"/>
-                                            <exclude reference="lfH-31-a6l"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="widthClass=compact">
-                                        <mask key="subviews">
-                                            <include reference="1ny-zh-u1W"/>
-                                            <include reference="CWb-6p-vlo"/>
-                                        </mask>
-                                        <mask key="constraints">
-                                            <include reference="Rzp-fl-lRt"/>
-                                            <include reference="SEE-0C-93Y"/>
-                                            <include reference="Taf-Jt-Nwx"/>
-                                            <exclude reference="VnQ-eC-XU9"/>
-                                            <exclude reference="WME-6G-RES"/>
-                                            <include reference="YHd-zx-h0O"/>
-                                            <include reference="Yh3-Cr-Xnq"/>
-                                            <exclude reference="lfH-31-a6l"/>
-                                        </mask>
-                                    </variation>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="colorDetail" destination="1ny-zh-u1W" id="RPJ-uS-vDM"/>
-                                    <outlet property="zoneNameLabel" destination="CWb-6p-vlo" id="uol-ns-VSR"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="m4b-ln-3hN" id="Q4O-wj-LVt"/>
-                            <outlet property="delegate" destination="m4b-ln-3hN" id="npU-SK-W0G"/>
-                        </connections>
-                    </tableView>
-                    <connections>
-                        <segue destination="J0r-pk-iNO" kind="show" identifier="ViewNeighborhoods" id="C49-6K-JUo"/>
-                        <segue destination="bIR-ED-lkc" kind="show" identifier="OtherNeighborhood" id="eXf-VH-5Uy"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9pn-Vg-apO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6141" y="-230"/>
         </scene>
         <!--Carona-->
         <scene sceneID="oUd-Hw-YXG">
@@ -6876,186 +6761,6 @@ nenhuma carona.</string>
             </objects>
             <point key="canvasLocation" x="2628" y="759"/>
         </scene>
-        <!--Zona-->
-        <scene sceneID="bNh-cg-q2R">
-            <objects>
-                <tableViewController id="J0r-pk-iNO" customClass="NeighborhoodSelectionViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="q3z-80-JGK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="Zone Cell" id="fNt-ar-NHR" customClass="ZoneCell">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fNt-ar-NHR" id="wCF-CR-hFQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="336" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eS-e0-z0Y" userLabel="Color Detail">
-                                            <rect key="frame" x="0.0" y="0.0" width="5" height="44"/>
-                                            <color key="backgroundColor" red="0.1137254909" green="0.6549019814" blue="0.36470589040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="19" id="wqL-mC-Ydx">
-                                                    <variation key="widthClass=compact" constant="5"/>
-                                                </constraint>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="wqL-mC-Ydx"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="wqL-mC-Ydx"/>
-                                                </mask>
-                                            </variation>
-                                        </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ipanema" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJm-qm-ITb">
-                                            <rect key="frame" x="20" y="12" width="66" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="6eS-e0-z0Y" secondAttribute="bottom" id="3Xz-Qx-Qgv"/>
-                                        <constraint firstItem="6eS-e0-z0Y" firstAttribute="top" secondItem="wCF-CR-hFQ" secondAttribute="top" id="Jnu-kw-ogH"/>
-                                        <constraint firstItem="6eS-e0-z0Y" firstAttribute="leading" secondItem="wCF-CR-hFQ" secondAttribute="leadingMargin" constant="-8" id="KsY-W1-xWb"/>
-                                        <constraint firstItem="AJm-qm-ITb" firstAttribute="centerY" secondItem="wCF-CR-hFQ" secondAttribute="centerY" id="VDy-7f-yYh"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="6eS-e0-z0Y" secondAttribute="bottom" constant="-8" id="elb-ac-edJ"/>
-                                        <constraint firstItem="6eS-e0-z0Y" firstAttribute="top" secondItem="wCF-CR-hFQ" secondAttribute="topMargin" constant="-8" id="eqd-rZ-xlu"/>
-                                        <constraint firstItem="6eS-e0-z0Y" firstAttribute="leading" secondItem="wCF-CR-hFQ" secondAttribute="leading" id="h7H-ae-7MV"/>
-                                        <constraint firstItem="AJm-qm-ITb" firstAttribute="leading" secondItem="6eS-e0-z0Y" secondAttribute="trailing" constant="16" id="sp7-S1-i6q">
-                                            <variation key="widthClass=compact" constant="15"/>
-                                        </constraint>
-                                    </constraints>
-                                    <variation key="default">
-                                        <mask key="subviews">
-                                            <exclude reference="6eS-e0-z0Y"/>
-                                            <exclude reference="AJm-qm-ITb"/>
-                                        </mask>
-                                        <mask key="constraints">
-                                            <exclude reference="VDy-7f-yYh"/>
-                                            <exclude reference="sp7-S1-i6q"/>
-                                            <exclude reference="3Xz-Qx-Qgv"/>
-                                            <exclude reference="Jnu-kw-ogH"/>
-                                            <exclude reference="KsY-W1-xWb"/>
-                                            <exclude reference="elb-ac-edJ"/>
-                                            <exclude reference="eqd-rZ-xlu"/>
-                                            <exclude reference="h7H-ae-7MV"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="widthClass=compact">
-                                        <mask key="subviews">
-                                            <include reference="6eS-e0-z0Y"/>
-                                            <include reference="AJm-qm-ITb"/>
-                                        </mask>
-                                        <mask key="constraints">
-                                            <include reference="VDy-7f-yYh"/>
-                                            <include reference="sp7-S1-i6q"/>
-                                            <include reference="3Xz-Qx-Qgv"/>
-                                            <include reference="Jnu-kw-ogH"/>
-                                            <exclude reference="KsY-W1-xWb"/>
-                                            <exclude reference="elb-ac-edJ"/>
-                                            <exclude reference="eqd-rZ-xlu"/>
-                                            <include reference="h7H-ae-7MV"/>
-                                        </mask>
-                                    </variation>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="colorDetail" destination="6eS-e0-z0Y" id="bnD-z6-eAT"/>
-                                    <outlet property="zoneNameLabel" destination="AJm-qm-ITb" id="hpA-Au-ERd"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="J0r-pk-iNO" id="Hcw-Ir-dfs"/>
-                            <outlet property="delegate" destination="J0r-pk-iNO" id="8mw-Dr-F9t"/>
-                        </connections>
-                    </tableView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Zona" id="KA9-iE-llC"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HfW-YK-U8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6952.5" y="-715"/>
-        </scene>
-        <!--Outra região-->
-        <scene sceneID="Ngx-fw-xcD">
-            <objects>
-                <viewController id="bIR-ED-lkc" customClass="ZoneSelectionInputViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="EQH-gW-bpa"/>
-                        <viewControllerLayoutGuide type="bottom" id="pcA-fx-kaF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="27z-nz-vnk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Digite o nome do bairro" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xyj-Wb-gUe" customClass="CaronaeTextField">
-                                <rect key="frame" x="16" y="84" width="343" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="WI9-5m-6hu"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="WI9-5m-6hu"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="WI9-5m-6hu"/>
-                                    </mask>
-                                </variation>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="xyj-Wb-gUe" firstAttribute="leading" secondItem="27z-nz-vnk" secondAttribute="leadingMargin" id="N7e-TU-NJg"/>
-                            <constraint firstItem="xyj-Wb-gUe" firstAttribute="trailing" secondItem="27z-nz-vnk" secondAttribute="trailingMargin" id="Tlt-56-GPJ"/>
-                            <constraint firstItem="xyj-Wb-gUe" firstAttribute="top" secondItem="EQH-gW-bpa" secondAttribute="bottom" constant="20" id="XdK-88-XFQ"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="xyj-Wb-gUe"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="N7e-TU-NJg"/>
-                                <exclude reference="Tlt-56-GPJ"/>
-                                <exclude reference="XdK-88-XFQ"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="xyj-Wb-gUe"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="N7e-TU-NJg"/>
-                                <include reference="Tlt-56-GPJ"/>
-                                <include reference="XdK-88-XFQ"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <navigationItem key="navigationItem" title="Outra região" id="gDJ-G5-v5a">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bir-V2-KAd">
-                            <connections>
-                                <action selector="didTapDoneButton:" destination="bIR-ED-lkc" id="Rbk-1E-0fW"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="doneButton" destination="gDJ-G5-v5a" id="EeP-JU-xxO"/>
-                        <outlet property="neighborhoodTextField" destination="xyj-Wb-gUe" id="U6Y-Ed-Odk"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9bs-Ip-D6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7890.3999999999996" y="243.32833583208398"/>
-        </scene>
         <!--Todas-->
         <scene sceneID="Rt6-sC-yON">
             <objects>
@@ -7126,7 +6831,7 @@ nenhuma carona.</string>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HmZ-UX-tFm">
                                                         <rect key="frame" x="24" y="5" width="311" height="30"/>
-                                                        <state key="normal" title="CT">
+                                                        <state key="normal" title="Todos os Campi">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
@@ -7238,12 +6943,12 @@ nenhuma carona.</string>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVB-Ls-RQU" userLabel="Neighborhood Button">
                                                         <rect key="frame" x="24" y="5" width="311" height="30"/>
-                                                        <state key="normal" title="Selecione os bairros">
+                                                        <state key="normal" title="Todos os Bairros">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="m4b-ln-3hN" kind="show" identifier="ViewZones" id="GIf-iz-Whw"/>
+                                                            <action selector="selectNeighborhoodTapped:" destination="7mn-ba-t9p" eventType="touchUpInside" id="gTp-us-hvh"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -7518,12 +7223,11 @@ nenhuma carona.</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DwZ-AK-niy"/>
         <segue reference="hM9-nM-k0Y"/>
-        <segue reference="GIf-iz-Whw"/>
+        <segue reference="DwZ-AK-niy"/>
         <segue reference="H8O-Mc-OH3"/>
-        <segue reference="ugX-qh-OjL"/>
         <segue reference="yIa-C3-QN8"/>
+        <segue reference="ugX-qh-OjL"/>
         <segue reference="IgS-9T-cpR"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -154,20 +154,24 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     }
     
     func enableFilterRides() {
-        guard let center = userDefaults.string(forKey: CaronaePreferenceLastFilteredCenterKey),
+        guard let campus = userDefaults.string(forKey: CaronaePreferenceLastFilteredCampusKey),
+            let centers = userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredCentersKey),
             let zone = userDefaults.string(forKey: CaronaePreferenceLastFilteredZoneKey),
-            let neighborhoods = userDefaults.array(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) as? [String] else {
+            let neighborhoods = userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) else {
                 return
         }
         
+        if !self.filterIsEnabled {
+            // workaround to not cover cell after enabling filter for the first time
+            tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: false)
+        }
+        
         self.filterIsEnabled = true
-        filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hub: center)
+        filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hubs: centers, campus: campus)
         filterLabel.text = filterParams.activeFiltersText()
         
         pagination = PaginationState()
         loadAllRides()
-        // workaround to not cover cell after enabling filter
-        tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: true)
     }
     
     func disableFilterRides() {
@@ -221,7 +225,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     // MARK: Search methods
     
-    func searchedForRide(with parameters: FilterParameters) {
+    func searchedForRide(withParameters parameters: FilterParameters) {
         searchParams = parameters
         
         performSegue(withIdentifier: "ViewSearchResults", sender: self)

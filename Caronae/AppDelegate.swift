@@ -32,15 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserService.instance.user != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let initialViewController = storyboard.instantiateViewController(withIdentifier: "HomeTabViewController")
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
-            self.registerForNotifications()
-            self.checkIfUserNeedsToFinishProfile()
+            window?.rootViewController = initialViewController
+            window?.makeKeyAndVisible()
+            registerForNotifications()
+            checkIfUserNeedsToFinishProfile()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateUser(notification:)), name: .CaronaeDidUpdateUser, object: nil)
         
         // Update application badge number and listen to notification updates
-        self.updateApplicationBadgeNumber()
+        updateApplicationBadgeNumber()
         NotificationCenter.default.addObserver(self, selector: #selector(updateApplicationBadgeNumber), name: .CaronaeDidUpdateNotifications, object: nil)
         
         return true
@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        self.disconnectFromFcm()
+        disconnectFromFcm()
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -61,19 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         if UserService.instance.user != nil {
-            self.connectToFcm()
-            
-            RideService.instance.updateOfferedRides(success: {
-                NSLog("Offered rides updated")
-            }, error: { error in
-                NSLog("Error updating offered rides (\(error.localizedDescription))")
-            })
-            
-            RideService.instance.updateActiveRides(success: {
-                NSLog("Active rides updated")
-            }, error: { error in
-                NSLog("Error updating active rides (\(error.localizedDescription))")
-            })
+            connectToFcm()
+            updateUserRidesAndPlaces()
         }
         
         // Handle any deeplink
@@ -86,22 +75,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func didUpdateUser(notification: NSNotification) {
         if UserService.instance.user != nil {
-            self.registerForNotifications()
-            self.connectToFcm()
-            
-            // Update offered and active rides after login
-            RideService.instance.updateOfferedRides(success: {
-                NSLog("Offered rides updated")
-            }, error: { error in
-                NSLog("Error updating offered rides (\(error.localizedDescription))")
-            })
-            
-            RideService.instance.updateActiveRides(success: {
-                NSLog("Active rides updated")
-            }, error: { error in
-                NSLog("Error updating active rides (\(error.localizedDescription))")
-            })
-            self.checkIfUserNeedsToFinishProfile()
+            registerForNotifications()
+            connectToFcm()
+            updateUserRidesAndPlaces()
+            checkIfUserNeedsToFinishProfile()
         } else {
             // Check if the logout was forced by the server
             if let signOutRequired = notification.userInfo?[CaronaeSignOutRequiredKey] as? Bool, signOutRequired {
@@ -109,10 +86,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.displayAuthenticationScreen()
                 })
             } else {
-                self.displayAuthenticationScreen()
+                displayAuthenticationScreen()
             }
             
-            self.disconnectFromFcm()
+            disconnectFromFcm()
         }
     }
     
@@ -136,6 +113,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         welcomeNavigationController.modalTransitionStyle = .coverVertical
         welcomeNavigationController.modalPresentationStyle = .overCurrentContext
         rootViewController?.present(welcomeNavigationController, animated: true, completion: nil)
+    }
+    
+    func updateUserRidesAndPlaces() {
+        RideService.instance.updateOfferedRides(success: {
+            NSLog("Offered rides updated")
+        }, error: { error in
+            NSLog("Error updating offered rides (\(error.localizedDescription))")
+        })
+        
+        RideService.instance.updateActiveRides(success: {
+            NSLog("Active rides updated")
+        }, error: { error in
+            NSLog("Error updating active rides (\(error.localizedDescription))")
+        })
+        
+        PlaceService.instance.updatePlaces(success: {
+            NSLog("Places updated")
+        }, error: { error in
+            NSLog("Error updating places (\(error.localizedDescription))")
+        })
     }
     
     
@@ -183,11 +180,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        self.didReceiveRemoteNotification(userInfo)
+        didReceiveRemoteNotification(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        self.didReceiveRemoteNotification(userInfo, completionHandler: completionHandler)
+        didReceiveRemoteNotification(userInfo, completionHandler: completionHandler)
     }
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {

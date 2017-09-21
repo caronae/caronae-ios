@@ -7,10 +7,9 @@
 #import "NSString+validation.h"
 #import "EditProfileViewController.h"
 #import "UIImageView+crn_setImageWithURL.h"
-#import "ZoneSelectionViewController.h"
 #import "Caronae-Swift.h"
 
-@interface EditProfileViewController () <ZoneSelectionDelegate, UIActionSheetDelegate, UITextFieldDelegate>
+@interface EditProfileViewController () <NeighborhoodSelectionDelegate, UIActionSheetDelegate, UITextFieldDelegate>
 @property (nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic) NSDateFormatter *joinedDateFormatter;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
@@ -166,7 +165,7 @@
 
 #pragma mark - Zone selection methods
 
-- (void)hasSelectedNeighborhoods:(NSArray *)neighborhoods inZone:(NSString *)zone {
+- (void)hasSelectedWithNeighborhoods:(NSArray<NSString *> *)neighborhoods inZone:(NSString *)zone {
     self.neighborhood = [neighborhoods firstObject];
     [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
 }
@@ -247,6 +246,12 @@
     }
 }
 
+- (IBAction)selectNeighborhoodTapped:(id)sender {
+    NeighborhoodSelectionViewController *selectionVC = [[NeighborhoodSelectionViewController alloc] initWithSelectionType:SelectionTypeOneSelection];
+    [selectionVC setDelegate:self];
+    [self.navigationController pushViewController:selectionVC animated:YES];
+}
+
 
 #pragma mark - UITextField methods
 
@@ -254,16 +259,6 @@
     // Automatically add prefix
     if (textField == self.phoneTextField && self.phoneTextField.phoneNumber.length == 0) {
         [self.phoneTextField setFormattedText:@"021"];
-    }
-}
-
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ViewZones"]) {
-        ZoneSelectionViewController *vc = segue.destinationViewController;
-        vc.delegate = self;
     }
 }
 
