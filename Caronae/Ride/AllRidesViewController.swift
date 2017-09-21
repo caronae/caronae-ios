@@ -161,14 +161,17 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 return
         }
         
+        if !self.filterIsEnabled {
+            // workaround to not cover cell after enabling filter for the first time
+            tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: false)
+        }
+        
         self.filterIsEnabled = true
         filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hubs: centers, campus: campus)
         filterLabel.text = filterParams.activeFiltersText()
         
         pagination = PaginationState()
         loadAllRides()
-        // workaround to not cover cell after enabling filter
-        tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: true)
     }
     
     func disableFilterRides() {
