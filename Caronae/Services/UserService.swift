@@ -114,7 +114,7 @@ class UserService: NSObject {
         // Unsubscribe from FCM user topic
         if let userTopic = self.userTopic {
             NSLog("Unsubscribing from: \(userTopic)")
-            FIRMessaging.messaging().unsubscribe(fromTopic: userTopic)
+            Messaging.messaging().unsubscribe(fromTopic: userTopic)
         }
         
         // Clear database

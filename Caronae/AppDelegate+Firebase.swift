@@ -1,80 +1,55 @@
 import Firebase
 import UserNotifications
 
-extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
+extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
 
     func configureFirebase() {
-        FIRApp.configure()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(tokenRefreshNotification), name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
-    }
-    
-    func didRegisterForRemoteNotifications(deviceToken: NSData) {
-        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: FIRInstanceIDAPNSTokenType.sandbox)
-    }
-    
-    func tokenRefreshNotification(_ notification: Notification) {
-        if let refreshedToken = FIRInstanceID.instanceID().token() {
-            NSLog("InstanceID token: \(refreshedToken)")
-        }
-        
-        // Connect to FCM since connection may have failed when attempted before having a token.
-        connectToFcm()
-    }
-    
-    func connectToFcm() {
-        // Won't connect since there is no token
-        guard FIRInstanceID.instanceID().token() != nil else {
-            return;
-        }
-        
-        // Disconnect previous FCM connection if it exists.
-        FIRMessaging.messaging().disconnect()
-        
-        FIRMessaging.messaging().connect { error in
-            if error != nil {
-                NSLog("Unable to connect with FCM. %@", error!.localizedDescription)
-            } else {
-                NSLog("Connected to FCM.")
-                self.subscribeToUserTopic()
-                self.subscribeToGeneralTopic()
-            }
-        }
+        FirebaseApp.configure()
+        NotificationCenter.default.addObserver(self, selector: #selector(messagingDirectChannelStateChanged(_:)), name: .MessagingConnectionStateChanged, object: nil)
     }
     
     func disconnectFromFcm() {
-        FIRMessaging.messaging().disconnect()
-        NSLog("Disconnected from FCM.")
+        Messaging.messaging().shouldEstablishDirectChannel = false
     }
     
-    func subscribeToGeneralTopic() {
-        let topic = "/topics/general"
-        NSLog("Subscribing to: \(topic)")
-        FIRMessaging.messaging().subscribe(toTopic: topic)
+    func messagingDirectChannelStateChanged(_ notification: Notification) {
+        NSLog("FCM Direct Channel Established: \(Messaging.messaging().isDirectChannelEstablished)")
+        if Messaging.messaging().isDirectChannelEstablished {
+            subscribeToUserAndGeneralTopic()
+        }
     }
     
-    func subscribeToUserTopic() {
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        NSLog("Firebase registration token: \(fcmToken)")
+        subscribeToUserAndGeneralTopic()
+    }
+    
+    func subscribeToUserAndGeneralTopic() {
         if let userTopic = UserService.instance.userTopic {
             NSLog("Subscribing to: \(userTopic)")
-            FIRMessaging.messaging().subscribe(toTopic: userTopic)
+            Messaging.messaging().subscribe(toTopic: userTopic)
         }
+        
+        let topic = "/topics/general"
+        NSLog("Subscribing to: \(topic)")
+        Messaging.messaging().subscribe(toTopic: topic)
     }
     
     func registerForNotifications() {
         let application = UIApplication.shared
         
+        Messaging.messaging().delegate = self
+        Messaging.messaging().shouldEstablishDirectChannel = true
+        
         // [START register_for_notifications]
         if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(
                 options: authOptions,
                 completionHandler: {_,_ in })
-            
-            // For iOS 10 display notification (sent via APNS)
-            UNUserNotificationCenter.current().delegate = self
-            // For iOS 10 data message (sent via FCM)
-            FIRMessaging.messaging().remoteMessageDelegate = self
-            
         } else {
             let settings: UIUserNotificationSettings =
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -150,7 +125,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, FIRMessagingDelegate {
     
     // [START ios_10_data_message_handling]
     // Receive data message on iOS 10 devices while app is in the foreground.
-    public func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+    public func application(received remoteMessage: MessagingRemoteMessage) {
         NSLog("Data message received on iOS 10 or greater: %@", remoteMessage.appData)
         _ = handleNotification(remoteMessage.appData)
     }
