@@ -4,8 +4,8 @@ target 'Caronae' do
     use_frameworks!
     
     pod 'AFNetworking', '~> 2.6.3'
-    pod 'ActionSheetPicker-3.0', '~> 2.0.5'
-    pod 'TPKeyboardAvoiding', '~> 1.2.11'
+    pod 'ActionSheetPicker-3.0', '~> 2.2.0'
+    pod 'TPKeyboardAvoiding', '~> 1.3.1'
     pod 'SDCAlertView', '2.5.4'
     pod 'SVProgressHUD'
     pod 'SDWebImage', '~> 3.8.2'
@@ -13,9 +13,9 @@ target 'Caronae' do
     pod 'CRToast', '~> 0.0.7'
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
-    pod 'RealmSwift', '~> 2.9'
-    pod 'ObjectMapper', '~> 2.2'
-    pod 'ObjectMapper+Realm', '~> 0.2'
+    pod 'RealmSwift', '~> 2.10'
+    pod 'ObjectMapper', '~> 3.0'
+    pod 'ObjectMapper+Realm', '~> 0.5'
     pod 'UITextView+Placeholder', '~> 1.2'
     pod 'Firebase/Messaging'
     pod 'JSQMessagesViewController', :git => 'https://github.com/caronae/JSQMessagesViewController.git', :branch => 'issue-1864'
