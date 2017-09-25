@@ -45,6 +45,7 @@ class ChatService: NSObject {
                 .sorted(byKeyPath: "date", ascending: false)
                 .first {
             let dateFormatter = DateFormatter()
+            dateFormatter.calendar = Calendar(identifier: .gregorian)
             dateFormatter.locale = Locale(identifier: "en_US_POSIX")
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             params = [ "since": dateFormatter.string(from: lastMessage.date) ]
