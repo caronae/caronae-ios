@@ -75,9 +75,7 @@ NSString *const CaronaeOtherNeighborhoodsText = @"Outros";
                         @"Grande Niterói": [UIColor colorWithRed:0.898 green:0.349 blue:0.620 alpha:1.000],
                         @"Zona Norte": [UIColor colorWithRed:0.353 green:0.157 blue:0.094 alpha:1.000],
                         @"Zona Oeste": [UIColor colorWithRed:0.125 green:0.145 blue:0.467 alpha:1.000],
-                        @"Zona Sul": [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000],
-                        @"Cidade Universitária": [UIColor colorWithRed:0.353 green:0.157 blue:0.094 alpha:1.000],   // Zona Norte
-                        @"Praia Vermelha": [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000]          // Zona Sul
+                        @"Zona Sul": [UIColor colorWithRed:0.114 green:0.655 blue:0.365 alpha:1.000]
                         };
     }
     return _placeColors;

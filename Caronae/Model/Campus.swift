@@ -5,7 +5,7 @@ class Campus: Object, Mappable {
     dynamic var name: String!
     dynamic var hexColor: String!
     lazy var color: UIColor = {
-        return UIColor(hex: self.hexColor)
+        return UIColor(hex: String(self.hexColor.dropFirst()))
     }()
     var hubsList = List<Place>()
     var hubs: [String] {
@@ -28,11 +28,8 @@ class Campus: Object, Mappable {
     
     func mapping(map: Map) {
         name <- map["name"]
-        //hexColor <- map["color"]
+        hexColor <- map["color"]
         hubs <- map["hubs"]
         centers <- map["centers"]
-        
-        let colors = CaronaeConstants.defaults().placeColors as? [String : UIColor]
-        hexColor = colors?[name]?.toHexString
     }
 }
