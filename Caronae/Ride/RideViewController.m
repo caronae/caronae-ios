@@ -489,22 +489,11 @@ static NSString *CaronaeFinishButtonStateAlreadyFinished   = @"  Carona concluí
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, 300, 20)];
-    label.font = [UIFont boldSystemFontOfSize:13.0f];
-    label.text = @"PEDIDOS DE CARONA";
-    
-    UIView *headerView = [[UIView alloc] init];
-    [headerView addSubview:label];
-    
-    return headerView;
-}
-
 - (void)adjustHeightOfTableview {
     [self.view layoutIfNeeded];
     CGFloat height = 0.0f;
     if (self.requesters.count > 0) {
-        height = self.requestsTable.sectionHeaderHeight + self.requesters.count * self.requestsTable.rowHeight;
+        height = self.requesters.count * self.requestsTable.rowHeight;
     }
     self.requestsTableHeight.constant = height;
     [UIView animateWithDuration:0.25 animations:^{
