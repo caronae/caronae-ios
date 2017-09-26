@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10109" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,18 +17,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="94"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="94.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Renan Souza" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Nl-H4-CEK" userLabel="Driver name">
-                        <rect key="frame" x="76" y="14" width="231" height="17"/>
+                        <rect key="frame" x="68" y="14" width="244" height="17"/>
                         <gestureRecognizers/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                        <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile Picture" translatesAutoresizingMaskIntoConstraints="NO" id="1RG-CV-C0R" userLabel="Driver photo">
-                        <rect key="frame" x="16" y="8" width="50" height="50"/>
+                        <rect key="frame" x="8" y="8" width="50" height="50"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="1RG-CV-C0R" secondAttribute="height" multiplier="1:1" id="VnQ-LI-Bdj"/>
@@ -38,25 +42,25 @@
                                 <integer key="value" value="3"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
-                                <color key="value" red="0.1137254909" green="0.6549019814" blue="0.36470589040000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.1137254909" green="0.6549019814" blue="0.36470589040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aluno | Engenharia Mecatrônica" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="3bo-c8-Br5" userLabel="Course">
-                        <rect key="frame" x="76" y="33" width="231" height="17"/>
+                        <rect key="frame" x="68" y="33" width="244" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNv-zp-m0j">
-                        <rect key="frame" x="16" y="66" width="113" height="22"/>
+                        <rect key="frame" x="8" y="66" width="113" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="tVz-4f-Q1V"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                         <state key="normal" title="    Remover pedido    ">
-                            <color key="titleColor" red="0.57647061349999995" green="0.58039218189999997" blue="0.57647061349999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.57647061349999995" green="0.58039218189999997" blue="0.57647061349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -66,7 +70,7 @@
                                 <integer key="value" value="2"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
-                                <color key="value" red="0.57647061349999995" green="0.58039218189999997" blue="0.57647061349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.57647061349999995" green="0.58039218189999997" blue="0.57647061349999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
@@ -75,10 +79,10 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azp-fD-fsS">
-                        <rect key="frame" x="189" y="66" width="117" height="22"/>
+                        <rect key="frame" x="195" y="66" width="117" height="22"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                         <state key="normal" title="    Aceitar caronista    ">
-                            <color key="titleColor" red="0.11372549086809158" green="0.65490198135375977" blue="0.364705890417099" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.11372549086809158" green="0.65490198135375977" blue="0.364705890417099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -88,7 +92,7 @@
                                 <integer key="value" value="2"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
-                                <color key="value" red="0.11372549086809158" green="0.65490198135375977" blue="0.364705890417099" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.11372549086809158" green="0.65490198135375977" blue="0.364705890417099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
@@ -97,21 +101,21 @@
                         </connections>
                     </button>
                 </subviews>
-                <color key="backgroundColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.94901961089999998" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.94901961089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="tNv-zp-m0j" firstAttribute="top" secondItem="1RG-CV-C0R" secondAttribute="bottom" constant="8" id="4dO-aq-Ief"/>
                     <constraint firstItem="0Nl-H4-CEK" firstAttribute="top" secondItem="1RG-CV-C0R" secondAttribute="top" constant="6" id="69e-sF-VTb"/>
                     <constraint firstAttribute="topMargin" secondItem="1RG-CV-C0R" secondAttribute="top" id="Ctp-NZ-78c"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="0Nl-H4-CEK" secondAttribute="trailing" constant="5" id="DKB-kg-EER"/>
-                    <constraint firstItem="tNv-zp-m0j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="JHg-Yl-LBe"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="0Nl-H4-CEK" secondAttribute="trailing" id="DKB-kg-EER"/>
+                    <constraint firstItem="tNv-zp-m0j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="JHg-Yl-LBe"/>
                     <constraint firstItem="3bo-c8-Br5" firstAttribute="leading" secondItem="0Nl-H4-CEK" secondAttribute="leading" id="PaZ-XY-ER7"/>
                     <constraint firstItem="azp-fD-fsS" firstAttribute="height" secondItem="tNv-zp-m0j" secondAttribute="height" id="TJA-Ph-a90"/>
                     <constraint firstItem="3bo-c8-Br5" firstAttribute="top" secondItem="0Nl-H4-CEK" secondAttribute="bottom" constant="2" id="TeK-Za-yXH"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="azp-fD-fsS" secondAttribute="trailing" constant="6" id="Zsl-lU-bLR"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="azp-fD-fsS" secondAttribute="trailing" id="Zsl-lU-bLR"/>
                     <constraint firstItem="azp-fD-fsS" firstAttribute="top" secondItem="tNv-zp-m0j" secondAttribute="top" id="f0t-RW-KCb"/>
                     <constraint firstItem="0Nl-H4-CEK" firstAttribute="leading" secondItem="1RG-CV-C0R" secondAttribute="trailing" constant="10" id="hsN-b6-S3k"/>
                     <constraint firstItem="3bo-c8-Br5" firstAttribute="width" secondItem="0Nl-H4-CEK" secondAttribute="width" id="ptw-Qk-yPl"/>
-                    <constraint firstItem="1RG-CV-C0R" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="vCl-wn-uYi"/>
+                    <constraint firstItem="1RG-CV-C0R" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="vCl-wn-uYi"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
