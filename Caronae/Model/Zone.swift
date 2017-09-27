@@ -23,10 +23,7 @@ class Zone: Object, Mappable {
     
     func mapping(map: Map) {
         name <- map["name"]
-        //hexColor <- map["color"]
+        hexColor <- map["color"]
         neighborhoods <- map["neighborhoods"]
-        
-        let colors = CaronaeConstants.defaults().placeColors as? [String : UIColor]
-        hexColor = colors?[name]?.toHexString
     }
 }

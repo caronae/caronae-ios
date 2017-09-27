@@ -5,7 +5,7 @@ class Campus: Object, Mappable {
     dynamic var name: String!
     dynamic var hexColor: String!
     lazy var color: UIColor = {
-        return UIColor(hex: String(self.hexColor.dropFirst()))
+        return UIColor(hex: self.hexColor)
     }()
     var hubsList = List<Place>()
     var hubs: [String] {

@@ -49,7 +49,6 @@ extern NSString *const CaronaeOtherNeighborhoodsText;
 
 + (instancetype)defaults;
 
-@property (nonatomic, readonly) NSDictionary *placeColors;
 @property (nonatomic, readonly) UIColor *otherZoneColor;
 
 @end
