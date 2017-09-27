@@ -114,7 +114,7 @@ class UserService: NSObject {
         // Unsubscribe from FCM user topic
         if let userTopic = self.userTopic {
             NSLog("Unsubscribing from: \(userTopic)")
-            FIRMessaging.messaging().unsubscribe(fromTopic: userTopic)
+            Messaging.messaging().unsubscribe(fromTopic: userTopic)
         }
         
         // Clear database
@@ -176,20 +176,6 @@ class UserService: NSObject {
         
         api.put("/user/saveFaceId", parameters: params, success: { task, responseObject in
             success()
-        }, failure: { _, err in
-            error(err)
-        })
-    }
-    
-    func getPhotoFromUFRJ(success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/user/intranetPhotoUrl", parameters: nil, success: { task, responseObject in
-            guard let response = responseObject as? [String: Any],
-                let url = response["url"] as? String else {
-                    error(CaronaeError.invalidResponse)
-                    return
-            }
-            
-            success(url)
         }, failure: { _, err in
             error(err)
         })

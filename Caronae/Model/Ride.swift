@@ -72,10 +72,14 @@ class Ride: Object, Mappable {
         return routineID.value != nil
     }
     
+    var availableSlots: Int {
+        return slots - riders.count
+    }
     
     private var _dateString: String? {
         get {
             let formatter = DateFormatter()
+            formatter.calendar = Calendar(identifier: .gregorian)
             formatter.locale = Locale(identifier: "en_US_POSIX")
             formatter.dateFormat = "yyyy-MM-dd"
             return formatter.string(for: date)
@@ -88,6 +92,7 @@ class Ride: Object, Mappable {
     private func updateDate(_ newDate: String?) {
         guard let dateString = newDate, let timeString = _timeString else { return }
         let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         self.date = formatter.date(from: dateString + " " + timeString)
@@ -96,6 +101,7 @@ class Ride: Object, Mappable {
     private var _timeString: String? {
         get {
             let formatter = DateFormatter()
+            formatter.calendar = Calendar(identifier: .gregorian)
             formatter.locale = Locale(identifier: "en_US_POSIX")
             formatter.dateFormat = "HH:mm:ss"
             return formatter.string(for: date)
@@ -108,6 +114,7 @@ class Ride: Object, Mappable {
     private func updateTime(_ newTime: String?) {
         guard let dateString = _dateString, let timeString = newTime else { return }
         let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         self.date = formatter.date(from: dateString + " " + timeString)

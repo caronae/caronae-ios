@@ -14,12 +14,6 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         self.navigationController?.view.backgroundColor = UIColor.white
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
-        // Organize bar button items on navigation bar
-        let searchButton = navigationItem.rightBarButtonItem!
-        let filterButton = navigationItem.leftBarButtonItem!
-        navigationItem.setLeftBarButton(nil, animated: false)
-        navigationItem.setRightBarButtonItems([searchButton, filterButton], animated: false)
-        
         NotificationCenter.default.addObserver(self, selector:#selector(self.reloadRidesIfNecessary), name: .UIApplicationWillEnterForeground, object: nil)
         
         // Setting up infinite scroll
@@ -134,21 +128,50 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         }
     }
     
+    func loadRide(withID id: Int) {
+        RideService.instance.getRide(withID: id, success: { ride, availableSlots in
+            guard ride.date.isInTheFuture() else {
+                CaronaeAlertController.presentOkAlert(withTitle: "Carona encerrada", message: "A carona que você tentou abrir já foi encerrada. Você pode encontrar novas caronas através da busca.")
+                return
+            }
+            
+            let rideViewController = RideViewController(for: ride)!
+            rideViewController.rideIsFull = (availableSlots == 0)
+            _ = self.navigationController?.popToRootViewController(animated: false)
+            self.navigationController?.pushViewController(rideViewController, animated: true)
+        }, error: { error in
+            var errorMessage: String!
+            
+            switch error.caronaeCode {
+            case .invalidRide:
+                errorMessage = "Talvez a carona que você está procurando não exista mais."
+            default:
+                errorMessage = "Ocorreu um erro ao tentar carregar a carona. Por favor, tente novamente."
+            }
+            
+            CaronaeAlertController.presentOkAlert(withTitle: "Falha ao carregar carona", message: errorMessage)
+        })
+    }
+    
     func enableFilterRides() {
-        guard let center = userDefaults.string(forKey: CaronaePreferenceLastFilteredCenterKey),
+        guard let campus = userDefaults.string(forKey: CaronaePreferenceLastFilteredCampusKey),
+            let centers = userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredCentersKey),
             let zone = userDefaults.string(forKey: CaronaePreferenceLastFilteredZoneKey),
-            let neighborhoods = userDefaults.array(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) as? [String] else {
+            let neighborhoods = userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) else {
                 return
         }
         
+        if !self.filterIsEnabled {
+            // workaround to not cover cell after enabling filter for the first time
+            tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: false)
+        }
+        
         self.filterIsEnabled = true
-        filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hub: center)
+        filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hubs: centers, campus: campus)
         filterLabel.text = filterParams.activeFiltersText()
         
         pagination = PaginationState()
         loadAllRides()
-        // workaround to not cover cell after enabling filter
-        tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: true)
     }
     
     func disableFilterRides() {
@@ -202,7 +225,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     // MARK: Search methods
     
-    func searchedForRide(with parameters: FilterParameters) {
+    func searchedForRide(withParameters parameters: FilterParameters) {
         searchParams = parameters
         
         performSegue(withIdentifier: "ViewSearchResults", sender: self)

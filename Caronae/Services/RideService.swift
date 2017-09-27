@@ -156,6 +156,33 @@ class RideService: NSObject {
         })
     }
     
+    func getRide(withID id: Int, success: @escaping (_ ride: Ride, _ availableSlots: Int) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
+        api.get("/ride/\(id)", parameters: nil, success: { task, responseObject in
+            guard let rideJson = responseObject as? [String: Any],
+                let ride = Ride(JSON: rideJson),
+                let availableSlots = rideJson["availableSlots"] as? Int else {
+                    error(CaronaeError.invalidRide)
+                    return
+            }
+            
+            success(ride, availableSlots)
+        }, failure: { task, err in
+            NSLog("Failed to load ride with id \(id): \(err.localizedDescription)")
+            
+            var caronaeError: CaronaeError = .invalidResponse
+            if let response = task?.response as? HTTPURLResponse {
+                switch response.statusCode {
+                case 404:
+                    caronaeError = .invalidRide
+                default:
+                    caronaeError = .invalidResponse
+                }
+            }
+            
+            error(caronaeError)
+        })
+    }
+    
     func getRidesHistory(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
         api.get("/ride/getRidesHistory", parameters: nil, success: { task, responseObject in
             guard let ridesJson = responseObject as? [[String: Any]] else {
@@ -185,7 +212,7 @@ class RideService: NSObject {
         })
     }
 
-    func createRide(_ ride: Ride, success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func createRide(_ ride: Ride, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         api.post("/ride", parameters: ride.toJSON(), success: { task, responseObject in
             guard let ridesJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
@@ -208,7 +235,7 @@ class RideService: NSObject {
                 error(realmError)
             }
             
-            success(rides)
+            success()
         }, failure: { _, err in
             error(err)
         })
@@ -314,6 +341,7 @@ class RideService: NSObject {
     
     func validateRideDate(ride: Ride, success: @escaping (_ valid: Bool, _ status: String) -> Void, error: @escaping (_ error: Error?) -> Void) {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
         let dateString = dateFormatter.string(from: ride.date).components(separatedBy: " ")
