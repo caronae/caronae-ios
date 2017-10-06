@@ -129,14 +129,14 @@ class RideService: NSObject {
             do {
                 let realm = try Realm()
                 // Clear rides previously marked as active
-                let previouslyActives = realm.objects(Ride.self).filter("isActive == true")
+                let previouslyActives = Array(realm.objects(Ride.self).filter("isActive == true"))
                 try realm.write {
                     previouslyActives.forEach { $0.isActive = false }
                 }
                 
                 // Clear notifications for finished/canceled rides
                 let currentActiveIDs = rides.flatMap { $0.id }
-                var previouslyActiveIDs = Set(previouslyActives.enumerated().flatMap { $0.1.id })
+                var previouslyActiveIDs = Set(previouslyActives.flatMap { $0.id })
                 previouslyActiveIDs.subtract(currentActiveIDs)
                 previouslyActiveIDs.forEach { id in
                     NotificationService.instance.clearNotifications(forRideID: id, of: [.chat, .rideJoinRequestAccepted])
