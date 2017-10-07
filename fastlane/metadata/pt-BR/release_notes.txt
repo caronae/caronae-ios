@@ -1,8 +1,10 @@
 Alô Praia Vermelha! Vai uma caronaê? Preparamos o aplicativo para muito em breve liberar as opções da PV.
 
-Modificações para uma melhor experiência no iOS 11.
-Corrige um problema que poderia ocorrer com datas de início e de término do horário de verão.
+Melhora a integração com o servidor.
+Corrige um problema onde notificações de caronas ativas poderiam não desaparecer.
+Corrige opções do Motivo de Contato dentro do Falaê.
 
+1.1.7: Modificações para uma melhor experiência no iOS 11.
 1.1.6: Quer avisar a um amigo sobre uma carona? Agora você pode compartilhar o link de uma carona com outra pessoa.
 
 Caso você encontre algum problema, por favor nos avise através do Falaê, no menu do app, pela nossa página do Facebook ou pelo email caronae@fundoverde.ufrj.br :)
