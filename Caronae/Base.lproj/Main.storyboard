@@ -1634,7 +1634,7 @@ nenhuma carona.</string>
         <!--Falaê-->
         <scene sceneID="dO1-ON-W0Z">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="SUh-3J-VXI" customClass="FalaeViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="SUh-3J-VXI" customClass="FalaeViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zhm-FT-3CJ"/>
                         <viewControllerLayoutGuide type="bottom" id="Xzi-Wl-Bdn"/>

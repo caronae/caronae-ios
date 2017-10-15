@@ -1,7 +1,12 @@
 extension UIColor {
+    /// Converts a hexadecimal color string to a corresponding UIColor.
+    ///
+    /// - parameter hex: hexadecimal color with format "#000000"
+    ///
+    /// - returns: Corresponding UIColor
     convenience init(hex: String) {
         let scanner = Scanner(string: hex)
-        scanner.scanLocation = 0
+        scanner.scanLocation = 1
         
         var rgbValue: UInt64 = 0
         
@@ -15,24 +20,6 @@ extension UIColor {
             red: CGFloat(r) / 0xff,
             green: CGFloat(g) / 0xff,
             blue: CGFloat(b) / 0xff, alpha: 1
-        )
-    }
-}
-
-extension UIColor {
-    var toHexString: String {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        
-        self.getRed(&r, green: &g, blue: &b, alpha: &a)
-        
-        return String(
-            format: "%02X%02X%02X",
-            Int(r * 0xff),
-            Int(g * 0xff),
-            Int(b * 0xff)
         )
     }
 }

@@ -1,7 +1,6 @@
 @import FBSDKCoreKit;
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
-#import "FalaeViewController.h"
 #import "MenuViewController.h"
 #import "ProfileViewController.h"
 #import "RiderCell.h"
@@ -158,7 +157,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ReportUser"]) {
         FalaeViewController *vc = segue.destinationViewController;
-        [vc setReport:_user];
+        [vc setReportedUser:_user];
     }
 }
 
