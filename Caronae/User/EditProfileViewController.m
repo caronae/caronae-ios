@@ -7,10 +7,9 @@
 #import "NSString+validation.h"
 #import "EditProfileViewController.h"
 #import "UIImageView+crn_setImageWithURL.h"
-#import "ZoneSelectionViewController.h"
 #import "Caronae-Swift.h"
 
-@interface EditProfileViewController () <ZoneSelectionDelegate, UIActionSheetDelegate, UITextFieldDelegate>
+@interface EditProfileViewController () <NeighborhoodSelectionDelegate, UIActionSheetDelegate, UITextFieldDelegate>
 @property (nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic) NSDateFormatter *joinedDateFormatter;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
@@ -49,6 +48,7 @@
 
 - (void)configureFacebookLoginButton {
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    [loginButton removeConstraints:loginButton.constraints];
     loginButton.readPermissions = @[@"public_profile", @"user_friends"];
     [self.fbButtonView addSubview:loginButton];
     loginButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -165,7 +165,7 @@
 
 #pragma mark - Zone selection methods
 
-- (void)hasSelectedNeighborhoods:(NSArray *)neighborhoods inZone:(NSString *)zone {
+- (void)hasSelectedWithNeighborhoods:(NSArray<NSString *> *)neighborhoods inZone:(NSString *)zone {
     self.neighborhood = [neighborhoods firstObject];
     [self.neighborhoodButton setTitle:self.neighborhood forState:UIControlStateNormal];
 }
@@ -214,9 +214,6 @@
     [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do Facebook" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self importPhotoFromFacebook];
     }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do SIGA" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self importPhotoFromSIGA];
-    }]];
     [alert addAction:[UIAlertAction actionWithTitle:@"Remover minha foto" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         NSLog(@"Removendo foto...");
         _photoURL = nil;
@@ -249,6 +246,12 @@
     }
 }
 
+- (IBAction)selectNeighborhoodTapped:(id)sender {
+    NeighborhoodSelectionViewController *selectionVC = [[NeighborhoodSelectionViewController alloc] initWithSelectionType:SelectionTypeOneSelection];
+    [selectionVC setDelegate:self];
+    [self.navigationController pushViewController:selectionVC animated:YES];
+}
+
 
 #pragma mark - UITextField methods
 
@@ -256,16 +259,6 @@
     // Automatically add prefix
     if (textField == self.phoneTextField && self.phoneTextField.phoneNumber.length == 0) {
         [self.phoneTextField setFormattedText:@"021"];
-    }
-}
-
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ViewZones"]) {
-        ZoneSelectionViewController *vc = segue.destinationViewController;
-        vc.delegate = self;
     }
 }
 
@@ -300,25 +293,6 @@
         [SVProgressHUD dismiss];
         NSLog(@"Error loading photo: %@", error.localizedDescription);
         [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do Facebook."];
-    }];
-}
-
-
-#pragma mark - SIGA integration
-
-- (void)importPhotoFromSIGA {
-    NSLog(@"Importing profile picture from SIGA...");
-    
-    [SVProgressHUD show];
-    [UserService.instance getPhotoFromUFRJWithSuccess:^(NSString * _Nonnull url) {
-        _photoURL = url;
-        [_photo crn_setImageWithURL:[NSURL URLWithString:_photoURL] completed:^{
-            [SVProgressHUD dismiss];
-        }];
-    } error:^(NSError * _Nonnull error) {
-        [SVProgressHUD dismiss];
-        NSLog(@"Error loading photo: %@", error.localizedDescription);
-        [CaronaeAlertController presentOkAlertWithTitle:@"Erro atualizando foto" message:@"Não foi possível carregar sua foto de perfil do SIGA."];
     }];
 }
 

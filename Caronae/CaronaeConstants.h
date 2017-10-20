@@ -12,13 +12,15 @@ extern NSString *const CaronaeFAQPageURLString;
 
 extern NSString *const CaronaePreferenceLastSearchedZoneKey;
 extern NSString *const CaronaePreferenceLastSearchedNeighborhoodsKey;
-extern NSString *const CaronaePreferenceLastSearchedCenterKey;
+extern NSString *const CaronaePreferenceLastSearchedCampusKey;
+extern NSString *const CaronaePreferenceLastSearchedCentersKey;
 extern NSString *const CaronaePreferenceLastSearchedDateKey;
 
 extern NSString *const CaronaePreferenceFilterIsEnabledKey;
 extern NSString *const CaronaePreferenceLastFilteredZoneKey;
 extern NSString *const CaronaePreferenceLastFilteredNeighborhoodsKey;
-extern NSString *const CaronaePreferenceLastFilteredCenterKey;
+extern NSString *const CaronaePreferenceLastFilteredCampusKey;
+extern NSString *const CaronaePreferenceLastFilteredCentersKey;
 
 
 #pragma mark - Notifications
@@ -38,18 +40,15 @@ extern NSString *const CaronaePlaceholderProfileImage;
 extern NSString *const CaronaeSearchDateFormat;
 extern NSString *const CaronaeDateLocaleIdentifier;
 extern NSString *const CaronaeAllNeighborhoodsText;
+extern NSString *const CaronaeAllCampiText;
+extern NSString *const CaronaeOtherZoneText;
+extern NSString *const CaronaeOtherNeighborhoodsText;
 
 
 @interface CaronaeConstants : NSObject
 
 + (instancetype)defaults;
 
-+ (UIColor *)colorForZone:(NSString *)zone;
-
-@property (nonatomic, readonly) NSArray *centers;
-@property (nonatomic, readonly) NSArray *hubs;
-@property (nonatomic, readonly) NSArray *zones;
-@property (nonatomic, readonly) NSDictionary *zoneColors;
-@property (nonatomic, readonly) NSDictionary *neighborhoods;
+@property (nonatomic, readonly) UIColor *otherZoneColor;
 
 @end

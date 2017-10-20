@@ -1,6 +1,7 @@
 #import "RideListController.h"
 
 @class FilterParameters;
+@protocol SearchRideDelegate;
 
 @interface SearchResultsViewController : RideListController
 

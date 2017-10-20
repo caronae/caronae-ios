@@ -1,6 +1,10 @@
-O desenvolvimento do Caronaê voltou e estamos ouvindo todo o feedback que recebemos!
-Neste update, fizemos algumas melhorias na pesquisa por caronas:
+Alô Praia Vermelha! Vai uma caronaê? Preparamos o aplicativo para muito em breve liberar as opções da PV.
 
-- Encontre caronas em todos os centros! Sabemos que pra alguns, o que basta é conseguir 
-chegar ao Fundão, então agora você pode selecionar 'Todos os Centros' na pesquisa.
-- Salvamos os dados da última pesquisa para que você não precise selecionar tudo de novo.
+Melhora a integração com o servidor.
+Corrige um problema onde notificações de caronas ativas poderiam não desaparecer.
+Corrige opções do Motivo de Contato dentro do Falaê.
+
+1.1.7: Modificações para uma melhor experiência no iOS 11.
+1.1.6: Quer avisar a um amigo sobre uma carona? Agora você pode compartilhar o link de uma carona com outra pessoa.
+
+Caso você encontre algum problema, por favor nos avise através do Falaê, no menu do app, pela nossa página do Facebook ou pelo email caronae@fundoverde.ufrj.br :)

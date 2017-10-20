@@ -2,6 +2,7 @@
 
 @class User;
 @class CaronaePhoneTextField;
+@protocol NeighborhoodSelectionDelegate;
 
 @interface EditProfileViewController : UIViewController
 

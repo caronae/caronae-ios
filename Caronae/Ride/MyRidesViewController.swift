@@ -126,7 +126,7 @@ class MyRidesViewController: RideListController {
         
         let cell = tableView?.dequeueReusableCell(withIdentifier: "Ride Cell", for: indexPath) as! RideCell
         cell.configureCell(with: ride)
-        cell.badgeCount = unreadNotifications.filter{ $0.rideID == ride.id }.count
+        cell.badgeCount = unreadNotifications.filter("rideID == %@", ride.id).count
         
         return cell
     }

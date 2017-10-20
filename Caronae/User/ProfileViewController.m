@@ -1,7 +1,6 @@
 @import FBSDKCoreKit;
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
-#import "FalaeViewController.h"
 #import "MenuViewController.h"
 #import "ProfileViewController.h"
 #import "RiderCell.h"
@@ -26,6 +25,10 @@
     if ([UserService.instance.user isEqual:_user]) {
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateProfileFields) name:CaronaeDidUpdateUserNotification object:nil];
     }
+    
+    // Add gesture recognizer to phoneButton for longpress
+    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPressPhoneButton)];
+    [_phoneButton addGestureRecognizer:longPressGesture];
 }
 
 - (void)dealloc {
@@ -126,6 +129,11 @@
 
 #pragma mark - IBActions
 
+-(void)didLongPressPhoneButton {
+    UIAlertController *alert = [[PhoneNumberAlert alloc] actionSheetWithView:self buttonText:_phoneButton.titleLabel.text user:_user];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 - (IBAction)didTapPhoneButton:(id)sender {
     NSString *phoneNumber = _user.phoneNumber;
     NSString *phoneNumberURLString = [NSString stringWithFormat:@"telprompt://%@", phoneNumber];
@@ -149,7 +157,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ReportUser"]) {
         FalaeViewController *vc = segue.destinationViewController;
-        [vc setReport:_user];
+        [vc setReportedUser:_user];
     }
 }
 

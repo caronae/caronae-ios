@@ -39,7 +39,7 @@ static NSDateFormatter *dateFormatter;
     _driverNameLabel.text = _ride.driver.shortName;
     
     [self updatePhoto];
-    self.color = [CaronaeConstants colorForZone:_ride.region];
+    self.color = [[PlaceService instance] colorForZone:_ride.region];
     
     _badgeLabel.hidden = YES;
 }
