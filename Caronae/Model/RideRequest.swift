@@ -1,8 +1,8 @@
 import RealmSwift
 
 class RideRequest: Object {
-    dynamic var rideID: Int = 0
-    dynamic var date: Date! = Date()
+    @objc dynamic var rideID: Int = 0
+    @objc dynamic var date: Date! = Date()
     
     override static func primaryKey() -> String? {
         return "rideID"

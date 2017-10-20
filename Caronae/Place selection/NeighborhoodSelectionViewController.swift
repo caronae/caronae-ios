@@ -5,7 +5,8 @@ import SVProgressHUD
     func hasSelected(neighborhoods: [String], inZone zone: String)
 }
 
-@objc class NeighborhoodSelectionViewController: SelectionViewController {
+@objcMembers
+class NeighborhoodSelectionViewController: SelectionViewController {
     
     required convenience init(selectionType: SelectionType) {
         self.init()

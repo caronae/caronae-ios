@@ -8,7 +8,7 @@ class FalaeViewController: UIViewController {
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var sendButton: UIBarButtonItem!
     
-    var reportedUser: User?
+    @objc var reportedUser: User?
     let messageTypes = ["Reclamação", "Sugestão", "Denúncia", "Dúvida"]
     var selectedTypeIndex = 0
     var selectedType = "Reclamação" {

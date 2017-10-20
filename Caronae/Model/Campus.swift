@@ -2,8 +2,8 @@ import ObjectMapper
 import RealmSwift
 
 class Campus: Object, Mappable {
-    dynamic var name: String!
-    dynamic var hexColor: String!
+    @objc dynamic var name: String!
+    @objc dynamic var hexColor: String!
     lazy var color: UIColor = {
         return UIColor(hex: self.hexColor)
     }()

@@ -7,7 +7,7 @@ import ActionSheetPicker_3_0
 
 class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate, HubSelectionDelegate {
 
-    weak var delegate: SearchRideDelegate?
+    @objc weak var delegate: SearchRideDelegate?
     
     @IBOutlet weak var directionControl: UISegmentedControl!
     @IBOutlet weak var dateButton: UIButton!
@@ -42,7 +42,7 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     let userDefaults = UserDefaults.standard
     let dateFormatter = DateFormatter()
     
-    var previouslySelectedSegmentIndex = 0
+    @objc var previouslySelectedSegmentIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,7 +122,7 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     // MARK: Selection Methods
     
-    func timeWasSelected(selectedTime: Date) {
+    @objc func timeWasSelected(selectedTime: Date) {
         selectedDate = selectedTime
     }
     

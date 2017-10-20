@@ -2,7 +2,7 @@ import RealmSwift
 import SVProgressHUD
 import MIBadgeButton_Swift
 
-extension RideViewController {
+@objc extension RideViewController {
     var riders: Any? {
         return ride.riders
     }
@@ -69,7 +69,7 @@ extension RideViewController {
         NotificationService.instance.clearNotifications(forRideID: ride.id, of: [.rideJoinRequest], from: senderID)
     }
     
-    func loadRealmRide() {
+    @objc func loadRealmRide() {
         let realm = try! Realm()
         if let realmRide = realm.objects(Ride.self).filter("id == %@", self.ride.id).first {
             NSLog("Ride loaded from realm database")
