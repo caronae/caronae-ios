@@ -43,6 +43,13 @@ static CGFloat const RideListMessageFontSize = 25.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (@available(iOS 11.0, *)) {
+        // Create constraint between filterView and safe area layout guide
+        // This can be done on the storyboard when the target is iOS9+
+        UILayoutGuide *safeArea = self.view.safeAreaLayoutGuide;
+        [_filterView.topAnchor constraintEqualToAnchor:safeArea.topAnchor].active = YES;
+    }
+    
     UINib *cellNib = [UINib nibWithNibName:NSStringFromClass(RideCell.class) bundle:nil];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"Ride Cell"];
     
