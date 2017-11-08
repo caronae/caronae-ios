@@ -58,9 +58,7 @@ static CGFloat const RideListMessageFontSize = 25.0f;
             [self.directionControl removeFromSuperview];
         });
     }
-    else {
-        self.tableView.contentInset = UIEdgeInsetsMake(45.0f, 0.0f, 0.0f, 0.0f);
-    }
+    [self adjustTableView];
     
     self.tableView.rowHeight = 85.0f;
     self.tableView.backgroundView = self.loadingLabel;
@@ -113,14 +111,22 @@ static CGFloat const RideListMessageFontSize = 25.0f;
         return;
     }
     
+    float defaultTopInset = 64.0f;
+    float defaultBottomInset = 49.0f;
+    if (@available(iOS 11.0, *)) {
+        defaultTopInset = 0.0f;
+        defaultBottomInset = 0.0f;
+    }
+    
+    float navigationBarHeight = self.navigationController.navigationBar.frame.size.height;
     if (self.filterIsEnabled) {
         float filterViewHeight = _filterViewHeight.constant;
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(filterViewHeight, 0.0f, 0.0f, 0.0f);
-        self.tableView.contentInset = UIEdgeInsetsMake(45.0f + filterViewHeight, 0.0f, 0.0f, 0.0f);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(defaultTopInset + filterViewHeight, 0.0f, defaultBottomInset, 0.0f);
+        self.tableView.contentInset = UIEdgeInsetsMake(defaultTopInset + navigationBarHeight + filterViewHeight, 0.0f, defaultBottomInset, 0.0f);
     }
     else {
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
-        self.tableView.contentInset = UIEdgeInsetsMake(45.0f, 0.0f, 0.0f, 0.0f);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(defaultTopInset, 0.0f, defaultBottomInset, 0.0f);
+        self.tableView.contentInset = UIEdgeInsetsMake(defaultTopInset + navigationBarHeight, 0.0f, defaultBottomInset, 0.0f);
     }
 }
 
