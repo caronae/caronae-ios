@@ -85,7 +85,7 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
         self.navigationController?.show(secondVC, sender: self)
     }
     
-    func finishSelection() {
+    @objc func finishSelection() {
         self.navigationController?.popToRootViewController(animated: true)
         
         let selectedIndexPaths = tableView.indexPathsForSelectedRows

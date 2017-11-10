@@ -27,7 +27,7 @@ class ZoneSelectionInputViewController: UIViewController {
         delegate?.hasSelected(selections: [self.neighborhoodTextField.text!], inFirstLevel: CaronaeOtherNeighborhoodsText)
     }
 
-    func didTapDoneButton() {
+    @objc func didTapDoneButton() {
         if let location = neighborhoodTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !location.isEmpty {
             finishSelection()
         }

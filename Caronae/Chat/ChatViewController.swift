@@ -17,7 +17,7 @@ class ChatViewController: JSQMessagesViewController {
     let timestampFormatter = JSQMessagesTimestampFormatter.init()
     var tappedMessageIndex: Int?
     
-    convenience init(ride: Ride, color: UIColor) {
+    @objc convenience init(ride: Ride, color: UIColor) {
         self.init()
         self.ride = ride
         self.color = color
@@ -267,7 +267,7 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     
-    func clearNotifications() {
+    @objc func clearNotifications() {
         NotificationService.instance.clearNotifications(forRideID: ride.id, of: [.chat])
     }
     

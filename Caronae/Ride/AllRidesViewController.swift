@@ -55,7 +55,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     // MARK: Rides methods
     
-    func loadAllRides(direction: Bool? = nil, _ completionHandler: ((Void) -> Void)? = nil) {
+    func loadAllRides(direction: Bool? = nil, _ completionHandler: (() -> Void)? = nil) {
         if tableView.backgroundView != nil {
             tableView.backgroundView = loadingLabel
         }
@@ -121,7 +121,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         })
     }
     
-    func reloadRidesIfNecessary() {
+    @objc func reloadRidesIfNecessary() {
         if lastUpdate.timeIntervalSinceNow.isLess(than: -5*60) {
             pagination = PaginationState()
             loadAllRides()

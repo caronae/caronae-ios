@@ -2,14 +2,14 @@ import Foundation
 import RealmSwift
 
 class RideService: NSObject {
-    static let instance = RideService()
+    @objc static let instance = RideService()
     let api = CaronaeAPIHTTPSessionManager.instance
     
     private override init() {
         // This prevents others from using the default '()' initializer for this class.
     }
     
-    func getRides(page: Int, filterParameters: FilterParameters? = nil, success: @escaping (_ rides: [Ride], _ lastPage: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
+    @objc func getRides(page: Int, filterParameters: FilterParameters? = nil, success: @escaping (_ rides: [Ride], _ lastPage: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
         
         api.get("/rides?page=\(page)", parameters: filterParameters?.dictionary(), success: { task, responseObject in
             guard let response = responseObject as? [String: Any],
@@ -183,7 +183,7 @@ class RideService: NSObject {
         })
     }
     
-    func getRidesHistory(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
+    @objc func getRidesHistory(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
         api.get("/ride/getRidesHistory", parameters: nil, success: { task, responseObject in
             guard let ridesJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
@@ -198,7 +198,7 @@ class RideService: NSObject {
         })
     }
     
-    func getRequestersForRide(withID id: Int, success: @escaping (_ rides: [User]) -> Void, error: @escaping (_ error: Error) -> Void) {
+    @objc func getRequestersForRide(withID id: Int, success: @escaping (_ rides: [User]) -> Void, error: @escaping (_ error: Error) -> Void) {
         api.get("/ride/getRequesters/\(id)", parameters: nil, success: { task, responseObject in
             guard let usersJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
@@ -241,7 +241,7 @@ class RideService: NSObject {
         })
     }
     
-    func finishRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+    @objc func finishRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         api.post("/ride/finishRide", parameters: ["rideId": id], success: { task, responseObject in
             do {
                 let realm = try Realm()
@@ -265,7 +265,7 @@ class RideService: NSObject {
         })
     }
 
-    func leaveRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+    @objc func leaveRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         api.post("/ride/leaveRide", parameters: ["rideId": id], success: { task, responseObject in
             do {
                 let realm = try Realm()
@@ -314,7 +314,7 @@ class RideService: NSObject {
         })
     }
     
-    func requestJoinOnRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+    @objc func requestJoinOnRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         api.post("/ride/requestJoin", parameters: ["rideId": id], success: { task, responseObject in
             do {
                 let realm = try Realm()
@@ -331,7 +331,7 @@ class RideService: NSObject {
         })
     }
     
-    func hasRequestedToJoinRide(withID id: Int) -> Bool {
+    @objc func hasRequestedToJoinRide(withID id: Int) -> Bool {
         if let realm = try? Realm(), let _ = realm.object(ofType: RideRequest.self, forPrimaryKey: id) {
             return true
         }
@@ -366,7 +366,7 @@ class RideService: NSObject {
         })
     }
     
-    func answerRequestOnRide(withID rideID: Int, fromUser user: User, accepted: Bool, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+    @objc func answerRequestOnRide(withID rideID: Int, fromUser user: User, accepted: Bool, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         let params = [
             "rideId": rideID,
             "userId": user.id,
