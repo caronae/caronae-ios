@@ -30,9 +30,9 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             return self.pagination.hasNextPage
         }
         
-        self.filterIsEnabled = userDefaults.bool(forKey: CaronaePreferenceFilterIsEnabledKey)
+        filterIsEnabled = userDefaults.bool(forKey: CaronaePreferenceFilterIsEnabledKey)
         
-        if self.filterIsEnabled {
+        if filterIsEnabled {
             enableFilterRides()
         }
     }
@@ -47,7 +47,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         reloadRidesIfNecessary()
     }
     
-    func refreshTable() {
+    override func refreshTable() {
         pagination = PaginationState()
         loadAllRides()
     }
@@ -60,7 +60,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             tableView.backgroundView = loadingLabel
         }
         
-        filterParams.going = direction ?? self.ridesDirectionGoing
+        filterParams.going = direction ?? ridesDirectionGoing
         pagination.directionGoing = filterParams.going!
         let page = pagination.nextPage
         
@@ -76,12 +76,12 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 if direction == nil {
                     self.rides = rides
                 } else {
-                    var allRides = self.rides as! [Ride]
+                    var allRides = self.rides
                     allRides.append(contentsOf: rides)
                     self.rides = allRides
                 }
                 
-                if (self.rides as AnyObject).count > 0 {
+                if self.rides.count > 0 {
                     self.tableView.tableFooterView = self.tableFooter
                 } else {
                     self.tableView.tableFooterView = nil
@@ -98,7 +98,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 let ridesCount = self.filteredRides.count
                 
                 // Update rides
-                var allRides = self.rides as! [Ride]
+                var allRides = self.rides
                 allRides.append(contentsOf: rides)
                 self.rides = allRides
                 
@@ -112,12 +112,12 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 self.tableView.endUpdates()
             }
             
-            self.refreshControl.endRefreshing()
+            self.refreshControl?.endRefreshing()
             completionHandler?()
         }, error: { error in
-            self.refreshControl.endRefreshing()
+            self.refreshControl?.endRefreshing()
             completionHandler?()
-            self.loadingFailedWithError(error)
+            self.loadingFailed(withError: error as NSError)
         })
     }
     
@@ -161,12 +161,12 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 return
         }
         
-        if !self.filterIsEnabled {
+        if !filterIsEnabled {
             // workaround to not cover cell after enabling filter for the first time
             tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: false)
         }
         
-        self.filterIsEnabled = true
+        filterIsEnabled = true
         filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hubs: centers, campus: campus)
         filterLabel.text = filterParams.activeFiltersText()
         
@@ -176,7 +176,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     func disableFilterRides() {
         userDefaults.set(false, forKey: CaronaePreferenceFilterIsEnabledKey)
-        self.filterIsEnabled = false
+        filterIsEnabled = false
         self.filterParams = FilterParameters()
         pagination = PaginationState()
         loadAllRides()
@@ -191,7 +191,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     // MARK: Table methods
     
-    lazy var tableFooter: UIView = {
+    override lazy var tableFooter: UIView = {
         let tableFooter = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
         tableFooter.text = "Quer encontrar mais caronas? Use a pesquisa! 🔍"
         tableFooter.numberOfLines = 0
@@ -214,7 +214,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             }
         } else if segue.identifier == "ViewSearchResults" {
             if let searchViewController = segue.destination as? SearchResultsViewController {
-                searchViewController.searchedForRide(with: searchParams);
+                searchViewController.searchedForRide(withParameters: searchParams);
             }
         }
     }

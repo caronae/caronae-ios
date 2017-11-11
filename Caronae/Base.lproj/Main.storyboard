@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -262,7 +262,7 @@ Cgo
         <!--Pesquisa-->
         <scene sceneID="86N-xC-KLU">
             <objects>
-                <viewController title="Pesquisa" hidesBottomBarWhenPushed="YES" id="63o-N6-NEe" customClass="SearchResultsViewController" sceneMemberID="viewController">
+                <viewController title="Pesquisa" hidesBottomBarWhenPushed="YES" id="63o-N6-NEe" customClass="SearchResultsViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Pesquisa" id="frv-QM-TF5">
                         <barButtonItem key="rightBarButtonItem" image="SearchRide" id="I4b-tM-lj5">
                             <connections>
@@ -360,7 +360,7 @@ caronas ativas.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Oq-zT-Esa" customClass="TPKeyboardAvoidingScrollView">
-                                <rect key="frame" x="0.0" y="84" width="400" height="816"/>
+                                <rect key="frame" x="0.0" y="64" width="400" height="836"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="omJ-ZJ-6FM" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="830"/>
@@ -1567,7 +1567,7 @@ caronas ativas.</string>
         <!--Histórico-->
         <scene sceneID="1WW-W3-O3d">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Gvm-Bo-rik" customClass="RidesHistoryViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Gvm-Bo-rik" customClass="RidesHistoryViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Histórico" id="geR-VK-1Za"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="historyTable" value="YES"/>
@@ -7218,7 +7218,7 @@ nenhuma carona.</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hM9-nM-k0Y"/>
+        <segue reference="9kE-zS-Odm"/>
         <segue reference="yIa-C3-QN8"/>
         <segue reference="H8O-Mc-OH3"/>
         <segue reference="ugX-qh-OjL"/>

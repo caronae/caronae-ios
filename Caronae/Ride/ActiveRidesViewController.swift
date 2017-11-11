@@ -4,6 +4,11 @@ import RealmSwift
 class ActiveRidesViewController: RideListController {
     var ridesNotificationToken: NotificationToken? = nil
     var unreadNotifications: Results<Notification>!
+    var ridesRealm: Results<Ride>! {
+        willSet {
+            self.rides = Array(newValue)
+        }
+    }
     
     override func viewDidLoad() {
         hidesDirectionControl = true
@@ -13,10 +18,10 @@ class ActiveRidesViewController: RideListController {
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
         RideService.instance.getActiveRides(success: { rides in
-            self.rides = rides
+            self.ridesRealm = rides
             self.subscribeToChanges()
         }, error: { error in
-            self.loadingFailedWithError(error)
+            self.loadingFailed(withError: error as NSError)
         })
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateNotificationBadges), name: Foundation.Notification.Name.CaronaeDidUpdateNotifications, object: nil)
@@ -24,26 +29,22 @@ class ActiveRidesViewController: RideListController {
     }
     
     deinit {
-        ridesNotificationToken?.stop()
+        ridesNotificationToken?.invalidate()
         NotificationCenter.default.removeObserver(self)
     }
     
-    func refreshTable() {
+    override func refreshTable() {
         RideService.instance.updateActiveRides(success: {
-            self.refreshControl.endRefreshing()
+            self.refreshControl?.endRefreshing()
             NSLog("Active rides updated")
         }, error: { error in
-            self.refreshControl.endRefreshing()
+            self.refreshControl?.endRefreshing()
             NSLog("Error updating active rides (\(error.localizedDescription))")
         })
     }
     
     func subscribeToChanges() {
-        guard let rides = rides as? Results<Ride> else {
-            return
-        }
-        
-        ridesNotificationToken = rides.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+        ridesNotificationToken = ridesRealm.observe { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
             self?.updateFilteredRides()
             
@@ -88,8 +89,7 @@ class ActiveRidesViewController: RideListController {
         if let realmRide = realm.objects(Ride.self).filter("id == %@", rideID).first {
             ride = realmRide
         } else {
-            let rides = self.rides as? [Ride]
-            guard let rideFiltered = rides?.filter({ $0.id == rideID }).first else {
+            guard let rideFiltered = rides.filter({ $0.id == rideID }).first else {
                 return
             }
             ride = rideFiltered
@@ -102,7 +102,7 @@ class ActiveRidesViewController: RideListController {
     }
     
     override func updateFilteredRides() {
-        if (self.rides as AnyObject).count > 0 {
+        if rides.count > 0 {
             tableView.tableFooterView = self.tableFooter
         } else {
             tableView.tableFooterView = nil
@@ -114,16 +114,16 @@ class ActiveRidesViewController: RideListController {
     
     // MARK: Table methods
     
-    override func tableView(_ tableView: UITableView!, cellForRowAt indexPath: IndexPath!) -> RideCell! {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let ride = filteredRides[indexPath.row]
 
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)!
+        let cell = super.tableView(tableView, cellForRowAt: indexPath) as! RideCell
         cell.badgeCount = unreadNotifications.filter("rideID == %@", ride.id).count
 
         return cell
     }
     
-    lazy var tableFooter: UIView = {
+    override lazy var tableFooter: UIView = {
         let tableFooter = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
         tableFooter.text = "Se você é motorista de alguma carona, não\n esqueça de concluí-la após seu término. :)"
         tableFooter.numberOfLines = 0
