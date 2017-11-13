@@ -8,9 +8,11 @@
 #import "CaronaeConstants.h"
 #import "CaronaeAlertController.h"
 #import "EditProfileViewController.h"
-#import "RideViewController.h"
 #import "TabBarController.h"
 #import "RideCell.h"
+#import "RiderCell.h"
+#import "JoinRequestCell.h"
+#import "ProfileViewController.h"
 
 #import "CaronaeTextField.h"
 #import "UIApplication+topViewController.h"

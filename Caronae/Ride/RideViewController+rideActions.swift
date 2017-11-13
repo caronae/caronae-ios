@@ -2,15 +2,7 @@ import RealmSwift
 import SVProgressHUD
 import MIBadgeButton_Swift
 
-@objc extension RideViewController {
-    var riders: Any? {
-        return ride.riders
-    }
-    
-    // Method only to get around the issue that Realm's List<User> is not available on Objective-C
-    func rider(atIndex index: Int) -> User {
-        return ride.riders[index]
-    }
+extension RideViewController {
     
     func userIsRider() -> Bool {
         let userID = UserService.instance.user!.id
@@ -26,7 +18,7 @@ import MIBadgeButton_Swift
         return UserService.instance.user!.id == ride.driver.id
     }
     
-    func updateChatButtonBadge() {
+    @objc func updateChatButtonBadge() {
         guard let unreadNotifications = try? NotificationService.instance.getNotifications(of: [.chat])
             .filter({ $0.rideID == self.ride.id }) else { return }
         

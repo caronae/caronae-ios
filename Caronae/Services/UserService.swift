@@ -227,8 +227,8 @@ class UserService: NSObject {
     
     // This actually should use the user's ID instead of the Facebook ID
     // but would need to refactor the API...
-    @objc func mutualFriendsForUser(withFacebookID facebookID: String, success: @escaping (_ friends: [User], _ totalCount: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
-        guard !facebookID.isEmpty, userFacebookToken != nil else {
+    @objc func mutualFriendsForUser(withFacebookID facebookID: String?, success: @escaping (_ friends: [User], _ totalCount: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
+        guard let facebookID = facebookID, !facebookID.isEmpty, userFacebookToken != nil else {
             error(CaronaeError.notLoggedInWithFacebook)
             return
         }

@@ -5195,7 +5195,7 @@ FOTO</string>
         <!--Carona-->
         <scene sceneID="oUd-Hw-YXG">
             <objects>
-                <viewController storyboardIdentifier="RideViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="SRb-hM-LXF" customClass="RideViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RideViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="SRb-hM-LXF" customClass="RideViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BVv-o5-mz8"/>
                         <viewControllerLayoutGuide type="bottom" id="GiZ-cY-BAp"/>
@@ -6671,8 +6671,7 @@ FOTO</string>
                         <outlet property="carModelLabel" destination="e2a-uF-8Ry" id="wCe-Gu-LRX"/>
                         <outlet property="carPlateLabel" destination="aCx-nb-Rrv" id="gLG-TY-04z"/>
                         <outlet property="clockIcon" destination="fQj-VC-R47" id="NL0-NS-oDg"/>
-                        <outlet property="dateLabel" destination="1UZ-co-mpB" id="WHY-Lm-nng"/>
-                        <outlet property="descriptionLabel" destination="7fD-gY-dO4" id="mSy-Zn-Sza"/>
+                        <outlet property="dateLabel" destination="1UZ-co-mpB" id="GAQ-sF-2sn"/>
                         <outlet property="driverCourseLabel" destination="sBT-DZ-1c3" id="ise-lJ-Xnq"/>
                         <outlet property="driverMessageLabel" destination="aGC-vs-gc5" id="P8f-Ov-Oac"/>
                         <outlet property="driverNameLabel" destination="iZ9-2r-k89" id="vvT-am-Ivw"/>
@@ -6696,7 +6695,7 @@ FOTO</string>
                         <outlet property="routeLabel" destination="0a3-ca-yPl" id="NQc-z7-72h"/>
                         <outlet property="shareRideButton" destination="sKn-mI-dti" id="ySh-Gc-opU"/>
                         <outlet property="shareRideView" destination="B1h-Zw-SFB" id="uUS-67-7NB"/>
-                        <outlet property="titleLabel" destination="7fD-gY-dO4" id="tQk-RZ-09f"/>
+                        <outlet property="titleLabel" destination="7fD-gY-dO4" id="Psz-al-x0b"/>
                         <segue destination="hXu-7Y-tvn" kind="show" identifier="ViewProfile" id="H8O-Mc-OH3"/>
                     </connections>
                 </viewController>

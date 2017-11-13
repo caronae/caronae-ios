@@ -208,8 +208,8 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
         
         if !historyTable {
             let ride = filteredRides[indexPath.row]
-            let rideVC = RideViewController(for: ride)
-            navigationController?.show(rideVC!, sender: self)
+            let rideVC = RideViewController.instance(for: ride)
+            navigationController?.show(rideVC, sender: self)
         }
     }
     

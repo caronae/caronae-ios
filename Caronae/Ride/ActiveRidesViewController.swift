@@ -95,7 +95,7 @@ class ActiveRidesViewController: RideListController {
             ride = rideFiltered
         }
         
-        let rideViewController = RideViewController(for: ride)!
+        let rideViewController = RideViewController.instance(for: ride)
         rideViewController.shouldOpenChatWindow = true
         _ = navigationController?.popToRootViewController(animated: false)
         navigationController?.pushViewController(rideViewController, animated: true)

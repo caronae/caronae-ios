@@ -135,7 +135,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 return
             }
             
-            let rideViewController = RideViewController(for: ride)!
+            let rideViewController = RideViewController.instance(for: ride)
             rideViewController.rideIsFull = (availableSlots == 0)
             _ = self.navigationController?.popToRootViewController(animated: false)
             self.navigationController?.pushViewController(rideViewController, animated: true)
