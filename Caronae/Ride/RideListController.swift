@@ -140,14 +140,11 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
     func updateFilteredRides() {
         tableView.backgroundView = rides.isEmpty ? emptyTableLabel : nil
         
-        var filtered = [Ride]()
-        for ride in rides {
-            if (hidesDirectionControl || ride.going == ridesDirectionGoing) {
-                filtered.append(ride)
-            }
+        if hidesDirectionControl {
+            filteredRides = rides
+        } else {
+            filteredRides = rides.filter({ $0.going == ridesDirectionGoing })
         }
-        
-        filteredRides = filtered
     }
     
     func loadingFailed(withError error: NSError) {
