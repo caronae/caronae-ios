@@ -1,5 +1,3 @@
-import Foundation
-
 extension String {
     func capitalized(after separator: String) -> String {
         var componentes = self.components(separatedBy: separator)
