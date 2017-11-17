@@ -152,7 +152,7 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.backgroundView = errorLabel
         }
         
-        NSLog("%@ failed to load rides: %@", String(describing: self.self), error.localizedDescription)
+        NSLog("%@ failed to load rides: %@", String(describing: type(of: self)), error.localizedDescription)
         
         guard self.isVisible() else {
             return
@@ -231,22 +231,11 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: Extra views
     
-    lazy var tableFooter: UIView = {
-        let tableFooter = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-        tableFooter.text = "Se você é motorista de alguma carona, não\n esqueça de concluí-la após seu término. :)"
-        tableFooter.numberOfLines = 0
-        tableFooter.backgroundColor = .white
-        tableFooter.font = .systemFont(ofSize: 10)
-        tableFooter.textColor = .lightGray
-        tableFooter.textAlignment = .center
-        return tableFooter
-        }()
-    
     // Background view when the table is empty
     lazy var emptyTableLabel: UILabel = {
         let emptyTableLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
         emptyTableLabel.text = self.emptyMessage ?? self.RideListDefaultEmptyMessage
-        emptyTableLabel.textColor = UIColor.gray
+        emptyTableLabel.textColor = .gray
         emptyTableLabel.numberOfLines = 0
         emptyTableLabel.textAlignment = .center
         emptyTableLabel.font = UIFont.systemFont(ofSize: self.RideListMessageFontSize, weight: .ultraLight)
@@ -258,7 +247,7 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
     lazy var errorLabel: UILabel = {
         let errorLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
         errorLabel.text = self.RideListDefaultErrorMessage
-        errorLabel.textColor = UIColor.gray
+        errorLabel.textColor = .gray
         errorLabel.numberOfLines = 0
         errorLabel.textAlignment = .center
         errorLabel.font = UIFont.systemFont(ofSize: self.RideListMessageFontSize, weight: .ultraLight)
@@ -270,7 +259,7 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
     lazy var loadingLabel: UILabel = {
         let loadingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
         loadingLabel.text = self.RideListDefaultLoadingMessage
-        loadingLabel.textColor = UIColor.gray
+        loadingLabel.textColor = .gray
         loadingLabel.numberOfLines = 0
         loadingLabel.textAlignment = .center
         loadingLabel.font = UIFont.systemFont(ofSize: self.RideListMessageFontSize, weight: .ultraLight)

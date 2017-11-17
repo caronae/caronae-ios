@@ -191,7 +191,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     // MARK: Table methods
     
-    override lazy var tableFooter: UIView = {
+    lazy var tableFooter: UIView = {
         let tableFooter = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
         tableFooter.text = "Quer encontrar mais caronas? Use a pesquisa! 🔍"
         tableFooter.numberOfLines = 0

@@ -4,18 +4,16 @@ import RealmSwift
 class MyRidesViewController: RideListController {
     var ridesNotificationToken: NotificationToken? = nil
     var unreadNotifications: Results<Notification>!
-    var ridesRealm: Results<Ride>! {
-        willSet {
-            self.rides = Array(newValue)
-        }
-    }
+    var ridesRealm: Results<Ride>!
     
     override func viewDidLoad() {
+        let realm = try! Realm()
+        ridesRealm = realm.objects(Ride.self).filter("FALSEPREDICATE")
+        
         hidesDirectionControl = true
         super.viewDidLoad()
         
         self.navigationController?.view.backgroundColor = UIColor.white
-        
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
         RideService.instance.getOfferedRides(success: { rides in
@@ -47,7 +45,7 @@ class MyRidesViewController: RideListController {
     func subscribeToChanges() {
         ridesNotificationToken = ridesRealm.observe { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
-            self?.updateFilteredRides()
+            self?.rides = Array(self!.ridesRealm)
             
             switch changes {
             case .initial:

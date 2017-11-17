@@ -16,7 +16,6 @@
 
 - (void)configureCellWithUser:(User *)user;
 - (void)setButtonsEnabled:(BOOL)active;
-- (void)setColor:(UIColor *)color;
 
 @property (nonatomic, assign) id<JoinRequestDelegate> delegate;
 @property (nonatomic) User *requestingUser;

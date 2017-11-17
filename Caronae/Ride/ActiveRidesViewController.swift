@@ -4,13 +4,12 @@ import RealmSwift
 class ActiveRidesViewController: RideListController {
     var ridesNotificationToken: NotificationToken? = nil
     var unreadNotifications: Results<Notification>!
-    var ridesRealm: Results<Ride>! {
-        willSet {
-            self.rides = Array(newValue)
-        }
-    }
+    var ridesRealm: Results<Ride>!
     
     override func viewDidLoad() {
+        let realm = try! Realm()
+        ridesRealm = realm.objects(Ride.self).filter("FALSEPREDICATE")
+        
         hidesDirectionControl = true
         super.viewDidLoad()
         
@@ -46,7 +45,7 @@ class ActiveRidesViewController: RideListController {
     func subscribeToChanges() {
         ridesNotificationToken = ridesRealm.observe { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
-            self?.updateFilteredRides()
+            self?.rides = Array(self!.ridesRealm)
             
             switch changes {
             case .initial:
@@ -123,7 +122,7 @@ class ActiveRidesViewController: RideListController {
         return cell
     }
     
-    override lazy var tableFooter: UIView = {
+    lazy var tableFooter: UIView = {
         let tableFooter = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
         tableFooter.text = "Se você é motorista de alguma carona, não\n esqueça de concluí-la após seu término. :)"
         tableFooter.numberOfLines = 0

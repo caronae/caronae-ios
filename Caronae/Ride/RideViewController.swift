@@ -343,6 +343,7 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
         RideService.instance.leaveRide(withID: ride.id, success: {
             SVProgressHUD.dismiss()
             NSLog("User left the ride.")
+            self.navigationController?.popViewController(animated: true)
         }, error: { error in
             NSLog("Error leaving/cancelling ride: %@", error.localizedDescription)
             SVProgressHUD.dismiss()
@@ -360,6 +361,7 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
         RideService.instance.finishRide(withID: ride.id, success: {
             SVProgressHUD.dismiss()
             NSLog("User finished the ride.")
+            self.navigationController?.popViewController(animated: true)
         }, error: { error in
             NSLog("Error finishing ride: %@", error.localizedDescription)
             SVProgressHUD.dismiss()
@@ -392,7 +394,7 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
     func loadJoinRequests() {
         RideService.instance.getRequestersForRide(withID: ride.id, success: { users in
             self.requesters = users
-            if self.requesters.count > 0 {
+            if !self.requesters.isEmpty {
                 self.requestsTable.reloadData()
                 self.adjustHeightOfTableview()
             }
@@ -472,17 +474,14 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
         
         cell.delegate = self
         cell.configureCell(with: self.requesters[indexPath.row])
-        //cell.setColor(self.color)
+        cell.color = self.color
         
         return cell
     }
     
     func adjustHeightOfTableview() {
         self.view.layoutIfNeeded()
-        var height: CGFloat = 0.0
-        if self.requesters.count > 0 {
-            height = CGFloat(self.requesters.count) * self.requestsTable.rowHeight
-        }
+        let height = CGFloat(self.requesters.count) * self.requestsTable.rowHeight
         self.requestsTableHeight.constant = height
         UIView.animate(withDuration: 0.25) {
             self.view.layoutIfNeeded()
