@@ -1,13 +1,13 @@
 import UIKit
 import ActionSheetPicker_3_0
 
-@objc protocol SearchRideDelegate: class {
+protocol SearchRideDelegate: class {
     func searchedForRide(withParameters parameters: FilterParameters)
 }
 
 class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate, HubSelectionDelegate {
 
-    @objc weak var delegate: SearchRideDelegate?
+    weak var delegate: SearchRideDelegate?
     
     @IBOutlet weak var directionControl: UISegmentedControl!
     @IBOutlet weak var dateButton: UIButton!
@@ -42,7 +42,7 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     let userDefaults = UserDefaults.standard
     let dateFormatter = DateFormatter()
     
-    @objc var previouslySelectedSegmentIndex = 0
+    var previouslySelectedSegmentIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()

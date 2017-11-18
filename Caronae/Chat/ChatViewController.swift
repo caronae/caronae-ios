@@ -17,7 +17,7 @@ class ChatViewController: JSQMessagesViewController {
     let timestampFormatter = JSQMessagesTimestampFormatter.init()
     var tappedMessageIndex: Int?
     
-    @objc convenience init(ride: Ride, color: UIColor) {
+    convenience init(ride: Ride, color: UIColor) {
         self.init()
         self.ride = ride
         self.color = color

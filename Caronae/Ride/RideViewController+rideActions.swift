@@ -61,7 +61,7 @@ extension RideViewController {
         NotificationService.instance.clearNotifications(forRideID: ride.id, of: [.rideJoinRequest], from: senderID)
     }
     
-    @objc func loadRealmRide() {
+    func loadRealmRide() {
         let realm = try! Realm()
         if let realmRide = realm.objects(Ride.self).filter("id == %@", self.ride.id).first {
             NSLog("Ride loaded from realm database")

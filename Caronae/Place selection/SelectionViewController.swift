@@ -10,7 +10,7 @@ enum SelectionLevel {
     case secondLevel
 }
 
-@objc protocol SelectionDelegate: class {
+protocol SelectionDelegate: class {
     func hasSelected(selections: [String], inFirstLevel firstLevel: String)
 }
 
