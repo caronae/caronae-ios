@@ -5,15 +5,14 @@ import SVProgressHUD
     func hasSelected(neighborhoods: [String], inZone zone: String)
 }
 
-@objcMembers
 class NeighborhoodSelectionViewController: SelectionViewController {
     
-    required convenience init(selectionType: SelectionType) {
+    @objc required convenience init(selectionType: SelectionType) {
         self.init()
         self.selectionType = selectionType
     }
 
-    weak var delegate: NeighborhoodSelectionDelegate?
+    @objc weak var delegate: NeighborhoodSelectionDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
