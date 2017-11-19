@@ -19,7 +19,7 @@ class MyRidesViewController: RideListController {
             self.sectionRides = [pending, active, offered]
             self.subscribeToChanges()
         }, error: { error in
-            self.loadingFailedWithError(error)
+            self.loadingFailed(withError: error as NSError)
         })
         
         changeBackgroundIfNeeded()
@@ -29,16 +29,16 @@ class MyRidesViewController: RideListController {
     }
     
     deinit {
-        notificationTokens.forEach { $0?.stop() }
+        notificationTokens.forEach { $0?.invalidate() }
         NotificationCenter.default.removeObserver(self)
     }
     
-    func refreshTable() {
+    override func refreshTable() {
         RideService.instance.updateMyRides(success: {
-            self.refreshControl.endRefreshing()
+            self.refreshControl?.endRefreshing()
             NSLog("My rides updated")
         }, error: { error in
-            self.refreshControl.endRefreshing()
+            self.refreshControl?.endRefreshing()
             NSLog("Error updating my rides (\(error.localizedDescription))")
         })
     }
@@ -51,14 +51,14 @@ class MyRidesViewController: RideListController {
         let active  = sectionRides[1]
         let offered = sectionRides[2]
         
-        let pendingNotificationToken = pending.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+        let pendingNotificationToken = pending.observe { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
             
             tableView.reloadData()
             self?.changeBackgroundIfNeeded()
         }
         
-        let activeNotificationToken = active.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+        let activeNotificationToken = active.observe { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
             
             tableView.tableFooterView = active.isEmpty ? nil : self?.tableFooter
@@ -66,7 +66,7 @@ class MyRidesViewController: RideListController {
             self?.changeBackgroundIfNeeded()
         }
         
-        let offeredNotificationToken = offered.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+        let offeredNotificationToken = offered.observe { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
             
             tableView.reloadData()
@@ -76,7 +76,7 @@ class MyRidesViewController: RideListController {
         notificationTokens.append(contentsOf: [pendingNotificationToken, activeNotificationToken, offeredNotificationToken])
     }
     
-    func updateNotificationBadges() {
+    @objc func updateNotificationBadges() {
         unreadNotifications = try! NotificationService.instance.getNotifications(of: [.chat, .rideJoinRequest, .rideJoinRequestAccepted])
         if unreadNotifications.isEmpty {
             navigationController?.tabBarItem.badgeValue = nil
@@ -96,7 +96,7 @@ class MyRidesViewController: RideListController {
             return
         }
         
-        let rideViewController = RideViewController(for: ride)!
+        let rideViewController = RideViewController.instance(for: ride)
         rideViewController.shouldOpenChatWindow = true
         _ = navigationController?.popToRootViewController(animated: false)
         navigationController?.pushViewController(rideViewController, animated: true)
@@ -105,7 +105,7 @@ class MyRidesViewController: RideListController {
     
     // MARK: Table methods
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
@@ -121,23 +121,22 @@ class MyRidesViewController: RideListController {
         return sectionRides[section].count
     }
     
-    override func tableView(_ tableView: UITableView!, cellForRowAt indexPath: IndexPath!) -> RideCell! {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let ride = sectionRides[indexPath.section][indexPath.row]
         
-        let cell = tableView?.dequeueReusableCell(withIdentifier: "Ride Cell", for: indexPath) as! RideCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Ride Cell", for: indexPath) as! RideCell
         cell.configureCell(with: ride)
         cell.badgeCount = unreadNotifications.filter("rideID == %@", ride.id).count
         
         return cell
     }
     
-    override func tableView(_ tableView: UITableView!, didSelectRowAt indexPath: IndexPath!) {
-        tableView?.deselectRow(at: indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         let ride = sectionRides[indexPath.section][indexPath.row]
-        if let rideVC = RideViewController(for: ride) {
-            self.navigationController?.show(rideVC, sender: self)
-        }
+        let rideVC = RideViewController.instance(for: ride)
+        self.navigationController?.show(rideVC, sender: self)
     }
     
     lazy var tableFooter: UIView = {

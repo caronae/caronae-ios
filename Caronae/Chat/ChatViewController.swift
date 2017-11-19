@@ -24,7 +24,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     deinit {
-        messagesNotificationToken.stop()
+        messagesNotificationToken.invalidate()
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -262,12 +262,12 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func subscribeToChanges() {
-        messagesNotificationToken = messages.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+        messagesNotificationToken = messages.observe { [weak self] (changes: RealmCollectionChange) in
             self?.finishReceivingMessage()
         }
     }
     
-    func clearNotifications() {
+    @objc func clearNotifications() {
         NotificationService.instance.clearNotifications(forRideID: ride.id, of: [.chat])
     }
     

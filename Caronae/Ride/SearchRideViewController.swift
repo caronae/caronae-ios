@@ -1,7 +1,7 @@
 import UIKit
 import ActionSheetPicker_3_0
 
-@objc protocol SearchRideDelegate: class {
+protocol SearchRideDelegate: class {
     func searchedForRide(withParameters parameters: FilterParameters)
 }
 
@@ -122,7 +122,7 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     // MARK: Selection Methods
     
-    func timeWasSelected(selectedTime: Date) {
+    @objc func timeWasSelected(selectedTime: Date) {
         selectedDate = selectedTime
     }
     

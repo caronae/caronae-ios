@@ -14,17 +14,22 @@
 		7133482C1F5F603B00E2218E /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482B1F5F603B00E2218E /* Campus.swift */; };
 		7133482E1F5F609700E2218E /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482D1F5F609700E2218E /* Zone.swift */; };
 		713348301F5F60D400E2218E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482F1F5F60D400E2218E /* Place.swift */; };
+		7133B6261FB7983C008575CC /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133B6251FB7983C008575CC /* RideViewController.swift */; };
 		713E99B91E8D5FA900F3C9E0 /* Array+compactString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */; };
 		7148D5621EDA1D0A00D85B7D /* String+capitalizedAfter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7148D5611EDA1D0A00D85B7D /* String+capitalizedAfter.swift */; };
 		714F822F1F6083CD00531C71 /* PlaceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F822E1F6083CD00531C71 /* PlaceService.swift */; };
 		714F82311F610E8300531C71 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F82301F610E8300531C71 /* UIColor+hex.swift */; };
+		7157BD8A1FB692D400D216F3 /* UIViewController+isVisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD891FB692D400D216F3 /* UIViewController+isVisible.swift */; };
+		7157BD8C1FB6931C00D216F3 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD8B1FB6931C00D216F3 /* SearchResultsViewController.swift */; };
+		7157BD8E1FB6932900D216F3 /* RidesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD8D1FB6932800D216F3 /* RidesHistoryViewController.swift */; };
+		7157BD901FB6933400D216F3 /* RideListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD8F1FB6933300D216F3 /* RideListController.swift */; };
 		718536301F047FFF00C30B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7185362F1F047FFF00C30B97 /* AppDelegate.swift */; };
 		718875DB1ED351E1004DB078 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718875DA1ED351E1004DB078 /* PaginationState.swift */; };
 		718C52241F81774A006E964A /* FalaeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C52231F81774A006E964A /* FalaeViewController.swift */; };
 		718C9B751E5F923A0037A78B /* AllRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C9B741E5F923A0037A78B /* AllRidesViewController.swift */; };
 		71AE13E41E8200D8008ACB06 /* FilterRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */; };
 		71C60AAE1EBAC1A300E84318 /* SearchRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */; };
-		71C60AB01EBACCA300E84318 /* NSDate+nextHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAF1EBACCA300E84318 /* NSDate+nextHour.swift */; };
+		71C60AB01EBACCA300E84318 /* Date+nextHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */; };
 		71C908FE1E88C3E9009B7BFE /* FilterParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */; };
 		71D2B86D1E296AFC000454F7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2B86C1E296AFC000454F7 /* ChatViewController.swift */; };
 		71DB83DE1F831FF40065300E /* FalaeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DB83DD1F831FF40065300E /* FalaeService.swift */; };
@@ -37,7 +42,7 @@
 		71F648651F71F364004C712F /* ZoneSelectionInput.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71F6485E1F71F364004C712F /* ZoneSelectionInput.xib */; };
 		71F648661F71F364004C712F /* ZoneSelectionInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F6485F1F71F364004C712F /* ZoneSelectionInputViewController.swift */; };
 		71FDA2451F401EBB00DA67E8 /* PhoneNumberActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FDA2441F401EBB00DA67E8 /* PhoneNumberActionSheet.swift */; };
-		A3034D581DB58A1B00816B79 /* NSDate+isInTheFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */; };
+		A3034D581DB58A1B00816B79 /* Date+isInTheFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3034D571DB58A1B00816B79 /* Date+isInTheFuture.swift */; };
 		A3169C9E1BED842D00A0D428 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169C9C1BED842D00A0D428 /* Main.storyboard */; };
 		A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA21BED842D00A0D428 /* Assets.xcassets */; };
 		A3169CA61BED842D00A0D428 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */; };
@@ -48,19 +53,13 @@
 		A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C91BF01C1D005BA311 /* ProfileViewController.m */; };
 		A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312CC1BF01C26005BA311 /* EditProfileViewController.m */; };
 		A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A34CEC4C1C993115006FC41E /* Settings.bundle */; };
-		A357EF331C56C5A100AC8096 /* RideListController.m in Sources */ = {isa = PBXBuildFile; fileRef = A357EF311C56C5A100AC8096 /* RideListController.m */; };
 		A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A357EF321C56C5A100AC8096 /* RideListController.xib */; };
-		A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35D472A1C2092A300501647 /* RidesHistoryViewController.m */; };
-		A369A4EB1C72928700FE5495 /* UIViewController+isVisible.m in Sources */ = {isa = PBXBuildFile; fileRef = A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */; };
 		A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
-		A37E80E71C5F158600683F27 /* UIImage+imageWithTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */; };
 		A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F1D4C1C0398B500DEF6B1 /* RideCell.m */; };
 		A398BE051C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */; };
-		A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */; };
 		A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */; };
 		A39BBD051C06AB9D00EF9EBD /* RideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39BBD041C06AB9D00EF9EBD /* RideCell.xib */; };
-		A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */; };
 		A3A4A4AF1C4C695800CF4CB2 /* NSString+validation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */; };
 		A3AC169B1E34168A000B5817 /* CaronaeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169A1E34168A000B5817 /* CaronaeError.swift */; };
 		A3AC169D1E35781C000B5817 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */; };
@@ -104,17 +103,22 @@
 		7133482B1F5F603B00E2218E /* Campus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
 		7133482D1F5F609700E2218E /* Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zone.swift; sourceTree = "<group>"; };
 		7133482F1F5F60D400E2218E /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		7133B6251FB7983C008575CC /* RideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
 		713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+compactString.swift"; sourceTree = "<group>"; };
 		7148D5611EDA1D0A00D85B7D /* String+capitalizedAfter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+capitalizedAfter.swift"; sourceTree = "<group>"; };
 		714F822E1F6083CD00531C71 /* PlaceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaceService.swift; path = Services/PlaceService.swift; sourceTree = "<group>"; };
 		714F82301F610E8300531C71 /* UIColor+hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
+		7157BD891FB692D400D216F3 /* UIViewController+isVisible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+isVisible.swift"; sourceTree = "<group>"; };
+		7157BD8B1FB6931C00D216F3 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		7157BD8D1FB6932800D216F3 /* RidesHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RidesHistoryViewController.swift; sourceTree = "<group>"; };
+		7157BD8F1FB6933300D216F3 /* RideListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideListController.swift; sourceTree = "<group>"; };
 		7185362F1F047FFF00C30B97 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		718875DA1ED351E1004DB078 /* PaginationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationState.swift; sourceTree = "<group>"; };
 		718C52231F81774A006E964A /* FalaeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalaeViewController.swift; sourceTree = "<group>"; };
 		718C9B741E5F923A0037A78B /* AllRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRidesViewController.swift; sourceTree = "<group>"; };
 		71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRideViewController.swift; sourceTree = "<group>"; };
 		71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRideViewController.swift; sourceTree = "<group>"; };
-		71C60AAF1EBACCA300E84318 /* NSDate+nextHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+nextHour.swift"; sourceTree = "<group>"; };
+		71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+nextHour.swift"; sourceTree = "<group>"; };
 		71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterParameters.swift; sourceTree = "<group>"; };
 		71D2B86C1E296AFC000454F7 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		71DB83DD1F831FF40065300E /* FalaeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FalaeService.swift; path = Services/FalaeService.swift; sourceTree = "<group>"; };
@@ -128,7 +132,7 @@
 		71F6485F1F71F364004C712F /* ZoneSelectionInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZoneSelectionInputViewController.swift; path = "Place selection/ZoneSelectionInputViewController.swift"; sourceTree = "<group>"; };
 		71FDA2441F401EBB00DA67E8 /* PhoneNumberActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberActionSheet.swift; sourceTree = "<group>"; };
 		A0D86D64B619914BEDBEFB9A /* Pods-Caronae.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.production.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.production.xcconfig"; sourceTree = "<group>"; };
-		A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+isInTheFuture.swift"; sourceTree = "<group>"; };
+		A3034D571DB58A1B00816B79 /* Date+isInTheFuture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+isInTheFuture.swift"; sourceTree = "<group>"; };
 		A3169C901BED842D00A0D428 /* Caronae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caronae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3169C9D1BED842D00A0D428 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A3169CA21BED842D00A0D428 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -147,30 +151,19 @@
 		A34312CC1BF01C26005BA311 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		A34CEC4C1C993115006FC41E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../../Settings.bundle; sourceTree = "<group>"; };
 		A34DCBCE1E6B41F300A2D427 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Production.xcconfig; path = Config/Production.xcconfig; sourceTree = "<group>"; };
-		A357EF301C56C5A100AC8096 /* RideListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideListController.h; sourceTree = "<group>"; };
-		A357EF311C56C5A100AC8096 /* RideListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideListController.m; sourceTree = "<group>"; };
 		A357EF321C56C5A100AC8096 /* RideListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideListController.xib; sourceTree = "<group>"; };
-		A35D47291C2092A300501647 /* RidesHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RidesHistoryViewController.h; sourceTree = "<group>"; };
-		A35D472A1C2092A300501647 /* RidesHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RidesHistoryViewController.m; sourceTree = "<group>"; };
-		A369A4E91C72928700FE5495 /* UIViewController+isVisible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+isVisible.h"; sourceTree = "<group>"; };
-		A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+isVisible.m"; sourceTree = "<group>"; };
 		A375D2F91C19175A00795CAE /* CaronaeAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeAlertController.h; sourceTree = "<group>"; };
 		A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeAlertController.m; sourceTree = "<group>"; };
 		A37E80E51C5F158600683F27 /* Caronae-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Caronae-Bridging-Header.h"; sourceTree = "<group>"; };
-		A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+imageWithTint.swift"; sourceTree = "<group>"; };
 		A389902B1C58734700C7CD2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A38F1D4B1C0398B500DEF6B1 /* RideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideCell.h; sourceTree = "<group>"; };
 		A38F1D4C1C0398B500DEF6B1 /* RideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideCell.m; sourceTree = "<group>"; };
 		A39743EB1E6B18F2006E469A /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Common.xcconfig; path = Config/Common.xcconfig; sourceTree = "<group>"; };
 		A398BE031C6D7DEC00CEA6A1 /* CaronaePhoneTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaePhoneTextField.h; sourceTree = "<group>"; };
 		A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaePhoneTextField.m; sourceTree = "<group>"; };
-		A3996D2B1C13AC0900D2E890 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
-		A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
 		A39BA2EA1C6C0F3A0063DDD1 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		A39BBD041C06AB9D00EF9EBD /* RideCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideCell.xib; sourceTree = "<group>"; };
-		A39BBD091C06B94E00EF9EBD /* RideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideViewController.h; sourceTree = "<group>"; };
-		A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideViewController.m; sourceTree = "<group>"; };
 		A3A4A4AD1C4C695800CF4CB2 /* NSString+validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+validation.h"; sourceTree = "<group>"; };
 		A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+validation.m"; sourceTree = "<group>"; };
 		A3AC169A1E34168A000B5817 /* CaronaeError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaronaeError.swift; sourceTree = "<group>"; };
@@ -360,16 +353,12 @@
 				718C9B741E5F923A0037A78B /* AllRidesViewController.swift */,
 				71EAF4541F11406200B16CF8 /* CreateRideViewController.swift */,
 				A3AD823E1E1DC631006D8ABE /* MyRidesViewController.swift */,
-				A357EF301C56C5A100AC8096 /* RideListController.h */,
-				A357EF311C56C5A100AC8096 /* RideListController.m */,
+				7157BD8F1FB6933300D216F3 /* RideListController.swift */,
 				A357EF321C56C5A100AC8096 /* RideListController.xib */,
-				A39BBD091C06B94E00EF9EBD /* RideViewController.h */,
-				A39BBD0A1C06B94E00EF9EBD /* RideViewController.m */,
+				7133B6251FB7983C008575CC /* RideViewController.swift */,
 				A3AD53BB1E1EBEAA005EAF04 /* RideViewController+rideActions.swift */,
-				A35D47291C2092A300501647 /* RidesHistoryViewController.h */,
-				A35D472A1C2092A300501647 /* RidesHistoryViewController.m */,
-				A3996D2B1C13AC0900D2E890 /* SearchResultsViewController.h */,
-				A3996D2C1C13AC0900D2E890 /* SearchResultsViewController.m */,
+				7157BD8D1FB6932800D216F3 /* RidesHistoryViewController.swift */,
+				7157BD8B1FB6931C00D216F3 /* SearchResultsViewController.swift */,
 				71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */,
 				71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */,
 			);
@@ -450,18 +439,16 @@
 			children = (
 				A3B5AF0F1BF2F0560026A889 /* CALayer+UIColor.h */,
 				A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */,
-				A3034D571DB58A1B00816B79 /* NSDate+isInTheFuture.swift */,
-				71C60AAF1EBACCA300E84318 /* NSDate+nextHour.swift */,
+				A3034D571DB58A1B00816B79 /* Date+isInTheFuture.swift */,
+				71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */,
 				A3A4A4AD1C4C695800CF4CB2 /* NSString+validation.h */,
 				A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */,
 				A3CA5DCD1E1F3C000062522D /* UIApplication+topViewController.h */,
 				A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */,
 				714F82301F610E8300531C71 /* UIColor+hex.swift */,
-				A37E80E61C5F158600683F27 /* UIImage+imageWithTint.swift */,
 				A3B18FF81C9E713F00980607 /* UIImageView+crn_setImageWithURL.h */,
 				A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */,
-				A369A4E91C72928700FE5495 /* UIViewController+isVisible.h */,
-				A369A4EA1C72928700FE5495 /* UIViewController+isVisible.m */,
+				7157BD891FB692D400D216F3 /* UIViewController+isVisible.swift */,
 				A3CA5DD01E1F46520062522D /* UIWindow+replaceRootViewController.h */,
 				A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */,
 				713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */,
@@ -542,7 +529,7 @@
 					A3169C8F1BED842D00A0D428 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 5JHLCV2DBL;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -723,20 +710,18 @@
 				A398BE051C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m in Sources */,
 				A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */,
 				A3CA5DD41E22CA370062522D /* NotificationService.swift in Sources */,
-				A35D472B1C2092A300501647 /* RidesHistoryViewController.m in Sources */,
-				A357EF331C56C5A100AC8096 /* RideListController.m in Sources */,
+				7157BD8E1FB6932900D216F3 /* RidesHistoryViewController.swift in Sources */,
 				7106CFCF1F098BBB0071C4AE /* NotificationParser.swift in Sources */,
 				718536301F047FFF00C30B97 /* AppDelegate.swift in Sources */,
 				A3AD822D1E1B1E85006D8ABE /* Ride.swift in Sources */,
 				A3CA5DDC1E22DB830062522D /* AppDelegate+Notifications.swift in Sources */,
 				718C52241F81774A006E964A /* FalaeViewController.swift in Sources */,
 				71F648601F71F364004C712F /* HubsSelectionViewController.swift in Sources */,
-				A3034D581DB58A1B00816B79 /* NSDate+isInTheFuture.swift in Sources */,
+				A3034D581DB58A1B00816B79 /* Date+isInTheFuture.swift in Sources */,
 				A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */,
-				A39BBD0B1C06B94E00EF9EBD /* RideViewController.m in Sources */,
-				A37E80E71C5F158600683F27 /* UIImage+imageWithTint.swift in Sources */,
 				A3AD823C1E1C8860006D8ABE /* AppDelegate+Realm.swift in Sources */,
 				713348301F5F60D400E2218E /* Place.swift in Sources */,
+				7157BD901FB6933400D216F3 /* RideListController.swift in Sources */,
 				A3BBF1381DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift in Sources */,
 				A3AD822F1E1C5BD9006D8ABE /* Message.swift in Sources */,
 				A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */,
@@ -744,7 +729,7 @@
 				71F648621F71F364004C712F /* SelectionCell.swift in Sources */,
 				7133482C1F5F603B00E2218E /* Campus.swift in Sources */,
 				714F822F1F6083CD00531C71 /* PlaceService.swift in Sources */,
-				71C60AB01EBACCA300E84318 /* NSDate+nextHour.swift in Sources */,
+				71C60AB01EBACCA300E84318 /* Date+nextHour.swift in Sources */,
 				71C908FE1E88C3E9009B7BFE /* FilterParameters.swift in Sources */,
 				718C9B751E5F923A0037A78B /* AllRidesViewController.swift in Sources */,
 				A3AD82331E1C63CD006D8ABE /* DateTimeTransform.swift in Sources */,
@@ -760,8 +745,8 @@
 				71AE13E41E8200D8008ACB06 /* FilterRideViewController.swift in Sources */,
 				A3AD823F1E1DC631006D8ABE /* MyRidesViewController.swift in Sources */,
 				A3AD82361E1C70D6006D8ABE /* RideService.swift in Sources */,
+				7157BD8C1FB6931C00D216F3 /* SearchResultsViewController.swift in Sources */,
 				A3AD823A1E1C8049006D8ABE /* TokenViewController.swift in Sources */,
-				A369A4EB1C72928700FE5495 /* UIViewController+isVisible.m in Sources */,
 				A3AC169B1E34168A000B5817 /* CaronaeError.swift in Sources */,
 				A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */,
 				71C60AAE1EBAC1A300E84318 /* SearchRideViewController.swift in Sources */,
@@ -769,8 +754,10 @@
 				71F648611F71F364004C712F /* NeighborhoodSelectionViewController.swift in Sources */,
 				A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */,
 				A3B5AEFF1BF1AAC10026A889 /* CaronaeConstants.m in Sources */,
+				7157BD8A1FB692D400D216F3 /* UIViewController+isVisible.swift in Sources */,
 				A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */,
 				A3AD82311E1C6072006D8ABE /* User.swift in Sources */,
+				7133B6261FB7983C008575CC /* RideViewController.swift in Sources */,
 				71F648641F71F364004C712F /* SelectionViewController.swift in Sources */,
 				A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */,
 				7106CFCD1F098BBB0071C4AE /* DeepLinkManager.swift in Sources */,
@@ -778,7 +765,6 @@
 				7106CFCE1F098BBB0071C4AE /* DeeplinkNavigator.swift in Sources */,
 				A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */,
 				71EAF4551F11406200B16CF8 /* CreateRideViewController.swift in Sources */,
-				A3996D2D1C13AC0900D2E890 /* SearchResultsViewController.m in Sources */,
 				A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */,
 				7133482E1F5F609700E2218E /* Zone.swift in Sources */,
 				713E99B91E8D5FA900F3C9E0 /* Array+compactString.swift in Sources */,
@@ -938,7 +924,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match Development br.ufrj.caronae";
 				SWIFT_OBJC_BRIDGING_HEADER = "Caronae/Supporting Files/Caronae-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug - Development";
@@ -967,7 +954,8 @@
 				PROVISIONING_PROFILE = "2b6956c5-9fee-423f-bf90-60624558ea2f";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore br.ufrj.caronae";
 				SWIFT_OBJC_BRIDGING_HEADER = "Caronae/Supporting Files/Caronae-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -1048,7 +1036,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match Development br.ufrj.caronae";
 				SWIFT_OBJC_BRIDGING_HEADER = "Caronae/Supporting Files/Caronae-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug - Production";

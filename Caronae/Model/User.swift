@@ -2,22 +2,22 @@ import ObjectMapper
 import RealmSwift
 
 class User: Object, Mappable {
-    dynamic var id: Int = 0
-    dynamic var name: String!
-    dynamic var profile: String!
-    dynamic var course: String!
-    dynamic var email: String?
-    dynamic var phoneNumber: String?
-    dynamic var location: String?
-    dynamic var carOwner: Bool = false
-    dynamic var carModel: String? = nil
-    dynamic var carPlate: String?
-    dynamic var carColor: String?
-    dynamic var profilePictureURL: String?
-    dynamic var facebookID: String!
-    dynamic var createdAt: Date!
-    dynamic var numRides: Int = 0
-    dynamic var numDrives: Int = 0
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String!
+    @objc dynamic var profile: String!
+    @objc dynamic var course: String!
+    @objc dynamic var email: String?
+    @objc dynamic var phoneNumber: String?
+    @objc dynamic var location: String?
+    @objc dynamic var carOwner: Bool = false
+    @objc dynamic var carModel: String? = nil
+    @objc dynamic var carPlate: String?
+    @objc dynamic var carColor: String?
+    @objc dynamic var profilePictureURL: String?
+    @objc dynamic var facebookID: String!
+    @objc dynamic var createdAt: Date!
+    @objc dynamic var numRides: Int = 0
+    @objc dynamic var numDrives: Int = 0
     
     override static func primaryKey() -> String? {
         return "id"
@@ -46,11 +46,11 @@ class User: Object, Mappable {
         numDrives <- map["numDrives"]
     }
     
-    var firstName: String {
+    @objc var firstName: String {
         return name.components(separatedBy: " ").first ?? name
     }
     
-    var shortName: String {
+    @objc var shortName: String {
         let names = name.components(separatedBy: " ")
         guard let firstName = names.first, let lastName = names.last, lastName != firstName else { return name }
         return firstName + " " + lastName

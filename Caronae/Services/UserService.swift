@@ -5,14 +5,14 @@ import RealmSwift
 import Firebase
 
 class UserService: NSObject {
-    static let instance = UserService()
+    @objc static let instance = UserService()
     let api = CaronaeAPIHTTPSessionManager.instance
     
     private override init() {
         // This prevents others from using the default '()' initializer for this class.
     }
     
-    private(set) lazy var user: User? = {
+    @objc private(set) lazy var user: User? = {
         let userID: Int = UserDefaults.standard.integer(forKey: "user_id")
         
         do {
@@ -106,7 +106,7 @@ class UserService: NSObject {
         })
     }
     
-    func signOut() {
+    @objc func signOut() {
         signOut(force: false)
     }
     
@@ -140,7 +140,7 @@ class UserService: NSObject {
         notifyObservers(force: force)
     }
     
-    func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+    @objc func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         api.put("/user", parameters: user.toJSON(), success: { task, responseObject in
             
             let currentUser = self.user!
@@ -181,7 +181,7 @@ class UserService: NSObject {
         })
     }
     
-    func getPhotoFromFacebook(success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
+    @objc func getPhotoFromFacebook(success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
         let request = FBSDKGraphRequest(graphPath: "me/picture?type=large&redirect=false", parameters: ["fields": "url"])!
         request.start(completionHandler: { connection, result, err in
             guard err == nil,
@@ -197,7 +197,7 @@ class UserService: NSObject {
     }
 
     
-    func ridesCountForUser(withID id: Int, success: @escaping (_ offered: Int, _ taken: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
+    @objc func ridesCountForUser(withID id: Int, success: @escaping (_ offered: Int, _ taken: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
         api.get("/ride/getRidesHistoryCount/\(id)", parameters: nil, success: { task, responseObject in
             guard let response = responseObject as? [String: Any],
                 let offered = response["offeredCount"] as? Int,
@@ -227,8 +227,8 @@ class UserService: NSObject {
     
     // This actually should use the user's ID instead of the Facebook ID
     // but would need to refactor the API...
-    func mutualFriendsForUser(withFacebookID facebookID: String, success: @escaping (_ friends: [User], _ totalCount: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
-        guard !facebookID.isEmpty, userFacebookToken != nil else {
+    @objc func mutualFriendsForUser(withFacebookID facebookID: String?, success: @escaping (_ friends: [User], _ totalCount: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
+        guard let facebookID = facebookID, !facebookID.isEmpty, userFacebookToken != nil else {
             error(CaronaeError.notLoggedInWithFacebook)
             return
         }

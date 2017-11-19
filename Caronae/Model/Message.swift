@@ -2,11 +2,11 @@ import ObjectMapper
 import RealmSwift
 
 class Message: Object, Mappable {
-    dynamic var id: Int = 0
-    dynamic var date: Date!
-    dynamic var body: String!
-    dynamic var sender: User!
-    dynamic var ride: Ride!
+    @objc dynamic var id: Int = 0
+    @objc dynamic var date: Date!
+    @objc dynamic var body: String!
+    @objc dynamic var sender: User!
+    @objc dynamic var ride: Ride!
     
     override static func primaryKey() -> String? {
         return "id"

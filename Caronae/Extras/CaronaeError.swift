@@ -1,6 +1,6 @@
 import Foundation
 
-@objc enum CaronaeErrorCode: Int {
+enum CaronaeErrorCode: Int {
     case unknown
     case invalidResponse
     case invalidCredentials
