@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func didUpdateUser(notification: NSNotification) {
+    @objc func didUpdateUser(notification: NSNotification) {
         if UserService.instance.user != nil {
             registerForNotifications()
             updateUserRidesAndPlaces()
@@ -143,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(FBTokenChanged(notification:)), name: .FBSDKAccessTokenDidChange, object: nil)
     }
     
-    func FBTokenChanged(notification: NSNotification) {
+    @objc func FBTokenChanged(notification: NSNotification) {
         guard let token = FBSDKAccessToken.current() else {
             NSLog("User has logged out from Facebook.")
             return

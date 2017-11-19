@@ -4,20 +4,23 @@ import RealmSwift
 class MyRidesViewController: RideListController {
     var ridesNotificationToken: NotificationToken? = nil
     var unreadNotifications: Results<Notification>!
+    var ridesRealm: Results<Ride>!
     
     override func viewDidLoad() {
+        let realm = try! Realm()
+        ridesRealm = realm.objects(Ride.self).filter("FALSEPREDICATE")
+        
         hidesDirectionControl = true
         super.viewDidLoad()
         
         self.navigationController?.view.backgroundColor = UIColor.white
-        
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
         RideService.instance.getOfferedRides(success: { rides in
-            self.rides = rides
+            self.ridesRealm = rides
             self.subscribeToChanges()
         }, error: { error in
-            self.loadingFailedWithError(error)
+            self.loadingFailed(withError: error as NSError)
         })
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateNotificationBadges), name: Foundation.Notification.Name.CaronaeDidUpdateNotifications, object: nil)
@@ -25,28 +28,24 @@ class MyRidesViewController: RideListController {
     }
     
     deinit {
-        ridesNotificationToken?.stop()
+        ridesNotificationToken?.invalidate()
         NotificationCenter.default.removeObserver(self)
     }
     
-    func refreshTable() {
+    override func refreshTable() {
         RideService.instance.updateOfferedRides(success: {
-            self.refreshControl.endRefreshing()
+            self.refreshControl?.endRefreshing()
             NSLog("Offered rides updated")
         }, error: { error in
-            self.refreshControl.endRefreshing()
+            self.refreshControl?.endRefreshing()
             NSLog("Error updating offered rides (\(error.localizedDescription))")
         })
     }
     
     func subscribeToChanges() {
-        guard let rides = rides as? Results<Ride> else {
-            return
-        }
-        
-        ridesNotificationToken = rides.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+        ridesNotificationToken = ridesRealm.observe { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
-            self?.updateFilteredRides()
+            self?.rides = Array(self!.ridesRealm)
             
             switch changes {
             case .initial:
@@ -72,7 +71,7 @@ class MyRidesViewController: RideListController {
         }
     }
     
-    func updateNotificationBadges() {
+    @objc func updateNotificationBadges() {
         unreadNotifications = try! NotificationService.instance.getNotifications(of: [.rideJoinRequest])
         if unreadNotifications.isEmpty {
             navigationController?.tabBarItem.badgeValue = nil
@@ -84,10 +83,10 @@ class MyRidesViewController: RideListController {
 
     // MARK: Table methods
     
-    override func tableView(_ tableView: UITableView!, cellForRowAt indexPath: IndexPath!) -> RideCell! {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let ride = filteredRides[indexPath.row]
         
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)!
+        let cell = super.tableView(tableView, cellForRowAt: indexPath) as! RideCell
         cell.badgeCount = unreadNotifications.filter("rideID == %@", ride.id).count
         
         return cell

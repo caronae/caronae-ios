@@ -319,7 +319,7 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     // MARK: Selection Methods
     
-    func timeWasSelected(selectedTime: Date) {
+    @objc func timeWasSelected(selectedTime: Date) {
         selectedDate = selectedTime
     }
     

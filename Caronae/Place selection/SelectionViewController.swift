@@ -10,7 +10,7 @@ enum SelectionLevel {
     case secondLevel
 }
 
-@objc protocol SelectionDelegate: class {
+protocol SelectionDelegate: class {
     func hasSelected(selections: [String], inFirstLevel firstLevel: String)
 }
 
@@ -85,7 +85,7 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
         self.navigationController?.show(secondVC, sender: self)
     }
     
-    func finishSelection() {
+    @objc func finishSelection() {
         self.navigationController?.popToRootViewController(animated: true)
         
         let selectedIndexPaths = tableView.indexPathsForSelectedRows

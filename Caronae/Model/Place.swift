@@ -2,8 +2,8 @@ import ObjectMapper
 import RealmSwift
 
 class Place: Object {
-    dynamic var name: String!
-    dynamic var category: PlaceCategory = .neighborhood
+    @objc dynamic var name: String!
+    @objc dynamic var category: PlaceCategory = .neighborhood
     
     required convenience init(name: String, category: PlaceCategory) {
         self.init()
