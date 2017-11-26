@@ -1,6 +1,5 @@
 import CRToast
 import AudioToolbox
-import RealmSwift
 
 extension AppDelegate {
     func handleNotification(_ userInfo: [AnyHashable: Any]) -> Bool {
@@ -16,11 +15,8 @@ extension AppDelegate {
             handleJoinRequestNotification(userInfo)
         case "accepted":
             handleJoinRequestAccepted(userInfo)
-        case "canceled", "cancelled", "finished":
+        case "canceled", "cancelled", "finished", "refused":
             handleFinishedNotification(userInfo)
-        case "refused":
-            // The handle will be `handleFinishedNotification` when the pending rides are synchronized with the server
-            handleRefusedNotification(userInfo)
         case "quitter":
             handleQuitterNotification(userInfo)
         default:
@@ -74,26 +70,6 @@ extension AppDelegate {
         
         NotificationService.instance.clearNotifications(forRideID: rideID)
         updateMyRidesIfActive()
-        showMessageIfActive(message)
-    }
-    
-    private func handleRefusedNotification(_ userInfo: [AnyHashable: Any]) {
-        guard let (_, _, rideID, message) = rideNotificationInfo(userInfo) else {
-            NSLog("Received ride refused notification but could not parse the notification data")
-            return
-        }
-        
-        do {
-            let realm = try Realm()
-            if let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) {
-                try realm.write {
-                    realm.delete(ride)
-                }
-            }
-        } catch {
-            NSLog("Error deleting refused ride (%@)", error.localizedDescription)
-        }
-        
         showMessageIfActive(message)
     }
     

@@ -56,6 +56,12 @@ class RideService: NSObject {
 //            return
 //        }
         
+        updatePendingRides(success: {
+            NSLog("Pending rides updated")
+        }, error: { error in
+            NSLog("Error updating pending rides (\(error.localizedDescription))")
+        })
+        
         updateActiveRides(success: {
             NSLog("Active rides updated")
         }, error: { error in
@@ -70,6 +76,48 @@ class RideService: NSObject {
         
         success()
         
+    }
+    
+    func updatePendingRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+        guard let user = UserService.instance.user else {
+            NSLog("Error: No userID registered")
+            return
+        }
+        
+        api.get("/user/\(user.id)/pendingRides", parameters: nil, success: { task, responseObject in
+            guard let jsonResponse = responseObject as? [String: Any],
+                let ridesJson = jsonResponse["rides"] as? [[String: Any]] else {
+                    error(CaronaeError.invalidResponse)
+                    return
+            }
+            
+            // Deserialize response
+            let rides = ridesJson.flatMap { rideJson in
+                let ride = Ride(JSON: rideJson)
+                ride?.isPending = true
+                return ride
+                } as [Ride]
+            
+            do {
+                let realm = try Realm()
+                // Clear rides previously marked as pending
+                let previouslyPending = realm.objects(Ride.self).filter("isPending == true")
+                try realm.write {
+                    previouslyPending.forEach { $0.isPending = false }
+                }
+                
+                // Update pending rides
+                try realm.write {
+                    realm.add(rides, update: true)
+                }
+            } catch let realmError {
+                error(realmError)
+            }
+            
+            success()
+        }, failure: { _, err in
+            error(err)
+        })
     }
     
     func updateOfferedRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
