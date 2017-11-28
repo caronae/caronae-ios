@@ -187,9 +187,6 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
                 self.ridersView.removeFromSuperview()
             }
             
-            // Hide driver's phone number
-            ride.driver.phoneNumber = nil
-            
             // Update the state of the join request button if the user has already requested to join
             if RideService.instance.hasRequestedToJoinRide(withID: ride.id) {
                 requestRideButton.isEnabled = false
@@ -278,7 +275,11 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
     }
     
     @IBAction func viewUserProfile(_ sender: Any) {
-        selectedUser = ride.driver
+        selectedUser = User(value: ride.driver)
+        if !self.userIsDriver() && !self.userIsRider() {
+            // Hide driver's phone number
+            selectedUser?.phoneNumber = nil
+        }
         performSegue(withIdentifier: "ViewProfile", sender: self)
     }
     
@@ -379,7 +380,7 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
         requestRideButton.isEnabled = false
         SVProgressHUD.show()
         
-        RideService.instance.requestJoinOnRide(withID: ride.id, success: {
+        RideService.instance.requestJoinOnRide(ride, success: {
             SVProgressHUD.dismiss()
             NSLog("Done requesting ride.")
             self.requestRideButton.setTitle(self.CaronaeRequestButtonStateAlreadyRequested, for: .normal)

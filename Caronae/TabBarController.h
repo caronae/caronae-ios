@@ -1,15 +1,12 @@
 @import UIKit;
 #import "MenuViewController.h"
 
-@class ActiveRidesViewController, MyRidesViewController, AllRidesViewController;
+@class MyRidesViewController, AllRidesViewController;
 
 @interface TabBarController : UITabBarController
 
 @property (nonatomic, strong) AllRidesViewController *allRidesViewController;
 @property (nonatomic, strong) UINavigationController *allRidesNavigationController;
-
-@property (nonatomic, strong) ActiveRidesViewController *activeRidesViewController;
-@property (nonatomic, strong) UINavigationController *activeRidesNavigationController;
 
 @property (nonatomic, strong) MyRidesViewController *myRidesViewController;
 @property (nonatomic, strong) UINavigationController *myRidesNavigationController;

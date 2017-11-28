@@ -21,10 +21,6 @@
                 self.allRidesNavigationController = navigationController;
                 self.allRidesViewController = (AllRidesViewController *)viewController;
             }
-            else if ([viewController isKindOfClass:ActiveRidesViewController.class]) {
-                self.activeRidesNavigationController = navigationController;
-                self.activeRidesViewController = (ActiveRidesViewController *)viewController;
-            }
             else if ([viewController isKindOfClass:MyRidesViewController.class]) {
                 self.myRidesNavigationController = navigationController;
                 self.myRidesViewController = (MyRidesViewController *)viewController;

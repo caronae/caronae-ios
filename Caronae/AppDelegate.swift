@@ -115,16 +115,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func updateUserRidesAndPlaces() {
-        RideService.instance.updateOfferedRides(success: {
-            NSLog("Offered rides updated")
+        RideService.instance.updateMyRides(success: {
+            NSLog("My rides updated")
         }, error: { error in
-            NSLog("Error updating offered rides (\(error.localizedDescription))")
-        })
-        
-        RideService.instance.updateActiveRides(success: {
-            NSLog("Active rides updated")
-        }, error: { error in
-            NSLog("Error updating active rides (\(error.localizedDescription))")
+            NSLog("Error updating my rides (\(error.localizedDescription))")
         })
         
         PlaceService.instance.updatePlaces(success: {

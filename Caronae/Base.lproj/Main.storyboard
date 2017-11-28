@@ -278,27 +278,6 @@ Cgo
             </objects>
             <point key="canvasLocation" x="3510" y="-1202"/>
         </scene>
-        <!--Ativas-->
-        <scene sceneID="aEb-UJ-7dz">
-            <objects>
-                <viewController id="qPf-v5-qZ8" customClass="ActiveRidesViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Ativas" id="3Xy-Gf-p9D"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="emptyMessage">
-                            <string key="value">Você não possui
-caronas ativas.</string>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <segue destination="63o-N6-NEe" kind="show" identifier="ViewSearchResults" id="gns-F9-8s8"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MPm-iD-62t" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2628" y="5"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rql-kG-mhS">
             <objects>
@@ -317,7 +296,6 @@ caronas ativas.</string>
                     </tabBar>
                     <connections>
                         <segue destination="ejH-pY-nFX" kind="relationship" relationship="viewControllers" id="ah1-Y9-L7u"/>
-                        <segue destination="SI3-47-AYD" kind="relationship" relationship="viewControllers" id="62t-xN-hU7"/>
                         <segue destination="ESO-TG-2Ch" kind="relationship" relationship="viewControllers" id="9Du-so-X80"/>
                         <segue destination="xHs-1X-X6c" kind="relationship" relationship="viewControllers" id="Lg6-kn-BYf"/>
                         <segue destination="NVj-Xk-m80" kind="presentation" identifier="CompleteProfile" id="emk-CJ-38Y"/>
@@ -326,26 +304,6 @@ caronas ativas.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zo3-Hi-9nL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="459" y="5"/>
-        </scene>
-        <!--Ativas-->
-        <scene sceneID="PW9-Sc-m7n">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SI3-47-AYD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ativas" image="menu3" id="n9j-hq-hsm"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WwM-GX-35t">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="qPf-v5-qZ8" kind="relationship" relationship="rootViewController" id="2km-yv-fcd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bp6-0k-0sY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1815" y="5"/>
         </scene>
         <!--Criar carona-->
         <scene sceneID="SI7-YK-2jS">
@@ -4029,12 +3987,12 @@ FOTO</string>
                                                         <exclude reference="2b8-Sr-ItU"/>
                                                         <exclude reference="Jyf-Mo-KOp"/>
                                                         <exclude reference="wNK-zQ-Fvx"/>
-                                                        <exclude reference="QsC-U5-GTe"/>
-                                                        <exclude reference="rjG-HV-tQ6"/>
                                                         <exclude reference="90V-ob-lKK"/>
                                                         <exclude reference="kaN-W4-vbR"/>
                                                         <exclude reference="uw7-sB-eDs"/>
                                                         <exclude reference="wbm-Tr-SFx"/>
+                                                        <exclude reference="QsC-U5-GTe"/>
+                                                        <exclude reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
@@ -4065,12 +4023,12 @@ FOTO</string>
                                                         <include reference="2b8-Sr-ItU"/>
                                                         <include reference="Jyf-Mo-KOp"/>
                                                         <include reference="wNK-zQ-Fvx"/>
-                                                        <include reference="QsC-U5-GTe"/>
-                                                        <include reference="rjG-HV-tQ6"/>
                                                         <include reference="90V-ob-lKK"/>
                                                         <include reference="kaN-W4-vbR"/>
                                                         <include reference="uw7-sB-eDs"/>
                                                         <include reference="wbm-Tr-SFx"/>
+                                                        <include reference="QsC-U5-GTe"/>
+                                                        <include reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -6747,7 +6705,7 @@ FOTO</string>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="emptyMessage">
-                            <string key="value">Você não está oferecendo
+                            <string key="value">Você ainda não possui
 nenhuma carona.</string>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
@@ -7213,7 +7171,6 @@ nenhuma carona.</string>
         <image name="ShareIcon" width="13" height="13"/>
         <image name="menu1" width="34" height="26"/>
         <image name="menu2" width="26" height="26"/>
-        <image name="menu3" width="38" height="26"/>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
@@ -7222,7 +7179,6 @@ nenhuma carona.</string>
         <segue reference="H8O-Mc-OH3"/>
         <segue reference="ugX-qh-OjL"/>
         <segue reference="IgS-9T-cpR"/>
-        <segue reference="DwZ-AK-niy"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

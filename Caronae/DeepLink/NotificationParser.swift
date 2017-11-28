@@ -10,13 +10,12 @@ class NotificationParser {
         }
         
         switch msgType {
-        case "joinRequest":
-            return .openMyRides
-        case "accepted",
+        case "joinRequest",
+             "accepted",
              "refused",
              "cancelled",
              "quitter":
-            return .openActiveRides
+            return .openMyRides
         case "finished":
             return .openRidesHistory
         case "chat":

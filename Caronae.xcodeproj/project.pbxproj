@@ -57,7 +57,6 @@
 		A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
 		A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F1D4C1C0398B500DEF6B1 /* RideCell.m */; };
-		A39672381E2E813700DD8ED5 /* RideRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39672371E2E813700DD8ED5 /* RideRequest.swift */; };
 		A398BE051C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */; };
 		A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */; };
 		A39BBD051C06AB9D00EF9EBD /* RideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39BBD041C06AB9D00EF9EBD /* RideCell.xib */; };
@@ -83,7 +82,6 @@
 		A3CA5DD21E1F46520062522D /* UIWindow+replaceRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */; };
 		A3CA5DD41E22CA370062522D /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD31E22CA370062522D /* NotificationService.swift */; };
 		A3CA5DD61E22CA630062522D /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD51E22CA630062522D /* Notification.swift */; };
-		A3CA5DD81E22D39B0062522D /* ActiveRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD71E22D39B0062522D /* ActiveRidesViewController.swift */; };
 		A3CA5DDC1E22DB830062522D /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */; };
 		A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDF1E22EC570062522D /* ChatService.swift */; };
 		A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */; };
@@ -160,7 +158,6 @@
 		A389902B1C58734700C7CD2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A38F1D4B1C0398B500DEF6B1 /* RideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideCell.h; sourceTree = "<group>"; };
 		A38F1D4C1C0398B500DEF6B1 /* RideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideCell.m; sourceTree = "<group>"; };
-		A39672371E2E813700DD8ED5 /* RideRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideRequest.swift; sourceTree = "<group>"; };
 		A39743EB1E6B18F2006E469A /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Common.xcconfig; path = Config/Common.xcconfig; sourceTree = "<group>"; };
 		A398BE031C6D7DEC00CEA6A1 /* CaronaePhoneTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaePhoneTextField.h; sourceTree = "<group>"; };
 		A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaePhoneTextField.m; sourceTree = "<group>"; };
@@ -195,7 +192,6 @@
 		A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+replaceRootViewController.m"; sourceTree = "<group>"; };
 		A3CA5DD31E22CA370062522D /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationService.swift; path = Services/NotificationService.swift; sourceTree = "<group>"; };
 		A3CA5DD51E22CA630062522D /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		A3CA5DD71E22D39B0062522D /* ActiveRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveRidesViewController.swift; sourceTree = "<group>"; };
 		A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		A3CA5DDF1E22EC570062522D /* ChatService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatService.swift; path = Services/ChatService.swift; sourceTree = "<group>"; };
 		A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
@@ -354,7 +350,6 @@
 			isa = PBXGroup;
 			children = (
 				A34C67591C853A9C001F6D90 /* Custom cells */,
-				A3CA5DD71E22D39B0062522D /* ActiveRidesViewController.swift */,
 				718C9B741E5F923A0037A78B /* AllRidesViewController.swift */,
 				71EAF4541F11406200B16CF8 /* CreateRideViewController.swift */,
 				A3AD823E1E1DC631006D8ABE /* MyRidesViewController.swift */,
@@ -399,7 +394,6 @@
 				A3AD822E1E1C5BD9006D8ABE /* Message.swift */,
 				A3CA5DD51E22CA630062522D /* Notification.swift */,
 				A3AD822C1E1B1E85006D8ABE /* Ride.swift */,
-				A39672371E2E813700DD8ED5 /* RideRequest.swift */,
 				A3AD82301E1C6072006D8ABE /* User.swift */,
 				71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */,
 				7133482B1F5F603B00E2218E /* Campus.swift */,
@@ -718,7 +712,6 @@
 				A3CA5DD41E22CA370062522D /* NotificationService.swift in Sources */,
 				7157BD8E1FB6932900D216F3 /* RidesHistoryViewController.swift in Sources */,
 				7106CFCF1F098BBB0071C4AE /* NotificationParser.swift in Sources */,
-				A39672381E2E813700DD8ED5 /* RideRequest.swift in Sources */,
 				718536301F047FFF00C30B97 /* AppDelegate.swift in Sources */,
 				A3AD822D1E1B1E85006D8ABE /* Ride.swift in Sources */,
 				A3CA5DDC1E22DB830062522D /* AppDelegate+Notifications.swift in Sources */,
@@ -754,7 +747,6 @@
 				A3AD82361E1C70D6006D8ABE /* RideService.swift in Sources */,
 				7157BD8C1FB6931C00D216F3 /* SearchResultsViewController.swift in Sources */,
 				A3AD823A1E1C8049006D8ABE /* TokenViewController.swift in Sources */,
-				A3CA5DD81E22D39B0062522D /* ActiveRidesViewController.swift in Sources */,
 				A3AC169B1E34168A000B5817 /* CaronaeError.swift in Sources */,
 				A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */,
 				71C60AAE1EBAC1A300E84318 /* SearchRideViewController.swift in Sources */,
