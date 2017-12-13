@@ -29,12 +29,12 @@ Ao concluir, abra o projeto pelo arquivo **Caronae.xcworkspace**.
 
 ## Fastlane
 
-Este projeto está configurado com o [fastlane](http://fastlane.tools). Consulte a [documentação](https://github.com/lucaslrolim/caronae-ios/tree/develop/fastlane) da pasta fastlane para ver as ações disponíveis.
+Este projeto está configurado com o [fastlane](http://fastlane.tools). Consulte a [documentação](https://github.com/caronae/caronae-ios/tree/develop/fastlane) da pasta fastlane para ver as ações disponíveis.
 
 Para instalar o fastlane, execute:
 
 ```bash
-sudo gem install fastlane
+bundle install
 ```
 
 

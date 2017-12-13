@@ -1,22 +1,53 @@
-fastlane_version "1.80.0"
-
 default_platform :ios
 
-
 platform :ios do
-  before_all do
+
+  desc "Submit a new build to TestFlight"
+  lane :beta do
     ensure_git_status_clean
-  end
+    install_signing
 
-  desc "Build and sign the app"
-  private_lane :build_app do |options|
     increment_build_number
-    gym
+    build_app
+
+    pilot(
+      skip_submission: true,
+      skip_waiting_for_build_processing: true
+    )
+
+    clean_build_artifacts
+
+    commit_build_bump(push: true)
+    tag(type: "beta")
   end
 
-  desc "Runs all the tests"
-  lane :test do
-    snapshot
+  desc "Deploy a new version to the App Store"
+  lane :deploy do
+    ensure_git_status_clean
+    install_signing
+    
+    increment_build_number
+    build_app
+
+    deliver(submit_for_review: true)
+
+    clean_build_artifacts
+
+    commit_build_bump(push: true)
+    tag(type: "appstore")
+  end
+
+  desc "Update and install all certificates and provisioning profiles"
+  lane :update_signing do
+    register_devices(devices_file: "./fastlane/devices.txt")
+    match(type: "development", force_for_new_devices: true)
+    match(type: "appstore")
+  end
+
+  desc "Install all certificates and provisioning profiles"
+  lane :install_signing do
+    match(type: "development", readonly: true)
+    match(type: "appstore", readonly: true)
   end
 
   desc "Commit the version/build number bump"
@@ -51,53 +82,8 @@ platform :ios do
     UI.success("Success! New tag: '#{tag}' 🔖")
   end
 
-  desc "Submit a new Beta Build to Apple TestFlight"
-  desc "This will also make sure the profile is up to date"
-  lane :beta do
-    sigh
-
-    build_app
-
-    pilot(
-      skip_submission: true,
-      skip_waiting_for_build_processing: true
-    )
-
-    # Make sure our directory is clean, except for changes Fastlane has made
-    clean_build_artifacts
-
-    commit_build_bump(push: true)
-    tag(type: "beta")
-  end
-
-  desc "Deploy a new version to the App Store"
-  lane :deploy do
-    # snapshot
-    sigh
-    
-    build_app
-
-    deliver(submit_for_review: true)
-
-    # Make sure our directory is clean, except for changes Fastlane has made
-    clean_build_artifacts
-
-    commit_build_bump(push: true)
-    tag(type: "appstore")
-  end
-
-  desc "Sync all certificates and provisioning profiles"
-  lane :match_everything do
-    register_devices(devices_file: "./fastlane/devices.txt")
-    match(type: "development", force_for_new_devices: true)
-    match(type: "appstore")
-  end
-
   error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
     reset_git_repo
   end
+
 end

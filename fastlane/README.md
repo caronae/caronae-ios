@@ -30,11 +30,26 @@ xcode-select --install
 
 # Available Actions
 ## iOS
-### ios test
+### ios beta
 ```
-fastlane ios test
+fastlane ios beta
 ```
-Runs all the tests
+Submit a new build to TestFlight
+### ios deploy
+```
+fastlane ios deploy
+```
+Deploy a new version to the App Store
+### ios update_signing
+```
+fastlane ios update_signing
+```
+Update and install all certificates and provisioning profiles
+### ios install_signing
+```
+fastlane ios install_signing
+```
+Install all certificates and provisioning profiles
 ### ios commit_build_bump
 ```
 fastlane ios commit_build_bump
@@ -45,23 +60,6 @@ Commit the version/build number bump
 fastlane ios tag
 ```
 Add tag with the current version and build number
-### ios beta
-```
-fastlane ios beta
-```
-Submit a new Beta Build to Apple TestFlight
-
-This will also make sure the profile is up to date
-### ios deploy
-```
-fastlane ios deploy
-```
-Deploy a new version to the App Store
-### ios match_everything
-```
-fastlane ios match_everything
-```
-Sync all certificates and provisioning profiles
 
 ----
 
