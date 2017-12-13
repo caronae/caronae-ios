@@ -1,0 +1,2 @@
+Device ID	Device Name
+122b9190add296e2411a2bfea5766bec3398029f	DamascenoRafael-iPhone
