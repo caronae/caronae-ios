@@ -1,6 +1,4 @@
 git_url "git@github.com:macecchi/caronae-ios-certificates.git"
 
-type "development" # The default type, can be: appstore, adhoc or development
+type "development" 
 
-# For all available options run `match --help`
-# Remove the # in the beginning of the line to enable the other options

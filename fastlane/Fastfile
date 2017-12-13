@@ -5,7 +5,6 @@ default_platform :ios
 
 platform :ios do
   before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."    
     ensure_git_status_clean
   end
 
@@ -91,16 +90,6 @@ platform :ios do
   lane :match_everything do
     match(type: "development", force_for_new_devices: true)
     match(type: "appstore")
-  end
-
-  # You can define as many lanes as you want
-
-  after_all do |lane|
-    # This block is called, only if the executed lane was successful
-    
-    # slack(
-    #   message: "Successfully deployed new App Update."
-    # )
   end
 
   error do |lane, exception|
