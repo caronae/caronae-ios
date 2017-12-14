@@ -1,12 +1,11 @@
 import UIKit
 
+var lastAllRidesUpdate = Date.distantPast
 class AllRidesViewController: RideListController, SearchRideDelegate {
     let userDefaults = UserDefaults.standard
     var searchParams = FilterParameters()
     var filterParams = FilterParameters()
     var pagination = PaginationState()
-    
-    fileprivate var lastUpdate = Date.distantPast
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +69,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             self.pagination.incrementPage()
             
             if page == 1 {
-                self.lastUpdate = Date()
+                lastAllRidesUpdate = Date()
                 
                 // Update rides from both directions
                 if direction == nil {
@@ -122,7 +121,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     }
     
     @objc func reloadRidesIfNecessary() {
-        if lastUpdate.timeIntervalSinceNow.isLess(than: -5*60) {
+        if lastAllRidesUpdate.timeIntervalSinceNow.isLess(than: -5*60) {
             pagination = PaginationState()
             loadAllRides()
         }

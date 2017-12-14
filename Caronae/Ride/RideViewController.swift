@@ -344,6 +344,7 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
         RideService.instance.leaveRide(withID: ride.id, success: {
             SVProgressHUD.dismiss()
             NSLog("User left the ride.")
+            lastAllRidesUpdate = Date.distantPast
             self.navigationController?.popViewController(animated: true)
         }, error: { error in
             NSLog("Error leaving/cancelling ride: %@", error.localizedDescription)

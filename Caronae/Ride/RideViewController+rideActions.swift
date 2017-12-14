@@ -41,7 +41,7 @@ extension RideViewController {
         RideService.instance.deleteRoutine(withID: routineID, success: { 
             SVProgressHUD.dismiss()
             NSLog("User left all rides from routine.")
-            
+            lastAllRidesUpdate = Date.distantPast
             _ = self.navigationController?.popViewController(animated: true)
         }, error: { error in
             SVProgressHUD.dismiss()
