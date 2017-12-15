@@ -1,6 +1,9 @@
 default_platform :ios
 
 platform :ios do
+  before_all do
+    setup_circle_ci
+  end
 
   desc "Submit a new build to TestFlight"
   lane :beta do
@@ -18,8 +21,9 @@ platform :ios do
 
     clean_build_artifacts
 
-    commit_build_bump(push: true)
+    commit_build_bump
     tag(type: "beta")
+    push_to_git_remote
   end
 
   desc "Deploy a new version to the App Store"
@@ -35,8 +39,9 @@ platform :ios do
 
     clean_build_artifacts
 
-    commit_build_bump(push: true)
+    commit_build_bump
     tag(type: "appstore")
+    push_to_git_remote
   end
 
   desc "Update and install all certificates and provisioning profiles"
@@ -58,7 +63,7 @@ platform :ios do
     build_number = get_build_number
 
     commit_version_bump(
-      message: "🔖 Version bump to #{version_number} (#{build_number})"
+      message: "Version bump to #{version_number} (#{build_number}) [ci skip]"
     )
   end
 
@@ -76,10 +81,6 @@ platform :ios do
     end
 
     add_git_tag(tag: tag)
-
-    if options[:push]
-      push_to_git_remote
-    end
 
     UI.success("Success! New tag: '#{tag}' 🔖")
   end
