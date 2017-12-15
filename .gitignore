@@ -66,3 +66,7 @@ fastlane/test_output
 
 # Google/Firebase Cloud Message
 GoogleService-Info.plist
+
+# Ruby dependencies
+vendor/
+.bundle/
