@@ -19,9 +19,6 @@ jobs:
       - run:
           name: fastlane
           command: bundle exec fastlane beta
-      - run:
-          command: cp $FL_OUTPUT_DIR/scan/report.junit $FL_OUTPUT_DIR/scan/results.xml
-          when: always
       - store_artifacts:
           path: /Users/distiller/project/output
       - store_test_results:
