@@ -50,6 +50,16 @@ Update and install all certificates and provisioning profiles
 fastlane ios install_signing
 ```
 Install all certificates and provisioning profiles
+### ios encrypt_keys
+```
+fastlane ios encrypt_keys
+```
+Encrypt sensitive keys using AWS KMS
+### ios decrypt_keys
+```
+fastlane ios decrypt_keys
+```
+Decrypt sensitive keys using AWS KMS
 ### ios commit_build_bump
 ```
 fastlane ios commit_build_bump

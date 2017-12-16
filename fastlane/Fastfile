@@ -57,6 +57,20 @@ platform :ios do
     match(type: "appstore", readonly: true)
   end
 
+  desc "Encrypt sensitive keys using AWS KMS"
+  lane :encrypt_keys do
+    system "aws kms encrypt --key-id alias/caronae-ios-keys --plaintext fileb://../Caronae/Supporting\\ Files/GoogleService-Info.plist --output text --query CiphertextBlob > ../Caronae/Supporting\\ Files/GoogleService-Info.plist.encrypted"
+    UI.user_error! "Could not encrypt files" unless $?.exitstatus == 0
+  end
+
+  desc "Decrypt sensitive keys using AWS KMS"
+  lane :decrypt_keys do
+    system "cat ../Caronae/Supporting\\ Files/GoogleService-Info.plist.encrypted | base64 -di > /tmp/GoogleService-Info.plist"
+    UI.user_error! "Could not decode base64 file" unless $?.exitstatus == 0
+    system "aws kms decrypt --ciphertext-blob fileb:///tmp/GoogleService-Info.plist --output text --query Plaintext | base64 --decode > ../Caronae/Supporting\\ Files/GoogleService-Info.plist"
+    UI.user_error! "Could not decrypt files" unless $?.exitstatus == 0
+  end
+
   desc "Commit the version/build number bump"
   lane :commit_build_bump do
     version_number = get_version_number
