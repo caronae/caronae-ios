@@ -9,7 +9,6 @@ jobs:
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
-      - run: brew install awscli
       - restore_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
       - run: bundle check || bundle install --path vendor/bundle
@@ -21,9 +20,7 @@ jobs:
           name: Decrypt sensitive keys
           command: bundle exec fastlane decrypt_keys
       - run:
-          name: fastlane
+          name: Build and publish beta
           command: bundle exec fastlane beta
       - store_artifacts:
           path: /Users/distiller/project/output
-      - store_test_results:
-          path: /Users/distiller/project/output/scan

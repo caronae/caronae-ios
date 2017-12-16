@@ -1,4 +1,7 @@
+fastlane_require 'aws-sdk-kms'
+
 default_platform :ios
+google_keys_file = '../Caronae/Supporting Files/GoogleService-Info.plist'
 
 platform :ios do
   before_all do
@@ -59,16 +62,24 @@ platform :ios do
 
   desc "Encrypt sensitive keys using AWS KMS"
   lane :encrypt_keys do
-    system "aws kms encrypt --key-id alias/caronae-ios-keys --plaintext fileb://../Caronae/Supporting\\ Files/GoogleService-Info.plist --output text --query CiphertextBlob > ../Caronae/Supporting\\ Files/GoogleService-Info.plist.encrypted"
-    UI.user_error! "Could not encrypt files" unless $?.exitstatus == 0
+    kms = Aws::KMS::Client.new()
+    decrypted_file = IO.read(google_keys_file)
+    encrypted_data = kms.encrypt(key_id: 'alias/caronae-ios-keys', plaintext: decrypted_file)
+    encrypted_text = Base64.encode64(encrypted_data.ciphertext_blob)
+    IO.write(google_keys_file + '.encrypted', encrypted_text)
+
+    UI.success("Successfully encrypted keys")
   end
 
   desc "Decrypt sensitive keys using AWS KMS"
   lane :decrypt_keys do
-    system "cat ../Caronae/Supporting\\ Files/GoogleService-Info.plist.encrypted | base64 -di > /tmp/GoogleService-Info.plist"
-    UI.user_error! "Could not decode base64 file" unless $?.exitstatus == 0
-    system "aws kms decrypt --ciphertext-blob fileb:///tmp/GoogleService-Info.plist --output text --query Plaintext | base64 --decode > ../Caronae/Supporting\\ Files/GoogleService-Info.plist"
-    UI.user_error! "Could not decrypt files" unless $?.exitstatus == 0
+    kms = Aws::KMS::Client.new()
+    encrypted_file = IO.read(google_keys_file + '.encrypted')
+    encrypted_data = Base64.decode64(encrypted_file)
+    decrypted_data = kms.decrypt(ciphertext_blob: encrypted_data)
+    IO.write(google_keys_file, decrypted_data.plaintext)
+
+    UI.success("Successfully decrypted keys")
   end
 
   desc "Commit the version/build number bump"
@@ -96,7 +107,7 @@ platform :ios do
 
     add_git_tag(tag: tag)
 
-    UI.success("Success! New tag: '#{tag}' 🔖")
+    UI.success("Success! New tag: '#{tag}'")
   end
 
   error do |lane, exception|
