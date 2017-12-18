@@ -39,7 +39,7 @@ jobs:
       - store_artifacts:
           path: output/buildlogs
       - persist_to_workspace:
-          root: /Users/distiller/project
+          root: .
           paths:
             - .bundle
             - vendor
@@ -52,7 +52,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: output
+          at: .
       - run:
           name: Build and publish app to TestFlight
           command: bundle exec fastlane beta skip_build:true
@@ -60,6 +60,8 @@ jobs:
   deploy_appstore:
     <<: *defaults
     steps:
+      - attach_workspace:
+          at: .
       - run:
           name: Build and publish app to App Store
           command: bundle exec fastlane deploy skip_build:true
