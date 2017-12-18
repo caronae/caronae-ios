@@ -75,7 +75,8 @@ platform :ios do
     build_number = get_build_number
 
     commit_version_bump(
-      message: "Version bump to #{version_number} (#{build_number}) [ci skip]"
+      message: "Version bump to #{version_number} (#{build_number}) [ci skip]",
+      xcodeproj: "./Caronae.xcodeproj",
     )
   end
 
