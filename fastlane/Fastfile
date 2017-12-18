@@ -9,7 +9,7 @@ platform :ios do
   end
 
   desc "Submit a new build to TestFlight"
-  lane :beta do
+  lane :build do
     ensure_git_status_clean
     decrypt_keys
     install_signing
@@ -19,6 +19,11 @@ platform :ios do
     commit_build_bump
     build_app
     push_to_git_remote
+  end
+
+  desc "Submit a new build to TestFlight"
+  lane :beta do |options|
+    build unless options[:skip_build]
 
     pilot(skip_waiting_for_build_processing: true)
 
@@ -28,15 +33,7 @@ platform :ios do
 
   desc "Deploy a new version to the App Store"
   lane :deploy do
-    ensure_git_status_clean
-    decrypt_keys
-    install_signing
-    
-    cocoapods
-    increment_build_number
-    commit_build_bump
-    build_app
-    push_to_git_remote
+    build unless options[:skip_build]
 
     deliver(submit_for_review: true, force: true)
 

@@ -1,12 +1,15 @@
+defaults: &defaults
+  working_directory: /Users/distiller/project
+  macos:
+    xcode: "9.2.0"
+  environment:
+    FL_OUTPUT_DIR: /Users/distiller/project/output
+  shell: /bin/bash --login -o pipefail
+
 version: 2
 jobs:
   build:
-    macos:
-      xcode: "9.2.0"
-    working_directory: /Users/distiller/project
-    environment:
-      FL_OUTPUT_DIR: /Users/distiller/project/output
-    shell: /bin/bash --login -o pipefail
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -27,11 +30,50 @@ jobs:
           name: Fetch CocoaPods specs
           command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run:
-          name: Build and publish beta
-          command: bundle exec fastlane beta
+          name: Build app
+          command: bundle exec fastlane build
       - save_cache:
           key: 1-pods-{{ checksum "Podfile.lock" }}
           paths:
             - Pods
       - store_artifacts:
-          path: /Users/distiller/project/output
+          path: output/buildlogs
+      - persist_to_workspace:
+          root: output
+          paths:
+            - gym/Caronae.ipa
+            - gym/Caronae.app.dSYM.zip
+
+  deploy_testflight:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: output
+      - run:
+          name: Build and publish app to TestFlight
+          command: bundle exec fastlane beta
+
+  deploy_appstore:
+    <<: *defaults
+    steps:
+      - run:
+          name: Build and publish app to App Store
+          command: bundle exec fastlane deploy
+
+workflows:
+  version: 2
+
+  build_app:
+    jobs:
+      - build
+      - deploy_testflight:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_appstore:
+          type: approval
+          requires:
+           - build

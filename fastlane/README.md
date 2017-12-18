@@ -30,6 +30,11 @@ xcode-select --install
 
 # Available Actions
 ## iOS
+### ios build
+```
+fastlane ios build
+```
+Submit a new build to TestFlight
 ### ios beta
 ```
 fastlane ios beta
