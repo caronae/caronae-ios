@@ -18,27 +18,20 @@ platform :ios do
     increment_build_number
     commit_build_bump
     build_app
+    tag
     push_to_git_remote
   end
 
   desc "Deploy a new build to TestFlight"
   lane :beta do |options|
     build unless options[:ipa]
-
     pilot(skip_waiting_for_build_processing: true, ipa: options[:ipa])
-
-    tag(type: "beta")
-    push_to_git_remote
   end
 
   desc "Deploy a new version to the App Store"
   lane :deploy do
     build unless options[:ipa]
-
     deliver(submit_for_review: true, force: true, ipa: options[:ipa])
-
-    tag(type: "appstore")
-    push_to_git_remote
   end
 
   desc "Update and install all certificates and provisioning profiles"
@@ -87,19 +80,11 @@ platform :ios do
   end
 
   desc "Add tag with the current version and build number"
-  lane :tag do |options|
+  lane :tag
     version_number = get_version_number
     build_number = get_build_number
 
-    if options[:type] == "beta"
-      tag = "beta/#{version_number}/#{build_number}"
-    elsif options[:type] == "appstore"
-      tag = "appstore/#{version_number}/#{build_number}"
-    else
-      UI.user_error!("Missing option 'type' as 'beta' or 'appstore'")
-    end
-
-    add_git_tag(tag: tag)
+    add_git_tag(tag: "#{version_number}/#{build_number}")
 
     UI.success("Success! New tag: '#{tag}'")
   end
