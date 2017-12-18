@@ -11,6 +11,7 @@ platform :ios do
   desc "Submit a new build to TestFlight"
   lane :beta do
     ensure_git_status_clean
+    decrypt_keys
     install_signing
 
     cocoapods
@@ -32,6 +33,7 @@ platform :ios do
   desc "Deploy a new version to the App Store"
   lane :deploy do
     ensure_git_status_clean
+    decrypt_keys
     install_signing
     
     cocoapods

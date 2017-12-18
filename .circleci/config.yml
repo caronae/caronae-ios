@@ -17,9 +17,6 @@ jobs:
           paths:
             - vendor/bundle
       - run:
-          name: Decrypt sensitive keys
-          command: bundle exec fastlane decrypt_keys
-      - run:
           name: Build and publish beta
           command: bundle exec fastlane beta
       - store_artifacts:
