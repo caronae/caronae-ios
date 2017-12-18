@@ -39,10 +39,14 @@ jobs:
       - store_artifacts:
           path: output/buildlogs
       - persist_to_workspace:
-          root: output
+          root: /Users/distiller/project
           paths:
-            - gym/Caronae.ipa
-            - gym/Caronae.app.dSYM.zip
+            - .bundle
+            - vendor
+            - Gemfile
+            - fastlane
+            - output/gym/Caronae.ipa
+            - output/gym/Caronae.app.dSYM.zip
 
   deploy_testflight:
     <<: *defaults
@@ -51,14 +55,14 @@ jobs:
           at: output
       - run:
           name: Build and publish app to TestFlight
-          command: bundle exec fastlane beta
+          command: bundle exec fastlane beta skip_build:true
 
   deploy_appstore:
     <<: *defaults
     steps:
       - run:
           name: Build and publish app to App Store
-          command: bundle exec fastlane deploy
+          command: bundle exec fastlane deploy skip_build:true
 
 workflows:
   version: 2
