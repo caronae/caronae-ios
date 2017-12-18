@@ -19,7 +19,7 @@ jobs:
             git config --global user.name "CircleCI"
       - restore_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
-      - run: bundle check || bundle install --path vendor/bundle
+      - run: bundle install --path vendor/bundle
       - save_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
           paths:
@@ -39,31 +39,35 @@ jobs:
       - store_artifacts:
           path: output/buildlogs
       - persist_to_workspace:
-          root: .
+          root: output
           paths:
-            - .bundle
-            - vendor
-            - Gemfile
-            - fastlane
-            - output/gym/Caronae.ipa
-            - output/gym/Caronae.app.dSYM.zip
+            - gym/Caronae.ipa
+            - gym/Caronae.app.dSYM.zip
 
   deploy_testflight:
     <<: *defaults
     steps:
+      - checkout
       - attach_workspace:
-          at: .
+          at: output
+      - restore_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+      - run: bundle install --path vendor/bundle
       - run:
-          name: Build and publish app to TestFlight
+          name: Publish app to TestFlight
           command: bundle exec fastlane beta skip_build:true
 
   deploy_appstore:
     <<: *defaults
     steps:
+      - checkout
       - attach_workspace:
-          at: .
+          at: output
+      - restore_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+      - run: bundle install --path vendor/bundle
       - run:
-          name: Build and publish app to App Store
+          name: Publish app to App Store
           command: bundle exec fastlane deploy skip_build:true
 
 workflows:
