@@ -16,12 +16,17 @@ jobs:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+      - restore_cache:
+          key: 1-pods-{{ checksum "Podfile.lock" }}
       - run:
-          name: Update CocoaPods specs
-          command: |
-            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+          name: Install pods
+          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run:
           name: Build and publish beta
           command: bundle exec fastlane beta
+      - save_cache:
+          key: 1-pods-{{ checksum "Podfile.lock" }}
+          paths:
+            - Pods
       - store_artifacts:
           path: /Users/distiller/project/output
