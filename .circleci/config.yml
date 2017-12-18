@@ -9,6 +9,11 @@ jobs:
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
+      - run:
+          name: Configure Git
+          command: |
+            git config --global user.email "circleci@caronae.org"
+            git config --global user.name "CircleCI"
       - restore_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
       - run: bundle check || bundle install --path vendor/bundle
@@ -19,7 +24,7 @@ jobs:
       - restore_cache:
           key: 1-pods-{{ checksum "Podfile.lock" }}
       - run:
-          name: Install pods
+          name: Fetch CocoaPods specs
           command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run:
           name: Build and publish beta

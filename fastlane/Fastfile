@@ -16,13 +16,12 @@ platform :ios do
 
     cocoapods
     increment_build_number
+    commit_build_bump
     build_app
+    push_to_git_remote
 
     pilot(skip_waiting_for_build_processing: true)
 
-    clean_build_artifacts
-
-    commit_build_bump
     tag(type: "beta")
     push_to_git_remote
   end
@@ -35,13 +34,12 @@ platform :ios do
     
     cocoapods
     increment_build_number
+    commit_build_bump
     build_app
+    push_to_git_remote
 
     deliver(submit_for_review: true, force: true)
 
-    clean_build_artifacts
-
-    commit_build_bump
     tag(type: "appstore")
     push_to_git_remote
   end
