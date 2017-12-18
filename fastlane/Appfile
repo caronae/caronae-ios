@@ -1,5 +1,5 @@
 app_identifier "br.ufrj.caronae"
-apple_id "macecchi@gmail.com"
+apple_id ENV['FASTLANE_USER'] || "macecchi@gmail.com"
 
 team_name "Mario A C Raduan"
 team_id "5JHLCV2DBL"

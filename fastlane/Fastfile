@@ -40,7 +40,7 @@ platform :ios do
     increment_build_number
     build_app
 
-    deliver(submit_for_review: true)
+    deliver(submit_for_review: true, force: true)
 
     clean_build_artifacts
 
