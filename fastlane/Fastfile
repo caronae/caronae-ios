@@ -80,7 +80,7 @@ platform :ios do
   end
 
   desc "Add tag with the current version and build number"
-  lane :tag
+  lane :tag do
     version_number = get_version_number
     build_number = get_build_number
 
