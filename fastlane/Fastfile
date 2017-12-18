@@ -18,10 +18,7 @@ platform :ios do
     increment_build_number
     build_app
 
-    pilot(
-      skip_submission: true,
-      skip_waiting_for_build_processing: true
-    )
+    pilot
 
     clean_build_artifacts
 

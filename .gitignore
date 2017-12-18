@@ -1,12 +1,5 @@
-# Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
-
-## Build generated
 build/
 DerivedData
-
-## Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -16,57 +9,25 @@ DerivedData
 *.perspectivev3
 !default.perspectivev3
 xcuserdata
-
-## Other
 *.xccheckout
 *.moved-aside
 *.xcuserstate
 *.xcscmblueprint
 *.xcscheme
-
-## Obj-C/Swift specific
 *.hmap
 *.ipa
 
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
+vendor/
+.bundle/
 Pods/
-
-# Carthage
-#
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
-
 Carthage/Build
-
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the 
-# screenshots whenever they are needed.
-
-# fastlane specific
 fastlane/report.xml
-
-# deliver temporary files
 Preview.html
-
-# snapshot generated screenshots
 fastlane/screenshots
-
-# scan temporary files
 fastlane/test_output
-
 **/*.dSYM.zip
 **/*.app
 *.mobileprovision
-
-# Google/Firebase Cloud Message
+output/
 GoogleService-Info.plist
 
-# Ruby dependencies
-vendor/
-.bundle/
