@@ -39,7 +39,7 @@ Submit a new build to TestFlight
 ```
 fastlane ios beta
 ```
-Submit a new build to TestFlight
+Deploy a new build to TestFlight
 ### ios deploy
 ```
 fastlane ios deploy

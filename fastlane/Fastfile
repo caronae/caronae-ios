@@ -21,11 +21,11 @@ platform :ios do
     push_to_git_remote
   end
 
-  desc "Submit a new build to TestFlight"
+  desc "Deploy a new build to TestFlight"
   lane :beta do |options|
-    build unless options[:skip_build]
+    build unless options[:ipa]
 
-    pilot(skip_waiting_for_build_processing: true)
+    pilot(skip_waiting_for_build_processing: true, ipa: options[:ipa])
 
     tag(type: "beta")
     push_to_git_remote
@@ -33,9 +33,9 @@ platform :ios do
 
   desc "Deploy a new version to the App Store"
   lane :deploy do
-    build unless options[:skip_build]
+    build unless options[:ipa]
 
-    deliver(submit_for_review: true, force: true)
+    deliver(submit_for_review: true, force: true, ipa: options[:ipa])
 
     tag(type: "appstore")
     push_to_git_remote

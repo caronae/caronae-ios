@@ -55,7 +55,7 @@ jobs:
       - run: bundle install --path vendor/bundle
       - run:
           name: Publish app to TestFlight
-          command: bundle exec fastlane beta skip_build:true
+          command: bundle exec fastlane beta ipa:output/gym/Caronae.ipa
 
   deploy_appstore:
     <<: *defaults
@@ -68,7 +68,7 @@ jobs:
       - run: bundle install --path vendor/bundle
       - run:
           name: Publish app to App Store
-          command: bundle exec fastlane deploy skip_build:true
+          command: bundle exec fastlane deploy ipa:output/gym/Caronae.ipa
 
 workflows:
   version: 2
