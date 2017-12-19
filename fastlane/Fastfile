@@ -15,10 +15,10 @@ platform :ios do
     install_signing
 
     cocoapods
-    increment_build_number
+
     commit_build_bump
     build_app
-    tag
+    tag_version
     push_to_git_remote
   end
 
@@ -71,6 +71,7 @@ platform :ios do
 
   desc "Commit the version/build number bump"
   lane :commit_build_bump do
+    increment_build_number
     version_number = get_version_number
     build_number = get_build_number
 
@@ -81,7 +82,7 @@ platform :ios do
   end
 
   desc "Add tag with the current version and build number"
-  lane :tag do
+  lane :tag_version do
     version_number = get_version_number
     build_number = get_build_number
 
