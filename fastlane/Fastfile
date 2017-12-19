@@ -16,9 +16,8 @@ platform :ios do
 
     cocoapods
 
-    commit_build_bump
+    update_build_number
     build_app
-    tag_version
     push_to_git_remote
   end
 
@@ -70,7 +69,7 @@ platform :ios do
   end
 
   desc "Commit the version/build number bump"
-  lane :commit_build_bump do
+  lane :update_build_number do
     increment_build_number
     version_number = get_version_number
     build_number = get_build_number
@@ -79,16 +78,11 @@ platform :ios do
       message: "Version bump to #{version_number} (#{build_number}) [ci skip]",
       xcodeproj: "./Caronae.xcodeproj",
     )
-  end
 
-  desc "Add tag with the current version and build number"
-  lane :tag_version do
-    version_number = get_version_number
-    build_number = get_build_number
+    tag_name = "#{version_number}/#{build_number}"
+    add_git_tag(tag: tag_name)
 
-    add_git_tag(tag: "#{version_number}/#{build_number}")
-
-    UI.success("Success! New tag: '#{tag}'")
+    UI.success("Success! New version: #{tag_name}")
   end
 
   error do |lane, exception|
