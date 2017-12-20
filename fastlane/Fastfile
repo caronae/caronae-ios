@@ -1,115 +1,92 @@
-fastlane_version "1.80.0"
+fastlane_require 'aws-sdk-kms'
 
 default_platform :ios
-
+google_keys_file = '../Caronae/Supporting Files/GoogleService-Info.plist'
 
 platform :ios do
   before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."    
+    setup_circle_ci
+  end
+
+  desc "Submit a new build to TestFlight"
+  lane :build do
     ensure_git_status_clean
-  end
+    decrypt_keys
+    install_signing
 
-  desc "Build and sign the app"
-  private_lane :build_app do |options|
-    increment_build_number
-    gym
-  end
+    cocoapods
 
-  desc "Runs all the tests"
-  lane :test do
-    snapshot
-  end
-
-  desc "Commit the version/build number bump"
-  lane :commit_build_bump do
-    version_number = get_version_number
-    build_number = get_build_number
-
-    commit_version_bump(
-      message: "🔖 Version bump to #{version_number} (#{build_number})"
-    )
-  end
-
-  desc "Add tag with the current version and build number"
-  lane :tag do |options|
-    version_number = get_version_number
-    build_number = get_build_number
-
-    if options[:type] == "beta"
-      tag = "beta/#{version_number}/#{build_number}"
-    elsif options[:type] == "appstore"
-      tag = "appstore/#{version_number}/#{build_number}"
-    else
-      UI.user_error!("Missing option 'type' as 'beta' or 'appstore'")
-    end
-
-    add_git_tag(tag: tag)
-
-    if options[:push]
-      push_to_git_remote
-    end
-
-    UI.success("Success! New tag: '#{tag}' 🔖")
-  end
-
-  desc "Submit a new Beta Build to Apple TestFlight"
-  desc "This will also make sure the profile is up to date"
-  lane :beta do
-    gym(configuration: "Debug - Development")
-
-    sigh
-
+    update_build_number
     build_app
+    push_to_git_remote
+  end
 
-    pilot(
-      skip_submission: true,
-      skip_waiting_for_build_processing: true
-    )
-
-    # Make sure our directory is clean, except for changes Fastlane has made
-    clean_build_artifacts
-
-    commit_build_bump(push: true)
-    tag(type: "beta")
+  desc "Deploy a new build to TestFlight"
+  lane :beta do |options|
+    build unless options[:ipa]
+    pilot(skip_waiting_for_build_processing: true, ipa: options[:ipa])
   end
 
   desc "Deploy a new version to the App Store"
   lane :deploy do
-    # snapshot
-    sigh
-    
-    build_app
-
-    deliver(submit_for_review: true)
-
-    # Make sure our directory is clean, except for changes Fastlane has made
-    clean_build_artifacts
-
-    commit_build_bump(push: true)
-    tag(type: "appstore")
+    build unless options[:ipa]
+    deliver(submit_for_review: true, force: true, ipa: options[:ipa])
   end
 
-  desc "Sync all certificates and provisioning profiles"
-  lane :match_everything do
+  desc "Update and install all certificates and provisioning profiles"
+  lane :update_signing do
+    register_devices(devices_file: "./fastlane/devices.txt")
     match(type: "development", force_for_new_devices: true)
     match(type: "appstore")
   end
 
-  # You can define as many lanes as you want
+  desc "Install all certificates and provisioning profiles"
+  lane :install_signing do
+    match(type: "development", readonly: true)
+    match(type: "appstore", readonly: true)
+  end
 
-  after_all do |lane|
-    # This block is called, only if the executed lane was successful
-    
-    # slack(
-    #   message: "Successfully deployed new App Update."
-    # )
+  desc "Encrypt sensitive keys using AWS KMS"
+  lane :encrypt_keys do
+    kms = Aws::KMS::Client.new()
+    decrypted_file = IO.read(google_keys_file)
+    encrypted_data = kms.encrypt(key_id: 'alias/caronae-ios-keys', plaintext: decrypted_file)
+    encrypted_text = Base64.encode64(encrypted_data.ciphertext_blob)
+    IO.write(google_keys_file + '.encrypted', encrypted_text)
+
+    UI.success("Successfully encrypted keys")
+  end
+
+  desc "Decrypt sensitive keys using AWS KMS"
+  lane :decrypt_keys do
+    kms = Aws::KMS::Client.new()
+    encrypted_file = IO.read(google_keys_file + '.encrypted')
+    encrypted_data = Base64.decode64(encrypted_file)
+    decrypted_data = kms.decrypt(ciphertext_blob: encrypted_data)
+    IO.write(google_keys_file, decrypted_data.plaintext)
+
+    UI.success("Successfully decrypted keys")
+  end
+
+  desc "Commit the version/build number bump"
+  lane :update_build_number do
+    increment_build_number
+    version_number = get_version_number
+    build_number = get_build_number
+
+    commit_version_bump(
+      message: "Version bump to #{version_number} (#{build_number}) [ci skip]",
+      xcodeproj: "./Caronae.xcodeproj",
+    )
+
+    tag_name = "#{version_number}/#{build_number}"
+    add_git_tag(tag: tag_name)
+
+    UI.success("Success! New version: #{tag_name}")
   end
 
   error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
     reset_git_repo
   end
+
 end

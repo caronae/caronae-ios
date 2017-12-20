@@ -6,22 +6,20 @@ Aplicativo para iPhone do Caronaê.
 
 * Xcode 9+
 * iOS 8.2+
-* [CocoaPods](https://cocoapods.org) 1.3.1
 
 
 ## Instalação
 
-Caso não tenha o CocoaPods instalado, instale-o pelo Terminal:
+Instale as ferramentas do projeto através do Terminal:
 
 ```bash
-sudo gem install cocoapods
+bundle install
 ```
 
-Para rodar o projeto, clone este repositório e, pelo Terminal, navegue até o diretório dele. 
-Uma vez no diretório, instale as dependências necessárias usando o CocoaPods:
+Em seguida, instale as dependências necessárias usando o CocoaPods:
 
 ```bash
-pod install
+bundle exec pod install
 ```
 
 Ao concluir, abra o projeto pelo arquivo **Caronae.xcworkspace**.
@@ -29,13 +27,9 @@ Ao concluir, abra o projeto pelo arquivo **Caronae.xcworkspace**.
 
 ## Fastlane
 
-Este projeto está configurado com o [fastlane](http://fastlane.tools). Consulte a [documentação](https://github.com/lucaslrolim/caronae-ios/tree/develop/fastlane) da pasta fastlane para ver as ações disponíveis.
+Este projeto está configurado com o [fastlane](http://fastlane.tools). Consulte a [documentação](https://github.com/caronae/caronae-ios/tree/develop/fastlane) da pasta fastlane para ver as ações disponíveis.
 
-Para instalar o fastlane, execute:
-
-```bash
-sudo gem install fastlane
-```
+O Fastlane é instalado através do comando `bundle install`.
 
 
 ## Firebase Cloud Messaging

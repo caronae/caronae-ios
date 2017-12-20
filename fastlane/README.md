@@ -12,9 +12,9 @@ xcode-select --install
 
 <table width="100%" >
 <tr>
-<th width="33%"><a href="http://brew.sh">Homebrew</a></td>
-<th width="33%">Installer Script</td>
-<th width="33%">Rubygems</td>
+<th width="33%"><a href="http://brew.sh">Homebrew</a></th>
+<th width="33%">Installer Script</th>
+<th width="33%">RubyGems</th>
 </tr>
 <tr>
 <td width="33%" align="center">macOS</td>
@@ -30,38 +30,51 @@ xcode-select --install
 
 # Available Actions
 ## iOS
-### ios test
+### ios build
 ```
-fastlane ios test
+fastlane ios build
 ```
-Runs all the tests
-### ios commit_build_bump
-```
-fastlane ios commit_build_bump
-```
-Commit the version/build number bump
-### ios tag
-```
-fastlane ios tag
-```
-Add tag with the current version and build number
+Submit a new build to TestFlight
 ### ios beta
 ```
 fastlane ios beta
 ```
-Submit a new Beta Build to Apple TestFlight
-
-This will also make sure the profile is up to date
+Deploy a new build to TestFlight
 ### ios deploy
 ```
 fastlane ios deploy
 ```
 Deploy a new version to the App Store
-### ios match_everything
+### ios update_signing
 ```
-fastlane ios match_everything
+fastlane ios update_signing
 ```
-Sync all certificates and provisioning profiles
+Update and install all certificates and provisioning profiles
+### ios install_signing
+```
+fastlane ios install_signing
+```
+Install all certificates and provisioning profiles
+### ios encrypt_keys
+```
+fastlane ios encrypt_keys
+```
+Encrypt sensitive keys using AWS KMS
+### ios decrypt_keys
+```
+fastlane ios decrypt_keys
+```
+Decrypt sensitive keys using AWS KMS
+### ios commit_build_bump
+```
+fastlane ios commit_build_bump
+```
+Commit the version/build number bump
+### ios tag_version
+```
+fastlane ios tag_version
+```
+Add tag with the current version and build number
 
 ----
 

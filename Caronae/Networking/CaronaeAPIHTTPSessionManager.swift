@@ -4,7 +4,11 @@ class CaronaeAPIHTTPSessionManager: AFHTTPSessionManager {
     static let instance = CaronaeAPIHTTPSessionManager()
    
     private init() {
-        let baseURL = URL(string: Bundle.main.object(forInfoDictionaryKey: "CaronaeAPIBaseURL") as! String)
+        #if DEVELOPMENT
+            let baseURL = URL(string: "https://api.dev.caronae.org")
+        #else
+            let baseURL = URL(string: "https://api.caronae.com.br")
+        #endif
         super.init(baseURL: baseURL, sessionConfiguration: .default)
         requestSerializer = CaronaeAPIRequestSerializer()
         responseSerializer = CaronaeAPIResponseSerializer()
