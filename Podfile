@@ -1,6 +1,6 @@
 platform :ios, '8.0'
 
-target 'Caronae' do
+abstract_target 'caronae-ios' do
     use_frameworks!
     
     pod 'AFNetworking', '~> 2.6.3'
@@ -21,19 +21,22 @@ target 'Caronae' do
     pod 'JSQMessagesViewController', :git => 'https://github.com/caronae/JSQMessagesViewController.git', :branch => 'issue-1864'
     pod 'MIBadgeButton-Swift', :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
     pod 'UIScrollView-InfiniteScroll'
-    
-    class ::Pod::Generator::Acknowledgements
-        def header_title
-            "Agradecimentos"
-        end
 
-        def header_text
-            "Este app faz uso das seguintes bibiliotecas de terceiros, cujas licenças encontram-se abaixo:"
-        end
+    target 'Caronae'
+    target 'Caronae Dev'
+end
+
+post_install do | installer |
+    require 'fileutils'
+    FileUtils.cp_r('Pods/Target Support Files/Pods-caronae-ios-Caronae/Pods-caronae-ios-Caronae-acknowledgements.plist', 'Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+end
+
+class ::Pod::Generator::Acknowledgements
+    def header_title
+        "Agradecimentos"
     end
 
-    post_install do | installer |
-        require 'fileutils'
-        FileUtils.cp_r('Pods/Target Support Files/Pods-Caronae/Pods-Caronae-acknowledgements.plist', 'Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+    def header_text
+        "Este app faz uso das seguintes bibiliotecas de terceiros, cujas licenças encontram-se abaixo:"
     end
 end

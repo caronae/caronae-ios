@@ -1,3 +1,0 @@
-#include "Common.xcconfig"
-
-CARONAE_API_BASE_URL = ${HTTPS}api.caronae.com.br
