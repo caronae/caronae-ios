@@ -18,11 +18,16 @@ xcode-select --install
 
 # Available Actions
 ## iOS
+### ios prepare_build
+```
+fastlane ios prepare_build
+```
+Prepare dependencies for building app
 ### ios build
 ```
 fastlane ios build
 ```
-Submit a new build to TestFlight
+Build app
 ### ios beta
 ```
 fastlane ios beta

@@ -16,19 +16,16 @@ references:
         - v1-repo-{{ .Branch }}
         - v1-repo
 
-  configure_git: &configure_git
-    run:
-      name: Configure Git
-      command: |
-        git config --global user.email "circleci@caronae.org"
-        git config --global user.name "CircleCI"
-
-
 jobs:
-  checkout-code:
+  configure-code:
     <<: *defaults
     steps:
       - *restore_repo
+      - run:
+          name: Configure Git
+          command: |
+            git config --global user.email "circleci@caronae.org"
+            git config --global user.name "CircleCI"
       - checkout
       - restore_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
@@ -43,8 +40,8 @@ jobs:
       - restore_cache:
           key: 1-pods-{{ checksum "Podfile.lock" }}
       - run:
-          name: Install pods
-          command: bundle exec pod install
+          name: Prepare build
+          command: bundle exec fastlane prepare_build
       - save_cache:
           key: 1-pods-{{ checksum "Podfile.lock" }}
           paths:
@@ -58,7 +55,6 @@ jobs:
     <<: *defaults
     steps:
       - *restore_repo
-      - *configure_git
       - run:
           name: Build app
           command: bundle exec fastlane build
@@ -74,7 +70,6 @@ jobs:
     <<: *defaults
     steps:
       - *restore_repo
-      - *configure_git
       - run:
           name: Build app
           command: bundle exec fastlane build --env dev
@@ -121,16 +116,16 @@ workflows:
 
   build-and-deploy:
     jobs:
-      - checkout-code
+      - configure-code
       - build-prod:
           requires:
-            - checkout-code
+            - configure-code
           filters:
             branches:
               only: master
       - build-dev:
           requires:
-            - checkout-code
+            - configure-code
           filters:
             branches:
               only: master

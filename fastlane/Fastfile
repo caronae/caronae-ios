@@ -8,16 +8,18 @@ platform :ios do
     setup_circle_ci
   end
 
-  desc "Submit a new build to TestFlight"
-  lane :build do |options|
+  desc "Prepare dependencies for building app"
+  lane :prepare_build do |options|
     decrypt_keys
-    install_signing
-
     cocoapods
-
     update_build_number
-    build_app
     push_to_git_remote unless options[:skip_push]
+  end
+
+  desc "Build app"
+  lane :build do
+    install_signing
+    build_app
   end
 
   desc "Deploy a new build to TestFlight"
