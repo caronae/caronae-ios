@@ -203,7 +203,6 @@
 		718C52231F81774A006E964A /* FalaeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalaeViewController.swift; sourceTree = "<group>"; };
 		718C9B741E5F923A0037A78B /* AllRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRidesViewController.swift; sourceTree = "<group>"; };
 		718F3B001FE9FEBE001F1D40 /* Caronae Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Caronae Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		718F3B011FE9FEBF001F1D40 /* Caronae Dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Caronae Dev.plist"; path = "/Users/Damasceno/Documents/GitHub/caronae-ios/Caronae Dev.plist"; sourceTree = "<absolute>"; };
 		71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRideViewController.swift; sourceTree = "<group>"; };
 		71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRideViewController.swift; sourceTree = "<group>"; };
 		71C60AAF1EBACCA300E84318 /* NSDate+nextHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+nextHour.swift"; sourceTree = "<group>"; };
@@ -211,6 +210,7 @@
 		71D2B86C1E296AFC000454F7 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		71DB83DD1F831FF40065300E /* FalaeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FalaeService.swift; path = Services/FalaeService.swift; sourceTree = "<group>"; };
 		71EAF4541F11406200B16CF8 /* CreateRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRideViewController.swift; sourceTree = "<group>"; };
+		71F3DA701FEED96A001D65D2 /* Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-dev.plist"; sourceTree = "<group>"; };
 		71F648591F71F364004C712F /* HubsSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HubsSelectionViewController.swift; path = "Place selection/HubsSelectionViewController.swift"; sourceTree = "<group>"; };
 		71F6485A1F71F364004C712F /* NeighborhoodSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeighborhoodSelectionViewController.swift; path = "Place selection/NeighborhoodSelectionViewController.swift"; sourceTree = "<group>"; };
 		71F6485B1F71F364004C712F /* SelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionCell.swift; path = "Place selection/SelectionCell.swift"; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 		A3169C9D1BED842D00A0D428 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A3169CA21BED842D00A0D428 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3169CA51BED842D00A0D428 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A3169CA71BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		A3169CA71BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3169CC91BED893F00A0D428 /* CaronaeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeTextField.h; sourceTree = "<group>"; };
 		A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeTextField.m; sourceTree = "<group>"; };
 		A325DA6D1C0CAFD700B9124E /* JoinRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinRequestCell.h; sourceTree = "<group>"; };
@@ -398,7 +398,6 @@
 				9EEF98FE6EBF502EF2E23188 /* Frameworks */,
 				A3169C911BED842D00A0D428 /* Products */,
 				70FE0ED744CA3C4A67F995BC /* Pods */,
-				718F3B011FE9FEBF001F1D40 /* Caronae Dev.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -449,9 +448,10 @@
 			isa = PBXGroup;
 			children = (
 				A37E80E51C5F158600683F27 /* Caronae-Bridging-Header.h */,
+				A3F30EEA1C0823CA0024BE37 /* PrefixHeader.pch */,
 				A389902B1C58734700C7CD2D /* GoogleService-Info.plist */,
 				A3169CA71BED842D00A0D428 /* Info.plist */,
-				A3F30EEA1C0823CA0024BE37 /* PrefixHeader.pch */,
+				71F3DA701FEED96A001D65D2 /* Info-dev.plist */,
 				A34CEC4C1C993115006FC41E /* Settings.bundle */,
 			);
 			path = "Supporting Files";
@@ -1187,7 +1187,7 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "Caronae/Supporting Files/PrefixHeader.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/Caronae Dev.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Caronae/Supporting Files/Info-dev.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.ufrj.caronae-dev";
@@ -1219,7 +1219,7 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "Caronae/Supporting Files/PrefixHeader.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/Caronae Dev.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Caronae/Supporting Files/Info-dev.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.ufrj.caronae-dev";
@@ -1297,7 +1297,7 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "Caronae/Supporting Files/PrefixHeader.pch";
-				INFOPLIST_FILE = Caronae/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Caronae/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.ufrj.caronae;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1378,7 +1378,7 @@
 					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "Caronae/Supporting Files/PrefixHeader.pch";
-				INFOPLIST_FILE = Caronae/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Caronae/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.ufrj.caronae;
 				PRODUCT_NAME = "$(TARGET_NAME)";
