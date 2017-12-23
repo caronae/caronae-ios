@@ -9,7 +9,7 @@ platform :ios do
   end
 
   desc "Submit a new build to TestFlight"
-  lane :build do
+  lane :build do |options|
     ensure_git_status_clean
     decrypt_keys
     install_signing
@@ -18,7 +18,7 @@ platform :ios do
 
     update_build_number
     build_app
-    push_to_git_remote
+    push_to_git_remote unless options[:skip_push]
   end
 
   desc "Deploy a new build to TestFlight"
