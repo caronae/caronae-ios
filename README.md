@@ -1,5 +1,7 @@
 # Caronaê - iOS
 
+[![CircleCI](https://circleci.com/gh/caronae/caronae-ios.svg?style=svg)](https://circleci.com/gh/caronae/caronae-ios)
+
 Aplicativo para iPhone do Caronaê.
 
 **Requisitos:**
