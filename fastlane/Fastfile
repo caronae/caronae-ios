@@ -35,7 +35,6 @@ platform :ios do
 
   desc "Update and install all certificates and provisioning profiles"
   lane :update_signing do
-    register_devices(devices_file: "./fastlane/devices.txt")
     match(type: "development", force_for_new_devices: true)
     match(type: "appstore")
   end

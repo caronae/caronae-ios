@@ -11,7 +11,7 @@
 # ])
 
 languages([
-  “pt-BR”
+  "pt-BR"
 ])
 
 # Arguments to pass to the app on launch. See https://github.com/fastlane/snapshot#launch_arguments
@@ -27,7 +27,7 @@ languages([
 
 # Choose which project/workspace to use
 # project "./Project.xcodeproj"
-workspace “./Caronae.xcworkspace"
+workspace "./Caronae.xcworkspace"
 
 # For more information about all available options run
 # snapshot --help
