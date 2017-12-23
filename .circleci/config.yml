@@ -42,6 +42,9 @@ jobs:
       - run:
           name: Prepare build
           command: bundle exec fastlane prepare_build
+      - run:
+          name: Persist build number
+          command: echo ${CIRCLE_BUILD_NUM} > output/build_number.txt
       - save_cache:
           key: 1-pods-{{ checksum "Podfile.lock" }}
           paths:
@@ -80,6 +83,7 @@ jobs:
           paths:
             - gym/Caronae.ipa
             - gym/Caronae.app.dSYM.zip
+            - build_number.txt
 
   deploy-testflight-prod:
     <<: *defaults
@@ -109,7 +113,7 @@ jobs:
           at: output
       - run:
           name: Publish app to App Store
-          command: bundle exec fastlane deploy ipa:output/gym/Caronae.ipa
+          command: bundle exec fastlane deploy build_number:"$(cat output/build_number.txt)"
 
 workflows:
   version: 2
