@@ -1,2 +1,3 @@
 scheme ENV['FASTLANE_XCODE_SCHEME']
 configuration "Release"
+output_name "Caronae"

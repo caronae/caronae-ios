@@ -10,7 +10,6 @@ platform :ios do
 
   desc "Submit a new build to TestFlight"
   lane :build do |options|
-    ensure_git_status_clean
     decrypt_keys
     install_signing
 
@@ -79,10 +78,6 @@ platform :ios do
     add_git_tag(tag: tag_name)
 
     UI.success("Success! New version: #{tag_name}")
-  end
-
-  error do |lane, exception|
-    reset_git_repo
   end
 
 end

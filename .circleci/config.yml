@@ -1,22 +1,35 @@
-defaults: &defaults
-  working_directory: /Users/distiller/project
-  macos:
-    xcode: "9.2.0"
-  environment:
-    FL_OUTPUT_DIR: /Users/distiller/project/output
-  shell: /bin/bash --login -o pipefail
-
 version: 2
+
+references:
+  defaults: &defaults
+    working_directory: /Users/distiller/project
+    macos:
+      xcode: "9.2.0"
+    environment:
+      FL_OUTPUT_DIR: /Users/distiller/project/output
+    shell: /bin/bash --login -o pipefail
+
+  restore_repo: &restore_repo
+    restore_cache:
+      keys:
+        - v1-repo-{{ .Branch }}-{{ .Revision }}
+        - v1-repo-{{ .Branch }}
+        - v1-repo
+
+  configure_git: &configure_git
+    run:
+      name: Configure Git
+      command: |
+        git config --global user.email "circleci@caronae.org"
+        git config --global user.name "CircleCI"
+
+
 jobs:
-  build:
+  checkout-code:
     <<: *defaults
     steps:
+      - *restore_repo
       - checkout
-      - run:
-          name: Configure Git
-          command: |
-            git config --global user.email "circleci@caronae.org"
-            git config --global user.name "CircleCI"
       - restore_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
       - run: bundle install --path vendor/bundle
@@ -24,18 +37,31 @@ jobs:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-      - restore_cache:
-          key: 1-pods-{{ checksum "Podfile.lock" }}
       - run:
           name: Fetch CocoaPods specs
           command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - restore_cache:
+          key: 1-pods-{{ checksum "Podfile.lock" }}
       - run:
-          name: Build app
-          command: bundle exec fastlane build
+          name: Install pods
+          command: bundle exec pod install
       - save_cache:
           key: 1-pods-{{ checksum "Podfile.lock" }}
           paths:
             - Pods
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - .
+
+  build-prod:
+    <<: *defaults
+    steps:
+      - *restore_repo
+      - *configure_git
+      - run:
+          name: Build app
+          command: bundle exec fastlane build
       - store_artifacts:
           path: output/buildlogs
       - persist_to_workspace:
@@ -44,28 +70,48 @@ jobs:
             - gym/Caronae.ipa
             - gym/Caronae.app.dSYM.zip
 
-  deploy_testflight:
+  build-dev:
     <<: *defaults
     steps:
-      - checkout
+      - *restore_repo
+      - *configure_git
+      - run:
+          name: Build app
+          command: bundle exec fastlane build --env dev
+      - store_artifacts:
+          path: output/buildlogs
+      - persist_to_workspace:
+          root: output
+          paths:
+            - gym/Caronae.ipa
+            - gym/Caronae.app.dSYM.zip
+
+  deploy-testflight-prod:
+    <<: *defaults
+    steps:
+      - *restore_repo
       - attach_workspace:
           at: output
-      - restore_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
-      - run: bundle install --path vendor/bundle
       - run:
           name: Publish app to TestFlight
           command: bundle exec fastlane beta ipa:output/gym/Caronae.ipa
 
-  deploy_appstore:
+  deploy-testflight-dev:
     <<: *defaults
     steps:
-      - checkout
+      - *restore_repo
       - attach_workspace:
           at: output
-      - restore_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
-      - run: bundle install --path vendor/bundle
+      - run:
+          name: Publish app to TestFlight
+          command: bundle exec fastlane beta ipa:output/gym/Caronae.ipa --env dev
+
+  deploy-appstore-prod:
+    <<: *defaults
+    steps:
+      - *restore_repo
+      - attach_workspace:
+          at: output
       - run:
           name: Publish app to App Store
           command: bundle exec fastlane deploy ipa:output/gym/Caronae.ipa
@@ -73,17 +119,28 @@ jobs:
 workflows:
   version: 2
 
-  build_app:
+  build-and-deploy-prod:
     jobs:
-      - build
-      - deploy_testflight:
-          requires:
-            - build
+      - checkout-code
+      - build-prod:
           filters:
             branches:
-              only:
-                - master
-      - deploy_appstore:
+              only: master
+      - deploy-testflight-prod:
+          requires:
+            - build-prod
+      - deploy-appstore-prod:
           type: approval
           requires:
-           - build
+           - build-prod
+
+  build-and-deploy-dev:
+    jobs:
+      - checkout-code
+      - build-dev:
+          filters:
+            branches:
+              only: master
+      - deploy-testflight-dev:
+          requires:
+            - build-dev
