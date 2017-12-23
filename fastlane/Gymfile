@@ -1,2 +1,2 @@
-scheme "Caronae"
+scheme ENV['FASTLANE_XCODE_SCHEME']
 configuration "Release"
