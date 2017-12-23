@@ -1190,9 +1190,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Caronae Dev.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEVELOPMENT";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.ufrj.caronae-Dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.ufrj.caronae-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development br.ufrj.caronae";
+				PROVISIONING_PROFILE = "372176e5-9f36-4c23-92c4-bf322f0e0003";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development br.ufrj.caronae-dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "Caronae/Supporting Files/Caronae-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1221,10 +1222,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Caronae Dev.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEVELOPMENT";
-				PRODUCT_BUNDLE_IDENTIFIER = "br.ufrj.caronae-Dev";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.ufrj.caronae-dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2b6956c5-9fee-423f-bf90-60624558ea2f";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore br.ufrj.caronae";
+				PROVISIONING_PROFILE = "99e26209-ee93-4383-9c2a-845d4c8618cb";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore br.ufrj.caronae-dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "Caronae/Supporting Files/Caronae-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(PROJECT_NAME)-Swift.h";
 				SWIFT_VERSION = 3.0;
