@@ -67,17 +67,14 @@ platform :ios do
     UI.success("Successfully decrypted keys")
   end
 
-  desc "Commit the version/build number bump"
+  desc "Update and tag the version/build"
   lane :update_build_number do
-    increment_build_number
-    version_number = get_version_number
+    build_number = ENV['CIRCLE_BUILD_NUM'] if ENV['CIRCLECI']
+
+    increment_build_number(build_number: build_number)
+
     build_number = get_build_number
-
-    commit_version_bump(
-      message: "Version bump to #{version_number} (#{build_number}) [ci skip]",
-      xcodeproj: "./Caronae.xcodeproj",
-    )
-
+    version_number = get_version_number
     tag_name = "#{version_number}/#{build_number}"
     add_git_tag(tag: tag_name)
 

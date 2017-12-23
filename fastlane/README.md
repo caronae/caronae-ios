@@ -57,7 +57,7 @@ Decrypt sensitive keys using AWS KMS
 ```
 fastlane ios update_build_number
 ```
-Commit the version/build number bump
+Update and tag the version/build
 
 ----
 
