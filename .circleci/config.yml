@@ -119,28 +119,28 @@ jobs:
 workflows:
   version: 2
 
-  build-and-deploy-prod:
+  build-and-deploy:
     jobs:
       - checkout-code
       - build-prod:
+          requires:
+            - checkout-code
+          filters:
+            branches:
+              only: master
+      - build-dev:
+          requires:
+            - checkout-code
           filters:
             branches:
               only: master
       - deploy-testflight-prod:
           requires:
             - build-prod
+      - deploy-testflight-dev:
+          requires:
+            - build-dev
       - deploy-appstore-prod:
           type: approval
           requires:
            - build-prod
-
-  build-and-deploy-dev:
-    jobs:
-      - checkout-code
-      - build-dev:
-          filters:
-            branches:
-              only: master
-      - deploy-testflight-dev:
-          requires:
-            - build-dev
