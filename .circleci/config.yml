@@ -12,9 +12,9 @@ references:
   restore_repo: &restore_repo
     restore_cache:
       keys:
-        - v1-repo-{{ .Branch }}-{{ .Revision }}
-        - v1-repo-{{ .Branch }}
-        - v1-repo
+        - v2-repo-{{ .Branch }}-{{ .Revision }}
+        - v2-repo-{{ .Branch }}
+        - v2-repo
 
 jobs:
   configure-code:
@@ -27,18 +27,10 @@ jobs:
             git config --global user.email "circleci@caronae.org"
             git config --global user.name "CircleCI"
       - checkout
-      - restore_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
       - run: bundle install --path vendor/bundle
-      - save_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
       - run:
           name: Fetch CocoaPods specs
           command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
-      - restore_cache:
-          key: 1-pods-{{ checksum "Podfile.lock" }}
       - run:
           name: Prepare build
           command: bundle exec fastlane prepare_build
@@ -46,11 +38,7 @@ jobs:
           name: Persist build number
           command: echo ${CIRCLE_BUILD_NUM} > build_number.txt
       - save_cache:
-          key: 1-pods-{{ checksum "Podfile.lock" }}
-          paths:
-            - Pods
-      - save_cache:
-          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+          key: v2-repo-{{ .Branch }}-{{ .Revision }}
           paths:
             - .
 
