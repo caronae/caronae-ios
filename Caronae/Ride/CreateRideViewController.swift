@@ -174,6 +174,7 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         
         RideService.instance.createRide(ride, success: {
             SVProgressHUD.dismiss()
+            lastAllRidesUpdate = Date.distantPast
             self.dismiss(animated: true, completion: nil)
         }, error: { error in
             SVProgressHUD.dismiss()
@@ -319,7 +320,7 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     // MARK: Selection Methods
     
-    func timeWasSelected(selectedTime: Date) {
+    @objc func timeWasSelected(selectedTime: Date) {
         selectedDate = selectedTime
     }
     

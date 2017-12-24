@@ -1,11 +1,11 @@
 import UIKit
 import SVProgressHUD
 
-@objc protocol HubSelectionDelegate: class {
+protocol HubSelectionDelegate: class {
     func hasSelected(hubs: [String], inCampus campus: String)
 }
 
-@objc class HubSelectionViewController: SelectionViewController {
+class HubSelectionViewController: SelectionViewController {
     
     required convenience init(selectionType: SelectionType, hubTypeDirection: HubTypeDirection) {
         self.init()
@@ -13,7 +13,7 @@ import SVProgressHUD
         self.hubTypeDirection = hubTypeDirection
     }
     
-    @objc enum HubTypeDirection: Int {
+    enum HubTypeDirection: Int {
         case hubs
         case centers
     }

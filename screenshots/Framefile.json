@@ -1,0 +1,56 @@
+{
+  "device_frame_version": "latest",
+  "default": {
+    // "keyword": {
+    //   "font": "./fonts/MyFont-Rg.otf"
+    // },
+    "title": {
+      //"font": "./fonts/MyFont-Th.otf",
+      "color": "#545454"
+    },
+    "background": "./background.jpg",
+    "padding": 50,
+    "show_complete_frame": false,
+    "stack_title" : false,
+    "title_below_image": false
+  },
+
+  "data": [
+    {
+      "filter": "0SignIn",
+      "keyword": {
+        "color": "#d21559"
+      }
+    },
+    {
+      "filter": "1AllRides",
+      "keyword": {
+        "color": "#feb909"
+      }
+    },
+    {
+      "filter": "2Ride",
+      "keyword": {
+        "color": "#aa4dbc"
+      }
+    },
+    {
+      "filter": "3Profile",
+      "keyword": {
+        "color": "#31bb48"
+      }
+    },
+    {
+      "filter": "4MyRides",
+      "keyword": {
+        "color": "#aa4dbc"
+      }
+    },
+    {
+      "filter": "5CreateRide",
+      "keyword": {
+        "color": "#aa4dbc"
+      }
+    }
+  ]
+}

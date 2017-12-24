@@ -1,12 +1,11 @@
 import UIKit
 
+var lastAllRidesUpdate = Date.distantPast
 class AllRidesViewController: RideListController, SearchRideDelegate {
     let userDefaults = UserDefaults.standard
     var searchParams = FilterParameters()
     var filterParams = FilterParameters()
     var pagination = PaginationState()
-    
-    fileprivate var lastUpdate = Date.distantPast
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +29,9 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             return self.pagination.hasNextPage
         }
         
-        self.filterIsEnabled = userDefaults.bool(forKey: CaronaePreferenceFilterIsEnabledKey)
+        filterIsEnabled = userDefaults.bool(forKey: CaronaePreferenceFilterIsEnabledKey)
         
-        if self.filterIsEnabled {
+        if filterIsEnabled {
             enableFilterRides()
         }
     }
@@ -47,7 +46,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         reloadRidesIfNecessary()
     }
     
-    func refreshTable() {
+    override func refreshTable() {
         pagination = PaginationState()
         loadAllRides()
     }
@@ -55,12 +54,12 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     // MARK: Rides methods
     
-    func loadAllRides(direction: Bool? = nil, _ completionHandler: ((Void) -> Void)? = nil) {
+    func loadAllRides(direction: Bool? = nil, _ completionHandler: (() -> Void)? = nil) {
         if tableView.backgroundView != nil {
             tableView.backgroundView = loadingLabel
         }
         
-        filterParams.going = direction ?? self.ridesDirectionGoing
+        filterParams.going = direction ?? ridesDirectionGoing
         pagination.directionGoing = filterParams.going!
         let page = pagination.nextPage
         
@@ -70,18 +69,18 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             self.pagination.incrementPage()
             
             if page == 1 {
-                self.lastUpdate = Date()
+                lastAllRidesUpdate = Date()
                 
                 // Update rides from both directions
                 if direction == nil {
                     self.rides = rides
                 } else {
-                    var allRides = self.rides as! [Ride]
+                    var allRides = self.rides
                     allRides.append(contentsOf: rides)
                     self.rides = allRides
                 }
                 
-                if (self.rides as AnyObject).count > 0 {
+                if self.rides.count > 0 {
                     self.tableView.tableFooterView = self.tableFooter
                 } else {
                     self.tableView.tableFooterView = nil
@@ -98,7 +97,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 let ridesCount = self.filteredRides.count
                 
                 // Update rides
-                var allRides = self.rides as! [Ride]
+                var allRides = self.rides
                 allRides.append(contentsOf: rides)
                 self.rides = allRides
                 
@@ -112,17 +111,17 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 self.tableView.endUpdates()
             }
             
-            self.refreshControl.endRefreshing()
+            self.refreshControl?.endRefreshing()
             completionHandler?()
         }, error: { error in
-            self.refreshControl.endRefreshing()
+            self.refreshControl?.endRefreshing()
             completionHandler?()
-            self.loadingFailedWithError(error)
+            self.loadingFailed(withError: error as NSError)
         })
     }
     
-    func reloadRidesIfNecessary() {
-        if lastUpdate.timeIntervalSinceNow.isLess(than: -5*60) {
+    @objc func reloadRidesIfNecessary() {
+        if lastAllRidesUpdate.timeIntervalSinceNow.isLess(than: -5*60) {
             pagination = PaginationState()
             loadAllRides()
         }
@@ -135,7 +134,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 return
             }
             
-            let rideViewController = RideViewController(for: ride)!
+            let rideViewController = RideViewController.instance(for: ride)
             rideViewController.rideIsFull = (availableSlots == 0)
             _ = self.navigationController?.popToRootViewController(animated: false)
             self.navigationController?.pushViewController(rideViewController, animated: true)
@@ -161,12 +160,12 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 return
         }
         
-        if !self.filterIsEnabled {
+        if !filterIsEnabled {
             // workaround to not cover cell after enabling filter for the first time
             tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: false)
         }
         
-        self.filterIsEnabled = true
+        filterIsEnabled = true
         filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hubs: centers, campus: campus)
         filterLabel.text = filterParams.activeFiltersText()
         
@@ -176,7 +175,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     
     func disableFilterRides() {
         userDefaults.set(false, forKey: CaronaePreferenceFilterIsEnabledKey)
-        self.filterIsEnabled = false
+        filterIsEnabled = false
         self.filterParams = FilterParameters()
         pagination = PaginationState()
         loadAllRides()
@@ -214,7 +213,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             }
         } else if segue.identifier == "ViewSearchResults" {
             if let searchViewController = segue.destination as? SearchResultsViewController {
-                searchViewController.searchedForRide(with: searchParams);
+                searchViewController.searchedForRide(withParameters: searchParams);
             }
         }
     }

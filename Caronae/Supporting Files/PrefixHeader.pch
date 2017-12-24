@@ -1,6 +1,0 @@
-#ifndef PrefixHeader_pch
-#define PrefixHeader_pch
-
-#import "CaronaeConstants.h"
-
-#endif

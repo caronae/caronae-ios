@@ -1,5 +1,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImageView+crn_setImageWithURL.h"
+#import "Caronae-Swift.h"
+
+@class Constants;
 
 @implementation UIImageView (crn_setImageWithURL)
 
@@ -9,7 +12,7 @@
 
 - (void)crn_setImageWithURL:(NSURL *)url completed:(void(^)())completionHandler {
     [self sd_setImageWithURL:url
-            placeholderImage:[UIImage imageNamed:CaronaePlaceholderProfileImage]
+            placeholderImage:[UIImage imageNamed:[Constants CaronaePlaceholderProfileImageObjc]]
                      options:SDWebImageRetryFailed
                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                        if (cacheType == SDImageCacheTypeNone) {

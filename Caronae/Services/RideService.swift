@@ -29,7 +29,7 @@ class RideService: NSObject {
         })
     }
     
-    func getOfferedRides(success: @escaping (_ rides: Results<Ride>) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func getMyRides(success: @escaping (_ pending: Results<Ride>, _ active: Results<Ride>, _ offered: Results<Ride>) -> Void, error: @escaping (_ error: Error) -> Void) {
         guard let user = UserService.instance.user else {
             NSLog("Error: No userID registered")
             return
@@ -38,12 +38,86 @@ class RideService: NSObject {
         do {
             let realm = try Realm()
             let currentDate = Date()
-            let rides = realm.objects(Ride.self).filter("driver == %@ AND date >= %@", user, currentDate).sorted(byKeyPath: "date")
             
-            success(rides)
+            let futureRides = realm.objects(Ride.self).filter("date >= %@", currentDate)
+            let pending = futureRides.filter("isPending == true").sorted(byKeyPath: "date")
+            let offered = futureRides.filter("driver == %@ AND isActive == false", user).sorted(byKeyPath: "date")
+            let active = realm.objects(Ride.self).filter("isActive == true").sorted(byKeyPath: "date")
+            
+            success(pending, active, offered)
         } catch let realmError {
             error(realmError)
         }
+    }
+    
+    func updateMyRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+//        guard let user = UserService.instance.user else {
+//            NSLog("Error: No userID registered")
+//            return
+//        }
+        
+        updatePendingRides(success: {
+            NSLog("Pending rides updated")
+        }, error: { error in
+            NSLog("Error updating pending rides (\(error.localizedDescription))")
+        })
+        
+        updateActiveRides(success: {
+            NSLog("Active rides updated")
+        }, error: { error in
+            NSLog("Error updating active rides (\(error.localizedDescription))")
+        })
+        
+        updateOfferedRides(success: {
+            NSLog("Offered rides updated")
+        }, error: { error in
+            NSLog("Error updating offered rides (\(error.localizedDescription))")
+        })
+        
+        success()
+        
+    }
+    
+    func updatePendingRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+        guard let user = UserService.instance.user else {
+            NSLog("Error: No userID registered")
+            return
+        }
+        
+        api.get("/user/\(user.id)/pendingRides", parameters: nil, success: { task, responseObject in
+            guard let jsonResponse = responseObject as? [String: Any],
+                let ridesJson = jsonResponse["rides"] as? [[String: Any]] else {
+                    error(CaronaeError.invalidResponse)
+                    return
+            }
+            
+            // Deserialize response
+            let rides = ridesJson.flatMap { rideJson in
+                let ride = Ride(JSON: rideJson)
+                ride?.isPending = true
+                return ride
+                } as [Ride]
+            
+            do {
+                let realm = try Realm()
+                // Clear rides previously marked as pending
+                let previouslyPending = realm.objects(Ride.self).filter("isPending == true")
+                try realm.write {
+                    previouslyPending.forEach { $0.isPending = false }
+                }
+                
+                // Update pending rides
+                try realm.write {
+                    realm.add(rides, update: true)
+                }
+            } catch let realmError {
+                error(realmError)
+            }
+            
+            success()
+        }, failure: { _, err in
+            error(err)
+        })
     }
     
     func updateOfferedRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
@@ -99,17 +173,6 @@ class RideService: NSObject {
             NSLog("Error: Failed to get offered rides: \(err.localizedDescription)")
             error(err)
         })
-    }
-
-    func getActiveRides(success: @escaping (_ rides: Results<Ride>) -> Void, error: @escaping (_ error: Error) -> Void) {
-        do {
-            let realm = try Realm()
-            let rides = realm.objects(Ride.self).filter("isActive == true").sorted(byKeyPath: "date")
-            
-            success(rides)
-        } catch let realmError {
-            error(realmError)
-        }
     }
     
     func updateActiveRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
@@ -314,12 +377,13 @@ class RideService: NSObject {
         })
     }
     
-    func requestJoinOnRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.post("/ride/requestJoin", parameters: ["rideId": id], success: { task, responseObject in
+    func requestJoinOnRide(_ ride: Ride, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+        api.post("/ride/requestJoin", parameters: ["rideId": ride.id], success: { task, responseObject in
             do {
                 let realm = try Realm()
                 try realm.write {
-                    realm.add(RideRequest(rideID: id), update: true)
+                    ride.isPending = true
+                    realm.add(ride, update: true)
                 }
             } catch let realmError {
                 error(realmError)
@@ -332,11 +396,19 @@ class RideService: NSObject {
     }
     
     func hasRequestedToJoinRide(withID id: Int) -> Bool {
-        if let realm = try? Realm(), let _ = realm.object(ofType: RideRequest.self, forPrimaryKey: id) {
+        if let realm = try? Realm(), let ride = realm.object(ofType: Ride.self, forPrimaryKey: id), ride.isPending {
             return true
         }
         
         return false
+    }
+    
+    func getRideFromRealm(withID id: Int) -> Ride? {
+        guard let realm = try? Realm(), let ride = realm.object(ofType: Ride.self, forPrimaryKey: id) else {
+            return nil
+        }
+        
+        return ride
     }
     
     func validateRideDate(ride: Ride, success: @escaping (_ valid: Bool, _ status: String) -> Void, error: @escaping (_ error: Error?) -> Void) {

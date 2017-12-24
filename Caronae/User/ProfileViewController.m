@@ -8,6 +8,8 @@
 #import "UIImageView+crn_setImageWithURL.h"
 #import "Caronae-Swift.h"
 
+@class Constants;
+
 @interface ProfileViewController () <UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *signoutButton;
@@ -23,7 +25,7 @@
     [self updateProfileFields];
     
     if ([UserService.instance.user isEqual:_user]) {
-        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateProfileFields) name:CaronaeDidUpdateUserNotification object:nil];
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateProfileFields) name:[Constants CaronaeDidUpdateUserObjc] object:nil];
     }
     
     // Add gesture recognizer to phoneButton for longpress
@@ -83,8 +85,8 @@
     
     if (_user.phoneNumber.length > 0) {
         SHSPhoneNumberFormatter *phoneFormatter = [[SHSPhoneNumberFormatter alloc] init];
-        [phoneFormatter setDefaultOutputPattern:Caronae8PhoneNumberPattern];
-        [phoneFormatter addOutputPattern:Caronae9PhoneNumberPattern forRegExp:@"[0-9]{12}\\d*$"];
+        [phoneFormatter setDefaultOutputPattern:[Constants Caronae8PhoneNumberPatternObjc]];
+        [phoneFormatter addOutputPattern:[Constants Caronae9PhoneNumberPatternObjc] forRegExp:@"[0-9]{12}\\d*$"];
         NSDictionary *result = [phoneFormatter valuesForString:_user.phoneNumber];
         NSString *formattedPhoneNumber = result[@"text"];
         [_phoneButton setTitle:formattedPhoneNumber forState:UIControlStateNormal];

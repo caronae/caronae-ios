@@ -1,5 +1,3 @@
-import Foundation
-
 extension Array where Iterator.Element == String {
     func compactString() -> String {
         var label = String()

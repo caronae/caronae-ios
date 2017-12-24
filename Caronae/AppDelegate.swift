@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func didUpdateUser(notification: NSNotification) {
+    @objc func didUpdateUser(notification: NSNotification) {
         if UserService.instance.user != nil {
             registerForNotifications()
             updateUserRidesAndPlaces()
@@ -115,16 +115,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func updateUserRidesAndPlaces() {
-        RideService.instance.updateOfferedRides(success: {
-            NSLog("Offered rides updated")
+        RideService.instance.updateMyRides(success: {
+            NSLog("My rides updated")
         }, error: { error in
-            NSLog("Error updating offered rides (\(error.localizedDescription))")
-        })
-        
-        RideService.instance.updateActiveRides(success: {
-            NSLog("Active rides updated")
-        }, error: { error in
-            NSLog("Error updating active rides (\(error.localizedDescription))")
+            NSLog("Error updating my rides (\(error.localizedDescription))")
         })
         
         PlaceService.instance.updatePlaces(success: {
@@ -143,7 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(FBTokenChanged(notification:)), name: .FBSDKAccessTokenDidChange, object: nil)
     }
     
-    func FBTokenChanged(notification: NSNotification) {
+    @objc func FBTokenChanged(notification: NSNotification) {
         guard let token = FBSDKAccessToken.current() else {
             NSLog("User has logged out from Facebook.")
             return

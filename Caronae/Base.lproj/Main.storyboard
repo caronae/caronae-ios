@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -68,7 +67,8 @@ Cgo
                                                             <font key="NSFont" size="17" name="HelveticaNeue"/>
                                                         </attributes>
                                                     </fragment>
-                                                    <fragment content="Bem vindo ao aplicativo de caronas da UFRJ. O acesso é restrito a usuários vinculados à universidade. Para continuar, ">
+                                                    <fragment>
+                                                        <string key="content">Bem vindo ao aplicativo de caronas para sua instituição. O acesso é restrito a usuários vinculados às universidades parceiras. Para continuar, </string>
                                                         <attributes>
                                                             <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <font key="NSFont" size="16" name="HelveticaNeue"/>
@@ -81,7 +81,7 @@ Cgo
                                                             <integer key="NSUnderline" value="1"/>
                                                         </attributes>
                                                     </fragment>
-                                                    <fragment content=" para obter a sua chave de acesso, usando seu login da Intranet UFRJ.">
+                                                    <fragment content=" para obter a sua chave de acesso, usando seu login da sua instituição.">
                                                         <attributes>
                                                             <color key="NSColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <font key="NSFont" size="16" name="HelveticaNeue"/>
@@ -263,7 +263,7 @@ Cgo
         <!--Pesquisa-->
         <scene sceneID="86N-xC-KLU">
             <objects>
-                <viewController title="Pesquisa" hidesBottomBarWhenPushed="YES" id="63o-N6-NEe" customClass="SearchResultsViewController" sceneMemberID="viewController">
+                <viewController title="Pesquisa" hidesBottomBarWhenPushed="YES" id="63o-N6-NEe" customClass="SearchResultsViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Pesquisa" id="frv-QM-TF5">
                         <barButtonItem key="rightBarButtonItem" image="SearchRide" id="I4b-tM-lj5">
                             <connections>
@@ -278,27 +278,6 @@ Cgo
                 <placeholder placeholderIdentifier="IBFirstResponder" id="936-oT-CHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3510" y="-1202"/>
-        </scene>
-        <!--Ativas-->
-        <scene sceneID="aEb-UJ-7dz">
-            <objects>
-                <viewController id="qPf-v5-qZ8" customClass="ActiveRidesViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Ativas" id="3Xy-Gf-p9D"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="emptyMessage">
-                            <string key="value">Você não possui
-caronas ativas.</string>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <segue destination="63o-N6-NEe" kind="show" identifier="ViewSearchResults" id="gns-F9-8s8"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MPm-iD-62t" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2628" y="5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rql-kG-mhS">
@@ -318,7 +297,6 @@ caronas ativas.</string>
                     </tabBar>
                     <connections>
                         <segue destination="ejH-pY-nFX" kind="relationship" relationship="viewControllers" id="ah1-Y9-L7u"/>
-                        <segue destination="SI3-47-AYD" kind="relationship" relationship="viewControllers" id="62t-xN-hU7"/>
                         <segue destination="ESO-TG-2Ch" kind="relationship" relationship="viewControllers" id="9Du-so-X80"/>
                         <segue destination="xHs-1X-X6c" kind="relationship" relationship="viewControllers" id="Lg6-kn-BYf"/>
                         <segue destination="NVj-Xk-m80" kind="presentation" identifier="CompleteProfile" id="emk-CJ-38Y"/>
@@ -327,27 +305,6 @@ caronas ativas.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zo3-Hi-9nL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="459" y="5"/>
-        </scene>
-        <!--Ativas-->
-        <scene sceneID="PW9-Sc-m7n">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SI3-47-AYD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ativas" image="menu3" id="n9j-hq-hsm"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WwM-GX-35t">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="qPf-v5-qZ8" kind="relationship" relationship="rootViewController" id="2km-yv-fcd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bp6-0k-0sY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1815" y="5"/>
         </scene>
         <!--Criar carona-->
         <scene sceneID="SI7-YK-2jS">
@@ -1554,7 +1511,7 @@ caronas ativas.</string>
                 <navigationController title="Criar Carona Navigation" automaticallyAdjustsScrollViewInsets="NO" id="CoL-uf-tJY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mcl-ue-tDU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1569,7 +1526,7 @@ caronas ativas.</string>
         <!--Histórico-->
         <scene sceneID="1WW-W3-O3d">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Gvm-Bo-rik" customClass="RidesHistoryViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Gvm-Bo-rik" customClass="RidesHistoryViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Histórico" id="geR-VK-1Za"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="historyTable" value="YES"/>
@@ -1640,17 +1597,17 @@ nenhuma carona.</string>
                         <viewControllerLayoutGuide type="bottom" id="Xzi-Wl-Bdn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MJZ-pz-MHW">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="700"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NT2-m5-GvC" customClass="TPKeyboardAvoidingScrollView">
-                                <rect key="frame" x="0.0" y="64" width="400" height="587"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5A-6B-eNz">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="587"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HDx-Di-YZG" userLabel="Motivo">
-                                                <rect key="frame" x="20" y="20" width="360" height="63"/>
+                                                <rect key="frame" x="20" y="20" width="335" height="63"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOTIVO DO CONTATO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wje-JL-0dE">
                                                         <rect key="frame" x="0.0" y="0.0" width="152" height="17"/>
@@ -1659,7 +1616,7 @@ nenhuma carona.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UT6-Tu-ZGj">
-                                                        <rect key="frame" x="0.0" y="22" width="360" height="30"/>
+                                                        <rect key="frame" x="0.0" y="22" width="335" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="yam-nF-GJt"/>
                                                         </constraints>
@@ -1671,7 +1628,7 @@ nenhuma carona.</string>
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="232-k3-TQZ" userLabel="Separator">
-                                                        <rect key="frame" x="0.0" y="52" width="360" height="1"/>
+                                                        <rect key="frame" x="0.0" y="52" width="335" height="1"/>
                                                         <color key="backgroundColor" red="0.50588238240000005" green="0.50980395079999996" blue="0.50588238240000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="bQ3-yi-sG8"/>
@@ -1691,7 +1648,7 @@ nenhuma carona.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RWO-JP-mny" userLabel="Assunto">
-                                                <rect key="frame" x="20" y="83" width="360" height="55"/>
+                                                <rect key="frame" x="20" y="83" width="335" height="55"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASSUNTO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E20-6x-IkA">
                                                         <rect key="frame" x="0.0" y="10" width="69" height="17"/>
@@ -1700,7 +1657,7 @@ nenhuma carona.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Assunto (opcional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bPu-xJ-teJ" customClass="CaronaeTextField">
-                                                        <rect key="frame" x="0.0" y="32" width="360" height="32"/>
+                                                        <rect key="frame" x="0.0" y="32" width="335" height="32"/>
                                                         <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1716,7 +1673,7 @@ nenhuma carona.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niF-RV-GOB" userLabel="Mensagem">
-                                                <rect key="frame" x="20" y="153" width="360" height="429"/>
+                                                <rect key="frame" x="20" y="153" width="335" height="445"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MENSAGEM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aXm-bY-nhq">
                                                         <rect key="frame" x="0.0" y="10" width="82" height="17"/>
@@ -1725,7 +1682,7 @@ nenhuma carona.</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ysw-F7-F0j">
-                                                        <rect key="frame" x="0.0" y="32" width="360" height="392"/>
+                                                        <rect key="frame" x="0.0" y="32" width="335" height="408"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="mS0-3w-NhH"/>
@@ -1827,7 +1784,7 @@ nenhuma carona.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hxa-IR-Z8Q">
-                                <rect key="frame" x="0.0" y="64" width="400" height="587"/>
+                                <rect key="frame" x="0.0" y="64" width="400" height="636"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4Y-FM-tR4" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="460"/>
@@ -1905,7 +1862,7 @@ nenhuma carona.</string>
                                                                         </variation>
                                                                     </imageView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KnV-sU-s6W">
-                                                                        <rect key="frame" x="20" y="0.0" width="103" height="20"/>
+                                                                        <rect key="frame" x="20" y="0.0" width="104" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="20" id="WLO-ry-i5I"/>
                                                                         </constraints>
@@ -3034,7 +2991,7 @@ nenhuma carona.</string>
             <objects>
                 <navigationController storyboardIdentifier="EditProfileNavigationController" title="Editar Perfil Navigation" id="NVj-Xk-m80" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WWW-RN-DPY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -4651,7 +4608,6 @@ FOTO</string>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dAJ-Ry-pFA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.94901961089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4672,7 +4628,6 @@ FOTO</string>
                     <tabBarItem key="tabBarItem" title="Minhas" image="menu2" id="qpg-Pw-SZw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="N1E-gi-4wz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.94901961089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -5199,7 +5154,7 @@ FOTO</string>
         <!--Carona-->
         <scene sceneID="oUd-Hw-YXG">
             <objects>
-                <viewController storyboardIdentifier="RideViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="SRb-hM-LXF" customClass="RideViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RideViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="SRb-hM-LXF" customClass="RideViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BVv-o5-mz8"/>
                         <viewControllerLayoutGuide type="bottom" id="GiZ-cY-BAp"/>
@@ -5630,7 +5585,7 @@ FOTO</string>
                                                                                 </variation>
                                                                             </imageView>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICf-IO-XM4">
-                                                                                <rect key="frame" x="20" y="0.0" width="103" height="20"/>
+                                                                                <rect key="frame" x="20" y="0.0" width="104" height="20"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="20" id="Eir-5D-kGE"/>
                                                                                 </constraints>
@@ -6675,8 +6630,7 @@ FOTO</string>
                         <outlet property="carModelLabel" destination="e2a-uF-8Ry" id="wCe-Gu-LRX"/>
                         <outlet property="carPlateLabel" destination="aCx-nb-Rrv" id="gLG-TY-04z"/>
                         <outlet property="clockIcon" destination="fQj-VC-R47" id="NL0-NS-oDg"/>
-                        <outlet property="dateLabel" destination="1UZ-co-mpB" id="WHY-Lm-nng"/>
-                        <outlet property="descriptionLabel" destination="7fD-gY-dO4" id="mSy-Zn-Sza"/>
+                        <outlet property="dateLabel" destination="1UZ-co-mpB" id="GAQ-sF-2sn"/>
                         <outlet property="driverCourseLabel" destination="sBT-DZ-1c3" id="ise-lJ-Xnq"/>
                         <outlet property="driverMessageLabel" destination="aGC-vs-gc5" id="P8f-Ov-Oac"/>
                         <outlet property="driverNameLabel" destination="iZ9-2r-k89" id="vvT-am-Ivw"/>
@@ -6700,7 +6654,7 @@ FOTO</string>
                         <outlet property="routeLabel" destination="0a3-ca-yPl" id="NQc-z7-72h"/>
                         <outlet property="shareRideButton" destination="sKn-mI-dti" id="ySh-Gc-opU"/>
                         <outlet property="shareRideView" destination="B1h-Zw-SFB" id="uUS-67-7NB"/>
-                        <outlet property="titleLabel" destination="7fD-gY-dO4" id="tQk-RZ-09f"/>
+                        <outlet property="titleLabel" destination="7fD-gY-dO4" id="Psz-al-x0b"/>
                         <segue destination="hXu-7Y-tvn" kind="show" identifier="ViewProfile" id="H8O-Mc-OH3"/>
                     </connections>
                 </viewController>
@@ -6725,7 +6679,7 @@ FOTO</string>
                 <navigationController title="Buscar Carona Navigation" automaticallyAdjustsScrollViewInsets="NO" id="K5N-ci-Dp7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gSK-1k-0ZJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -6752,7 +6706,7 @@ FOTO</string>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="emptyMessage">
-                            <string key="value">Você não está oferecendo
+                            <string key="value">Você ainda não possui
 nenhuma carona.</string>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
@@ -6794,7 +6748,6 @@ nenhuma carona.</string>
                     <tabBarItem key="tabBarItem" title="Todas" image="menu1" id="NTH-wW-phr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bW7-lx-v5z">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -7182,7 +7135,7 @@ nenhuma carona.</string>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="O3N-dq-DoL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pJD-bl-Uov">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -7219,14 +7172,12 @@ nenhuma carona.</string>
         <image name="ShareIcon" width="13" height="13"/>
         <image name="menu1" width="34" height="26"/>
         <image name="menu2" width="26" height="26"/>
-        <image name="menu3" width="38" height="26"/>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hM9-nM-k0Y"/>
-        <segue reference="DwZ-AK-niy"/>
+        <segue reference="9kE-zS-Odm"/>
+        <segue reference="VJh-c3-WKd"/>
         <segue reference="H8O-Mc-OH3"/>
-        <segue reference="yIa-C3-QN8"/>
         <segue reference="ugX-qh-OjL"/>
         <segue reference="IgS-9T-cpR"/>
     </inferredMetricsTieBreakers>

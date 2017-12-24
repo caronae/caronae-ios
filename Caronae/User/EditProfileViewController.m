@@ -9,6 +9,8 @@
 #import "UIImageView+crn_setImageWithURL.h"
 #import "Caronae-Swift.h"
 
+@class Constants;
+
 @interface EditProfileViewController () <NeighborhoodSelectionDelegate, UIActionSheetDelegate, UITextFieldDelegate>
 @property (nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (nonatomic) NSDateFormatter *joinedDateFormatter;
@@ -25,9 +27,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.phoneTextField.formatter setDefaultOutputPattern:Caronae8PhoneNumberPattern];
-    [self.phoneTextField.formatter addOutputPattern:Caronae9PhoneNumberPattern forRegExp:@"[0-9]{12}\\d*$"];
+    [self.phoneTextField.formatter setDefaultOutputPattern:[Constants Caronae8PhoneNumberPatternObjc]];
+    [self.phoneTextField.formatter addOutputPattern:[Constants Caronae9PhoneNumberPatternObjc] forRegExp:@"[0-9]{12}\\d*$"];
     self.phoneTextField.delegate = self;
     [self updateProfileFields];
     [self configureFacebookLoginButton];

@@ -12,7 +12,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
         Messaging.messaging().shouldEstablishDirectChannel = false
     }
     
-    func messagingDirectChannelStateChanged(_ notification: Notification) {
+    @objc func messagingDirectChannelStateChanged(_ notification: Notification) {
         NSLog("FCM Direct Channel Established: \(Messaging.messaging().isDirectChannelEstablished)")
         if Messaging.messaging().isDirectChannelEstablished {
             subscribeToUserAndGeneralTopic()

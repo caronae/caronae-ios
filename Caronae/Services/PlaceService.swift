@@ -2,7 +2,7 @@ import Foundation
 import RealmSwift
 
 class PlaceService: NSObject {
-    static let instance = PlaceService()
+    @objc static let instance = PlaceService()
     let api = CaronaeAPIHTTPSessionManager.instance
     
     private override init() {
@@ -65,14 +65,14 @@ class PlaceService: NSObject {
         zoneObjects.forEach { colors[$0.name] = $0.color }
             
         zones.append(CaronaeOtherZoneText)
-        colors[CaronaeOtherZoneText] = CaronaeConstants.defaults().otherZoneColor
+        colors[CaronaeOtherZoneText] = OtherZoneColor
             
         return (zones, options, colors)
     }
     
-    func color(forZone zone: String) -> UIColor {
+    @objc func color(forZone zone: String) -> UIColor {
         if zone == CaronaeOtherZoneText {
-            return CaronaeConstants.defaults().otherZoneColor
+            return OtherZoneColor
         }
         let realm = try! Realm()
         return realm.objects(Zone.self).filter("name == %@", zone).first?.color ?? .darkGray

@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>pt-BR</string>
 	<key>CFBundleDisplayName</key>
-	<string>Caronaê UFRJ</string>
+	<string>Caronaê</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -33,7 +33,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>36</string>
+	<string>37</string>
 	<key>FacebookAppID</key>
 	<string>$(FACEBOOK_APP_ID)</string>
 	<key>FacebookDisplayName</key>

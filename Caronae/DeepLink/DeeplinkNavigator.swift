@@ -4,7 +4,6 @@ import UIKit
 enum DeeplinkType {
     case loadRide(withID: Int)
     case openMyRides
-    case openActiveRides
     case openRidesHistory
     case openChatForRide(withID: Int)
 }
@@ -27,8 +26,6 @@ class DeeplinkNavigator {
             allRidesViewController?.loadRide(withID: id)
         case .openMyRides:
             tabBarController.selectedViewController = tabBarController.myRidesNavigationController
-        case .openActiveRides:
-            tabBarController.selectedViewController = tabBarController.activeRidesNavigationController
         case .openRidesHistory:
             tabBarController.selectedViewController = tabBarController.menuNavigationController
             let menuViewController = tabBarController.menuViewController
@@ -46,9 +43,9 @@ class DeeplinkNavigator {
             }
             
             // Open chat for rideID
-            tabBarController.selectedViewController = tabBarController.activeRidesNavigationController
-            let activeRidesViewController = tabBarController.activeRidesViewController
-            activeRidesViewController?.openChatForRide(withID: rideId)
+            tabBarController.selectedViewController = tabBarController.myRidesNavigationController
+            let myRidesViewController = tabBarController.myRidesViewController
+            myRidesViewController?.openChatForRide(withID: rideId)
         }
         
     }

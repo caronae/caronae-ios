@@ -1,5 +1,3 @@
-import Foundation
-
 extension String {
     func capitalized(after separator: String) -> String {
         var componentes = self.components(separatedBy: separator)
@@ -15,7 +13,7 @@ extension String {
 }
 
 extension NSString {
-    func capitalized(after separator: String) -> NSString {
+    @objc func capitalized(after separator: String) -> NSString {
         var componentes = self.components(separatedBy: separator)
         guard componentes.count > 1 else {
             return self

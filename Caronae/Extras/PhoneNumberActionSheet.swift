@@ -7,7 +7,7 @@ import AddressBook
 import AddressBookUI
 
 class PhoneNumberAlert: NSObject {
-    func actionSheet(view: UIViewController, buttonText: String, user: User) -> UIAlertController? {
+    @objc func actionSheet(view: UIViewController, buttonText: String, user: User) -> UIAlertController? {
         let names = user.name.components(separatedBy: " ")
         guard let phoneNumber = user.phoneNumber, let firstName = names.first, let lastName = (names.first == names.last) ? "" : names.last else {
             return nil

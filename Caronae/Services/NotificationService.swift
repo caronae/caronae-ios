@@ -55,6 +55,6 @@ class NotificationService: NSObject {
     }
     
     private func notifyObservers() {
-        NotificationCenter.default.post(name: Foundation.Notification.Name.CaronaeDidUpdateNotifications, object: self)
+        NotificationCenter.default.post(name: .CaronaeDidUpdateNotifications, object: self)
     }
 }

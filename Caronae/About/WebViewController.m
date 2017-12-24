@@ -3,6 +3,9 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "CaronaeAlertController.h"
 #import "WebViewController.h"
+#import "Caronae-Swift.h"
+
+@class Constants;
 
 @implementation WebViewController
 
@@ -13,15 +16,15 @@
     NSString *urlString;
     if (self.page == WebViewAboutPage) {
         self.title = @"Sobre";
-        urlString = CaronaeAboutPageURLString;
+        urlString = [Constants CaronaeAboutPageURLStringObjc];
     }
     else if (self.page == WebViewTermsOfUsePage) {
         self.title = @"Termos de Uso";
-        urlString = CaronaeTermsOfUsePageURLString;
+        urlString = [Constants CaronaeTermsOfUsePageURLStringObjc];
     }
     else if (self.page == WebViewFAQPage) {
         self.title = @"FAQ";
-        urlString = CaronaeFAQPageURLString;
+        urlString = [Constants CaronaeFAQPageURLStringObjc];
     }
     
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];

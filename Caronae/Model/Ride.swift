@@ -3,23 +3,24 @@ import ObjectMapper
 import ObjectMapper_Realm
 
 class Ride: Object, Mappable {
-    dynamic var id: Int = 0
-    dynamic var region: String!
-    dynamic var neighborhood: String!
-    dynamic var place: String!
-    dynamic var hub: String!
-    dynamic var route: String!
-    dynamic var notes: String!
-    dynamic var going: Bool = true
-    dynamic var slots: Int = 0
-    dynamic var date: Date! = Date()
-    dynamic var isActive: Bool = false
+    @objc dynamic var id: Int = 0
+    @objc dynamic var region: String!
+    @objc dynamic var neighborhood: String!
+    @objc dynamic var place: String!
+    @objc dynamic var hub: String!
+    @objc dynamic var route: String!
+    @objc dynamic var notes: String!
+    @objc dynamic var going: Bool = true
+    @objc dynamic var slots: Int = 0
+    @objc dynamic var date: Date! = Date()
+    @objc dynamic var isActive: Bool = false
+    @objc dynamic var isPending: Bool = false
     
-    dynamic var weekDays: String?
-    dynamic var repeatsUntil: Date?
+    @objc dynamic var weekDays: String?
+    @objc dynamic var repeatsUntil: Date?
     var routineID = RealmOptional<Int>()
     
-    dynamic var driver: User!
+    @objc dynamic var driver: User!
     var riders = List<User>()
     
     required convenience init?(map: Map) {
@@ -60,7 +61,7 @@ class Ride: Object, Mappable {
         riders <- (map["riders"], ListTransform<User>())
     }
     
-    var title: String {
+    @objc var title: String {
         if going {
             return String(format: "%@ → %@", neighborhood, hub)
         } else {
@@ -68,11 +69,11 @@ class Ride: Object, Mappable {
         }
     }
     
-    var isRoutine: Bool {
+    @objc var isRoutine: Bool {
         return routineID.value != nil
     }
     
-    var availableSlots: Int {
+    @objc var availableSlots: Int {
         return slots - riders.count
     }
     

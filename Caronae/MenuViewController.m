@@ -4,6 +4,8 @@
 #import "WebViewController.h"
 #import "Caronae-Swift.h"
 
+@class Constants;
+
 @interface MenuViewController ()
 @property (nonatomic) NSString *photoURL;
 @end
@@ -19,7 +21,7 @@
     
     [self updateProfileFields];
     
-    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateProfileFields) name:CaronaeDidUpdateUserNotification object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateProfileFields) name:[Constants CaronaeDidUpdateUserObjc] object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

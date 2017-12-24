@@ -1,17 +1,20 @@
-O Caronaê UFRJ é um sistema de caronas exclusivo para a comunidade acadêmica da UFRJ. Composto por pontos de carona no Campus da Cidade Universitária e um aplicativo mobile de acesso restrito a alunos, professores e funcionários, o sistema permite o compartilhamento das viagens de carro indo e voltando da Universidade.
+O app oficial de caronas da UFRJ
 
--------------------------------------------------------
-Para começar a usar, siga o passo-a-passo:
+O Caronaê é um sistema de código aberto, seguro e prático de caronas compartilhadas, composto por pontos de caronas espalhados pelos campi das universidades parceiras e por um aplicativo exclusivo para a comunidade acadêmica dessas instituições.
 
-1. Abra o aplicativo e clique no botão para obter uma chave de acesso.
+O aplicativo tem como objetivo facilitar o deslocamento de chegada e saída da universidade, unindo motoristas e caronistas em um serviço digital simples e eficiente.
 
-2. Faça login na página da UFRJ usando a mesma senha de acesso da Intranet UFRJ.
+Como funciona?
+◦ O acesso ao Caronaê é validado através da Intranet das instituições parceiras.
+◦ Suas caronas e perfil são restritos somente as pessoas da sua própria universidade.
+◦ Na tela 'Todas' você pode ver a lista de todas as caronas ofertadas.
+◦ Você pode abrir qualquer carona, ver os detalhes e solicitar uma vaga.
+◦ Após solicitar uma carona e ser aceito você pode conversar com o motorista através do chat e combinar os detalhes.
+◦ Na tela 'Minhas' você pode ver todas as suas caronas Pendentes, Ativas e Ofertadas.
+◦ Também na tela 'Minhas' você pode selecionar a opção para oferecer uma carona indo ou voltando da universidade.
+◦ Agora você pode buscar e oferecer caronas. Adeus, ônibus lotado!
 
-3. Copie a chave de acesso gerada e cole no campo de login do aplicativo.
-
-4. Pronto, agora basta oferecer e pegar caronas. Adeus, ônibus lotado!
--------------------------------------------------------
 
 Caso encontre problemas, entre em contato conosco através do aplicativo, do e-mail caronae@fundoverde.ufrj.br, ou nos mande uma mensagem em nossa página do Facebook: https://www.facebook.com/caronaeufrj.
 
-Desenvolvido por Mario Cecchi e Rafael Damasceno, em conjunto com a Equipe Caronaê UFRJ.
+Desenvolvido por Mario Cecchi e Rafael Damasceno, em conjunto com a Equipe Caronaê.
