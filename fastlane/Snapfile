@@ -4,7 +4,6 @@
    "iPhone 8",
    "iPhone 8 Plus",
    "iPhone SE",
-   "iPhone 4s"
 ])
 
 languages([
@@ -13,6 +12,7 @@ languages([
 
 # The name of the scheme which contains the UI Tests
 scheme "Caronae"
+app_identifier "br.ufrj.caronae"
 
 # Where should the resulting screenshots be stored?
 output_directory "./screenshots"

@@ -28,7 +28,7 @@ class Caronae_UITests: XCTestCase {
         
         let app = XCUIApplication()
         
-        snapshot("0SignIn")
+        snapshot("0_SignIn")
         
         let elementsQuery = XCUIApplication().scrollViews.otherElements
         let suaIdentificaOAquiTextField = elementsQuery.textFields["Sua identificação aqui"]
@@ -39,27 +39,32 @@ class Caronae_UITests: XCTestCase {
         suaChaveAquiTextField.tap()
         suaChaveAquiTextField.typeText("## token ##")
         elementsQuery.buttons["ACESSAR"].tap()
-        app.alerts["“Caronaê” Would Like to Send You Notifications"].buttons["Allow"].tap()
         
-        snapshot("1AllRides")
+        addUIInterruptionMonitor(withDescription: "Allow push", handler: { (alert) -> Bool in
+            if alert.buttons["Allow"].exists {
+                alert.buttons["Allow"].tap()
+            }
+            return true
+        })
+        
+        snapshot("1_AllRides")
         
         app.tables.cells.element(boundBy: 0).tap()
         
-        snapshot("2Ride")
+        snapshot("3_Ride")
         
-        app.scrollViews.otherElements.images["Profile Picture"].tap()
+//        app.scrollViews.otherElements.images["Profile Picture"].tap()
+//        snapshot("5_Profile")
+//        app.navigationBars.buttons.element(boundBy: 0).tap()
         
-        snapshot("3Profile")
-        
-        app.navigationBars.buttons.element(boundBy: 0).tap()
         app.navigationBars.buttons.element(boundBy: 0).tap()
         app.tabBars.buttons["Minhas"].tap()
         
-        snapshot("4MyRides")
+        snapshot("4_MyRides")
         
         app.navigationBars["Minhas"].children(matching: .button).element.tap()
         
-        snapshot("5CreateRide")
+        snapshot("2_CreateRide")
     }
     
 }

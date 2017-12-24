@@ -1,56 +1,38 @@
 {
   "device_frame_version": "latest",
   "default": {
-    // "keyword": {
-    //   "font": "./fonts/MyFont-Rg.otf"
-    // },
     "title": {
-      //"font": "./fonts/MyFont-Th.otf",
-      "color": "#545454"
+      "color": "#FFFFFF"
     },
-    "background": "./background.jpg",
     "padding": 50,
-    "show_complete_frame": false,
-    "stack_title" : false,
+    "show_complete_frame": true,
     "title_below_image": false
   },
 
   "data": [
     {
-      "filter": "0SignIn",
-      "keyword": {
-        "color": "#d21559"
-      }
+      "filter": "0_SignIn",
+      "background": "./background_orange.jpg"
     },
     {
-      "filter": "1AllRides",
-      "keyword": {
-        "color": "#feb909"
-      }
+      "filter": "1_AllRides",
+      "background": "./background_blue.jpg"
     },
     {
-      "filter": "2Ride",
-      "keyword": {
-        "color": "#aa4dbc"
-      }
+      "filter": "2_CreateRide",
+      "background": "./background_pink.jpg"
     },
     {
-      "filter": "3Profile",
-      "keyword": {
-        "color": "#31bb48"
-      }
+      "filter": "3_Ride",
+      "background": "./background_brown.jpg"
     },
     {
-      "filter": "4MyRides",
-      "keyword": {
-        "color": "#aa4dbc"
-      }
+      "filter": "4_MyRides",
+      "background": "./background_green.jpg"
     },
     {
-      "filter": "5CreateRide",
-      "keyword": {
-        "color": "#aa4dbc"
-      }
+      "filter": "5_CreateRide",
+      "background": "./background_red.jpg"
     }
   ]
 }
