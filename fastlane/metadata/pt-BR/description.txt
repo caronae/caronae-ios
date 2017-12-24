@@ -1,4 +1,4 @@
-O app oficial de caronas da UFRJ
+O aplicativo oficial de caronas da UFRJ
 
 O Caronaê é um sistema de código aberto, seguro e prático de caronas compartilhadas, composto por pontos de caronas espalhados pelos campi das universidades parceiras e por um aplicativo exclusivo para a comunidade acadêmica dessas instituições.
 
