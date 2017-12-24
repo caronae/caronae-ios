@@ -141,4 +141,4 @@ workflows:
       - deploy-appstore-prod:
           type: approval
           requires:
-           - build-prod
+           - deploy-testflight-prod
