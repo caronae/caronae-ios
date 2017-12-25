@@ -51,172 +51,117 @@ class RideService: NSObject {
     }
     
     func updateMyRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-//        guard let user = UserService.instance.user else {
-//            NSLog("Error: No userID registered")
-//            return
-//        }
-        
-        updatePendingRides(success: {
-            NSLog("Pending rides updated")
-        }, error: { error in
-            NSLog("Error updating pending rides (\(error.localizedDescription))")
-        })
-        
-        updateActiveRides(success: {
-            NSLog("Active rides updated")
-        }, error: { error in
-            NSLog("Error updating active rides (\(error.localizedDescription))")
-        })
-        
-        updateOfferedRides(success: {
-            NSLog("Offered rides updated")
-        }, error: { error in
-            NSLog("Error updating offered rides (\(error.localizedDescription))")
-        })
-        
-        success()
-        
-    }
-    
-    func updatePendingRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         guard let user = UserService.instance.user else {
             NSLog("Error: No userID registered")
             return
         }
         
-        api.get("/user/\(user.id)/pendingRides", parameters: nil, success: { task, responseObject in
+        api.get("/user/\(user.id)/rides", parameters: nil, success: { task, responseObject in
             guard let jsonResponse = responseObject as? [String: Any],
-                let ridesJson = jsonResponse["rides"] as? [[String: Any]] else {
+                let pendingRidesJson = jsonResponse["pending_rides"] as? [[String: Any]],
+                let activeRidesJson = jsonResponse["active_rides"] as? [[String: Any]],
+                let offeredRidesJson = jsonResponse["offered_rides"] as? [[String: Any]] else {
                     error(CaronaeError.invalidResponse)
                     return
             }
             
             // Deserialize response
-            let rides = ridesJson.flatMap { rideJson in
+            let pendingRides = pendingRidesJson.flatMap { rideJson in
                 let ride = Ride(JSON: rideJson)
                 ride?.isPending = true
                 return ride
-                } as [Ride]
-            
-            do {
-                let realm = try Realm()
-                // Clear rides previously marked as pending
-                let previouslyPending = realm.objects(Ride.self).filter("isPending == true")
-                try realm.write {
-                    previouslyPending.forEach { $0.isPending = false }
-                }
-                
-                // Update pending rides
-                try realm.write {
-                    realm.add(rides, update: true)
-                }
-            } catch let realmError {
-                error(realmError)
-            }
-            
-            success()
-        }, failure: { _, err in
-            error(err)
-        })
-    }
-    
-    func updateOfferedRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        guard let user = UserService.instance.user else {
-            NSLog("Error: No userID registered")
-            return
-        }
-        
-        api.get("/user/\(user.id)/offeredRides", parameters: nil, success: { task, responseObject in
-            guard let jsonResponse = responseObject as? [String: Any],
-                let ridesJson = jsonResponse["rides"] as? [[String: Any]] else {
-                error(CaronaeError.invalidResponse)
-                return
-            }
-            
-            // Deserialize response
-            let rides = ridesJson.flatMap { rideJson in
-                let ride = Ride(JSON: rideJson)
-                ride?.driver = user
-                if let riders = ride?.riders, !riders.isEmpty {
-                    ride?.isActive = true
-                }
-                return ride
             } as [Ride]
             
-            do {
-                let realm = try Realm()
-                let currentDate = Date()
-                let ridesInThePast = realm.objects(Ride.self).filter("date < %@ AND isActive == false", currentDate)
-                
-                // Clear notifications for inactive rides in the past
-                ridesInThePast.forEach { ride in
-                    NotificationService.instance.clearNotifications(forRideID: ride.id)
-                }
-                
-                // Delete inactive rides in the past
-                try realm.write {
-                    ridesInThePast.forEach { ride in
-                        realm.delete(ride)
-                    }
-                }
-                
-                // Update offered rides
-                try realm.write {
-                    realm.add(rides, update: true)
-                }
-            } catch let realmError {
-                error(realmError)
-            }
-            
-            success()
-        }, failure: { _, err in
-            NSLog("Error: Failed to get offered rides: \(err.localizedDescription)")
-            error(err)
-        })
-    }
-    
-    func updateActiveRides(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/ride/getMyActiveRides", parameters: nil, success: { task, responseObject in
-            guard let ridesJson = responseObject as? [[String: Any]] else {
-                error(CaronaeError.invalidResponse)
-                return
-            }
-            
-            // Deserialize response
-            let rides = ridesJson.flatMap { rideJson in
+            let activeRides = activeRidesJson.flatMap { rideJson in
                 let ride = Ride(JSON: rideJson)
                 ride?.isActive = true
                 return ride
             } as [Ride]
             
-            do {
-                let realm = try Realm()
-                // Clear rides previously marked as active
-                let previouslyActives = Array(realm.objects(Ride.self).filter("isActive == true"))
-                try realm.write {
-                    previouslyActives.forEach { $0.isActive = false }
-                }
-                
-                // Clear notifications for finished/canceled rides
-                let currentActiveIDs = rides.flatMap { $0.id }
-                var previouslyActiveIDs = Set(previouslyActives.flatMap { $0.id })
-                previouslyActiveIDs.subtract(currentActiveIDs)
-                previouslyActiveIDs.forEach { id in
-                    NotificationService.instance.clearNotifications(forRideID: id, of: [.chat, .rideJoinRequestAccepted])
-                }
-                
-                // Update active rides
-                try realm.write {
-                    realm.add(rides, update: true)
-                }
-            } catch let realmError {
-                error(realmError)
-            }
-            
+            let offeredRides = offeredRidesJson.flatMap { rideJson in
+                return Ride(JSON: rideJson)
+            } as [Ride]
+        
+            self.handlePendingRidesUpdate(pendingRides)
+            self.handleActiveRidesUpdate(activeRides)
+            self.handleOfferedRidesUpdate(offeredRides)
+        
             success()
         }, failure: { _, err in
+            NSLog("Error: Failed to update user's rides: \(err.localizedDescription)")
             error(err)
         })
+    }
+    
+    func handlePendingRidesUpdate(_ rides: [Ride]) {
+        do {
+            let realm = try Realm()
+            // Clear rides previously marked as pending
+            let previouslyPending = realm.objects(Ride.self).filter("isPending == true")
+            try realm.write {
+                previouslyPending.forEach { $0.isPending = false }
+            }
+            
+            // Update pending rides
+            try realm.write {
+                realm.add(rides, update: true)
+            }
+        } catch let realmError {
+            NSLog("Error: Failed to update pending rides: \(realmError.localizedDescription)")
+        }
+    }
+    
+    func handleActiveRidesUpdate(_ rides: [Ride]) {
+        do {
+            let realm = try Realm()
+            // Clear rides previously marked as active
+            let previouslyActives = Array(realm.objects(Ride.self).filter("isActive == true"))
+            try realm.write {
+                previouslyActives.forEach { $0.isActive = false }
+            }
+            
+            // Clear notifications for finished/canceled rides
+            let currentActiveIDs = rides.flatMap { $0.id }
+            var previouslyActiveIDs = Set(previouslyActives.flatMap { $0.id })
+            previouslyActiveIDs.subtract(currentActiveIDs)
+            previouslyActiveIDs.forEach { id in
+                NotificationService.instance.clearNotifications(forRideID: id, of: [.chat, .rideJoinRequestAccepted])
+            }
+            
+            // Update active rides
+            try realm.write {
+                realm.add(rides, update: true)
+            }
+        } catch let realmError {
+            NSLog("Error: Failed to update active rides: \(realmError.localizedDescription)")
+        }
+    }
+    
+    func handleOfferedRidesUpdate(_ rides: [Ride]) {
+        do {
+            let realm = try Realm()
+            let currentDate = Date()
+            let ridesInThePast = realm.objects(Ride.self).filter("date < %@ AND isActive == false", currentDate)
+            
+            // Clear notifications for inactive rides in the past
+            ridesInThePast.forEach { ride in
+                NotificationService.instance.clearNotifications(forRideID: ride.id)
+            }
+            
+            // Delete inactive rides in the past
+            try realm.write {
+                ridesInThePast.forEach { ride in
+                    realm.delete(ride)
+                }
+            }
+            
+            // Update offered rides
+            try realm.write {
+                realm.add(rides, update: true)
+            }
+        } catch let realmError {
+            NSLog("Error: Failed to update offered rides: \(realmError.localizedDescription)")
+        }
     }
     
     func getRide(withID id: Int, success: @escaping (_ ride: Ride, _ availableSlots: Int) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
@@ -314,7 +259,7 @@ class RideService: NSObject {
                     }
                     
                     NotificationService.instance.clearNotifications(forRideID: id)
-                    self.updateActiveRides(success: {} , error: {_ in })
+                    self.updateMyRides(success: {} , error: {_ in })
                 } else {
                     NSLog("Ride with id %d not found locally in user's rides", id)
                 }
