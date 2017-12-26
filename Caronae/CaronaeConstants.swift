@@ -6,7 +6,7 @@ import Foundation
 #if DEVELOPMENT
     let CaronaeAPIBaseURL = URL(string: "https://api.dev.caronae.org")
 #elseif TESTING
-    let CaronaeAPIBaseURL = URL(string: "https://api.dev.caronae.org")
+    let CaronaeAPIBaseURL = URL(string: "https://private-443d4-caronae.apiary-mock.com")
 #else
     let CaronaeAPIBaseURL = URL(string: "https://api.caronae.com.br")
 #endif

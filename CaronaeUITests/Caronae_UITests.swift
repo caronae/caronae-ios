@@ -33,11 +33,11 @@ class Caronae_UITests: XCTestCase {
         let elementsQuery = XCUIApplication().scrollViews.otherElements
         let suaIdentificaOAquiTextField = elementsQuery.textFields["Sua identificação aqui"]
         suaIdentificaOAquiTextField.tap()
-        suaIdentificaOAquiTextField.typeText("## ufrj_id ##")
+        suaIdentificaOAquiTextField.typeText("12345678910")
         
         let suaChaveAquiTextField = elementsQuery.textFields["Sua chave aqui"]
         suaChaveAquiTextField.tap()
-        suaChaveAquiTextField.typeText("## token ##")
+        suaChaveAquiTextField.typeText("ABC123")
         elementsQuery.buttons["ACESSAR"].tap()
         
         addUIInterruptionMonitor(withDescription: "Allow push", handler: { (alert) -> Bool in
