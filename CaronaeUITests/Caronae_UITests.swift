@@ -40,15 +40,6 @@ class Caronae_UITests: XCTestCase {
         suaChaveAquiTextField.typeText("ABC123")
         elementsQuery.buttons["ACESSAR"].tap()
         
-        addUIInterruptionMonitor(withDescription: "Allow push", handler: { (alert) -> Bool in
-            if alert.buttons["Allow"].exists {
-                alert.buttons["Allow"].tap()
-            }
-            return true
-        })
-        
-        snapshot("1_AllRides")
-        
         app.tables.cells.element(boundBy: 0).tap()
         
         snapshot("3_Ride")
@@ -58,6 +49,9 @@ class Caronae_UITests: XCTestCase {
 //        app.navigationBars.buttons.element(boundBy: 0).tap()
         
         app.navigationBars.buttons.element(boundBy: 0).tap()
+        
+        snapshot("1_AllRides")
+        
         app.tabBars.buttons["Minhas"].tap()
         
         snapshot("4_MyRides")
