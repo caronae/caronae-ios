@@ -90,4 +90,10 @@ platform :ios do
     UI.success("Success! New version: #{tag_name}")
   end
 
+  desc "Take and frame screenshots of the app"
+  lane :take_screenshots do
+    snapshot
+    frame_screenshots
+  end
+
 end

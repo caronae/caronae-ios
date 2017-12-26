@@ -63,6 +63,11 @@ Decrypt sensitive keys using AWS KMS
 fastlane ios update_build_number
 ```
 Update and tag the version/build
+### ios take_screenshots
+```
+fastlane ios take_screenshots
+```
+Take and frame screenshots of the app
 
 ----
 
