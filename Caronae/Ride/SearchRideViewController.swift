@@ -53,10 +53,10 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         directionControl.selectedSegmentIndex = previouslySelectedSegmentIndex
         
         // Load last searched zone, neighborhoods, campus and centers
-        if let lastSearchedZone = self.userDefaults.string(forKey: CaronaePreferenceLastSearchedZoneKey),
-            let lastSearchedNeighborhoods = self.userDefaults.stringArray(forKey: CaronaePreferenceLastSearchedNeighborhoodsKey),
-            let lastSearchedCampus = self.userDefaults.string(forKey: CaronaePreferenceLastSearchedCampusKey),
-            let lastSearchedCenters = self.userDefaults.stringArray(forKey: CaronaePreferenceLastSearchedCentersKey) {
+        if let lastSearchedZone = self.userDefaults.string(forKey: CaronaePreferenceLastSearch.zoneKey),
+            let lastSearchedNeighborhoods = self.userDefaults.stringArray(forKey: CaronaePreferenceLastSearch.neighborhoodsKey),
+            let lastSearchedCampus = self.userDefaults.string(forKey: CaronaePreferenceLastSearch.campusKey),
+            let lastSearchedCenters = self.userDefaults.stringArray(forKey: CaronaePreferenceLastSearch.centersKey) {
             selectedZone = lastSearchedZone
             selectedNeighborhoods = lastSearchedNeighborhoods
             selectedCampus = lastSearchedCampus
@@ -69,7 +69,7 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         }
         
         // Load last searched date
-        if let lastSearchedDate = self.userDefaults.object(forKey: CaronaePreferenceLastSearchedDateKey) as? Date, lastSearchedDate.isInTheFuture() {
+        if let lastSearchedDate = self.userDefaults.object(forKey: CaronaePreferenceLastSearch.dateKey) as? Date, lastSearchedDate.isInTheFuture() {
             selectedDate = lastSearchedDate
         } else {
             selectedDate = Date.nextHour
@@ -85,11 +85,11 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     @IBAction func didTapSearchButton(_ sender: Any) {
         // Save search parameters for the next search
-        self.userDefaults.setValuesForKeys([CaronaePreferenceLastSearchedZoneKey: self.selectedZone!,
-                                            CaronaePreferenceLastSearchedNeighborhoodsKey: self.selectedNeighborhoods!,
-                                            CaronaePreferenceLastSearchedCampusKey: self.selectedCampus!,
-                                            CaronaePreferenceLastSearchedCentersKey: self.selectedHubs!,
-                                            CaronaePreferenceLastSearchedDateKey: self.selectedDate!])
+        self.userDefaults.setValuesForKeys([CaronaePreferenceLastSearch.zoneKey: self.selectedZone!,
+                                            CaronaePreferenceLastSearch.neighborhoodsKey: self.selectedNeighborhoods!,
+                                            CaronaePreferenceLastSearch.campusKey: self.selectedCampus!,
+                                            CaronaePreferenceLastSearch.centersKey: self.selectedHubs!,
+                                            CaronaePreferenceLastSearch.dateKey: self.selectedDate!])
         
         let going = (self.directionControl.selectedSegmentIndex == 0)
         

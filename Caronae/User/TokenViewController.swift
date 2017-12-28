@@ -55,7 +55,7 @@ class TokenViewController: UIViewController {
     }
     
     @objc func openIntranetLogin() {
-        let intranetURL = URL(string: CaronaeIntranetURLString)!
+        let intranetURL = URL(string: CaronaeURLString.intranet)!
         if #available(iOS 9, *) {
             let safariViewController = SFSafariViewController(url: intranetURL, entersReaderIfAvailable: false)
             present(safariViewController, animated: true)

@@ -29,7 +29,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             return self.pagination.hasNextPage
         }
         
-        filterIsEnabled = userDefaults.bool(forKey: CaronaePreferenceFilterIsEnabledKey)
+        filterIsEnabled = userDefaults.bool(forKey: CaronaePreferenceLastFilter.isEnabledKey)
         
         if filterIsEnabled {
             enableFilterRides()
@@ -153,10 +153,10 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     }
     
     func enableFilterRides() {
-        guard let campus = userDefaults.string(forKey: CaronaePreferenceLastFilteredCampusKey),
-            let centers = userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredCentersKey),
-            let zone = userDefaults.string(forKey: CaronaePreferenceLastFilteredZoneKey),
-            let neighborhoods = userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey) else {
+        guard let campus = userDefaults.string(forKey: CaronaePreferenceLastFilter.campusKey),
+            let centers = userDefaults.stringArray(forKey: CaronaePreferenceLastFilter.centersKey),
+            let zone = userDefaults.string(forKey: CaronaePreferenceLastFilter.zoneKey),
+            let neighborhoods = userDefaults.stringArray(forKey: CaronaePreferenceLastFilter.neighborhoodsKey) else {
                 return
         }
         
@@ -174,7 +174,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     }
     
     func disableFilterRides() {
-        userDefaults.set(false, forKey: CaronaePreferenceFilterIsEnabledKey)
+        userDefaults.set(false, forKey: CaronaePreferenceLastFilter.isEnabledKey)
         filterIsEnabled = false
         self.filterParams = FilterParameters()
         pagination = PaginationState()

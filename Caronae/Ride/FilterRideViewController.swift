@@ -30,10 +30,10 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         super.viewDidLoad()
         
         // Load last filtered neighborhoods and center
-        if let lastFilteredZone = self.userDefaults.string(forKey: CaronaePreferenceLastFilteredZoneKey),
-           let lastFilteredNeighborhoods = self.userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredNeighborhoodsKey),
-           let lastFilteredCampus = self.userDefaults.string(forKey: CaronaePreferenceLastFilteredCampusKey),
-           let lastFilteredCenters = self.userDefaults.stringArray(forKey: CaronaePreferenceLastFilteredCentersKey) {
+        if let lastFilteredZone = self.userDefaults.string(forKey: CaronaePreferenceLastFilter.zoneKey),
+           let lastFilteredNeighborhoods = self.userDefaults.stringArray(forKey: CaronaePreferenceLastFilter.neighborhoodsKey),
+           let lastFilteredCampus = self.userDefaults.string(forKey: CaronaePreferenceLastFilter.campusKey),
+           let lastFilteredCenters = self.userDefaults.stringArray(forKey: CaronaePreferenceLastFilter.centersKey) {
             self.selectedZone = lastFilteredZone
             self.selectedNeighborhoods = lastFilteredNeighborhoods
             self.selectedCampus = lastFilteredCampus
@@ -55,11 +55,11 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     @IBAction func didTapFilterButton(_ sender: Any) {
         // Save filter parameters
-        self.userDefaults.setValuesForKeys([CaronaePreferenceFilterIsEnabledKey: true,
-                                            CaronaePreferenceLastFilteredZoneKey: self.selectedZone!,
-                                            CaronaePreferenceLastFilteredNeighborhoodsKey: self.selectedNeighborhoods!,
-                                            CaronaePreferenceLastFilteredCampusKey: self.selectedCampus!,
-                                            CaronaePreferenceLastFilteredCentersKey: self.selectedHubs!])
+        self.userDefaults.setValuesForKeys([CaronaePreferenceLastFilter.isEnabledKey: true,
+                                            CaronaePreferenceLastFilter.zoneKey: self.selectedZone!,
+                                            CaronaePreferenceLastFilter.neighborhoodsKey: self.selectedNeighborhoods!,
+                                            CaronaePreferenceLastFilter.campusKey: self.selectedCampus!,
+                                            CaronaePreferenceLastFilter.centersKey: self.selectedHubs!])
         
         self.performSegue(withIdentifier: "didTapFilterUnwind", sender: self)
     }

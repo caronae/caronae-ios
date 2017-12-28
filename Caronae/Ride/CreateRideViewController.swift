@@ -77,13 +77,13 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         notesPlaceholder = notes.text
         notesTextColor = notes.textColor
         
-        if let lastRideLocation = userDefaults.dictionary(forKey: "lastOfferedRideLocation") {
-            if let lastZone = lastRideLocation["zone"] as? String,
-               let lastNeighborhood = lastRideLocation["neighborhood"] as? String,
-               let lastPlace = lastRideLocation["place"] as? String,
-               let lastRoute = lastRideLocation["route"] as? String,
-               let lastSlots = lastRideLocation["slots"] as? Double,
-               let lastDescription = lastRideLocation["description"] as? String {
+        if let lastOfferedRide      = userDefaults.dictionary(forKey: CaronaePreferenceLastOfferedRide.key) {
+            if let lastZone         = lastOfferedRide[CaronaePreferenceLastOfferedRide.zone] as? String,
+               let lastNeighborhood = lastOfferedRide[CaronaePreferenceLastOfferedRide.neighborhood] as? String,
+               let lastPlace        = lastOfferedRide[CaronaePreferenceLastOfferedRide.place] as? String,
+               let lastRoute        = lastOfferedRide[CaronaePreferenceLastOfferedRide.route] as? String,
+               let lastSlots        = lastOfferedRide[CaronaePreferenceLastOfferedRide.slots] as? Double,
+               let lastDescription  = lastOfferedRide[CaronaePreferenceLastOfferedRide.description] as? String {
                 selectedZone = lastZone
                 selectedNeighborhood = lastNeighborhood
                 reference.text = lastPlace
@@ -95,7 +95,7 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
                 }
             }
             
-            if let lastHubGoing = lastRideLocation["hubGoing"] as? String {
+            if let lastHubGoing = lastOfferedRide[CaronaePreferenceLastOfferedRide.hubGoing] as? String {
                 selectedHub = lastHubGoing
             }
         }
@@ -142,28 +142,28 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     }
     
     func savePreset(ride: Ride) {
-        let lastRidePresets = userDefaults.dictionary(forKey: "lastOfferedRideLocation")
+        let lastRidePresets = userDefaults.dictionary(forKey: CaronaePreferenceLastOfferedRide.key)
         
-        var newPresets: [String : Any] = ["zone": ride.region,
-                                          "neighborhood": ride.neighborhood,
-                                          "place": ride.place,
-                                          "route": ride.route,
-                                          "slots": ride.slots,
-                                          "description": ride.notes]
+        var newPresets: [String : Any] = [CaronaePreferenceLastOfferedRide.zone         : ride.region,
+                                          CaronaePreferenceLastOfferedRide.neighborhood : ride.neighborhood,
+                                          CaronaePreferenceLastOfferedRide.place        : ride.place,
+                                          CaronaePreferenceLastOfferedRide.route        : ride.route,
+                                          CaronaePreferenceLastOfferedRide.slots        : ride.slots,
+                                          CaronaePreferenceLastOfferedRide.description  : ride.notes]
         
         if ride.going {
-            newPresets["hubGoing"] = ride.hub
-            if let lastHubReturning = lastRidePresets?["hubReturning"] {
-                newPresets["hubReturning"] = lastHubReturning
+            newPresets[CaronaePreferenceLastOfferedRide.hubGoing] = ride.hub
+            if let lastHubReturning = lastRidePresets?[CaronaePreferenceLastOfferedRide.hubReturning] {
+                newPresets[CaronaePreferenceLastOfferedRide.hubReturning] = lastHubReturning
             }
         } else {
-            newPresets["hubReturning"] = ride.hub
-            if let lastHubGoing = lastRidePresets?["hubGoing"] {
-                newPresets["hubGoing"] = lastHubGoing
+            newPresets[CaronaePreferenceLastOfferedRide.hubReturning] = ride.hub
+            if let lastHubGoing = lastRidePresets?[CaronaePreferenceLastOfferedRide.hubGoing] {
+                newPresets[CaronaePreferenceLastOfferedRide.hubGoing] = lastHubGoing
             }
         }
         
-        userDefaults.set(newPresets, forKey: "lastOfferedRideLocation")
+        userDefaults.set(newPresets, forKey: CaronaePreferenceLastOfferedRide.key)
     }
     
     func createRide(ride: Ride) {
@@ -282,14 +282,14 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     @IBAction func directionChanged(_ sender: UISegmentedControl) {
         view.endEditing(true)
-        guard let lastRideLocation = userDefaults.dictionary(forKey: "lastOfferedRideLocation") else {
+        guard let lastOfferedRide = userDefaults.dictionary(forKey: CaronaePreferenceLastOfferedRide.key) else {
             selectedHub = ""
             return
         }
         
-        if sender.selectedSegmentIndex == 0, let hubGoing = lastRideLocation["hubGoing"] as? String {
+        if sender.selectedSegmentIndex == 0, let hubGoing = lastOfferedRide[CaronaePreferenceLastOfferedRide.hubGoing] as? String {
             selectedHub = hubGoing
-        } else if sender.selectedSegmentIndex == 1, let hubReturning = lastRideLocation["hubReturning"] as? String {
+        } else if sender.selectedSegmentIndex == 1, let hubReturning = lastOfferedRide[CaronaePreferenceLastOfferedRide.hubReturning] as? String {
             selectedHub = hubReturning
         } else {
             selectedHub = ""
