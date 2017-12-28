@@ -24,6 +24,10 @@ abstract_target 'caronae-ios' do
 
     target 'Caronae'
     target 'Caronae Dev'
+
+    target 'Caronae UITests' do
+        pod 'SimulatorStatusMagic', :configurations => ['Tests']
+    end
 end
 
 post_install do | installer |

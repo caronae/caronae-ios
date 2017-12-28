@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0E456E0151D0391CB4C48AFF /* Pods_caronae_ios_Caronae.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7068F34AB2D082CC5BC50138 /* Pods_caronae_ios_Caronae.framework */; };
 		5838EC04E3823DC4A0FB27B3 /* Pods_caronae_ios_Caronae_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199467B601F01AEC9F5D60DC /* Pods_caronae_ios_Caronae_Dev.framework */; };
+		599CAB1A7A94883D4702C6D5 /* Pods_caronae_ios_Caronae_UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F89FC8CEE91E901E094B47E7 /* Pods_caronae_ios_Caronae_UITests.framework */; };
 		7106CFCD1F098BBB0071C4AE /* DeepLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7106CFC91F098BBB0071C4AE /* DeepLinkManager.swift */; };
 		7106CFCE1F098BBB0071C4AE /* DeeplinkNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7106CFCA1F098BBB0071C4AE /* DeeplinkNavigator.swift */; };
 		7106CFCF1F098BBB0071C4AE /* NotificationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7106CFCB1F098BBB0071C4AE /* NotificationParser.swift */; };
@@ -189,10 +190,12 @@
 		149B16103BA6D59F2E8120B8 /* Pods-Caronae.debug - development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug - development.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug - development.xcconfig"; sourceTree = "<group>"; };
 		199467B601F01AEC9F5D60DC /* Pods_caronae_ios_Caronae_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_caronae_ios_Caronae_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF038D8D80E2C42A871F005 /* Pods-Caronae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug.xcconfig"; sourceTree = "<group>"; };
+		3364016E2893CE56B8F4F741 /* Pods-caronae-ios-Caronae UITests.tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caronae-ios-Caronae UITests.tests.xcconfig"; path = "Pods/Target Support Files/Pods-caronae-ios-Caronae UITests/Pods-caronae-ios-Caronae UITests.tests.xcconfig"; sourceTree = "<group>"; };
 		3DBBAE6219F7AF5C4630BEFF /* Pods-caronae-ios-Caronae Dev.tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caronae-ios-Caronae Dev.tests.xcconfig"; path = "Pods/Target Support Files/Pods-caronae-ios-Caronae Dev/Pods-caronae-ios-Caronae Dev.tests.xcconfig"; sourceTree = "<group>"; };
 		45094265CDF8334A884B6D5E /* Pods-caronae-ios-Caronae.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caronae-ios-Caronae.debug.xcconfig"; path = "Pods/Target Support Files/Pods-caronae-ios-Caronae/Pods-caronae-ios-Caronae.debug.xcconfig"; sourceTree = "<group>"; };
 		48B29DB3950F426AF4779E41 /* Pods-Caronae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.release.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.release.xcconfig"; sourceTree = "<group>"; };
 		4B35A3BD2CCAED11349480AC /* Pods-CaronaeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaronaeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaronaeTests/Pods-CaronaeTests.release.xcconfig"; sourceTree = "<group>"; };
+		4CE69FE71BCF9B04262983A9 /* Pods-caronae-ios-Caronae UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caronae-ios-Caronae UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-caronae-ios-Caronae UITests/Pods-caronae-ios-Caronae UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4EB4CBE4242DC87DA6FFB152 /* Pods-caronae-ios-Caronae.tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caronae-ios-Caronae.tests.xcconfig"; path = "Pods/Target Support Files/Pods-caronae-ios-Caronae/Pods-caronae-ios-Caronae.tests.xcconfig"; sourceTree = "<group>"; };
 		7068F34AB2D082CC5BC50138 /* Pods_caronae_ios_Caronae.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_caronae_ios_Caronae.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7106CFC91F098BBB0071C4AE /* DeepLinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeepLinkManager.swift; path = DeepLink/DeepLinkManager.swift; sourceTree = "<group>"; };
@@ -237,6 +240,7 @@
 		71F6485E1F71F364004C712F /* ZoneSelectionInput.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZoneSelectionInput.xib; path = "Place selection/ZoneSelectionInput.xib"; sourceTree = "<group>"; };
 		71F6485F1F71F364004C712F /* ZoneSelectionInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZoneSelectionInputViewController.swift; path = "Place selection/ZoneSelectionInputViewController.swift"; sourceTree = "<group>"; };
 		71FDA2441F401EBB00DA67E8 /* PhoneNumberActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberActionSheet.swift; sourceTree = "<group>"; };
+		7439BF143912C2EB222BC4F6 /* Pods-caronae-ios-Caronae UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caronae-ios-Caronae UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-caronae-ios-Caronae UITests/Pods-caronae-ios-Caronae UITests.release.xcconfig"; sourceTree = "<group>"; };
 		7815BB3484343863971A3389 /* Pods-caronae-ios-Caronae.debug - production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caronae-ios-Caronae.debug - production.xcconfig"; path = "Pods/Target Support Files/Pods-caronae-ios-Caronae/Pods-caronae-ios-Caronae.debug - production.xcconfig"; sourceTree = "<group>"; };
 		A0D86D64B619914BEDBEFB9A /* Pods-Caronae.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.production.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.production.xcconfig"; sourceTree = "<group>"; };
 		A3034D571DB58A1B00816B79 /* Date+isInTheFuture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+isInTheFuture.swift"; sourceTree = "<group>"; };
@@ -312,6 +316,7 @@
 		ECE5190DE4A4237CE1A39146 /* Pods-caronae-ios-Caronae.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caronae-ios-Caronae.release.xcconfig"; path = "Pods/Target Support Files/Pods-caronae-ios-Caronae/Pods-caronae-ios-Caronae.release.xcconfig"; sourceTree = "<group>"; };
 		EDEF024FC27DF0BBC189D320 /* Pods_CaronaeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaronaeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F44CDD163ECB457F4924AD2D /* Pods-caronae-ios-Caronae.debug - development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caronae-ios-Caronae.debug - development.xcconfig"; path = "Pods/Target Support Files/Pods-caronae-ios-Caronae/Pods-caronae-ios-Caronae.debug - development.xcconfig"; sourceTree = "<group>"; };
+		F89FC8CEE91E901E094B47E7 /* Pods_caronae_ios_Caronae_UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_caronae_ios_Caronae_UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +324,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				599CAB1A7A94883D4702C6D5 /* Pods_caronae_ios_Caronae_UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +367,9 @@
 				AB62F8C4B415DB9488E5B0EF /* Pods-caronae-ios-Caronae Dev.debug.xcconfig */,
 				4EB4CBE4242DC87DA6FFB152 /* Pods-caronae-ios-Caronae.tests.xcconfig */,
 				3DBBAE6219F7AF5C4630BEFF /* Pods-caronae-ios-Caronae Dev.tests.xcconfig */,
+				4CE69FE71BCF9B04262983A9 /* Pods-caronae-ios-Caronae UITests.debug.xcconfig */,
+				3364016E2893CE56B8F4F741 /* Pods-caronae-ios-Caronae UITests.tests.xcconfig */,
+				7439BF143912C2EB222BC4F6 /* Pods-caronae-ios-Caronae UITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -407,6 +416,7 @@
 				EDEF024FC27DF0BBC189D320 /* Pods_CaronaeTests.framework */,
 				7068F34AB2D082CC5BC50138 /* Pods_caronae_ios_Caronae.framework */,
 				199467B601F01AEC9F5D60DC /* Pods_caronae_ios_Caronae_Dev.framework */,
+				F89FC8CEE91E901E094B47E7 /* Pods_caronae_ios_Caronae_UITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -643,9 +653,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7123EE4D1FEE13B800EA3773 /* Build configuration list for PBXNativeTarget "Caronae UITests" */;
 			buildPhases = (
+				58DE609318A081CE792984F7 /* [CP] Check Pods Manifest.lock */,
 				7123EE401FEE13B800EA3773 /* Sources */,
 				7123EE411FEE13B800EA3773 /* Frameworks */,
 				7123EE421FEE13B800EA3773 /* Resources */,
+				F2BC8F8ABA22C902B2CC9F10 /* [CP] Embed Pods Frameworks */,
+				3D648931B757CEABED7FE643 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -803,6 +816,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3D648931B757CEABED7FE643 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-caronae-ios-Caronae UITests/Pods-caronae-ios-Caronae UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		56ED107787C9713DEB010EE6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -815,6 +843,24 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-caronae-ios-Caronae-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58DE609318A081CE792984F7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-caronae-ios-Caronae UITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1029,6 +1075,74 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-caronae-ios-Caronae/Pods-caronae-ios-Caronae-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F2BC8F8ABA22C902B2CC9F10 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-caronae-ios-Caronae UITests/Pods-caronae-ios-Caronae UITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/CRToast/CRToast.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/MIBadgeButton-Swift/MIBadgeButton_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper+Realm/ObjectMapper_Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/RBBAnimation/RBBAnimation.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SDCAlertView/SDCAlertView.framework",
+				"${BUILT_PRODUCTS_DIR}/SDCAutoLayout/SDCAutoLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SHSPhoneComponent/SHSPhoneComponent.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework",
+				"${BUILT_PRODUCTS_DIR}/UITextView+Placeholder/UITextView_Placeholder.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/SimulatorStatusMagic/SimulatorStatusMagic.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CRToast.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MIBadgeButton_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper_Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RBBAnimation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAlertView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAutoLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SHSPhoneComponent.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIScrollView_InfiniteScroll.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UITextView_Placeholder.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimulatorStatusMagic.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-caronae-ios-Caronae UITests/Pods-caronae-ios-Caronae UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1227,6 +1341,7 @@
 /* Begin XCBuildConfiguration section */
 		7123EE4B1FEE13B800EA3773 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CE69FE71BCF9B04262983A9 /* Pods-caronae-ios-Caronae UITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1239,7 +1354,7 @@
 				INFOPLIST_FILE = CaronaeUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.ufrj.Caronae-UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2b6956c5-9fee-423f-bf90-60624558ea2f";
@@ -1253,6 +1368,7 @@
 		};
 		7123EE4C1FEE13B800EA3773 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7439BF143912C2EB222BC4F6 /* Pods-caronae-ios-Caronae UITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1265,7 +1381,7 @@
 				INFOPLIST_FILE = CaronaeUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.ufrj.Caronae-UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2b6956c5-9fee-423f-bf90-60624558ea2f";
@@ -1390,6 +1506,7 @@
 		};
 		7188B73C1FF230F900808436 /* Tests */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3364016E2893CE56B8F4F741 /* Pods-caronae-ios-Caronae UITests.tests.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1402,7 +1519,7 @@
 				INFOPLIST_FILE = CaronaeUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "br.ufrj.Caronae-UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2b6956c5-9fee-423f-bf90-60624558ea2f";

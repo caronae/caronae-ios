@@ -85,6 +85,7 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SHSPhoneComponent (2.15)
+  - SimulatorStatusMagic (2.0)
   - SVProgressHUD (2.0.3)
   - TPKeyboardAvoiding (1.3.1)
   - UIScrollView-InfiniteScroll (0.9.1)
@@ -105,6 +106,7 @@ DEPENDENCIES:
   - SDCAlertView (= 2.5.4)
   - SDWebImage (~> 3.8.2)
   - SHSPhoneComponent
+  - SimulatorStatusMagic
   - SVProgressHUD
   - TPKeyboardAvoiding (~> 1.3.1)
   - UIScrollView-InfiniteScroll
@@ -153,11 +155,12 @@ SPEC CHECKSUMS:
   SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SHSPhoneComponent: 4cec0653a150ad63cbc52b0c8b29ce2d3c9c26f0
+  SimulatorStatusMagic: c8e958d70e0e0cd2d7cf33bb95014a222ddecf0a
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
   UIScrollView-InfiniteScroll: 14e204c50ca4040467e1cbfa141dad7a18919b56
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 83b508dcf42aaab43a1909d34f889ee1dee66810
+PODFILE CHECKSUM: d0c3ee4a2cb38f148914d1132522a284d5aec771
 
 COCOAPODS: 1.3.1
