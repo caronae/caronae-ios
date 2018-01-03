@@ -997,6 +997,7 @@ Cgo
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5VK-HF-o3E">
                                                         <rect key="frame" x="49" y="8" width="311" height="29"/>
+                                                        <accessibility key="accessibilityConfiguration" label="date"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <state key="normal" title="Qua 7 Out 17h00m"/>
                                                         <connections>
@@ -1181,6 +1182,7 @@ Cgo
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" text="Notas adicionais Ex: Não fumo, pode trazer o cachorro etc" translatesAutoresizingMaskIntoConstraints="NO" id="R6l-zH-LMn" userLabel="Notes textView">
                                                         <rect key="frame" x="0.0" y="0.0" width="360" height="200"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <accessibility key="accessibilityConfiguration" label="notes"/>
                                                         <color key="textColor" red="0.57647061347961426" green="0.58039218187332153" blue="0.57647061347961426" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

@@ -2,7 +2,7 @@ import XCTest
 import SimulatorStatusMagic
 
 class Caronae_UITests: XCTestCase {
-        
+    
     override func setUp() {
         super.setUp()
         
@@ -31,11 +31,19 @@ class Caronae_UITests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         let app = XCUIApplication()
+        let elementsQuery = app.scrollViews.otherElements
         
-        snapshot("0_SignIn")
-        
-        let elementsQuery = XCUIApplication().scrollViews.otherElements
         let suaIdentificaOAquiTextField = elementsQuery.textFields["Sua identificação aqui"]
+
+        if !suaIdentificaOAquiTextField.exists {
+            app.tabBars.buttons["Menu"].tap()
+            elementsQuery.buttons["Meu perfil"].tap()
+            elementsQuery.buttons["ButtonSignout"].tap()
+            app.collectionViews.cells["Sair"].tap()
+        }
+
+        snapshot("0_SignIn")
+
         suaIdentificaOAquiTextField.tap()
         suaIdentificaOAquiTextField.typeText("12345678910")
         
@@ -44,11 +52,12 @@ class Caronae_UITests: XCTestCase {
         suaChaveAquiTextField.typeText("ABC123")
         elementsQuery.buttons["ACESSAR"].tap()
         
+        _ = app.tables.cells.element(boundBy: 0).waitForExistence(timeout: 10)
         app.tables.cells.element(boundBy: 0).tap()
         
         snapshot("3_Ride")
         
-//        app.scrollViews.otherElements.images["Profile Picture"].tap()
+//        elementsQuery.images["Profile Picture"].tap()
 //        snapshot("5_Profile")
 //        app.navigationBars.buttons.element(boundBy: 0).tap()
         
@@ -62,7 +71,51 @@ class Caronae_UITests: XCTestCase {
         
         app.navigationBars["Minhas"].children(matching: .button).element.tap()
         
+        fillCreateRide()
+
+        app.swipeDown()
+        
         snapshot("2_CreateRide")
     }
     
+    func fillCreateRide() {
+        let app = XCUIApplication()
+        let elementsQuery = app.scrollViews.otherElements
+        
+        elementsQuery.buttons["Bairro"].tap()
+        app.tables.staticTexts["Zona Sul"].tap()
+        app.tables.staticTexts["Botafogo"].tap()
+
+        let referenceTextField = elementsQuery.textFields["Referência Ex: Shopping Tijuca"]
+        referenceTextField.tap()
+        referenceTextField.typeText("Samaritano")
+
+        let routeTextField = elementsQuery.textFields["Rota Ex: Maracanã, Leopoldina, Linha Vermelha"]
+        routeTextField.tap()
+        routeTextField.typeText("Túnel Santa Barbara, Linha Vermelha")
+
+        elementsQuery.buttons["Centro Universitário"].tap()
+        app.tables.staticTexts["Cidade Universitária"].tap()
+        app.tables.staticTexts["CCMN"].tap()
+        
+        app.children(matching: .window).element(boundBy: 0).tap() // hide keyboard
+        app.swipeUp()
+        
+        let increaseSlotsButton = elementsQuery.steppers.buttons.element(boundBy: 1)
+        increaseSlotsButton.tap()
+        increaseSlotsButton.tap()
+        
+        let descriptionTextView = elementsQuery.textViews["notes"]
+        descriptionTextView.tap()
+        descriptionTextView.typeText("Podemos combinar algum outro caminho.")
+        
+        elementsQuery.buttons["Ter"].tap()
+        elementsQuery.buttons["Qui"].tap()
+        
+        elementsQuery.buttons["date"].tap()
+        let pickerWheelsQuery = app.datePickers.pickerWheels
+        pickerWheelsQuery.element(boundBy: 1).adjust(toPickerWheelValue: "08")
+        pickerWheelsQuery.element(boundBy: 2).adjust(toPickerWheelValue: "00")
+        app.toolbars.buttons["OK"].tap()
+    }
 }
