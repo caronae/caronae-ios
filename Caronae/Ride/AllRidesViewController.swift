@@ -1,6 +1,6 @@
 import UIKit
 
-var lastAllRidesUpdate = Date.distantPast
+var lastAllRidesUpdate: Date!
 class AllRidesViewController: RideListController, SearchRideDelegate {
     let userDefaults = UserDefaults.standard
     var searchParams = FilterParameters()
@@ -14,6 +14,8 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
         NotificationCenter.default.addObserver(self, selector:#selector(self.reloadRidesIfNecessary), name: .UIApplicationWillEnterForeground, object: nil)
+        
+        lastAllRidesUpdate = Date.distantPast
         
         // Setting up infinite scroll
         tableView.infiniteScrollTriggerOffset = 500
