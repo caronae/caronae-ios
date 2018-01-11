@@ -28,5 +28,5 @@ fastlane/screenshots
 fastlane/test_output
 *.mobileprovision
 output/
+changelog.txt
 GoogleService-Info.plist
-

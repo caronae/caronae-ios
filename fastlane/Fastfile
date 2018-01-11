@@ -10,6 +10,9 @@ platform :ios do
 
   desc "Prepare dependencies for building app"
   lane :prepare_build do |options|
+    changes = changelog_from_git_commits(pretty: '- %s')
+    File.write('changelog.txt', changes)
+
     decrypt_keys
     cocoapods
     update_build_number
@@ -25,9 +28,11 @@ platform :ios do
   desc "Deploy a new build to TestFlight"
   lane :beta do |options|
     build unless options[:ipa]
-    pilot(
+    changes = File.read('changelog.txt')
+    upload_to_testflight(
       skip_waiting_for_build_processing: true,
       ipa: options[:ipa],
+      changelog: changes,
     )
   end
 
