@@ -1,4 +1,4 @@
-Alô Praia Vermelha! Vai uma caronaê? Preparamos o aplicativo para muito em breve liberar as opções da PV.
+Quer ser um testador (Beta Tester) do Caronaê? Você irá receber as atualizações primeiro e pode ajudar a melhorar ainda mais o funcionamento enviando seus comentários diretamente para os desenvolvedores! Envie um email para caronae@fundoverde.ufrj.br
 
 - Agora todas as suas caronas pendentes, ativas e ofertadas estão em uma única tela!
 - Atualizamos o nosso código para Swift 4.
