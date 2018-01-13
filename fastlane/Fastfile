@@ -38,7 +38,7 @@ platform :ios do
   desc "Deploy a new version to the App Store"
   lane :deploy do |options|
     build unless (options[:ipa] || options[:build_number])
-    deliver(
+    upload_to_app_store(
       submit_for_review: true,
       force: true,
       ipa: options[:ipa],
@@ -48,14 +48,14 @@ platform :ios do
 
   desc "Update and install all certificates and provisioning profiles"
   lane :update_signing do
-    match(type: "development", force_for_new_devices: true)
-    match(type: "appstore")
+    sync_code_signing(type: "development", force_for_new_devices: true)
+    sync_code_signing(type: "appstore")
   end
 
   desc "Install all certificates and provisioning profiles"
   lane :install_signing do
-    match(type: "development", readonly: true)
-    match(type: "appstore", readonly: true)
+    sync_code_signing(type: "development", readonly: true)
+    sync_code_signing(type: "appstore", readonly: true)
   end
 
   desc "Encrypt sensitive keys using AWS KMS"
@@ -96,7 +96,7 @@ platform :ios do
 
   desc "Take and frame screenshots of the app"
   lane :take_screenshots do
-    snapshot
+    capture_ios_screenshots
     frame_screenshots
   end
 
