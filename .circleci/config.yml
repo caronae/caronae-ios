@@ -107,26 +107,26 @@ workflows:
 
   build-and-deploy:
     jobs:
-      - configure-code
+      - configure-code:
+          filters:
+            branches:
+              only: master
       - build-prod:
           requires:
             - configure-code
-          filters:
-            branches:
-              only: master
       - build-dev:
           requires:
             - configure-code
-          filters:
-            branches:
-              only: master
       - deploy-testflight-prod:
           requires:
             - build-prod
       - deploy-testflight-dev:
           requires:
             - build-dev
-      - deploy-appstore-prod:
+      - hold-prod:
           type: approval
           requires:
            - deploy-testflight-prod
+      - deploy-appstore-prod:
+          requires:
+           - hold-prod
