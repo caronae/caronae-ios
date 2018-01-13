@@ -30,7 +30,6 @@ platform :ios do
     build unless options[:ipa]
     changes = File.read('changelog.txt')
     upload_to_testflight(
-      skip_waiting_for_build_processing: true,
       ipa: options[:ipa],
       changelog: changes,
     )
