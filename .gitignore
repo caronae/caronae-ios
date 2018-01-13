@@ -25,7 +25,6 @@ Carthage/Build
 fastlane/report.xml
 Preview.html
 fastlane/screenshots
-screenshots/
 fastlane/test_output
 *.mobileprovision
 output/
