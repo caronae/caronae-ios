@@ -12,7 +12,7 @@ languages([
 scheme "Caronae"
 app_identifier "br.ufrj.caronae"
 
-output_directory "./output/screenshots"
+output_directory "./screenshots"
 
 clear_previous_screenshots true
 reinstall_app true
