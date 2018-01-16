@@ -2,11 +2,11 @@
    "iPhone X",
    "iPhone 8",
    "iPhone 8 Plus",
-   "iPhone SE",
+   "iPhone SE"
 ])
 
 languages([
-  ["pt", "pt_BR"]
+  "pt-BR"
 ])
 
 scheme "Caronae"
