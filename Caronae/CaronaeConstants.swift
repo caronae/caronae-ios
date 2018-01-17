@@ -8,14 +8,14 @@ import Foundation
 #elseif TESTING
     let CaronaeAPIBaseURL = URL(string: "https://private-443d4-caronae.apiary-mock.com")
 #else
-    let CaronaeAPIBaseURL = URL(string: "https://api.caronae.com.br")
+    let CaronaeAPIBaseURL = URL(string: "https://api.caronae.org")
 #endif
 
 
 // MARK: Static pages URLs
 
 struct CaronaeURLString {
-    static let intranet = "https://api.caronae.com.br/login"
+    static let intranet = String(format: "%@/login", CaronaeAPIBaseURL!.absoluteString)
     static let aboutPage = "https://caronae.org/sobre_mobile.html"
     static let termsOfUsePage = "https://caronae.org/termos_mobile.html"
     static let FAQPage = "https://caronae.org/faq.html?mobile"
