@@ -6,6 +6,8 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
+		<string>applinks:caronae.org</string>
+		<string>applinks:dev.caronae.org</string>
 		<string>applinks:caronae.com.br</string>
 		<string>applinks:caronae.ufrj.br</string>
 		<string>applinks:dev.caronae.com.br</string>
