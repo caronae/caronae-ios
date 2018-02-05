@@ -1,11 +1,11 @@
-platform :ios, '8.0'
+platform :ios, '8.2'
 
 abstract_target 'caronae-ios' do
     use_frameworks!
     
     pod 'AFNetworking', '~> 2.6.3'
     pod 'ActionSheetPicker-3.0', '~> 2.3.0'
-    pod 'TPKeyboardAvoiding', '~> 1.3.1'
+    pod 'TPKeyboardAvoiding', '~> 1.3.2'
     pod 'SDCAlertView', '2.5.4'
     pod 'SVProgressHUD'
     pod 'SDWebImage', '~> 3.8.2'
@@ -13,7 +13,7 @@ abstract_target 'caronae-ios' do
     pod 'CRToast', '~> 0.0.7'
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
-    pod 'RealmSwift', '~> 3.0'
+    pod 'RealmSwift', '~> 3.1'
     pod 'ObjectMapper', '~> 3.1'
     pod 'ObjectMapper+Realm', '~> 0.5'
     pod 'UITextView+Placeholder', '~> 1.2'
