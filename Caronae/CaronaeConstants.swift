@@ -15,10 +15,15 @@ import Foundation
 // MARK: Static pages URLs
 
 struct CaronaeURLString {
+    #if DEVELOPMENT
+    static let base = "https://dev.caronae.org"
+    #else
+    static let base = "https://caronae.org"
+    #endif
     static let intranet = String(format: "%@/login", CaronaeAPIBaseURL!.absoluteString)
-    static let aboutPage = "https://caronae.org/sobre_mobile.html"
-    static let termsOfUsePage = "https://caronae.org/termos_mobile.html"
-    static let FAQPage = "https://caronae.org/faq.html?mobile"
+    static let aboutPage = String(format: "%@/sobre_mobile.html", CaronaeURLString.base)
+    static let termsOfUsePage = String(format: "%@/termos_mobile.html", CaronaeURLString.base)
+    static let FAQPage = String(format: "%@/faq.html?mobile", CaronaeURLString.base)
 }
 
 

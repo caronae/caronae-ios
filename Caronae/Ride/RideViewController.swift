@@ -307,7 +307,7 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
     
     @IBAction func didTapShareRide(_ sender: Any) {
         let rideTitle = String(format: "Carona: %@", ride.title)
-        let rideLink = URL(string: String(format: "https://caronae.org/carona/%ld", ride.id))!
+        let rideLink = URL(string: String(format: "%@/carona/%ld", CaronaeURLString.base, ride.id))!
         let rideToShare = [rideTitle, dateLabel.text!, rideLink] as [Any]
         
         let activityVC = UIActivityViewController(activityItems: rideToShare, applicationActivities: nil)
