@@ -98,7 +98,6 @@ class Caronae_UITests: XCTestCase {
         app.tables.staticTexts["Cidade Universitária"].tap()
         app.tables.staticTexts["CCMN"].tap()
         
-        app.children(matching: .window).element(boundBy: 0).tap() // hide keyboard
         app.swipeUp()
         
         let increaseSlotsButton = elementsQuery.steppers.buttons.element(boundBy: 1)
