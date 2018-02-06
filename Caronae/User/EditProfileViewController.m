@@ -47,6 +47,12 @@
     }
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.view endEditing:YES];
+}
+
 - (void)configureFacebookLoginButton {
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     [loginButton removeConstraints:loginButton.constraints];
@@ -210,6 +216,7 @@
 }
 
 - (IBAction)didTapPhoto:(id)sender {
+    [self.view endEditing:YES];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"De onde deseja importar sua foto?" preferredStyle:UIAlertControllerStyleActionSheet];
     [alert addAction:[UIAlertAction actionWithTitle:@"Cancelar" style:UIAlertActionStyleCancel handler:nil]];
     [alert addAction:[UIAlertAction actionWithTitle:@"Usar foto do Facebook" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

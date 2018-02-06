@@ -103,6 +103,12 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         slotsLabel.text = String(format: "%.f", slotsStepper.value)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.view.endEditing(true)
+    }
+    
     func checkIfUserHasCar() {
         if let user = UserService.instance.user, !user.carOwner {
             CaronaeAlertController.presentOkAlert(withTitle: "Você possui carro?", message: "Parece que você marcou no seu perfil que não possui um carro.Para criar uma carona, preencha os dados do seu carro no seu perfil.", handler: {
@@ -187,6 +193,8 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     }
     
     @IBAction func didTapCreateButton(_ sender: Any) {
+        self.view.endEditing(true)
+        
         // Check if the user selected the location and hub
         if selectedZone.isEmpty || selectedNeighborhood.isEmpty || selectedHub.isEmpty {
             CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que você esqueceu de preencher o local da sua carona.")
@@ -241,6 +249,7 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     }
     
     @IBAction func slotsStepperChanged(_ sender: UIStepper) {
+        self.view.endEditing(true)
         slotsLabel.text = String(format: "%.f", sender.value)
     }
     
@@ -263,6 +272,7 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     }
     
     @IBAction func routineWeekDayButtonTapped(_ sender: UIButton) {
+        self.view.endEditing(true)
         sender.isSelected = !sender.isSelected
         
         if sender.isSelected {
@@ -273,6 +283,7 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     }
     
     @IBAction func routineDurationButtonTapped(_ sender: UIButton) {
+        self.view.endEditing(true)
         routineDuration2MonthsButton.isSelected = false
         routineDuration3MonthsButton.isSelected = false
         routineDuration4MonthsButton.isSelected = false
