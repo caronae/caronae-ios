@@ -44,6 +44,16 @@ class ChatViewController: JSQMessagesViewController {
         self.inputToolbar.contentView?.leftBarButtonItem = nil
         self.inputToolbar.contentView?.rightBarButtonItem.setTitleColor(self.color, for: .normal)
         self.inputToolbar.maximumHeight = 125
+        if #available(iOS 11.0, *) {
+            // Create constraint between inputToolbar and safe area layout guide
+            for constraint in view.constraints {
+                if constraint.firstAnchor == view.bottomAnchor || constraint.secondAnchor == view.bottomAnchor {
+                    constraint.priority = UILayoutPriority(990)
+                }
+            }
+            let safeArea = self.view.safeAreaLayoutGuide
+            inputToolbar.bottomAnchor.constraint(lessThanOrEqualTo: safeArea.bottomAnchor).isActive = true
+        }
         
         // Setting up message bubble
         incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: .jsq_messageBubbleLightGray())
