@@ -1,7 +1,7 @@
 extension Date {
     /// Gets the next full hour from current date. For example, if now is 16:16:45, returns 17:00:00.
     ///
-    /// - returns: NSDate with next full hour (current hour + 1), 0 minutes and 0 seconds.
+    /// - returns: Date with next full hour (current hour + 1), 0 minutes and 0 seconds.
     static var nextHour: Date {
         let gregorian = Calendar(identifier: .gregorian)
         let now = Date()
@@ -12,7 +12,7 @@ extension Date {
     
     /// Gets the current full hour from current date. For example, if now is 16:16:45, returns 16:00:00.
     ///
-    /// - returns: NSDate with current full hour (current hour), 0 minutes and 0 seconds.
+    /// - returns: Date with current full hour (current hour), 0 minutes and 0 seconds.
     static var currentHour: Date {
         let gregorian = Calendar(identifier: .gregorian)
         let now = Date()
@@ -20,9 +20,9 @@ extension Date {
         return gregorian.date(from: components)!
     }
     
-    /// Gets the current full hour:minutes from current date plus the argument in minutes.
+    /// Gets the current hour:minutes from current date plus the argument in minutes.
     ///
-    /// - returns: NSDate with currente full hour:minutes + minutes.
+    /// - returns: Date with currente hour:minutes + minutes.
     static func currentTimePlus(minutes: Int) -> Date {
         let gregorian = Calendar(identifier: .gregorian)
         let now = Date()
