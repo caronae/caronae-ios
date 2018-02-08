@@ -3,7 +3,7 @@ import RealmSwift
 
 class PlaceService: NSObject {
     @objc static let instance = PlaceService()
-    let api = CaronaeAPIHTTPSessionManager.instance
+    private let api = CaronaeAPIHTTPSessionManager.instance
     
     private override init() {
         // This prevents others from using the default '()' initializer for this class.
@@ -24,7 +24,7 @@ class PlaceService: NSObject {
         }
     }
     
-    func loadCampiFromRealm(hubTypeDirection: HubSelectionViewController.HubTypeDirection) -> ([String], [String: [String]], [String: UIColor]) {
+    private func loadCampiFromRealm(hubTypeDirection: HubSelectionViewController.HubTypeDirection) -> ([String], [String: [String]], [String: UIColor]) {
         let realm = try! Realm()
         let campusObjects = realm.objects(Campus.self)
         let campi = campusObjects.flatMap { $0.name }.sorted()
@@ -55,7 +55,7 @@ class PlaceService: NSObject {
         }
     }
     
-    func loadZonesFromRealm() -> ([String], [String: [String]], [String: UIColor]) {
+    private func loadZonesFromRealm() -> ([String], [String: [String]], [String: UIColor]) {
         let realm = try! Realm()
         let zoneObjects = realm.objects(Zone.self)
         var zones = zoneObjects.flatMap { $0.name }.sorted()

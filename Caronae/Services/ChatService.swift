@@ -3,7 +3,7 @@ import Firebase
 
 class ChatService: NSObject {
     static let instance = ChatService()
-    let api = CaronaeAPIHTTPSessionManager.instance
+    private let api = CaronaeAPIHTTPSessionManager.instance
     
     private override init() {
         // This prevents others from using the default '()' initializer for this class.

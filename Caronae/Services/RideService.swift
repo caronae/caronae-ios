@@ -3,7 +3,7 @@ import RealmSwift
 
 class RideService: NSObject {
     static let instance = RideService()
-    let api = CaronaeAPIHTTPSessionManager.instance
+    private let api = CaronaeAPIHTTPSessionManager.instance
     
     private override init() {
         // This prevents others from using the default '()' initializer for this class.

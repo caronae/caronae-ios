@@ -6,7 +6,7 @@ import Firebase
 
 class UserService: NSObject {
     @objc static let instance = UserService()
-    let api = CaronaeAPIHTTPSessionManager.instance
+    private let api = CaronaeAPIHTTPSessionManager.instance
     
     private override init() {
         // This prevents others from using the default '()' initializer for this class.

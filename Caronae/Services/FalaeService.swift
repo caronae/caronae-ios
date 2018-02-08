@@ -2,7 +2,7 @@ import Foundation
 
 class FalaeService: NSObject {
     static let instance = FalaeService()
-    let api = CaronaeAPIHTTPSessionManager.instance
+    private let api = CaronaeAPIHTTPSessionManager.instance
     
     private override init() {
         // This prevents others from using the default '()' initializer for this class.
