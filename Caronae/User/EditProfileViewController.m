@@ -107,6 +107,7 @@
 
 - (User *)generateUserFromView {
     User *updatedUser = [[User alloc] init];
+    updatedUser.id = self.user.id;
     updatedUser.name = self.user.name;
     updatedUser.profile = self.user.profile;
     updatedUser.course = self.user.course;

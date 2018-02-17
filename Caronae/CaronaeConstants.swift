@@ -4,11 +4,11 @@ import Foundation
 // MARK: Caronae API Base URL
 
 #if DEVELOPMENT
-    let CaronaeAPIBaseURL = URL(string: "https://api.dev.caronae.org")
+    let CaronaeAPIBaseURLString = "https://api.dev.caronae.org"
 #elseif TESTING
-    let CaronaeAPIBaseURL = URL(string: "https://private-443d4-caronae.apiary-mock.com")
+    let CaronaeAPIBaseURLString = "https://private-443d4-caronae.apiary-mock.com"
 #else
-    let CaronaeAPIBaseURL = URL(string: "https://api.caronae.org")
+    let CaronaeAPIBaseURLString = "https://api.caronae.org"
 #endif
 
 
@@ -20,7 +20,7 @@ struct CaronaeURLString {
     #else
     static let base = "https://caronae.org"
     #endif
-    static let intranet = String(format: "%@/login", CaronaeAPIBaseURL!.absoluteString)
+    static let intranet = String(format: "%@/login", CaronaeAPIBaseURLString)
     static let aboutPage = String(format: "%@/sobre_mobile.html", CaronaeURLString.base)
     static let termsOfUsePage = String(format: "%@/termos_mobile.html", CaronaeURLString.base)
     static let FAQPage = String(format: "%@/faq.html?mobile", CaronaeURLString.base)

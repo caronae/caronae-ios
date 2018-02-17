@@ -62,7 +62,7 @@ class UserService: NSObject {
     
     func signIn(withID idUFRJ: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
         let params = [ "id_ufrj": idUFRJ, "token": token ]
-        api.post("/user/login", parameters: params, success: { task, responseObject in
+        api.post("/api/v1/users/login", parameters: params, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
             let userJson = responseObject["user"] as? [String: Any],
             let user = User(JSON: userJson) else {
@@ -141,7 +141,7 @@ class UserService: NSObject {
     }
     
     @objc func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.put("/user", parameters: user.toJSON(), success: { task, responseObject in
+        api.put("/api/v1/users/\(user.id)", parameters: user.toJSON(), success: { task, responseObject in
             
             let currentUser = self.user!
             
@@ -168,13 +168,14 @@ class UserService: NSObject {
         })
     }
     
-    func updateFacebookID(_ id: Any, token: Any, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        let params = [
-            "token": token,
-            "id": id
-        ]
+    func updateFacebookID(_ id: Any, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+        guard let user = UserService.instance.user else {
+            NSLog("Error: No userID registered")
+            return
+        }
         
-        api.put("/user/saveFaceId", parameters: params, success: { task, responseObject in
+        let params = [ "facebook_id": id ]
+        api.put("/api/v1/users/\(user.id)", parameters: params, success: { task, responseObject in
             success()
         }, failure: { _, err in
             error(err)
@@ -198,10 +199,10 @@ class UserService: NSObject {
 
     
     @objc func ridesCountForUser(withID id: Int, success: @escaping (_ offered: Int, _ taken: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/ride/getRidesHistoryCount/\(id)", parameters: nil, success: { task, responseObject in
+        api.get("/api/v1/users/\(id)/rides/history", parameters: nil, success: { task, responseObject in
             guard let response = responseObject as? [String: Any],
-                let offered = response["offeredCount"] as? Int,
-                let taken = response["takenCount"] as? Int else {
+                let offered = response["offered_rides_count"] as? Int,
+                let taken = response["taken_rides_count"] as? Int else {
                     error(CaronaeError.invalidResponse)
                     return
             }

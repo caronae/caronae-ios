@@ -144,11 +144,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         NSLog("Facebook Access Token did change.")
-        var fbToken = String()
-        if let tokenString = token.tokenString {
-            fbToken = tokenString
-            NSLog("New Facebook Access Token is %@", tokenString)
-        }
         
         var fbID = String()
         if notification.userInfo?[FBSDKAccessTokenDidChangeUserID] != nil {
@@ -158,7 +153,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        UserService.instance.updateFacebookID(fbID, token: fbToken, success: {
+        UserService.instance.updateFacebookID(fbID, success: {
             NSLog("Updated user's Facebook credentials on server.")
         }, error: { error in
             NSLog("Error updating user's Facebook credentials on server: %@", error.localizedDescription)
