@@ -14,7 +14,7 @@ class FalaeService: NSObject {
             "message": message,
             ]
         
-        api.post("/falae/sendMessage", parameters: params, success: { _, _ in
+        api.post("/api/v1/falae/messages", parameters: params, success: { _, _ in
             success()
         }, failure: { _, err in
             error(err)

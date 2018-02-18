@@ -93,7 +93,7 @@ class RideService: NSObject {
         })
     }
     
-    func handlePendingRidesUpdate(_ rides: [Ride]) {
+    private func handlePendingRidesUpdate(_ rides: [Ride]) {
         do {
             let realm = try Realm()
             // Clear rides previously marked as pending
@@ -111,7 +111,7 @@ class RideService: NSObject {
         }
     }
     
-    func handleActiveRidesUpdate(_ rides: [Ride]) {
+    private func handleActiveRidesUpdate(_ rides: [Ride]) {
         do {
             let realm = try Realm()
             // Clear rides previously marked as active
@@ -137,7 +137,7 @@ class RideService: NSObject {
         }
     }
     
-    func handleOfferedRidesUpdate(_ rides: [Ride]) {
+    private func handleOfferedRidesUpdate(_ rides: [Ride]) {
         do {
             let realm = try Realm()
             let currentDate = Date()
@@ -213,7 +213,7 @@ class RideService: NSObject {
     }
     
     func getRequestersForRide(withID id: Int, success: @escaping (_ rides: [User]) -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/ride/getRequesters/\(id)", parameters: nil, success: { task, responseObject in
+        api.get("/api/v1/rides/\(id)/requests", parameters: nil, success: { task, responseObject in
             guard let usersJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
                 return
@@ -329,7 +329,7 @@ class RideService: NSObject {
     }
     
     func requestJoinOnRide(_ ride: Ride, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.post("/ride/requestJoin", parameters: ["rideId": ride.id], success: { task, responseObject in
+        api.post("/api/v1/rides/\(ride.id)/requests", parameters: nil, success: { task, responseObject in
             do {
                 let realm = try Realm()
                 try realm.write {
@@ -391,12 +391,11 @@ class RideService: NSObject {
     
     func answerRequestOnRide(withID rideID: Int, fromUser user: User, accepted: Bool, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         let params = [
-            "rideId": rideID,
             "userId": user.id,
             "accepted": accepted
         ] as [String: Any]
         
-        api.post("/ride/answerJoinRequest", parameters: params, success: { task, responseObject in
+        api.put("/api/v1/rides/\(rideID)/requests", parameters: params, success: { task, responseObject in
             if accepted {
                 do {
                     let realm = try Realm()
