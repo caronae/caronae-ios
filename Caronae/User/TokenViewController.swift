@@ -7,6 +7,7 @@ class TokenViewController: UIViewController {
     @IBOutlet weak var authButton: UIButton!
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var tokenTextField: UITextField!
+    var authController: AuthenticationController!
     
     static func tokenViewController() -> TokenViewController
     {
@@ -17,6 +18,15 @@ class TokenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if #available(iOS 11, *) {
+            self.authController = AuthenticationController()
+            self.authController.authenticate(success: { (idUFRJ: String, token: String) in
+                NSLog("Authenticated with id '%@' and token '%@'", idUFRJ, token)
+                self.authenticate(id: idUFRJ, token: token)
+            })
+        }
 
         authButton.isEnabled = false
         tokenTextField.delegate = self
@@ -26,10 +36,7 @@ class TokenViewController: UIViewController {
         welcomeLabel.addGestureRecognizer(tapRecognizer)
     }
 
-    func authenticate() {
-        let id = idTextField.text!
-        let token = tokenTextField.text!
-        
+    func authenticate(id: String, token: String) {
         authButton.isEnabled = false
         SVProgressHUD.show()
         
@@ -55,19 +62,19 @@ class TokenViewController: UIViewController {
     }
     
     @objc func openIntranetLogin() {
-        let intranetURL = URL(string: CaronaeURLString.intranet)!
+        let loginURL = URL(string: CaronaeURLString.login)!
         if #available(iOS 9, *) {
-            let safariViewController = SFSafariViewController(url: intranetURL, entersReaderIfAvailable: false)
+            let safariViewController = SFSafariViewController(url: loginURL, entersReaderIfAvailable: false)
             present(safariViewController, animated: true)
         } else {
-            UIApplication.shared.openURL(intranetURL)
+            UIApplication.shared.openURL(loginURL)
         }
     }
 
     // MARK: IBActions
     
     @IBAction func didTapAuthenticateButton(_ sender: Any) {
-        authenticate()
+        authenticate(id: idTextField.text!, token: tokenTextField.text!)
     }
     
 }
@@ -76,7 +83,7 @@ extension TokenViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case tokenTextField:
-            authenticate()
+            authenticate(id: idTextField.text!, token: tokenTextField.text!)
             return false
         case idTextField:
             if idTextField.hasText {

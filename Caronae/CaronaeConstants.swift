@@ -20,7 +20,8 @@ struct CaronaeURLString {
     #else
     static let base = "https://caronae.org"
     #endif
-    static let intranet = String(format: "%@/login", CaronaeAPIBaseURLString)
+    static let login = String(format: "%@/login", CaronaeAPIBaseURLString)
+    static let loginCallback = "caronae://login"
     static let aboutPage = String(format: "%@/sobre_mobile.html", CaronaeURLString.base)
     static let termsOfUsePage = String(format: "%@/termos_mobile.html", CaronaeURLString.base)
     static let FAQPage = String(format: "%@/faq.html?mobile", CaronaeURLString.base)

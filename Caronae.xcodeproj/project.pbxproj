@@ -113,6 +113,8 @@
 		718F3AF71FE9FEBE001F1D40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169C9C1BED842D00A0D428 /* Main.storyboard */; };
 		718F3AF81FE9FEBE001F1D40 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A34CEC4C1C993115006FC41E /* Settings.bundle */; };
 		718F3AF91FE9FEBE001F1D40 /* JoinRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */; };
+		719428F8203A3D48008E2A24 /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719428F7203A3D48008E2A24 /* AuthenticationController.swift */; };
+		719428F9203A3D48008E2A24 /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719428F7203A3D48008E2A24 /* AuthenticationController.swift */; };
 		71AE13E41E8200D8008ACB06 /* FilterRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */; };
 		71C60AAE1EBAC1A300E84318 /* SearchRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */; };
 		71C60AB01EBACCA300E84318 /* Date+nextHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */; };
@@ -224,6 +226,7 @@
 		718C52231F81774A006E964A /* FalaeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalaeViewController.swift; sourceTree = "<group>"; };
 		718C9B741E5F923A0037A78B /* AllRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRidesViewController.swift; sourceTree = "<group>"; };
 		718F3B001FE9FEBE001F1D40 /* Caronae Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Caronae Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		719428F7203A3D48008E2A24 /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
 		71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRideViewController.swift; sourceTree = "<group>"; };
 		71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRideViewController.swift; sourceTree = "<group>"; };
 		71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+nextHour.swift"; sourceTree = "<group>"; };
@@ -496,6 +499,7 @@
 				A34312C81BF01C1D005BA311 /* ProfileViewController.h */,
 				A34312C91BF01C1D005BA311 /* ProfileViewController.m */,
 				A3AD82391E1C8049006D8ABE /* TokenViewController.swift */,
+				719428F7203A3D48008E2A24 /* AuthenticationController.swift */,
 				A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */,
 				A3AC169E1E357828000B5817 /* WelcomeViewController.xib */,
 			);
@@ -1222,6 +1226,7 @@
 				718F3AE41FE9FEBE001F1D40 /* Zone.swift in Sources */,
 				718F3AE51FE9FEBE001F1D40 /* Array+compactString.swift in Sources */,
 				718F3AE61FE9FEBE001F1D40 /* String+capitalizedAfter.swift in Sources */,
+				719428F9203A3D48008E2A24 /* AuthenticationController.swift in Sources */,
 				718F3AE71FE9FEBE001F1D40 /* ZoneSelectionInputViewController.swift in Sources */,
 				716914371FEAE88A004AD5C7 /* RideListController.swift in Sources */,
 				718F3AE81FE9FEBE001F1D40 /* CaronaeTextField.m in Sources */,
@@ -1298,6 +1303,7 @@
 				A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */,
 				7133482E1F5F609700E2218E /* Zone.swift in Sources */,
 				713E99B91E8D5FA900F3C9E0 /* Array+compactString.swift in Sources */,
+				719428F8203A3D48008E2A24 /* AuthenticationController.swift in Sources */,
 				7148D5621EDA1D0A00D85B7D /* String+capitalizedAfter.swift in Sources */,
 				71F648661F71F364004C712F /* ZoneSelectionInputViewController.swift in Sources */,
 				A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */,
