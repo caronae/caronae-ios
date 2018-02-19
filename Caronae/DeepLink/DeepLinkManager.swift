@@ -21,7 +21,7 @@ class DeepLinkManager {
         return deeplinkType != nil
     }
     
-    // Check existing deepling and perform action
+    // Check existing deeplink and perform action
     func checkDeepLink() {
         guard let deeplinkType = deeplinkType else {
             return

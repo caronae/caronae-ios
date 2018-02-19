@@ -404,6 +404,16 @@
 			path = CaronaeUITests;
 			sourceTree = "<group>";
 		};
+		71942900203A6C5C008E2A24 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				719428FA203A609C008E2A24 /* Login.storyboard */,
+				A3AD82391E1C8049006D8ABE /* TokenViewController.swift */,
+				719428F7203A3D48008E2A24 /* AuthenticationController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		71F648671F71F36B004C712F /* Place selection */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,13 +510,11 @@
 		A32B80B71C2E073000FC370A /* User */ = {
 			isa = PBXGroup;
 			children = (
-				719428FA203A609C008E2A24 /* Login.storyboard */,
+				71942900203A6C5C008E2A24 /* Login */,
 				A34312CB1BF01C26005BA311 /* EditProfileViewController.h */,
 				A34312CC1BF01C26005BA311 /* EditProfileViewController.m */,
 				A34312C81BF01C1D005BA311 /* ProfileViewController.h */,
 				A34312C91BF01C1D005BA311 /* ProfileViewController.m */,
-				A3AD82391E1C8049006D8ABE /* TokenViewController.swift */,
-				719428F7203A3D48008E2A24 /* AuthenticationController.swift */,
 				A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */,
 				A3AC169E1E357828000B5817 /* WelcomeViewController.xib */,
 			);

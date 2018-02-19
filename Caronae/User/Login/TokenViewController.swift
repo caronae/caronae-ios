@@ -59,10 +59,7 @@ class TokenViewController: UIViewController {
     @IBAction func openLogin() {
         if #available(iOS 11, *) {
             self.authController = AuthenticationController()
-            self.authController.authenticate(success: { (idUFRJ: String, token: String) in
-                NSLog("Authenticated with id '%@' and token '%@'", idUFRJ, token)
-                self.authenticate(id: idUFRJ, token: token)
-            })
+            self.authController.openLogin()
         }
     }
     
