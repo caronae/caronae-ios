@@ -21,18 +21,19 @@ class AuthenticationController {
                     NSLog("SFAuthenticationSession failed")
                     return
                 }
-                
+
                 NSLog("SFAuthenticationSession received callback")
                 if deepLinkManager.handleDeepLink(url: url) {
                     deepLinkManager.checkDeepLink()
                 }
             })
-            
+
             authSession.start()
             self.authSession = authSession
+            return
         }
         
-        // TODO: other iOS versions
+        UIApplication.shared.openURL(authURL)
     }
     
     public func authenticate(withID idUFRJ: String, token: String, callback: @escaping (_ error: CaronaeError?) -> Void) {

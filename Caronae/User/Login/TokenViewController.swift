@@ -5,7 +5,7 @@ import UIKit
 class TokenViewController: UIViewController {
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var loginButton: CaronaeGradientButton!
-    var authController: AuthenticationController!
+    var authController = AuthenticationController()
     
     static func tokenViewController() -> TokenViewController
     {
@@ -43,24 +43,11 @@ class TokenViewController: UIViewController {
         })
     }
     
-    @objc func openIntranetLogin() {
-        let loginURL = URL(string: CaronaeURLString.login)!
-        if #available(iOS 9, *) {
-            let safariViewController = SFSafariViewController(url: loginURL, entersReaderIfAvailable: false)
-            present(safariViewController, animated: true)
-        } else {
-            UIApplication.shared.openURL(loginURL)
-        }
-    }
-
     
     // MARK: IBActions
     
     @IBAction func openLogin() {
-        if #available(iOS 11, *) {
-            self.authController = AuthenticationController()
-            self.authController.openLogin()
-        }
+        self.authController.openLogin()
     }
     
 }
