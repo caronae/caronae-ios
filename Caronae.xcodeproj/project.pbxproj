@@ -115,6 +115,10 @@
 		718F3AF91FE9FEBE001F1D40 /* JoinRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */; };
 		719428F8203A3D48008E2A24 /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719428F7203A3D48008E2A24 /* AuthenticationController.swift */; };
 		719428F9203A3D48008E2A24 /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719428F7203A3D48008E2A24 /* AuthenticationController.swift */; };
+		719428FB203A609C008E2A24 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 719428FA203A609C008E2A24 /* Login.storyboard */; };
+		719428FC203A609C008E2A24 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 719428FA203A609C008E2A24 /* Login.storyboard */; };
+		719428FE203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719428FD203A651D008E2A24 /* CaronaeGradientButton.swift */; };
+		719428FF203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719428FD203A651D008E2A24 /* CaronaeGradientButton.swift */; };
 		71AE13E41E8200D8008ACB06 /* FilterRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */; };
 		71C60AAE1EBAC1A300E84318 /* SearchRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */; };
 		71C60AB01EBACCA300E84318 /* Date+nextHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */; };
@@ -227,6 +231,8 @@
 		718C9B741E5F923A0037A78B /* AllRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRidesViewController.swift; sourceTree = "<group>"; };
 		718F3B001FE9FEBE001F1D40 /* Caronae Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Caronae Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		719428F7203A3D48008E2A24 /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
+		719428FA203A609C008E2A24 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		719428FD203A651D008E2A24 /* CaronaeGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaronaeGradientButton.swift; sourceTree = "<group>"; };
 		71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRideViewController.swift; sourceTree = "<group>"; };
 		71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRideViewController.swift; sourceTree = "<group>"; };
 		71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+nextHour.swift"; sourceTree = "<group>"; };
@@ -494,6 +500,7 @@
 		A32B80B71C2E073000FC370A /* User */ = {
 			isa = PBXGroup;
 			children = (
+				719428FA203A609C008E2A24 /* Login.storyboard */,
 				A34312CB1BF01C26005BA311 /* EditProfileViewController.h */,
 				A34312CC1BF01C26005BA311 /* EditProfileViewController.m */,
 				A34312C81BF01C1D005BA311 /* ProfileViewController.h */,
@@ -569,6 +576,7 @@
 				A375D2F91C19175A00795CAE /* CaronaeAlertController.h */,
 				A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */,
 				A3AC169A1E34168A000B5817 /* CaronaeError.swift */,
+				719428FD203A651D008E2A24 /* CaronaeGradientButton.swift */,
 				A3169CC91BED893F00A0D428 /* CaronaeTextField.h */,
 				A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */,
 				A398BE031C6D7DEC00CEA6A1 /* CaronaePhoneTextField.h */,
@@ -793,6 +801,7 @@
 				718F3AF41FE9FEBE001F1D40 /* SelectionCell.xib in Resources */,
 				718F3AF51FE9FEBE001F1D40 /* RideListController.xib in Resources */,
 				718F3AF61FE9FEBE001F1D40 /* Assets.xcassets in Resources */,
+				719428FC203A609C008E2A24 /* Login.storyboard in Resources */,
 				718F3AF71FE9FEBE001F1D40 /* Main.storyboard in Resources */,
 				718F3AF81FE9FEBE001F1D40 /* Settings.bundle in Resources */,
 				718F3AF91FE9FEBE001F1D40 /* JoinRequestCell.xib in Resources */,
@@ -811,6 +820,7 @@
 				71F648631F71F364004C712F /* SelectionCell.xib in Resources */,
 				A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */,
 				A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */,
+				719428FB203A609C008E2A24 /* Login.storyboard in Resources */,
 				A3169C9E1BED842D00A0D428 /* Main.storyboard in Resources */,
 				A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */,
 				A325DA711C0CAFD700B9124E /* JoinRequestCell.xib in Resources */,
@@ -1193,6 +1203,7 @@
 				718F3AC11FE9FEBE001F1D40 /* AllRidesViewController.swift in Sources */,
 				718F3AC21FE9FEBE001F1D40 /* DateTimeTransform.swift in Sources */,
 				718F3AC31FE9FEBE001F1D40 /* PhoneNumberActionSheet.swift in Sources */,
+				719428FF203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
 				718F3AC41FE9FEBE001F1D40 /* WebViewController.m in Sources */,
 				718F3AC51FE9FEBE001F1D40 /* UIColor+hex.swift in Sources */,
 				718F3AC61FE9FEBE001F1D40 /* TabBarController.m in Sources */,
@@ -1270,6 +1281,7 @@
 				A3AD82331E1C63CD006D8ABE /* DateTimeTransform.swift in Sources */,
 				71FDA2451F401EBB00DA67E8 /* PhoneNumberActionSheet.swift in Sources */,
 				A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */,
+				719428FE203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
 				714F82311F610E8300531C71 /* UIColor+hex.swift in Sources */,
 				A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */,
 				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
@@ -1457,7 +1469,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Caronae/Caronae.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = 5JHLCV2DBL;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1487,7 +1499,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Caronae/Caronae.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = 5JHLCV2DBL;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1545,7 +1557,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Caronae/Caronae.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = 5JHLCV2DBL;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1576,7 +1588,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Caronae/Caronae.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Mario  Cecchi (5JHLCV2DBL)";
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = 5JHLCV2DBL;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1653,7 +1665,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Caronae/Caronae.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Mario  Cecchi (5JHLCV2DBL)";
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = 5JHLCV2DBL;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1734,7 +1746,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Caronae/Caronae.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 37;
+				CURRENT_PROJECT_VERSION = 38;
 				DEVELOPMENT_TEAM = 5JHLCV2DBL;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
