@@ -1,4 +1,3 @@
-import CRToast
 import AudioToolbox
 
 extension AppDelegate {
@@ -134,7 +133,7 @@ extension AppDelegate {
     func showMessageIfActive(_ message: String) {
         if UIApplication.shared.applicationState == .active {
             playNotificationSound()
-            CRToastManager.showNotification(options: [kCRToastTextKey: message], completionBlock: nil)
+            CaronaeMessagesNotification.instance.showMessage(of: .success, withText: message)
         }
     }
     

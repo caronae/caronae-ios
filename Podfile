@@ -10,7 +10,7 @@ abstract_target 'caronae-ios' do
     pod 'SVProgressHUD'
     pod 'SDWebImage', '~> 3.8.2'
     pod 'SHSPhoneComponent'
-    pod 'CRToast', '~> 0.0.7'
+    pod 'SwiftMessages'
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
     pod 'RealmSwift', '~> 3.1'

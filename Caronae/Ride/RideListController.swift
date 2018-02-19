@@ -1,6 +1,5 @@
 import UIKit
 import RealmSwift
-import CRToast
 
 class RideListController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
@@ -161,15 +160,13 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
         if error.domain == NSURLErrorDomain {
             switch error.code {
             case NSURLErrorNotConnectedToInternet:
-                CRToastManager.showNotification(options: [kCRToastTextKey: "Sem conexão com a internet",
-                                                          kCRToastBackgroundColorKey: UIColor.red], completionBlock: nil)
+                CaronaeMessagesNotification.instance.showMessage(of: .error, withText: "Sem conexão com a internet")
                 return
             case NSURLErrorTimedOut,
                  NSURLErrorCannotFindHost,
                  NSURLErrorCannotConnectToHost,
                  NSURLErrorNetworkConnectionLost:
-                CRToastManager.showNotification(options: [kCRToastTextKey: "Sem conexão com o Caronaê",
-                                                          kCRToastBackgroundColorKey: UIColor.red], completionBlock: nil)
+                CaronaeMessagesNotification.instance.showMessage(of: .error, withText: "Sem conexão com o Caronaê")
                 return
             default:
                 break

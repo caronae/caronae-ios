@@ -2,7 +2,6 @@ import UIKit
 import SVProgressHUD
 import AFNetworking
 import AudioToolbox
-import CRToast
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,12 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureFirebase()
         configureFacebook(WithLaunchOptions: launchOptions)
         
+        CaronaeMessagesNotification.instance.configureMessagesNotification()
+        
         // Prepare beepSound for notifications while app is in foreground
         if let soundURL = Bundle.main.url(forResource: "beep", withExtension: "wav") {
             AudioServicesCreateSystemSoundID(soundURL as CFURL, &beepSound)
         }
-        
-        CRToastManager.setDefaultOptions([kCRToastBackgroundColorKey: UIColor(red: 0.114, green: 0.655, blue: 0.365, alpha: 1.0)])
         
         // Load the authentication screen if the user is not signed in
         if UserService.instance.user != nil {
