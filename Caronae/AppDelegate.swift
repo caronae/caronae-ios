@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureFirebase()
         configureFacebook(WithLaunchOptions: launchOptions)
         
-        CaronaeMessagesNotification.instance.configureMessagesNotification()
-        
         // Prepare beepSound for notifications while app is in foreground
         if let soundURL = Bundle.main.url(forResource: "beep", withExtension: "wav") {
             AudioServicesCreateSystemSoundID(soundURL as CFURL, &beepSound)

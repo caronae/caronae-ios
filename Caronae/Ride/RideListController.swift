@@ -160,13 +160,13 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
         if error.domain == NSURLErrorDomain {
             switch error.code {
             case NSURLErrorNotConnectedToInternet:
-                CaronaeMessagesNotification.instance.showMessage(of: .error, withText: "Sem conexão com a internet")
+                CaronaeMessagesNotification.instance.showError(withText: "Sem conexão com a internet")
                 return
             case NSURLErrorTimedOut,
                  NSURLErrorCannotFindHost,
                  NSURLErrorCannotConnectToHost,
                  NSURLErrorNetworkConnectionLost:
-                CaronaeMessagesNotification.instance.showMessage(of: .error, withText: "Sem conexão com o Caronaê")
+                CaronaeMessagesNotification.instance.showError(withText: "Sem conexão com o Caronaê")
                 return
             default:
                 break

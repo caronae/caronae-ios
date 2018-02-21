@@ -133,7 +133,7 @@ extension AppDelegate {
     func showMessageIfActive(_ message: String) {
         if UIApplication.shared.applicationState == .active {
             playNotificationSound()
-            CaronaeMessagesNotification.instance.showMessage(of: .success, withText: message)
+            CaronaeMessagesNotification.instance.showSuccess(withText: message)
         }
     }
     
