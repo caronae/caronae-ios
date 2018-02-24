@@ -21,7 +21,7 @@ class CaronaeError: NSError {
     
     class var invalidCredentials: CaronaeError {
         return self.init(code: .invalidCredentials,
-                         description: "As credenciais do usuário não foram aceitas pelo servidor.")
+                         description: "Credenciais inválidas. Verifique se os dados foram digitados corretamente e tente de novo.")
     }
     
     class var invalidResponse: CaronaeError {

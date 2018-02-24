@@ -98,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func displayAuthenticationScreen() {
-        let authViewController = TokenViewController.tokenViewController()
+        let authViewController = LoginViewController.viewController()
         UIApplication.shared.keyWindow?.replaceViewController(with: authViewController)
     }
     

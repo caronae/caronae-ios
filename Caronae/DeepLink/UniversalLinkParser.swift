@@ -24,19 +24,30 @@ class UniversalLinkParser {
         }
         
         let pathComponents = components.path.components(separatedBy: "/").dropFirst()
-        return handleLink(resource: resource, pathComponents: pathComponents)
+        return handleLink(resource: resource, pathComponents: pathComponents, queryItems: components.queryItems)
     }
     
-    func handleLink(resource: String, pathComponents: ArraySlice<String>) -> DeeplinkType? {
+    func handleLink(resource: String, pathComponents: ArraySlice<String>, queryItems: [URLQueryItem]? = nil) -> DeeplinkType? {
         switch resource {
         case "carona":
             guard let idString = pathComponents.first, let id = Int(idString) else {
                 return nil
             }
             return .loadRide(withID: id)
+        case "login":
+            guard let idUFRJ = getQueryParameter(queryItems: queryItems, param: "id_ufrj"),
+                let token = getQueryParameter(queryItems: queryItems, param: "token") else {
+                return nil
+            }
+            return .login(withIDUFRJ: idUFRJ, token: token)
         default:
             return nil
         }
+    }
+    
+    
+    private func getQueryParameter(queryItems: [URLQueryItem]?, param: String) -> String? {
+        return queryItems?.first(where: { $0.name == param })?.value
     }
     
 }
