@@ -119,6 +119,8 @@
 		719428FC203A609C008E2A24 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 719428FA203A609C008E2A24 /* Login.storyboard */; };
 		719428FE203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719428FD203A651D008E2A24 /* CaronaeGradientButton.swift */; };
 		719428FF203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719428FD203A651D008E2A24 /* CaronaeGradientButton.swift */; };
+		71A7D9142041FF4700F475AC /* UIColor+Caronae.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A7D9132041FF4700F475AC /* UIColor+Caronae.swift */; };
+		71A7D9152041FF4700F475AC /* UIColor+Caronae.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A7D9132041FF4700F475AC /* UIColor+Caronae.swift */; };
 		71AE13E41E8200D8008ACB06 /* FilterRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */; };
 		71C60AAE1EBAC1A300E84318 /* SearchRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */; };
 		71C60AB01EBACCA300E84318 /* Date+nextHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */; };
@@ -233,6 +235,7 @@
 		719428F7203A3D48008E2A24 /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
 		719428FA203A609C008E2A24 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		719428FD203A651D008E2A24 /* CaronaeGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaronaeGradientButton.swift; sourceTree = "<group>"; };
+		71A7D9132041FF4700F475AC /* UIColor+Caronae.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Caronae.swift"; sourceTree = "<group>"; };
 		71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRideViewController.swift; sourceTree = "<group>"; };
 		71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRideViewController.swift; sourceTree = "<group>"; };
 		71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+nextHour.swift"; sourceTree = "<group>"; };
@@ -622,6 +625,7 @@
 				A3CA5DCD1E1F3C000062522D /* UIApplication+topViewController.h */,
 				A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */,
 				714F82301F610E8300531C71 /* UIColor+hex.swift */,
+				71A7D9132041FF4700F475AC /* UIColor+Caronae.swift */,
 				A3B18FF81C9E713F00980607 /* UIImageView+crn_setImageWithURL.h */,
 				A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */,
 				7157BD891FB692D400D216F3 /* UIViewController+isVisible.swift */,
@@ -1246,6 +1250,7 @@
 				718F3AE51FE9FEBE001F1D40 /* Array+compactString.swift in Sources */,
 				718F3AE61FE9FEBE001F1D40 /* String+capitalizedAfter.swift in Sources */,
 				719428F9203A3D48008E2A24 /* AuthenticationController.swift in Sources */,
+				71A7D9152041FF4700F475AC /* UIColor+Caronae.swift in Sources */,
 				718F3AE71FE9FEBE001F1D40 /* ZoneSelectionInputViewController.swift in Sources */,
 				716914371FEAE88A004AD5C7 /* RideListController.swift in Sources */,
 				718F3AE81FE9FEBE001F1D40 /* CaronaeTextField.m in Sources */,
@@ -1324,6 +1329,7 @@
 				7133482E1F5F609700E2218E /* Zone.swift in Sources */,
 				713E99B91E8D5FA900F3C9E0 /* Array+compactString.swift in Sources */,
 				719428F8203A3D48008E2A24 /* AuthenticationController.swift in Sources */,
+				71A7D9142041FF4700F475AC /* UIColor+Caronae.swift in Sources */,
 				7148D5621EDA1D0A00D85B7D /* String+capitalizedAfter.swift in Sources */,
 				71F648661F71F364004C712F /* ZoneSelectionInputViewController.swift in Sources */,
 				A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */,
