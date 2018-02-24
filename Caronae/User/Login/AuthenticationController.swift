@@ -1,13 +1,6 @@
-//
-//  AuthenticationController.swift
-//  Caronae
-//
-//  Created by Mario Cecchi on 18/02/2018.
-//  Copyright © 2018 Mario Cecchi. All rights reserved.
-//
-
 import Foundation
 import SafariServices
+import SVProgressHUD
 
 class AuthenticationController {
     var authSession: AnyObject?
@@ -37,10 +30,12 @@ class AuthenticationController {
     }
     
     public func authenticate(withID idUFRJ: String, token: String, callback: @escaping (_ error: CaronaeError?) -> Void) {
-        // TODO: loading indicator on screen
+        SVProgressHUD.show()
         UserService.instance.signIn(withID: idUFRJ, token: token, success: { _ in
+            SVProgressHUD.dismiss()
             callback(nil)
         }, error: { caronaeError in
+            SVProgressHUD.dismiss()
             callback(caronaeError)
         })
     }

@@ -9,7 +9,8 @@ class TokenViewController: UIViewController {
     
     static func tokenViewController() -> TokenViewController
     {
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InitialTokenScreen") as! TokenViewController
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "InitialTokenScreen") as! TokenViewController
         viewController.modalTransitionStyle = .flipHorizontal
         return viewController
     }
@@ -18,31 +19,6 @@ class TokenViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    func authenticate(id: String, token: String) {
-        loginButton.isEnabled = false
-        SVProgressHUD.show()
-        
-        UserService.instance.signIn(withID: id, token: token, success: { _ in
-            let rootViewController = TabBarController()
-            UIApplication.shared.keyWindow?.replaceViewController(with: rootViewController)
-        }, error: { error in
-            var errorMessage: String!
-            
-            switch error.caronaeCode {
-            case .invalidCredentials:
-                errorMessage = "Chave não autorizada. Verifique se a mesma foi digitada corretamente e tente de novo."
-            case .invalidResponse:
-                errorMessage = "Ocorreu um erro carregando seu perfil."
-            default:
-                errorMessage = "Ocorreu um erro autenticando com o servidor do Caronaê. Por favor, tente novamente."
-            }
-            
-            SVProgressHUD.dismiss()
-            CaronaeAlertController.presentOkAlert(withTitle: "Não foi possível autenticar", message: errorMessage)
-            self.loginButton.isEnabled = true
-        })
-    }
-    
     
     // MARK: IBActions
     
