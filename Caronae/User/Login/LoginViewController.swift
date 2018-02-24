@@ -2,15 +2,15 @@ import SafariServices
 import SVProgressHUD
 import UIKit
 
-class TokenViewController: UIViewController {
+class LoginViewController: UIViewController {
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var loginButton: CaronaeGradientButton!
     var authController = AuthenticationController()
     
-    static func tokenViewController() -> TokenViewController
+    static func viewController() -> LoginViewController
     {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "InitialTokenScreen") as! TokenViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "InitialTokenScreen") as! LoginViewController
         viewController.modalTransitionStyle = .flipHorizontal
         return viewController
     }

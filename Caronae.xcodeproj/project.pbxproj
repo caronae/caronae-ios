@@ -77,7 +77,7 @@
 		718F3ACC1FE9FEBE001F1D40 /* FilterRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */; };
 		718F3ACD1FE9FEBE001F1D40 /* MyRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD823E1E1DC631006D8ABE /* MyRidesViewController.swift */; };
 		718F3ACE1FE9FEBE001F1D40 /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82351E1C70D6006D8ABE /* RideService.swift */; };
-		718F3ACF1FE9FEBE001F1D40 /* TokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82391E1C8049006D8ABE /* TokenViewController.swift */; };
+		718F3ACF1FE9FEBE001F1D40 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82391E1C8049006D8ABE /* LoginViewController.swift */; };
 		718F3AD21FE9FEBE001F1D40 /* CaronaeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169A1E34168A000B5817 /* CaronaeError.swift */; };
 		718F3AD31FE9FEBE001F1D40 /* RideViewController+rideActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD53BB1E1EBEAA005EAF04 /* RideViewController+rideActions.swift */; };
 		718F3AD41FE9FEBE001F1D40 /* SearchRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */; };
@@ -165,7 +165,7 @@
 		A3AD82331E1C63CD006D8ABE /* DateTimeTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82321E1C63CD006D8ABE /* DateTimeTransform.swift */; };
 		A3AD82361E1C70D6006D8ABE /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82351E1C70D6006D8ABE /* RideService.swift */; };
 		A3AD82381E1C7409006D8ABE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82371E1C7409006D8ABE /* UserService.swift */; };
-		A3AD823A1E1C8049006D8ABE /* TokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82391E1C8049006D8ABE /* TokenViewController.swift */; };
+		A3AD823A1E1C8049006D8ABE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82391E1C8049006D8ABE /* LoginViewController.swift */; };
 		A3AD823C1E1C8860006D8ABE /* AppDelegate+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD823B1E1C8860006D8ABE /* AppDelegate+Realm.swift */; };
 		A3AD823F1E1DC631006D8ABE /* MyRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD823E1E1DC631006D8ABE /* MyRidesViewController.swift */; };
 		A3B18FFA1C9E713F00980607 /* UIImageView+crn_setImageWithURL.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */; };
@@ -298,7 +298,7 @@
 		A3AD82321E1C63CD006D8ABE /* DateTimeTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeTransform.swift; sourceTree = "<group>"; };
 		A3AD82351E1C70D6006D8ABE /* RideService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RideService.swift; path = Services/RideService.swift; sourceTree = "<group>"; };
 		A3AD82371E1C7409006D8ABE /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = Services/UserService.swift; sourceTree = "<group>"; };
-		A3AD82391E1C8049006D8ABE /* TokenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenViewController.swift; sourceTree = "<group>"; };
+		A3AD82391E1C8049006D8ABE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A3AD823B1E1C8860006D8ABE /* AppDelegate+Realm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Realm.swift"; sourceTree = "<group>"; };
 		A3AD823E1E1DC631006D8ABE /* MyRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRidesViewController.swift; sourceTree = "<group>"; };
 		A3B18FF81C9E713F00980607 /* UIImageView+crn_setImageWithURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+crn_setImageWithURL.h"; sourceTree = "<group>"; };
@@ -411,7 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				719428FA203A609C008E2A24 /* Login.storyboard */,
-				A3AD82391E1C8049006D8ABE /* TokenViewController.swift */,
+				A3AD82391E1C8049006D8ABE /* LoginViewController.swift */,
 				719428F7203A3D48008E2A24 /* AuthenticationController.swift */,
 			);
 			path = Login;
@@ -1228,7 +1228,7 @@
 				718F3ACC1FE9FEBE001F1D40 /* FilterRideViewController.swift in Sources */,
 				718F3ACD1FE9FEBE001F1D40 /* MyRidesViewController.swift in Sources */,
 				718F3ACE1FE9FEBE001F1D40 /* RideService.swift in Sources */,
-				718F3ACF1FE9FEBE001F1D40 /* TokenViewController.swift in Sources */,
+				718F3ACF1FE9FEBE001F1D40 /* LoginViewController.swift in Sources */,
 				718F3AD21FE9FEBE001F1D40 /* CaronaeError.swift in Sources */,
 				718F3AD31FE9FEBE001F1D40 /* RideViewController+rideActions.swift in Sources */,
 				716914361FEAE864004AD5C7 /* RideViewController.swift in Sources */,
@@ -1307,7 +1307,7 @@
 				A3AD823F1E1DC631006D8ABE /* MyRidesViewController.swift in Sources */,
 				A3AD82361E1C70D6006D8ABE /* RideService.swift in Sources */,
 				7157BD8C1FB6931C00D216F3 /* SearchResultsViewController.swift in Sources */,
-				A3AD823A1E1C8049006D8ABE /* TokenViewController.swift in Sources */,
+				A3AD823A1E1C8049006D8ABE /* LoginViewController.swift in Sources */,
 				A3AC169B1E34168A000B5817 /* CaronaeError.swift in Sources */,
 				A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */,
 				71C60AAE1EBAC1A300E84318 /* SearchRideViewController.swift in Sources */,
