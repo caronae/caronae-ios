@@ -2,6 +2,8 @@
 #import "RideCell.h"
 #import "Caronae-Swift.h"
 
+@class Constants;
+
 @implementation RideCell
 
 static NSDateFormatter *dateFormatter;
@@ -52,7 +54,7 @@ static NSDateFormatter *dateFormatter;
     if (_ride.driver.profilePictureURL.length > 0) {
         [_photo crn_setImageWithURL:[NSURL URLWithString:_ride.driver.profilePictureURL]];
     } else {
-        _photo.image = [UIImage imageNamed:@"Profile Picture"];
+        _photo.image = [UIImage imageNamed:[Constants CaronaePlaceholderProfileImageObjc]];
     }
 }
 
