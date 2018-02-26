@@ -16,13 +16,10 @@
 		7106CFD01F098BBB0071C4AE /* UniversalLinkParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7106CFCC1F098BBB0071C4AE /* UniversalLinkParser.swift */; };
 		711259D52041EFDB000A92F9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D42041EFDB000A92F9 /* ProfileViewController.swift */; };
 		711259D62041EFDE000A92F9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D42041EFDB000A92F9 /* ProfileViewController.swift */; };
-		711259D72041EFDF000A92F9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D42041EFDB000A92F9 /* ProfileViewController.swift */; };
 		711259D9204320FC000A92F9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D8204320FC000A92F9 /* EditProfileViewController.swift */; };
 		711259DA204320FC000A92F9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D8204320FC000A92F9 /* EditProfileViewController.swift */; };
-		711259DB204320FC000A92F9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D8204320FC000A92F9 /* EditProfileViewController.swift */; };
 		711259DD2043C298000A92F9 /* String+validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259DC2043C298000A92F9 /* String+validation.swift */; };
 		711259DE2043C298000A92F9 /* String+validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259DC2043C298000A92F9 /* String+validation.swift */; };
-		711259DF2043C298000A92F9 /* String+validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259DC2043C298000A92F9 /* String+validation.swift */; };
 		7133482C1F5F603B00E2218E /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482B1F5F603B00E2218E /* Campus.swift */; };
 		7133482E1F5F609700E2218E /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482D1F5F609700E2218E /* Zone.swift */; };
 		713348301F5F60D400E2218E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482F1F5F60D400E2218E /* Place.swift */; };
@@ -31,7 +28,6 @@
 		7148D5621EDA1D0A00D85B7D /* String+capitalizedAfter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7148D5611EDA1D0A00D85B7D /* String+capitalizedAfter.swift */; };
 		714AA358203B18FF005EF615 /* CaronaeMessageNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AA357203B18FF005EF615 /* CaronaeMessageNotification.swift */; };
 		714AA359203B2247005EF615 /* CaronaeMessageNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AA357203B18FF005EF615 /* CaronaeMessageNotification.swift */; };
-		714AA35A203B2248005EF615 /* CaronaeMessageNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AA357203B18FF005EF615 /* CaronaeMessageNotification.swift */; };
 		714F7D5C1FEF247B001587C7 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F7D591FEF247B001587C7 /* SnapshotHelper.swift */; };
 		714F7D5E1FEF247B001587C7 /* Caronae_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F7D5B1FEF247B001587C7 /* Caronae_UITests.swift */; };
 		714F822F1F6083CD00531C71 /* PlaceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F822E1F6083CD00531C71 /* PlaceService.swift */; };
@@ -1172,11 +1168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				714AA35A203B2248005EF615 /* CaronaeMessageNotification.swift in Sources */,
 				714F7D5E1FEF247B001587C7 /* Caronae_UITests.swift in Sources */,
-				711259D72041EFDF000A92F9 /* ProfileViewController.swift in Sources */,
-				711259DF2043C298000A92F9 /* String+validation.swift in Sources */,
-				711259DB204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
 				714F7D5C1FEF247B001587C7 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
