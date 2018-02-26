@@ -1,18 +1,18 @@
 import UIKit
 import SVProgressHUD
 
-@objc protocol NeighborhoodSelectionDelegate: class {
+protocol NeighborhoodSelectionDelegate: class {
     func hasSelected(neighborhoods: [String], inZone zone: String)
 }
 
 class NeighborhoodSelectionViewController: SelectionViewController {
     
-    @objc required convenience init(selectionType: SelectionType) {
+    required convenience init(selectionType: SelectionType) {
         self.init()
         self.selectionType = selectionType
     }
 
-    @objc weak var delegate: NeighborhoodSelectionDelegate?
+    weak var delegate: NeighborhoodSelectionDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
