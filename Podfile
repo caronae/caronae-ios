@@ -1,4 +1,4 @@
-platform :ios, '8.2'
+platform :ios, '9.0'
 
 abstract_target 'caronae-ios' do
     use_frameworks!
