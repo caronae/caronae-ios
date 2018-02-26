@@ -57,6 +57,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.3)
   - GoogleToolboxForMac/NSData+zlib (2.1.3):
     - GoogleToolboxForMac/Defines (= 2.1.3)
+  - InputMask (2.2.6)
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -84,7 +85,6 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - SHSPhoneComponent (2.31)
   - SimulatorStatusMagic (2.1)
   - SVProgressHUD (2.0.3)
   - SwiftMessages (4.1.0)
@@ -98,6 +98,7 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase/Messaging
+  - InputMask
   - JSQMessagesViewController (from `https://github.com/caronae/JSQMessagesViewController.git`, branch `issue-1864`)
   - MIBadgeButton-Swift (from `https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git`, branch `master`)
   - ObjectMapper (~> 3.1)
@@ -105,7 +106,6 @@ DEPENDENCIES:
   - RealmSwift (~> 3.1)
   - SDCAlertView (= 2.5.4)
   - SDWebImage (~> 3.8.2)
-  - SHSPhoneComponent
   - SimulatorStatusMagic
   - SVProgressHUD
   - SwiftMessages
@@ -141,6 +141,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
   FirebaseMessaging: dfdcd307c2382290a1e297a81d0f18370f5b1bcd
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
+  InputMask: 756ffc515121d07a9c81a605fa5c44e5ac5bde13
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MIBadgeButton-Swift: 9e57309b00b168d75ca8fecb45bc75124a8ffddf
@@ -154,7 +155,6 @@ SPEC CHECKSUMS:
   SDCAlertView: 2e2b0ecc5f1ec367e45d83efa2e512688ca7fa55
   SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  SHSPhoneComponent: fa4401ae7c34511669287e62739b3da7c4c49807
   SimulatorStatusMagic: 481558caf2b9ccb2ceba2cc193728d4db3dcac07
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
@@ -162,6 +162,6 @@ SPEC CHECKSUMS:
   UIScrollView-InfiniteScroll: 14e204c50ca4040467e1cbfa141dad7a18919b56
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 08467050bdaa34f476f8aba888e5351b4ce7ecf6
+PODFILE CHECKSUM: ae797bf45990ac21aef530a28b592f4abcf199a7
 
 COCOAPODS: 1.3.1

@@ -9,7 +9,7 @@ abstract_target 'caronae-ios' do
     pod 'SDCAlertView', '2.5.4'
     pod 'SVProgressHUD'
     pod 'SDWebImage', '~> 3.8.2'
-    pod 'SHSPhoneComponent'
+    pod 'InputMask'
     pod 'SwiftMessages'
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'

@@ -1,8 +1,8 @@
 import Foundation
 import SVProgressHUD
-import SHSPhoneComponent
+import InputMask
 
-class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate {
+class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
     // Ride info
     @IBOutlet weak var titleLabel: UILabel!
@@ -163,11 +163,11 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
             }
             
             cancelButton.setTitle("DESISTIR", for: .normal)
-            let phoneFormatter = SHSPhoneNumberFormatter()
-            phoneFormatter.setDefaultOutputPattern(Caronae8PhoneNumberPattern)
-            phoneFormatter.addOutputPattern(Caronae9PhoneNumberPattern, forRegExp: "[0-9]{12}\\d*$")
-            let result = phoneFormatter.values(for: ride.driver.phoneNumber)
-            let formattedPhoneNumber = result!["text"] as! String
+            
+            let phoneMask = try! Mask(format: Caronae9PhoneNumberPattern)
+            let phoneNumber = ride.driver.phoneNumber!
+            let result = phoneMask.apply(toText: CaretString(string: phoneNumber, caretPosition: phoneNumber.endIndex))
+            let formattedPhoneNumber = result.formattedText.string
             phoneButton.setTitle(formattedPhoneNumber, for: .normal)
             
             // Car details

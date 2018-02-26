@@ -1,10 +1,10 @@
 #import "MenuViewController.h"
-#import "ProfileViewController.h"
 #import "UIImageView+crn_setImageWithURL.h"
 #import "WebViewController.h"
 #import "Caronae-Swift.h"
 
 @class Constants;
+@class ProfileViewController;
 
 @interface MenuViewController ()
 @property (nonatomic) NSString *photoURL;

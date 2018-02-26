@@ -71,8 +71,8 @@ struct CaronaePreferenceLastFilter {
 
 let CaronaeErrorDomain = "br.ufrj.caronae.error"
 let CaronaeSignOutRequiredKey = "CaronaeSignOutRequired"
-let Caronae8PhoneNumberPattern = "(###) ####-####"
-let Caronae9PhoneNumberPattern = "(###) #####-####"
+let Caronae9PhoneNumberPattern = "({0}[00]) [00000]-[0000]"
+let CaronaeCarPlatePattern = "[AAA]{-}[0000]"
 let CaronaePlaceholderProfileImage = "Profile Picture"
 let CaronaeSearchDateFormat = "EEEE, dd/MM/yyyy HH:mm"
 let CaronaeDateLocaleIdentifier = "pt_BR"
@@ -88,8 +88,6 @@ let OtherZoneColor = UIColor(white: 0.541, alpha: 1.0)
 
 @objcMembers
 public class Constants: NSObject {
-    static let Caronae8PhoneNumberPatternObjc = Caronae8PhoneNumberPattern as NSString
-    static let Caronae9PhoneNumberPatternObjc = Caronae9PhoneNumberPattern as NSString
     static let CaronaePlaceholderProfileImageObjc = CaronaePlaceholderProfileImage as NSString
     static let CaronaeAboutPageURLStringObjc = CaronaeURLString.aboutPage as NSString
     static let CaronaeTermsOfUsePageURLStringObjc = CaronaeURLString.termsOfUsePage as NSString

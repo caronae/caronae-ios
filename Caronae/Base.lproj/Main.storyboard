@@ -1528,7 +1528,7 @@ nenhuma carona.</string>
         <!--Meu Perfil-->
         <scene sceneID="aoM-mI-f82">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="hXu-7Y-tvn" customClass="ProfileViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="hXu-7Y-tvn" customClass="ProfileViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uJj-sX-pEZ"/>
                         <viewControllerLayoutGuide type="bottom" id="o0X-WE-SJG"/>
@@ -1635,8 +1635,7 @@ nenhuma carona.</string>
                                                                             </mask>
                                                                         </variation>
                                                                         <connections>
-                                                                            <action selector="didTapPhoneButton:" destination="hXu-7Y-tvn" eventType="touchUpInside" id="88t-If-e4z"/>
-                                                                            <action selector="didTapPhoneButton:" destination="SRb-hM-LXF" eventType="touchUpInside" id="8Dq-HY-uZt"/>
+                                                                            <action selector="didTapPhoneButton" destination="hXu-7Y-tvn" eventType="touchUpInside" id="fIb-aw-Dh0"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -2560,7 +2559,7 @@ nenhuma carona.</string>
                                                     </mask>
                                                 </variation>
                                                 <connections>
-                                                    <action selector="didTapLogoutButton:" destination="hXu-7Y-tvn" eventType="touchUpInside" id="745-TR-cQd"/>
+                                                    <action selector="didTapLogoutButton" destination="hXu-7Y-tvn" eventType="touchUpInside" id="hpo-Ps-de2"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -2760,7 +2759,7 @@ nenhuma carona.</string>
         <!--Editar Perfil-->
         <scene sceneID="mad-LY-Xsb">
             <objects>
-                <viewController storyboardIdentifier="EditProfileViewController" automaticallyAdjustsScrollViewInsets="NO" id="rv3-vJ-1pf" customClass="EditProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileViewController" automaticallyAdjustsScrollViewInsets="NO" id="rv3-vJ-1pf" customClass="EditProfileViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MT1-A0-c6a"/>
                         <viewControllerLayoutGuide type="bottom" id="2VX-HP-vOC"/>
@@ -2824,7 +2823,7 @@ FOTO</string>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="didTapPhoto:" destination="rv3-vJ-1pf" eventType="touchUpInside" id="1Sg-O4-wnt"/>
+                                                            <action selector="didTapPhoto" destination="rv3-vJ-1pf" eventType="touchUpInside" id="8BR-RZ-VCE"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Renan Souza" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSR-N1-9qq" userLabel="Name">
@@ -3215,7 +3214,7 @@ FOTO</string>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Mds-A1-ZMf" userLabel="Phone icon">
                                                         <rect key="frame" x="0.0" y="98" width="16" height="20"/>
                                                     </imageView>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21 99875-5678" borderStyle="roundedRect" placeholder="Telefone celular" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-zR-zbO" userLabel="Phone" customClass="CaronaePhoneTextField">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21 99875-5678" borderStyle="roundedRect" placeholder="Telefone celular" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-zR-zbO" userLabel="Phone" customClass="CaronaeTextField">
                                                         <rect key="frame" x="27" y="92.5" width="343" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="Hvq-Jb-OBD"/>
@@ -3389,7 +3388,7 @@ FOTO</string>
                                                             <color key="titleColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="selectNeighborhoodTapped:" destination="rv3-vJ-1pf" eventType="touchUpInside" id="49M-AX-V3n"/>
+                                                            <action selector="selectNeighborhoodTapped" destination="rv3-vJ-1pf" eventType="touchUpInside" id="wka-35-5Xd"/>
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LYE-NN-4Pp" userLabel="Separator Bairro">
@@ -3951,12 +3950,12 @@ FOTO</string>
                     <navigationItem key="navigationItem" title="Editar Perfil" id="XK5-ay-9pQ">
                         <barButtonItem key="leftBarButtonItem" title="Cancelar" id="xEk-lK-AlH">
                             <connections>
-                                <action selector="didTapCancelButton:" destination="rv3-vJ-1pf" id="vsF-cX-va7"/>
+                                <action selector="didTapCancelButton" destination="rv3-vJ-1pf" id="W7M-jv-Ibk"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Salvar" id="A6K-iW-CmS">
                             <connections>
-                                <action selector="didTapSaveButton:" destination="rv3-vJ-1pf" id="L9L-5d-d7W"/>
+                                <action selector="didTapSaveButton" destination="rv3-vJ-1pf" id="zpY-su-EKn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -3980,7 +3979,7 @@ FOTO</string>
                         <outlet property="numDrivesLabel" destination="mOs-7S-hSM" id="mKq-iH-kcE"/>
                         <outlet property="numRidesLabel" destination="PkB-Rm-KZu" id="45n-cY-Ha8"/>
                         <outlet property="phoneTextField" destination="cCO-zR-zbO" id="Rke-nD-BJR"/>
-                        <outlet property="photo" destination="0R8-uQ-11f" id="gFC-t4-wsL"/>
+                        <outlet property="photoImageView" destination="0R8-uQ-11f" id="gFC-t4-wsL"/>
                         <outlet property="saveButton" destination="A6K-iW-CmS" id="zuG-q7-Qod"/>
                         <outlet property="scrollView" destination="aAO-Uo-Vuu" id="AKu-pX-WUG"/>
                     </connections>
@@ -3998,7 +3997,7 @@ FOTO</string>
                         <viewControllerLayoutGuide type="bottom" id="vgu-Xt-eS2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JCe-oL-nfX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UH5-0I-VdT" userLabel="Profile View">

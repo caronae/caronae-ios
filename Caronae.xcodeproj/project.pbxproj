@@ -14,6 +14,15 @@
 		7106CFCE1F098BBB0071C4AE /* DeeplinkNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7106CFCA1F098BBB0071C4AE /* DeeplinkNavigator.swift */; };
 		7106CFCF1F098BBB0071C4AE /* NotificationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7106CFCB1F098BBB0071C4AE /* NotificationParser.swift */; };
 		7106CFD01F098BBB0071C4AE /* UniversalLinkParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7106CFCC1F098BBB0071C4AE /* UniversalLinkParser.swift */; };
+		711259D52041EFDB000A92F9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D42041EFDB000A92F9 /* ProfileViewController.swift */; };
+		711259D62041EFDE000A92F9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D42041EFDB000A92F9 /* ProfileViewController.swift */; };
+		711259D72041EFDF000A92F9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D42041EFDB000A92F9 /* ProfileViewController.swift */; };
+		711259D9204320FC000A92F9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D8204320FC000A92F9 /* EditProfileViewController.swift */; };
+		711259DA204320FC000A92F9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D8204320FC000A92F9 /* EditProfileViewController.swift */; };
+		711259DB204320FC000A92F9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D8204320FC000A92F9 /* EditProfileViewController.swift */; };
+		711259DD2043C298000A92F9 /* String+validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259DC2043C298000A92F9 /* String+validation.swift */; };
+		711259DE2043C298000A92F9 /* String+validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259DC2043C298000A92F9 /* String+validation.swift */; };
+		711259DF2043C298000A92F9 /* String+validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259DC2043C298000A92F9 /* String+validation.swift */; };
 		7133482C1F5F603B00E2218E /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482B1F5F603B00E2218E /* Campus.swift */; };
 		7133482E1F5F609700E2218E /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482D1F5F609700E2218E /* Zone.swift */; };
 		713348301F5F60D400E2218E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482F1F5F60D400E2218E /* Place.swift */; };
@@ -42,10 +51,7 @@
 		718875DB1ED351E1004DB078 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718875DA1ED351E1004DB078 /* PaginationState.swift */; };
 		718C52241F81774A006E964A /* FalaeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C52231F81774A006E964A /* FalaeViewController.swift */; };
 		718C9B751E5F923A0037A78B /* AllRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C9B741E5F923A0037A78B /* AllRidesViewController.swift */; };
-		718F3AA41FE9FEBE001F1D40 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C91BF01C1D005BA311 /* ProfileViewController.m */; };
 		718F3AA51FE9FEBE001F1D40 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82371E1C7409006D8ABE /* UserService.swift */; };
-		718F3AA61FE9FEBE001F1D40 /* CaronaePhoneTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */; };
-		718F3AA71FE9FEBE001F1D40 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312CC1BF01C26005BA311 /* EditProfileViewController.m */; };
 		718F3AA81FE9FEBE001F1D40 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DD31E22CA370062522D /* NotificationService.swift */; };
 		718F3AAB1FE9FEBE001F1D40 /* NotificationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7106CFCB1F098BBB0071C4AE /* NotificationParser.swift */; };
 		718F3AAD1FE9FEBE001F1D40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7185362F1F047FFF00C30B97 /* AppDelegate.swift */; };
@@ -60,7 +66,6 @@
 		718F3AB81FE9FEBE001F1D40 /* CaronaeAPIHTTPSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */; };
 		718F3AB91FE9FEBE001F1D40 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD822E1E1C5BD9006D8ABE /* Message.swift */; };
 		718F3ABA1FE9FEBE001F1D40 /* JoinRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */; };
-		718F3ABB1FE9FEBE001F1D40 /* NSString+validation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */; };
 		718F3ABC1FE9FEBE001F1D40 /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F6485B1F71F364004C712F /* SelectionCell.swift */; };
 		718F3ABD1FE9FEBE001F1D40 /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482B1F5F603B00E2218E /* Campus.swift */; };
 		718F3ABE1FE9FEBE001F1D40 /* PlaceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F822E1F6083CD00531C71 /* PlaceService.swift */; };
@@ -147,17 +152,13 @@
 		A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */; };
 		A325DA711C0CAFD700B9124E /* JoinRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */; };
 		A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C61BF01B9A005BA311 /* MenuViewController.m */; };
-		A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C91BF01C1D005BA311 /* ProfileViewController.m */; };
-		A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312CC1BF01C26005BA311 /* EditProfileViewController.m */; };
 		A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A34CEC4C1C993115006FC41E /* Settings.bundle */; };
 		A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A357EF321C56C5A100AC8096 /* RideListController.xib */; };
 		A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
 		A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
 		A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F1D4C1C0398B500DEF6B1 /* RideCell.m */; };
-		A398BE051C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */; };
 		A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */; };
 		A39BBD051C06AB9D00EF9EBD /* RideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39BBD041C06AB9D00EF9EBD /* RideCell.xib */; };
-		A3A4A4AF1C4C695800CF4CB2 /* NSString+validation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */; };
 		A3AC169B1E34168A000B5817 /* CaronaeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169A1E34168A000B5817 /* CaronaeError.swift */; };
 		A3AC169D1E35781C000B5817 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */; };
 		A3AC169F1E357828000B5817 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3AC169E1E357828000B5817 /* WelcomeViewController.xib */; };
@@ -213,6 +214,9 @@
 		7106CFCA1F098BBB0071C4AE /* DeeplinkNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeeplinkNavigator.swift; path = DeepLink/DeeplinkNavigator.swift; sourceTree = "<group>"; };
 		7106CFCB1F098BBB0071C4AE /* NotificationParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationParser.swift; path = DeepLink/NotificationParser.swift; sourceTree = "<group>"; };
 		7106CFCC1F098BBB0071C4AE /* UniversalLinkParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UniversalLinkParser.swift; path = DeepLink/UniversalLinkParser.swift; sourceTree = "<group>"; };
+		711259D42041EFDB000A92F9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		711259D8204320FC000A92F9 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		711259DC2043C298000A92F9 /* String+validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+validation.swift"; sourceTree = "<group>"; };
 		7123EE441FEE13B800EA3773 /* Caronae UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Caronae UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7133482B1F5F603B00E2218E /* Campus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
 		7133482D1F5F609700E2218E /* Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zone.swift; sourceTree = "<group>"; };
@@ -272,10 +276,6 @@
 		A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinRequestCell.xib; sourceTree = "<group>"; };
 		A34312C51BF01B9A005BA311 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		A34312C61BF01B9A005BA311 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
-		A34312C81BF01C1D005BA311 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		A34312C91BF01C1D005BA311 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		A34312CB1BF01C26005BA311 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
-		A34312CC1BF01C26005BA311 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		A34CEC4C1C993115006FC41E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../../Settings.bundle; sourceTree = "<group>"; };
 		A357EF321C56C5A100AC8096 /* RideListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideListController.xib; sourceTree = "<group>"; };
 		A375D2F91C19175A00795CAE /* CaronaeAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeAlertController.h; sourceTree = "<group>"; };
@@ -285,13 +285,9 @@
 		A38F1D4B1C0398B500DEF6B1 /* RideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideCell.h; sourceTree = "<group>"; };
 		A38F1D4C1C0398B500DEF6B1 /* RideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideCell.m; sourceTree = "<group>"; };
 		A39743EB1E6B18F2006E469A /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Common.xcconfig; path = Config/Common.xcconfig; sourceTree = "<group>"; };
-		A398BE031C6D7DEC00CEA6A1 /* CaronaePhoneTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaePhoneTextField.h; sourceTree = "<group>"; };
-		A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaePhoneTextField.m; sourceTree = "<group>"; };
 		A39BA2EA1C6C0F3A0063DDD1 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		A39BBD041C06AB9D00EF9EBD /* RideCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideCell.xib; sourceTree = "<group>"; };
-		A3A4A4AD1C4C695800CF4CB2 /* NSString+validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+validation.h"; sourceTree = "<group>"; };
-		A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+validation.m"; sourceTree = "<group>"; };
 		A3AC169A1E34168A000B5817 /* CaronaeError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaronaeError.swift; sourceTree = "<group>"; };
 		A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		A3AC169E1E357828000B5817 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
@@ -518,10 +514,8 @@
 			isa = PBXGroup;
 			children = (
 				71942900203A6C5C008E2A24 /* Login */,
-				A34312CB1BF01C26005BA311 /* EditProfileViewController.h */,
-				A34312CC1BF01C26005BA311 /* EditProfileViewController.m */,
-				A34312C81BF01C1D005BA311 /* ProfileViewController.h */,
-				A34312C91BF01C1D005BA311 /* ProfileViewController.m */,
+				711259D8204320FC000A92F9 /* EditProfileViewController.swift */,
+				711259D42041EFDB000A92F9 /* ProfileViewController.swift */,
 				A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */,
 				A3AC169E1E357828000B5817 /* WelcomeViewController.xib */,
 			);
@@ -594,8 +588,6 @@
 				719428FD203A651D008E2A24 /* CaronaeGradientButton.swift */,
 				A3169CC91BED893F00A0D428 /* CaronaeTextField.h */,
 				A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */,
-				A398BE031C6D7DEC00CEA6A1 /* CaronaePhoneTextField.h */,
-				A398BE041C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m */,
 				A3AD82321E1C63CD006D8ABE /* DateTimeTransform.swift */,
 				718875DA1ED351E1004DB078 /* PaginationState.swift */,
 				71FDA2441F401EBB00DA67E8 /* PhoneNumberActionSheet.swift */,
@@ -625,8 +617,6 @@
 				A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */,
 				A3034D571DB58A1B00816B79 /* Date+isInTheFuture.swift */,
 				71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */,
-				A3A4A4AD1C4C695800CF4CB2 /* NSString+validation.h */,
-				A3A4A4AE1C4C695800CF4CB2 /* NSString+validation.m */,
 				A3CA5DCD1E1F3C000062522D /* UIApplication+topViewController.h */,
 				A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */,
 				714F82301F610E8300531C71 /* UIColor+hex.swift */,
@@ -638,6 +628,7 @@
 				A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */,
 				713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */,
 				7148D5611EDA1D0A00D85B7D /* String+capitalizedAfter.swift */,
+				711259DC2043C298000A92F9 /* String+validation.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -943,6 +934,7 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/InputMask/InputMask.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/MIBadgeButton-Swift/MIBadgeButton_Swift.framework",
@@ -955,7 +947,6 @@
 				"${BUILT_PRODUCTS_DIR}/SDCAlertView/SDCAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCAutoLayout/SDCAutoLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SHSPhoneComponent/SHSPhoneComponent.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
@@ -971,6 +962,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InputMask.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MIBadgeButton_Swift.framework",
@@ -983,7 +975,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAutoLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SHSPhoneComponent.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
@@ -1024,6 +1015,7 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/InputMask/InputMask.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/MIBadgeButton-Swift/MIBadgeButton_Swift.framework",
@@ -1036,7 +1028,6 @@
 				"${BUILT_PRODUCTS_DIR}/SDCAlertView/SDCAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCAutoLayout/SDCAutoLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SHSPhoneComponent/SHSPhoneComponent.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
@@ -1052,6 +1043,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InputMask.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MIBadgeButton_Swift.framework",
@@ -1064,7 +1056,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAutoLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SHSPhoneComponent.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
@@ -1119,6 +1110,7 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/InputMask/InputMask.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/MIBadgeButton-Swift/MIBadgeButton_Swift.framework",
@@ -1131,7 +1123,6 @@
 				"${BUILT_PRODUCTS_DIR}/SDCAlertView/SDCAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCAutoLayout/SDCAutoLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SHSPhoneComponent/SHSPhoneComponent.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
@@ -1148,6 +1139,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InputMask.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MIBadgeButton_Swift.framework",
@@ -1160,7 +1152,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAutoLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SHSPhoneComponent.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
@@ -1183,6 +1174,9 @@
 			files = (
 				714AA35A203B2248005EF615 /* CaronaeMessageNotification.swift in Sources */,
 				714F7D5E1FEF247B001587C7 /* Caronae_UITests.swift in Sources */,
+				711259D72041EFDF000A92F9 /* ProfileViewController.swift in Sources */,
+				711259DF2043C298000A92F9 /* String+validation.swift in Sources */,
+				711259DB204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
 				714F7D5C1FEF247B001587C7 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1191,13 +1185,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				718F3AA41FE9FEBE001F1D40 /* ProfileViewController.m in Sources */,
 				716914391FEAE89A004AD5C7 /* SearchResultsViewController.swift in Sources */,
 				716914381FEAE896004AD5C7 /* RidesHistoryViewController.swift in Sources */,
 				718F3AA51FE9FEBE001F1D40 /* UserService.swift in Sources */,
 				7169143A1FEAE8BB004AD5C7 /* UIViewController+isVisible.swift in Sources */,
-				718F3AA61FE9FEBE001F1D40 /* CaronaePhoneTextField.m in Sources */,
-				718F3AA71FE9FEBE001F1D40 /* EditProfileViewController.m in Sources */,
 				718F3AA81FE9FEBE001F1D40 /* NotificationService.swift in Sources */,
 				718F3AAB1FE9FEBE001F1D40 /* NotificationParser.swift in Sources */,
 				718F3AAD1FE9FEBE001F1D40 /* AppDelegate.swift in Sources */,
@@ -1212,7 +1203,6 @@
 				718F3AB81FE9FEBE001F1D40 /* CaronaeAPIHTTPSessionManager.swift in Sources */,
 				718F3AB91FE9FEBE001F1D40 /* Message.swift in Sources */,
 				718F3ABA1FE9FEBE001F1D40 /* JoinRequestCell.m in Sources */,
-				718F3ABB1FE9FEBE001F1D40 /* NSString+validation.m in Sources */,
 				718F3ABC1FE9FEBE001F1D40 /* SelectionCell.swift in Sources */,
 				718F3ABD1FE9FEBE001F1D40 /* Campus.swift in Sources */,
 				718F3ABE1FE9FEBE001F1D40 /* PlaceService.swift in Sources */,
@@ -1225,6 +1215,7 @@
 				719428FF203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
 				718F3AC41FE9FEBE001F1D40 /* WebViewController.m in Sources */,
 				718F3AC51FE9FEBE001F1D40 /* UIColor+hex.swift in Sources */,
+				711259D62041EFDE000A92F9 /* ProfileViewController.swift in Sources */,
 				718F3AC61FE9FEBE001F1D40 /* TabBarController.m in Sources */,
 				7169143D1FEAEBEF004AD5C7 /* CaronaeConstants.swift in Sources */,
 				718F3AC71FE9FEBE001F1D40 /* MenuViewController.m in Sources */,
@@ -1241,6 +1232,7 @@
 				716914361FEAE864004AD5C7 /* RideViewController.swift in Sources */,
 				718F3AD41FE9FEBE001F1D40 /* SearchRideViewController.swift in Sources */,
 				718F3AD51FE9FEBE001F1D40 /* UniversalLinkParser.swift in Sources */,
+				711259DA204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
 				718F3AD61FE9FEBE001F1D40 /* NeighborhoodSelectionViewController.swift in Sources */,
 				718F3AD71FE9FEBE001F1D40 /* CaronaeAlertController.m in Sources */,
 				718F3AD91FE9FEBE001F1D40 /* RideCell.m in Sources */,
@@ -1248,6 +1240,7 @@
 				718F3ADB1FE9FEBE001F1D40 /* SelectionViewController.swift in Sources */,
 				718F3ADC1FE9FEBE001F1D40 /* CALayer+UIColor.m in Sources */,
 				718F3ADD1FE9FEBE001F1D40 /* DeepLinkManager.swift in Sources */,
+				711259DE2043C298000A92F9 /* String+validation.swift in Sources */,
 				718F3ADE1FE9FEBE001F1D40 /* Notification.swift in Sources */,
 				718F3ADF1FE9FEBE001F1D40 /* DeeplinkNavigator.swift in Sources */,
 				718F3AE01FE9FEBE001F1D40 /* AppDelegate+Firebase.swift in Sources */,
@@ -1271,10 +1264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A34312CA1BF01C1D005BA311 /* ProfileViewController.m in Sources */,
 				A3AD82381E1C7409006D8ABE /* UserService.swift in Sources */,
-				A398BE051C6D7DEC00CEA6A1 /* CaronaePhoneTextField.m in Sources */,
-				A34312CD1BF01C26005BA311 /* EditProfileViewController.m in Sources */,
 				A3CA5DD41E22CA370062522D /* NotificationService.swift in Sources */,
 				7157BD8E1FB6932900D216F3 /* RidesHistoryViewController.swift in Sources */,
 				7106CFCF1F098BBB0071C4AE /* NotificationParser.swift in Sources */,
@@ -1291,7 +1281,6 @@
 				A3BBF1381DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift in Sources */,
 				A3AD822F1E1C5BD9006D8ABE /* Message.swift in Sources */,
 				A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */,
-				A3A4A4AF1C4C695800CF4CB2 /* NSString+validation.m in Sources */,
 				71F648621F71F364004C712F /* SelectionCell.swift in Sources */,
 				7133482C1F5F603B00E2218E /* Campus.swift in Sources */,
 				714F822F1F6083CD00531C71 /* PlaceService.swift in Sources */,
@@ -1305,6 +1294,7 @@
 				719428FE203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
 				714F82311F610E8300531C71 /* UIColor+hex.swift in Sources */,
 				A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */,
+				711259D52041EFDB000A92F9 /* ProfileViewController.swift in Sources */,
 				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
 				7169143C1FEAEBEF004AD5C7 /* CaronaeConstants.swift in Sources */,
 				718875DB1ED351E1004DB078 /* PaginationState.swift in Sources */,
@@ -1321,6 +1311,7 @@
 				71C60AAE1EBAC1A300E84318 /* SearchRideViewController.swift in Sources */,
 				7106CFD01F098BBB0071C4AE /* UniversalLinkParser.swift in Sources */,
 				71F648611F71F364004C712F /* NeighborhoodSelectionViewController.swift in Sources */,
+				711259D9204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
 				A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */,
 				7157BD8A1FB692D400D216F3 /* UIViewController+isVisible.swift in Sources */,
 				A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */,
@@ -1328,6 +1319,7 @@
 				7133B6261FB7983C008575CC /* RideViewController.swift in Sources */,
 				71F648641F71F364004C712F /* SelectionViewController.swift in Sources */,
 				A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */,
+				711259DD2043C298000A92F9 /* String+validation.swift in Sources */,
 				7106CFCD1F098BBB0071C4AE /* DeepLinkManager.swift in Sources */,
 				A3CA5DD61E22CA630062522D /* Notification.swift in Sources */,
 				7106CFCE1F098BBB0071C4AE /* DeeplinkNavigator.swift in Sources */,
