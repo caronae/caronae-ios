@@ -45,12 +45,6 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if #available(iOS 11.0, *) {
-            // Create constraint between filterView and safe area layout guide
-            // This can be done on the storyboard when the target is iOS9+
-            let safeArea = self.view.safeAreaLayoutGuide;
-            filterView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
-        }
         tableView.delegate = self
         tableView.dataSource = self
         let cellNib = UINib.init(nibName: String(describing: RideCell.self), bundle: nil)

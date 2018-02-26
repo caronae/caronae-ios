@@ -179,12 +179,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: Deeplinks
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation) ||
-            deepLinkManager.handleDeepLink(url: url)
-    }
-    
-    @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, options: options) ||
             deepLinkManager.handleDeepLink(url: url)

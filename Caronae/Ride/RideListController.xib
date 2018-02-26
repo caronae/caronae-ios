@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -130,10 +131,11 @@
                 <constraint firstItem="6Ac-hY-QKJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UMa-bL-jCs"/>
                 <constraint firstAttribute="trailing" secondItem="6Ac-hY-QKJ" secondAttribute="trailing" id="ayK-AH-gqw"/>
                 <constraint firstAttribute="trailing" secondItem="0Ip-RW-iit" secondAttribute="trailing" id="iFw-KO-OxI"/>
-                <constraint firstItem="0Ip-RW-iit" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" priority="990" constant="64" id="rwo-Fq-4GM"/>
+                <constraint firstItem="0Ip-RW-iit" firstAttribute="top" secondItem="JzG-F6-RYf" secondAttribute="top" id="rwo-Fq-4GM"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="JzG-F6-RYf"/>
             <point key="canvasLocation" x="-4457.5" y="3201.5"/>
         </view>
         <tapGestureRecognizer id="8ie-SG-7Ld">
