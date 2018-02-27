@@ -9,7 +9,7 @@ class LoginViewController: UIViewController {
     
     static func viewController() -> LoginViewController
     {
-        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "InitialTokenScreen") as! LoginViewController
         viewController.modalTransitionStyle = .flipHorizontal
         return viewController
