@@ -33,9 +33,10 @@ class Caronae_UITests: XCTestCase {
         let app = XCUIApplication()
         let elementsQuery = app.scrollViews.otherElements
         
-        let suaIdentificaOAquiTextField = elementsQuery.textFields["Sua identificação aqui"]
+        let entrarManualmenteButton = app.buttons["Entrar manualmente"]
 
-        if !suaIdentificaOAquiTextField.exists {
+        if !entrarManualmenteButton.exists {
+            // SignOut user
             app.tabBars.buttons["Menu"].tap()
             elementsQuery.buttons["Meu perfil"].tap()
             elementsQuery.buttons["ButtonSignout"].tap()
@@ -43,14 +44,17 @@ class Caronae_UITests: XCTestCase {
         }
 
         snapshot("0_SignIn")
+        
+        entrarManualmenteButton.tap()
 
+        let suaIdentificaOAquiTextField = app.textFields["Sua identificação aqui"]
         suaIdentificaOAquiTextField.tap()
         suaIdentificaOAquiTextField.typeText("12345678910")
         
-        let suaChaveAquiTextField = elementsQuery.textFields["Sua chave aqui"]
+        let suaChaveAquiTextField = app.textFields["Sua chave aqui"]
         suaChaveAquiTextField.tap()
         suaChaveAquiTextField.typeText("ABC123")
-        elementsQuery.buttons["ACESSAR"].tap()
+        app.buttons["Entrar"].tap()
         
         _ = app.tables.cells.element(boundBy: 0).waitForExistence(timeout: 10)
         app.tables.cells.element(boundBy: 0).tap()
