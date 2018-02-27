@@ -27,6 +27,7 @@ jobs:
             git config --global user.email "circleci@caronae.org"
             git config --global user.name "CircleCI"
       - checkout
+      - run: brew install graphicsmagick
       - run: bundle install --path vendor/bundle
       - run:
           name: Fetch CocoaPods specs
