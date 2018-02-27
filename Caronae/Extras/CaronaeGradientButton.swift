@@ -12,6 +12,15 @@ class CaronaeGradientButton: UIButton {
         setUp()
     }
     
+    override func setImage(_ image: UIImage?, for state: UIControlState) {
+        if image != nil {
+            self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+        } else {
+            self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+        return super.setImage(image, for: state)
+    }
+    
     private func setUp() {
         backgroundColor = .clear
         tintColor = .white
