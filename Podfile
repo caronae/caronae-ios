@@ -8,7 +8,7 @@ abstract_target 'caronae-ios' do
     pod 'TPKeyboardAvoiding', '~> 1.3.2'
     pod 'SDCAlertView', '2.5.4'
     pod 'SVProgressHUD'
-    pod 'SDWebImage', '~> 3.8.2'
+    pod 'SDWebImage', '~> 4.3'
     pod 'InputMask'
     pod 'SwiftMessages'
     pod 'FBSDKCoreKit'
