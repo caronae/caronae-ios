@@ -79,8 +79,10 @@ class LoginViewController: UIViewController {
     func changeLoginMethod() {
         view.isUserInteractionEnabled = false
         
-        idTextField.text = ""
-        tokenTextField.text = ""
+        if !isAutoLoginMethod {
+            idTextField.text = ""
+            tokenTextField.text = ""
+        }
         
         let changeLoginMethodbuttonTitle = isAutoLoginMethod ? "Entrar manualmente" : "Entrar com universidade"
         let loginButtonTitle = isAutoLoginMethod ? "Entrar com universidade" : "Entrar"
