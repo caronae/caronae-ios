@@ -11,16 +11,16 @@
 
   "data": [
     {
-      "filter": "0_SignIn",
-      "background": "./background_orange.jpg"
-    },
-    {
-      "filter": "1_AllRides",
+      "filter": "0_AllRides",
       "background": "./background_blue.jpg"
     },
     {
-      "filter": "2_CreateRide",
+      "filter": "1_CreateRide",
       "background": "./background_pink.jpg"
+    },
+    {
+      "filter": "2_SignIn",
+      "background": "./background_orange.jpg"
     },
     {
       "filter": "3_Ride",
@@ -31,7 +31,7 @@
       "background": "./background_green.jpg"
     },
     {
-      "filter": "5_CreateRide",
+      "filter": "5_Chat",
       "background": "./background_red.jpg"
     }
   ]

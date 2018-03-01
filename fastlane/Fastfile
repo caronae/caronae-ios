@@ -99,7 +99,7 @@ platform :ios do
   desc "Take and frame screenshots of the app"
   lane :take_screenshots do
     capture_ios_screenshots
-    frame_screenshots
+    frame_screenshots(white: true)
   end
 
 end

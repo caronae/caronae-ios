@@ -32,6 +32,7 @@ class Caronae_UITests: XCTestCase {
         
         let app = XCUIApplication()
         let elementsQuery = app.scrollViews.otherElements
+        let navigationBar = app.navigationBars.firstMatch
         
         let entrarManualmenteButton = app.buttons["Entrar manualmente"]
 
@@ -43,7 +44,7 @@ class Caronae_UITests: XCTestCase {
             app.collectionViews.cells["Sair"].tap()
         }
 
-        snapshot("0_SignIn")
+        snapshot("2_SignIn")
         
         entrarManualmenteButton.tap()
 
@@ -61,25 +62,26 @@ class Caronae_UITests: XCTestCase {
         
         snapshot("3_Ride")
         
-//        elementsQuery.images["Profile Picture"].tap()
-//        snapshot("5_Profile")
-//        app.navigationBars.buttons.element(boundBy: 0).tap()
+        navigationBar.buttons["Chat"].tap()
         
+        snapshot("5_Chat")
+        
+        navigationBar.buttons["Carona"].tap()
         app.navigationBars.buttons.element(boundBy: 0).tap()
         
-        snapshot("1_AllRides")
+        snapshot("0_AllRides")
         
         app.tabBars.buttons["Minhas"].tap()
         
         snapshot("4_MyRides")
         
-        app.navigationBars["Minhas"].children(matching: .button).element.tap()
+        navigationBar.children(matching: .button).element.tap()
         
         fillCreateRide()
 
         app.swipeDown()
         
-        snapshot("2_CreateRide")
+        snapshot("1_CreateRide")
     }
     
     func fillCreateRide() {
