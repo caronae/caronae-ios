@@ -1,8 +1,8 @@
 Quer ser um testador (Beta Tester) do Caronaê? Você irá receber as atualizações primeiro e pode ajudar a melhorar ainda mais o funcionamento enviando seus comentários diretamente para os desenvolvedores! Envie um email para caronae@fundoverde.ufrj.br
 
-- Agora todas as suas caronas pendentes, ativas e ofertadas estão em uma única tela!
-- Atualizamos o nosso código para Swift 4.
-- Melhora o comportamento para visualizar Todas as Caronas.
-- Corrige visualização no iPhone X e em versões anteriores ao iOS 11.
+- Refizemos toda a experiência de Login para ser mais intuitiva!
+- Melhora a integração com o nosso servidor.
+- Melhora a experiência ao editar perfil ou preencher dados de uma carona.
+- Corrige visualização de notificações internas no iPhone X.
 
 Caso você encontre algum problema, por favor nos avise através do Falaê, no menu do app, pela nossa página do Facebook ou pelo email caronae@fundoverde.ufrj.br :)
