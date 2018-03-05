@@ -57,7 +57,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
             return
         }
         
-        if currentUser == user {
+        if currentUser.id == user.id {
             self.title = "Meu Perfil"
             
             if user.carOwner {
