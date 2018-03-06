@@ -60,7 +60,49 @@ class UserService: NSObject {
         return "/topics/user-\(user.id)"
     }
     
-    func signIn(withID idUFRJ: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
+    func getUser(withID id: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: Error) -> Void) {
+        api.get("/api/v1/users/\(id)", parameters: nil, success: { task, responseObject in
+            guard let responseObject = responseObject as? [String: Any],
+                let userJson = responseObject["user"] as? [String: Any],
+                let user = User(JSON: userJson) else {
+                    NSLog("Error parsing user response")
+                    error(CaronaeError.invalidResponse)
+                    return
+            }
+            
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.add(user, update: true)
+                }
+            } catch let realmError {
+                NSLog("Error saving the current user in the Realm: \(realmError.localizedDescription)")
+            }
+            
+            success(user)
+        }, failure: { task, err in
+            NSLog("Error loading user with id \(id): \(err.localizedDescription)")
+            error(err)
+        })
+    }
+    
+    func signIn(withID id: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
+        getUser(withID: id, success: { user in
+            // Update the current user
+            self.user = user
+            self.userToken = token
+            UserDefaults.standard.set(user.id, forKey: "user_id")
+            
+            self.notifyObservers()
+            
+            success(user)
+        }) { err in
+            NSLog("Failed to sign in: \(err.localizedDescription)")
+            error(.invalidResponse)
+        }
+    }
+    
+    func signIn(withIDUFRJ idUFRJ: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
         let params = [ "id_ufrj": idUFRJ, "token": token ]
         api.post("/api/v1/users/login", parameters: params, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],

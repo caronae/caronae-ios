@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
             view.endEditing(true)
             let id = idTextField.text!
             let token = tokenTextField.text!
-            self.authController.authenticate(withID: id, token: token, callback: { error in
+            self.authController.authenticate(withIDUFRJ: id, token: token, callback: { error in
                 guard error == nil else {
                     
                     NSLog("There was an error authenticating the user. %@", error!.description)
