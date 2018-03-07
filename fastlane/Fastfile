@@ -44,6 +44,7 @@ platform :ios do
       submit_for_review: true,
       force: true,
       ipa: options[:ipa],
+      app_version: get_version_number
       build_number: options[:build_number],
     )
   end
