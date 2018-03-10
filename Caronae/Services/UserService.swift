@@ -43,17 +43,6 @@ class UserService: NSObject {
         }
     }
     
-    var userGCMToken: String? {
-        // TODO: Migrate this to use Keychain
-        get {
-            return UserDefaults.standard.string(forKey: "gcmToken")
-        }
-        
-        set {
-            UserDefaults.standard.set(newValue, forKey: "gcmToken")
-        }
-    }
-    
     var userFacebookToken: String? {
         return FBSDKAccessToken.current()?.tokenString
     }
