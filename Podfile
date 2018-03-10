@@ -21,6 +21,7 @@ abstract_target 'caronae-ios' do
     pod 'JSQMessagesViewController', :git => 'https://github.com/caronae/JSQMessagesViewController.git', :branch => 'issue-1864'
     pod 'MIBadgeButton-Swift', :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
     pod 'UIScrollView-InfiniteScroll'
+    pod 'SimpleKeychain', '~> 0.8'
 
     target 'Caronae'
     target 'Caronae Dev'

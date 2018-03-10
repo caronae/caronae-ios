@@ -1,16 +1,15 @@
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Firebase
 import Foundation
 import RealmSwift
-import Firebase
+import SimpleKeychain
 
 class UserService: NSObject {
     @objc static let instance = UserService()
     private let api = CaronaeAPIHTTPSessionManager.instance
     
-    private override init() {
-        // This prevents others from using the default '()' initializer for this class.
-    }
+    private override init() {}
     
     @objc private(set) lazy var user: User? = {
         let userID: Int = UserDefaults.standard.integer(forKey: "user_id")
@@ -30,16 +29,22 @@ class UserService: NSObject {
     }()
     
     private(set) var userToken: String? {
+        // TODO: Migrate existing tokens from UserDefaults to Keychain
         get {
-            return UserDefaults.standard.string(forKey: "token")
+            return A0SimpleKeychain().string(forKey: "jwt_token")
         }
         
         set {
-            UserDefaults.standard.set(newValue, forKey: "token")
+            guard let token = newValue else {
+                A0SimpleKeychain().deleteEntry(forKey: "jwt_token")
+                return
+            }
+            A0SimpleKeychain().setString(token, forKey: "jwt_token")
         }
     }
     
     var userGCMToken: String? {
+        // TODO: Migrate this to use Keychain
         get {
             return UserDefaults.standard.string(forKey: "gcmToken")
         }
@@ -78,7 +83,7 @@ class UserService: NSObject {
             } catch let realmError {
                 NSLog("Error saving the current user in the Realm: \(realmError.localizedDescription)")
             }
-            
+
             success(user)
         }, failure: { task, err in
             NSLog("Error loading user with id \(id): \(err.localizedDescription)")
@@ -87,10 +92,10 @@ class UserService: NSObject {
     }
     
     func signIn(withID id: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
+        self.userToken = token
         getUser(withID: id, success: { user in
-            // Update the current user
             self.user = user
-            self.userToken = token
+
             UserDefaults.standard.set(user.id, forKey: "user_id")
             
             self.notifyObservers()

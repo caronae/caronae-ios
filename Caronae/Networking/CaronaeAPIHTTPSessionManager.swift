@@ -19,8 +19,10 @@ class CaronaeAPIHTTPSessionManager: AFHTTPSessionManager {
 
 class CaronaeAPIRequestSerializer: AFJSONRequestSerializer {
     override func request(withMethod method: String, urlString URLString: String, parameters: Any?, error: NSErrorPointer) -> NSMutableURLRequest {
-        // Add user token to the HTTP headers
-        self.setValue(UserService.instance.userToken, forHTTPHeaderField: "token")
+        // Add JWT token to the Authorization header
+        if let jwtToken = UserService.instance.userToken {
+            self.setValue("Bearer \(jwtToken)", forHTTPHeaderField: "Authorization")
+        }
 
         // Add user FB token to the HTTP headers
         self.setValue(UserService.instance.userFacebookToken, forHTTPHeaderField: "Facebook-Token")
