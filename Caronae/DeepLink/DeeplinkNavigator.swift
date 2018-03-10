@@ -28,7 +28,7 @@ class DeeplinkNavigator {
             authController.authenticate(withID: id, token: token) { error in
                 guard error == nil else {
                     NSLog("There was an error authenticating the user. %@", error!.localizedDescription)
-                    CaronaeAlertController.presentOkAlert(withTitle: "Não foi possível autenticar", message: error!.description)
+                    CaronaeAlertController.presentOkAlert(withTitle: "Não foi possível autenticar", message: error!.localizedDescription)
                     return
                 }
                 
