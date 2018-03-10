@@ -69,11 +69,11 @@ class Ride: Object, Mappable {
         }
     }
     
-    @objc var isRoutine: Bool {
+    var isRoutine: Bool {
         return routineID.value != nil
     }
     
-    @objc var availableSlots: Int {
+    var availableSlots: Int {
         return slots - riders.count
     }
     

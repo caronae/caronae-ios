@@ -106,10 +106,6 @@ class UserService: NSObject {
         })
     }
     
-    @objc func signOut() {
-        signOut(force: false)
-    }
-    
     func signOut(force: Bool = false) {
         // Unsubscribe from FCM user topic
         if let userTopic = self.userTopic {
@@ -140,7 +136,7 @@ class UserService: NSObject {
         notifyObservers(force: force)
     }
     
-    @objc func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+    func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         api.put("/api/v1/users/\(user.id)", parameters: user.toJSON(), success: { task, responseObject in
             
             let currentUser = self.user!
@@ -182,7 +178,7 @@ class UserService: NSObject {
         })
     }
     
-    @objc func getPhotoFromFacebook(success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func getPhotoFromFacebook(success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
         let request = FBSDKGraphRequest(graphPath: "me/picture?type=large&redirect=false", parameters: ["fields": "url"])!
         request.start(completionHandler: { connection, result, err in
             guard err == nil,
@@ -198,7 +194,7 @@ class UserService: NSObject {
     }
 
     
-    @objc func ridesCountForUser(withID id: Int, success: @escaping (_ offered: Int, _ taken: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func ridesCountForUser(withID id: Int, success: @escaping (_ offered: Int, _ taken: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
         api.get("/api/v1/users/\(id)/rides/history", parameters: nil, success: { task, responseObject in
             guard let response = responseObject as? [String: Any],
                 let offered = response["offered_rides_count"] as? Int,
@@ -228,7 +224,7 @@ class UserService: NSObject {
     
     // This actually should use the user's ID instead of the Facebook ID
     // but would need to refactor the API...
-    @objc func mutualFriendsForUser(withFacebookID facebookID: String?, success: @escaping (_ friends: [User], _ totalCount: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func mutualFriendsForUser(withFacebookID facebookID: String?, success: @escaping (_ friends: [User], _ totalCount: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
         guard let facebookID = facebookID, !facebookID.isEmpty, userFacebookToken != nil else {
             error(CaronaeError.notLoggedInWithFacebook)
             return
