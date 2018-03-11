@@ -2,6 +2,7 @@ platform :ios, '9.0'
 
 abstract_target 'caronae-ios' do
     use_frameworks!
+    inhibit_all_warnings!
     
     pod 'AFNetworking', '~> 2.6.3'
     pod 'ActionSheetPicker-3.0', '~> 2.3.0'
