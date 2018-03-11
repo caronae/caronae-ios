@@ -5,14 +5,14 @@ import RealmSwift
 import Firebase
 
 class UserService: NSObject {
-    @objc static let instance = UserService()
+    static let instance = UserService()
     private let api = CaronaeAPIHTTPSessionManager.instance
     
     private override init() {
         // This prevents others from using the default '()' initializer for this class.
     }
     
-    @objc private(set) lazy var user: User? = {
+    private(set) lazy var user: User? = {
         let userID: Int = UserDefaults.standard.integer(forKey: "user_id")
         
         do {

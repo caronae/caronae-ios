@@ -1,6 +1,6 @@
 import UIKit
 
-@objc enum SelectionType: Int {
+enum SelectionType {
     case oneSelection
     case manySelection
 }

@@ -70,10 +70,8 @@
 		718F3AC11FE9FEBE001F1D40 /* AllRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C9B741E5F923A0037A78B /* AllRidesViewController.swift */; };
 		718F3AC21FE9FEBE001F1D40 /* DateTimeTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82321E1C63CD006D8ABE /* DateTimeTransform.swift */; };
 		718F3AC31FE9FEBE001F1D40 /* PhoneNumberActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FDA2441F401EBB00DA67E8 /* PhoneNumberActionSheet.swift */; };
-		718F3AC41FE9FEBE001F1D40 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3E7FB1C77AD310094BBAC /* WebViewController.m */; };
 		718F3AC51FE9FEBE001F1D40 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F82301F610E8300531C71 /* UIColor+hex.swift */; };
 		718F3AC61FE9FEBE001F1D40 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */; };
-		718F3AC71FE9FEBE001F1D40 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C61BF01B9A005BA311 /* MenuViewController.m */; };
 		718F3AC81FE9FEBE001F1D40 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718875DA1ED351E1004DB078 /* PaginationState.swift */; };
 		718F3AC91FE9FEBE001F1D40 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDF1E22EC570062522D /* ChatService.swift */; };
 		718F3ACA1FE9FEBE001F1D40 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */; };
@@ -132,6 +130,10 @@
 		71D2B86D1E296AFC000454F7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2B86C1E296AFC000454F7 /* ChatViewController.swift */; };
 		71DB83DE1F831FF40065300E /* FalaeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DB83DD1F831FF40065300E /* FalaeService.swift */; };
 		71EAF4551F11406200B16CF8 /* CreateRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EAF4541F11406200B16CF8 /* CreateRideViewController.swift */; };
+		71EEF6F5205472D3004D782A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EEF6F4205472D3004D782A /* WebViewController.swift */; };
+		71EEF6F6205472D3004D782A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EEF6F4205472D3004D782A /* WebViewController.swift */; };
+		71EEF6F82054798A004D782A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EEF6F72054798A004D782A /* MenuViewController.swift */; };
+		71EEF6F92054798A004D782A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EEF6F72054798A004D782A /* MenuViewController.swift */; };
 		71F648601F71F364004C712F /* HubsSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F648591F71F364004C712F /* HubsSelectionViewController.swift */; };
 		71F648611F71F364004C712F /* NeighborhoodSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F6485A1F71F364004C712F /* NeighborhoodSelectionViewController.swift */; };
 		71F648621F71F364004C712F /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F6485B1F71F364004C712F /* SelectionCell.swift */; };
@@ -147,7 +149,6 @@
 		A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */; };
 		A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */; };
 		A325DA711C0CAFD700B9124E /* JoinRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */; };
-		A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C61BF01B9A005BA311 /* MenuViewController.m */; };
 		A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A34CEC4C1C993115006FC41E /* Settings.bundle */; };
 		A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A357EF321C56C5A100AC8096 /* RideListController.xib */; };
 		A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
@@ -178,7 +179,6 @@
 		A3CA5DDC1E22DB830062522D /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */; };
 		A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDF1E22EC570062522D /* ChatService.swift */; };
 		A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */; };
-		A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3E7FB1C77AD310094BBAC /* WebViewController.m */; };
 		A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE026B1C17D01000A8407E /* RiderCell.m */; };
 /* End PBXBuildFile section */
 
@@ -247,6 +247,8 @@
 		71D2B86C1E296AFC000454F7 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		71DB83DD1F831FF40065300E /* FalaeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FalaeService.swift; path = Services/FalaeService.swift; sourceTree = "<group>"; };
 		71EAF4541F11406200B16CF8 /* CreateRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRideViewController.swift; sourceTree = "<group>"; };
+		71EEF6F4205472D3004D782A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = About/WebViewController.swift; sourceTree = "<group>"; };
+		71EEF6F72054798A004D782A /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		71F3DA701FEED96A001D65D2 /* Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-dev.plist"; sourceTree = "<group>"; };
 		71F648591F71F364004C712F /* HubsSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HubsSelectionViewController.swift; path = "Place selection/HubsSelectionViewController.swift"; sourceTree = "<group>"; };
 		71F6485A1F71F364004C712F /* NeighborhoodSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeighborhoodSelectionViewController.swift; path = "Place selection/NeighborhoodSelectionViewController.swift"; sourceTree = "<group>"; };
@@ -270,8 +272,6 @@
 		A325DA6D1C0CAFD700B9124E /* JoinRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinRequestCell.h; sourceTree = "<group>"; };
 		A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinRequestCell.m; sourceTree = "<group>"; };
 		A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinRequestCell.xib; sourceTree = "<group>"; };
-		A34312C51BF01B9A005BA311 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		A34312C61BF01B9A005BA311 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		A34CEC4C1C993115006FC41E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../../Settings.bundle; sourceTree = "<group>"; };
 		A357EF321C56C5A100AC8096 /* RideListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideListController.xib; sourceTree = "<group>"; };
 		A375D2F91C19175A00795CAE /* CaronaeAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeAlertController.h; sourceTree = "<group>"; };
@@ -311,8 +311,6 @@
 		A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		A3CA5DDF1E22EC570062522D /* ChatService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatService.swift; path = Services/ChatService.swift; sourceTree = "<group>"; };
 		A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
-		A3D3E7FA1C77AD310094BBAC /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = About/WebViewController.h; sourceTree = "<group>"; };
-		A3D3E7FB1C77AD310094BBAC /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = About/WebViewController.m; sourceTree = "<group>"; };
 		A3D680191DB4016E00135C2B /* Caronae.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Caronae.entitlements; sourceTree = "<group>"; };
 		A3EE026A1C17D01000A8407E /* RiderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RiderCell.h; sourceTree = "<group>"; };
 		A3EE026B1C17D01000A8407E /* RiderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RiderCell.m; sourceTree = "<group>"; };
@@ -486,8 +484,7 @@
 				7169143B1FEAEBEE004AD5C7 /* CaronaeConstants.swift */,
 				A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */,
 				A3169C9C1BED842D00A0D428 /* Main.storyboard */,
-				A34312C51BF01B9A005BA311 /* MenuViewController.h */,
-				A34312C61BF01B9A005BA311 /* MenuViewController.m */,
+				71EEF6F72054798A004D782A /* MenuViewController.swift */,
 				A39BA2EA1C6C0F3A0063DDD1 /* TabBarController.h */,
 				A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */,
 			);
@@ -640,8 +637,7 @@
 		A3D3E7FD1C77AD350094BBAC /* About */ = {
 			isa = PBXGroup;
 			children = (
-				A3D3E7FA1C77AD310094BBAC /* WebViewController.h */,
-				A3D3E7FB1C77AD310094BBAC /* WebViewController.m */,
+				71EEF6F4205472D3004D782A /* WebViewController.swift */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -1205,12 +1201,11 @@
 				718F3AC31FE9FEBE001F1D40 /* PhoneNumberActionSheet.swift in Sources */,
 				714AA359203B2247005EF615 /* CaronaeMessageNotification.swift in Sources */,
 				719428FF203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
-				718F3AC41FE9FEBE001F1D40 /* WebViewController.m in Sources */,
 				718F3AC51FE9FEBE001F1D40 /* UIColor+hex.swift in Sources */,
 				711259D62041EFDE000A92F9 /* ProfileViewController.swift in Sources */,
 				718F3AC61FE9FEBE001F1D40 /* TabBarController.m in Sources */,
+				71EEF6F92054798A004D782A /* MenuViewController.swift in Sources */,
 				7169143D1FEAEBEF004AD5C7 /* CaronaeConstants.swift in Sources */,
-				718F3AC71FE9FEBE001F1D40 /* MenuViewController.m in Sources */,
 				718F3AC81FE9FEBE001F1D40 /* PaginationState.swift in Sources */,
 				718F3AC91FE9FEBE001F1D40 /* ChatService.swift in Sources */,
 				718F3ACA1FE9FEBE001F1D40 /* WelcomeViewController.swift in Sources */,
@@ -1233,6 +1228,7 @@
 				718F3ADC1FE9FEBE001F1D40 /* CALayer+UIColor.m in Sources */,
 				718F3ADD1FE9FEBE001F1D40 /* DeepLinkManager.swift in Sources */,
 				711259DE2043C298000A92F9 /* String+validation.swift in Sources */,
+				71EEF6F6205472D3004D782A /* WebViewController.swift in Sources */,
 				718F3ADE1FE9FEBE001F1D40 /* Notification.swift in Sources */,
 				718F3ADF1FE9FEBE001F1D40 /* DeeplinkNavigator.swift in Sources */,
 				718F3AE01FE9FEBE001F1D40 /* AppDelegate+Firebase.swift in Sources */,
@@ -1281,14 +1277,13 @@
 				718C9B751E5F923A0037A78B /* AllRidesViewController.swift in Sources */,
 				A3AD82331E1C63CD006D8ABE /* DateTimeTransform.swift in Sources */,
 				71FDA2451F401EBB00DA67E8 /* PhoneNumberActionSheet.swift in Sources */,
-				A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */,
 				714AA358203B18FF005EF615 /* CaronaeMessageNotification.swift in Sources */,
 				719428FE203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
 				714F82311F610E8300531C71 /* UIColor+hex.swift in Sources */,
 				A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */,
 				711259D52041EFDB000A92F9 /* ProfileViewController.swift in Sources */,
-				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
 				7169143C1FEAEBEF004AD5C7 /* CaronaeConstants.swift in Sources */,
+				71EEF6F82054798A004D782A /* MenuViewController.swift in Sources */,
 				718875DB1ED351E1004DB078 /* PaginationState.swift in Sources */,
 				A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */,
 				A3AC169D1E35781C000B5817 /* WelcomeViewController.swift in Sources */,
@@ -1312,6 +1307,7 @@
 				71F648641F71F364004C712F /* SelectionViewController.swift in Sources */,
 				A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */,
 				711259DD2043C298000A92F9 /* String+validation.swift in Sources */,
+				71EEF6F5205472D3004D782A /* WebViewController.swift in Sources */,
 				7106CFCD1F098BBB0071C4AE /* DeepLinkManager.swift in Sources */,
 				A3CA5DD61E22CA630062522D /* Notification.swift in Sources */,
 				7106CFCE1F098BBB0071C4AE /* DeeplinkNavigator.swift in Sources */,

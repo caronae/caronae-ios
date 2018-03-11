@@ -89,8 +89,4 @@ let OtherZoneColor = UIColor(white: 0.541, alpha: 1.0)
 @objcMembers
 public class Constants: NSObject {
     static let CaronaePlaceholderProfileImageObjc = CaronaePlaceholderProfileImage as NSString
-    static let CaronaeAboutPageURLStringObjc = CaronaeURLString.aboutPage as NSString
-    static let CaronaeTermsOfUsePageURLStringObjc = CaronaeURLString.termsOfUsePage as NSString
-    static let CaronaeFAQPageURLStringObjc = CaronaeURLString.FAQPage as NSString
-    static let CaronaeDidUpdateUserObjc = Foundation.Notification.Name.CaronaeDidUpdateUser.rawValue as NSString
 }
