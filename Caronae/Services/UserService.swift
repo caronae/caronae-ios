@@ -27,13 +27,22 @@ class UserService: NSObject {
             return nil
         }
     }()
-    
-    private(set) var userToken: String? {
-        // TODO: Migrate existing tokens from UserDefaults to Keychain
+
+    var userToken: String? {
+        get {
+            return UserDefaults.standard.string(forKey: "token")
+        }
+
+        set {
+            UserDefaults.standard.set(newValue, forKey: "token")
+        }
+    }
+
+    var jwtToken: String? {
         get {
             return A0SimpleKeychain().string(forKey: "jwt_token")
         }
-        
+
         set {
             guard let token = newValue else {
                 A0SimpleKeychain().deleteEntry(forKey: "jwt_token")
@@ -81,7 +90,7 @@ class UserService: NSObject {
     }
     
     func signIn(withID id: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
-        self.userToken = token
+        self.jwtToken = token
         getUser(withID: id, success: { user in
             self.user = user
 

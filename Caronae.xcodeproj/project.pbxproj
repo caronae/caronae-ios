@@ -131,6 +131,10 @@
 		71C908FE1E88C3E9009B7BFE /* FilterParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */; };
 		71D2B86D1E296AFC000454F7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2B86C1E296AFC000454F7 /* ChatViewController.swift */; };
 		71DB83DE1F831FF40065300E /* FalaeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DB83DD1F831FF40065300E /* FalaeService.swift */; };
+		71DEAE512054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE502054A86100707004 /* CaronaeAPIRequestSerializer.swift */; };
+		71DEAE522054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE502054A86100707004 /* CaronaeAPIRequestSerializer.swift */; };
+		71DEAE542054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */; };
+		71DEAE552054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */; };
 		71EAF4551F11406200B16CF8 /* CreateRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EAF4541F11406200B16CF8 /* CreateRideViewController.swift */; };
 		71F648601F71F364004C712F /* HubsSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F648591F71F364004C712F /* HubsSelectionViewController.swift */; };
 		71F648611F71F364004C712F /* NeighborhoodSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F6485A1F71F364004C712F /* NeighborhoodSelectionViewController.swift */; };
@@ -246,6 +250,8 @@
 		71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterParameters.swift; sourceTree = "<group>"; };
 		71D2B86C1E296AFC000454F7 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		71DB83DD1F831FF40065300E /* FalaeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FalaeService.swift; path = Services/FalaeService.swift; sourceTree = "<group>"; };
+		71DEAE502054A86100707004 /* CaronaeAPIRequestSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaronaeAPIRequestSerializer.swift; path = Networking/CaronaeAPIRequestSerializer.swift; sourceTree = "<group>"; };
+		71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaronaeAPIResponseSerializer.swift; path = Networking/CaronaeAPIResponseSerializer.swift; sourceTree = "<group>"; };
 		71EAF4541F11406200B16CF8 /* CreateRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRideViewController.swift; sourceTree = "<group>"; };
 		71F3DA701FEED96A001D65D2 /* Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-dev.plist"; sourceTree = "<group>"; };
 		71F648591F71F364004C712F /* HubsSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HubsSelectionViewController.swift; path = "Place selection/HubsSelectionViewController.swift"; sourceTree = "<group>"; };
@@ -633,6 +639,8 @@
 			isa = PBXGroup;
 			children = (
 				A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */,
+				71DEAE502054A86100707004 /* CaronaeAPIRequestSerializer.swift */,
+				71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -1212,6 +1220,7 @@
 				714AA359203B2247005EF615 /* CaronaeMessageNotification.swift in Sources */,
 				719428FF203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
 				718F3AC41FE9FEBE001F1D40 /* WebViewController.m in Sources */,
+				71DEAE522054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */,
 				718F3AC51FE9FEBE001F1D40 /* UIColor+hex.swift in Sources */,
 				711259D62041EFDE000A92F9 /* ProfileViewController.swift in Sources */,
 				718F3AC61FE9FEBE001F1D40 /* TabBarController.m in Sources */,
@@ -1229,6 +1238,7 @@
 				718F3AD31FE9FEBE001F1D40 /* RideViewController+rideActions.swift in Sources */,
 				716914361FEAE864004AD5C7 /* RideViewController.swift in Sources */,
 				718F3AD41FE9FEBE001F1D40 /* SearchRideViewController.swift in Sources */,
+				71DEAE552054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */,
 				718F3AD51FE9FEBE001F1D40 /* UniversalLinkParser.swift in Sources */,
 				711259DA204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
 				718F3AD61FE9FEBE001F1D40 /* NeighborhoodSelectionViewController.swift in Sources */,
@@ -1291,6 +1301,7 @@
 				714AA358203B18FF005EF615 /* CaronaeMessageNotification.swift in Sources */,
 				719428FE203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
 				714F82311F610E8300531C71 /* UIColor+hex.swift in Sources */,
+				71DEAE512054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */,
 				A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */,
 				711259D52041EFDB000A92F9 /* ProfileViewController.swift in Sources */,
 				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
@@ -1308,6 +1319,7 @@
 				A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */,
 				71C60AAE1EBAC1A300E84318 /* SearchRideViewController.swift in Sources */,
 				7106CFD01F098BBB0071C4AE /* UniversalLinkParser.swift in Sources */,
+				71DEAE542054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */,
 				71F648611F71F364004C712F /* NeighborhoodSelectionViewController.swift in Sources */,
 				711259D9204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
 				A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */,
