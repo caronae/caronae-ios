@@ -145,13 +145,6 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
             carPlateLabel.text = user.carPlate?.uppercased()
             carModelLabel.text = user.carModel
             carColorLabel.text = user.carColor
-            
-            // If the riders aren't provided then hide the riders view
-            if ride.riders.isEmpty {
-                DispatchQueue.main.async {
-                    self.ridersView.removeFromSuperview()
-                }
-            }
         }
         // If the user is already a rider, hide 'join' button
         else if self.userIsRider() {
