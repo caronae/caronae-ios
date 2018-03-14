@@ -46,11 +46,11 @@ class User: Object, Mappable {
         numDrives <- map["numDrives"]
     }
     
-    @objc var firstName: String {
+    var firstName: String {
         return name.components(separatedBy: " ").first ?? name
     }
     
-    @objc var shortName: String {
+    var shortName: String {
         let names = name.components(separatedBy: " ")
         guard let firstName = names.first, let lastName = names.last, lastName != firstName else { return name }
         return firstName + " " + lastName

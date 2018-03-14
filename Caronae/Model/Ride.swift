@@ -61,7 +61,7 @@ class Ride: Object, Mappable {
         riders <- (map["riders"], ListTransform<User>())
     }
     
-    @objc var title: String {
+    var title: String {
         if going {
             return String(format: "%@ → %@", neighborhood, hub)
         } else {
