@@ -190,12 +190,12 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
             return false
         }
         
-        guard hasCarSwitch.isOn, !carModelTextField.text!.isEmpty, !carPlateTextField.text!.isEmpty, !carColorTextField.text!.isEmpty else {
+        if hasCarSwitch.isOn && (carModelTextField.text!.isEmpty || carPlateTextField.text!.isEmpty || carColorTextField.text!.isEmpty) {
             CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que você marcou que tem um carro mas não preencheu os dados dele.")
             return false
         }
         
-        guard hasCarSwitch.isOn, carPlateTextField.text!.isValidCarPlate else {
+        if hasCarSwitch.isOn && !carPlateTextField.text!.isValidCarPlate {
             CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que preencheu incorretamente a placa do seu carro. Verifique se a preencheu no formato \"ABC-1234\".")
             return false
         }
