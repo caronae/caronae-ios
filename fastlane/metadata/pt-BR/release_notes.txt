@@ -1,5 +1,11 @@
 Quer ser um testador (Beta Tester) do Caronaê? Você irá receber as atualizações primeiro e pode ajudar a melhorar ainda mais o funcionamento enviando seus comentários diretamente para os desenvolvedores! Envie um email para caronae@fundoverde.ufrj.br
 
+- Corrige problema ao salvar o perfil indicando que não possui carro
+- Corrige no histórico o texto de caronas voltando da universidade 
+- Caronas ofertadas sem caronistas aparecem com uma mensagem indicativa para o motorista
+- Atingimos mais de 90% do código em Swift :)
+
+1.3.0:
 - Refizemos toda a experiência de Login para ser mais intuitiva!
 - Melhora a integração com o nosso servidor.
 - Melhora a experiência ao editar perfil ou preencher dados de uma carona.
