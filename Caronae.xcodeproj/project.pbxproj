@@ -20,6 +20,8 @@
 		711259DA204320FC000A92F9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D8204320FC000A92F9 /* EditProfileViewController.swift */; };
 		711259DD2043C298000A92F9 /* String+validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259DC2043C298000A92F9 /* String+validation.swift */; };
 		711259DE2043C298000A92F9 /* String+validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259DC2043C298000A92F9 /* String+validation.swift */; };
+		712F0308205C6D44003DDAC3 /* String+onlyDigits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712F0307205C6D44003DDAC3 /* String+onlyDigits.swift */; };
+		712F0309205C6D44003DDAC3 /* String+onlyDigits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712F0307205C6D44003DDAC3 /* String+onlyDigits.swift */; };
 		7133482C1F5F603B00E2218E /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482B1F5F603B00E2218E /* Campus.swift */; };
 		7133482E1F5F609700E2218E /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482D1F5F609700E2218E /* Zone.swift */; };
 		713348301F5F60D400E2218E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482F1F5F60D400E2218E /* Place.swift */; };
@@ -214,6 +216,7 @@
 		711259D8204320FC000A92F9 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		711259DC2043C298000A92F9 /* String+validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+validation.swift"; sourceTree = "<group>"; };
 		7123EE441FEE13B800EA3773 /* Caronae UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Caronae UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		712F0307205C6D44003DDAC3 /* String+onlyDigits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+onlyDigits.swift"; sourceTree = "<group>"; };
 		7133482B1F5F603B00E2218E /* Campus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
 		7133482D1F5F609700E2218E /* Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zone.swift; sourceTree = "<group>"; };
 		7133482F1F5F60D400E2218E /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -618,6 +621,7 @@
 				713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */,
 				7148D5611EDA1D0A00D85B7D /* String+capitalizedAfter.swift */,
 				711259DC2043C298000A92F9 /* String+validation.swift */,
+				712F0307205C6D44003DDAC3 /* String+onlyDigits.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1180,6 +1184,7 @@
 				718F3AAF1FE9FEBE001F1D40 /* AppDelegate+Notifications.swift in Sources */,
 				718F3AB01FE9FEBE001F1D40 /* FalaeViewController.swift in Sources */,
 				718F3AB11FE9FEBE001F1D40 /* HubsSelectionViewController.swift in Sources */,
+				712F0309205C6D44003DDAC3 /* String+onlyDigits.swift in Sources */,
 				718F3AB21FE9FEBE001F1D40 /* Date+isInTheFuture.swift in Sources */,
 				718F3AB61FE9FEBE001F1D40 /* AppDelegate+Realm.swift in Sources */,
 				718F3AB71FE9FEBE001F1D40 /* Place.swift in Sources */,
@@ -1259,6 +1264,7 @@
 				71F648601F71F364004C712F /* HubsSelectionViewController.swift in Sources */,
 				A3034D581DB58A1B00816B79 /* Date+isInTheFuture.swift in Sources */,
 				A3AD823C1E1C8860006D8ABE /* AppDelegate+Realm.swift in Sources */,
+				712F0308205C6D44003DDAC3 /* String+onlyDigits.swift in Sources */,
 				713348301F5F60D400E2218E /* Place.swift in Sources */,
 				7157BD901FB6933400D216F3 /* RideListController.swift in Sources */,
 				A3BBF1381DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift in Sources */,

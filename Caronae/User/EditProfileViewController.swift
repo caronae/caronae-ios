@@ -147,11 +147,11 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         updatedUser.name = user.name
         updatedUser.profile = user.profile
         updatedUser.course = user.course
-        updatedUser.phoneNumber = phoneTextField.text?.phoneWithoutMask
+        updatedUser.phoneNumber = phoneTextField.text?.onlyDigits
         updatedUser.email = emailTextField.text
         updatedUser.carOwner = hasCarSwitch.isOn
         updatedUser.carModel = carModelTextField.text
-        updatedUser.carPlate = carPlateTextField.text
+        updatedUser.carPlate = carPlateTextField.text?.uppercased()
         updatedUser.carColor = carColorTextField.text
         updatedUser.location = neighborhood
         updatedUser.profilePictureURL = photoURLString
@@ -180,7 +180,7 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
             return false
         }
         
-        guard let phone = phoneTextField.text, phone.count == 16 else {
+        guard let phone = phoneTextField.text?.onlyDigits, phone.count == 12 else {
             CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que o telefone que você inseriu não é válido. Ele deve estar no formato (0XX) XXXXX-XXXX.")
             return false
         }
