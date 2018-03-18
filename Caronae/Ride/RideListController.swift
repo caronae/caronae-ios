@@ -54,6 +54,10 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
             DispatchQueue.main.async {
                 self.directionControl.removeFromSuperview()
             }
+        } else {
+            // Configure direction titles according to institution
+            directionControl.setTitle(UserService.Institution.goingLabel, forSegmentAt: 0)
+            directionControl.setTitle(UserService.Institution.leavingLabel, forSegmentAt: 1)
         }
         adjustTableView()
         

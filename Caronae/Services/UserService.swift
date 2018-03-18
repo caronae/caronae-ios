@@ -39,6 +39,22 @@ class UserService: NSObject {
         }
     }
     
+    struct Institution {
+        private init() {}
+        fileprivate(set) static var name: String! {
+            get { return UserDefaults.standard.string(forKey: "institutionName") ?? "UFRJ" }
+            set { UserDefaults.standard.set(newValue, forKey: "institutionName") }
+        }
+        fileprivate(set) static var goingLabel: String! {
+            get { return UserDefaults.standard.string(forKey: "institutionGoingLabel") ?? "Chegando na UFRJ" }
+            set { UserDefaults.standard.set(newValue, forKey: "institutionGoingLabel") }
+        }
+        fileprivate(set) static var leavingLabel: String! {
+            get { return UserDefaults.standard.string(forKey: "institutionLeavingLabel") ?? "Saindo da UFRJ" }
+            set { UserDefaults.standard.set(newValue, forKey: "institutionLeavingLabel") }
+        }
+    }
+    
     var userGCMToken: String? {
         get {
             return UserDefaults.standard.string(forKey: "gcmToken")
@@ -65,7 +81,8 @@ class UserService: NSObject {
         api.post("/api/v1/users/login", parameters: params, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
             let userJson = responseObject["user"] as? [String: Any],
-            let user = User(JSON: userJson) else {
+            let user = User(JSON: userJson),
+            let institution = responseObject["institution"] as? [String: String] else {
                 NSLog("Error parsing user response")
                 error(.invalidResponse)
                 return
@@ -84,6 +101,11 @@ class UserService: NSObject {
             self.user = user
             self.userToken = token
             UserDefaults.standard.set(user.id, forKey: "user_id")
+            
+            // Update the current institution
+            Institution.name = institution["name"]
+            Institution.goingLabel = institution["going_label"]
+            Institution.leavingLabel = institution["leaving_label"]
             
             self.notifyObservers()
             
