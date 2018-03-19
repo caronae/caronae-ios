@@ -29,7 +29,7 @@ Ao concluir, abra o projeto pelo arquivo **Caronae.xcworkspace**.
 
 ## Fastlane
 
-Este projeto está configurado com o [fastlane](http://fastlane.tools). Consulte a [documentação](https://github.com/caronae/caronae-ios/tree/develop/fastlane) da pasta fastlane para ver as ações disponíveis.
+Este projeto está configurado com o [fastlane](http://fastlane.tools). Consulte a [documentação](/fastlane) da pasta fastlane para ver as ações disponíveis.
 
 O Fastlane é instalado através do comando `bundle install`.
 
