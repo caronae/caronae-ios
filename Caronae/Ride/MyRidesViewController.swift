@@ -4,15 +4,11 @@ import RealmSwift
 class MyRidesViewController: RideListController {
     var notificationTokens: [NotificationToken?] = []
     var unreadNotifications: Results<Notification>!
-    var ridesRealm: Results<Ride>!
     
     var sectionRides = [Results<Ride>]()
     let sectionTitles = ["Pendentes", "Ativas", "Ofertadas"]
     
     override func viewDidLoad() {
-        let realm = try! Realm()
-        ridesRealm = realm.objects(Ride.self).filter("FALSEPREDICATE")
-        
         hidesDirectionControl = true
         super.viewDidLoad()
         
@@ -23,10 +19,8 @@ class MyRidesViewController: RideListController {
             self.sectionRides = [pending, active, offered]
             self.subscribeToChanges()
         }, error: { error in
-            self.loadingFailed(withError: error as NSError)
+            NSLog("Error getting My Rides")
         })
-        
-        changeBackgroundIfNeeded()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateNotificationBadges), name: .CaronaeDidUpdateNotifications, object: nil)
         updateNotificationBadges()
@@ -43,7 +37,7 @@ class MyRidesViewController: RideListController {
             NSLog("My rides updated")
         }, error: { error in
             self.refreshControl?.endRefreshing()
-            NSLog("Error updating my rides (\(error.localizedDescription))")
+            self.loadingFailed(withError: error as NSError)
         })
     }
     
@@ -94,9 +88,14 @@ class MyRidesViewController: RideListController {
         tableView.backgroundView = (sectionRides.contains(where: { !$0.isEmpty })) ? nil : emptyTableLabel
     }
     
+    override func loadingFailed(withError error: NSError, checkFilteredRides: Bool = false) {
+        tableView.backgroundView = (sectionRides.contains(where: { !$0.isEmpty })) ? nil : errorLabel
+        super.loadingFailed(withError: error, checkFilteredRides: false)
+    }
+    
     func openChatForRide(withID rideID: Int) {
         guard let ride = RideService.instance.getRideFromRealm(withID: rideID) else {
-            NSLog("Tried to open chat for ride %@, but did not ride on realm.", rideID)
+            NSLog("Tried to open chat for ride %@, but did not find ride on realm.", rideID)
             return
         }
         

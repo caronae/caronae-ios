@@ -150,8 +150,8 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func loadingFailed(withError error: NSError) {
-        if filteredRides.isEmpty {
+    func loadingFailed(withError error: NSError, checkFilteredRides: Bool = true) {
+        if checkFilteredRides && filteredRides.isEmpty {
             tableView.backgroundView = errorLabel
         }
         
