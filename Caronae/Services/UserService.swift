@@ -16,11 +16,6 @@ class UserService: NSObject {
         let userID: Int = UserDefaults.standard.integer(forKey: "user_id")
         
         do {
-            // If the user ID was not found, we need to check for a legacy user and migrate it
-            guard userID != 0 else {
-                return try self.migrateUserToRealm()
-            }
-            
             let realm = try Realm()
             return realm.object(ofType: User.self, forPrimaryKey: userID)
         } catch {
@@ -269,27 +264,5 @@ class UserService: NSObject {
     
     private func notifyObservers(force: Bool = false) {
         NotificationCenter.default.post(name: .CaronaeDidUpdateUser, object: self, userInfo: [CaronaeSignOutRequiredKey: force])
-    }
-    
-    private func migrateUserToRealm() throws -> User {
-        guard let userJson = UserDefaults.standard.dictionary(forKey: "user") else {
-            throw CaronaeError.notLoggedIn
-        }
-        
-        guard let user = User(JSON: userJson) else {
-            throw CaronaeError.invalidUser
-        }
-        
-        let realm = try Realm()
-        try realm.write {
-            realm.add(user, update: true)
-        }
-        
-        UserDefaults.standard.set(user.id, forKey: "user_id")
-        UserDefaults.standard.removeObject(forKey: "user")
-        UserDefaults.standard.removeObject(forKey: "userCreatedRides")
-        UserDefaults.standard.removeObject(forKey: "cachedJoinRequests")
-        
-        return user
     }
 }
