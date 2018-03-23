@@ -93,14 +93,14 @@ class MyRidesViewController: RideListController {
         super.loadingFailed(withError: error, checkFilteredRides: false)
     }
     
-    func openChatForRide(withID rideID: Int) {
+    func openRide(withID rideID: Int, openChat: Bool) {
         guard let ride = RideService.instance.getRideFromRealm(withID: rideID) else {
-            NSLog("Tried to open chat for ride %@, but did not find ride on realm.", rideID)
+            NSLog("Tried to open ride %@, but did not find ride on realm.", rideID)
             return
         }
         
         let rideViewController = RideViewController.instance(for: ride)
-        rideViewController.shouldOpenChatWindow = true
+        rideViewController.shouldOpenChatWindow = openChat
         _ = navigationController?.popToRootViewController(animated: false)
         navigationController?.pushViewController(rideViewController, animated: true)
     }
