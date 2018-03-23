@@ -31,4 +31,4 @@ output/
 screenshots/*/*.png
 screenshots/screenshots.html
 changelog.txt
-GoogleService-Info.plist
+GoogleService-Info*.plist
