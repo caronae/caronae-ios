@@ -127,7 +127,7 @@ extension AppDelegate {
     }
     
     func playNotificationSound() {
-        AudioServicesPlayAlertSound(beepSound)
+        AudioServicesPlayAlertSoundWithCompletion(beepSound, nil)
     }
     
     func showMessageIfActive(_ message: String) {

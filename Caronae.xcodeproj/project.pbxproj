@@ -42,6 +42,10 @@
 		7157BD8C1FB6931C00D216F3 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD8B1FB6931C00D216F3 /* SearchResultsViewController.swift */; };
 		7157BD8E1FB6932900D216F3 /* RidesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD8D1FB6932800D216F3 /* RidesHistoryViewController.swift */; };
 		7157BD901FB6933400D216F3 /* RideListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD8F1FB6933300D216F3 /* RideListController.swift */; };
+		71673D5F2065659F006C3140 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71673D5E2065659F006C3140 /* beep.wav */; };
+		71673D602065659F006C3140 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71673D5E2065659F006C3140 /* beep.wav */; };
+		71673D6620656644006C3140 /* beep_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71673D6520656644006C3140 /* beep_beep.wav */; };
+		71673D6720656644006C3140 /* beep_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71673D6520656644006C3140 /* beep_beep.wav */; };
 		716914361FEAE864004AD5C7 /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133B6251FB7983C008575CC /* RideViewController.swift */; };
 		716914371FEAE88A004AD5C7 /* RideListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD8F1FB6933300D216F3 /* RideListController.swift */; };
 		716914381FEAE896004AD5C7 /* RidesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD8D1FB6932800D216F3 /* RidesHistoryViewController.swift */; };
@@ -235,6 +239,8 @@
 		7157BD8B1FB6931C00D216F3 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		7157BD8D1FB6932800D216F3 /* RidesHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RidesHistoryViewController.swift; sourceTree = "<group>"; };
 		7157BD8F1FB6933300D216F3 /* RideListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideListController.swift; sourceTree = "<group>"; };
+		71673D5E2065659F006C3140 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
+		71673D6520656644006C3140 /* beep_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep_beep.wav; sourceTree = "<group>"; };
 		7169143B1FEAEBEE004AD5C7 /* CaronaeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaronaeConstants.swift; sourceTree = "<group>"; };
 		7185362F1F047FFF00C30B97 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		718875DA1ED351E1004DB078 /* PaginationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationState.swift; sourceTree = "<group>"; };
@@ -402,6 +408,15 @@
 			path = CaronaeUITests;
 			sourceTree = "<group>";
 		};
+		71673D642065660E006C3140 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				71673D5E2065659F006C3140 /* beep.wav */,
+				71673D6520656644006C3140 /* beep_beep.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		71942900203A6C5C008E2A24 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -475,6 +490,7 @@
 				A32B80B81C2E075000FC370A /* Ride */,
 				A3AD82341E1C70C6006D8ABE /* Services */,
 				A3169C931BED842D00A0D428 /* Supporting Files */,
+				71673D642065660E006C3140 /* Sounds */,
 				A32B80B71C2E073000FC370A /* User */,
 				7106CFC61F09443D0071C4AE /* DeepLink */,
 				7185362F1F047FFF00C30B97 /* AppDelegate.swift */,
@@ -801,10 +817,12 @@
 				718F3AF41FE9FEBE001F1D40 /* SelectionCell.xib in Resources */,
 				718F3AF51FE9FEBE001F1D40 /* RideListController.xib in Resources */,
 				718F3AF61FE9FEBE001F1D40 /* Assets.xcassets in Resources */,
+				71673D6720656644006C3140 /* beep_beep.wav in Resources */,
 				719428FC203A609C008E2A24 /* Login.storyboard in Resources */,
 				718F3AF71FE9FEBE001F1D40 /* Main.storyboard in Resources */,
 				718F3AF81FE9FEBE001F1D40 /* Settings.bundle in Resources */,
 				718F3AF91FE9FEBE001F1D40 /* JoinRequestCell.xib in Resources */,
+				71673D602065659F006C3140 /* beep.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,10 +838,12 @@
 				71F648631F71F364004C712F /* SelectionCell.xib in Resources */,
 				A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */,
 				A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */,
+				71673D6620656644006C3140 /* beep_beep.wav in Resources */,
 				719428FB203A609C008E2A24 /* Login.storyboard in Resources */,
 				A3169C9E1BED842D00A0D428 /* Main.storyboard in Resources */,
 				A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */,
 				A325DA711C0CAFD700B9124E /* JoinRequestCell.xib in Resources */,
+				71673D5F2065659F006C3140 /* beep.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
