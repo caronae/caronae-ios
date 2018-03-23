@@ -12,7 +12,6 @@ platform :ios do
     changes = changelog_from_git_commits(pretty: '- %s')
     File.write('changelog.txt', changes)
 
-    decrypt_keys
     cocoapods
     update_build_number
     push_to_git_remote unless options[:skip_push]
@@ -20,6 +19,7 @@ platform :ios do
 
   desc "Build app"
   lane :build do
+    decrypt_keys
     install_signing
     build_app
   end
