@@ -146,9 +146,9 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         updatedUser.phoneNumber = phoneTextField.text?.onlyDigits
         updatedUser.email = emailTextField.text
         updatedUser.carOwner = hasCarSwitch.isOn
-        updatedUser.carModel = carModelTextField.text
-        updatedUser.carPlate = carPlateTextField.text?.uppercased()
-        updatedUser.carColor = carColorTextField.text
+        updatedUser.carModel = hasCarSwitch.isOn ? carModelTextField.text : ""
+        updatedUser.carPlate = hasCarSwitch.isOn ? carPlateTextField.text?.uppercased() : ""
+        updatedUser.carColor = hasCarSwitch.isOn ? carColorTextField.text : ""
         updatedUser.location = neighborhood
         updatedUser.profilePictureURL = photoURLString
         
