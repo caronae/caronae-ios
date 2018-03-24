@@ -45,6 +45,7 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
     
     var ride: Ride!
     var shouldOpenChatWindow = false
+    var shouldLoadFromRealm = true
     var rideIsFull = false
     
     var requesters = [User]()
@@ -87,7 +88,10 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
         super.viewDidLoad()
         
         // Load ride from realm database if available
-        self.loadRealmRide()
+        if shouldLoadFromRealm {
+            self.loadRealmRide()
+        }
+        shouldLoadFromRealm = true
         
         self.clearNotifications()
         NotificationCenter.default.addObserver(self, selector: #selector(updateChatButtonBadge), name: .CaronaeDidUpdateNotifications, object: nil)
