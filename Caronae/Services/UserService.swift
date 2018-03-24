@@ -19,7 +19,7 @@ class UserService: NSObject {
             let realm = try Realm()
             return realm.object(ofType: User.self, forPrimaryKey: userID)
         } catch {
-            NSLog("Error reading or migrating current user (%@)", error.localizedDescription)
+            NSLog("Error reading current user (%@)", error.localizedDescription)
             return nil
         }
     }()
