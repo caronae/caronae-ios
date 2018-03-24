@@ -114,13 +114,10 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         numRidesLabel.text  = user.numRides > -1 ? String(user.numRides) : "-"
         
         emailTextField.text = user.email
-        if let phoneNumber = user.phoneNumber {
-            phoneMaskedDelegate.put(text: phoneNumber, into: phoneTextField)
-        }
+        let phoneNumber = user.phoneNumber ?? ""
+        phoneMaskedDelegate.put(text: phoneNumber, into: phoneTextField)
         
-        if let neighborhood = user.location {
-            self.neighborhood = neighborhood
-        }
+        neighborhood = user.location ?? ""
         
         hasCarSwitch.isOn = user.carOwner
         if !hasCarSwitch.isOn {
@@ -129,9 +126,8 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
             carDetailsView.alpha = 0.0
         }
         
-        if let carPlate = user.carPlate {
-            carPlateMaskedDelegate.put(text: carPlate, into: carPlateTextField)
-        }
+        let carPlate = user.carPlate ?? ""
+        carPlateMaskedDelegate.put(text: carPlate, into: carPlateTextField)
         carModelTextField.text = user.carModel
         carColorTextField.text = user.carColor
         
@@ -303,11 +299,7 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
     // MARK: Etc
     
     func showLoadingHUD(_ loading: Bool) {
-        if !loading {
-            navigationItem.rightBarButtonItem = self.saveButton
-        } else {
-            navigationItem.rightBarButtonItem = self.loadingButton
-        }
+        navigationItem.rightBarButtonItem = loading ? self.loadingButton : self.saveButton
     }
     
     func importPhotoFromFacebook() {
