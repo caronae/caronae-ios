@@ -10,8 +10,12 @@ class NotificationParser {
         }
         
         switch msgType {
-        case "accepted",
-             "refused",
+        case "accepted":
+            guard let id = rideId(ofUserInfo: userInfo) else {
+                return .openMyRides
+            }
+            return .loadAcceptedRide(withID: id)
+        case "refused",
              "cancelled",
              "quitter":
             return .openMyRides

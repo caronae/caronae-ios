@@ -95,7 +95,7 @@ class MyRidesViewController: RideListController {
     
     func openRide(withID rideID: Int, openChat: Bool) {
         guard let ride = RideService.instance.getRideFromRealm(withID: rideID) else {
-            NSLog("Tried to open ride %@, but did not find ride on realm.", rideID)
+            NSLog("Tried to open ride %ld, but did not find ride on realm.", rideID)
             return
         }
         
@@ -103,6 +103,15 @@ class MyRidesViewController: RideListController {
         rideViewController.shouldOpenChatWindow = openChat
         _ = navigationController?.popToRootViewController(animated: false)
         navigationController?.pushViewController(rideViewController, animated: true)
+    }
+    
+    func loadAcceptedRide(withID id: Int) {
+        RideService.instance.updateMyRides(success: {
+            NSLog("My rides updated to open accepted ride %ld", id)
+            self.openRide(withID: id, openChat: false)
+        }) { error in
+            NSLog("Error updating my rides to open accepted ride: %@", error.localizedDescription)
+        }
     }
 
     

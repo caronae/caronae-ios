@@ -4,6 +4,7 @@ import UIKit
 enum DeeplinkType {
     case login(withIDUFRJ: String, token: String)
     case loadRide(withID: Int)
+    case loadAcceptedRide(withID: Int)
     case openMyRides
     case openRidesHistory
     case openRide(withID: Int, openChat: Bool)
@@ -40,6 +41,10 @@ class DeeplinkNavigator {
             tabBarController?.selectedViewController = tabBarController?.allRidesNavigationController
             let allRidesViewController = tabBarController?.allRidesViewController
             allRidesViewController?.loadRide(withID: id)
+        case .loadAcceptedRide(withID: let id):
+            tabBarController?.selectedViewController = tabBarController?.myRidesNavigationController
+            let myRidesViewController = tabBarController?.myRidesViewController
+            myRidesViewController?.loadAcceptedRide(withID: id)
         case .openMyRides:
             tabBarController?.selectedViewController = tabBarController?.myRidesNavigationController
         case .openRidesHistory:
