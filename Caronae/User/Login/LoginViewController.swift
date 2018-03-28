@@ -30,6 +30,10 @@ class LoginViewController: UIViewController {
         
         isAutoLoginMethod = true
         
+        #if DEVELOPMENT
+            changeLoginMethodButton.isHidden = false
+        #endif
+        
         idTextField.delegate = self
         tokenTextField.delegate = self
     }
