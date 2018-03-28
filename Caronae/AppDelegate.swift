@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = initialViewController
             window?.makeKeyAndVisible()
             registerForNotifications()
+            checkIfUserNeedsToMigrateToJWT()
             checkIfUserNeedsToFinishProfile()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateUser(notification:)), name: .CaronaeDidUpdateUser, object: nil)
@@ -86,6 +87,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             disconnectFromFcm()
+        }
+    }
+    
+    func checkIfUserNeedsToMigrateToJWT() {
+        if UserService.instance.jwtToken == nil {
+            UserService.instance.migrateToJWT(success: {
+                NSLog("Successfully migrate to jwt token")
+            }, error: { error in
+                NSLog("Error migrating to jwt token (\(error.localizedDescription))")
+            })
         }
     }
     
