@@ -12,8 +12,6 @@ class UserService: NSObject {
     private override init() {}
     
     private(set) lazy var user: User? = {
-        let userID: Int = UserDefaults.standard.integer(forKey: "user_id")
-        
         do {
             let realm = try Realm()
             return realm.object(ofType: User.self, forPrimaryKey: userID)
@@ -22,22 +20,31 @@ class UserService: NSObject {
             return nil
         }
     }()
+    
+    private(set) var userID: Int? {
+        get { return UserDefaults.standard.integer(forKey: "user_id") }
+        set {
+            guard let id = newValue else {
+                UserDefaults.standard.removeObject(forKey: "user_id")
+                return
+            }
+            UserDefaults.standard.set(id, forKey: "user_id")
+        }
+    }
 
     var userToken: String? {
-        get {
-            return UserDefaults.standard.string(forKey: "token")
-        }
-
+        get { return UserDefaults.standard.string(forKey: "token") }
         set {
-            UserDefaults.standard.set(newValue, forKey: "token")
+            guard let token = newValue else {
+                UserDefaults.standard.removeObject(forKey: "token")
+                return
+            }
+            UserDefaults.standard.set(token, forKey: "token")
         }
     }
 
     var jwtToken: String? {
-        get {
-            return A0SimpleKeychain().string(forKey: "jwt_token")
-        }
-        
+        get { return A0SimpleKeychain().string(forKey: "jwt_token") }
         set {
             guard let token = newValue else {
                 A0SimpleKeychain().deleteEntry(forKey: "jwt_token")
@@ -78,7 +85,8 @@ class UserService: NSObject {
         api.get("/api/v1/users/\(id)", parameters: nil, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
                 let userJson = responseObject["user"] as? [String: Any],
-                let user = User(JSON: userJson) else {
+                let user = User(JSON: userJson),
+                let institution = responseObject["institution"] as? [String: String] else {
                     NSLog("Error parsing user response")
                     error(CaronaeError.invalidResponse)
                     return
@@ -92,6 +100,11 @@ class UserService: NSObject {
             } catch let realmError {
                 NSLog("Error saving the current user in the Realm: \(realmError.localizedDescription)")
             }
+            
+            // Update the current institution
+            Institution.name = institution["name"]
+            Institution.goingLabel = institution["going_label"]
+            Institution.leavingLabel = institution["leaving_label"]
 
             success(user)
         }, failure: { task, err in
@@ -100,23 +113,22 @@ class UserService: NSObject {
         })
     }
     
-    func signIn(withID id: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
+    func signIn(withID id: String, token: String, success: @escaping () -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
         self.jwtToken = token
         getUser(withID: id, success: { user in
             self.user = user
-
-            UserDefaults.standard.set(user.id, forKey: "user_id")
+            self.userID = user.id
             
             self.notifyObservers()
             
-            success(user)
+            success()
         }) { err in
             NSLog("Failed to sign in: \(err.localizedDescription)")
             error(.invalidResponse)
         }
     }
     
-    func signIn(withIDUFRJ idUFRJ: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
+    func signIn(withIDUFRJ idUFRJ: String, token: String, success: @escaping () -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
         let params = [ "id_ufrj": idUFRJ, "token": token ]
         api.post("/api/v1/users/login", parameters: params, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
@@ -139,17 +151,21 @@ class UserService: NSObject {
 
             // Update the current user
             self.user = user
+            self.userID = user.id
             self.userToken = token
-            UserDefaults.standard.set(user.id, forKey: "user_id")
             
             // Update the current institution
             Institution.name = institution["name"]
             Institution.goingLabel = institution["going_label"]
             Institution.leavingLabel = institution["leaving_label"]
             
-            self.notifyObservers()
-            
-            success(user)
+            self.migrateToJWT(success: {
+                NSLog("Successfully migrate to jwt token")
+                self.notifyObservers()
+                success()
+            }, error: { err in
+                error(.invalidResponse)
+            })
             
         }, failure: { task, err in
             NSLog("Failed to sign in: \(err.localizedDescription)")
@@ -165,6 +181,19 @@ class UserService: NSObject {
             }
             
             error(authenticationError)
+        })
+    }
+    
+    func migrateToJWT(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+        guard let userID = self.userID else {
+            NSLog("Error: No userID registered")
+            return error(CaronaeError.invalidUser)
+        }
+        api.get("/api/v1/users/\(userID)/token", parameters: nil, success: { _, _ in
+            success()
+        }, failure: { task, err in
+            NSLog("Error getting user jwt token: \(err.localizedDescription)")
+            error(err)
         })
     }
     
@@ -193,7 +222,9 @@ class UserService: NSObject {
         
         // Clear current user
         self.user = nil
-        UserDefaults.standard.removeObject(forKey: "user_id")
+        self.userID = nil
+        self.userToken = nil
+        self.jwtToken = nil
         
         notifyObservers(force: force)
     }

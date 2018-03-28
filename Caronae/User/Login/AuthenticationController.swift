@@ -31,7 +31,7 @@ class AuthenticationController {
     
     public func authenticate(withIDUFRJ idUFRJ: String, token: String, callback: @escaping (_ error: CaronaeError?) -> Void) {
         SVProgressHUD.show()
-        UserService.instance.signIn(withIDUFRJ: idUFRJ, token: token, success: { _ in
+        UserService.instance.signIn(withIDUFRJ: idUFRJ, token: token, success: {
             SVProgressHUD.dismiss()
             callback(nil)
         }, error: { caronaeError in
@@ -42,7 +42,7 @@ class AuthenticationController {
     
     public func authenticate(withID id: String, token: String, callback: @escaping (_ error: CaronaeError?) -> Void) {
         SVProgressHUD.show()
-        UserService.instance.signIn(withID: id, token: token, success: { _ in
+        UserService.instance.signIn(withID: id, token: token, success: {
             SVProgressHUD.dismiss()
             callback(nil)
         }, error: { caronaeError in
