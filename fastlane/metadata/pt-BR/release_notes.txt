@@ -1,8 +1,12 @@
-Quer ser um testador (Beta Tester) do Caronaê? Você irá receber as atualizações primeiro e pode ajudar a melhorar ainda mais o funcionamento enviando seus comentários diretamente para os desenvolvedores! Envie um email para caronae@fundoverde.ufrj.br
+Alô Praia Vermelha! Vai uma caronaê? Liberamos as opções da PV.
+Se desejar ative o filtro por campus na página inicial!
 
-- Refizemos toda a experiência de Login para ser mais intuitiva!
+- Melhor tratamento das notificações recebidas :)
+- Corrige som da notificação que poderia não ser reproduzido.
+- Corrige problemas que poderiam ocorrer na tela de edição de perfil.
 - Melhora a integração com o nosso servidor.
-- Melhora a experiência ao editar perfil ou preencher dados de uma carona.
-- Corrige visualização de notificações internas no iPhone X.
+- Pequenas melhorias internas.
+
+Quer ser um testador (Beta Tester) do Caronaê? Você irá receber as atualizações primeiro e pode ajudar a melhorar ainda mais o funcionamento enviando seus comentários diretamente para os desenvolvedores! Envie um email para caronae@fundoverde.ufrj.br
 
 Caso você encontre algum problema, por favor nos avise através do Falaê, no menu do app, pela nossa página do Facebook ou pelo email caronae@fundoverde.ufrj.br :)

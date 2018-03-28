@@ -2,7 +2,8 @@
   "device_frame_version": "latest",
   "default": {
     "title": {
-      "color": "#FFFFFF"
+      "color": "#FFFFFF",
+      "font": "./fonts/OpenSans-Bold.ttf"
     },
     "padding": 50,
     "show_complete_frame": true,

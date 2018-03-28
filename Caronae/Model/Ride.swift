@@ -61,7 +61,7 @@ class Ride: Object, Mappable {
         riders <- (map["riders"], ListTransform<User>())
     }
     
-    @objc var title: String {
+    var title: String {
         if going {
             return String(format: "%@ → %@", neighborhood, hub)
         } else {
@@ -69,11 +69,11 @@ class Ride: Object, Mappable {
         }
     }
     
-    @objc var isRoutine: Bool {
+    var isRoutine: Bool {
         return routineID.value != nil
     }
     
-    @objc var availableSlots: Int {
+    var availableSlots: Int {
         return slots - riders.count
     }
     

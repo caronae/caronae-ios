@@ -6,24 +6,19 @@ import RealmSwift
 import SimpleKeychain
 
 class UserService: NSObject {
-    @objc static let instance = UserService()
+    static let instance = UserService()
     private let api = CaronaeAPIHTTPSessionManager.instance
     
     private override init() {}
     
-    @objc private(set) lazy var user: User? = {
+    private(set) lazy var user: User? = {
         let userID: Int = UserDefaults.standard.integer(forKey: "user_id")
         
         do {
-            // If the user ID was not found, we need to check for a legacy user and migrate it
-            guard userID != 0 else {
-                return try self.migrateUserToRealm()
-            }
-            
             let realm = try Realm()
             return realm.object(ofType: User.self, forPrimaryKey: userID)
         } catch {
-            NSLog("Error reading or migrating current user (%@)", error.localizedDescription)
+            NSLog("Error reading current user (%@)", error.localizedDescription)
             return nil
         }
     }()
@@ -42,13 +37,29 @@ class UserService: NSObject {
         get {
             return A0SimpleKeychain().string(forKey: "jwt_token")
         }
-
+        
         set {
             guard let token = newValue else {
                 A0SimpleKeychain().deleteEntry(forKey: "jwt_token")
                 return
             }
             A0SimpleKeychain().setString(token, forKey: "jwt_token")
+        }
+    }
+    
+    struct Institution {
+        private init() {}
+        fileprivate(set) static var name: String! {
+            get { return UserDefaults.standard.string(forKey: "institutionName") ?? "UFRJ" }
+            set { UserDefaults.standard.set(newValue, forKey: "institutionName") }
+        }
+        fileprivate(set) static var goingLabel: String! {
+            get { return UserDefaults.standard.string(forKey: "institutionGoingLabel") ?? "Chegando na UFRJ" }
+            set { UserDefaults.standard.set(newValue, forKey: "institutionGoingLabel") }
+        }
+        fileprivate(set) static var leavingLabel: String! {
+            get { return UserDefaults.standard.string(forKey: "institutionLeavingLabel") ?? "Saindo da UFRJ" }
+            set { UserDefaults.standard.set(newValue, forKey: "institutionLeavingLabel") }
         }
     }
     
@@ -110,7 +121,8 @@ class UserService: NSObject {
         api.post("/api/v1/users/login", parameters: params, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
             let userJson = responseObject["user"] as? [String: Any],
-            let user = User(JSON: userJson) else {
+            let user = User(JSON: userJson),
+            let institution = responseObject["institution"] as? [String: String] else {
                 NSLog("Error parsing user response")
                 error(.invalidResponse)
                 return
@@ -129,6 +141,11 @@ class UserService: NSObject {
             self.user = user
             self.userToken = token
             UserDefaults.standard.set(user.id, forKey: "user_id")
+            
+            // Update the current institution
+            Institution.name = institution["name"]
+            Institution.goingLabel = institution["going_label"]
+            Institution.leavingLabel = institution["leaving_label"]
             
             self.notifyObservers()
             
@@ -149,10 +166,6 @@ class UserService: NSObject {
             
             error(authenticationError)
         })
-    }
-    
-    @objc func signOut() {
-        signOut(force: false)
     }
     
     func signOut(force: Bool = false) {
@@ -185,7 +198,7 @@ class UserService: NSObject {
         notifyObservers(force: force)
     }
     
-    @objc func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+    func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         api.put("/api/v1/users/\(user.id)", parameters: user.toJSON(), success: { task, responseObject in
             
             let currentUser = self.user!
@@ -227,7 +240,7 @@ class UserService: NSObject {
         })
     }
     
-    @objc func getPhotoFromFacebook(success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func getPhotoFromFacebook(success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
         let request = FBSDKGraphRequest(graphPath: "me/picture?type=large&redirect=false", parameters: ["fields": "url"])!
         request.start(completionHandler: { connection, result, err in
             guard err == nil,
@@ -243,7 +256,7 @@ class UserService: NSObject {
     }
 
     
-    @objc func ridesCountForUser(withID id: Int, success: @escaping (_ offered: Int, _ taken: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func ridesCountForUser(withID id: Int, success: @escaping (_ offered: Int, _ taken: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
         api.get("/api/v1/users/\(id)/rides/history", parameters: nil, success: { task, responseObject in
             guard let response = responseObject as? [String: Any],
                 let offered = response["offered_rides_count"] as? Int,
@@ -273,7 +286,7 @@ class UserService: NSObject {
     
     // This actually should use the user's ID instead of the Facebook ID
     // but would need to refactor the API...
-    @objc func mutualFriendsForUser(withFacebookID facebookID: String?, success: @escaping (_ friends: [User], _ totalCount: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func mutualFriendsForUser(withFacebookID facebookID: String?, success: @escaping (_ friends: [User], _ totalCount: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
         guard let facebookID = facebookID, !facebookID.isEmpty, userFacebookToken != nil else {
             error(CaronaeError.notLoggedInWithFacebook)
             return
@@ -296,27 +309,5 @@ class UserService: NSObject {
     
     private func notifyObservers(force: Bool = false) {
         NotificationCenter.default.post(name: .CaronaeDidUpdateUser, object: self, userInfo: [CaronaeSignOutRequiredKey: force])
-    }
-    
-    private func migrateUserToRealm() throws -> User {
-        guard let userJson = UserDefaults.standard.dictionary(forKey: "user") else {
-            throw CaronaeError.notLoggedIn
-        }
-        
-        guard let user = User(JSON: userJson) else {
-            throw CaronaeError.invalidUser
-        }
-        
-        let realm = try Realm()
-        try realm.write {
-            realm.add(user, update: true)
-        }
-        
-        UserDefaults.standard.set(user.id, forKey: "user_id")
-        UserDefaults.standard.removeObject(forKey: "user")
-        UserDefaults.standard.removeObject(forKey: "userCreatedRides")
-        UserDefaults.standard.removeObject(forKey: "cachedJoinRequests")
-        
-        return user
     }
 }

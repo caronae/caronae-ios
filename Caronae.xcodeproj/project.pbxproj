@@ -20,11 +20,17 @@
 		711259DA204320FC000A92F9 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259D8204320FC000A92F9 /* EditProfileViewController.swift */; };
 		711259DD2043C298000A92F9 /* String+validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259DC2043C298000A92F9 /* String+validation.swift */; };
 		711259DE2043C298000A92F9 /* String+validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711259DC2043C298000A92F9 /* String+validation.swift */; };
+		712F0308205C6D44003DDAC3 /* String+onlyDigits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712F0307205C6D44003DDAC3 /* String+onlyDigits.swift */; };
+		712F0309205C6D44003DDAC3 /* String+onlyDigits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712F0307205C6D44003DDAC3 /* String+onlyDigits.swift */; };
 		7133482C1F5F603B00E2218E /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482B1F5F603B00E2218E /* Campus.swift */; };
 		7133482E1F5F609700E2218E /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482D1F5F609700E2218E /* Zone.swift */; };
 		713348301F5F60D400E2218E /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482F1F5F60D400E2218E /* Place.swift */; };
 		7133B6261FB7983C008575CC /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133B6251FB7983C008575CC /* RideViewController.swift */; };
 		713E99B91E8D5FA900F3C9E0 /* Array+compactString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */; };
+		713F42562055D9DD00243B0C /* RiderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713F42552055D9DD00243B0C /* RiderCell.swift */; };
+		713F42572055D9DD00243B0C /* RiderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713F42552055D9DD00243B0C /* RiderCell.swift */; };
+		713F42592055DBD000243B0C /* RideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713F42582055DBD000243B0C /* RideCell.swift */; };
+		713F425A2055DBD000243B0C /* RideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713F42582055DBD000243B0C /* RideCell.swift */; };
 		7148D5621EDA1D0A00D85B7D /* String+capitalizedAfter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7148D5611EDA1D0A00D85B7D /* String+capitalizedAfter.swift */; };
 		714AA358203B18FF005EF615 /* CaronaeMessageNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AA357203B18FF005EF615 /* CaronaeMessageNotification.swift */; };
 		714AA359203B2247005EF615 /* CaronaeMessageNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AA357203B18FF005EF615 /* CaronaeMessageNotification.swift */; };
@@ -36,6 +42,10 @@
 		7157BD8C1FB6931C00D216F3 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD8B1FB6931C00D216F3 /* SearchResultsViewController.swift */; };
 		7157BD8E1FB6932900D216F3 /* RidesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD8D1FB6932800D216F3 /* RidesHistoryViewController.swift */; };
 		7157BD901FB6933400D216F3 /* RideListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD8F1FB6933300D216F3 /* RideListController.swift */; };
+		71673D5F2065659F006C3140 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71673D5E2065659F006C3140 /* beep.wav */; };
+		71673D602065659F006C3140 /* beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71673D5E2065659F006C3140 /* beep.wav */; };
+		71673D6620656644006C3140 /* beep_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71673D6520656644006C3140 /* beep_beep.wav */; };
+		71673D6720656644006C3140 /* beep_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 71673D6520656644006C3140 /* beep_beep.wav */; };
 		716914361FEAE864004AD5C7 /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133B6251FB7983C008575CC /* RideViewController.swift */; };
 		716914371FEAE88A004AD5C7 /* RideListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD8F1FB6933300D216F3 /* RideListController.swift */; };
 		716914381FEAE896004AD5C7 /* RidesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD8D1FB6932800D216F3 /* RidesHistoryViewController.swift */; };
@@ -56,7 +66,6 @@
 		718F3AB01FE9FEBE001F1D40 /* FalaeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C52231F81774A006E964A /* FalaeViewController.swift */; };
 		718F3AB11FE9FEBE001F1D40 /* HubsSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F648591F71F364004C712F /* HubsSelectionViewController.swift */; };
 		718F3AB21FE9FEBE001F1D40 /* Date+isInTheFuture.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3034D571DB58A1B00816B79 /* Date+isInTheFuture.swift */; };
-		718F3AB31FE9FEBE001F1D40 /* RiderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE026B1C17D01000A8407E /* RiderCell.m */; };
 		718F3AB61FE9FEBE001F1D40 /* AppDelegate+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD823B1E1C8860006D8ABE /* AppDelegate+Realm.swift */; };
 		718F3AB71FE9FEBE001F1D40 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482F1F5F60D400E2218E /* Place.swift */; };
 		718F3AB81FE9FEBE001F1D40 /* CaronaeAPIHTTPSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */; };
@@ -70,10 +79,8 @@
 		718F3AC11FE9FEBE001F1D40 /* AllRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C9B741E5F923A0037A78B /* AllRidesViewController.swift */; };
 		718F3AC21FE9FEBE001F1D40 /* DateTimeTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82321E1C63CD006D8ABE /* DateTimeTransform.swift */; };
 		718F3AC31FE9FEBE001F1D40 /* PhoneNumberActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FDA2441F401EBB00DA67E8 /* PhoneNumberActionSheet.swift */; };
-		718F3AC41FE9FEBE001F1D40 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3E7FB1C77AD310094BBAC /* WebViewController.m */; };
 		718F3AC51FE9FEBE001F1D40 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F82301F610E8300531C71 /* UIColor+hex.swift */; };
 		718F3AC61FE9FEBE001F1D40 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */; };
-		718F3AC71FE9FEBE001F1D40 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C61BF01B9A005BA311 /* MenuViewController.m */; };
 		718F3AC81FE9FEBE001F1D40 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718875DA1ED351E1004DB078 /* PaginationState.swift */; };
 		718F3AC91FE9FEBE001F1D40 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDF1E22EC570062522D /* ChatService.swift */; };
 		718F3ACA1FE9FEBE001F1D40 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */; };
@@ -88,7 +95,6 @@
 		718F3AD51FE9FEBE001F1D40 /* UniversalLinkParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7106CFCC1F098BBB0071C4AE /* UniversalLinkParser.swift */; };
 		718F3AD61FE9FEBE001F1D40 /* NeighborhoodSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F6485A1F71F364004C712F /* NeighborhoodSelectionViewController.swift */; };
 		718F3AD71FE9FEBE001F1D40 /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
-		718F3AD91FE9FEBE001F1D40 /* RideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F1D4C1C0398B500DEF6B1 /* RideCell.m */; };
 		718F3ADA1FE9FEBE001F1D40 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82301E1C6072006D8ABE /* User.swift */; };
 		718F3ADB1FE9FEBE001F1D40 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F6485D1F71F364004C712F /* SelectionViewController.swift */; };
 		718F3ADC1FE9FEBE001F1D40 /* CALayer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */; };
@@ -136,6 +142,10 @@
 		71DEAE542054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */; };
 		71DEAE552054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */; };
 		71EAF4551F11406200B16CF8 /* CreateRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EAF4541F11406200B16CF8 /* CreateRideViewController.swift */; };
+		71EEF6F5205472D3004D782A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EEF6F4205472D3004D782A /* WebViewController.swift */; };
+		71EEF6F6205472D3004D782A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EEF6F4205472D3004D782A /* WebViewController.swift */; };
+		71EEF6F82054798A004D782A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EEF6F72054798A004D782A /* MenuViewController.swift */; };
+		71EEF6F92054798A004D782A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EEF6F72054798A004D782A /* MenuViewController.swift */; };
 		71F648601F71F364004C712F /* HubsSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F648591F71F364004C712F /* HubsSelectionViewController.swift */; };
 		71F648611F71F364004C712F /* NeighborhoodSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F6485A1F71F364004C712F /* NeighborhoodSelectionViewController.swift */; };
 		71F648621F71F364004C712F /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F6485B1F71F364004C712F /* SelectionCell.swift */; };
@@ -151,12 +161,10 @@
 		A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */; };
 		A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */; };
 		A325DA711C0CAFD700B9124E /* JoinRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */; };
-		A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34312C61BF01B9A005BA311 /* MenuViewController.m */; };
 		A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A34CEC4C1C993115006FC41E /* Settings.bundle */; };
 		A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A357EF321C56C5A100AC8096 /* RideListController.xib */; };
 		A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
 		A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
-		A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A38F1D4C1C0398B500DEF6B1 /* RideCell.m */; };
 		A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */; };
 		A39BBD051C06AB9D00EF9EBD /* RideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39BBD041C06AB9D00EF9EBD /* RideCell.xib */; };
 		A3AC169B1E34168A000B5817 /* CaronaeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169A1E34168A000B5817 /* CaronaeError.swift */; };
@@ -182,8 +190,6 @@
 		A3CA5DDC1E22DB830062522D /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */; };
 		A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDF1E22EC570062522D /* ChatService.swift */; };
 		A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */; };
-		A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D3E7FB1C77AD310094BBAC /* WebViewController.m */; };
-		A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EE026B1C17D01000A8407E /* RiderCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,11 +224,14 @@
 		711259D8204320FC000A92F9 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		711259DC2043C298000A92F9 /* String+validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+validation.swift"; sourceTree = "<group>"; };
 		7123EE441FEE13B800EA3773 /* Caronae UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Caronae UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		712F0307205C6D44003DDAC3 /* String+onlyDigits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+onlyDigits.swift"; sourceTree = "<group>"; };
 		7133482B1F5F603B00E2218E /* Campus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Campus.swift; sourceTree = "<group>"; };
 		7133482D1F5F609700E2218E /* Zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zone.swift; sourceTree = "<group>"; };
 		7133482F1F5F60D400E2218E /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		7133B6251FB7983C008575CC /* RideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
 		713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+compactString.swift"; sourceTree = "<group>"; };
+		713F42552055D9DD00243B0C /* RiderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderCell.swift; sourceTree = "<group>"; };
+		713F42582055DBD000243B0C /* RideCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideCell.swift; sourceTree = "<group>"; };
 		7148D5611EDA1D0A00D85B7D /* String+capitalizedAfter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+capitalizedAfter.swift"; sourceTree = "<group>"; };
 		714AA357203B18FF005EF615 /* CaronaeMessageNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaronaeMessageNotification.swift; sourceTree = "<group>"; };
 		714F7D591FEF247B001587C7 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = CaronaeUITests/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
@@ -234,6 +243,8 @@
 		7157BD8B1FB6931C00D216F3 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		7157BD8D1FB6932800D216F3 /* RidesHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RidesHistoryViewController.swift; sourceTree = "<group>"; };
 		7157BD8F1FB6933300D216F3 /* RideListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideListController.swift; sourceTree = "<group>"; };
+		71673D5E2065659F006C3140 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
+		71673D6520656644006C3140 /* beep_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep_beep.wav; sourceTree = "<group>"; };
 		7169143B1FEAEBEE004AD5C7 /* CaronaeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaronaeConstants.swift; sourceTree = "<group>"; };
 		7185362F1F047FFF00C30B97 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		718875DA1ED351E1004DB078 /* PaginationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationState.swift; sourceTree = "<group>"; };
@@ -253,6 +264,8 @@
 		71DEAE502054A86100707004 /* CaronaeAPIRequestSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaronaeAPIRequestSerializer.swift; path = Networking/CaronaeAPIRequestSerializer.swift; sourceTree = "<group>"; };
 		71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaronaeAPIResponseSerializer.swift; path = Networking/CaronaeAPIResponseSerializer.swift; sourceTree = "<group>"; };
 		71EAF4541F11406200B16CF8 /* CreateRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRideViewController.swift; sourceTree = "<group>"; };
+		71EEF6F4205472D3004D782A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = About/WebViewController.swift; sourceTree = "<group>"; };
+		71EEF6F72054798A004D782A /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		71F3DA701FEED96A001D65D2 /* Info-dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-dev.plist"; sourceTree = "<group>"; };
 		71F648591F71F364004C712F /* HubsSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HubsSelectionViewController.swift; path = "Place selection/HubsSelectionViewController.swift"; sourceTree = "<group>"; };
 		71F6485A1F71F364004C712F /* NeighborhoodSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeighborhoodSelectionViewController.swift; path = "Place selection/NeighborhoodSelectionViewController.swift"; sourceTree = "<group>"; };
@@ -276,16 +289,12 @@
 		A325DA6D1C0CAFD700B9124E /* JoinRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinRequestCell.h; sourceTree = "<group>"; };
 		A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinRequestCell.m; sourceTree = "<group>"; };
 		A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinRequestCell.xib; sourceTree = "<group>"; };
-		A34312C51BF01B9A005BA311 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		A34312C61BF01B9A005BA311 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		A34CEC4C1C993115006FC41E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../../Settings.bundle; sourceTree = "<group>"; };
 		A357EF321C56C5A100AC8096 /* RideListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideListController.xib; sourceTree = "<group>"; };
 		A375D2F91C19175A00795CAE /* CaronaeAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeAlertController.h; sourceTree = "<group>"; };
 		A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeAlertController.m; sourceTree = "<group>"; };
 		A37E80E51C5F158600683F27 /* Caronae-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Caronae-Bridging-Header.h"; sourceTree = "<group>"; };
 		A389902B1C58734700C7CD2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		A38F1D4B1C0398B500DEF6B1 /* RideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideCell.h; sourceTree = "<group>"; };
-		A38F1D4C1C0398B500DEF6B1 /* RideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideCell.m; sourceTree = "<group>"; };
 		A39743EB1E6B18F2006E469A /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Common.xcconfig; path = Config/Common.xcconfig; sourceTree = "<group>"; };
 		A39BA2EA1C6C0F3A0063DDD1 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
@@ -317,11 +326,7 @@
 		A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 		A3CA5DDF1E22EC570062522D /* ChatService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatService.swift; path = Services/ChatService.swift; sourceTree = "<group>"; };
 		A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
-		A3D3E7FA1C77AD310094BBAC /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = About/WebViewController.h; sourceTree = "<group>"; };
-		A3D3E7FB1C77AD310094BBAC /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = About/WebViewController.m; sourceTree = "<group>"; };
 		A3D680191DB4016E00135C2B /* Caronae.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Caronae.entitlements; sourceTree = "<group>"; };
-		A3EE026A1C17D01000A8407E /* RiderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RiderCell.h; sourceTree = "<group>"; };
-		A3EE026B1C17D01000A8407E /* RiderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RiderCell.m; sourceTree = "<group>"; };
 		AB62F8C4B415DB9488E5B0EF /* Pods-caronae-ios-Caronae Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caronae-ios-Caronae Dev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-caronae-ios-Caronae Dev/Pods-caronae-ios-Caronae Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		B935F3BB53907682C1EF3A28 /* Pods-Caronae.debug - production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug - production.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug - production.xcconfig"; sourceTree = "<group>"; };
 		C0563B7E023B980C14E2CEF3 /* Pods-caronae-ios-Caronae Dev.debug - development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caronae-ios-Caronae Dev.debug - development.xcconfig"; path = "Pods/Target Support Files/Pods-caronae-ios-Caronae Dev/Pods-caronae-ios-Caronae Dev.debug - development.xcconfig"; sourceTree = "<group>"; };
@@ -409,6 +414,15 @@
 			path = CaronaeUITests;
 			sourceTree = "<group>";
 		};
+		71673D642065660E006C3140 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				71673D5E2065659F006C3140 /* beep.wav */,
+				71673D6520656644006C3140 /* beep_beep.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		71942900203A6C5C008E2A24 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -482,6 +496,7 @@
 				A32B80B81C2E075000FC370A /* Ride */,
 				A3AD82341E1C70C6006D8ABE /* Services */,
 				A3169C931BED842D00A0D428 /* Supporting Files */,
+				71673D642065660E006C3140 /* Sounds */,
 				A32B80B71C2E073000FC370A /* User */,
 				7106CFC61F09443D0071C4AE /* DeepLink */,
 				7185362F1F047FFF00C30B97 /* AppDelegate.swift */,
@@ -492,8 +507,7 @@
 				7169143B1FEAEBEE004AD5C7 /* CaronaeConstants.swift */,
 				A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */,
 				A3169C9C1BED842D00A0D428 /* Main.storyboard */,
-				A34312C51BF01B9A005BA311 /* MenuViewController.h */,
-				A34312C61BF01B9A005BA311 /* MenuViewController.m */,
+				71EEF6F72054798A004D782A /* MenuViewController.swift */,
 				A39BA2EA1C6C0F3A0063DDD1 /* TabBarController.h */,
 				A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */,
 			);
@@ -549,11 +563,9 @@
 				A325DA6D1C0CAFD700B9124E /* JoinRequestCell.h */,
 				A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */,
 				A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */,
-				A38F1D4B1C0398B500DEF6B1 /* RideCell.h */,
-				A38F1D4C1C0398B500DEF6B1 /* RideCell.m */,
+				713F42582055DBD000243B0C /* RideCell.swift */,
 				A39BBD041C06AB9D00EF9EBD /* RideCell.xib */,
-				A3EE026A1C17D01000A8407E /* RiderCell.h */,
-				A3EE026B1C17D01000A8407E /* RiderCell.m */,
+				713F42552055D9DD00243B0C /* RiderCell.swift */,
 			);
 			name = "Custom cells";
 			sourceTree = "<group>";
@@ -631,6 +643,7 @@
 				713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */,
 				7148D5611EDA1D0A00D85B7D /* String+capitalizedAfter.swift */,
 				711259DC2043C298000A92F9 /* String+validation.swift */,
+				712F0307205C6D44003DDAC3 /* String+onlyDigits.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -648,8 +661,7 @@
 		A3D3E7FD1C77AD350094BBAC /* About */ = {
 			isa = PBXGroup;
 			children = (
-				A3D3E7FA1C77AD310094BBAC /* WebViewController.h */,
-				A3D3E7FB1C77AD310094BBAC /* WebViewController.m */,
+				71EEF6F4205472D3004D782A /* WebViewController.swift */,
 			);
 			name = About;
 			sourceTree = "<group>";
@@ -813,10 +825,12 @@
 				718F3AF41FE9FEBE001F1D40 /* SelectionCell.xib in Resources */,
 				718F3AF51FE9FEBE001F1D40 /* RideListController.xib in Resources */,
 				718F3AF61FE9FEBE001F1D40 /* Assets.xcassets in Resources */,
+				71673D6720656644006C3140 /* beep_beep.wav in Resources */,
 				719428FC203A609C008E2A24 /* Login.storyboard in Resources */,
 				718F3AF71FE9FEBE001F1D40 /* Main.storyboard in Resources */,
 				718F3AF81FE9FEBE001F1D40 /* Settings.bundle in Resources */,
 				718F3AF91FE9FEBE001F1D40 /* JoinRequestCell.xib in Resources */,
+				71673D602065659F006C3140 /* beep.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,10 +846,12 @@
 				71F648631F71F364004C712F /* SelectionCell.xib in Resources */,
 				A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */,
 				A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */,
+				71673D6620656644006C3140 /* beep_beep.wav in Resources */,
 				719428FB203A609C008E2A24 /* Login.storyboard in Resources */,
 				A3169C9E1BED842D00A0D428 /* Main.storyboard in Resources */,
 				A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */,
 				A325DA711C0CAFD700B9124E /* JoinRequestCell.xib in Resources */,
+				71673D5F2065659F006C3140 /* beep.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1202,11 +1218,12 @@
 				718F3AAF1FE9FEBE001F1D40 /* AppDelegate+Notifications.swift in Sources */,
 				718F3AB01FE9FEBE001F1D40 /* FalaeViewController.swift in Sources */,
 				718F3AB11FE9FEBE001F1D40 /* HubsSelectionViewController.swift in Sources */,
+				712F0309205C6D44003DDAC3 /* String+onlyDigits.swift in Sources */,
 				718F3AB21FE9FEBE001F1D40 /* Date+isInTheFuture.swift in Sources */,
-				718F3AB31FE9FEBE001F1D40 /* RiderCell.m in Sources */,
 				718F3AB61FE9FEBE001F1D40 /* AppDelegate+Realm.swift in Sources */,
 				718F3AB71FE9FEBE001F1D40 /* Place.swift in Sources */,
 				718F3AB81FE9FEBE001F1D40 /* CaronaeAPIHTTPSessionManager.swift in Sources */,
+				713F425A2055DBD000243B0C /* RideCell.swift in Sources */,
 				718F3AB91FE9FEBE001F1D40 /* Message.swift in Sources */,
 				718F3ABA1FE9FEBE001F1D40 /* JoinRequestCell.m in Sources */,
 				718F3ABC1FE9FEBE001F1D40 /* SelectionCell.swift in Sources */,
@@ -1219,13 +1236,12 @@
 				718F3AC31FE9FEBE001F1D40 /* PhoneNumberActionSheet.swift in Sources */,
 				714AA359203B2247005EF615 /* CaronaeMessageNotification.swift in Sources */,
 				719428FF203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
-				718F3AC41FE9FEBE001F1D40 /* WebViewController.m in Sources */,
 				71DEAE522054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */,
 				718F3AC51FE9FEBE001F1D40 /* UIColor+hex.swift in Sources */,
 				711259D62041EFDE000A92F9 /* ProfileViewController.swift in Sources */,
 				718F3AC61FE9FEBE001F1D40 /* TabBarController.m in Sources */,
+				71EEF6F92054798A004D782A /* MenuViewController.swift in Sources */,
 				7169143D1FEAEBEF004AD5C7 /* CaronaeConstants.swift in Sources */,
-				718F3AC71FE9FEBE001F1D40 /* MenuViewController.m in Sources */,
 				718F3AC81FE9FEBE001F1D40 /* PaginationState.swift in Sources */,
 				718F3AC91FE9FEBE001F1D40 /* ChatService.swift in Sources */,
 				718F3ACA1FE9FEBE001F1D40 /* WelcomeViewController.swift in Sources */,
@@ -1243,12 +1259,12 @@
 				711259DA204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
 				718F3AD61FE9FEBE001F1D40 /* NeighborhoodSelectionViewController.swift in Sources */,
 				718F3AD71FE9FEBE001F1D40 /* CaronaeAlertController.m in Sources */,
-				718F3AD91FE9FEBE001F1D40 /* RideCell.m in Sources */,
 				718F3ADA1FE9FEBE001F1D40 /* User.swift in Sources */,
 				718F3ADB1FE9FEBE001F1D40 /* SelectionViewController.swift in Sources */,
 				718F3ADC1FE9FEBE001F1D40 /* CALayer+UIColor.m in Sources */,
 				718F3ADD1FE9FEBE001F1D40 /* DeepLinkManager.swift in Sources */,
 				711259DE2043C298000A92F9 /* String+validation.swift in Sources */,
+				71EEF6F6205472D3004D782A /* WebViewController.swift in Sources */,
 				718F3ADE1FE9FEBE001F1D40 /* Notification.swift in Sources */,
 				718F3ADF1FE9FEBE001F1D40 /* DeeplinkNavigator.swift in Sources */,
 				718F3AE01FE9FEBE001F1D40 /* AppDelegate+Firebase.swift in Sources */,
@@ -1265,6 +1281,7 @@
 				718F3AE91FE9FEBE001F1D40 /* ChatViewController.swift in Sources */,
 				718F3AEA1FE9FEBE001F1D40 /* UIWindow+replaceRootViewController.m in Sources */,
 				718F3AEB1FE9FEBE001F1D40 /* FalaeService.swift in Sources */,
+				713F42572055D9DD00243B0C /* RiderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1282,12 +1299,13 @@
 				718C52241F81774A006E964A /* FalaeViewController.swift in Sources */,
 				71F648601F71F364004C712F /* HubsSelectionViewController.swift in Sources */,
 				A3034D581DB58A1B00816B79 /* Date+isInTheFuture.swift in Sources */,
-				A3EE026C1C17D01000A8407E /* RiderCell.m in Sources */,
 				A3AD823C1E1C8860006D8ABE /* AppDelegate+Realm.swift in Sources */,
+				712F0308205C6D44003DDAC3 /* String+onlyDigits.swift in Sources */,
 				713348301F5F60D400E2218E /* Place.swift in Sources */,
 				7157BD901FB6933400D216F3 /* RideListController.swift in Sources */,
 				A3BBF1381DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift in Sources */,
 				A3AD822F1E1C5BD9006D8ABE /* Message.swift in Sources */,
+				713F42592055DBD000243B0C /* RideCell.swift in Sources */,
 				A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */,
 				71F648621F71F364004C712F /* SelectionCell.swift in Sources */,
 				7133482C1F5F603B00E2218E /* Campus.swift in Sources */,
@@ -1297,15 +1315,14 @@
 				718C9B751E5F923A0037A78B /* AllRidesViewController.swift in Sources */,
 				A3AD82331E1C63CD006D8ABE /* DateTimeTransform.swift in Sources */,
 				71FDA2451F401EBB00DA67E8 /* PhoneNumberActionSheet.swift in Sources */,
-				A3D3E7FC1C77AD310094BBAC /* WebViewController.m in Sources */,
 				714AA358203B18FF005EF615 /* CaronaeMessageNotification.swift in Sources */,
 				719428FE203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
 				714F82311F610E8300531C71 /* UIColor+hex.swift in Sources */,
 				71DEAE512054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */,
 				A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */,
 				711259D52041EFDB000A92F9 /* ProfileViewController.swift in Sources */,
-				A34312C71BF01B9A005BA311 /* MenuViewController.m in Sources */,
 				7169143C1FEAEBEF004AD5C7 /* CaronaeConstants.swift in Sources */,
+				71EEF6F82054798A004D782A /* MenuViewController.swift in Sources */,
 				718875DB1ED351E1004DB078 /* PaginationState.swift in Sources */,
 				A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */,
 				A3AC169D1E35781C000B5817 /* WelcomeViewController.swift in Sources */,
@@ -1324,12 +1341,12 @@
 				711259D9204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
 				A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */,
 				7157BD8A1FB692D400D216F3 /* UIViewController+isVisible.swift in Sources */,
-				A38F1D4D1C0398B500DEF6B1 /* RideCell.m in Sources */,
 				A3AD82311E1C6072006D8ABE /* User.swift in Sources */,
 				7133B6261FB7983C008575CC /* RideViewController.swift in Sources */,
 				71F648641F71F364004C712F /* SelectionViewController.swift in Sources */,
 				A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */,
 				711259DD2043C298000A92F9 /* String+validation.swift in Sources */,
+				71EEF6F5205472D3004D782A /* WebViewController.swift in Sources */,
 				7106CFCD1F098BBB0071C4AE /* DeepLinkManager.swift in Sources */,
 				A3CA5DD61E22CA630062522D /* Notification.swift in Sources */,
 				7106CFCE1F098BBB0071C4AE /* DeeplinkNavigator.swift in Sources */,
@@ -1346,6 +1363,7 @@
 				71D2B86D1E296AFC000454F7 /* ChatViewController.swift in Sources */,
 				A3CA5DD21E1F46520062522D /* UIWindow+replaceRootViewController.m in Sources */,
 				71DB83DE1F831FF40065300E /* FalaeService.swift in Sources */,
+				713F42562055D9DD00243B0C /* RiderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

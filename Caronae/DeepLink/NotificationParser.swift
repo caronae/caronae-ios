@@ -10,24 +10,39 @@ class NotificationParser {
         }
         
         switch msgType {
-        case "joinRequest",
-             "accepted",
-             "refused",
+        case "accepted":
+            guard let id = rideId(ofUserInfo: userInfo) else {
+                return .openMyRides
+            }
+            return .loadAcceptedRide(withID: id)
+        case "refused",
              "cancelled",
              "quitter":
             return .openMyRides
         case "finished":
             return .openRidesHistory
-        case "chat":
-            guard let idString = userInfo?["rideId"] as? String,
-                let id = Int(idString) else {
-                    NSLog("Cannot open chat for ride, did not get rideId")
-                    return nil
+        case "joinRequest":
+            guard let id = rideId(ofUserInfo: userInfo) else {
+                return .openMyRides
             }
-            return .openChatForRide(withID: id)
+            return .openRide(withID: id, openChat: false)
+        case "chat":
+            guard let id = rideId(ofUserInfo: userInfo) else {
+                return .openMyRides
+            }
+            return .openRide(withID: id, openChat: true)
         default:
             NSLog("Cannot handle notification, msgType unknown")
             return nil
         }
+    }
+    
+    private func rideId(ofUserInfo userInfo: [AnyHashable : Any]?) -> Int? {
+        guard let idString = userInfo?["rideId"] as? String,
+            let id = Int(idString) else {
+                NSLog("Cannot handle notification, did not get rideId")
+                return nil
+        }
+        return id
     }
 }

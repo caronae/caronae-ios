@@ -4,9 +4,10 @@ import UIKit
 enum DeeplinkType {
     case login(withID: String, token: String)
     case loadRide(withID: Int)
+    case loadAcceptedRide(withID: Int)
     case openMyRides
     case openRidesHistory
-    case openChatForRide(withID: Int)
+    case openRide(withID: Int, openChat: Bool)
 }
 
 class DeeplinkNavigator {
@@ -40,30 +41,39 @@ class DeeplinkNavigator {
             tabBarController?.selectedViewController = tabBarController?.allRidesNavigationController
             let allRidesViewController = tabBarController?.allRidesViewController
             allRidesViewController?.loadRide(withID: id)
+        case .loadAcceptedRide(withID: let id):
+            tabBarController?.selectedViewController = tabBarController?.myRidesNavigationController
+            let myRidesViewController = tabBarController?.myRidesViewController
+            myRidesViewController?.loadAcceptedRide(withID: id)
         case .openMyRides:
             tabBarController?.selectedViewController = tabBarController?.myRidesNavigationController
         case .openRidesHistory:
             tabBarController?.selectedViewController = tabBarController?.menuNavigationController
             let menuViewController = tabBarController?.menuViewController
             menuViewController?.openRidesHistory()
-        case .openChatForRide(withID: let rideId):
+        case .openRide(withID: let rideId, openChat: let openChat):
             guard let topViewController = UIApplication.shared.topViewController() else {
                 return
             }
 
             // Check if chat for rideID is already opened
-            if topViewController.isKind(of: ChatViewController.self), let chatVC = topViewController as? ChatViewController {
-                if chatVC.ride.id == rideId {
-                    return
-                }
+            if openChat, topViewController.isKind(of: ChatViewController.self), let chatVC = topViewController as? ChatViewController, chatVC.ride.id == rideId {
+                return
             }
             
-            // Open chat for rideID
+            // Check if ride with rideID is already opened
+            if topViewController.isKind(of: RideViewController.self), let rideVC = topViewController as? RideViewController, rideVC.ride.id == rideId {
+                if openChat {
+                    rideVC.openChatWindow()
+                }
+                return
+            }
+            
+            // Open ride
             tabBarController?.selectedViewController = tabBarController?.myRidesNavigationController
             let myRidesViewController = tabBarController?.myRidesViewController
-            myRidesViewController?.openChatForRide(withID: rideId)
+            myRidesViewController?.openRide(withID: rideId, openChat: openChat)
         }
-        
     }
     
 }

@@ -256,7 +256,7 @@ class RideService: NSObject {
     }
     
     func finishRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.post("/ride/finishRide", parameters: ["rideId": id], success: { task, responseObject in
+        api.post("/api/v1/rides/\(id)/finish", parameters: nil, success: { task, responseObject in
             do {
                 let realm = try Realm()
                 if let ride = realm.object(ofType: Ride.self, forPrimaryKey: id) {
@@ -280,7 +280,7 @@ class RideService: NSObject {
     }
 
     func leaveRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.post("/ride/leaveRide", parameters: ["rideId": id], success: { task, responseObject in
+        api.post("/api/v1/rides/\(id)/leave", parameters: nil, success: { task, responseObject in
             do {
                 let realm = try Realm()
                 if let ride = realm.object(ofType: Ride.self, forPrimaryKey: id) {

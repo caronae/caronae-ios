@@ -7,8 +7,6 @@
 
 #import "CaronaeAlertController.h"
 #import "TabBarController.h"
-#import "RideCell.h"
-#import "RiderCell.h"
 #import "JoinRequestCell.h"
 
 #import "CaronaeTextField.h"

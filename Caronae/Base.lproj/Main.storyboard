@@ -1297,7 +1297,7 @@ nenhuma carona.</string>
         <!--Web View Controller-->
         <scene sceneID="q02-Xb-0Ke">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="kDw-KM-p2e" customClass="WebViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="kDw-KM-p2e" customClass="WebViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tJA-R2-npH"/>
                         <viewControllerLayoutGuide type="bottom" id="gM5-zO-okd"/>
@@ -2059,7 +2059,7 @@ nenhuma carona.</string>
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Friend Cell" id="LZH-qX-WpN" customClass="RiderCell">
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Friend Cell" id="LZH-qX-WpN" customClass="RiderCell" customModule="Caronae" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -3991,7 +3991,7 @@ FOTO</string>
         <!--Menu-->
         <scene sceneID="8xb-bu-pIx">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="92W-6s-wlj" customClass="MenuViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="92W-6s-wlj" customClass="MenuViewController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1wB-TC-jMV"/>
                         <viewControllerLayoutGuide type="bottom" id="vgu-Xt-eS2"/>
@@ -5495,7 +5495,7 @@ FOTO</string>
                                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
-                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Friend Cell" id="D8N-Oi-hZ8" customClass="RiderCell">
+                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Friend Cell" id="D8N-Oi-hZ8" customClass="RiderCell" customModule="Caronae" customModuleProvider="target">
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                             <autoresizingMask key="autoresizingMask"/>
@@ -5924,7 +5924,7 @@ FOTO</string>
                                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
-                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Rider Cell" id="mQf-ET-Z4B" customClass="RiderCell">
+                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Rider Cell" id="mQf-ET-Z4B" customClass="RiderCell" customModule="Caronae" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -6937,7 +6937,7 @@ nenhuma carona.</string>
         <segue reference="9kE-zS-Odm"/>
         <segue reference="yIa-C3-QN8"/>
         <segue reference="H8O-Mc-OH3"/>
-        <segue reference="ugX-qh-OjL"/>
+        <segue reference="U3D-Zh-YLa"/>
         <segue reference="IgS-9T-cpR"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

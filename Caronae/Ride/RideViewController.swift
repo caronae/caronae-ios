@@ -45,6 +45,7 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
     
     var ride: Ride!
     var shouldOpenChatWindow = false
+    var shouldLoadFromRealm = true
     var rideIsFull = false
     
     var requesters = [User]()
@@ -87,7 +88,10 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
         super.viewDidLoad()
         
         // Load ride from realm database if available
-        self.loadRealmRide()
+        if shouldLoadFromRealm {
+            self.loadRealmRide()
+        }
+        shouldLoadFromRealm = true
         
         self.clearNotifications()
         NotificationCenter.default.addObserver(self, selector: #selector(updateChatButtonBadge), name: .CaronaeDidUpdateNotifications, object: nil)
@@ -145,13 +149,6 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
             carPlateLabel.text = user.carPlate?.uppercased()
             carModelLabel.text = user.carModel
             carColorLabel.text = user.carColor
-            
-            // If the riders aren't provided then hide the riders view
-            if ride.riders.isEmpty {
-                DispatchQueue.main.async {
-                    self.ridersView.removeFromSuperview()
-                }
-            }
         }
         // If the user is already a rider, hide 'join' button
         else if self.userIsRider() {

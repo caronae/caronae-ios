@@ -1,7 +1,6 @@
 @import UIKit;
-#import "MenuViewController.h"
 
-@class MyRidesViewController, AllRidesViewController;
+@class MyRidesViewController, AllRidesViewController, MenuViewController;
 
 @interface TabBarController : UITabBarController
 

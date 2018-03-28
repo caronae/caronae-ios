@@ -30,7 +30,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet weak var signoutButton: UIButton!
     @IBOutlet weak var reportView: UIView!
     
-    @objc var user: User!
+    var user: User!
     
     var mutualFriends = [User]()
     

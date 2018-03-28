@@ -98,6 +98,7 @@ jobs:
       - *restore_repo
       - attach_workspace:
           at: output
+      - run: brew install imagemagick
       - run: brew install graphicsmagick
       - run:
           name: Publish app to App Store

@@ -114,13 +114,10 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         numRidesLabel.text  = user.numRides > -1 ? String(user.numRides) : "-"
         
         emailTextField.text = user.email
-        if let phoneNumber = user.phoneNumber {
-            phoneMaskedDelegate.put(text: phoneNumber, into: phoneTextField)
-        }
+        let phoneNumber = user.phoneNumber ?? ""
+        phoneMaskedDelegate.put(text: phoneNumber, into: phoneTextField)
         
-        if let neighborhood = user.location {
-            self.neighborhood = neighborhood
-        }
+        neighborhood = user.location ?? ""
         
         hasCarSwitch.isOn = user.carOwner
         if !hasCarSwitch.isOn {
@@ -129,9 +126,8 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
             carDetailsView.alpha = 0.0
         }
         
-        if let carPlate = user.carPlate {
-            carPlateMaskedDelegate.put(text: carPlate, into: carPlateTextField)
-        }
+        let carPlate = user.carPlate ?? ""
+        carPlateMaskedDelegate.put(text: carPlate, into: carPlateTextField)
         carModelTextField.text = user.carModel
         carColorTextField.text = user.carColor
         
@@ -147,12 +143,12 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         updatedUser.name = user.name
         updatedUser.profile = user.profile
         updatedUser.course = user.course
-        updatedUser.phoneNumber = phoneTextField.text?.phoneWithoutMask
+        updatedUser.phoneNumber = phoneTextField.text?.onlyDigits
         updatedUser.email = emailTextField.text
         updatedUser.carOwner = hasCarSwitch.isOn
-        updatedUser.carModel = carModelTextField.text
-        updatedUser.carPlate = carPlateTextField.text
-        updatedUser.carColor = carColorTextField.text
+        updatedUser.carModel = hasCarSwitch.isOn ? carModelTextField.text : ""
+        updatedUser.carPlate = hasCarSwitch.isOn ? carPlateTextField.text?.uppercased() : ""
+        updatedUser.carColor = hasCarSwitch.isOn ? carColorTextField.text : ""
         updatedUser.location = neighborhood
         updatedUser.profilePictureURL = photoURLString
         
@@ -180,7 +176,7 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
             return false
         }
         
-        guard let phone = phoneTextField.text, phone.count == 16 else {
+        guard let phone = phoneTextField.text?.onlyDigits, phone.count == 12 else {
             CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que o telefone que você inseriu não é válido. Ele deve estar no formato (0XX) XXXXX-XXXX.")
             return false
         }
@@ -190,12 +186,12 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
             return false
         }
         
-        guard hasCarSwitch.isOn, !carModelTextField.text!.isEmpty, !carPlateTextField.text!.isEmpty, !carColorTextField.text!.isEmpty else {
+        if hasCarSwitch.isOn && (carModelTextField.text!.isEmpty || carPlateTextField.text!.isEmpty || carColorTextField.text!.isEmpty) {
             CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que você marcou que tem um carro mas não preencheu os dados dele.")
             return false
         }
         
-        guard hasCarSwitch.isOn, carPlateTextField.text!.isValidCarPlate else {
+        if hasCarSwitch.isOn && !carPlateTextField.text!.isValidCarPlate {
             CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que preencheu incorretamente a placa do seu carro. Verifique se a preencheu no formato \"ABC-1234\".")
             return false
         }
@@ -303,11 +299,7 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
     // MARK: Etc
     
     func showLoadingHUD(_ loading: Bool) {
-        if !loading {
-            navigationItem.rightBarButtonItem = self.saveButton
-        } else {
-            navigationItem.rightBarButtonItem = self.loadingButton
-        }
+        navigationItem.rightBarButtonItem = loading ? self.loadingButton : self.saveButton
     }
     
     func importPhotoFromFacebook() {

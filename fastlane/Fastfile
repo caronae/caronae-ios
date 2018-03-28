@@ -1,7 +1,6 @@
 fastlane_require 'aws-sdk-kms'
 
 default_platform :ios
-google_keys_file = '../Caronae/Supporting Files/GoogleService-Info.plist'
 
 platform :ios do
   before_all do
@@ -13,7 +12,6 @@ platform :ios do
     changes = changelog_from_git_commits(pretty: '- %s')
     File.write('changelog.txt', changes)
 
-    decrypt_keys
     cocoapods
     update_build_number
     push_to_git_remote unless options[:skip_push]
@@ -21,6 +19,7 @@ platform :ios do
 
   desc "Build app"
   lane :build do
+    decrypt_keys
     install_signing
     build_app
   end
@@ -30,7 +29,6 @@ platform :ios do
     build unless options[:ipa]
     changes = File.read('changelog.txt')
     upload_to_testflight(
-      skip_waiting_for_build_processing: true,
       ipa: options[:ipa],
       changelog: changes,
     )
@@ -43,7 +41,9 @@ platform :ios do
     upload_to_app_store(
       submit_for_review: true,
       force: true,
+      ignore_language_directory_validation: true,
       ipa: options[:ipa],
+      app_version: get_version_number,
       build_number: options[:build_number],
     )
   end
@@ -63,10 +63,10 @@ platform :ios do
   desc "Encrypt sensitive keys using AWS KMS"
   lane :encrypt_keys do
     kms = Aws::KMS::Client.new()
-    decrypted_file = IO.read(google_keys_file)
+    decrypted_file = IO.read(ENV['GOOGLE_KEYS_FILE'])
     encrypted_data = kms.encrypt(key_id: 'alias/caronae-ios-keys', plaintext: decrypted_file)
     encrypted_text = Base64.encode64(encrypted_data.ciphertext_blob)
-    IO.write(google_keys_file + '.encrypted', encrypted_text)
+    IO.write(ENV['GOOGLE_KEYS_FILE'] + '.encrypted', encrypted_text)
 
     UI.success("Successfully encrypted keys")
   end
@@ -74,10 +74,11 @@ platform :ios do
   desc "Decrypt sensitive keys using AWS KMS"
   lane :decrypt_keys do
     kms = Aws::KMS::Client.new()
-    encrypted_file = IO.read(google_keys_file + '.encrypted')
+    encrypted_file = IO.read(ENV['GOOGLE_KEYS_FILE'] + '.encrypted')
     encrypted_data = Base64.decode64(encrypted_file)
     decrypted_data = kms.decrypt(ciphertext_blob: encrypted_data)
-    IO.write(google_keys_file, decrypted_data.plaintext)
+    IO.write(ENV['GOOGLE_KEYS_FILE'], decrypted_data.plaintext)
+    IO.write("../Caronae/Supporting Files/GoogleService-Info.plist", decrypted_data.plaintext)
 
     UI.success("Successfully decrypted keys")
   end

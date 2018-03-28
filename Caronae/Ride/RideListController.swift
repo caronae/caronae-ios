@@ -45,6 +45,12 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if #available(iOS 11.0, *) {
+            // Create constraint between filterView and safe area layout guide
+            let safeArea = self.view.safeAreaLayoutGuide;
+            filterView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
+        }
+        
         tableView.delegate = self
         tableView.dataSource = self
         let cellNib = UINib.init(nibName: String(describing: RideCell.self), bundle: nil)
@@ -54,6 +60,10 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
             DispatchQueue.main.async {
                 self.directionControl.removeFromSuperview()
             }
+        } else {
+            // Configure direction titles according to institution
+            directionControl.setTitle(UserService.Institution.goingLabel, forSegmentAt: 0)
+            directionControl.setTitle(UserService.Institution.leavingLabel, forSegmentAt: 1)
         }
         adjustTableView()
         
@@ -140,8 +150,8 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func loadingFailed(withError error: NSError) {
-        if filteredRides.isEmpty {
+    func loadingFailed(withError error: NSError, checkFilteredRides: Bool = true) {
+        if checkFilteredRides && filteredRides.isEmpty {
             tableView.backgroundView = errorLabel
         }
         

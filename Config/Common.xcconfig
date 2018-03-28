@@ -1,8 +1,5 @@
-// App settings
+// Facebook settings
 FACEBOOK_APP_ID = 933455893356973
+FACEBOOK_URL_SCHEME = fb${FACEBOOK_APP_ID}
+FACEBOOK_URL_SCHEME_DEV= fb${FACEBOOK_APP_ID}dev
 FACEBOOK_DISPLAY_NAME = Caronae
-
-// Helpers
-SLASH = /
-HTTP = http:${SLASH}${SLASH}
-HTTPS = https:${SLASH}${SLASH}
