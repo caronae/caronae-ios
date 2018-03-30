@@ -50,8 +50,8 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         dateFormatter.dateFormat = CaronaeSearchDateFormat
         
         // Configure direction titles according to institution
-        directionControl.setTitle(UserService.Institution.goingLabel, forSegmentAt: 0)
-        directionControl.setTitle(UserService.Institution.leavingLabel, forSegmentAt: 1)
+        directionControl.setTitle(PlaceService.Institution.goingLabel, forSegmentAt: 0)
+        directionControl.setTitle(PlaceService.Institution.leavingLabel, forSegmentAt: 1)
         
         // Load last direction
         directionControl.selectedSegmentIndex = previouslySelectedSegmentIndex
@@ -105,7 +105,7 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     @IBAction func didTapDate(_ sender: Any) {
         self.view.endEditing(true)
-        let title = directionControl.selectedSegmentIndex == 0 ? UserService.Institution.goingLabel : UserService.Institution.leavingLabel
+        let title = directionControl.selectedSegmentIndex == 0 ? PlaceService.Institution.goingLabel : PlaceService.Institution.leavingLabel
         let datePicker = ActionSheetDatePicker.init(title: title, datePickerMode: .dateAndTime, selectedDate: self.selectedDate, target: self, action: #selector(timeWasSelected(selectedTime:)), origin: sender)
         datePicker?.minuteInterval = 30
         datePicker?.minimumDate = Date.currentHour

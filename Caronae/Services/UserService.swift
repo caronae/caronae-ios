@@ -54,22 +54,6 @@ class UserService: NSObject {
         }
     }
     
-    struct Institution {
-        private init() {}
-        fileprivate(set) static var name: String! {
-            get { return UserDefaults.standard.string(forKey: "institutionName") ?? "UFRJ" }
-            set { UserDefaults.standard.set(newValue, forKey: "institutionName") }
-        }
-        fileprivate(set) static var goingLabel: String! {
-            get { return UserDefaults.standard.string(forKey: "institutionGoingLabel") ?? "Chegando na UFRJ" }
-            set { UserDefaults.standard.set(newValue, forKey: "institutionGoingLabel") }
-        }
-        fileprivate(set) static var leavingLabel: String! {
-            get { return UserDefaults.standard.string(forKey: "institutionLeavingLabel") ?? "Saindo da UFRJ" }
-            set { UserDefaults.standard.set(newValue, forKey: "institutionLeavingLabel") }
-        }
-    }
-    
     var userFacebookToken: String? {
         return FBSDKAccessToken.current()?.tokenString
     }
@@ -85,8 +69,7 @@ class UserService: NSObject {
         api.get("/api/v1/users/\(id)", parameters: nil, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
                 let userJson = responseObject["user"] as? [String: Any],
-                let user = User(JSON: userJson),
-                let institution = responseObject["institution"] as? [String: String] else {
+                let user = User(JSON: userJson) else {
                     NSLog("Error parsing user response")
                     error(CaronaeError.invalidResponse)
                     return
@@ -100,11 +83,6 @@ class UserService: NSObject {
             } catch let realmError {
                 NSLog("Error saving the current user in the Realm: \(realmError.localizedDescription)")
             }
-            
-            // Update the current institution
-            Institution.name = institution["name"]
-            Institution.goingLabel = institution["going_label"]
-            Institution.leavingLabel = institution["leaving_label"]
 
             success(user)
         }, failure: { task, err in
@@ -118,10 +96,15 @@ class UserService: NSObject {
         getUser(withID: id, success: { user in
             self.user = user
             self.userID = user.id
-            
             self.notifyObservers()
             
-            success()
+            PlaceService.instance.updatePlaces(success: {
+                success()
+            }, error: { err in
+                NSLog("Failed to update places: \(err.localizedDescription)")
+                error(.invalidResponse)
+            })
+            
         }) { err in
             NSLog("Failed to sign in: \(err.localizedDescription)")
             error(.invalidResponse)
@@ -133,8 +116,7 @@ class UserService: NSObject {
         api.post("/api/v1/users/login", parameters: params, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
             let userJson = responseObject["user"] as? [String: Any],
-            let user = User(JSON: userJson),
-            let institution = responseObject["institution"] as? [String: String] else {
+            let user = User(JSON: userJson) else {
                 NSLog("Error parsing user response")
                 error(.invalidResponse)
                 return
@@ -154,15 +136,17 @@ class UserService: NSObject {
             self.userID = user.id
             self.userToken = token
             
-            // Update the current institution
-            Institution.name = institution["name"]
-            Institution.goingLabel = institution["going_label"]
-            Institution.leavingLabel = institution["leaving_label"]
-            
             self.migrateToJWT(success: {
                 NSLog("Successfully migrate to jwt token")
                 self.notifyObservers()
-                success()
+                
+                PlaceService.instance.updatePlaces(success: {
+                    success()
+                }, error: { err in
+                    NSLog("Failed to update places: \(err.localizedDescription)")
+                    error(.invalidResponse)
+                })
+                
             }, error: { err in
                 error(.invalidResponse)
             })
