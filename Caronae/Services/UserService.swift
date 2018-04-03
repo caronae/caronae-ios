@@ -116,7 +116,8 @@ class UserService: NSObject {
         api.post("/api/v1/users/login", parameters: params, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
             let userJson = responseObject["user"] as? [String: Any],
-            let user = User(JSON: userJson) else {
+            let user = User(JSON: userJson),
+            let institution = responseObject["institution"] as? [String: String] else {
                 NSLog("Error parsing user response")
                 error(.invalidResponse)
                 return
