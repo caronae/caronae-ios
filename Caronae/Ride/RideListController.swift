@@ -62,8 +62,8 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
             }
         } else {
             // Configure direction titles according to institution
-            directionControl.setTitle(UserService.Institution.goingLabel, forSegmentAt: 0)
-            directionControl.setTitle(UserService.Institution.leavingLabel, forSegmentAt: 1)
+            directionControl.setTitle(PlaceService.Institution.goingLabel, forSegmentAt: 0)
+            directionControl.setTitle(PlaceService.Institution.leavingLabel, forSegmentAt: 1)
         }
         adjustTableView()
         

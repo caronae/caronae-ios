@@ -137,6 +137,10 @@
 		71C908FE1E88C3E9009B7BFE /* FilterParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */; };
 		71D2B86D1E296AFC000454F7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2B86C1E296AFC000454F7 /* ChatViewController.swift */; };
 		71DB83DE1F831FF40065300E /* FalaeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DB83DD1F831FF40065300E /* FalaeService.swift */; };
+		71DEAE512054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE502054A86100707004 /* CaronaeAPIRequestSerializer.swift */; };
+		71DEAE522054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE502054A86100707004 /* CaronaeAPIRequestSerializer.swift */; };
+		71DEAE542054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */; };
+		71DEAE552054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */; };
 		71EAF4551F11406200B16CF8 /* CreateRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EAF4541F11406200B16CF8 /* CreateRideViewController.swift */; };
 		71EEF6F5205472D3004D782A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EEF6F4205472D3004D782A /* WebViewController.swift */; };
 		71EEF6F6205472D3004D782A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EEF6F4205472D3004D782A /* WebViewController.swift */; };
@@ -257,6 +261,8 @@
 		71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterParameters.swift; sourceTree = "<group>"; };
 		71D2B86C1E296AFC000454F7 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		71DB83DD1F831FF40065300E /* FalaeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FalaeService.swift; path = Services/FalaeService.swift; sourceTree = "<group>"; };
+		71DEAE502054A86100707004 /* CaronaeAPIRequestSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaronaeAPIRequestSerializer.swift; path = Networking/CaronaeAPIRequestSerializer.swift; sourceTree = "<group>"; };
+		71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaronaeAPIResponseSerializer.swift; path = Networking/CaronaeAPIResponseSerializer.swift; sourceTree = "<group>"; };
 		71EAF4541F11406200B16CF8 /* CreateRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRideViewController.swift; sourceTree = "<group>"; };
 		71EEF6F4205472D3004D782A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = About/WebViewController.swift; sourceTree = "<group>"; };
 		71EEF6F72054798A004D782A /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -646,6 +652,8 @@
 			isa = PBXGroup;
 			children = (
 				A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */,
+				71DEAE502054A86100707004 /* CaronaeAPIRequestSerializer.swift */,
+				71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -960,6 +968,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDCAutoLayout/SDCAutoLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework",
@@ -988,6 +997,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAutoLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIScrollView_InfiniteScroll.framework",
@@ -1041,6 +1051,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDCAutoLayout/SDCAutoLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework",
@@ -1069,6 +1080,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAutoLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIScrollView_InfiniteScroll.framework",
@@ -1136,6 +1148,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDCAutoLayout/SDCAutoLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SimpleKeychain/SimpleKeychain.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/UIScrollView-InfiniteScroll/UIScrollView_InfiniteScroll.framework",
@@ -1165,6 +1178,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAutoLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimpleKeychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIScrollView_InfiniteScroll.framework",
@@ -1222,6 +1236,7 @@
 				718F3AC31FE9FEBE001F1D40 /* PhoneNumberActionSheet.swift in Sources */,
 				714AA359203B2247005EF615 /* CaronaeMessageNotification.swift in Sources */,
 				719428FF203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
+				71DEAE522054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */,
 				718F3AC51FE9FEBE001F1D40 /* UIColor+hex.swift in Sources */,
 				711259D62041EFDE000A92F9 /* ProfileViewController.swift in Sources */,
 				718F3AC61FE9FEBE001F1D40 /* TabBarController.m in Sources */,
@@ -1239,6 +1254,7 @@
 				718F3AD31FE9FEBE001F1D40 /* RideViewController+rideActions.swift in Sources */,
 				716914361FEAE864004AD5C7 /* RideViewController.swift in Sources */,
 				718F3AD41FE9FEBE001F1D40 /* SearchRideViewController.swift in Sources */,
+				71DEAE552054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */,
 				718F3AD51FE9FEBE001F1D40 /* UniversalLinkParser.swift in Sources */,
 				711259DA204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
 				718F3AD61FE9FEBE001F1D40 /* NeighborhoodSelectionViewController.swift in Sources */,
@@ -1302,6 +1318,7 @@
 				714AA358203B18FF005EF615 /* CaronaeMessageNotification.swift in Sources */,
 				719428FE203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
 				714F82311F610E8300531C71 /* UIColor+hex.swift in Sources */,
+				71DEAE512054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */,
 				A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */,
 				711259D52041EFDB000A92F9 /* ProfileViewController.swift in Sources */,
 				7169143C1FEAEBEF004AD5C7 /* CaronaeConstants.swift in Sources */,
@@ -1319,6 +1336,7 @@
 				A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */,
 				71C60AAE1EBAC1A300E84318 /* SearchRideViewController.swift in Sources */,
 				7106CFD01F098BBB0071C4AE /* UniversalLinkParser.swift in Sources */,
+				71DEAE542054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */,
 				71F648611F71F364004C712F /* NeighborhoodSelectionViewController.swift in Sources */,
 				711259D9204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
 				A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */,

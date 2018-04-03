@@ -1,20 +1,17 @@
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Firebase
 import Foundation
 import RealmSwift
-import Firebase
+import SimpleKeychain
 
 class UserService: NSObject {
     static let instance = UserService()
     private let api = CaronaeAPIHTTPSessionManager.instance
     
-    private override init() {
-        // This prevents others from using the default '()' initializer for this class.
-    }
+    private override init() {}
     
     private(set) lazy var user: User? = {
-        let userID: Int = UserDefaults.standard.integer(forKey: "user_id")
-        
         do {
             let realm = try Realm()
             return realm.object(ofType: User.self, forPrimaryKey: userID)
@@ -24,39 +21,36 @@ class UserService: NSObject {
         }
     }()
     
-    private(set) var userToken: String? {
-        get {
-            return UserDefaults.standard.string(forKey: "token")
-        }
-        
+    private(set) var userID: Int? {
+        get { return UserDefaults.standard.integer(forKey: "user_id") }
         set {
-            UserDefaults.standard.set(newValue, forKey: "token")
+            guard let id = newValue else {
+                UserDefaults.standard.removeObject(forKey: "user_id")
+                return
+            }
+            UserDefaults.standard.set(id, forKey: "user_id")
         }
     }
-    
-    struct Institution {
-        private init() {}
-        fileprivate(set) static var name: String! {
-            get { return UserDefaults.standard.string(forKey: "institutionName") ?? "UFRJ" }
-            set { UserDefaults.standard.set(newValue, forKey: "institutionName") }
-        }
-        fileprivate(set) static var goingLabel: String! {
-            get { return UserDefaults.standard.string(forKey: "institutionGoingLabel") ?? "Chegando na UFRJ" }
-            set { UserDefaults.standard.set(newValue, forKey: "institutionGoingLabel") }
-        }
-        fileprivate(set) static var leavingLabel: String! {
-            get { return UserDefaults.standard.string(forKey: "institutionLeavingLabel") ?? "Saindo da UFRJ" }
-            set { UserDefaults.standard.set(newValue, forKey: "institutionLeavingLabel") }
+
+    var userToken: String? {
+        get { return UserDefaults.standard.string(forKey: "token") }
+        set {
+            guard let token = newValue else {
+                UserDefaults.standard.removeObject(forKey: "token")
+                return
+            }
+            UserDefaults.standard.set(token, forKey: "token")
         }
     }
-    
-    var userGCMToken: String? {
-        get {
-            return UserDefaults.standard.string(forKey: "gcmToken")
-        }
-        
+
+    var jwtToken: String? {
+        get { return A0SimpleKeychain().string(forKey: "jwt_token") }
         set {
-            UserDefaults.standard.set(newValue, forKey: "gcmToken")
+            guard let token = newValue else {
+                A0SimpleKeychain().deleteEntry(forKey: "jwt_token")
+                return
+            }
+            A0SimpleKeychain().setString(token, forKey: "jwt_token")
         }
     }
     
@@ -71,7 +65,53 @@ class UserService: NSObject {
         return "/topics/user-\(user.id)"
     }
     
-    func signIn(withID idUFRJ: String, token: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
+    func getUser(withID id: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: Error) -> Void) {
+        api.get("/api/v1/users/\(id)", parameters: nil, success: { task, responseObject in
+            guard let responseObject = responseObject as? [String: Any],
+                let userJson = responseObject["user"] as? [String: Any],
+                let user = User(JSON: userJson) else {
+                    NSLog("Error parsing user response")
+                    error(CaronaeError.invalidResponse)
+                    return
+            }
+            
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.add(user, update: true)
+                }
+            } catch let realmError {
+                NSLog("Error saving the current user in the Realm: \(realmError.localizedDescription)")
+            }
+
+            success(user)
+        }, failure: { task, err in
+            NSLog("Error loading user with id \(id): \(err.localizedDescription)")
+            error(err)
+        })
+    }
+    
+    func signIn(withID id: String, token: String, success: @escaping () -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
+        self.jwtToken = token
+        getUser(withID: id, success: { user in
+            self.user = user
+            self.userID = user.id
+            self.notifyObservers()
+            
+            PlaceService.instance.updatePlaces(success: {
+                success()
+            }, error: { err in
+                NSLog("Failed to update places: \(err.localizedDescription)")
+                error(.invalidResponse)
+            })
+            
+        }) { err in
+            NSLog("Failed to sign in: \(err.localizedDescription)")
+            error(.invalidResponse)
+        }
+    }
+    
+    func signIn(withIDUFRJ idUFRJ: String, token: String, success: @escaping () -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
         let params = [ "id_ufrj": idUFRJ, "token": token ]
         api.post("/api/v1/users/login", parameters: params, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
@@ -94,17 +134,23 @@ class UserService: NSObject {
 
             // Update the current user
             self.user = user
+            self.userID = user.id
             self.userToken = token
-            UserDefaults.standard.set(user.id, forKey: "user_id")
             
-            // Update the current institution
-            Institution.name = institution["name"]
-            Institution.goingLabel = institution["going_label"]
-            Institution.leavingLabel = institution["leaving_label"]
-            
-            self.notifyObservers()
-            
-            success(user)
+            self.migrateToJWT(success: {
+                NSLog("Successfully migrate to jwt token")
+                self.notifyObservers()
+                
+                PlaceService.instance.updatePlaces(success: {
+                    success()
+                }, error: { err in
+                    NSLog("Failed to update places: \(err.localizedDescription)")
+                    error(.invalidResponse)
+                })
+                
+            }, error: { err in
+                error(.invalidResponse)
+            })
             
         }, failure: { task, err in
             NSLog("Failed to sign in: \(err.localizedDescription)")
@@ -120,6 +166,19 @@ class UserService: NSObject {
             }
             
             error(authenticationError)
+        })
+    }
+    
+    func migrateToJWT(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
+        guard let userID = self.userID else {
+            NSLog("Error: No userID registered")
+            return error(CaronaeError.invalidUser)
+        }
+        api.get("/api/v1/users/\(userID)/token", parameters: nil, success: { _, _ in
+            success()
+        }, failure: { task, err in
+            NSLog("Error getting user jwt token: \(err.localizedDescription)")
+            error(err)
         })
     }
     
@@ -148,7 +207,9 @@ class UserService: NSObject {
         
         // Clear current user
         self.user = nil
-        UserDefaults.standard.removeObject(forKey: "user_id")
+        self.userID = nil
+        self.userToken = nil
+        self.jwtToken = nil
         
         notifyObservers(force: force)
     }

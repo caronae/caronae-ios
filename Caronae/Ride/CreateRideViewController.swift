@@ -70,8 +70,8 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         segmentedControl.layer.masksToBounds = true
         
         // Configure direction titles according to institution
-        segmentedControl.setTitle(UserService.Institution.goingLabel, forSegmentAt: 0)
-        segmentedControl.setTitle(UserService.Institution.leavingLabel, forSegmentAt: 1)
+        segmentedControl.setTitle(PlaceService.Institution.goingLabel, forSegmentAt: 0)
+        segmentedControl.setTitle(PlaceService.Institution.leavingLabel, forSegmentAt: 1)
         
         notes.layer.cornerRadius = 8.0
         notes.layer.borderColor = UIColor(white: 0.902, alpha: 1.0).cgColor
@@ -313,7 +313,7 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     @IBAction func selectDateTapped(_ sender: Any) {
         self.view.endEditing(true)
-        let title = segmentedControl.selectedSegmentIndex == 0 ? UserService.Institution.goingLabel : UserService.Institution.leavingLabel
+        let title = segmentedControl.selectedSegmentIndex == 0 ? PlaceService.Institution.goingLabel : PlaceService.Institution.leavingLabel
         let datePicker = ActionSheetDatePicker(title: title, datePickerMode: .dateAndTime, selectedDate: self.selectedDate, target: self, action: #selector(timeWasSelected(selectedTime:)), origin: sender)
         datePicker?.minimumDate = Date.currentTimePlus(minutes: 5)
         datePicker?.show()

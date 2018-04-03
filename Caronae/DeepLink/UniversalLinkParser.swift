@@ -35,11 +35,11 @@ class UniversalLinkParser {
             }
             return .loadRide(withID: id)
         case "login":
-            guard let idUFRJ = getQueryParameter(queryItems: queryItems, param: "id_ufrj"),
+            guard let id = getQueryParameter(queryItems: queryItems, param: "id"),
                 let token = getQueryParameter(queryItems: queryItems, param: "token") else {
                 return nil
             }
-            return .login(withIDUFRJ: idUFRJ, token: token)
+            return .login(withID: id, token: token)
         default:
             return nil
         }

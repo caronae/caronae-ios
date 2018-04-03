@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 enum DeeplinkType {
-    case login(withIDUFRJ: String, token: String)
+    case login(withID: String, token: String)
     case loadRide(withID: Int)
     case loadAcceptedRide(withID: Int)
     case openMyRides
@@ -24,12 +24,12 @@ class DeeplinkNavigator {
         let tabBarController = appDelegate.window?.rootViewController as? TabBarController
         
         switch type {
-        case .login(withIDUFRJ: let idUFRJ, token: let token):
+        case .login(withID: let id, token: let token):
             NSLog("Received login URL")
-            authController.authenticate(withID: idUFRJ, token: token) { error in
+            authController.authenticate(withID: id, token: token) { error in
                 guard error == nil else {
-                    NSLog("There was an error authenticating the user. %@", error!.description)
-                    CaronaeAlertController.presentOkAlert(withTitle: "Não foi possível autenticar", message: error!.description)
+                    NSLog("There was an error authenticating the user. %@", error!.localizedDescription)
+                    CaronaeAlertController.presentOkAlert(withTitle: "Não foi possível autenticar", message: error!.localizedDescription)
                     return
                 }
                 

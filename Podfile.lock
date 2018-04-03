@@ -85,6 +85,7 @@ PODS:
   - SDWebImage (4.3.1):
     - SDWebImage/Core (= 4.3.1)
   - SDWebImage/Core (4.3.1)
+  - SimpleKeychain (0.8.0)
   - SimulatorStatusMagic (2.1)
   - SVProgressHUD (2.0.3)
   - SwiftMessages (4.1.0)
@@ -106,6 +107,7 @@ DEPENDENCIES:
   - RealmSwift (~> 3.1)
   - SDCAlertView (= 2.5.4)
   - SDWebImage (~> 4.3)
+  - SimpleKeychain (~> 0.8)
   - SimulatorStatusMagic
   - SVProgressHUD
   - SwiftMessages
@@ -155,6 +157,7 @@ SPEC CHECKSUMS:
   SDCAlertView: 2e2b0ecc5f1ec367e45d83efa2e512688ca7fa55
   SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
   SDWebImage: 09808bac78357b39f8db4ea360c7b5534d785ef4
+  SimpleKeychain: 84c748463eec601dfee5e7990f55cc82edc5488d
   SimulatorStatusMagic: 481558caf2b9ccb2ceba2cc193728d4db3dcac07
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftMessages: 1bacc783c8f10bdfdc57c14860cae8a1f1fa6591
@@ -162,6 +165,6 @@ SPEC CHECKSUMS:
   UIScrollView-InfiniteScroll: c132d6d5851daff229ab4a1060ccf70a05a051c9
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 1ea32ebfa0893a66f5b9ba143ed6d5651e8531c8
+PODFILE CHECKSUM: 85497f8e5b96970fc314b44cef9984223e259d32
 
 COCOAPODS: 1.4.0

@@ -146,7 +146,7 @@ Cgo
                                             <constraint firstItem="0Sk-82-6eP" firstAttribute="top" secondItem="FaG-EK-E7P" secondAttribute="bottom" constant="-37" id="uBZ-qN-jPm"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACz-af-ziH">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACz-af-ziH">
                                         <rect key="frame" x="118" y="699" width="139" height="30"/>
                                         <state key="normal" title="Entrar manualmente"/>
                                         <connections>
