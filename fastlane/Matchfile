@@ -1,4 +1,4 @@
-git_url "git@github.com:macecchi/caronae-ios-certificates.git"
+git_url "git@github.com:macecchi/apple-developer-certificates.git"
 
 type "development" 
 
