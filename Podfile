@@ -4,7 +4,7 @@ abstract_target 'caronae-ios' do
     use_frameworks!
     inhibit_all_warnings!
     
-    pod 'AFNetworking', '~> 2.6.3'
+    pod 'AFNetworking', '~> 3.2'
     pod 'ActionSheetPicker-3.0', '~> 2.3.0'
     pod 'TPKeyboardAvoiding', '~> 1.3.2'
     pod 'SDCAlertView', '2.5.4'
