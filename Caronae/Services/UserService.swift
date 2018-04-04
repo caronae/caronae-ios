@@ -66,7 +66,7 @@ class UserService: NSObject {
     }
     
     func getUser(withID id: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/api/v1/users/\(id)", parameters: nil, success: { task, responseObject in
+        api.get("/api/v1/users/\(id)", parameters: nil, progress: nil, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
                 let userJson = responseObject["user"] as? [String: Any],
                 let user = User(JSON: userJson) else {
@@ -113,7 +113,7 @@ class UserService: NSObject {
     
     func signIn(withIDUFRJ idUFRJ: String, token: String, success: @escaping () -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
         let params = [ "id_ufrj": idUFRJ, "token": token ]
-        api.post("/api/v1/users/login", parameters: params, success: { task, responseObject in
+        api.post("/api/v1/users/login", parameters: params, progress: nil, success: { task, responseObject in
             guard let responseObject = responseObject as? [String: Any],
             let userJson = responseObject["user"] as? [String: Any],
             let user = User(JSON: userJson) else {
@@ -173,7 +173,7 @@ class UserService: NSObject {
             NSLog("Error: No userID registered")
             return error(CaronaeError.invalidUser)
         }
-        api.get("/api/v1/users/\(userID)/token", parameters: nil, success: { _, _ in
+        api.get("/api/v1/users/\(userID)/token", parameters: nil, progress: nil, success: { _, _ in
             success()
         }, failure: { task, err in
             NSLog("Error getting user jwt token: \(err.localizedDescription)")
@@ -272,7 +272,7 @@ class UserService: NSObject {
 
     
     func ridesCountForUser(withID id: Int, success: @escaping (_ offered: Int, _ taken: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/api/v1/users/\(id)/rides/history", parameters: nil, success: { task, responseObject in
+        api.get("/api/v1/users/\(id)/rides/history", parameters: nil, progress: nil, success: { task, responseObject in
             guard let response = responseObject as? [String: Any],
                 let offered = response["offered_rides_count"] as? Int,
                 let taken = response["taken_rides_count"] as? Int else {
@@ -307,7 +307,7 @@ class UserService: NSObject {
             return
         }
         
-        api.get("/user/\(facebookID)/mutualFriends", parameters: nil, success: { task, responseObject in
+        api.get("/user/\(facebookID)/mutualFriends", parameters: nil, progress: nil, success: { task, responseObject in
             guard let response = responseObject as? [String: Any],
             let friendsJson = response["mutual_friends"] as? [[String: Any]],
                 let totalCount = response["total_count"] as? Int else {

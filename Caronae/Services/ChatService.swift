@@ -51,7 +51,7 @@ class ChatService: NSObject {
             params = [ "since": dateFormatter.string(from: lastMessage.date) ]
         }
         
-        api.get("/api/v1/rides/\(rideID)/messages", parameters: params, success: { _, responseObject in
+        api.get("/api/v1/rides/\(rideID)/messages", parameters: params, progress: nil, success: { _, responseObject in
             guard let jsonResponse = responseObject as? [String: Any],
                 let messagesJson = jsonResponse["messages"] as? [[String: Any]] else {
                     completionBlock(CaronaeError.invalidResponse)
@@ -87,7 +87,7 @@ class ChatService: NSObject {
         message.sender = UserService.instance.user
         
         let params = [ "message": message.body ]
-        api.post("/api/v1/rides/\(rideID)/messages", parameters: params, success: { _, responseObject in
+        api.post("/api/v1/rides/\(rideID)/messages", parameters: params, progress: nil, success: { _, responseObject in
             guard let response = responseObject as? [String: Any],
                 let messageID = response["id"] as? Int else {
                 NSLog("Error saving message. Invalid response.")
