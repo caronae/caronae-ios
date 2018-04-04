@@ -9,12 +9,12 @@ class Campus: Object, Mappable {
     }()
     var hubsList = List<Place>()
     var hubs: [String] {
-        get { return hubsList.flatMap { $0.name } }
+        get { return hubsList.map { $0.name } }
         set { newValue.forEach { hubsList.append(Place(name: $0, category: .hub)) } }
     }
     var centersList = List<Place>()
     var centers: [String] {
-        get { return centersList.flatMap { $0.name } }
+        get { return centersList.map { $0.name } }
         set { newValue.forEach { centersList.append(Place(name: $0, category: .center)) } }
     }
     

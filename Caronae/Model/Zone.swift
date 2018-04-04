@@ -9,7 +9,7 @@ class Zone: Object, Mappable {
     }()
     var neighborhoodsList = List<Place>()
     var neighborhoods: [String] {
-        get { return neighborhoodsList.flatMap { $0.name } }
+        get { return neighborhoodsList.map { $0.name } }
         set { newValue.forEach { neighborhoodsList.append(Place(name: $0, category: .neighborhood)) } }
     }
     

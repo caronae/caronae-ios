@@ -19,7 +19,7 @@ class RideService: NSObject {
                     return
             }
             
-            var rides = ridesJson.flatMap { Ride(JSON: $0) }
+            var rides = ridesJson.compactMap { Ride(JSON: $0) }
             rides = rides.sorted { $0.date < $1.date }
             
             success(rides, lastPage)
@@ -66,19 +66,19 @@ class RideService: NSObject {
             }
             
             // Deserialize response
-            let pendingRides = pendingRidesJson.flatMap { rideJson in
+            let pendingRides = pendingRidesJson.compactMap { rideJson in
                 let ride = Ride(JSON: rideJson)
                 ride?.isPending = true
                 return ride
             } as [Ride]
             
-            let activeRides = activeRidesJson.flatMap { rideJson in
+            let activeRides = activeRidesJson.compactMap { rideJson in
                 let ride = Ride(JSON: rideJson)
                 ride?.isActive = true
                 return ride
             } as [Ride]
             
-            let offeredRides = offeredRidesJson.flatMap { rideJson in
+            let offeredRides = offeredRidesJson.compactMap { rideJson in
                 return Ride(JSON: rideJson)
             } as [Ride]
         
@@ -121,8 +121,8 @@ class RideService: NSObject {
             }
             
             // Clear notifications for finished/canceled rides
-            let currentActiveIDs = rides.flatMap { $0.id }
-            var previouslyActiveIDs = Set(previouslyActives.flatMap { $0.id })
+            let currentActiveIDs = rides.map { $0.id }
+            var previouslyActiveIDs = Set(previouslyActives.map { $0.id })
             previouslyActiveIDs.subtract(currentActiveIDs)
             previouslyActiveIDs.forEach { id in
                 NotificationService.instance.clearNotifications(forRideID: id, of: [.chat, .rideJoinRequestAccepted])
@@ -205,7 +205,7 @@ class RideService: NSObject {
             }
             
             // Deserialize rides and order starting from the newest ride
-            let rides = ridesJson.flatMap { Ride(JSON: $0) }.sorted { $0.date > $1.date }
+            let rides = ridesJson.compactMap { Ride(JSON: $0) }.sorted { $0.date > $1.date }
             success(rides)
         }, failure: { _, err in
             error(err)
@@ -219,7 +219,7 @@ class RideService: NSObject {
                 return
             }
             
-            let users = usersJson.flatMap { User(JSON: $0) }
+            let users = usersJson.compactMap { User(JSON: $0) }
             success(users)
         }, failure: { _, err in
             error(err)
@@ -234,7 +234,7 @@ class RideService: NSObject {
             }
             
             let user = UserService.instance.user!
-            let rides = ridesJson.flatMap {
+            let rides = ridesJson.compactMap {
                 let ride = Ride(JSON: $0)
                 ride?.driver = user
                 return ride

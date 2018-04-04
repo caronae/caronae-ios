@@ -43,7 +43,7 @@ class PlaceService: NSObject {
     private func loadCampiFromRealm(hubTypeDirection: HubSelectionViewController.HubTypeDirection) -> ([String], [String: [String]], [String: UIColor]) {
         let realm = try! Realm()
         let campusObjects = realm.objects(Campus.self)
-        let campi = campusObjects.flatMap { $0.name }.sorted()
+        let campi = campusObjects.map { $0.name }.sorted()
         var options = [String: [String]]()
         if hubTypeDirection == .hubs {
             campusObjects.forEach { options[$0.name] = $0.hubs }
@@ -74,7 +74,7 @@ class PlaceService: NSObject {
     private func loadZonesFromRealm() -> ([String], [String: [String]], [String: UIColor]) {
         let realm = try! Realm()
         let zoneObjects = realm.objects(Zone.self)
-        var zones = zoneObjects.flatMap { $0.name }.sorted()
+        var zones = zoneObjects.map { $0.name }.sorted()
         var options = [String: [String]]()
         zoneObjects.forEach { options[$0.name] = $0.neighborhoods }
         var colors = [String: UIColor]()
@@ -109,8 +109,8 @@ class PlaceService: NSObject {
             Institution.goingLabel = institution["going_label"]
             Institution.leavingLabel = institution["leaving_label"]
             
-            let campi = campiJson.flatMap { Campus(JSON: $0) }
-            let zones = zonesJson.flatMap { Zone(JSON: $0) }
+            let campi = campiJson.compactMap { Campus(JSON: $0) }
+            let zones = zonesJson.compactMap { Zone(JSON: $0) }
             
             do {
                 let realm = try Realm()

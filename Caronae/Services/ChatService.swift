@@ -59,7 +59,7 @@ class ChatService: NSObject {
             }
             
             // Deserialize response
-            let messages = messagesJson.flatMap {
+            let messages = messagesJson.compactMap {
                 let message = Message(JSON: $0)
                 message?.ride = ride
                 return message
