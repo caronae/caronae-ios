@@ -34,9 +34,9 @@ class Caronae_UITests: XCTestCase {
         let elementsQuery = app.scrollViews.otherElements
         let navigationBar = app.navigationBars.firstMatch
         
-        let entrarManualmenteButton = app.buttons["Entrar manualmente"]
+        let authenticateButton = elementsQuery.buttons["Entrar com universidade"]
 
-        if !entrarManualmenteButton.exists {
+        if !authenticateButton.exists {
             // SignOut user
             app.tabBars.buttons["Menu"].tap()
             elementsQuery.buttons["Meu perfil"].tap()
@@ -45,17 +45,22 @@ class Caronae_UITests: XCTestCase {
         }
 
         snapshot("2_SignIn")
-        
-        entrarManualmenteButton.tap()
 
-        let suaIdentificaOAquiTextField = app.textFields["Sua identificação aqui"]
-        suaIdentificaOAquiTextField.tap()
-        suaIdentificaOAquiTextField.typeText("12345678910")
+        authenticateButton.tap()
         
-        let suaChaveAquiTextField = app.textFields["Sua chave aqui"]
-        suaChaveAquiTextField.tap()
-        suaChaveAquiTextField.typeText("ABC123")
-        app.buttons["Entrar"].tap()
+        let authSessionToken = addUIInterruptionMonitor(withDescription: "Sign In") { (alert) -> Bool in
+            let allow = alert.buttons.element(boundBy: 1)
+            if allow.exists {
+                allow.tap()
+                return true
+            }
+            return false
+        }
+        
+        // Interruption won't happen without some kind of action
+        app.tap()
+        
+        removeUIInterruptionMonitor(authSessionToken)
         
         _ = app.tables.cells.element(boundBy: 0).waitForExistence(timeout: 10)
         app.tables.cells.element(boundBy: 0).tap()
