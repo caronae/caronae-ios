@@ -42,7 +42,7 @@ platform :ios do
       submit_for_review: true,
       force: true,
       ipa: options[:ipa],
-      app_version: get_version_number,
+      app_version: get_version_number(target:'Caronae'),
       build_number: options[:build_number],
     )
   end
@@ -89,7 +89,7 @@ platform :ios do
     increment_build_number(build_number: build_number)
 
     build_number = get_build_number
-    version_number = get_version_number
+    version_number = get_version_number(target:'Caronae')
     tag_name = "#{version_number}/#{build_number}"
     add_git_tag(tag: tag_name)
 
