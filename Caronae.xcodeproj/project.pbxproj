@@ -694,7 +694,6 @@
 				7123EE411FEE13B800EA3773 /* Frameworks */,
 				7123EE421FEE13B800EA3773 /* Resources */,
 				F2BC8F8ABA22C902B2CC9F10 /* [CP] Embed Pods Frameworks */,
-				3D648931B757CEABED7FE643 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -716,7 +715,6 @@
 				718F3AEC1FE9FEBE001F1D40 /* Frameworks */,
 				718F3AEE1FE9FEBE001F1D40 /* Resources */,
 				718F3AFA1FE9FEBE001F1D40 /* [CP] Embed Pods Frameworks */,
-				718F3AFB1FE9FEBE001F1D40 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -737,7 +735,6 @@
 				A3169C8D1BED842D00A0D428 /* Frameworks */,
 				A3169C8E1BED842D00A0D428 /* Resources */,
 				9896CD0E11FCA37A83183763 /* [CP] Embed Pods Frameworks */,
-				AC4048482FADAF52D42EED1B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -858,21 +855,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3D648931B757CEABED7FE643 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-caronae-ios-Caronae UITests/Pods-caronae-ios-Caronae UITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		56ED107787C9713DEB010EE6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1009,21 +991,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-caronae-ios-Caronae Dev/Pods-caronae-ios-Caronae Dev-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		718F3AFB1FE9FEBE001F1D40 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-caronae-ios-Caronae Dev/Pods-caronae-ios-Caronae Dev-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9896CD0E11FCA37A83183763 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1105,21 +1072,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "TAGS=\"TODO:|FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}/Caronae\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
-		};
-		AC4048482FADAF52D42EED1B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-caronae-ios-Caronae/Pods-caronae-ios-Caronae-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		F2BC8F8ABA22C902B2CC9F10 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

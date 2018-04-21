@@ -34,10 +34,10 @@ PODS:
   - FirebaseAnalytics (4.2.0):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
   - FirebaseCore (4.0.20):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (2.0.10):
     - FirebaseCore (~> 4.0)
   - FirebaseMessaging (2.2.0):
@@ -49,7 +49,7 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.3)
   - GoogleToolboxForMac/Logger (2.1.3):
     - GoogleToolboxForMac/Defines (= 2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
     - GoogleToolboxForMac/Defines (= 2.1.3)
   - InputMask (3.2.0)
   - JSQMessagesViewController (7.3.4):
@@ -62,7 +62,7 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - ObjectMapper (3.1.0)
-  - ObjectMapper+Realm (0.5):
+  - "ObjectMapper+Realm (0.5)":
     - ObjectMapper
     - RealmSwift
   - Protobuf (3.5.0)
@@ -85,7 +85,7 @@ PODS:
   - SwiftMessages (4.1.2)
   - TPKeyboardAvoiding (1.3.2)
   - UIScrollView-InfiniteScroll (1.1.0)
-  - UITextView+Placeholder (1.2.0)
+  - "UITextView+Placeholder (1.2.0)"
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.3.0)
@@ -97,7 +97,7 @@ DEPENDENCIES:
   - JSQMessagesViewController (from `https://github.com/caronae/JSQMessagesViewController.git`, branch `issue-1864`)
   - MIBadgeButton-Swift (from `https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git`, branch `master`)
   - ObjectMapper (~> 3.1)
-  - ObjectMapper+Realm (~> 0.5)
+  - "ObjectMapper+Realm (~> 0.5)"
   - RealmSwift (~> 3.4)
   - SDCAlertView (= 2.5.4)
   - SDWebImage (~> 4.3)
@@ -107,7 +107,40 @@ DEPENDENCIES:
   - SwiftMessages
   - TPKeyboardAvoiding (~> 1.3.2)
   - UIScrollView-InfiniteScroll
-  - UITextView+Placeholder (~> 1.2)
+  - "UITextView+Placeholder (~> 1.2)"
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - ActionSheetPicker-3.0
+    - AFNetworking
+    - Bolts
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleToolboxForMac
+    - InputMask
+    - JSQSystemSoundPlayer
+    - nanopb
+    - ObjectMapper
+    - "ObjectMapper+Realm"
+    - Protobuf
+    - RBBAnimation
+    - Realm
+    - RealmSwift
+    - SDCAlertView
+    - SDCAutoLayout
+    - SDWebImage
+    - SimpleKeychain
+    - SimulatorStatusMagic
+    - SVProgressHUD
+    - SwiftMessages
+    - TPKeyboardAvoiding
+    - UIScrollView-InfiniteScroll
+    - "UITextView+Placeholder"
 
 EXTERNAL SOURCES:
   JSQMessagesViewController:
@@ -143,7 +176,7 @@ SPEC CHECKSUMS:
   MIBadgeButton-Swift: 9e57309b00b168d75ca8fecb45bc75124a8ffddf
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
-  ObjectMapper+Realm: 3188789fb77c189c7a83cb625333a607eb61a08f
+  "ObjectMapper+Realm": 3188789fb77c189c7a83cb625333a607eb61a08f
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   RBBAnimation: 4b2d66f6d993febce63cd564da934985313b9c59
   Realm: 9527c7baa2260f3a3aad6823d2d71cafff9b046b
@@ -157,8 +190,8 @@ SPEC CHECKSUMS:
   SwiftMessages: d81f48c1f8b6bc1dbebdfffe11226f0344f937ca
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
-  UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
+  "UITextView+Placeholder": 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
 PODFILE CHECKSUM: 89940f9d508222fdbb34cfce8a7a2f6d9eebf670
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0
