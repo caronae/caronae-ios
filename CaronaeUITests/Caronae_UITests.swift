@@ -45,22 +45,14 @@ class Caronae_UITests: XCTestCase {
         }
 
         snapshot("2_SignIn")
-
+        
         authenticateButton.tap()
         
-        let authSessionToken = addUIInterruptionMonitor(withDescription: "Sign In") { (alert) -> Bool in
-            let allow = alert.buttons.element(boundBy: 1)
-            if allow.exists {
-                allow.tap()
-                return true
-            }
-            return false
-        }
-        
-        // Interruption won't happen without some kind of action
-        app.tap()
-        
-        removeUIInterruptionMonitor(authSessionToken)
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let allowAuthSessionButton = springboard.buttons.element(boundBy: 0)
+        _ = allowAuthSessionButton.waitForExistence(timeout: 5)
+        let coordinateButton = allowAuthSessionButton.coordinate(withNormalizedOffset: CGVector())
+        coordinateButton.tap()
         
         _ = app.tables.cells.element(boundBy: 0).waitForExistence(timeout: 10)
         app.tables.cells.element(boundBy: 0).tap()
@@ -89,7 +81,7 @@ class Caronae_UITests: XCTestCase {
         snapshot("1_CreateRide")
     }
     
-    func fillCreateRide() {
+    private func fillCreateRide() {
         let app = XCUIApplication()
         let elementsQuery = app.scrollViews.otherElements
         
