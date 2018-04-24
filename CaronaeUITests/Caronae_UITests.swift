@@ -35,7 +35,8 @@ class Caronae_UITests: XCTestCase {
         let navigationBar = app.navigationBars.firstMatch
         
         let authenticateButton = elementsQuery.buttons["Entrar com universidade"]
-
+        
+        _ = authenticateButton.waitForExistence(timeout: 5)
         if !authenticateButton.exists {
             // SignOut user
             app.tabBars.buttons["Menu"].tap()
@@ -46,13 +47,21 @@ class Caronae_UITests: XCTestCase {
 
         snapshot("2_SignIn")
         
+        var didShowDialog = false
+        expectation(for: NSPredicate() { (_, _) in
+            app.tap()
+            return didShowDialog
+        }, evaluatedWith: NSNull(), handler: nil)
+        
+        addUIInterruptionMonitor(withDescription: "Sign In") { (alert) -> Bool in
+            alert.buttons.element(boundBy: 1).tap()
+            didShowDialog = true
+            return true
+        }
+        
         authenticateButton.tap()
         
-        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-        let allowAuthSessionButton = springboard.buttons.element(boundBy: 0)
-        _ = allowAuthSessionButton.waitForExistence(timeout: 5)
-        let coordinateButton = allowAuthSessionButton.coordinate(withNormalizedOffset: CGVector())
-        coordinateButton.tap()
+        waitForExpectations(timeout: 15, handler: nil)
         
         _ = app.tables.cells.element(boundBy: 0).waitForExistence(timeout: 10)
         app.tables.cells.element(boundBy: 0).tap()
