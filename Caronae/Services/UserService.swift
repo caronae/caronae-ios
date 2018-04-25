@@ -269,7 +269,27 @@ class UserService: NSObject {
             success(url)
         })
     }
-
+    
+    func uploadPhotoFromDevice(_ image: UIImage, success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
+        guard let userID = self.userID else {
+            NSLog("Error: No userID registered")
+            return error(CaronaeError.invalidUser)
+        }
+        
+        let params = [ "profile_picture" : image ]
+        api.post("/api/v1/users/\(userID)/profile_picture", parameters: params, progress: nil, success: { _, responseObject in
+            guard let responseObject = responseObject as? [String: Any],
+                let pictureURL = responseObject["profile_pic_url"] as? String else {
+                    NSLog("Error receiving profile picture url after upload")
+                    error(CaronaeError.invalidResponse)
+                    return
+            }
+            
+            success(pictureURL)
+        }, failure: { _, err in
+            error(err)
+        })
+    }
     
     func ridesCountForUser(withID id: Int, success: @escaping (_ offered: Int, _ taken: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
         api.get("/api/v1/users/\(id)/rides/history", parameters: nil, progress: nil, success: { task, responseObject in

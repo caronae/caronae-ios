@@ -1,6 +1,7 @@
 import UIKit
 import SVProgressHUD
 import InputMask
+import YPImagePicker
 
 class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate, MaskedTextFieldDelegateListener {
     
@@ -246,6 +247,9 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         alert.addAction(UIAlertAction(title: "Usar foto do Facebook", style: .default, handler: { _ in
             self.importPhotoFromFacebook()
         }))
+        alert.addAction(UIAlertAction(title: "Selecionar foto do celular", style: .default, handler: { _ in
+            self.importPhotoFromDevice()
+        }))
         alert.addAction(UIAlertAction(title: "Remover minha foto", style: .destructive, handler: { _ in
             NSLog("Removendo foto...")
             self.photoURLString = String()
@@ -300,6 +304,37 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
     
     func showLoadingHUD(_ loading: Bool) {
         navigationItem.rightBarButtonItem = loading ? self.loadingButton : self.saveButton
+    }
+    
+    func importPhotoFromDevice() {
+        var config = YPImagePickerConfiguration()
+        config.onlySquareImagesFromLibrary = true
+        config.usesFrontCamera = true
+        config.showsFilters = false
+        config.albumName = "Caronaê"
+        config.startOnScreen = .library
+        config.hidesStatusBar = false
+        
+        let picker = YPImagePicker(configuration: config)
+        picker.didSelectImage = { [unowned picker] image in
+            
+            NSLog("Importing profile picture from Device...")
+            
+            SVProgressHUD.show()
+            UserService.instance.uploadPhotoFromDevice(image, success: { url in
+                self.photoURLString = url
+                self.photoImageView.crn_setImage(with: URL(string: self.photoURLString), completed: {
+                    SVProgressHUD.dismiss()
+                })
+            }) { error in
+                SVProgressHUD.dismiss()
+                NSLog("Error uploading photo: %@", error.localizedDescription)
+                CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando foto", message: "Não foi possível carregar sua foto de perfil.")
+            }
+            
+            picker.dismiss(animated: true, completion: nil)
+        }
+        present(picker, animated: true, completion: nil)
     }
     
     func importPhotoFromFacebook() {
