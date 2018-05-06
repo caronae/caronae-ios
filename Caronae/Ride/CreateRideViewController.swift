@@ -115,7 +115,7 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     func checkIfUserHasCar() {
         if let user = UserService.instance.user, !user.carOwner {
-            CaronaeAlertController.presentOkAlert(withTitle: "Você possui carro?", message: "Parece que você marcou no seu perfil que não possui um carro.Para criar uma carona, preencha os dados do seu carro no seu perfil.", handler: {
+            CaronaeAlertController.presentOkAlert(withTitle: "Você possui carro?", message: "Parece que você marcou no seu perfil que não possui um carro. Para criar uma carona, preencha os dados do seu carro no seu perfil.", handler: {
                 self.didTapCancelButton(self)
             })
         }
