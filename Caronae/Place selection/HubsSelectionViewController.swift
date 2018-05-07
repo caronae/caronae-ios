@@ -35,7 +35,7 @@ class HubSelectionViewController: SelectionViewController {
             if self.numberOfCampi == 1 {
                 self.selectionLevel = .secondLevel
                 self.selectedFirstLevel = campi.first!
-                self.levelOptions = options[self.selectedFirstLevel]!.sorted()
+                self.levelOptions = options[self.selectedFirstLevel]!.sorted{ $0.caseInsensitiveCompare($1) == .orderedAscending }
                 self.colorFirstLevel = self.color(forCell: self.selectedFirstLevel)
                 self.secondDelegate = self
                 self.configureSecondSelectionIfNeeded()
