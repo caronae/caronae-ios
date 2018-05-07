@@ -25,11 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AudioServicesCreateSystemSoundID(soundURL as CFURL, &beepSound)
         }
         
-        // Load the authentication screen if the user is not signed in
+        // Load the home screen if the user is signed in
         if UserService.instance.user != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "HomeTabViewController")
-            window?.rootViewController = initialViewController
+            window?.rootViewController = TabBarController()
             window?.makeKeyAndVisible()
             registerForNotifications()
             checkIfUserNeedsToMigrateToJWT()
