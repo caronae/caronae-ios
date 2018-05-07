@@ -14,7 +14,7 @@ abstract_target 'caronae-ios' do
     pod 'SwiftMessages'
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
-    pod 'RealmSwift', '~> 3.4'
+    pod 'RealmSwift', '~> 3.5'
     pod 'ObjectMapper', '~> 3.1'
     pod 'ObjectMapper+Realm', '~> 0.5'
     pod 'UITextView+Placeholder', '~> 1.2'
