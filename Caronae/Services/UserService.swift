@@ -96,9 +96,9 @@ class UserService: NSObject {
         getUser(withID: id, success: { user in
             self.user = user
             self.userID = user.id
-            self.notifyObservers()
             
             PlaceService.instance.updatePlaces(success: {
+                self.notifyObservers()
                 success()
             }, error: { err in
                 NSLog("Failed to update places: \(err.localizedDescription)")
@@ -138,9 +138,9 @@ class UserService: NSObject {
             
             self.migrateToJWT(success: {
                 NSLog("Successfully migrate to jwt token")
-                self.notifyObservers()
                 
                 PlaceService.instance.updatePlaces(success: {
+                    self.notifyObservers()
                     success()
                 }, error: { err in
                     NSLog("Failed to update places: \(err.localizedDescription)")
@@ -234,7 +234,7 @@ class UserService: NSObject {
                 error(realmError)
             }
             
-            NotificationCenter.default.post(name: .CaronaeDidUpdateUser, object: self)
+            self.notifyObservers()
             success()
         }, failure: { _, err in
             error(err)
