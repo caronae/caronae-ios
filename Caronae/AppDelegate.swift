@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Load the home screen if the user is signed in
         if UserService.instance.user != nil {
-            window?.rootViewController = TabBarController()
+            window?.rootViewController = TabBarController.instance()
             window?.makeKeyAndVisible()
             registerForNotifications()
             checkIfUserNeedsToMigrateToJWT()

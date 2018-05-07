@@ -34,7 +34,7 @@ class DeeplinkNavigator {
                 }
                 
                 NSLog("User was authenticated. Switching main view controller...")
-                let rootViewController = TabBarController()
+                let rootViewController = TabBarController.instance()
                 UIApplication.shared.keyWindow?.replaceViewController(with: rootViewController)
             }
         case .loadRide(withID: let id):

@@ -53,6 +53,8 @@
 		7169143A1FEAE8BB004AD5C7 /* UIViewController+isVisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD891FB692D400D216F3 /* UIViewController+isVisible.swift */; };
 		7169143C1FEAEBEF004AD5C7 /* CaronaeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169143B1FEAEBEE004AD5C7 /* CaronaeConstants.swift */; };
 		7169143D1FEAEBEF004AD5C7 /* CaronaeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7169143B1FEAEBEE004AD5C7 /* CaronaeConstants.swift */; };
+		717FFC6C209FDBBC00DD127A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717FFC6B209FDBBC00DD127A /* TabBarController.swift */; };
+		717FFC6D209FDBBC00DD127A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717FFC6B209FDBBC00DD127A /* TabBarController.swift */; };
 		718536301F047FFF00C30B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7185362F1F047FFF00C30B97 /* AppDelegate.swift */; };
 		718875DB1ED351E1004DB078 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718875DA1ED351E1004DB078 /* PaginationState.swift */; };
 		718C52241F81774A006E964A /* FalaeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C52231F81774A006E964A /* FalaeViewController.swift */; };
@@ -80,7 +82,6 @@
 		718F3AC21FE9FEBE001F1D40 /* DateTimeTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82321E1C63CD006D8ABE /* DateTimeTransform.swift */; };
 		718F3AC31FE9FEBE001F1D40 /* PhoneNumberActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FDA2441F401EBB00DA67E8 /* PhoneNumberActionSheet.swift */; };
 		718F3AC51FE9FEBE001F1D40 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F82301F610E8300531C71 /* UIColor+hex.swift */; };
-		718F3AC61FE9FEBE001F1D40 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */; };
 		718F3AC81FE9FEBE001F1D40 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718875DA1ED351E1004DB078 /* PaginationState.swift */; };
 		718F3AC91FE9FEBE001F1D40 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDF1E22EC570062522D /* ChatService.swift */; };
 		718F3ACA1FE9FEBE001F1D40 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */; };
@@ -165,7 +166,6 @@
 		A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A357EF321C56C5A100AC8096 /* RideListController.xib */; };
 		A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A375D2FA1C19175A00795CAE /* CaronaeAlertController.m */; };
 		A389902F1C58735B00C7CD2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A389902B1C58734700C7CD2D /* GoogleService-Info.plist */; };
-		A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */; };
 		A39BBD051C06AB9D00EF9EBD /* RideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A39BBD041C06AB9D00EF9EBD /* RideCell.xib */; };
 		A3AC169B1E34168A000B5817 /* CaronaeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169A1E34168A000B5817 /* CaronaeError.swift */; };
 		A3AC169D1E35781C000B5817 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */; };
@@ -246,6 +246,7 @@
 		71673D5E2065659F006C3140 /* beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep.wav; sourceTree = "<group>"; };
 		71673D6520656644006C3140 /* beep_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = beep_beep.wav; sourceTree = "<group>"; };
 		7169143B1FEAEBEE004AD5C7 /* CaronaeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaronaeConstants.swift; sourceTree = "<group>"; };
+		717FFC6B209FDBBC00DD127A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		7185362F1F047FFF00C30B97 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		718875DA1ED351E1004DB078 /* PaginationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationState.swift; sourceTree = "<group>"; };
 		718C52231F81774A006E964A /* FalaeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalaeViewController.swift; sourceTree = "<group>"; };
@@ -296,8 +297,6 @@
 		A37E80E51C5F158600683F27 /* Caronae-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Caronae-Bridging-Header.h"; sourceTree = "<group>"; };
 		A389902B1C58734700C7CD2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A39743EB1E6B18F2006E469A /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Common.xcconfig; path = Config/Common.xcconfig; sourceTree = "<group>"; };
-		A39BA2EA1C6C0F3A0063DDD1 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
-		A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		A39BBD041C06AB9D00EF9EBD /* RideCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideCell.xib; sourceTree = "<group>"; };
 		A3AC169A1E34168A000B5817 /* CaronaeError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaronaeError.swift; sourceTree = "<group>"; };
 		A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -508,8 +507,7 @@
 				A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */,
 				A3169C9C1BED842D00A0D428 /* Main.storyboard */,
 				71EEF6F72054798A004D782A /* MenuViewController.swift */,
-				A39BA2EA1C6C0F3A0063DDD1 /* TabBarController.h */,
-				A39BA2EB1C6C0F3A0063DDD1 /* TabBarController.m */,
+				717FFC6B209FDBBC00DD127A /* TabBarController.swift */,
 			);
 			path = Caronae;
 			sourceTree = "<group>";
@@ -1188,10 +1186,10 @@
 				718F3AC31FE9FEBE001F1D40 /* PhoneNumberActionSheet.swift in Sources */,
 				714AA359203B2247005EF615 /* CaronaeMessageNotification.swift in Sources */,
 				719428FF203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
+				717FFC6D209FDBBC00DD127A /* TabBarController.swift in Sources */,
 				71DEAE522054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */,
 				718F3AC51FE9FEBE001F1D40 /* UIColor+hex.swift in Sources */,
 				711259D62041EFDE000A92F9 /* ProfileViewController.swift in Sources */,
-				718F3AC61FE9FEBE001F1D40 /* TabBarController.m in Sources */,
 				71EEF6F92054798A004D782A /* MenuViewController.swift in Sources */,
 				7169143D1FEAEBEF004AD5C7 /* CaronaeConstants.swift in Sources */,
 				718F3AC81FE9FEBE001F1D40 /* PaginationState.swift in Sources */,
@@ -1270,8 +1268,8 @@
 				714AA358203B18FF005EF615 /* CaronaeMessageNotification.swift in Sources */,
 				719428FE203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
 				714F82311F610E8300531C71 /* UIColor+hex.swift in Sources */,
+				717FFC6C209FDBBC00DD127A /* TabBarController.swift in Sources */,
 				71DEAE512054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */,
-				A39BA2EC1C6C0F3A0063DDD1 /* TabBarController.m in Sources */,
 				711259D52041EFDB000A92F9 /* ProfileViewController.swift in Sources */,
 				7169143C1FEAEBEF004AD5C7 /* CaronaeConstants.swift in Sources */,
 				71EEF6F82054798A004D782A /* MenuViewController.swift in Sources */,
