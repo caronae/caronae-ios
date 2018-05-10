@@ -81,11 +81,3 @@ let CaronaeOtherZoneText = "Outra"
 let CaronaeOtherNeighborhoodsText = "Outros"
 
 let OtherZoneColor = UIColor(white: 0.541, alpha: 1.0)
-
-
-// MARK: For Objective-C Files
-
-@objcMembers
-public class Constants: NSObject {
-    static let CaronaePlaceholderProfileImageObjc = CaronaePlaceholderProfileImage as NSString
-}

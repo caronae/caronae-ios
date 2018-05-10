@@ -84,7 +84,6 @@
 		718F3AC81FE9FEBE001F1D40 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718875DA1ED351E1004DB078 /* PaginationState.swift */; };
 		718F3AC91FE9FEBE001F1D40 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDF1E22EC570062522D /* ChatService.swift */; };
 		718F3ACA1FE9FEBE001F1D40 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC169C1E35781C000B5817 /* WelcomeViewController.swift */; };
-		718F3ACB1FE9FEBE001F1D40 /* UIImageView+crn_setImageWithURL.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */; };
 		718F3ACC1FE9FEBE001F1D40 /* FilterRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */; };
 		718F3ACD1FE9FEBE001F1D40 /* MyRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD823E1E1DC631006D8ABE /* MyRidesViewController.swift */; };
 		718F3ACE1FE9FEBE001F1D40 /* RideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82351E1C70D6006D8ABE /* RideService.swift */; };
@@ -133,6 +132,8 @@
 		71A7D9152041FF4700F475AC /* UIColor+Caronae.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A7D9132041FF4700F475AC /* UIColor+Caronae.swift */; };
 		71A9A05C20A3C5770098DAFD /* JoinRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A9A05B20A3C5770098DAFD /* JoinRequestCell.swift */; };
 		71A9A05D20A3C5770098DAFD /* JoinRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A9A05B20A3C5770098DAFD /* JoinRequestCell.swift */; };
+		71A9A05F20A3EC950098DAFD /* UIImageView+crn_setImageWithURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A9A05E20A3EC950098DAFD /* UIImageView+crn_setImageWithURL.swift */; };
+		71A9A06020A3EC950098DAFD /* UIImageView+crn_setImageWithURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A9A05E20A3EC950098DAFD /* UIImageView+crn_setImageWithURL.swift */; };
 		71AE13E41E8200D8008ACB06 /* FilterRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */; };
 		71C60AAE1EBAC1A300E84318 /* SearchRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */; };
 		71C60AB01EBACCA300E84318 /* Date+nextHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */; };
@@ -180,7 +181,6 @@
 		A3AD823A1E1C8049006D8ABE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82391E1C8049006D8ABE /* LoginViewController.swift */; };
 		A3AD823C1E1C8860006D8ABE /* AppDelegate+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD823B1E1C8860006D8ABE /* AppDelegate+Realm.swift */; };
 		A3AD823F1E1DC631006D8ABE /* MyRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD823E1E1DC631006D8ABE /* MyRidesViewController.swift */; };
-		A3B18FFA1C9E713F00980607 /* UIImageView+crn_setImageWithURL.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */; };
 		A3B5AF111BF2F0560026A889 /* CALayer+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */; };
 		A3BBF1381DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */; };
 		A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */; };
@@ -257,6 +257,7 @@
 		719428FD203A651D008E2A24 /* CaronaeGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaronaeGradientButton.swift; sourceTree = "<group>"; };
 		71A7D9132041FF4700F475AC /* UIColor+Caronae.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Caronae.swift"; sourceTree = "<group>"; };
 		71A9A05B20A3C5770098DAFD /* JoinRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestCell.swift; sourceTree = "<group>"; };
+		71A9A05E20A3EC950098DAFD /* UIImageView+crn_setImageWithURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+crn_setImageWithURL.swift"; sourceTree = "<group>"; };
 		71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRideViewController.swift; sourceTree = "<group>"; };
 		71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRideViewController.swift; sourceTree = "<group>"; };
 		71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+nextHour.swift"; sourceTree = "<group>"; };
@@ -310,8 +311,6 @@
 		A3AD82391E1C8049006D8ABE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A3AD823B1E1C8860006D8ABE /* AppDelegate+Realm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Realm.swift"; sourceTree = "<group>"; };
 		A3AD823E1E1DC631006D8ABE /* MyRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRidesViewController.swift; sourceTree = "<group>"; };
-		A3B18FF81C9E713F00980607 /* UIImageView+crn_setImageWithURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+crn_setImageWithURL.h"; sourceTree = "<group>"; };
-		A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+crn_setImageWithURL.m"; sourceTree = "<group>"; };
 		A3B5AF0F1BF2F0560026A889 /* CALayer+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+UIColor.h"; sourceTree = "<group>"; };
 		A3B5AF101BF2F0560026A889 /* CALayer+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+UIColor.m"; sourceTree = "<group>"; };
 		A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaronaeAPIHTTPSessionManager.swift; path = Networking/CaronaeAPIHTTPSessionManager.swift; sourceTree = "<group>"; };
@@ -631,8 +630,7 @@
 				A3CA5DCE1E1F3C000062522D /* UIApplication+topViewController.m */,
 				714F82301F610E8300531C71 /* UIColor+hex.swift */,
 				71A7D9132041FF4700F475AC /* UIColor+Caronae.swift */,
-				A3B18FF81C9E713F00980607 /* UIImageView+crn_setImageWithURL.h */,
-				A3B18FF91C9E713F00980607 /* UIImageView+crn_setImageWithURL.m */,
+				71A9A05E20A3EC950098DAFD /* UIImageView+crn_setImageWithURL.swift */,
 				7157BD891FB692D400D216F3 /* UIViewController+isVisible.swift */,
 				A3CA5DD01E1F46520062522D /* UIWindow+replaceRootViewController.h */,
 				A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */,
@@ -1193,7 +1191,6 @@
 				718F3AC81FE9FEBE001F1D40 /* PaginationState.swift in Sources */,
 				718F3AC91FE9FEBE001F1D40 /* ChatService.swift in Sources */,
 				718F3ACA1FE9FEBE001F1D40 /* WelcomeViewController.swift in Sources */,
-				718F3ACB1FE9FEBE001F1D40 /* UIImageView+crn_setImageWithURL.m in Sources */,
 				718F3ACC1FE9FEBE001F1D40 /* FilterRideViewController.swift in Sources */,
 				718F3ACD1FE9FEBE001F1D40 /* MyRidesViewController.swift in Sources */,
 				718F3ACE1FE9FEBE001F1D40 /* RideService.swift in Sources */,
@@ -1202,6 +1199,7 @@
 				718F3AD31FE9FEBE001F1D40 /* RideViewController+rideActions.swift in Sources */,
 				716914361FEAE864004AD5C7 /* RideViewController.swift in Sources */,
 				718F3AD41FE9FEBE001F1D40 /* SearchRideViewController.swift in Sources */,
+				71A9A06020A3EC950098DAFD /* UIImageView+crn_setImageWithURL.swift in Sources */,
 				71DEAE552054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */,
 				718F3AD51FE9FEBE001F1D40 /* UniversalLinkParser.swift in Sources */,
 				711259DA204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
@@ -1274,7 +1272,6 @@
 				718875DB1ED351E1004DB078 /* PaginationState.swift in Sources */,
 				A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */,
 				A3AC169D1E35781C000B5817 /* WelcomeViewController.swift in Sources */,
-				A3B18FFA1C9E713F00980607 /* UIImageView+crn_setImageWithURL.m in Sources */,
 				71AE13E41E8200D8008ACB06 /* FilterRideViewController.swift in Sources */,
 				A3AD823F1E1DC631006D8ABE /* MyRidesViewController.swift in Sources */,
 				A3AD82361E1C70D6006D8ABE /* RideService.swift in Sources */,
@@ -1284,6 +1281,7 @@
 				A3AD53BC1E1EBEAA005EAF04 /* RideViewController+rideActions.swift in Sources */,
 				71C60AAE1EBAC1A300E84318 /* SearchRideViewController.swift in Sources */,
 				7106CFD01F098BBB0071C4AE /* UniversalLinkParser.swift in Sources */,
+				71A9A05F20A3EC950098DAFD /* UIImageView+crn_setImageWithURL.swift in Sources */,
 				71DEAE542054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */,
 				71F648611F71F364004C712F /* NeighborhoodSelectionViewController.swift in Sources */,
 				711259D9204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
