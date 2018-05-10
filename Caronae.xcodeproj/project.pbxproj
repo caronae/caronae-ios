@@ -72,7 +72,6 @@
 		718F3AB71FE9FEBE001F1D40 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482F1F5F60D400E2218E /* Place.swift */; };
 		718F3AB81FE9FEBE001F1D40 /* CaronaeAPIHTTPSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */; };
 		718F3AB91FE9FEBE001F1D40 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD822E1E1C5BD9006D8ABE /* Message.swift */; };
-		718F3ABA1FE9FEBE001F1D40 /* JoinRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */; };
 		718F3ABC1FE9FEBE001F1D40 /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F6485B1F71F364004C712F /* SelectionCell.swift */; };
 		718F3ABD1FE9FEBE001F1D40 /* Campus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7133482B1F5F603B00E2218E /* Campus.swift */; };
 		718F3ABE1FE9FEBE001F1D40 /* PlaceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F822E1F6083CD00531C71 /* PlaceService.swift */; };
@@ -132,6 +131,8 @@
 		719428FF203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719428FD203A651D008E2A24 /* CaronaeGradientButton.swift */; };
 		71A7D9142041FF4700F475AC /* UIColor+Caronae.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A7D9132041FF4700F475AC /* UIColor+Caronae.swift */; };
 		71A7D9152041FF4700F475AC /* UIColor+Caronae.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A7D9132041FF4700F475AC /* UIColor+Caronae.swift */; };
+		71A9A05C20A3C5770098DAFD /* JoinRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A9A05B20A3C5770098DAFD /* JoinRequestCell.swift */; };
+		71A9A05D20A3C5770098DAFD /* JoinRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A9A05B20A3C5770098DAFD /* JoinRequestCell.swift */; };
 		71AE13E41E8200D8008ACB06 /* FilterRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */; };
 		71C60AAE1EBAC1A300E84318 /* SearchRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */; };
 		71C60AB01EBACCA300E84318 /* Date+nextHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */; };
@@ -160,7 +161,6 @@
 		A3169CA31BED842D00A0D428 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA21BED842D00A0D428 /* Assets.xcassets */; };
 		A3169CA61BED842D00A0D428 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3169CA41BED842D00A0D428 /* LaunchScreen.storyboard */; };
 		A3169CCB1BED893F00A0D428 /* CaronaeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */; };
-		A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */; };
 		A325DA711C0CAFD700B9124E /* JoinRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */; };
 		A34CEC4D1C993115006FC41E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A34CEC4C1C993115006FC41E /* Settings.bundle */; };
 		A357EF341C56C5A100AC8096 /* RideListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A357EF321C56C5A100AC8096 /* RideListController.xib */; };
@@ -256,6 +256,7 @@
 		719428FA203A609C008E2A24 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		719428FD203A651D008E2A24 /* CaronaeGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaronaeGradientButton.swift; sourceTree = "<group>"; };
 		71A7D9132041FF4700F475AC /* UIColor+Caronae.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Caronae.swift"; sourceTree = "<group>"; };
+		71A9A05B20A3C5770098DAFD /* JoinRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequestCell.swift; sourceTree = "<group>"; };
 		71AE13E31E8200D8008ACB06 /* FilterRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRideViewController.swift; sourceTree = "<group>"; };
 		71C60AAD1EBAC1A300E84318 /* SearchRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRideViewController.swift; sourceTree = "<group>"; };
 		71C60AAF1EBACCA300E84318 /* Date+nextHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+nextHour.swift"; sourceTree = "<group>"; };
@@ -287,8 +288,6 @@
 		A3169CA71BED842D00A0D428 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3169CC91BED893F00A0D428 /* CaronaeTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaronaeTextField.h; sourceTree = "<group>"; };
 		A3169CCA1BED893F00A0D428 /* CaronaeTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaronaeTextField.m; sourceTree = "<group>"; };
-		A325DA6D1C0CAFD700B9124E /* JoinRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinRequestCell.h; sourceTree = "<group>"; };
-		A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinRequestCell.m; sourceTree = "<group>"; };
 		A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinRequestCell.xib; sourceTree = "<group>"; };
 		A34CEC4C1C993115006FC41E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../../Settings.bundle; sourceTree = "<group>"; };
 		A357EF321C56C5A100AC8096 /* RideListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideListController.xib; sourceTree = "<group>"; };
@@ -558,9 +557,8 @@
 		A34C67591C853A9C001F6D90 /* Custom cells */ = {
 			isa = PBXGroup;
 			children = (
-				A325DA6D1C0CAFD700B9124E /* JoinRequestCell.h */,
+				71A9A05B20A3C5770098DAFD /* JoinRequestCell.swift */,
 				A325DA6F1C0CAFD700B9124E /* JoinRequestCell.xib */,
-				A325DA6E1C0CAFD700B9124E /* JoinRequestCell.m */,
 				713F42582055DBD000243B0C /* RideCell.swift */,
 				A39BBD041C06AB9D00EF9EBD /* RideCell.xib */,
 				713F42552055D9DD00243B0C /* RiderCell.swift */,
@@ -1170,12 +1168,12 @@
 				718F3AB11FE9FEBE001F1D40 /* HubsSelectionViewController.swift in Sources */,
 				712F0309205C6D44003DDAC3 /* String+onlyDigits.swift in Sources */,
 				718F3AB21FE9FEBE001F1D40 /* Date+isInTheFuture.swift in Sources */,
+				71A9A05D20A3C5770098DAFD /* JoinRequestCell.swift in Sources */,
 				718F3AB61FE9FEBE001F1D40 /* AppDelegate+Realm.swift in Sources */,
 				718F3AB71FE9FEBE001F1D40 /* Place.swift in Sources */,
 				718F3AB81FE9FEBE001F1D40 /* CaronaeAPIHTTPSessionManager.swift in Sources */,
 				713F425A2055DBD000243B0C /* RideCell.swift in Sources */,
 				718F3AB91FE9FEBE001F1D40 /* Message.swift in Sources */,
-				718F3ABA1FE9FEBE001F1D40 /* JoinRequestCell.m in Sources */,
 				718F3ABC1FE9FEBE001F1D40 /* SelectionCell.swift in Sources */,
 				718F3ABD1FE9FEBE001F1D40 /* Campus.swift in Sources */,
 				718F3ABE1FE9FEBE001F1D40 /* PlaceService.swift in Sources */,
@@ -1252,11 +1250,11 @@
 				A3AD823C1E1C8860006D8ABE /* AppDelegate+Realm.swift in Sources */,
 				712F0308205C6D44003DDAC3 /* String+onlyDigits.swift in Sources */,
 				713348301F5F60D400E2218E /* Place.swift in Sources */,
+				71A9A05C20A3C5770098DAFD /* JoinRequestCell.swift in Sources */,
 				7157BD901FB6933400D216F3 /* RideListController.swift in Sources */,
 				A3BBF1381DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift in Sources */,
 				A3AD822F1E1C5BD9006D8ABE /* Message.swift in Sources */,
 				713F42592055DBD000243B0C /* RideCell.swift in Sources */,
-				A325DA701C0CAFD700B9124E /* JoinRequestCell.m in Sources */,
 				71F648621F71F364004C712F /* SelectionCell.swift in Sources */,
 				7133482C1F5F603B00E2218E /* Campus.swift in Sources */,
 				714F822F1F6083CD00531C71 /* PlaceService.swift in Sources */,

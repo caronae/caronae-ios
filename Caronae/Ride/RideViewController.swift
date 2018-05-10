@@ -403,7 +403,7 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
         })
     }
     
-    func handleAcceptedJoinRequest(_ user: User, cell: JoinRequestCell) {
+    func handleAcceptedJoinRequest(of user: User, cell: JoinRequestCell) {
         cell.setButtonsEnabled(false)
         
         if ride.availableSlots == 1 && requesters.count > 1 {
@@ -414,15 +414,15 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
                 cell.setButtonsEnabled(true)
             }))
             alert?.addAction(SDCAlertAction(title: "Aceitar", style: .recommended, handler: { _ in
-                self.answerJoinRequest(user, hasAccepted: true, cell: cell)
+                self.answerJoinRequest(of: user, hasAccepted: true, cell: cell)
             }))
             alert?.present(completion: nil)
         } else {
-            self.answerJoinRequest(user, hasAccepted: true, cell: cell)
+            self.answerJoinRequest(of: user, hasAccepted: true, cell: cell)
         }
     }
     
-    func answerJoinRequest(_ requestingUser: User, hasAccepted: Bool, cell: JoinRequestCell) {
+    func answerJoinRequest(of requestingUser: User, hasAccepted: Bool, cell: JoinRequestCell) {
         cell.setButtonsEnabled(false)
         
         RideService.instance.answerRequestOnRide(withID: ride.id, fromUser: requestingUser, accepted: hasAccepted, success: {
@@ -456,7 +456,7 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
         self.clearNotificationOfJoinRequest(from: requestingUser.id)
     }
     
-    func tappedUserDetails(forRequest user: User!) {
+    func tappedUserDetails(of user: User) {
         self.selectedUser = user;
         performSegue(withIdentifier: "ViewProfile", sender: self)
     }
@@ -472,8 +472,7 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: "Request Cell", for: indexPath) as! JoinRequestCell
         
         cell.delegate = self
-        cell.configureCell(with: self.requesters[indexPath.row])
-        cell.color = self.color
+        cell.configureCell(withUser: requesters[indexPath.row], andColor: color)
         
         return cell
     }

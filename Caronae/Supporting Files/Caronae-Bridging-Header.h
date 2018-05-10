@@ -6,7 +6,6 @@
 @import FBSDKLoginKit;
 
 #import "CaronaeAlertController.h"
-#import "JoinRequestCell.h"
 
 #import "CaronaeTextField.h"
 #import "UIApplication+topViewController.h"
