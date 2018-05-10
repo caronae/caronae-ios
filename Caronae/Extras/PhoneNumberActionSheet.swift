@@ -3,8 +3,7 @@ import ContactsUI
 
 class PhoneNumberAlert {
     func actionSheet(view: UIViewController, buttonText: String, user: User) -> UIAlertController? {
-        let names = user.name.components(separatedBy: " ")
-        guard let phoneNumber = user.phoneNumber, let firstName = names.first, let lastName = (names.first == names.last) ? "" : names.last else {
+        guard let phoneNumber = user.phoneNumber else {
             return nil
         }
         
@@ -17,8 +16,8 @@ class PhoneNumberAlert {
         alert.addAction(UIAlertAction(title: "Adicionar aos Contatos", style: .default) { action in
             let contact = CNMutableContact()
             
-            contact.givenName = firstName
-            contact.familyName = lastName
+            contact.givenName = user.firstName
+            contact.familyName = user.lastName
             contact.phoneNumbers = [CNLabeledValue(
                 label:CNLabelPhoneNumberMobile,
                 value:CNPhoneNumber(stringValue: phoneNumber))]

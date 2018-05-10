@@ -104,7 +104,7 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
         dateLabel.text = ride.going ? String(format: "Chegando às %@", dateString) : String(format: "Saindo às %@", dateString)
         
         driverNameLabel.text = ride.driver.name
-        driverCourseLabel.text = ride.driver.course.isEmpty ? ride.driver.profile : String(format: "%@ | %@", ride.driver.profile, ride.driver.course)
+        driverCourseLabel.text = ride.driver.occupation
         
         referenceLabel.text = ride.place.isEmpty ? "---" : ride.place
         routeLabel.text = ride.route.isEmpty ? "---" : ride.route.replacingOccurrences(of: ", ", with: "\n").replacingOccurrences(of: ",", with: "\n")
