@@ -108,7 +108,7 @@ DEPENDENCIES:
   - UIScrollView-InfiniteScroll
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - ActionSheetPicker-3.0
     - AFNetworking
     - Bolts
@@ -190,4 +190,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 8e84f95d6cce79644ba4e95e03747904dadafad5
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2
