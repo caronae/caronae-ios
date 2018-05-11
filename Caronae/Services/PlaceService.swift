@@ -43,7 +43,7 @@ class PlaceService: NSObject {
     private func loadCampiFromRealm(hubTypeDirection: HubSelectionViewController.HubTypeDirection) -> ([String], [String: [String]], [String: UIColor]) {
         let realm = try! Realm()
         let campusObjects = realm.objects(Campus.self)
-        let campi = campusObjects.map { $0.name }.sorted{ $0.caseInsensitiveCompare($1) == .orderedAscending }
+        let campi = campusObjects.map { $0.name }.sortedCaseInsensitive()
         var options = [String: [String]]()
         if hubTypeDirection == .hubs {
             campusObjects.forEach { options[$0.name] = $0.hubs }
@@ -74,7 +74,7 @@ class PlaceService: NSObject {
     private func loadZonesFromRealm() -> ([String], [String: [String]], [String: UIColor]) {
         let realm = try! Realm()
         let zoneObjects = realm.objects(Zone.self)
-        var zones = zoneObjects.map { $0.name }.sorted{ $0.caseInsensitiveCompare($1) == .orderedAscending }
+        var zones = zoneObjects.map { $0.name }.sortedCaseInsensitive()
         var options = [String: [String]]()
         zoneObjects.forEach { options[$0.name] = $0.neighborhoods }
         var colors = [String: UIColor]()

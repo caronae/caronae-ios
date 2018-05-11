@@ -78,7 +78,7 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
         let secondVC = SelectionViewController()
         secondVC.selectionLevel = .secondLevel
         secondVC.selectionType = self.selectionType
-        secondVC.levelOptions = secondLevelOptions.sorted{ $0.caseInsensitiveCompare($1) == .orderedAscending }
+        secondVC.levelOptions = secondLevelOptions.sortedCaseInsensitive()
         secondVC.selectedFirstLevel = self.selectedFirstLevel
         secondVC.colorFirstLevel = color(forCell: selectedFirstLevel)
         secondVC.secondDelegate = self

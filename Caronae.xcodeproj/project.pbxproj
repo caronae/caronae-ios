@@ -57,6 +57,8 @@
 		717FFC6D209FDBBC00DD127A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717FFC6B209FDBBC00DD127A /* TabBarController.swift */; };
 		718536301F047FFF00C30B97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7185362F1F047FFF00C30B97 /* AppDelegate.swift */; };
 		718875DB1ED351E1004DB078 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718875DA1ED351E1004DB078 /* PaginationState.swift */; };
+		718C019620A5F99D000D0B86 /* Array+sortedCaseInsensitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C019520A5F99D000D0B86 /* Array+sortedCaseInsensitive.swift */; };
+		718C019720A5F99D000D0B86 /* Array+sortedCaseInsensitive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C019520A5F99D000D0B86 /* Array+sortedCaseInsensitive.swift */; };
 		718C52241F81774A006E964A /* FalaeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C52231F81774A006E964A /* FalaeViewController.swift */; };
 		718C9B751E5F923A0037A78B /* AllRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C9B741E5F923A0037A78B /* AllRidesViewController.swift */; };
 		718F3AA51FE9FEBE001F1D40 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AD82371E1C7409006D8ABE /* UserService.swift */; };
@@ -249,6 +251,7 @@
 		717FFC6B209FDBBC00DD127A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		7185362F1F047FFF00C30B97 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		718875DA1ED351E1004DB078 /* PaginationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationState.swift; sourceTree = "<group>"; };
+		718C019520A5F99D000D0B86 /* Array+sortedCaseInsensitive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+sortedCaseInsensitive.swift"; sourceTree = "<group>"; };
 		718C52231F81774A006E964A /* FalaeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FalaeViewController.swift; sourceTree = "<group>"; };
 		718C9B741E5F923A0037A78B /* AllRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRidesViewController.swift; sourceTree = "<group>"; };
 		718F3B001FE9FEBE001F1D40 /* Caronae Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Caronae Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -635,6 +638,7 @@
 				A3CA5DD01E1F46520062522D /* UIWindow+replaceRootViewController.h */,
 				A3CA5DD11E1F46520062522D /* UIWindow+replaceRootViewController.m */,
 				713E99B81E8D5FA900F3C9E0 /* Array+compactString.swift */,
+				718C019520A5F99D000D0B86 /* Array+sortedCaseInsensitive.swift */,
 				7148D5611EDA1D0A00D85B7D /* String+capitalizedAfter.swift */,
 				711259DC2043C298000A92F9 /* String+validation.swift */,
 				712F0307205C6D44003DDAC3 /* String+onlyDigits.swift */,
@@ -1151,6 +1155,7 @@
 				716914381FEAE896004AD5C7 /* RidesHistoryViewController.swift in Sources */,
 				718F3AA51FE9FEBE001F1D40 /* UserService.swift in Sources */,
 				7169143A1FEAE8BB004AD5C7 /* UIViewController+isVisible.swift in Sources */,
+				718C019720A5F99D000D0B86 /* Array+sortedCaseInsensitive.swift in Sources */,
 				718F3AA81FE9FEBE001F1D40 /* NotificationService.swift in Sources */,
 				718F3AAB1FE9FEBE001F1D40 /* NotificationParser.swift in Sources */,
 				718F3AAD1FE9FEBE001F1D40 /* AppDelegate.swift in Sources */,
@@ -1233,6 +1238,7 @@
 				A3CA5DD41E22CA370062522D /* NotificationService.swift in Sources */,
 				7157BD8E1FB6932900D216F3 /* RidesHistoryViewController.swift in Sources */,
 				7106CFCF1F098BBB0071C4AE /* NotificationParser.swift in Sources */,
+				718C019620A5F99D000D0B86 /* Array+sortedCaseInsensitive.swift in Sources */,
 				718536301F047FFF00C30B97 /* AppDelegate.swift in Sources */,
 				A3AD822D1E1B1E85006D8ABE /* Ride.swift in Sources */,
 				A3CA5DDC1E22DB830062522D /* AppDelegate+Notifications.swift in Sources */,
