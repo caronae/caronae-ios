@@ -1,7 +1,7 @@
-Alô Praia Vermelha! Vai uma caronaê? Liberamos as opções da PV.
-Se desejar ative o filtro por campus na página inicial!
-
-- Melhora a segurança e integração com o nosso servidor.
+- Corrige problema onde a tela de boas-vindas poderia não aparecer.
+- Corrige mensagem ao compartilhar carona em aplicativos como Telegram e Messenger.
+- Melhora a experiência na edição do perfil.
+- Pequenas melhorias internas de funcionamento.
 
 Quer ser um testador (Beta Tester) do Caronaê? Você irá receber as atualizações primeiro e pode ajudar a melhorar ainda mais o funcionamento enviando seus comentários diretamente para os desenvolvedores! Envie um email para caronae@fundoverde.ufrj.br
 
