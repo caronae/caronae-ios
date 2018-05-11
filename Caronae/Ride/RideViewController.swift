@@ -303,11 +303,11 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
     }
     
     @IBAction func didTapShareRide(_ sender: Any) {
-        let rideTitle = String(format: "Carona: %@", ride.title)
-        let rideLink = URL(string: String(format: "%@/carona/%ld", CaronaeURLString.base, ride.id))!
-        let rideToShare = [rideTitle, dateLabel.text!, rideLink] as [Any]
-        
-        let activityVC = UIActivityViewController(activityItems: rideToShare, applicationActivities: nil)
+        var rideToShare = String(format: "Carona: %@\n", ride.title)
+        rideToShare += dateLabel.text! + "\n"
+        rideToShare += String(format: "%@/carona/%ld", CaronaeURLString.base, ride.id)
+ 
+        let activityVC = UIActivityViewController(activityItems: [rideToShare], applicationActivities: nil)
         activityVC.excludedActivityTypes = [.addToReadingList]
         
         present(activityVC, animated: true, completion: nil)
