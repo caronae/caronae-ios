@@ -3246,7 +3246,7 @@ FOTO</string>
                                                         </constraints>
                                                         <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES"/>
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="rmS-ns-3Lz"/>
@@ -3560,7 +3560,7 @@ FOTO</string>
                                                         </constraints>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="478-cx-0T8"/>
@@ -3602,7 +3602,7 @@ FOTO</string>
                                                         </constraints>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="QeR-UZ-a3h"/>
@@ -3657,7 +3657,7 @@ FOTO</string>
                                                         </constraints>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="JsV-ht-chF"/>
@@ -3682,7 +3682,7 @@ FOTO</string>
                                                     <constraint firstAttribute="trailing" secondItem="ZA1-8O-6ah" secondAttribute="trailing" id="7je-NW-87U"/>
                                                     <constraint firstItem="eDe-Qb-t67" firstAttribute="leading" secondItem="ZA1-8O-6ah" secondAttribute="leading" id="90V-ob-lKK"/>
                                                     <constraint firstItem="ZA1-8O-6ah" firstAttribute="top" secondItem="59v-69-H2d" secondAttribute="bottom" constant="10" id="AJL-Y1-pDx"/>
-                                                    <constraint firstAttribute="height" constant="165" id="Hmd-OL-DGB"/>
+                                                    <constraint firstAttribute="height" constant="210" id="Hmd-OL-DGB"/>
                                                     <constraint firstItem="ack-vy-A7z" firstAttribute="leading" secondItem="ZA1-8O-6ah" secondAttribute="leading" constant="53" id="Jyf-Mo-KOp">
                                                         <variation key="widthClass=compact" constant="0.0"/>
                                                     </constraint>
@@ -3741,12 +3741,12 @@ FOTO</string>
                                                         <exclude reference="2b8-Sr-ItU"/>
                                                         <exclude reference="Jyf-Mo-KOp"/>
                                                         <exclude reference="wNK-zQ-Fvx"/>
-                                                        <exclude reference="QsC-U5-GTe"/>
-                                                        <exclude reference="rjG-HV-tQ6"/>
                                                         <exclude reference="90V-ob-lKK"/>
                                                         <exclude reference="kaN-W4-vbR"/>
                                                         <exclude reference="uw7-sB-eDs"/>
                                                         <exclude reference="wbm-Tr-SFx"/>
+                                                        <exclude reference="QsC-U5-GTe"/>
+                                                        <exclude reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
@@ -3777,12 +3777,12 @@ FOTO</string>
                                                         <include reference="2b8-Sr-ItU"/>
                                                         <include reference="Jyf-Mo-KOp"/>
                                                         <include reference="wNK-zQ-Fvx"/>
-                                                        <include reference="QsC-U5-GTe"/>
-                                                        <include reference="rjG-HV-tQ6"/>
                                                         <include reference="90V-ob-lKK"/>
                                                         <include reference="kaN-W4-vbR"/>
                                                         <include reference="uw7-sB-eDs"/>
                                                         <include reference="wbm-Tr-SFx"/>
+                                                        <include reference="QsC-U5-GTe"/>
+                                                        <include reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                             </view>

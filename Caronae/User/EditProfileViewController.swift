@@ -323,3 +323,16 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         }
     }
 }
+
+
+// MARK: UITextFieldDelegate
+
+extension EditProfileViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == carPlateTextField {
+            carModelTextField.becomeFirstResponder()
+        }
+        return true
+    }
+}
