@@ -17,7 +17,6 @@ abstract_target 'caronae-ios' do
     pod 'RealmSwift', '~> 3.5'
     pod 'ObjectMapper', '~> 3.1'
     pod 'ObjectMapper+Realm', '~> 0.5'
-    pod 'UITextView+Placeholder', '~> 1.2'
     pod 'Firebase/Messaging'
     pod 'JSQMessagesViewController', :git => 'https://github.com/caronae/JSQMessagesViewController.git', :branch => 'issue-1864'
     pod 'MIBadgeButton-Swift', :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
