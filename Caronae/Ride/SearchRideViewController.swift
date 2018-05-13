@@ -16,10 +16,7 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     var selectedNeighborhoods: [String]? {
         didSet {
-            var buttonTitle = selectedNeighborhoods?.compactString()
-            if buttonTitle == CaronaeOtherZoneText {
-                buttonTitle = CaronaeOtherNeighborhoodsText
-            }
+            let buttonTitle = selectedNeighborhoods?.compactString()
             self.neighborhoodButton.setTitle(buttonTitle, for: .normal)
         }
     }

@@ -80,18 +80,15 @@ class PlaceService: NSObject {
         var colors = [String: UIColor]()
         zoneObjects.forEach { colors[$0.name] = $0.color }
             
-        zones.append(CaronaeOtherZoneText)
-        colors[CaronaeOtherZoneText] = OtherZoneColor
+        zones.append(CaronaeOtherNeighborhoodsText)
+        colors[CaronaeOtherNeighborhoodsText] = OtherZoneColor
             
         return (zones, options, colors)
     }
     
     func color(forZone zone: String) -> UIColor {
-        if zone == CaronaeOtherZoneText {
-            return OtherZoneColor
-        }
         let realm = try! Realm()
-        return realm.objects(Zone.self).filter("name == %@", zone).first?.color ?? .darkGray
+        return realm.objects(Zone.self).filter("name == %@", zone).first?.color ?? OtherZoneColor
     }
     
     func updatePlaces(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {

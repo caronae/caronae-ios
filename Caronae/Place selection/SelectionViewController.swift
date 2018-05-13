@@ -69,7 +69,7 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
             if selectionType == .manySelection {
                 self.hasSelected(selections: [selectedFirstLevel], inFirstLevel: selectedFirstLevel)
             } else {
-                // selectedFirstLevel == CaronaeOtherZoneText
+                // selectedFirstLevel == CaronaeOtherNeighborhoodsText
                 let otherNeighborhoodVC = ZoneSelectionInputViewController()
                 otherNeighborhoodVC.delegate = self
                 self.navigationController?.show(otherNeighborhoodVC, sender: self)
