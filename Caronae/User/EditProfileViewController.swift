@@ -308,7 +308,7 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
     
     func importPhotoFromDevice() {
         var config = YPImagePickerConfiguration()
-        config.onlySquareImagesFromLibrary = true
+        config.onlySquareFromLibrary = true
         config.usesFrontCamera = true
         config.showsFilters = false
         config.albumName = "Caronaê"
@@ -316,10 +316,12 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         config.hidesStatusBar = false
         
         let picker = YPImagePicker(configuration: config)
-        picker.didSelectImage = { [unowned picker] image in
+        picker.didFinishPicking { items, _ in
+            guard let image = items.singlePhoto?.image else {
+                return
+            }
             
             NSLog("Importing profile picture from Device...")
-            
             SVProgressHUD.show()
             UserService.instance.uploadPhotoFromDevice(image, success: { url in
                 self.photoURLString = url

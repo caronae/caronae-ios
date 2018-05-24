@@ -23,7 +23,7 @@ abstract_target 'caronae-ios' do
     pod 'MIBadgeButton-Swift', :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
     pod 'UIScrollView-InfiniteScroll'
     pod 'SimpleKeychain', '~> 0.8'
-    pod 'YPImagePicker', '~> 2.8'
+    pod 'YPImagePicker', '~> 3.0'
 
     target 'Caronae'
     target 'Caronae Dev'
