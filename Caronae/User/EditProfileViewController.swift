@@ -314,6 +314,7 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         config.albumName = "Caronaê"
         config.startOnScreen = .library
         config.hidesStatusBar = false
+        config.libraryTargetImageSize = .cappedTo(size: 960)
         
         let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking { items, _ in
