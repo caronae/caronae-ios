@@ -276,8 +276,10 @@ class UserService: NSObject {
             return error(CaronaeError.invalidUser)
         }
         
-        let params = [ "profile_picture" : image ]
-        api.post("/api/v1/users/\(userID)/profile_picture", parameters: params, progress: nil, success: { _, responseObject in
+        let imageData = UIImageJPEGRepresentation(image, 1.0)!
+        api.post("/api/v1/users/\(userID)/profile_picture", parameters: nil, constructingBodyWith: { fromData in
+            fromData.appendPart(withFileData: imageData, name: "profile_picture", fileName: "profile_picture.jpeg", mimeType: "image/jpeg")
+        }, progress: nil, success: { _, responseObject in
             guard let responseObject = responseObject as? [String: Any],
                 let pictureURL = responseObject["profile_pic_url"] as? String else {
                     NSLog("Error receiving profile picture url after upload")
