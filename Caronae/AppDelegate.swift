@@ -167,25 +167,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    // MARK: Firebase Messaging (FCM)
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        NSLog("Registration for remote notification failed with error: %@", error.localizedDescription)
-    }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        didReceiveRemoteNotification(userInfo)
-    }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        didReceiveRemoteNotification(userInfo, completionHandler: completionHandler)
-    }
-    
-    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-        didReceiveLocalNotification(notification)
-    }
-    
-    
     // MARK: Deeplinks
     
     func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
@@ -203,6 +184,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return deepLinkManager.handleUniversalLink(url: url)
     }
-    
 }
-

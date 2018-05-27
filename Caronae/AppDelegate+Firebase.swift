@@ -1,7 +1,7 @@
 import Firebase
 import UserNotifications
 
-extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
+extension AppDelegate {
 
     func configureFirebase() {
         FirebaseApp.configure()
@@ -17,11 +17,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
         if Messaging.messaging().isDirectChannelEstablished {
             subscribeToUserAndGeneralTopic()
         }
-    }
-    
-    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
-        NSLog("Firebase registration token: \(fcmToken)")
-        subscribeToUserAndGeneralTopic()
     }
     
     func subscribeToUserAndGeneralTopic() {
@@ -59,18 +54,20 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
         application.registerForRemoteNotifications()
     }
     
-    func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any]) {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        NSLog("Registration for remote notification failed with error: %@", error.localizedDescription)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         NSLog("Remote notification received 1: %@", userInfo)
         
         _ = handleNotification(userInfo)
     }
     
-    func didReceiveRemoteNotification(_ userInfo: [AnyHashable: Any], completionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
-        let application = UIApplication.shared
-        
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if #available(iOS 10.0, *), application.applicationState == .active  {
             NSLog("Remote notification received 2 on iOS 10 or greater")
-            handler(UIBackgroundFetchResult.newData)
+            completionHandler(UIBackgroundFetchResult.newData)
             return
         }
         
@@ -79,31 +76,33 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
         // If the application received the notification on the background or foreground
         if application.applicationState != .inactive {
             if handleNotification(userInfo) {
-                handler(UIBackgroundFetchResult.newData)
+                completionHandler(UIBackgroundFetchResult.newData)
             } else {
-                handler(UIBackgroundFetchResult.noData)
+                completionHandler(UIBackgroundFetchResult.noData)
             }
         }
         // If the app is opening through the notification
         else {
             deepLinkManager.handleRemoteNotification(userInfo)
-            handler(UIBackgroundFetchResult.newData)
+            completionHandler(UIBackgroundFetchResult.newData)
         }
     }
     
-    func didReceiveLocalNotification(_ notification: UILocalNotification) {
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         if UIApplication.shared.applicationState == .inactive {
             NSLog("Opening app from local notification")
             deepLinkManager.handleRemoteNotification(notification.userInfo)
         }
     }
-    
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
     // [START ios_10_message_handling]
     // Called when a notification is delivered and the app is in foreground
     @available(iOS 10.0, *)
     public func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+                                       willPresent notification: UNNotification,
+                                       withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
         
         NSLog("Notification received on iOS 10 or greater: %@", userInfo)
@@ -115,8 +114,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
     // Called when an action was selected by the user for a given notification (app was in background)
     @available(iOS 10.0, *)
     public func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
+                                       didReceive response: UNNotificationResponse,
+                                       withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         NSLog("Opening app from local notification on iOS 10 or greater")
         deepLinkManager.handleRemoteNotification(userInfo)
@@ -127,6 +126,21 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
     // Receive data message on iOS 10 devices while app is in the foreground.
     public func application(received remoteMessage: MessagingRemoteMessage) {
         NSLog("Data message received on iOS 10 or greater: %@", remoteMessage.appData)
+        _ = handleNotification(remoteMessage.appData)
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    // [START refresh_token]
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        NSLog("Firebase registration token: \(fcmToken)")
+        subscribeToUserAndGeneralTopic()
+    }
+    
+    // [START ios_10_data_message]
+    // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        NSLog("Received data message from FCM (bypassing APNs): %@", remoteMessage.appData)
         _ = handleNotification(remoteMessage.appData)
     }
 }
