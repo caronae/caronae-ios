@@ -317,8 +317,9 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         config.targetImageSize = .cappedTo(size: 960)
         
         let picker = YPImagePicker(configuration: config)
-        picker.didFinishPicking { items, _ in
+        picker.didFinishPicking { [unowned picker] items, _ in
             guard let image = items.singlePhoto?.image else {
+                picker.dismiss(animated: true, completion: nil)
                 return
             }
             
