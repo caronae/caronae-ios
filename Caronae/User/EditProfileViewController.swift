@@ -308,13 +308,13 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
     
     func importPhotoFromDevice() {
         var config = YPImagePickerConfiguration()
-        config.onlySquareFromLibrary = true
+        config.library.onlySquare = true
         config.usesFrontCamera = true
         config.showsFilters = false
         config.albumName = "Caronaê"
         config.startOnScreen = .library
         config.hidesStatusBar = false
-        config.libraryTargetImageSize = .cappedTo(size: 960)
+        config.targetImageSize = .cappedTo(size: 960)
         
         let picker = YPImagePicker(configuration: config)
         picker.didFinishPicking { items, _ in
