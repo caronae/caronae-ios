@@ -307,21 +307,7 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
     }
     
     func importPhotoFromDevice() {
-        var config = YPImagePickerConfiguration()
-        config.library.onlySquare = true
-        config.usesFrontCamera = true
-        config.showsFilters = false
-        config.albumName = "Caronaê"
-        config.startOnScreen = .library
-        config.hidesStatusBar = false
-        config.targetImageSize = .cappedTo(size: 960)
-        
-        let picker = YPImagePicker(configuration: config)
-        picker.didFinishPicking { [unowned picker] items, _ in
-            guard let image = items.singlePhoto?.image else {
-                picker.dismiss(animated: true, completion: nil)
-                return
-            }
+        CaronaeImagePicker.instance.present { image in
             
             NSLog("Importing profile picture from Device...")
             SVProgressHUD.show()
@@ -335,10 +321,7 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
                 NSLog("Error uploading photo: %@", error.localizedDescription)
                 CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando foto", message: "Não foi possível carregar sua foto de perfil.")
             }
-            
-            picker.dismiss(animated: true, completion: nil)
         }
-        present(picker, animated: true, completion: nil)
     }
     
     func importPhotoFromFacebook() {
@@ -348,7 +331,6 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         }
     
         NSLog("Importing profile picture from Facebook...")
-    
         SVProgressHUD.show()
         UserService.instance.getPhotoFromFacebook(success: { url in
             self.photoURLString = url
