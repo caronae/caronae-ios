@@ -42,7 +42,7 @@ class MenuViewController: UIViewController {
         }
         
         profileNameLabel.text = user.name
-        profileCourseLabel.text = user.course.isEmpty ? user.profile : String(format: "%@ | %@", user.profile, user.course)
+        profileCourseLabel.text = user.occupation
     }
     
     

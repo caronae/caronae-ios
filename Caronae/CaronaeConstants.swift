@@ -75,18 +75,8 @@ let Caronae9PhoneNumberPattern = "({0}[00]) [00000]-[0000]"
 let CaronaeCarPlatePattern = "[AAA]{-}[0000]"
 let CaronaePlaceholderProfileImage = "Profile Picture"
 let CaronaeSearchDateFormat = "EEEE, dd/MM/yyyy HH:mm"
-let CaronaeDateLocaleIdentifier = "pt_BR"
 let CaronaeAllNeighborhoodsText = "Todos os Bairros"
 let CaronaeAllCampiText = "Todos os Campi"
-let CaronaeOtherZoneText = "Outra"
 let CaronaeOtherNeighborhoodsText = "Outros"
 
 let OtherZoneColor = UIColor(white: 0.541, alpha: 1.0)
-
-
-// MARK: For Objective-C Files
-
-@objcMembers
-public class Constants: NSObject {
-    static let CaronaePlaceholderProfileImageObjc = CaronaePlaceholderProfileImage as NSString
-}

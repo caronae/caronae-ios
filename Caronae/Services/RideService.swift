@@ -19,9 +19,8 @@ class RideService: NSObject {
                     return
             }
             
-            var rides = ridesJson.compactMap { Ride(JSON: $0) }
-            rides = rides.sorted { $0.date < $1.date }
-            
+            // Deserialize rides
+            let rides = ridesJson.compactMap { Ride(JSON: $0) }
             success(rides, lastPage)
         }, failure: { _, err in
             NSLog("Failed to load rides: \(err.localizedDescription)")
@@ -204,8 +203,8 @@ class RideService: NSObject {
                 return
             }
             
-            // Deserialize rides and order starting from the newest ride
-            let rides = ridesJson.compactMap { Ride(JSON: $0) }.sorted { $0.date > $1.date }
+            // Deserialize rides
+            let rides = ridesJson.compactMap { Ride(JSON: $0) }
             success(rides)
         }, failure: { _, err in
             error(err)

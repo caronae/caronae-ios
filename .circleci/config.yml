@@ -4,7 +4,7 @@ references:
   defaults: &defaults
     working_directory: /Users/distiller/project
     macos:
-      xcode: "9.3.0"
+      xcode: "9.3.1"
     environment:
       FL_OUTPUT_DIR: /Users/distiller/project/output
     shell: /bin/bash --login -o pipefail

@@ -50,10 +50,17 @@ class User: Object, Mappable {
         return name.components(separatedBy: " ").first ?? name
     }
     
+    var lastName: String {
+        let last: String = name.components(separatedBy: " ").last ?? name
+        return firstName == last ? "" : last
+    }
+    
     var shortName: String {
-        let names = name.components(separatedBy: " ")
-        guard let firstName = names.first, let lastName = names.last, lastName != firstName else { return name }
-        return firstName + " " + lastName
+        return lastName.isEmpty ? name : firstName + " " + lastName
+    }
+    
+    var occupation: String {
+        return course.isEmpty ? profile : String(format: "%@ | %@", profile, course)
     }
     
     var isProfileIncomplete: Bool {

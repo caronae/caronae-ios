@@ -33,10 +33,11 @@ class HubSelectionViewController: SelectionViewController {
             self.numberOfCampi = campi.count
             self.dictionaryColors = colors
             if self.numberOfCampi == 1 {
-                self.selectionLevel = .secondLevel
-                self.selectedFirstLevel = campi.first!
-                self.levelOptions = options[self.selectedFirstLevel]!.sorted()
-                self.colorFirstLevel = self.color(forCell: self.selectedFirstLevel)
+                let selectedCampus = campi.first!
+                self.prepareSecondSelection(withFirstLevelSelected: selectedCampus,
+                                            firstLevelColor: self.color(forCell: selectedCampus),
+                                            secondLevelOptions: options[selectedCampus]!,
+                                            selectionType: self.selectionType)
                 self.secondDelegate = self
                 self.configureSecondSelectionIfNeeded()
             } else {

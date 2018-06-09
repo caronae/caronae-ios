@@ -110,7 +110,7 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         joinedDateLabel.text = joinedDateFormatter.string(from: user.createdAt)
         
         nameLabel.text      = user.name
-        courseLabel.text    = user.course.isEmpty ? user.profile : String(format: "%@ | %@", user.profile, user.course)
+        courseLabel.text    = user.occupation
         numDrivesLabel.text = user.numDrives > -1 ? String(user.numDrives) : "-"
         numRidesLabel.text  = user.numRides > -1 ? String(user.numRides) : "-"
         
@@ -342,5 +342,18 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
             NSLog("Error loading photo: %@", error.localizedDescription)
             CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando foto", message: "Não foi possível carregar sua foto de perfil do Facebook.")
         }
+    }
+}
+
+
+// MARK: UITextFieldDelegate
+
+extension EditProfileViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == carPlateTextField {
+            carModelTextField.becomeFirstResponder()
+        }
+        return true
     }
 }

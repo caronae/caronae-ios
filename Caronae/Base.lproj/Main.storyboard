@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -34,7 +34,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="rql-kG-mhS">
             <objects>
-                <tabBarController storyboardIdentifier="HomeTabViewController" id="Grf-xD-SWT" customClass="TabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeTabViewController" id="Grf-xD-SWT" customClass="TabBarController" customModule="Caronae" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="eUx-bw-n1E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -1587,7 +1587,7 @@ nenhuma carona.</string>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aluno | Engenharia Mecatrônica" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="fJ1-xu-q4F" userLabel="Course">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Graduação | Engenharia Mecatrônica" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="fJ1-xu-q4F" userLabel="Course">
                                                                 <rect key="frame" x="7" y="21" width="270" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1616,12 +1616,12 @@ nenhuma carona.</string>
                                                                         </variation>
                                                                     </imageView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KnV-sU-s6W">
-                                                                        <rect key="frame" x="20" y="0.0" width="104" height="20"/>
+                                                                        <rect key="frame" x="20" y="0.0" width="112" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="20" id="WLO-ry-i5I"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                        <state key="normal" title="(21) 12345-6789">
+                                                                        <state key="normal" title="(021) 12345-6789">
                                                                             <color key="titleColor" red="0.18772074580192566" green="0.51381963491439819" blue="0.9836958646774292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </state>
                                                                         <variation key="default">
@@ -2238,7 +2238,7 @@ nenhuma carona.</string>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mji-NE-2k8" userLabel="Plate">
                                                         <rect key="frame" x="0.0" y="62" width="360" height="20"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="cE3-2w-Ugm" userLabel="CarIcon">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CarPlateIcon" translatesAutoresizingMaskIntoConstraints="NO" id="cE3-2w-Ugm" userLabel="CarIcon">
                                                                 <rect key="frame" x="0.0" y="3" width="27" height="15"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="20" id="Iuk-rS-IcV">
@@ -2261,8 +2261,8 @@ nenhuma carona.</string>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PSR 4567 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukp-LD-rXY" userLabel="Plate">
-                                                                <rect key="frame" x="37" y="2" width="71" height="17"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PSR-4567 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukp-LD-rXY" userLabel="Plate">
+                                                                <rect key="frame" x="37" y="2" width="73.5" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -2330,8 +2330,8 @@ nenhuma carona.</string>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HONDA CIVIC AZUL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h07-4L-BDZ" userLabel="Model">
-                                                                <rect key="frame" x="37" y="2" width="135" height="17"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Honda Civic" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h07-4L-BDZ" userLabel="Model">
+                                                                <rect key="frame" x="37" y="2" width="81" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -2411,8 +2411,8 @@ nenhuma carona.</string>
                                                                     </mask>
                                                                 </variation>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CINZA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMG-kW-a5r" userLabel="Model">
-                                                                <rect key="frame" x="37" y="2" width="44" height="17"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Azul" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMG-kW-a5r" userLabel="Model">
+                                                                <rect key="frame" x="37" y="2" width="29.5" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -2772,7 +2772,7 @@ nenhuma carona.</string>
                                 <rect key="frame" x="0.0" y="64" width="400" height="836"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8i-Rm-FBJ" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="701.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="746"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wC6-CD-nF5" userLabel="ID">
                                                 <rect key="frame" x="10" y="8" width="380" height="80"/>
@@ -2832,7 +2832,7 @@ FOTO</string>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aluno | Engenharia Mecatrônica" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="aF0-j7-A42" userLabel="Course">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Graduação | Engenharia Mecatrônica" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="aF0-j7-A42" userLabel="Course">
                                                         <rect key="frame" x="90" y="42" width="290" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3214,7 +3214,7 @@ FOTO</string>
                                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Mds-A1-ZMf" userLabel="Phone icon">
                                                         <rect key="frame" x="0.0" y="98" width="16" height="20"/>
                                                     </imageView>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21 99875-5678" borderStyle="roundedRect" placeholder="Telefone celular" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-zR-zbO" userLabel="Phone" customClass="CaronaeTextField">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="(021) 12345-6789" borderStyle="roundedRect" placeholder="Telefone celular" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-zR-zbO" userLabel="Phone" customClass="CaronaeTextField">
                                                         <rect key="frame" x="27" y="92.5" width="343" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="Hvq-Jb-OBD"/>
@@ -3246,7 +3246,7 @@ FOTO</string>
                                                         </constraints>
                                                         <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES"/>
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="rmS-ns-3Lz"/>
@@ -3350,7 +3350,7 @@ FOTO</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2a-DZ-ZsW" userLabel="Location">
-                                                <rect key="frame" x="15" y="371.5" width="370" height="85"/>
+                                                <rect key="frame" x="15" y="371.5" width="370" height="84.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCALIDADE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftJ-lK-bEs" userLabel="Localidade">
                                                         <rect key="frame" x="0.0" y="0.0" width="89" height="17"/>
@@ -3359,7 +3359,7 @@ FOTO</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sua localidade não será exibida para outros usuários." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1W7-OK-GJ3">
-                                                        <rect key="frame" x="0.0" y="19" width="370" height="14"/>
+                                                        <rect key="frame" x="0.0" y="19" width="370" height="13.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="P6A-oY-Lkw">
                                                                 <variation key="widthClass=compact" constant="20"/>
@@ -3380,10 +3380,10 @@ FOTO</string>
                                                         </variation>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="o34-q9-i0d" userLabel="Zone Icon">
-                                                        <rect key="frame" x="2" y="48" width="16" height="15"/>
+                                                        <rect key="frame" x="2" y="47.5" width="16" height="15"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4u-AX-cDq" userLabel="Bairro">
-                                                        <rect key="frame" x="28" y="39" width="342" height="30"/>
+                                                        <rect key="frame" x="28" y="38.5" width="342" height="30"/>
                                                         <state key="normal" title="Ipanema">
                                                             <color key="titleColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
@@ -3392,7 +3392,7 @@ FOTO</string>
                                                         </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LYE-NN-4Pp" userLabel="Separator Bairro">
-                                                        <rect key="frame" x="28" y="69" width="342" height="1"/>
+                                                        <rect key="frame" x="28" y="68.5" width="342" height="1"/>
                                                         <color key="backgroundColor" red="0.5058823823928833" green="0.50980395078659058" blue="0.5058823823928833" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="29" id="tJI-bj-E2U">
@@ -3489,7 +3489,7 @@ FOTO</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9E-Xw-3cg" userLabel="Has Car">
-                                                <rect key="frame" x="15" y="461.5" width="370" height="50"/>
+                                                <rect key="frame" x="15" y="461" width="370" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Possui carro?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8h-kP-2X5">
                                                         <rect key="frame" x="0.0" y="16" width="318" height="18"/>
@@ -3545,7 +3545,7 @@ FOTO</string>
                                                 </variation>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQY-BS-Gqj" userLabel="Car details">
-                                                <rect key="frame" x="15" y="521.5" width="370" height="165"/>
+                                                <rect key="frame" x="15" y="521" width="370" height="210"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOBRE SEU CARRO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8t-lO-Jqk">
                                                         <rect key="frame" x="0.0" y="0.0" width="132" height="17"/>
@@ -3553,14 +3553,14 @@ FOTO</string>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="PSR 4567" borderStyle="roundedRect" placeholder="Placa" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZA1-8O-6ah" userLabel="Plate" customClass="CaronaeTextField">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="PSR-4567" borderStyle="roundedRect" placeholder="Placa" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZA1-8O-6ah" userLabel="Plate" customClass="CaronaeTextField">
                                                         <rect key="frame" x="37" y="55.5" width="333" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="478-cx-0T8"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="478-cx-0T8"/>
@@ -3595,14 +3595,14 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                     </imageView>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="HONDA CIVIC" borderStyle="roundedRect" placeholder="Modelo" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ack-vy-A7z" userLabel="Model" customClass="CaronaeTextField">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Honda Civic" borderStyle="roundedRect" placeholder="Modelo" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ack-vy-A7z" userLabel="Model" customClass="CaronaeTextField">
                                                         <rect key="frame" x="37" y="92.5" width="333" height="32"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="QeR-UZ-a3h"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="QeR-UZ-a3h"/>
@@ -3657,7 +3657,7 @@ FOTO</string>
                                                         </constraints>
                                                         <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
                                                         <variation key="default">
                                                             <mask key="constraints">
                                                                 <exclude reference="JsV-ht-chF"/>
@@ -3671,7 +3671,7 @@ FOTO</string>
                                                             </mask>
                                                         </variation>
                                                     </textField>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="oTl-se-EDm" userLabel="Car Icon">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CarPlateIcon" translatesAutoresizingMaskIntoConstraints="NO" id="oTl-se-EDm" userLabel="Car Icon">
                                                         <rect key="frame" x="0.0" y="64.5" width="27" height="15"/>
                                                     </imageView>
                                                 </subviews>
@@ -3682,7 +3682,7 @@ FOTO</string>
                                                     <constraint firstAttribute="trailing" secondItem="ZA1-8O-6ah" secondAttribute="trailing" id="7je-NW-87U"/>
                                                     <constraint firstItem="eDe-Qb-t67" firstAttribute="leading" secondItem="ZA1-8O-6ah" secondAttribute="leading" id="90V-ob-lKK"/>
                                                     <constraint firstItem="ZA1-8O-6ah" firstAttribute="top" secondItem="59v-69-H2d" secondAttribute="bottom" constant="10" id="AJL-Y1-pDx"/>
-                                                    <constraint firstAttribute="height" constant="165" id="Hmd-OL-DGB"/>
+                                                    <constraint firstAttribute="height" constant="210" id="Hmd-OL-DGB"/>
                                                     <constraint firstItem="ack-vy-A7z" firstAttribute="leading" secondItem="ZA1-8O-6ah" secondAttribute="leading" constant="53" id="Jyf-Mo-KOp">
                                                         <variation key="widthClass=compact" constant="0.0"/>
                                                     </constraint>
@@ -3741,12 +3741,12 @@ FOTO</string>
                                                         <exclude reference="2b8-Sr-ItU"/>
                                                         <exclude reference="Jyf-Mo-KOp"/>
                                                         <exclude reference="wNK-zQ-Fvx"/>
-                                                        <exclude reference="QsC-U5-GTe"/>
-                                                        <exclude reference="rjG-HV-tQ6"/>
                                                         <exclude reference="90V-ob-lKK"/>
                                                         <exclude reference="kaN-W4-vbR"/>
                                                         <exclude reference="uw7-sB-eDs"/>
                                                         <exclude reference="wbm-Tr-SFx"/>
+                                                        <exclude reference="QsC-U5-GTe"/>
+                                                        <exclude reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                                 <variation key="widthClass=compact">
@@ -3777,12 +3777,12 @@ FOTO</string>
                                                         <include reference="2b8-Sr-ItU"/>
                                                         <include reference="Jyf-Mo-KOp"/>
                                                         <include reference="wNK-zQ-Fvx"/>
-                                                        <include reference="QsC-U5-GTe"/>
-                                                        <include reference="rjG-HV-tQ6"/>
                                                         <include reference="90V-ob-lKK"/>
                                                         <include reference="kaN-W4-vbR"/>
                                                         <include reference="uw7-sB-eDs"/>
                                                         <include reference="wbm-Tr-SFx"/>
+                                                        <include reference="QsC-U5-GTe"/>
+                                                        <include reference="rjG-HV-tQ6"/>
                                                     </mask>
                                                 </variation>
                                             </view>
@@ -4063,7 +4063,7 @@ FOTO</string>
                                         <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aluno | Engenharia Mecatrônica" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="wzZ-6k-4Fq" userLabel="Course">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Graduação | Engenharia Mecatrônica" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="wzZ-6k-4Fq" userLabel="Course">
                                         <rect key="frame" x="5" y="105" width="365" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4361,6 +4361,7 @@ FOTO</string>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dAJ-Ry-pFA">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.94901961089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4381,6 +4382,7 @@ FOTO</string>
                     <tabBarItem key="tabBarItem" title="Minhas" image="menu2" id="qpg-Pw-SZw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="N1E-gi-4wz">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.94901961089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -5338,12 +5340,12 @@ FOTO</string>
                                                                                 </variation>
                                                                             </imageView>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICf-IO-XM4">
-                                                                                <rect key="frame" x="20" y="0.0" width="104" height="20"/>
+                                                                                <rect key="frame" x="20" y="0.0" width="112" height="20"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="20" id="Eir-5D-kGE"/>
                                                                                 </constraints>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                                <state key="normal" title="(21) 12345-6789">
+                                                                                <state key="normal" title="(021) 12345-6789">
                                                                                     <color key="titleColor" red="0.18772074580192566" green="0.51381963491439819" blue="0.9836958646774292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 </state>
                                                                                 <variation key="default">
@@ -5777,13 +5779,13 @@ FOTO</string>
                                                                 <color key="textColor" red="0.33725491166114807" green="0.33725491166114807" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PSR 4567" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCx-nb-Rrv">
-                                                                <rect key="frame" x="60" y="32" width="61" height="16"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PSR-4567" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCx-nb-Rrv">
+                                                                <rect key="frame" x="60" y="32" width="63" height="16"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DrivesIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bbT-SR-WbA">
+                                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CarPlateIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bbT-SR-WbA">
                                                                 <rect key="frame" x="25" y="32" width="27" height="15"/>
                                                                 <color key="tintColor" red="0.11372549086809158" green="0.65490198135375977" blue="0.364705890417099" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </imageView>
@@ -5797,8 +5799,8 @@ FOTO</string>
                                                                 <rect key="frame" x="25" y="57" width="27" height="15"/>
                                                                 <color key="tintColor" red="0.1137254909" green="0.6549019814" blue="0.36470589040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </imageView>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJJ-2B-yFq">
-                                                                <rect key="frame" x="60" y="84.5" width="33" height="16"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Azul" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJJ-2B-yFq">
+                                                                <rect key="frame" x="60" y="84.5" width="26.5" height="16"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <color key="textColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -5963,7 +5965,7 @@ FOTO</string>
                                                                                         </mask>
                                                                                     </variation>
                                                                                 </imageView>
-                                                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Renan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNe-KX-IxR" userLabel="Rider name">
+                                                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mario" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNe-KX-IxR" userLabel="Rider name">
                                                                                     <rect key="frame" x="0.0" y="55" width="50" height="14"/>
                                                                                     <gestureRecognizers/>
                                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
@@ -6501,6 +6503,7 @@ nenhuma carona.</string>
                     <tabBarItem key="tabBarItem" title="Todas" image="menu1" id="NTH-wW-phr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bW7-lx-v5z">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.33725490200000002" green="0.33725490200000002" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -6913,6 +6916,7 @@ nenhuma carona.</string>
         <image name="ButtonColor" width="100" height="42"/>
         <image name="ButtonSignout" width="71" height="28"/>
         <image name="CalendarIcon" width="17" height="16"/>
+        <image name="CarPlateIcon" width="27" height="15"/>
         <image name="ClockIcon" width="16" height="15"/>
         <image name="ColorIcon" width="20" height="20"/>
         <image name="DrivesIcon" width="27" height="15"/>
@@ -6934,10 +6938,10 @@ nenhuma carona.</string>
         <image name="menu4" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9kE-zS-Odm"/>
+        <segue reference="hM9-nM-k0Y"/>
         <segue reference="yIa-C3-QN8"/>
         <segue reference="H8O-Mc-OH3"/>
-        <segue reference="U3D-Zh-YLa"/>
+        <segue reference="ugX-qh-OjL"/>
         <segue reference="IgS-9T-cpR"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.33725491169999999" green="0.33725491169999999" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

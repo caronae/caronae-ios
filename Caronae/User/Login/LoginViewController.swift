@@ -68,7 +68,7 @@ class LoginViewController: UIViewController {
                 }
                 
                 NSLog("User was authenticated. Switching main view controller...")
-                let rootViewController = TabBarController()
+                let rootViewController = TabBarController.instance()
                 UIApplication.shared.keyWindow?.replaceViewController(with: rootViewController)
             })
         }

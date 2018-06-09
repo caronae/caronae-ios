@@ -24,7 +24,7 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
     var dictionarySelection = [String :[String]]()
     var dictionaryColors = [String :UIColor]()
     var selectedFirstLevel = String()
-    var colorFirstLevel: UIColor?
+    var firstLevelColor: UIColor?
     var doneButton = UIBarButtonItem()
 
     override func viewDidLoad() {
@@ -35,6 +35,14 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
         self.tableView.separatorStyle = .none
         let cellNib = UINib.init(nibName: "SelectionCell", bundle: nil)
         self.tableView.register(cellNib, forCellReuseIdentifier: "Selection Cell")
+    }
+    
+    func prepareSecondSelection(withFirstLevelSelected firstSelected: String, firstLevelColor color: UIColor, secondLevelOptions options: [String], selectionType type: SelectionType) {
+        selectionLevel = .secondLevel
+        selectionType = type
+        selectedFirstLevel = firstSelected
+        firstLevelColor = color
+        levelOptions = options.sortedCaseInsensitive()
     }
     
     func configureSecondSelectionIfNeeded() {
@@ -61,7 +69,7 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
             if selectionType == .manySelection {
                 self.hasSelected(selections: [selectedFirstLevel], inFirstLevel: selectedFirstLevel)
             } else {
-                // selectedFirstLevel == CaronaeOtherZoneText
+                // selectedFirstLevel == CaronaeOtherNeighborhoodsText
                 let otherNeighborhoodVC = ZoneSelectionInputViewController()
                 otherNeighborhoodVC.delegate = self
                 self.navigationController?.show(otherNeighborhoodVC, sender: self)
@@ -76,11 +84,10 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
         
         // Open SelectionViewController for secondLevel
         let secondVC = SelectionViewController()
-        secondVC.selectionLevel = .secondLevel
-        secondVC.selectionType = self.selectionType
-        secondVC.levelOptions = secondLevelOptions.sorted()
-        secondVC.selectedFirstLevel = self.selectedFirstLevel
-        secondVC.colorFirstLevel = color(forCell: selectedFirstLevel)
+        secondVC.prepareSecondSelection(withFirstLevelSelected: self.selectedFirstLevel,
+                                        firstLevelColor: color(forCell: selectedFirstLevel),
+                                        secondLevelOptions: secondLevelOptions,
+                                        selectionType: self.selectionType)
         secondVC.secondDelegate = self
         self.navigationController?.show(secondVC, sender: self)
     }
@@ -113,7 +120,7 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Selection Cell", for: indexPath) as! SelectionCell
 
         let cellTitle = levelOptions[indexPath.row]
-        let cellColor = self.colorFirstLevel ?? color(forCell: cellTitle)
+        let cellColor = self.firstLevelColor ?? color(forCell: cellTitle)
         
         cell.setupCell(on: selectionLevel, withTitle: cellTitle, andColor: cellColor)
         
