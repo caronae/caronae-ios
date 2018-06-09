@@ -1,6 +1,7 @@
 import UIKit
 import SVProgressHUD
 import InputMask
+import YPImagePicker
 
 class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate, MaskedTextFieldDelegateListener {
     
@@ -246,6 +247,9 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         alert.addAction(UIAlertAction(title: "Usar foto do Facebook", style: .default, handler: { _ in
             self.importPhotoFromFacebook()
         }))
+        alert.addAction(UIAlertAction(title: "Selecionar foto do celular", style: .default, handler: { _ in
+            self.importPhotoFromDevice()
+        }))
         alert.addAction(UIAlertAction(title: "Remover minha foto", style: .destructive, handler: { _ in
             NSLog("Removendo foto...")
             self.photoURLString = String()
@@ -302,6 +306,24 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         navigationItem.rightBarButtonItem = loading ? self.loadingButton : self.saveButton
     }
     
+    func importPhotoFromDevice() {
+        CaronaeImagePicker.instance.present { image in
+            
+            NSLog("Importing profile picture from Device...")
+            SVProgressHUD.show()
+            UserService.instance.uploadPhotoFromDevice(image, success: { url in
+                self.photoURLString = url
+                self.photoImageView.crn_setImage(with: URL(string: self.photoURLString), completed: {
+                    SVProgressHUD.dismiss()
+                })
+            }) { error in
+                SVProgressHUD.dismiss()
+                NSLog("Error uploading photo: %@", error.localizedDescription)
+                CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando foto", message: "Não foi possível carregar sua foto de perfil.")
+            }
+        }
+    }
+    
     func importPhotoFromFacebook() {
         guard FBSDKAccessToken.current() != nil else {
             CaronaeAlertController.presentOkAlert(withTitle: "Conta do Facebook não autorizada.", message: "Você precisa ter feito login com sua conta do Facebook.")
@@ -309,7 +331,6 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         }
     
         NSLog("Importing profile picture from Facebook...")
-    
         SVProgressHUD.show()
         UserService.instance.getPhotoFromFacebook(success: { url in
             self.photoURLString = url
