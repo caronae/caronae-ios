@@ -62,7 +62,7 @@ class UserService: NSObject {
         guard let user = self.user else {
             return nil
         }
-        return "/topics/user-\(user.id)"
+        return "user-\(user.id)"
     }
     
     func getUser(withID id: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: Error) -> Void) {

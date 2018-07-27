@@ -25,7 +25,7 @@ extension AppDelegate {
             Messaging.messaging().subscribe(toTopic: userTopic)
         }
         
-        let topic = "/topics/general"
+        let topic = "general"
         NSLog("Subscribing to: \(topic)")
         Messaging.messaging().subscribe(toTopic: topic)
     }
