@@ -270,16 +270,20 @@ class UserService: NSObject {
         })
     }
     
-    func uploadPhotoFromDevice(_ image: UIImage, success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
+    func uploadPhotoFromDevice(_ image: UIImage, _ showLoadingProgress: @escaping (Float) -> Void, success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
         guard let userID = self.userID else {
             NSLog("Error: No userID registered")
             return error(CaronaeError.invalidUser)
         }
         
-        let imageData = UIImageJPEGRepresentation(image, 1.0)!
+        let imageData = UIImageJPEGRepresentation(image, 0.9)!
         api.post("/api/v1/users/\(userID)/profile_picture", parameters: nil, constructingBodyWith: { fromData in
             fromData.appendPart(withFileData: imageData, name: "profile_picture", fileName: "profile_picture.jpeg", mimeType: "image/jpeg")
-        }, progress: nil, success: { _, responseObject in
+        }, progress: { upload in
+            DispatchQueue.main.async {
+                showLoadingProgress(Float(upload.fractionCompleted))
+            }
+        }, success: { _, responseObject in
             guard let responseObject = responseObject as? [String: Any],
                 let pictureURL = responseObject["profile_pic_url"] as? String else {
                     NSLog("Error receiving profile picture url after upload")
