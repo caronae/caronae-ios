@@ -10,8 +10,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var beepSound: SystemSoundID = 0
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        SVProgressHUD.setBackgroundColor(UIColor(white: 0.0, alpha: 0.75))
-        SVProgressHUD.setForegroundColor(.white)
+        SVProgressHUD.setDefaultMaskType(.clear)
+        SVProgressHUD.setFadeOutAnimationDuration(0)
+        SVProgressHUD.setMinimumSize(CGSize(width: 100, height: 100))
         
         AFNetworkActivityIndicatorManager.shared().isEnabled = true
         AFNetworkReachabilityManager.shared().startMonitoring()
