@@ -13,6 +13,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     
     var webView: WKWebView!
     var page: WebViewPage?
+    var urlRequest: URLRequest!
     
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
@@ -42,7 +43,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
             urlString = CaronaeURLString.FAQPage
         }
         
-        let urlRequest = URLRequest(url: URL(string: urlString)!)
+        urlRequest = URLRequest(url: URL(string: urlString)!)
         webView.load(urlRequest)
     }
     
@@ -68,6 +69,12 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         }
         
         CaronaeAlertController.presentOkAlert(withTitle: errorAlertTitle, message: errorAlertMessage)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "RefreshIcon"), style: .plain, target: self, action: #selector(didTapRefreshButton))
+    }
+    
+    @objc func didTapRefreshButton() {
+        webView.load(urlRequest)
+        navigationItem.rightBarButtonItem = nil
     }
 }
 
