@@ -46,6 +46,11 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
         // Add gesture recognizer to phoneButton for longpress
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(didLongPressPhoneButton))
         phoneButton.addGestureRecognizer(longPressGesture)
+        
+        // Add gesture reconizer to profileImage for tap
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped(tapGestureRecognizer:)))
+        profileImage.isUserInteractionEnabled = true
+        profileImage.addGestureRecognizer(tapGestureRecognizer)
     }
     
     deinit {
@@ -140,6 +145,13 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
     
     // MARK: IBActions
     
+    @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        if let profilePictureZoomURL = user.profilePictureURL, !profilePictureZoomURL.isEmpty {
+            CaronaeImageViewer.instance.present(pictureURL: profilePictureZoomURL)
+        }
+    }
+    
     @objc func didLongPressPhoneButton() {
         let alert = PhoneNumberAlert().actionSheet(view: self, buttonText: phoneButton.titleLabel!.text!, user: user)
         self.present(alert!, animated: true, completion: nil)
@@ -163,8 +175,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
         
         alert?.present(completion: nil)
     }
-    
-    
+   
     // MARK: Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -172,6 +183,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
             let falaeVC = segue.destination as! FalaeViewController
             falaeVC.reportedUser = user
         }
+        
     }
     
     

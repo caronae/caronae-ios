@@ -83,6 +83,7 @@ PODS:
   - SDWebImage/Core (4.4.2)
   - SimpleKeychain (0.8.1)
   - SimulatorStatusMagic (2.2)
+  - SKPhotoBrowser (5.1.0)
   - SteviaLayout (4.2.0)
   - SVProgressHUD (2.0.3)
   - SwiftMessages (4.1.4):
@@ -111,6 +112,7 @@ DEPENDENCIES:
   - SDWebImage (~> 4.3)
   - SimpleKeychain (~> 0.8)
   - SimulatorStatusMagic
+  - SKPhotoBrowser (~> 5.1)
   - SVProgressHUD
   - SwiftMessages
   - TPKeyboardAvoiding (~> 1.3.2)
@@ -145,6 +147,7 @@ SPEC REPOS:
     - SDWebImage
     - SimpleKeychain
     - SimulatorStatusMagic
+    - SKPhotoBrowser
     - SteviaLayout
     - SVProgressHUD
     - SwiftMessages
@@ -197,6 +200,7 @@ SPEC CHECKSUMS:
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   SimpleKeychain: e2485c28d82fcece35e9e41faeac42ebfe614815
   SimulatorStatusMagic: 0389a805fa8bd001e2977c4046730bdbd6642861
+  SKPhotoBrowser: c20c1da34d737b4e3e101feead6c8dd92ebf860a
   SteviaLayout: 0d2112caea45707695e8c718262c8ea3dd37ef17
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftMessages: 2c33fdee8b8f38dfc7e1036684456b505891da8c
@@ -204,6 +208,6 @@ SPEC CHECKSUMS:
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
   YPImagePicker: 049aa31e2858c63730ace6b6358bba946178dfe3
 
-PODFILE CHECKSUM: 403aa366f3e6a4b006b58c9478b030a1079933d2
+PODFILE CHECKSUM: 3cb3062ca8846028ef71a048e18076b02ef618d5
 
 COCOAPODS: 1.5.2
