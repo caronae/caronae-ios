@@ -147,8 +147,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
     
     @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
-        if let profilePictureZoomURL = user.profilePictureURL, !profilePictureZoomURL.isEmpty {
-            CaronaeImageViewer.instance.present(pictureURL: profilePictureZoomURL)
+        if let profilePictureURL = user.profilePictureURL, !profilePictureURL.isEmpty {
+            CaronaeImageViewer.instance.present(pictureURL: profilePictureURL)
         }
     }
     
