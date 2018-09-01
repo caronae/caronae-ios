@@ -48,9 +48,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
         phoneButton.addGestureRecognizer(longPressGesture)
         
         // Add gesture reconizer to profileImage for tap
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped(tapGestureRecognizer:)))
-        profileImage.isUserInteractionEnabled = true
-        profileImage.addGestureRecognizer(tapGestureRecognizer)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapProfileImage))
+        profileImage.addGestureRecognizer(tapGesture)
     }
     
     deinit {
@@ -145,15 +144,20 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
     
     // MARK: IBActions
     
-    @objc func profileImageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
-        if let profilePictureURL = user.profilePictureURL, !profilePictureURL.isEmpty {
-            CaronaeImageViewer.instance.present(pictureURL: profilePictureURL)
+    @objc func didTapProfileImage() {
+        guard let profilePictureURL = user.profilePictureURL, !profilePictureURL.isEmpty else {
+            return
         }
+        
+        CaronaeImageViewer.instance.present(pictureURL: profilePictureURL)
     }
     
     @objc func didLongPressPhoneButton() {
-        let alert = PhoneNumberAlert().actionSheet(view: self, buttonText: phoneButton.titleLabel!.text!, user: user)
+        guard let phoneText = phoneButton.titleLabel?.text, !phoneText.isEmpty else {
+            return
+        }
+        
+        let alert = PhoneNumberAlert().actionSheet(view: self, buttonText: phoneText, user: user)
         self.present(alert!, animated: true, completion: nil)
     }
     
@@ -183,7 +187,6 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
             let falaeVC = segue.destination as! FalaeViewController
             falaeVC.reportedUser = user
         }
-        
     }
     
     

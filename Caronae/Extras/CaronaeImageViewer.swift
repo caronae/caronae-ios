@@ -1,7 +1,7 @@
 import SKPhotoBrowser
 import SDWebImage
 
-class CaronaeImageViewer: SKPhotoBrowserDelegate {
+class CaronaeImageViewer {
     static let instance = CaronaeImageViewer()
 
     private init() {
