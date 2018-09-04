@@ -7,14 +7,16 @@ class CaronaeImageViewer {
     private init() {
         SKCache.sharedCache.imageCache = CustomImageCache()
         SKPhotoBrowserOptions.displayAction = false
+        SKPhotoBrowserOptions.bounceAnimation = true
+        SKPhotoBrowserOptions.displayStatusbar = true
     }
     
-    func present(pictureURL: String){
+    func present(pictureURL: String, animatedFrom view: UIImageView) {
         let photo = SKPhoto.photoWithImageURL(pictureURL)
         photo.shouldCachePhotoURLImage = true
         
         if let topViewController = UIApplication.shared.topViewController() {
-            let browser = SKPhotoBrowser(photos: [photo])
+            let browser = SKPhotoBrowser(originImage: view.image ?? UIImage(), photos: [photo], animatedFromView: view)
             topViewController.present(browser, animated: true)
         }
     }

@@ -149,7 +149,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
             return
         }
         
-        CaronaeImageViewer.instance.present(pictureURL: profilePictureURL)
+        CaronaeImageViewer.instance.present(pictureURL: profilePictureURL, animatedFrom: profileImage)
     }
     
     @objc func didLongPressPhoneButton() {
