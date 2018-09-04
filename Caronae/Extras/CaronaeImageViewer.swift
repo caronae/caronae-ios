@@ -16,9 +16,19 @@ class CaronaeImageViewer {
         photo.shouldCachePhotoURLImage = true
         
         if let topViewController = UIApplication.shared.topViewController() {
-            let browser = SKPhotoBrowser(originImage: view.image ?? UIImage(), photos: [photo], animatedFromView: view)
+            let browser = CustomSKPhotoBrowser(originImage: view.image ?? UIImage(), photos: [photo], animatedFromView: view)
             topViewController.present(browser, animated: true)
         }
+    }
+}
+
+
+// MARK: Custom classes
+
+class CustomSKPhotoBrowser: SKPhotoBrowser {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 
