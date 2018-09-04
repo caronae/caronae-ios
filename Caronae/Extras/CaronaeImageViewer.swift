@@ -25,7 +25,7 @@ class CaronaeImageViewer {
 
 // MARK: Custom classes
 
-class CustomSKPhotoBrowser: SKPhotoBrowser {
+fileprivate class CustomSKPhotoBrowser: SKPhotoBrowser {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -33,7 +33,7 @@ class CustomSKPhotoBrowser: SKPhotoBrowser {
 }
 
 
-class CustomImageCache: SKImageCacheable {
+fileprivate class CustomImageCache: SKImageCacheable {
     var cache: SDImageCache
     
     init() {
