@@ -1,8 +1,9 @@
 import UIKit
+import WebKit
 import SVProgressHUD
 import AFNetworking
 
-class WebViewController: UIViewController, UIWebViewDelegate {
+class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
 
     enum WebViewPage {
         case aboutPage
@@ -10,13 +11,23 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         case FAQPage
     }
     
-    @IBOutlet weak var webView: UIWebView!
+    var webView: WKWebView!
     var page: WebViewPage?
+    var urlRequest: URLRequest!
+    
+    override func loadView() {
+        let webConfiguration = WKWebViewConfiguration()
+        
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        view = webView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        webView.delegate = self
+        webView.scrollView.delegate = self
         webView.scrollView.bounces = false
         
         var urlString: String!
@@ -32,25 +43,19 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             urlString = CaronaeURLString.FAQPage
         }
         
-        let urlRequest = URLRequest(url: URL(string: urlString)!)
-        webView.loadRequest(urlRequest)
+        urlRequest = URLRequest(url: URL(string: urlString)!)
+        webView.load(urlRequest)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        SVProgressHUD.dismiss()
-    }
-    
-    func webViewDidStartLoad(_ webView: UIWebView) {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         SVProgressHUD.show()
     }
     
-    func webViewDidFinishLoad(_ webView: UIWebView) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         SVProgressHUD.dismiss()
     }
     
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         SVProgressHUD.dismiss()
         
         var errorAlertTitle: String!
@@ -64,5 +69,18 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         }
         
         CaronaeAlertController.presentOkAlert(withTitle: errorAlertTitle, message: errorAlertMessage)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "RefreshIcon"), style: .plain, target: self, action: #selector(didTapRefreshButton))
+    }
+    
+    @objc func didTapRefreshButton() {
+        webView.load(urlRequest)
+        navigationItem.rightBarButtonItem = nil
+    }
+}
+
+// workaround to disable zoom on WKWebView
+extension WebViewController: UIScrollViewDelegate {
+    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        scrollView.pinchGestureRecognizer?.isEnabled = false
     }
 }

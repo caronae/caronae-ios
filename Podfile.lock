@@ -85,7 +85,7 @@ PODS:
   - SimulatorStatusMagic (2.2)
   - SKPhotoBrowser (5.1.0)
   - SteviaLayout (4.2.0)
-  - SVProgressHUD (2.0.3)
+  - SVProgressHUD (2.2.5)
   - SwiftMessages (4.1.4):
     - SwiftMessages/App (= 4.1.4)
   - SwiftMessages/App (4.1.4)
@@ -202,7 +202,7 @@ SPEC CHECKSUMS:
   SimulatorStatusMagic: 0389a805fa8bd001e2977c4046730bdbd6642861
   SKPhotoBrowser: c20c1da34d737b4e3e101feead6c8dd92ebf860a
   SteviaLayout: 0d2112caea45707695e8c718262c8ea3dd37ef17
-  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftMessages: 2c33fdee8b8f38dfc7e1036684456b505891da8c
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98

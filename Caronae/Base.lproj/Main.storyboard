@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1305,38 +1305,8 @@ nenhuma carona.</string>
                     <view key="view" contentMode="scaleToFill" id="6Ro-0b-ezE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEU-dV-kmf">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" red="0.28958413004875183" green="0.31462949514389038" blue="0.32950475811958313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
-                            </webView>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="fEU-dV-kmf" secondAttribute="trailing" id="Q5F-6a-Oh9"/>
-                            <constraint firstItem="fEU-dV-kmf" firstAttribute="top" secondItem="tJA-R2-npH" secondAttribute="bottom" id="hhW-EH-QPR"/>
-                            <constraint firstItem="fEU-dV-kmf" firstAttribute="leading" secondItem="6Ro-0b-ezE" secondAttribute="leading" id="i7G-sx-fos"/>
-                            <constraint firstAttribute="bottom" secondItem="fEU-dV-kmf" secondAttribute="bottom" id="ohz-on-HvS"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Q5F-6a-Oh9"/>
-                                <exclude reference="hhW-EH-QPR"/>
-                                <exclude reference="i7G-sx-fos"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="constraints">
-                                <include reference="Q5F-6a-Oh9"/>
-                                <include reference="hhW-EH-QPR"/>
-                                <include reference="i7G-sx-fos"/>
-                            </mask>
-                        </variation>
                     </view>
-                    <connections>
-                        <outlet property="webView" destination="fEU-dV-kmf" id="2sI-qD-SFS"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fZC-RN-1uY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
