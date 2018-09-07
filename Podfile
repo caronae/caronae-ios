@@ -25,6 +25,7 @@ abstract_target 'caronae-ios' do
     pod 'SimpleKeychain', '~> 0.8'
     pod 'YPImagePicker', '~> 3.0'
     pod 'SKPhotoBrowser', '~> 5.1'
+    
     target 'Caronae'
     target 'Caronae Dev'
 
