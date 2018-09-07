@@ -41,7 +41,6 @@ platform :ios do
     upload_to_app_store(
       submit_for_review: true,
       force: true,
-      ignore_language_directory_validation: true,
       ipa: options[:ipa],
       app_version: get_version_number(target:'Caronae'),
       build_number: options[:build_number],
