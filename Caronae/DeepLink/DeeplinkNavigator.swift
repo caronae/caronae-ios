@@ -1,6 +1,3 @@
-import Foundation
-import UIKit
-
 enum DeeplinkType {
     case login(withID: String, token: String)
     case loadRide(withID: Int)
@@ -11,10 +8,10 @@ enum DeeplinkType {
 }
 
 class DeeplinkNavigator {
-    
     static let shared = DeeplinkNavigator()
-    private let authController = AuthenticationController()
     private init() { }
+    
+    private let authController = AuthenticationController()
     
     func proceedToDeeplink(_ type: DeeplinkType) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {

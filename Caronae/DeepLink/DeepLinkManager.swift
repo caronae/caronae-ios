@@ -1,7 +1,5 @@
-import Foundation
-import UIKit
-
 let deepLinkManager = DeepLinkManager()
+
 class DeepLinkManager {
     fileprivate init() {}
     

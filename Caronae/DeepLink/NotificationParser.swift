@@ -1,5 +1,3 @@
-import Foundation
-
 class NotificationParser {
     static let shared = NotificationParser()
     private init() { }

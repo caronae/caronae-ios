@@ -1,5 +1,3 @@
-import Foundation
-
 class UniversalLinkParser {
     static let shared = UniversalLinkParser()
     private init() { }
