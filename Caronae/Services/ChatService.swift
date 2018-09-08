@@ -1,11 +1,10 @@
 import RealmSwift
-import Firebase
 
-class ChatService: NSObject {
+class ChatService {
     static let instance = ChatService()
     private let api = CaronaeAPIHTTPSessionManager.instance
     
-    private override init() {
+    private init() {
         // This prevents others from using the default '()' initializer for this class.
     }
     

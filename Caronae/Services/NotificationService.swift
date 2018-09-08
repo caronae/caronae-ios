@@ -1,9 +1,9 @@
 import RealmSwift
 
-class NotificationService: NSObject {
+class NotificationService {
     static let instance = NotificationService()
     
-    private override init() {
+    private init() {
         // This prevents others from using the default '()' initializer for this class.
     }
     

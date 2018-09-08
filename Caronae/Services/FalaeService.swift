@@ -1,10 +1,8 @@
-import Foundation
-
-class FalaeService: NSObject {
+class FalaeService {
     static let instance = FalaeService()
     private let api = CaronaeAPIHTTPSessionManager.instance
     
-    private override init() {
+    private init() {
         // This prevents others from using the default '()' initializer for this class.
     }
     
@@ -21,4 +19,3 @@ class FalaeService: NSObject {
         })
     }
 }
-

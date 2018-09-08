@@ -1,6 +1,4 @@
-import Foundation
-
-class FilterParameters: NSObject {
+class FilterParameters {
     var going: Bool?
     var neighborhoods: [String]?
     var selectedZone: String?
@@ -61,6 +59,4 @@ class FilterParameters: NSObject {
         }
         return label
     }
-    
 }
-

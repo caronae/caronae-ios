@@ -1,15 +1,15 @@
-import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
-import Foundation
 import RealmSwift
 import SimpleKeychain
 
-class UserService: NSObject {
+class UserService {
     static let instance = UserService()
     private let api = CaronaeAPIHTTPSessionManager.instance
     
-    private override init() {}
+    private init() {
+        // This prevents others from using the default '()' initializer for this class.
+    }
     
     private(set) lazy var user: User? = {
         do {

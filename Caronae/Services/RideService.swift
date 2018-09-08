@@ -1,11 +1,10 @@
-import Foundation
 import RealmSwift
 
-class RideService: NSObject {
+class RideService {
     static let instance = RideService()
     private let api = CaronaeAPIHTTPSessionManager.instance
     
-    private override init() {
+    private init() {
         // This prevents others from using the default '()' initializer for this class.
     }
     
