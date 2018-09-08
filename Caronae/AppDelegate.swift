@@ -2,6 +2,7 @@ import UIKit
 import SVProgressHUD
 import AFNetworking
 import AudioToolbox
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

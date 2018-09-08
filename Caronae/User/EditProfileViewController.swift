@@ -1,7 +1,7 @@
 import UIKit
 import SVProgressHUD
 import InputMask
-import YPImagePicker
+import FBSDKLoginKit
 
 class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate, MaskedTextFieldDelegateListener {
     
