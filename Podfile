@@ -27,7 +27,10 @@ abstract_target 'caronae-ios' do
     pod 'SKPhotoBrowser', '~> 5.1'
     
     target 'Caronae'
-    target 'Caronae Dev'
+    
+    target 'Caronae Dev' do
+        pod 'SwiftLint'
+    end
 
     target 'Caronae UITests' do
         pod 'SimulatorStatusMagic', :configurations => ['Tests']
