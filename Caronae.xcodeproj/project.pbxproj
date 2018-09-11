@@ -35,7 +35,7 @@
 		714AA358203B18FF005EF615 /* CaronaeMessageNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AA357203B18FF005EF615 /* CaronaeMessageNotification.swift */; };
 		714AA359203B2247005EF615 /* CaronaeMessageNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714AA357203B18FF005EF615 /* CaronaeMessageNotification.swift */; };
 		714F7D5C1FEF247B001587C7 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F7D591FEF247B001587C7 /* SnapshotHelper.swift */; };
-		714F7D5E1FEF247B001587C7 /* Caronae_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F7D5B1FEF247B001587C7 /* Caronae_UITests.swift */; };
+		714F7D5E1FEF247B001587C7 /* CaronaeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F7D5B1FEF247B001587C7 /* CaronaeUITests.swift */; };
 		714F822F1F6083CD00531C71 /* PlaceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F822E1F6083CD00531C71 /* PlaceService.swift */; };
 		714F82311F610E8300531C71 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714F82301F610E8300531C71 /* UIColor+hex.swift */; };
 		7157BD8A1FB692D400D216F3 /* UIViewController+isVisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7157BD891FB692D400D216F3 /* UIViewController+isVisible.swift */; };
@@ -242,7 +242,7 @@
 		714AA357203B18FF005EF615 /* CaronaeMessageNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaronaeMessageNotification.swift; sourceTree = "<group>"; };
 		714F7D591FEF247B001587C7 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = CaronaeUITests/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		714F7D5A1FEF247B001587C7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CaronaeUITests/Info.plist; sourceTree = SOURCE_ROOT; };
-		714F7D5B1FEF247B001587C7 /* Caronae_UITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Caronae_UITests.swift; path = CaronaeUITests/Caronae_UITests.swift; sourceTree = SOURCE_ROOT; };
+		714F7D5B1FEF247B001587C7 /* CaronaeUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaronaeUITests.swift; path = CaronaeUITests/CaronaeUITests.swift; sourceTree = SOURCE_ROOT; };
 		714F822E1F6083CD00531C71 /* PlaceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaceService.swift; path = Services/PlaceService.swift; sourceTree = "<group>"; };
 		714F82301F610E8300531C71 /* UIColor+hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
 		7157BD891FB692D400D216F3 /* UIViewController+isVisible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+isVisible.swift"; sourceTree = "<group>"; };
@@ -413,7 +413,7 @@
 		7123EE451FEE13B800EA3773 /* CaronaeUITests */ = {
 			isa = PBXGroup;
 			children = (
-				714F7D5B1FEF247B001587C7 /* Caronae_UITests.swift */,
+				714F7D5B1FEF247B001587C7 /* CaronaeUITests.swift */,
 				714F7D5A1FEF247B001587C7 /* Info.plist */,
 				714F7D591FEF247B001587C7 /* SnapshotHelper.swift */,
 			);
@@ -1159,7 +1159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				714F7D5E1FEF247B001587C7 /* Caronae_UITests.swift in Sources */,
+				714F7D5E1FEF247B001587C7 /* CaronaeUITests.swift in Sources */,
 				714F7D5C1FEF247B001587C7 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,7 @@ class User: Object, Mappable {
     @objc dynamic var phoneNumber: String?
     @objc dynamic var location: String?
     @objc dynamic var carOwner: Bool = false
-    @objc dynamic var carModel: String? = nil
+    @objc dynamic var carModel: String?
     @objc dynamic var carPlate: String?
     @objc dynamic var carColor: String?
     @objc dynamic var profilePictureURL: String?

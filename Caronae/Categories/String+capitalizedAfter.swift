@@ -5,8 +5,8 @@ extension String {
             return self
         }
         
-        for i in 1..<componentes.count {
-            componentes[i] = componentes[i].capitalized
+        for index in 1..<componentes.count {
+            componentes[index] = componentes[index].capitalized
         }
         return componentes.joined(separator: separator)
     }

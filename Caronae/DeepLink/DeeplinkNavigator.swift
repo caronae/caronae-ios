@@ -72,5 +72,4 @@ class DeeplinkNavigator {
             myRidesViewController?.openRide(withID: rideId, openChat: openChat)
         }
     }
-    
 }

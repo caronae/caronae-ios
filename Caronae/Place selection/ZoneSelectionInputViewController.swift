@@ -32,5 +32,4 @@ class ZoneSelectionInputViewController: UIViewController {
             finishSelection()
         }
     }
-    
 }

@@ -62,13 +62,13 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     }
     
     @IBAction func selectCenterTapped(_ sender: Any) {
-        let selectionVC = HubSelectionViewController.init(selectionType: .manySelection, hubTypeDirection: .centers)
+        let selectionVC = HubSelectionViewController(selectionType: .manySelection, hubTypeDirection: .centers)
         selectionVC.delegate = self
         self.navigationController?.show(selectionVC, sender: self)
     }
     
     @IBAction func selectNeighborhoodTapped(_ sender: Any) {
-        let selectionVC = NeighborhoodSelectionViewController.init(selectionType: .manySelection)
+        let selectionVC = NeighborhoodSelectionViewController(selectionType: .manySelection)
         selectionVC.delegate = self
         self.navigationController?.show(selectionVC, sender: self)
     }
@@ -107,5 +107,4 @@ class FilterRideViewController: UIViewController, NeighborhoodSelectionDelegate,
             allRidesVC.enableFilterRides()
         }
     }
-
 }

@@ -6,10 +6,10 @@ class FalaeService {
         // This prevents others from using the default '()' initializer for this class.
     }
     
-    func sendMessage(subject: String, message: String, success: @escaping () -> Void, error: @escaping (_ error: Error?) -> Void) {
+    func sendMessage(subject: String, message: String, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
         let params = [
             "subject": subject,
-            "message": message,
+            "message": message
             ]
         
         api.post("/api/v1/falae/messages", parameters: params, progress: nil, success: { _, _ in

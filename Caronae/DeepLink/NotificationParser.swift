@@ -2,7 +2,7 @@ class NotificationParser {
     static let shared = NotificationParser()
     private init() { }
     
-    func handleNotification(_ userInfo: [AnyHashable : Any]?) -> DeeplinkType? {
+    func handleNotification(_ userInfo: [AnyHashable: Any]?) -> DeeplinkType? {
         guard let msgType = userInfo?["msgType"] as? String else {
             return nil
         }
@@ -35,7 +35,7 @@ class NotificationParser {
         }
     }
     
-    private func rideId(ofUserInfo userInfo: [AnyHashable : Any]?) -> Int? {
+    private func rideId(ofUserInfo userInfo: [AnyHashable: Any]?) -> Int? {
         guard let idString = userInfo?["rideId"] as? String,
             let id = Int(idString) else {
                 NSLog("Cannot handle notification, did not get rideId")

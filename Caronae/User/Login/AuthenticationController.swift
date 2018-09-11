@@ -50,5 +50,4 @@ class AuthenticationController {
             callback(caronaeError)
         })
     }
-
 }

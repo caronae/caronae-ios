@@ -20,7 +20,7 @@ class MenuViewController: UIViewController {
         
         updateProfileFields()
         
-        NotificationCenter.default.addObserver(self, selector:#selector(updateProfileFields), name: .CaronaeDidUpdateUser, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateProfileFields), name: .CaronaeDidUpdateUser, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

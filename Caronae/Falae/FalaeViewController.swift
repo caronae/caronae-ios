@@ -50,10 +50,13 @@ class FalaeViewController: UIViewController {
     @IBAction func didTapSelectTypeButton(_ sender: Any) {
         view.endEditing(true)
         ActionSheetStringPicker.show(withTitle: "Qual o motivo do seu contato?",
-                                     rows: messageTypes, initialSelection: selectedTypeIndex,
+                                     rows: messageTypes,
+                                     initialSelection: selectedTypeIndex,
                                      doneBlock: { _, _, selectedValue in
                                         self.selectedType = selectedValue as! String
-                                     }, cancel: nil, origin: sender)
+                                     },
+                                     cancel: nil,
+                                     origin: sender)
     }
     
     @IBAction func didTapSendButton(_ sender: Any) {
@@ -61,7 +64,9 @@ class FalaeViewController: UIViewController {
         
         let messageText = messageTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         if messageText.isEmpty {
-            CaronaeAlertController.presentOkAlert(withTitle: "Ops!", message: "Parece que você esqueceu de preencher sua mensagem.")
+            CaronaeAlertController.presentOkAlert(withTitle: "Ops!",
+                                                  message: "Parece que você esqueceu de preencher sua mensagem.")
+            
             return
         }
         let subject = String(format: "[%@] %@", selectedType, subjectTextField.text!)
@@ -77,14 +82,17 @@ class FalaeViewController: UIViewController {
         SVProgressHUD.show()
         FalaeService.instance.sendMessage(subject: subject, message: message, success: {
             SVProgressHUD.dismiss()
-            CaronaeAlertController.presentOkAlert(withTitle: "Mensagem enviada!", message: "Obrigado por nos mandar uma mensagem. Nossa equipe irá entrar em contato em breve.", handler: {
-                self.navigationController?.popViewController(animated: true)
+            CaronaeAlertController.presentOkAlert(withTitle: "Mensagem enviada!",
+                                                  message: "Obrigado por nos mandar uma mensagem. Nossa equipe irá entrar em contato em breve.",
+                                                  handler: {
+                                                    self.navigationController?.popViewController(animated: true)
             })
-        }) { error in
+        }, error: { err in
             self.sendButton.isEnabled = true
             SVProgressHUD.dismiss()
-            NSLog("Error: %@", error!.localizedDescription)
-            CaronaeAlertController.presentOkAlert(withTitle: "Mensagem não enviada", message: "Ocorreu um erro enviando sua mensagem. Verifique sua conexão e tente novamente.")
-        }
+            NSLog("Error: %@", err.localizedDescription)
+            CaronaeAlertController.presentOkAlert(withTitle: "Mensagem não enviada",
+                                                  message: "Ocorreu um erro enviando sua mensagem. Verifique sua conexão e tente novamente.")
+        })
     }
 }

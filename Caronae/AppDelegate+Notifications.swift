@@ -149,6 +149,7 @@ extension AppDelegate {
     
     @objc func updateApplicationBadgeNumber() {
         guard let notifications = try? NotificationService.instance.getNotifications() else { return }
+        
         UIApplication.shared.applicationIconBadgeNumber = notifications.count
     }
     

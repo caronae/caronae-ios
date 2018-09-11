@@ -66,7 +66,7 @@ class UserService {
     }
     
     func getUser(withID id: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/api/v1/users/\(id)", parameters: nil, progress: nil, success: { task, responseObject in
+        api.get("/api/v1/users/\(id)", parameters: nil, progress: nil, success: { _, responseObject in
             guard let responseObject = responseObject as? [String: Any],
                 let userJson = responseObject["user"] as? [String: Any],
                 let user = User(JSON: userJson) else {
@@ -85,7 +85,7 @@ class UserService {
             }
 
             success(user)
-        }, failure: { task, err in
+        }, failure: { _, err in
             NSLog("Error loading user with id \(id): \(err.localizedDescription)")
             error(err)
         })
@@ -104,11 +104,10 @@ class UserService {
                 NSLog("Failed to update places: \(err.localizedDescription)")
                 error(.invalidResponse)
             })
-            
-        }) { err in
+        }, error: { err in
             NSLog("Failed to sign in: \(err.localizedDescription)")
             error(.invalidResponse)
-        }
+        })
     }
     
     func signIn(withIDUFRJ idUFRJ: String, token: String, success: @escaping () -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
@@ -146,11 +145,10 @@ class UserService {
                     NSLog("Failed to update places: \(err.localizedDescription)")
                     error(.invalidResponse)
                 })
-                
             }, error: { err in
+                NSLog("Error during singIn when trying to migrate to JWT. %@", err.localizedDescription)
                 error(.invalidResponse)
             })
-            
         }, failure: { task, err in
             NSLog("Failed to sign in: \(err.localizedDescription)")
             
@@ -175,7 +173,7 @@ class UserService {
         }
         api.get("/api/v1/users/\(userID)/token", parameters: nil, progress: nil, success: { _, _ in
             success()
-        }, failure: { task, err in
+        }, failure: { _, err in
             NSLog("Error getting user jwt token: \(err.localizedDescription)")
             error(err)
         })
@@ -214,7 +212,7 @@ class UserService {
     }
     
     func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.put("/api/v1/users/\(user.id)", parameters: user.toJSON(), success: { task, responseObject in
+        api.put("/api/v1/users/\(user.id)", parameters: user.toJSON(), success: { _, _ in
             
             let currentUser = self.user!
             
@@ -248,7 +246,7 @@ class UserService {
         }
         
         let params = [ "facebook_id": id ]
-        api.put("/api/v1/users/\(user.id)", parameters: params, success: { task, responseObject in
+        api.put("/api/v1/users/\(user.id)", parameters: params, success: { _, _ in
             success()
         }, failure: { _, err in
             error(err)
@@ -257,7 +255,7 @@ class UserService {
     
     func getPhotoFromFacebook(success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
         let request = FBSDKGraphRequest(graphPath: "me/picture?type=large&redirect=false", parameters: ["fields": "url"])!
-        request.start(completionHandler: { connection, result, err in
+        request.start(completionHandler: { _, result, err in
             guard err == nil,
             let response = result as? [String: Any],
             let data = response["data"] as? [String: Any],
@@ -298,7 +296,7 @@ class UserService {
     }
     
     func ridesCountForUser(withID id: Int, success: @escaping (_ offered: Int, _ taken: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/api/v1/users/\(id)/rides/history", parameters: nil, progress: nil, success: { task, responseObject in
+        api.get("/api/v1/users/\(id)/rides/history", parameters: nil, progress: nil, success: { _, responseObject in
             guard let response = responseObject as? [String: Any],
                 let offered = response["offered_rides_count"] as? Int,
                 let taken = response["taken_rides_count"] as? Int else {
@@ -333,7 +331,7 @@ class UserService {
             return
         }
         
-        api.get("/user/\(facebookID)/mutualFriends", parameters: nil, progress: nil, success: { task, responseObject in
+        api.get("/user/\(facebookID)/mutualFriends", parameters: nil, progress: nil, success: { _, responseObject in
             guard let response = responseObject as? [String: Any],
             let friendsJson = response["mutual_friends"] as? [[String: Any]],
                 let totalCount = response["total_count"] as? Int else {

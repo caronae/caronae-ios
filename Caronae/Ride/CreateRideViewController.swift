@@ -76,18 +76,18 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         notes.layer.cornerRadius = 8.0
         notes.layer.borderColor = UIColor(white: 0.902, alpha: 1.0).cgColor
         notes.layer.borderWidth = 2.0
-        notes.textContainerInset = UIEdgeInsetsMake(10, 5, 5, 5)
+        notes.textContainerInset = UIEdgeInsets(top: 10, left: 5, bottom: 5, right: 5)
         notes.delegate = self
         notesPlaceholder = notes.text
         notesTextColor = notes.textColor
         
-        if let lastOfferedRide      = userDefaults.dictionary(forKey: CaronaePreferenceLastOfferedRide.key) {
-            if let lastZone         = lastOfferedRide[CaronaePreferenceLastOfferedRide.zone] as? String,
+        if let lastOfferedRide = userDefaults.dictionary(forKey: CaronaePreferenceLastOfferedRide.key) {
+            if let lastZone = lastOfferedRide[CaronaePreferenceLastOfferedRide.zone] as? String,
                let lastNeighborhood = lastOfferedRide[CaronaePreferenceLastOfferedRide.neighborhood] as? String,
-               let lastPlace        = lastOfferedRide[CaronaePreferenceLastOfferedRide.place] as? String,
-               let lastRoute        = lastOfferedRide[CaronaePreferenceLastOfferedRide.route] as? String,
-               let lastSlots        = lastOfferedRide[CaronaePreferenceLastOfferedRide.slots] as? Double,
-               let lastDescription  = lastOfferedRide[CaronaePreferenceLastOfferedRide.description] as? String {
+               let lastPlace = lastOfferedRide[CaronaePreferenceLastOfferedRide.place] as? String,
+               let lastRoute = lastOfferedRide[CaronaePreferenceLastOfferedRide.route] as? String,
+               let lastSlots = lastOfferedRide[CaronaePreferenceLastOfferedRide.slots] as? Double,
+               let lastDescription = lastOfferedRide[CaronaePreferenceLastOfferedRide.description] as? String {
                 selectedZone = lastZone
                 selectedNeighborhood = lastNeighborhood
                 reference.text = lastPlace
@@ -115,8 +115,10 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     
     func checkIfUserHasCar() {
         if let user = UserService.instance.user, !user.carOwner {
-            CaronaeAlertController.presentOkAlert(withTitle: "Você possui carro?", message: "Parece que você marcou no seu perfil que não possui um carro. Para criar uma carona, preencha os dados do seu carro no seu perfil.", handler: {
-                self.didTapCancelButton(self)
+            CaronaeAlertController.presentOkAlert(withTitle: "Você possui carro?",
+                                                  message: "Parece que você marcou no seu perfil que não possui um carro. Para criar uma carona, preencha os dados do seu carro no seu perfil.",
+                                                  handler: {
+                                                    self.didTapCancelButton(self)
             })
         }
     }
@@ -131,8 +133,8 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         ride.place = reference.text
         ride.route = route.text
         ride.hub = selectedHub
-        ride.notes = description;
-        ride.going = going;
+        ride.notes = description
+        ride.going = going
         ride.date = selectedDate
         ride.slots = Int(slotsStepper.value)
         
@@ -145,21 +147,21 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
             var dateComponents = DateComponents()
             dateComponents.month = routineDurationMonths
             let repeatsUntilDate = Calendar.current.date(byAdding: dateComponents, to: ride.date)
-            ride.repeatsUntil = repeatsUntilDate;
+            ride.repeatsUntil = repeatsUntilDate
         }
         
-        return ride;
+        return ride
     }
     
     func savePreset(ride: Ride) {
         let lastRidePresets = userDefaults.dictionary(forKey: CaronaePreferenceLastOfferedRide.key)
         
-        var newPresets: [String : Any] = [CaronaePreferenceLastOfferedRide.zone         : ride.region,
-                                          CaronaePreferenceLastOfferedRide.neighborhood : ride.neighborhood,
-                                          CaronaePreferenceLastOfferedRide.place        : ride.place,
-                                          CaronaePreferenceLastOfferedRide.route        : ride.route,
-                                          CaronaePreferenceLastOfferedRide.slots        : ride.slots,
-                                          CaronaePreferenceLastOfferedRide.description  : ride.notes]
+        var newPresets: [String: Any] = [CaronaePreferenceLastOfferedRide.zone: ride.region,
+                                         CaronaePreferenceLastOfferedRide.neighborhood: ride.neighborhood,
+                                         CaronaePreferenceLastOfferedRide.place: ride.place,
+                                         CaronaePreferenceLastOfferedRide.route: ride.route,
+                                         CaronaePreferenceLastOfferedRide.slots: ride.slots,
+                                         CaronaePreferenceLastOfferedRide.description: ride.notes]
         
         if ride.going {
             newPresets[CaronaePreferenceLastOfferedRide.hubGoing] = ride.hub
@@ -192,7 +194,8 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
             
             NSLog("Error creating ride: %@", error.localizedDescription)
             
-            CaronaeAlertController.presentOkAlert(withTitle: "Não foi possível criar a carona.", message: error.localizedDescription)
+            CaronaeAlertController.presentOkAlert(withTitle: "Não foi possível criar a carona.",
+                                                  message: error.localizedDescription)
         })
     }
     
@@ -201,13 +204,15 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         
         // Check if the user selected the location and hub
         if selectedZone.isEmpty || selectedNeighborhood.isEmpty || selectedHub.isEmpty {
-            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que você esqueceu de preencher o local da sua carona.")
+            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos",
+                                                  message: "Ops! Parece que você esqueceu de preencher o local da sua carona.")
             return
         }
         
         // Check if the user has selected the routine details
         if routineSwitch.isOn && weekDays.isEmpty {
-            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que você esqueceu de marcar os dias da rotina.")
+            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos",
+                                                  message: "Ops! Parece que você esqueceu de marcar os dias da rotina.")
             return
         }
         
@@ -222,11 +227,15 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
             } else {
                 switch status {
                 case "duplicate":
-                    CaronaeAlertController.presentOkAlert(withTitle: "Você já ofereceu uma carona muito parecida com essa", message: "Você pode verificar as suas caronas na seção 'Minhas' do aplicativo.", handler: {
-                        self.createRideButton.isEnabled = true
+                    CaronaeAlertController.presentOkAlert(withTitle: "Você já ofereceu uma carona muito parecida com essa",
+                                                          message: "Você pode verificar as suas caronas na seção 'Minhas' do aplicativo.",
+                                                          handler: {
+                                                            self.createRideButton.isEnabled = true
                     })
                 default:
-                    let alert = CaronaeAlertController(title: "Parece que você já ofereceu uma carona para este dia", message: "Você pode cancelar e verificar as suas caronas ou continuar e criar a carona mesmo assim.", preferredStyle: .alert)
+                    let alert = CaronaeAlertController(title: "Parece que você já ofereceu uma carona para este dia",
+                                                       message: "Você pode cancelar e verificar as suas caronas ou continuar e criar a carona mesmo assim.",
+                                                       preferredStyle: .alert)
                     alert?.addAction(SDCAlertAction(title: "Cancelar", style: .cancel, handler: { _ in
                         self.createRideButton.isEnabled = true
                     }))
@@ -235,12 +244,12 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
                     alert?.present(completion: nil)
                 }
             }
-            
         }, error: { error in
             SVProgressHUD.dismiss()
             self.createRideButton.isEnabled = true
             
-            CaronaeAlertController.presentOkAlert(withTitle: "Não foi possível validar sua carona.", message: String(format: "Houve um erro de comunicação com nosso servidor. Por favor, tente novamente. (%@)", error!.localizedDescription))
+            CaronaeAlertController.presentOkAlert(withTitle: "Não foi possível validar sua carona.",
+                                                  message: String(format: "Houve um erro de comunicação com nosso servidor. Por favor, tente novamente. (%@)", error!.localizedDescription))
         })
     }
     
@@ -314,7 +323,13 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     @IBAction func selectDateTapped(_ sender: Any) {
         self.view.endEditing(true)
         let title = segmentedControl.selectedSegmentIndex == 0 ? PlaceService.Institution.goingLabel : PlaceService.Institution.leavingLabel
-        let datePicker = ActionSheetDatePicker(title: title, datePickerMode: .dateAndTime, selectedDate: self.selectedDate, target: self, action: #selector(timeWasSelected(selectedTime:)), origin: sender)
+        let datePicker = ActionSheetDatePicker(title: title,
+                                               datePickerMode: .dateAndTime,
+                                               selectedDate: self.selectedDate,
+                                               target: self,
+                                               action: #selector(timeWasSelected(selectedTime:)),
+                                               origin: sender)
+        
         datePicker?.minimumDate = Date.currentTimePlus(minutes: 5)
         datePicker?.show()
     }
@@ -347,7 +362,6 @@ class CreateRideViewController: UIViewController, NeighborhoodSelectionDelegate,
         self.selectedZone = zone
         self.selectedNeighborhood = neighborhoods.first!
     }
-
 }
 
 
@@ -363,7 +377,7 @@ extension CreateRideViewController: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text == "" {
+        if textView.text.isEmpty {
             textView.text = notesPlaceholder
             textView.textColor = notesTextColor
         }

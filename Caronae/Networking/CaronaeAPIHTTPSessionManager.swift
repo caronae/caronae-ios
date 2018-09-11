@@ -6,6 +6,7 @@ class CaronaeAPIHTTPSessionManager: AFHTTPSessionManager {
     private init() {
         let caronaeAPIBaseURL = URL(string: CaronaeAPIBaseURLString)
         super.init(baseURL: caronaeAPIBaseURL, sessionConfiguration: .default)
+        
         requestSerializer = CaronaeAPIRequestSerializer()
         responseSerializer = CaronaeAPIResponseSerializer()
         requestSerializer.timeoutInterval = 30

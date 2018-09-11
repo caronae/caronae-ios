@@ -13,7 +13,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         self.navigationController?.view.backgroundColor = UIColor.white
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
-        NotificationCenter.default.addObserver(self, selector:#selector(self.reloadRidesIfNecessary), name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadRidesIfNecessary), name: .UIApplicationWillEnterForeground, object: nil)
         
         lastAllRidesUpdate = Date.distantPast
         
@@ -82,7 +82,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                     self.rides = allRides
                 }
                 
-                if self.rides.count > 0 {
+                if !self.rides.isEmpty {
                     self.tableView.tableFooterView = self.tableFooter
                 } else {
                     self.tableView.tableFooterView = nil
@@ -94,7 +94,6 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                     // Load first page of the other direction
                     self.loadAllRides(direction: !(self.ridesDirectionGoing))
                 }
-                
             } else {
                 let ridesCount = self.filteredRides.count
                 
@@ -105,7 +104,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
                 
                 // Create new index paths
                 let (start, end) = (ridesCount, self.filteredRides.count)
-                let indexPaths = (start..<end).map { return IndexPath(row: $0, section: 0) }
+                let indexPaths = (start..<end).map { IndexPath(row: $0, section: 0) }
                 
                 // Update table view
                 self.tableView.beginUpdates()
@@ -123,7 +122,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     }
     
     @objc func reloadRidesIfNecessary() {
-        if lastAllRidesUpdate.timeIntervalSinceNow.isLess(than: -5*60) {
+        if lastAllRidesUpdate.timeIntervalSinceNow.isLess(than: -5 * 60) {
             pagination = PaginationState()
             loadAllRides()
         }
@@ -132,7 +131,8 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     func loadRide(withID id: Int) {
         RideService.instance.getRide(withID: id, success: { ride, availableSlots in
             guard ride.date.isInTheFuture() else {
-                CaronaeAlertController.presentOkAlert(withTitle: "Carona encerrada", message: "A carona que você tentou abrir já foi encerrada. Você pode encontrar novas caronas através da busca.")
+                CaronaeAlertController.presentOkAlert(withTitle: "Carona encerrada",
+                                                      message: "A carona que você tentou abrir já foi encerrada. Você pode encontrar novas caronas através da busca.")
                 return
             }
             
@@ -164,7 +164,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         
         if !filterIsEnabled {
             // workaround to not cover cell after enabling filter for the first time
-            tableView.setContentOffset(CGPoint.init(x: 0, y: -500), animated: false)
+            tableView.setContentOffset(CGPoint(x: 0, y: -500), animated: false)
         }
         
         filterIsEnabled = true
@@ -184,7 +184,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
     }
     
     override func didTapClearFilterButton(_ sender: UIButton!) {
-        super.didTapClearFilterButton(sender);
+        super.didTapClearFilterButton(sender)
         
         disableFilterRides()
     }
@@ -215,12 +215,12 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
             }
         } else if segue.identifier == "ViewSearchResults" {
             if let searchViewController = segue.destination as? SearchResultsViewController {
-                searchViewController.searchedForRide(withParameters: searchParams);
+                searchViewController.searchedForRide(withParameters: searchParams)
             }
         }
     }
     
-    @IBAction func didTapFilterUnwind(segue:UIStoryboardSegue) {
+    @IBAction func didTapFilterUnwind(segue: UIStoryboardSegue) {
     }
     
     
@@ -231,5 +231,4 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         
         performSegue(withIdentifier: "ViewSearchResults", sender: self)
     }
-    
 }

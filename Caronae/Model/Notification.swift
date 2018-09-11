@@ -1,7 +1,7 @@
 import RealmSwift
 
 class Notification: Object {
-    @objc dynamic var id: String = String()
+    @objc dynamic var id: String = ""
     @objc dynamic var senderID: Int = 0
     @objc dynamic var rideID: Int = 0
     @objc dynamic var kind: Kind = .other
@@ -18,4 +18,3 @@ class Notification: Object {
         case other
     }
 }
-

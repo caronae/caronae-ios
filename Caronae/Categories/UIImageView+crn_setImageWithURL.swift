@@ -4,7 +4,7 @@ extension UIImageView {
     func crn_setImage(with url: URL?, completed completionHandler: (() -> Void)? = nil) {
         self.sd_setImage(with: url,
                          placeholderImage: UIImage(named: CaronaePlaceholderProfileImage),
-                         options: .retryFailed) { image, error, cacheType, url in
+                         options: .retryFailed) { _, _, cacheType, _ in
                             if cacheType == .none {
                                 self.alpha = 0.5
                                 UIView.animate(withDuration: 0.3, animations: {

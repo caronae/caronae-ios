@@ -10,7 +10,7 @@ class RideService {
     
     func getRides(page: Int, filterParameters: FilterParameters? = nil, success: @escaping (_ rides: [Ride], _ lastPage: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
         
-        api.get("/api/v1/rides?page=\(page)", parameters: filterParameters?.dictionary(), progress: nil, success: { task, responseObject in
+        api.get("/api/v1/rides?page=\(page)", parameters: filterParameters?.dictionary(), progress: nil, success: { _, responseObject in
             guard let response = responseObject as? [String: Any],
                 let ridesJson = response["data"] as? [[String: Any]],
                 let lastPage = response["last_page"] as? Int else {
@@ -54,7 +54,7 @@ class RideService {
             return
         }
         
-        api.get("/api/v1/users/\(user.id)/rides", parameters: nil, progress: nil, success: { task, responseObject in
+        api.get("/api/v1/users/\(user.id)/rides", parameters: nil, progress: nil, success: { _, responseObject in
             guard let jsonResponse = responseObject as? [String: Any],
                 let pendingRidesJson = jsonResponse["pending_rides"] as? [[String: Any]],
                 let activeRidesJson = jsonResponse["active_rides"] as? [[String: Any]],
@@ -195,7 +195,7 @@ class RideService {
             return
         }
         
-        api.get("/api/v1/users/\(user.id)/rides/history", parameters: nil, progress: nil, success: { task, responseObject in
+        api.get("/api/v1/users/\(user.id)/rides/history", parameters: nil, progress: nil, success: { _, responseObject in
             guard let jsonResponse = responseObject as? [String: Any],
                 let ridesJson = jsonResponse["rides"] as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
@@ -211,7 +211,7 @@ class RideService {
     }
     
     func getRequestersForRide(withID id: Int, success: @escaping (_ rides: [User]) -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/api/v1/rides/\(id)/requests", parameters: nil, progress: nil, success: { task, responseObject in
+        api.get("/api/v1/rides/\(id)/requests", parameters: nil, progress: nil, success: { _, responseObject in
             guard let usersJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
                 return
@@ -225,7 +225,7 @@ class RideService {
     }
 
     func createRide(_ ride: Ride, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.post("/api/v1/rides", parameters: ride.toJSON(), progress: nil, success: { task, responseObject in
+        api.post("/api/v1/rides", parameters: ride.toJSON(), progress: nil, success: { _, responseObject in
             guard let ridesJson = responseObject as? [[String: Any]] else {
                 error(CaronaeError.invalidResponse)
                 return
@@ -236,7 +236,7 @@ class RideService {
                 let ride = Ride(JSON: $0)
                 ride?.driver = user
                 return ride
-                } as [Ride]
+            } as [Ride]
             
             do {
                 let realm = try Realm()
@@ -254,7 +254,7 @@ class RideService {
     }
     
     func finishRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.post("/api/v1/rides/\(id)/finish", parameters: nil, progress: nil, success: { task, responseObject in
+        api.post("/api/v1/rides/\(id)/finish", parameters: nil, progress: nil, success: { _, _ in
             do {
                 let realm = try Realm()
                 if let ride = realm.object(ofType: Ride.self, forPrimaryKey: id) {
@@ -263,7 +263,7 @@ class RideService {
                     }
                     
                     NotificationService.instance.clearNotifications(forRideID: id)
-                    self.updateMyRides(success: {} , error: {_ in })
+                    self.updateMyRides(success: {}, error: { _ in })
                 } else {
                     NSLog("Ride with id %d not found locally in user's rides", id)
                 }
@@ -278,7 +278,7 @@ class RideService {
     }
 
     func leaveRide(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.post("/api/v1/rides/\(id)/leave", parameters: nil, progress: nil, success: { task, responseObject in
+        api.post("/api/v1/rides/\(id)/leave", parameters: nil, progress: nil, success: { _, _ in
             do {
                 let realm = try Realm()
                 if let ride = realm.object(ofType: Ride.self, forPrimaryKey: id) {
@@ -301,7 +301,7 @@ class RideService {
     }
     
     func deleteRoutine(withID id: Int, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.delete("/ride/allFromRoutine/\(id)", parameters: nil, success: { task, responseObject in
+        api.delete("/ride/allFromRoutine/\(id)", parameters: nil, success: { _, _ in
             do {
                 let realm = try Realm()
                 let rides = realm.objects(Ride.self).filter("routineID == %@", id)
@@ -327,7 +327,7 @@ class RideService {
     }
     
     func requestJoinOnRide(_ ride: Ride, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.post("/api/v1/rides/\(ride.id)/requests", parameters: nil, progress: nil, success: { task, responseObject in
+        api.post("/api/v1/rides/\(ride.id)/requests", parameters: nil, progress: nil, success: { _, _ in
             do {
                 let realm = try Realm()
                 try realm.write {
@@ -345,11 +345,11 @@ class RideService {
     }
     
     func hasRequestedToJoinRide(withID id: Int) -> Bool {
-        if let realm = try? Realm(), let ride = realm.object(ofType: Ride.self, forPrimaryKey: id), ride.isPending {
-            return true
+        guard let ride = getRideFromRealm(withID: id), ride.isPending else {
+            return false
         }
         
-        return false
+        return true
     }
     
     func getRideFromRealm(withID id: Int) -> Ride? {
@@ -393,7 +393,7 @@ class RideService {
             "accepted": accepted
         ] as [String: Any]
         
-        api.put("/api/v1/rides/\(rideID)/requests", parameters: params, success: { task, responseObject in
+        api.put("/api/v1/rides/\(rideID)/requests", parameters: params, success: { _, _ in
             if accepted {
                 do {
                     let realm = try Realm()

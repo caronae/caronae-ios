@@ -5,7 +5,7 @@ class SelectionCell: UITableViewCell {
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var colorDetail: UIView!
     
-    var cellColor: UIColor = UIColor.black
+    var cellColor: UIColor = .black
     var cellLevel: SelectionLevel = .firstLevel
     
     func setupCell(on level: SelectionLevel, withTitle title: String, andColor color: UIColor) {
@@ -42,5 +42,4 @@ class SelectionCell: UITableViewCell {
         
         updateStyle()
     }
-    
 }

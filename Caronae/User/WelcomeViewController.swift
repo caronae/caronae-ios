@@ -9,6 +9,8 @@ class WelcomeViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         let user = UserService.instance.user!
         titleLabel.text = "Olá, " + user.firstName + "!"
         

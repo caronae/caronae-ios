@@ -79,8 +79,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             // Check if the logout was forced by the server
             if let signOutRequired = notification.userInfo?[CaronaeSignOutRequiredKey] as? Bool, signOutRequired {
-                CaronaeAlertController.presentOkAlert(withTitle: "Erro de autorização", message: "Ocorreu um erro autenticando seu usuário. Sua chave de acesso pode ter sido redefinida ou suspensa.\n\nPara sua segurança, você será levado à tela de login.", handler: {
-                    self.displayAuthenticationScreen()
+                CaronaeAlertController.presentOkAlert(withTitle: "Erro de autorização",
+                                                      message: """
+                                                               Ocorreu um erro autenticando seu usuário.
+                                                               Sua chave de acesso pode ter sido redefinida ou suspensa.\n\n
+                                                               Para sua segurança, você será levado à tela de login.
+                                                               """,
+                                                      handler: {
+                                                        self.displayAuthenticationScreen()
                 })
             } else {
                 displayAuthenticationScreen()
@@ -115,8 +121,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func displayFinishProfileScreen() {
         let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-        let welcomeViewController = WelcomeViewController.init()
-        let welcomeNavigationController = UINavigationController.init(rootViewController: welcomeViewController)
+        let welcomeViewController = WelcomeViewController()
+        let welcomeNavigationController = UINavigationController(rootViewController: welcomeViewController)
         welcomeNavigationController.modalTransitionStyle = .coverVertical
         welcomeNavigationController.modalPresentationStyle = .overCurrentContext
         rootViewController?.present(welcomeNavigationController, animated: true, completion: nil)
@@ -171,7 +177,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: Deeplinks
     
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, options: options) ||
             deepLinkManager.handleDeepLink(url: url)
     }

@@ -99,7 +99,7 @@ class LoginViewController: UIViewController {
                 self.idTextField.isHidden = false
                 self.tokenTextField.isHidden = false
             }
-        }) { _ in
+        }, completion: { _ in
             UIView.animate(withDuration: 0.25, animations: {
                 if self.isAutoLoginMethod {
                     self.idTextField.isHidden = true
@@ -108,9 +108,9 @@ class LoginViewController: UIViewController {
                     self.idTextField.alpha = 1.0
                     self.tokenTextField.alpha = 1.0
                 }
-            }) { _ in
+            }, completion: { _ in
                 self.view.isUserInteractionEnabled = true
-            }
+            })
             UIView.performWithoutAnimation {
                 self.changeLoginMethodButton.setTitle(changeLoginMethodbuttonTitle, for: .normal)
                 self.changeLoginMethodButton.layoutIfNeeded()
@@ -118,7 +118,7 @@ class LoginViewController: UIViewController {
                 self.loginButton.setImage(loginButtonIcon, for: .normal)
                 self.loginButton.layoutIfNeeded()
             }
-        }
+        })
     }
 }
 

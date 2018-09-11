@@ -44,7 +44,7 @@ extension AppDelegate {
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(
                 options: authOptions,
-                completionHandler: {_,_ in })
+                completionHandler: { _, _ in })
         } else {
             let settings: UIUserNotificationSettings =
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -58,14 +58,14 @@ extension AppDelegate {
         NSLog("Registration for remote notification failed with error: %@", error.localizedDescription)
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         NSLog("Remote notification received 1: %@", userInfo)
         
         _ = handleNotification(userInfo)
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if #available(iOS 10.0, *), application.applicationState == .active  {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if #available(iOS 10.0, *), application.applicationState == .active {
             NSLog("Remote notification received 2 on iOS 10 or greater")
             completionHandler(UIBackgroundFetchResult.newData)
             return

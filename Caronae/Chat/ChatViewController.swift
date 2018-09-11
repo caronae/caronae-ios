@@ -14,7 +14,7 @@ class ChatViewController: JSQMessagesViewController {
     var messagesNotificationToken: RLMNotificationToken!
     var isSending = false
     
-    let timestampFormatter = JSQMessagesTimestampFormatter.init()
+    let timestampFormatter = JSQMessagesTimestampFormatter()
     var tappedMessageIndex: Int?
     
     convenience init(ride: Ride, color: UIColor) {
@@ -62,14 +62,14 @@ class ChatViewController: JSQMessagesViewController {
         outgoingBubbleTailless = JSQMessagesBubbleImageFactory(bubble: .jsq_bubbleCompactTailless(), capInsets: .zero).outgoingMessagesBubbleImage(with: self.color)
         
         // Setting up avatars
-        collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height:kJSQMessagesCollectionViewAvatarSizeDefault)
+        collectionView?.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height: kJSQMessagesCollectionViewAvatarSizeDefault)
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
         
         self.loadChatMessages()
         self.clearNotifications()
         
         // Clear notifications when ApplicationWillEnterForeground
-        NotificationCenter.default.addObserver(self, selector:#selector(self.clearNotifications), name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.clearNotifications), name: .UIApplicationWillEnterForeground, object: nil)
         
         automaticallyScrollsToMostRecentMessage = true
         
@@ -112,14 +112,19 @@ class ChatViewController: JSQMessagesViewController {
         
         let message = messages[indexPath.item]
         // Shows sender's image
-        if let senderImageURL = message.sender.profilePictureURL, let requestUrl = URL(string:senderImageURL) {
+        if let senderImageURL = message.sender.profilePictureURL, let requestUrl = URL(string: senderImageURL) {
             let senderImageView = UIImageView()
             senderImageView.crn_setImage(with: requestUrl)
-            return JSQMessagesAvatarImageFactory.avatarImage(withPlaceholder: senderImageView.image, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+            return JSQMessagesAvatarImageFactory.avatarImage(withPlaceholder: senderImageView.image,
+                                                             diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
         }
         // Shows sender's initials
-        let initials = message.sender.name.components(separatedBy: " ").prefix(3).reduce("") {$0 + String($1[$1.startIndex])}
-        return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: initials, backgroundColor: .gray, textColor: .white, font: .systemFont(ofSize: 12), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+        let initials = message.sender.name.components(separatedBy: " ").prefix(3).reduce("") { $0 + String($1[$1.startIndex]) }
+        return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: initials,
+                                                         backgroundColor: .gray,
+                                                         textColor: .white,
+                                                         font: .systemFont(ofSize: 12),
+                                                         diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -198,7 +203,9 @@ class ChatViewController: JSQMessagesViewController {
             self.isSending = false
             guard error == nil else {
                 NSLog("Error sending message data: (%@)", error!.localizedDescription)
-                CaronaeAlertController.presentOkAlert(withTitle: "Ops!", message: "Ocorreu um erro enviando sua mensagem.")
+                CaronaeAlertController.presentOkAlert(withTitle: "Ops!",
+                                                      message: "Ocorreu um erro enviando sua mensagem.")
+                
                 self.inputToolbar.contentView?.rightBarButtonItem.isEnabled = true
                 return
             }
@@ -272,7 +279,7 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     func subscribeToChanges() {
-        messagesNotificationToken = messages.observe { [weak self] (changes: RealmCollectionChange) in
+        messagesNotificationToken = messages.observe { [weak self] (_: RealmCollectionChange) in
             self?.finishReceivingMessage()
         }
     }
@@ -287,6 +294,4 @@ class ChatViewController: JSQMessagesViewController {
     override func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         return !isSending
     }
-    
 }
-

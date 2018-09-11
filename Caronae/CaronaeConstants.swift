@@ -1,4 +1,5 @@
 import Foundation
+// swiftlint:disable identifier_name
 
 
 // MARK: Caronae API Base URL
@@ -63,7 +64,6 @@ struct CaronaePreferenceLastFilter {
     static let neighborhoodsKey = "lastFilteredNeighborhoods"
     static let campusKey = "lastFilteredCampus"
     static let centersKey = "lastFilteredCenters"
-    
 }
 
 

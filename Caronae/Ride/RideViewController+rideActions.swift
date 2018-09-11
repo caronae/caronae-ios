@@ -5,12 +5,11 @@ extension RideViewController {
     
     func userIsRider() -> Bool {
         let userID = UserService.instance.user!.id
-        for rider in ride.riders {
-            if rider.id == userID {
-                return true
-            }
+        guard ride.riders.contains(where: { $0.id == userID }) else {
+            return false
         }
-        return false
+        
+        return true
     }
     
     func userIsDriver() -> Bool {
@@ -48,7 +47,8 @@ extension RideViewController {
             self.cancelButton.isEnabled = true
             NSLog("Error deleting routine (%@)", error.localizedDescription)
             
-            CaronaeAlertController.presentOkAlert(withTitle: "Algo deu errado.", message: String(format: "Não foi possível cancelar sua rotina. (%@)", error.localizedDescription))
+            CaronaeAlertController.presentOkAlert(withTitle: "Algo deu errado.",
+                                                  message: String(format: "Não foi possível cancelar sua rotina. (%@)", error.localizedDescription))
         })
     }
     
@@ -66,5 +66,4 @@ extension RideViewController {
             self.ride = realmRide
         }
     }
-    
 }

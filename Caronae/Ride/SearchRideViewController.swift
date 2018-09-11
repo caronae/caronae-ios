@@ -103,20 +103,26 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
     @IBAction func didTapDate(_ sender: Any) {
         self.view.endEditing(true)
         let title = directionControl.selectedSegmentIndex == 0 ? PlaceService.Institution.goingLabel : PlaceService.Institution.leavingLabel
-        let datePicker = ActionSheetDatePicker.init(title: title, datePickerMode: .dateAndTime, selectedDate: self.selectedDate, target: self, action: #selector(timeWasSelected(selectedTime:)), origin: sender)
+        let datePicker = ActionSheetDatePicker(title: title,
+                                               datePickerMode: .dateAndTime,
+                                               selectedDate: self.selectedDate,
+                                               target: self,
+                                               action: #selector(timeWasSelected(selectedTime:)),
+                                               origin: sender)
+        
         datePicker?.minuteInterval = 30
         datePicker?.minimumDate = Date.currentHour
         datePicker?.show()
     }
     
     @IBAction func selectCenterTapped(_ sender: Any) {
-        let selectionVC = HubSelectionViewController.init(selectionType: .manySelection, hubTypeDirection: .centers)
+        let selectionVC = HubSelectionViewController(selectionType: .manySelection, hubTypeDirection: .centers)
         selectionVC.delegate = self
         self.navigationController?.show(selectionVC, sender: self)
     }
     
     @IBAction func selectNeighborhoodTapped(_ sender: Any) {
-        let selectionVC = NeighborhoodSelectionViewController.init(selectionType: .manySelection)
+        let selectionVC = NeighborhoodSelectionViewController(selectionType: .manySelection)
         selectionVC.delegate = self
         self.navigationController?.show(selectionVC, sender: self)
     }
@@ -147,5 +153,4 @@ class SearchRideViewController: UIViewController, NeighborhoodSelectionDelegate,
             searchResultsVC.previouslySelectedSegmentIndex = self.directionControl.selectedSegmentIndex
         }
     }
-
 }

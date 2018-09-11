@@ -38,11 +38,11 @@ class ChatService {
         
         // Query only the messages since the date of the last known message by someone else
         var params: [String: Any]?
+
         if let user = UserService.instance.user,
             let lastMessage = realm.objects(Message.self)
                 .filter("ride == %@ AND sender != %@", ride, user)
-                .sorted(byKeyPath: "date", ascending: false)
-                .first {
+                .max(by: { $0.date < $1.date }) {
             let dateFormatter = DateFormatter()
             dateFormatter.calendar = Calendar(identifier: .gregorian)
             dateFormatter.locale = Locale(identifier: "en_US_POSIX")

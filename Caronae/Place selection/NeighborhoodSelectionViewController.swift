@@ -34,8 +34,10 @@ class NeighborhoodSelectionViewController: SelectionViewController {
         }, error: { error in
             SVProgressHUD.dismiss()
             NSLog("Error getting zones (\(error.localizedDescription))")
-            CaronaeAlertController.presentOkAlert(withTitle: "Não foi possível carregar as localidades", message: "Por favor, tente novamente. \(error.localizedDescription).", handler: {
-                self.navigationController?.popToRootViewController(animated: true)
+            CaronaeAlertController.presentOkAlert(withTitle: "Não foi possível carregar as localidades",
+                                                  message: "Por favor, tente novamente. \(error.localizedDescription).",
+                                                  handler: {
+                                                    self.navigationController?.popToRootViewController(animated: true)
             })
         })
     }
@@ -45,5 +47,4 @@ class NeighborhoodSelectionViewController: SelectionViewController {
         
         delegate?.hasSelected(neighborhoods: selections, inZone: firstLevel)
     }
-
 }

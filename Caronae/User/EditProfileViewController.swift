@@ -37,8 +37,8 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
     var user: User!
     var completeProfileMode = false
     
-    var phoneMaskedDelegate: MaskedTextFieldDelegate!
-    var carPlateMaskedDelegate: MaskedTextFieldDelegate!
+    weak var phoneMaskedDelegate: MaskedTextFieldDelegate!
+    weak var carPlateMaskedDelegate: MaskedTextFieldDelegate!
     
     var loadingButton = UIBarButtonItem()
     
@@ -95,10 +95,10 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         fbButtonView.addSubview(loginButton)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         fbButtonView.addConstraints(
-            NSLayoutConstraint.constraints(withVisualFormat: "V:|[loginButton]|", options: .alignAllTop, metrics: nil, views: ["loginButton" : loginButton])
+            NSLayoutConstraint.constraints(withVisualFormat: "V:|[loginButton]|", options: .alignAllTop, metrics: nil, views: ["loginButton": loginButton])
         )
         fbButtonView.addConstraints(
-            NSLayoutConstraint.constraints(withVisualFormat: "|[loginButton]|", options: .alignAllTop, metrics: nil, views: ["loginButton" : loginButton])
+            NSLayoutConstraint.constraints(withVisualFormat: "|[loginButton]|", options: .alignAllTop, metrics: nil, views: ["loginButton": loginButton])
         )
     }
     
@@ -109,10 +109,10 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         joinedDateFormatter.dateFormat = "MM/yyyy"
         joinedDateLabel.text = joinedDateFormatter.string(from: user.createdAt)
         
-        nameLabel.text      = user.name
-        courseLabel.text    = user.occupation
+        nameLabel.text = user.name
+        courseLabel.text = user.occupation
         numDrivesLabel.text = user.numDrives > -1 ? String(user.numDrives) : "-"
-        numRidesLabel.text  = user.numRides > -1 ? String(user.numRides) : "-"
+        numRidesLabel.text = user.numRides > -1 ? String(user.numRides) : "-"
         
         emailTextField.text = user.email
         let phoneNumber = user.phoneNumber ?? ""
@@ -164,36 +164,42 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
             self.showLoadingHUD(false)
             NSLog("User updated.")
             self.dismiss(animated: true, completion: nil)
-        }) { error in
+        }, error: { err in
             self.showLoadingHUD(false)
-            NSLog("Error saving profile: %@", error.localizedDescription)
-            CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando perfil", message: "Ocorreu um erro salvando as alterações no seu perfil.")
-        }
+            NSLog("Error saving profile: %@", err.localizedDescription)
+            CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando perfil",
+                                                  message: "Ocorreu um erro salvando as alterações no seu perfil.")
+        })
     }
     
     func isUserInputValid() -> Bool {
         guard let email = emailTextField.text, email.isValidEmail else {
-            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que o endereço de email que você inseriu não é válido.")
+            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos",
+                                                  message: "Ops! Parece que o endereço de email que você inseriu não é válido.")
             return false
         }
         
         guard let phone = phoneTextField.text?.onlyDigits, phone.count == 12 else {
-            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que o telefone que você inseriu não é válido. Ele deve estar no formato (0XX) XXXXX-XXXX.")
+            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos",
+                                                  message: "Ops! Parece que o telefone que você inseriu não é válido. Ele deve estar no formato (0XX) XXXXX-XXXX.")
             return false
         }
     
         guard !neighborhood.isEmpty else {
-            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que você esqueceu de preencher seu bairro.")
+            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos",
+                                                  message: "Ops! Parece que você esqueceu de preencher seu bairro.")
             return false
         }
         
         if hasCarSwitch.isOn && (carModelTextField.text!.isEmpty || carPlateTextField.text!.isEmpty || carColorTextField.text!.isEmpty) {
-            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que você marcou que tem um carro mas não preencheu os dados dele.")
+            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos",
+                                                  message: "Ops! Parece que você marcou que tem um carro mas não preencheu os dados dele.")
             return false
         }
         
         if hasCarSwitch.isOn && !carPlateTextField.text!.isValidCarPlate {
-            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos", message: "Ops! Parece que preencheu incorretamente a placa do seu carro. Verifique se a preencheu no formato \"ABC-1234\".")
+            CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos",
+                                                  message: "Ops! Parece que preencheu incorretamente a placa do seu carro. Verifique se a preencheu no formato \"ABC-1234\".")
             return false
         }
     
@@ -201,7 +207,7 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
     }
     
     
-    // Mark: Zone selection method
+    // MARK: Zone selection method
     
     func hasSelected(neighborhoods: [String], inZone zone: String) {
         neighborhood = neighborhoods.first!
@@ -223,13 +229,17 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         var alert: CaronaeAlertController!
     
         if completeProfileMode {
-            alert = CaronaeAlertController(title: "Cancelar cadastro?", message: "Você será deslogado do aplicativo e precisará entrar novamente com sua universidade.", preferredStyle: .alert)
+            alert = CaronaeAlertController(title: "Cancelar cadastro?",
+                                           message: "Você será deslogado do aplicativo e precisará entrar novamente com sua universidade.",
+                                           preferredStyle: .alert)
             alert.addAction(SDCAlertAction(title: "Cont. editando", style: .cancel, handler: nil))
             alert.addAction(SDCAlertAction(title: "Sair", style: .destructive, handler: { _ in
                 UserService.instance.signOut()
             }))
         } else {
-            alert = CaronaeAlertController(title: "Cancelar edição do perfil?", message: "Quaisquer mudanças serão descartadas.", preferredStyle: .alert)
+            alert = CaronaeAlertController(title: "Cancelar edição do perfil?",
+                                           message: "Quaisquer mudanças serão descartadas.",
+                                           preferredStyle: .alert)
             alert.addAction(SDCAlertAction(title: "Cont. editando", style: .cancel, handler: nil))
             alert.addAction(SDCAlertAction(title: "Descartar", style: .destructive, handler: { _ in
                 self.dismiss(animated: true, completion: nil)
@@ -318,17 +328,19 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
                 self.photoImageView.crn_setImage(with: URL(string: self.photoURLString), completed: {
                     SVProgressHUD.showSuccess(withStatus: nil)
                 })
-            }) { error in
+            }, error: { err in
                 SVProgressHUD.dismiss()
-                NSLog("Error uploading photo: %@", error.localizedDescription)
-                CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando foto", message: "Não foi possível carregar sua foto de perfil. \(error.localizedDescription)")
-            }
+                NSLog("Error uploading photo: %@", err.localizedDescription)
+                CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando foto",
+                                                      message: "Não foi possível carregar sua foto de perfil. \(err.localizedDescription)")
+            })
         }
     }
     
     func importPhotoFromFacebook() {
         guard FBSDKAccessToken.current() != nil else {
-            CaronaeAlertController.presentOkAlert(withTitle: "Conta do Facebook não autorizada.", message: "Você precisa ter feito login com sua conta do Facebook.")
+            CaronaeAlertController.presentOkAlert(withTitle: "Conta do Facebook não autorizada.",
+                                                  message: "Você precisa ter feito login com sua conta do Facebook.")
             return
         }
     
@@ -339,11 +351,12 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
             self.photoImageView.crn_setImage(with: URL(string: self.photoURLString), completed: {
                 SVProgressHUD.dismiss()
             })
-        }) { error in
+        }, error: { err in
             SVProgressHUD.dismiss()
-            NSLog("Error loading photo: %@", error.localizedDescription)
-            CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando foto", message: "Não foi possível carregar sua foto de perfil do Facebook.")
-        }
+            NSLog("Error loading photo: %@", err.localizedDescription)
+            CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando foto",
+                                                  message: "Não foi possível carregar sua foto de perfil do Facebook.")
+        })
     }
 }
 

@@ -121,4 +121,3 @@ class Ride: Object, Mappable {
         self.date = formatter.date(from: dateString + " " + timeString)
     }
 }
-

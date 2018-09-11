@@ -27,4 +27,3 @@ class Message: Object, Mappable {
         return sender != UserService.instance.user
     }
 }
-

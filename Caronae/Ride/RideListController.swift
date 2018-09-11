@@ -9,13 +9,15 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var filterViewHeight: NSLayoutConstraint!
     @IBOutlet weak var filterViewHeightZero: NSLayoutConstraint!
     @IBInspectable var emptyMessage: String?
-    @IBInspectable var historyTable = false
+    @IBInspectable var historyTable: Bool = false
     
-    let RideListDefaultEmptyMessage = "Nenhuma carona\nencontrada."
-    let RideListDefaultLoadingMessage = "Carregando..."
-    let RideListDefaultErrorMessage = "Não foi possível\ncarregar as caronas."
-    
-    let RideListMessageFontSize: CGFloat = 25.0
+    struct RideListDefault {
+        static let emptyMessage = "Nenhuma carona\nencontrada."
+        static let loadingMessage = "Carregando..."
+        static let errorMessage = "Não foi possível\ncarregar as caronas."
+        
+        static let messageFontSize: CGFloat = 25.0
+    }
     
     var ridesDirectionGoing = true
     var hidesDirectionControl = false
@@ -32,11 +34,12 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
         self.view = Bundle.main.loadNibNamed(String(describing: RideListController.self), owner: self, options: nil)?.first as! UIView
         
         if self.responds(to: #selector(refreshTable)) {
             refreshControl = UIRefreshControl()
-            refreshControl?.tintColor = UIColor.init(white: 0.9, alpha: 1.0)
+            refreshControl?.tintColor = UIColor(white: 0.9, alpha: 1.0)
             refreshControl?.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
             self.tableView.addSubview(refreshControl!)
         }
@@ -47,13 +50,13 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
         
         if #available(iOS 11.0, *) {
             // Create constraint between filterView and safe area layout guide
-            let safeArea = self.view.safeAreaLayoutGuide;
+            let safeArea = self.view.safeAreaLayoutGuide
             filterView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
         }
         
         tableView.delegate = self
         tableView.dataSource = self
-        let cellNib = UINib.init(nibName: String(describing: RideCell.self), bundle: nil)
+        let cellNib = UINib(nibName: String(describing: RideCell.self), bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "Ride Cell")
         
         if hidesDirectionControl {
@@ -116,7 +119,7 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func adjustTableView() {
-        if hidesDirectionControl {
+        guard !hidesDirectionControl else {
             return
         }
         
@@ -132,11 +135,11 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
         }
         if filterIsEnabled {
             let filterViewHeight = self.filterViewHeight.constant
-            tableView.scrollIndicatorInsets = UIEdgeInsetsMake(defaultTopInset + filterViewHeight, 0.0, defaultBottomInset, 0.0)
-            tableView.contentInset = UIEdgeInsetsMake(defaultTopInset + navigationBarHeight + filterViewHeight, 0.0, defaultBottomInset, 0.0)
+            tableView.scrollIndicatorInsets = UIEdgeInsets(top: defaultTopInset + filterViewHeight, left: 0, bottom: defaultBottomInset, right: 0)
+            tableView.contentInset = UIEdgeInsets(top: defaultTopInset + navigationBarHeight + filterViewHeight, left: 0, bottom: defaultBottomInset, right: 0)
         } else {
-            tableView.scrollIndicatorInsets = UIEdgeInsetsMake(defaultTopInset, 0.0, defaultBottomInset, 0.0)
-            tableView.contentInset = UIEdgeInsetsMake(defaultTopInset + navigationBarHeight, 0.0, defaultBottomInset, 0.0)
+            tableView.scrollIndicatorInsets = UIEdgeInsets(top: defaultTopInset, left: 0, bottom: defaultBottomInset, right: 0)
+            tableView.contentInset = UIEdgeInsets(top: defaultTopInset + navigationBarHeight, left: 0, bottom: defaultBottomInset, right: 0)
         }
     }
     
@@ -235,11 +238,11 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
     // Background view when the table is empty
     lazy var emptyTableLabel: UILabel = {
         let emptyTableLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
-        emptyTableLabel.text = self.emptyMessage ?? self.RideListDefaultEmptyMessage
+        emptyTableLabel.text = self.emptyMessage ?? RideListDefault.emptyMessage
         emptyTableLabel.textColor = .gray
         emptyTableLabel.numberOfLines = 0
         emptyTableLabel.textAlignment = .center
-        emptyTableLabel.font = UIFont.systemFont(ofSize: self.RideListMessageFontSize, weight: .ultraLight)
+        emptyTableLabel.font = UIFont.systemFont(ofSize: RideListDefault.messageFontSize, weight: .ultraLight)
         emptyTableLabel.sizeToFit()
         return emptyTableLabel
     }()
@@ -247,11 +250,11 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
     // Background view when an error occurs
     lazy var errorLabel: UILabel = {
         let errorLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
-        errorLabel.text = self.RideListDefaultErrorMessage
+        errorLabel.text = RideListDefault.errorMessage
         errorLabel.textColor = .gray
         errorLabel.numberOfLines = 0
         errorLabel.textAlignment = .center
-        errorLabel.font = UIFont.systemFont(ofSize: self.RideListMessageFontSize, weight: .ultraLight)
+        errorLabel.font = UIFont.systemFont(ofSize: RideListDefault.messageFontSize, weight: .ultraLight)
         errorLabel.sizeToFit()
         return errorLabel
     }()
@@ -259,13 +262,12 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
     // Background view when the table is loading
     lazy var loadingLabel: UILabel = {
         let loadingLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
-        loadingLabel.text = self.RideListDefaultLoadingMessage
+        loadingLabel.text = RideListDefault.loadingMessage
         loadingLabel.textColor = .gray
         loadingLabel.numberOfLines = 0
         loadingLabel.textAlignment = .center
-        loadingLabel.font = UIFont.systemFont(ofSize: self.RideListMessageFontSize, weight: .ultraLight)
+        loadingLabel.font = UIFont.systemFont(ofSize: RideListDefault.messageFontSize, weight: .ultraLight)
         loadingLabel.sizeToFit()
         return loadingLabel
     }()
-    
 }

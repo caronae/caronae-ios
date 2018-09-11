@@ -5,6 +5,7 @@ class RidesHistoryViewController: RideListController {
     override func viewDidLoad() {
         hidesDirectionControl = true
         super.viewDidLoad()
+        
         loadRidesHistory()
     }
 
@@ -29,5 +30,4 @@ class RidesHistoryViewController: RideListController {
             self.loadingFailed(withError: error as NSError)
         })
     }
-
 }

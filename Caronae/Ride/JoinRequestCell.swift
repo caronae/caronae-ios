@@ -73,5 +73,4 @@ class JoinRequestCell: UITableViewCell {
     @IBAction func didTapUserDetails() {
         delegate?.tappedUserDetails(of: requestingUser)
     }
-
 }

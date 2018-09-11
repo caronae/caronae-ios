@@ -1,7 +1,7 @@
 import XCTest
 import SimulatorStatusMagic
 
-class Caronae_UITests: XCTestCase {
+class CaronaeUITests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -23,6 +23,7 @@ class Caronae_UITests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+        
         SDStatusBarManager.sharedInstance().disableOverrides()
     }
     
@@ -48,12 +49,12 @@ class Caronae_UITests: XCTestCase {
         snapshot("2_SignIn")
         
         var didShowDialog = false
-        expectation(for: NSPredicate() { (_, _) in
+        expectation(for: NSPredicate() { _, _ in
             app.tap()
             return didShowDialog
-        }, evaluatedWith: NSNull(), handler: nil)
+        }, evaluatedWith: NSNull())
         
-        addUIInterruptionMonitor(withDescription: "Sign In") { (alert) -> Bool in
+        addUIInterruptionMonitor(withDescription: "Sign In") { alert -> Bool in
             alert.buttons.element(boundBy: 1).tap()
             didShowDialog = true
             return true
@@ -61,7 +62,7 @@ class Caronae_UITests: XCTestCase {
         
         authenticateButton.tap()
         
-        waitForExpectations(timeout: 15, handler: nil)
+        waitForExpectations(timeout: 15)
         
         _ = app.tables.cells.element(boundBy: 0).waitForExistence(timeout: 10)
         app.tables.cells.element(boundBy: 0).tap()

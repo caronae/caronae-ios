@@ -87,11 +87,11 @@ class PlaceService {
     
     func color(forZone zone: String) -> UIColor {
         let realm = try! Realm()
-        return realm.objects(Zone.self).filter("name == %@", zone).first?.color ?? OtherZoneColor
+        return realm.objects(Zone.self).first(where: { $0.name == zone })?.color ?? OtherZoneColor
     }
     
     func updatePlaces(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/api/v1/places", parameters: nil, progress: nil, success: { task, responseObject in
+        api.get("/api/v1/places", parameters: nil, progress: nil, success: { _, responseObject in
             guard let response = responseObject as? [String: Any],
                 let campiJson = response["campi"] as? [[String: Any]],
                 let zonesJson = response["zones"] as? [[String: Any]],

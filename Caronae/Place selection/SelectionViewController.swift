@@ -21,8 +21,8 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
     var selectionLevel: SelectionLevel = .firstLevel
     var selectionType: SelectionType = .oneSelection
     var levelOptions = [String]()
-    var dictionarySelection = [String :[String]]()
-    var dictionaryColors = [String :UIColor]()
+    var dictionarySelection = [String: [String]]()
+    var dictionaryColors = [String: UIColor]()
     var selectedFirstLevel = String()
     var firstLevelColor: UIColor?
     var doneButton = UIBarButtonItem()
@@ -33,7 +33,7 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
         configureSecondSelectionIfNeeded()
         
         self.tableView.separatorStyle = .none
-        let cellNib = UINib.init(nibName: "SelectionCell", bundle: nil)
+        let cellNib = UINib(nibName: "SelectionCell", bundle: nil)
         self.tableView.register(cellNib, forCellReuseIdentifier: "Selection Cell")
     }
     
@@ -98,7 +98,7 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
         let selectedIndexPaths = tableView.indexPathsForSelectedRows
         var selections: [String] = []
         
-        if (selectionType == .manySelection && (selectedIndexPaths == nil || selectedIndexPaths?.count == levelOptions.count)) {
+        if selectionType == .manySelection && (selectedIndexPaths == nil || selectedIndexPaths?.count == levelOptions.count) {
             selections = [selectedFirstLevel]
         } else {
             for indexPath in selectedIndexPaths! {
@@ -137,7 +137,6 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
             }
             updateFinishButton()
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -145,11 +144,10 @@ class SelectionViewController: UITableViewController, SelectionDelegate {
     }
     
     func updateFinishButton() {
-        if let _ = tableView.indexPathsForSelectedRows {
+        if tableView.indexPathsForSelectedRows != nil {
             doneButton.title = "OK"
         } else {
             doneButton.title = "Sel. todos"
         }
     }
-
 }

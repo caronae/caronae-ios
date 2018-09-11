@@ -2,7 +2,7 @@ import Foundation
 import SVProgressHUD
 import InputMask
 
-class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class RideViewController: UIViewController {
     
     // Ride info
     @IBOutlet weak var titleLabel: UILabel!
@@ -69,10 +69,11 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
         }
     }
     
-    let CaronaeRequestButtonStateNew              = "PEGAR CARONA"
-    let CaronaeRequestButtonStateAlreadyRequested = "    SOLICITAÇÃO ENVIADA    "
-    let CaronaeRequestButtonStateFullRide         = "       CARONA CHEIA       "
-    let CaronaeFinishButtonStateAlreadyFinished   = "  Carona concluída"
+    struct CaronaeRequestButtonState {
+        static let new              = "PEGAR CARONA"
+        static let alreadyRequested = "SOLICITAÇÃO ENVIADA"
+        static let fullRide         = "CARONA CHEIA"
+    }
     
     class func instance(for ride: Ride) -> RideViewController {
         let rideVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RideViewController") as! RideViewController
@@ -129,74 +130,12 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
             }
         }
         
-        // If the user is the driver of the ride, load pending join requests and hide 'join' button
-        if self.userIsDriver() {
-            self.loadJoinRequests()
-            self.updateChatButtonBadge()
-            
-            DispatchQueue.main.async {
-                self.requestRideButton.removeFromSuperview()
-                self.mutualFriendsView.removeFromSuperview()
-                self.phoneView.removeFromSuperview()
-                
-                if !self.ride.isActive || self.ride.date.isInTheFuture() {
-                    self.finishRideView.removeFromSuperview()
-                }
-            }
-            
-            // Car details
-            let user = UserService.instance.user!
-            carPlateLabel.text = user.carPlate?.uppercased()
-            carModelLabel.text = user.carModel
-            carColorLabel.text = user.carColor
-        }
-        // If the user is already a rider, hide 'join' button
-        else if self.userIsRider() {
-            self.updateChatButtonBadge()
-            
-            DispatchQueue.main.async {
-                self.requestRideButton.removeFromSuperview()
-                self.finishRideView.removeFromSuperview()
-            }
-            
-            cancelButton.setTitle("DESISTIR", for: .normal)
-            
-            let phoneMask = try! Mask(format: Caronae9PhoneNumberPattern)
-            let phoneNumber = ride.driver.phoneNumber!
-            let result = phoneMask.apply(toText: CaretString(string: phoneNumber, caretPosition: phoneNumber.endIndex))
-            let formattedPhoneNumber = result.formattedText.string
-            phoneButton.setTitle(formattedPhoneNumber, for: .normal)
-            
-            // Car details
-            carPlateLabel.text = ride.driver.carPlate?.uppercased()
-            carModelLabel.text = ride.driver.carModel
-            carColorLabel.text = ride.driver.carColor
-            
-            self.updateMutualFriends()
-        }
-        // If the user is not related to the ride, hide 'cancel' button, car details view, riders view
-        else {
-            DispatchQueue.main.async {
-                self.cancelButton.removeFromSuperview()
-                self.phoneView.removeFromSuperview()
-                self.carDetailsView.removeFromSuperview()
-                self.finishRideView.removeFromSuperview()
-                self.ridersView.removeFromSuperview()
-            }
-            
-            // Update the state of the join request button if the user has already requested to join
-            if RideService.instance.hasRequestedToJoinRide(withID: ride.id) {
-                requestRideButton.isEnabled = false
-                requestRideButton.setTitle(CaronaeRequestButtonStateAlreadyRequested, for: .normal)
-            } else if rideIsFull {
-                requestRideButton.isEnabled = false
-                requestRideButton.setTitle(CaronaeRequestButtonStateFullRide, for: .normal)
-                rideIsFull = false
-            } else {
-                requestRideButton.isEnabled = true
-                requestRideButton.setTitle(CaronaeRequestButtonStateNew, for: .normal)
-            }
-            self.updateMutualFriends()
+        if userIsDriver() {
+            configureRideForDriver()
+        } else if userIsRider() {
+            configureRideForRider()
+        } else {
+            configureRideForOutsider()
         }
         
         // Add gesture recognizer to phoneButton for longpress
@@ -211,6 +150,78 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
             openChatWindow()
             shouldOpenChatWindow = false
         }
+    }
+    
+    // If the user is the driver of the ride, load pending join requests and hide 'join' button
+    func configureRideForDriver() {
+        self.loadJoinRequests()
+        self.updateChatButtonBadge()
+        
+        DispatchQueue.main.async {
+            self.requestRideButton.removeFromSuperview()
+            self.mutualFriendsView.removeFromSuperview()
+            self.phoneView.removeFromSuperview()
+            
+            if !self.ride.isActive || self.ride.date.isInTheFuture() {
+                self.finishRideView.removeFromSuperview()
+            }
+        }
+        
+        // Car details
+        let user = UserService.instance.user!
+        carPlateLabel.text = user.carPlate?.uppercased()
+        carModelLabel.text = user.carModel
+        carColorLabel.text = user.carColor
+    }
+    
+    // If the user is already a rider, hide 'join' button
+    func configureRideForRider() {
+        self.updateChatButtonBadge()
+        
+        DispatchQueue.main.async {
+            self.requestRideButton.removeFromSuperview()
+            self.finishRideView.removeFromSuperview()
+        }
+        
+        cancelButton.setTitle("DESISTIR", for: .normal)
+        
+        let phoneMask = try! Mask(format: Caronae9PhoneNumberPattern)
+        let phoneNumber = ride.driver.phoneNumber!
+        let result = phoneMask.apply(toText: CaretString(string: phoneNumber, caretPosition: phoneNumber.endIndex))
+        let formattedPhoneNumber = result.formattedText.string
+        phoneButton.setTitle(formattedPhoneNumber, for: .normal)
+        
+        // Car details
+        carPlateLabel.text = ride.driver.carPlate?.uppercased()
+        carModelLabel.text = ride.driver.carModel
+        carColorLabel.text = ride.driver.carColor
+        
+        self.updateMutualFriends()
+    }
+    
+    // If the user is not related to the ride, hide 'cancel' button, car details view, riders view
+    func configureRideForOutsider() {
+        DispatchQueue.main.async {
+            self.cancelButton.removeFromSuperview()
+            self.phoneView.removeFromSuperview()
+            self.carDetailsView.removeFromSuperview()
+            self.finishRideView.removeFromSuperview()
+            self.ridersView.removeFromSuperview()
+        }
+        
+        // Update the state of the join request button if the user has already requested to join
+        if RideService.instance.hasRequestedToJoinRide(withID: ride.id) {
+            requestRideButton.isEnabled = false
+            requestRideButton.setTitle(CaronaeRequestButtonState.alreadyRequested, for: .normal)
+        } else if rideIsFull {
+            requestRideButton.isEnabled = false
+            requestRideButton.setTitle(CaronaeRequestButtonState.fullRide, for: .normal)
+            rideIsFull = false
+        } else {
+            requestRideButton.isEnabled = true
+            requestRideButton.setTitle(CaronaeRequestButtonState.new, for: .normal)
+        }
+        self.updateMutualFriends()
     }
     
     func updateMutualFriends() {
@@ -282,7 +293,11 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
     
     @IBAction func didTapCancelRide(_ sender: Any) {
         let alert = CaronaeAlertController(title: "Deseja mesmo desistir da carona?",
-                                           message: "Você é livre para cancelar caronas caso não possa participar, mas é importante fazer isso com responsabilidade. Caso haja outros usuários na carona, eles serão notificados.",
+                                           message: """
+                                                    Você é livre para cancelar caronas caso não possa participar,
+                                                    mas é importante fazer isso com responsabilidade.
+                                                    Caso haja outros usuários na carona, eles serão notificados.
+                                                    """,
                                            preferredStyle: .alert)
         alert?.addAction(SDCAlertAction(title: "Voltar", style: .cancel, handler: nil))
         alert?.addAction(SDCAlertAction(title: "Desistir", style: .destructive, handler: { _ in
@@ -314,7 +329,7 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
     }
     
     
-    // Mark: Ride operations
+    // MARK: Ride operations
 
     func cancelRide() {
         if self.userIsDriver() && ride.isRoutine {
@@ -347,7 +362,8 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
             NSLog("Error leaving/cancelling ride: %@", error.localizedDescription)
             SVProgressHUD.dismiss()
             self.cancelButton.isEnabled = true
-            CaronaeAlertController.presentOkAlert(withTitle: "Algo deu errado.", message: String(format: "Não foi possível cancelar sua carona. (%@)", error.localizedDescription))
+            CaronaeAlertController.presentOkAlert(withTitle: "Algo deu errado.",
+                                                  message: String(format: "Não foi possível cancelar sua carona. (%@)", error.localizedDescription))
         })
     }
     
@@ -365,7 +381,8 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
             NSLog("Error finishing ride: %@", error.localizedDescription)
             SVProgressHUD.dismiss()
             self.finishRideButton.isEnabled = true
-            CaronaeAlertController.presentOkAlert(withTitle: "Algo deu errado.", message: String(format: "Não foi possível concluir sua carona. (%@)", error.localizedDescription))
+            CaronaeAlertController.presentOkAlert(withTitle: "Algo deu errado.",
+                                                  message: String(format: "Não foi possível concluir sua carona. (%@)", error.localizedDescription))
         })
     }
     
@@ -381,12 +398,13 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
         RideService.instance.requestJoinOnRide(ride, success: {
             SVProgressHUD.dismiss()
             NSLog("Done requesting ride.")
-            self.requestRideButton.setTitle(self.CaronaeRequestButtonStateAlreadyRequested, for: .normal)
+            self.requestRideButton.setTitle(CaronaeRequestButtonState.alreadyRequested, for: .normal)
         }, error: { error in
             NSLog("Error requesting to join ride: %@", error.localizedDescription)
             SVProgressHUD.dismiss()
             self.requestRideButton.isEnabled = true
-            CaronaeAlertController.presentOkAlert(withTitle: "Algo deu errado.", message: String(format: "Não foi possível solicitar a carona. (%@)", error.localizedDescription))
+            CaronaeAlertController.presentOkAlert(withTitle: "Algo deu errado.",
+                                                  message: String(format: "Não foi possível solicitar a carona. (%@)", error.localizedDescription))
         })
     }
     
@@ -399,10 +417,16 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
             }
         }, error: { error in
             NSLog("Error loading join requests for ride %lu: %@", self.ride.id, error.localizedDescription)
-            CaronaeAlertController.presentOkAlert(withTitle: "Algo deu errado.", message: String(format: "Não foi possível carregar as solicitações da sua carona. (%@)", error.localizedDescription))
+            CaronaeAlertController.presentOkAlert(withTitle: "Algo deu errado.",
+                                                  message: String(format: "Não foi possível carregar as solicitações da sua carona. (%@)", error.localizedDescription))
         })
     }
-    
+}
+
+
+// MARK: JoinRequestDelegate Methods (handle requests responses)
+
+extension RideViewController: JoinRequestDelegate {
     func handleAcceptedJoinRequest(of user: User, cell: JoinRequestCell) {
         cell.setButtonsEnabled(false)
         
@@ -457,13 +481,15 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
     }
     
     func tappedUserDetails(of user: User) {
-        self.selectedUser = user;
+        self.selectedUser = user
         performSegue(withIdentifier: "ViewProfile", sender: self)
     }
-    
-    
-    // MARK: Table methods (Join requests)
-    
+}
+
+
+// MARK: Table methods (Join requests)
+
+extension RideViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return requesters.count
     }
@@ -485,10 +511,12 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
             self.view.layoutIfNeeded()
         }
     }
-    
-    
-    // MARK: Collection methods (Riders, Mutual friends)
-    
+}
+
+
+// MARK: Collection methods (Riders, Mutual friends)
+
+extension RideViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == ridersCollectionView {
             
@@ -531,5 +559,4 @@ class RideViewController: UIViewController, JoinRequestDelegate, UITableViewDele
             performSegue(withIdentifier: "ViewProfile", sender: self)
         }
     }
-    
 }

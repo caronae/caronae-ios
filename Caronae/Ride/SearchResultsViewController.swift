@@ -34,7 +34,7 @@ class SearchResultsViewController: RideListController, SearchRideDelegate {
             tableView.backgroundView = loadingLabel
         }
         
-        RideService.instance.getRides(page: 1, filterParameters: parameters, success: { rides, lastPage in
+        RideService.instance.getRides(page: 1, filterParameters: parameters, success: { rides, _ in
             self.rides = rides
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
@@ -42,7 +42,8 @@ class SearchResultsViewController: RideListController, SearchRideDelegate {
             if rides.isEmpty {
                 // Hack so that the alert is not presented from the modal search dialog
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                    CaronaeAlertController.presentOkAlert(withTitle: "Nenhuma carona\nencontrada :(", message: "Você pode ampliar sua pesquisa selecionando vários bairros ou escolhendo um horário mais cedo.")
+                    CaronaeAlertController.presentOkAlert(withTitle: "Nenhuma carona\nencontrada :(",
+                                                          message: "Você pode ampliar sua pesquisa selecionando vários bairros ou escolhendo um horário mais cedo.")
                 })
             }
         }, error: { error in
@@ -50,5 +51,4 @@ class SearchResultsViewController: RideListController, SearchRideDelegate {
             self.loadingFailed(withError: error as NSError)
         })
     }
-
 }

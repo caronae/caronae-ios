@@ -18,8 +18,8 @@ class MyRidesViewController: RideListController {
         RideService.instance.getMyRides(success: { pending, active, offered in
             self.sectionRides = [pending, active, offered]
             self.subscribeToChanges()
-        }, error: { error in
-            NSLog("Error getting My Rides")
+        }, error: { err in
+            NSLog("Error getting My Rides. %@", err.localizedDescription)
         })
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateNotificationBadges), name: .CaronaeDidUpdateNotifications, object: nil)
@@ -46,17 +46,17 @@ class MyRidesViewController: RideListController {
         // https://github.com/realm/realm-cocoa/issues/3384
         
         let pending = sectionRides[0]
-        let active  = sectionRides[1]
+        let active = sectionRides[1]
         let offered = sectionRides[2]
         
-        let pendingNotificationToken = pending.observe { [weak self] (changes: RealmCollectionChange) in
+        let pendingNotificationToken = pending.observe { [weak self] (_: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
             
             tableView.reloadData()
             self?.changeBackgroundIfNeeded()
         }
         
-        let activeNotificationToken = active.observe { [weak self] (changes: RealmCollectionChange) in
+        let activeNotificationToken = active.observe { [weak self] (_: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
             
             tableView.tableFooterView = active.isEmpty ? nil : self?.tableFooter
@@ -64,7 +64,7 @@ class MyRidesViewController: RideListController {
             self?.changeBackgroundIfNeeded()
         }
         
-        let offeredNotificationToken = offered.observe { [weak self] (changes: RealmCollectionChange) in
+        let offeredNotificationToken = offered.observe { [weak self] (_: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
             
             tableView.reloadData()
@@ -117,9 +117,9 @@ class MyRidesViewController: RideListController {
             rideViewController.shouldLoadFromRealm = false
             _ = self.navigationController?.popToRootViewController(animated: false)
             self.navigationController?.pushViewController(rideViewController, animated: true)
-        }) { error in
-            NSLog("Error loading accepted ride %ld: %@", id, error.localizedDescription)
-        }
+        }, error: { err in
+            NSLog("Error loading accepted ride %ld: %@", id, err.localizedDescription)
+        })
     }
 
     
@@ -169,5 +169,4 @@ class MyRidesViewController: RideListController {
         tableFooter.textAlignment = .center
         return tableFooter
     }()
-    
 }

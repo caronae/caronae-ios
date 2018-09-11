@@ -40,7 +40,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
         updateProfileFields()
         
         if UserService.instance.user == self.user {
-            NotificationCenter.default.addObserver(self, selector:#selector(updateProfileFields), name: .CaronaeDidUpdateUser, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(updateProfileFields), name: .CaronaeDidUpdateUser, object: nil)
         }
         
         // Add gesture recognizer to phoneButton for longpress
@@ -94,11 +94,20 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
             joinedDateLabel.text = joinedDateFormatter.string(from: userCreateAt)
         }
         
-        nameLabel.text      = user.name
-        courseLabel.text    = user.occupation
-        numDrivesLabel.text = user.numDrives > -1 ? String(user.numDrives) : "-"
-        numRidesLabel.text  = user.numRides > -1 ? String(user.numRides) : "-"
+        if let profilePictureURL = user.profilePictureURL, !profilePictureURL.isEmpty {
+            self.profileImage.crn_setImage(with: URL(string: profilePictureURL))
+        }
         
+        nameLabel.text = user.name
+        courseLabel.text = user.occupation
+        numDrivesLabel.text = user.numDrives > -1 ? String(user.numDrives) : "-"
+        numRidesLabel.text = user.numRides > -1 ? String(user.numRides) : "-"
+        
+        configurePhoneNumber()
+        updateRidesOfferedCount()
+    }
+    
+    func configurePhoneNumber() {
         if let phoneNumber = user.phoneNumber, !phoneNumber.isEmpty {
             let phoneMask = try! Mask(format: Caronae9PhoneNumberPattern)
             let result = phoneMask.apply(toText: CaretString(string: phoneNumber, caretPosition: phoneNumber.endIndex))
@@ -109,21 +118,15 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
                 self.phoneView.removeFromSuperview()
             }
         }
-        
-        if let profilePictureURL = user.profilePictureURL, !profilePictureURL.isEmpty {
-            self.profileImage.crn_setImage(with: URL(string: profilePictureURL))
-        }
-        
-        updateRidesOfferedCount()
     }
     
     func updateRidesOfferedCount() {
         UserService.instance.ridesCountForUser(withID: user.id, success: { offeredCount, takenCount in
             self.numDrivesLabel.text = String(offeredCount)
             self.numRidesLabel.text = String(takenCount)
-        }) { error in
-            NSLog("Error reading history count for user: %@", error.localizedDescription)
-        }
+        }, error: { err in
+            NSLog("Error reading history count for user: %@", err.localizedDescription)
+        })
     }
     
     func updateMutualFriends() {
@@ -136,9 +139,9 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
             } else {
                 self.mutualFriendsLabel.text = "Amigos em comum: 0"
             }
-        }) { error in
-            NSLog("Error loading mutual friends for user: %@", error.localizedDescription)
-        }
+        }, error: { err in
+            NSLog("Error loading mutual friends for user: %@", err.localizedDescription)
+        })
     }
     
     
@@ -191,7 +194,6 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource {
     
     
     // MARK: Collection methods (Mutual friends)
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mutualFriends.count
