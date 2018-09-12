@@ -13,6 +13,7 @@ platform :ios do
     File.write('changelog.txt', changes)
 
     cocoapods
+    run_linter
     update_build_number
     push_to_git_remote unless options[:skip_push]
   end
