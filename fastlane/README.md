@@ -66,6 +66,11 @@ Update and tag the version/build
 fastlane ios take_screenshots
 ```
 Take and frame screenshots of the app
+### ios run_linter
+```
+fastlane ios run_linter
+```
+Run SwiftLint linter and report
 
 ----
 

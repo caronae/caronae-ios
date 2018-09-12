@@ -102,4 +102,13 @@ platform :ios do
     frame_screenshots(white: true)
   end
 
+  desc "Run SwiftLint linter and report"
+  lane :run_linter do
+    swiftlint(
+      executable: "Pods/SwiftLint/swiftlint",
+      reporter: "emoji",
+      strict: true
+    )
+  end
+
 end

@@ -20,8 +20,12 @@ opt_in_rules:
 - sorted_first_last
 - switch_case_on_newline
 - unneeded_parentheses_in_closure_argument
-- unused_import
 - yoda_condition
+
+# Experimental
+# analyzer_rules:
+# - unused_import
+# - unused_private_declaration
 
 disabled_rules:
 - cyclomatic_complexity
@@ -59,9 +63,6 @@ identifier_name:
   excluded:
   - id
   - vc
-
-file_header:
-  required_pattern: ''
 
 multiline_arguments:
   only_enforce_after_first_closure_on_first_line: true
