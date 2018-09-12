@@ -107,7 +107,7 @@ platform :ios do
   lane :run_linter do
     swiftlint(
       executable: "Pods/SwiftLint/swiftlint",
-      config_file: ".swiftlint-ci.yml",
+      config_file: ".swiftlint.yml",
       reporter: "emoji",
       strict: true
     )
