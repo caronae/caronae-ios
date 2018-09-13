@@ -113,6 +113,10 @@ custom_rules:
     message: "Add the missing closure name"
     severity: warning
 
+included:
+- Caronae
+- CaronaeUITests
+
 excluded:
 - Pods
 - fastlane
