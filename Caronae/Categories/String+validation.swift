@@ -6,8 +6,10 @@ extension String {
     }
     
     var isValidCarPlate: Bool {
-        let plateRegex = "^[a-zA-Z]{3}-[0-9]{4}$"
-        let plateTest = NSPredicate(format: "SELF MATCHES %@", plateRegex)
-        return plateTest.evaluate(with: self)
+        let brazilianPlateRegex = "^[A-Z]{3}-[0-9]{4}$"
+        let mercosulPlateRegex = "^(?=(?:.*[0-9]){3})(?=(?:.*[A-Z]){4})[A-Z0-9]{7}$"
+        let brazilianPlateTest = NSPredicate(format: "SELF MATCHES %@", brazilianPlateRegex)
+        let mercosulPlateTest = NSPredicate(format: "SELF MATCHES %@", mercosulPlateRegex)
+        return brazilianPlateTest.evaluate(with: self) || mercosulPlateTest.evaluate(with: self)
     }
 }

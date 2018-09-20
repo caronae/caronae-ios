@@ -52,7 +52,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
-  - InputMask (3.5.0)
+  - InputMask (4.0.0)
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -186,7 +186,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   FirebaseMessaging: f43eb0c0e1da096e659de6f713038e74862a62cd
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  InputMask: 26b8eeaaf322a0307bd404a5097192d61e978aa3
+  InputMask: e3fe4ee45ce70241fd76684c1e9d6f98e1492eab
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MIBadgeButton-Swift: 9e57309b00b168d75ca8fecb45bc75124a8ffddf

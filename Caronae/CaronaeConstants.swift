@@ -72,7 +72,7 @@ struct CaronaePreferenceLastFilter {
 let CaronaeErrorDomain = "br.ufrj.caronae.error"
 let CaronaeSignOutRequiredKey = "CaronaeSignOutRequired"
 let Caronae9PhoneNumberPattern = "({0}[00]) [00000]-[0000]"
-let CaronaeCarPlatePattern = "[AAA]{-}[0000]"
+let CaronaeBrazilianCarPlatePattern = "[AAA]{-}[0000]"
 let CaronaePlaceholderProfileImage = "Profile Picture"
 let CaronaeSearchDateFormat = "EEEE, dd/MM/yyyy HH:mm"
 let CaronaeAllNeighborhoodsText = "Todos os Bairros"

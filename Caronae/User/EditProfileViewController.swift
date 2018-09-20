@@ -37,8 +37,8 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
     var user: User!
     var completeProfileMode = false
     
-    weak var phoneMaskedDelegate: MaskedTextFieldDelegate!
-    weak var carPlateMaskedDelegate: MaskedTextFieldDelegate!
+    // swiftlint:disable:next weak_delegate
+    var phoneMaskedDelegate: MaskedTextFieldDelegate!
     
     var loadingButton = UIBarButtonItem()
     
@@ -58,13 +58,11 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        phoneMaskedDelegate = MaskedTextFieldDelegate(format: Caronae9PhoneNumberPattern)
+        phoneMaskedDelegate = MaskedTextFieldDelegate(primaryFormat: Caronae9PhoneNumberPattern)
         phoneMaskedDelegate.listener = self
         phoneTextField.delegate = phoneMaskedDelegate
         
-        carPlateMaskedDelegate = MaskedTextFieldDelegate(format: CaronaeCarPlatePattern)
-        carPlateMaskedDelegate.listener = self
-        carPlateTextField.delegate = carPlateMaskedDelegate
+        carPlateTextField.delegate = self
         
         updateProfileFields()
         configureFacebookLoginButton()
@@ -127,8 +125,7 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
             carDetailsView.alpha = 0.0
         }
         
-        let carPlate = user.carPlate ?? ""
-        carPlateMaskedDelegate.put(text: carPlate, into: carPlateTextField)
+        carPlateTextField.text = user.carPlate
         carModelTextField.text = user.carModel
         carColorTextField.text = user.carColor
         
@@ -199,7 +196,11 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         
         if hasCarSwitch.isOn && !carPlateTextField.text!.isValidCarPlate {
             CaronaeAlertController.presentOkAlert(withTitle: "Dados incompletos",
-                                                  message: "Ops! Parece que preencheu incorretamente a placa do seu carro. Verifique se a preencheu no formato \"ABC-1234\".")
+                                                  message: """
+                                                           Ops! Parece que você preencheu incorretamente a placa do seu carro.
+                                                           Verifique se a preencheu no formato \"ABC-1234\" ou no formato Mercosul
+                                                           (com quatro letras e três números).
+                                                           """)
             return false
         }
     
@@ -369,6 +370,59 @@ extension EditProfileViewController: UITextFieldDelegate {
         if textField == carPlateTextField {
             carModelTextField.becomeFirstResponder()
         }
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard textField == carPlateTextField, let text = textField.text, !text.isValidCarPlate else {
+            return
+        }
+        
+        let brazilianCarPlateMask = try! Mask(format: CaronaeBrazilianCarPlatePattern)
+        let result = brazilianCarPlateMask.apply(
+            toText: CaretString(
+                string: text,
+                caretPosition: text.endIndex
+        ))
+        let carPlate = result.formattedText.string
+        if carPlate.isValidCarPlate {
+            textField.text = carPlate
+        }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard textField == carPlateTextField, let text = textField.text, let textRange = Range(range, in: text) else {
+            return true
+        }
+        
+        let textUpdated = text.replacingCharacters(in: textRange, with: string)
+        return shoudChangeCarPlate(textUpdated: textUpdated, replacementString: string)
+    }
+    
+    func shoudChangeCarPlate(textUpdated: String, replacementString string: String) -> Bool {
+        // seek the entry of plates in the Brazilian format or in the new Mercosul format
+        guard textUpdated.count <= 7 || textUpdated.isValidCarPlate else {
+            return false
+        }
+        
+        let isMercosulCarPlate = !String(textUpdated.prefix(3)).isAlpha
+        let maxDigits = !isMercosulCarPlate ? 4 : 3
+        let maxLetters = textUpdated.contains("-") ? 3 : 4
+        
+        guard textUpdated.onlyDigits.count <= maxDigits && textUpdated.onlyLetters.count <= maxLetters else {
+            return false
+        }
+        
+        if let index = textUpdated.index(of: "-")?.encodedOffset, index != 3 || textUpdated.notAlphanumerics.count > 1 {
+            return false
+        }
+        
+        var allowedCharacters = CharacterSet.alphanumerics
+        if !isMercosulCarPlate { allowedCharacters.insert(charactersIn: "-") }
+        guard string.rangeOfCharacter(from: allowedCharacters.inverted) == nil else {
+            return false
+        }
+        
         return true
     }
 }
