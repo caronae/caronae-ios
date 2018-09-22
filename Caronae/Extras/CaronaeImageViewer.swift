@@ -9,6 +9,7 @@ class CaronaeImageViewer {
         SKPhotoBrowserOptions.displayAction = false
         SKPhotoBrowserOptions.bounceAnimation = true
         SKPhotoBrowserOptions.displayStatusbar = true
+        SKButtonOptions.closeButtonPadding = CGPoint(x: 5, y: 35)
     }
     
     func present(pictureURL: String, animatedFrom view: UIImageView) {
