@@ -1,6 +1,8 @@
-- Corrige problema onde a tela de boas-vindas poderia não aparecer.
-- Corrige mensagem ao compartilhar carona em aplicativos como Telegram e Messenger.
-- Melhora a experiência na edição do perfil.
+Alô Macaé! Vai uma caronaê? Fiquem ligados, estamos arrumando tudo para muito em breve liberar as opções do campus de Macaé.
+
+- Agora é possível atualizar a foto do perfil a partir de uma foto do celular.
+- Permite visualizar a foto do perfil em tela cheia para você identificar melhor quem vai na sua carona.
+- Aceita o cadastro de veículos com a placa no novo padrão Mercosul.
 - Pequenas melhorias internas de funcionamento.
 
 Quer ser um testador (Beta Tester) do Caronaê? Você irá receber as atualizações primeiro e pode ajudar a melhorar ainda mais o funcionamento enviando seus comentários diretamente para os desenvolvedores! Envie um email para caronae@fundoverde.ufrj.br
