@@ -321,20 +321,25 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         SVProgressHUD.showProgress(progress, status: "Fazendo upload")
     }
     
+    func uploadAndUpdatePhoto(_ image: (UIImage)) {
+        UserService.instance.uploadPhotoFromDevice(image, self.showLoadingProgress, success: { url in
+            self.photoURLString = url
+            self.photoImageView.crn_setImage(with: URL(string: self.photoURLString), completed: {
+                SVProgressHUD.showSuccess(withStatus: nil)
+                SVProgressHUD.dismiss(withDelay: 1)
+            })
+        }, error: { err in
+            SVProgressHUD.dismiss()
+            NSLog("Error uploading photo: %@", err.localizedDescription)
+            CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando foto",
+                                                  message: "Não foi possível carregar sua foto de perfil. \(err.localizedDescription)")
+        })
+    }
+    
     func importPhotoFromDevice() {
         CaronaeImagePicker.instance.present { image in
             NSLog("Importing profile picture from Device...")
-            UserService.instance.uploadPhotoFromDevice(image, self.showLoadingProgress, success: { url in
-                self.photoURLString = url
-                self.photoImageView.crn_setImage(with: URL(string: self.photoURLString), completed: {
-                    SVProgressHUD.showSuccess(withStatus: nil)
-                })
-            }, error: { err in
-                SVProgressHUD.dismiss()
-                NSLog("Error uploading photo: %@", err.localizedDescription)
-                CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando foto",
-                                                      message: "Não foi possível carregar sua foto de perfil. \(err.localizedDescription)")
-            })
+            self.uploadAndUpdatePhoto(image)
         }
     }
     
@@ -348,13 +353,19 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         NSLog("Importing profile picture from Facebook...")
         SVProgressHUD.show()
         UserService.instance.getPhotoFromFacebook(success: { url in
-            self.photoURLString = url
-            self.photoImageView.crn_setImage(with: URL(string: self.photoURLString), completed: {
-                SVProgressHUD.dismiss()
-            })
+            SVProgressHUD.dismiss()
+            guard let url = URL(string: url),
+                let data = try? Data(contentsOf: url),
+                let image = UIImage(data: data) else {
+                    NSLog("Error downloading photo from Facebook")
+                    CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando foto",
+                                                          message: "Não foi possível carregar sua foto de perfil do Facebook.")
+                    return
+            }
+            self.uploadAndUpdatePhoto(image)
         }, error: { err in
             SVProgressHUD.dismiss()
-            NSLog("Error loading photo: %@", err.localizedDescription)
+            NSLog("Error loading photo from Facebook: %@", err.localizedDescription)
             CaronaeAlertController.presentOkAlert(withTitle: "Erro atualizando foto",
                                                   message: "Não foi possível carregar sua foto de perfil do Facebook.")
         })
