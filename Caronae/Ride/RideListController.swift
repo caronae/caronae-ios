@@ -35,7 +35,7 @@ class RideListController: UIViewController, UITableViewDelegate, UITableViewData
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.view = Bundle.main.loadNibNamed(String(describing: RideListController.self), owner: self, options: nil)?.first as! UIView
+        self.view = Bundle.main.loadNibNamed(String(describing: RideListController.self), owner: self, options: nil)?.first as? UIView
         
         if self.responds(to: #selector(refreshTable)) {
             refreshControl = UIRefreshControl()

@@ -539,10 +539,10 @@ extension RideViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         if collectionView == ridersCollectionView {
             user = ride.riders[indexPath.row]
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Rider Cell", for: indexPath) as! RiderCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Rider Cell", for: indexPath) as? RiderCell
         } else {
             user = self.mutualFriends[indexPath.row]
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Friend Cell", for: indexPath) as! RiderCell
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Friend Cell", for: indexPath) as? RiderCell
         }
         
         cell.configure(with: user)

@@ -6,7 +6,7 @@ Aplicativo para iPhone do Caronaê.
 
 **Requisitos:**
 
-* Xcode 9+
+* Xcode 10+
 * iOS 9.0+
 
 

@@ -27,13 +27,13 @@ class TabBarController: UITabBarController {
                 
                 if viewController is AllRidesViewController {
                     self.allRidesNavigationController = navigationController
-                    self.allRidesViewController = viewController as! AllRidesViewController
+                    self.allRidesViewController = viewController as? AllRidesViewController
                 } else if viewController is MyRidesViewController {
                     self.myRidesNavigationController = navigationController
-                    self.myRidesViewController = viewController as! MyRidesViewController
+                    self.myRidesViewController = viewController as? MyRidesViewController
                 } else if viewController is MenuViewController {
                     self.menuNavigationController = navigationController
-                    self.menuViewController = viewController as! MenuViewController
+                    self.menuViewController = viewController as? MenuViewController
                 }
             }
         }
