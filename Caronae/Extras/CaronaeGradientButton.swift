@@ -14,7 +14,7 @@ class CaronaeGradientButton: UIButton {
         setUp()
     }
     
-    override func setImage(_ image: UIImage?, for state: UIControlState) {
+    override func setImage(_ image: UIImage?, for state: UIControl.State) {
         if image != nil {
             self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         } else {

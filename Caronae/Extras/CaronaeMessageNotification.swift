@@ -7,9 +7,9 @@ class CaronaeMessagesNotification {
         // Set preferences according to safeArea of device - iPhone X type or not
         if #available(iOS 11.0, *), UIApplication.shared.delegate?.window??.safeAreaInsets != .zero {
             SwiftMessages.defaultConfig.preferredStatusBarStyle = .lightContent
-            SwiftMessages.defaultConfig.presentationContext = .window(windowLevel: UIWindowLevelNormal)
+            SwiftMessages.defaultConfig.presentationContext = .window(windowLevel: .normal)
         } else {
-            SwiftMessages.defaultConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+            SwiftMessages.defaultConfig.presentationContext = .window(windowLevel: .statusBar)
         }
     }
     

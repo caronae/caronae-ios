@@ -274,7 +274,7 @@ class UserService {
             return error(CaronaeError.invalidUser)
         }
         
-        let imageData = UIImageJPEGRepresentation(image, 0.9)!
+        let imageData = image.jpegData(compressionQuality: 0.9)!
         api.post("/api/v1/users/\(userID)/profile_picture", parameters: nil, constructingBodyWith: { fromData in
             fromData.appendPart(withFileData: imageData, name: "profile_picture", fileName: "profile_picture.jpeg", mimeType: "image/jpeg")
         }, progress: { upload in

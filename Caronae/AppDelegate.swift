@@ -10,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var beepSound: SystemSoundID = 0
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         SVProgressHUD.setDefaultMaskType(.clear)
         SVProgressHUD.setFadeOutAnimationDuration(0)
         SVProgressHUD.setMinimumSize(CGSize(width: 100, height: 100))
@@ -145,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: Facebook SDK
     
-    func configureFacebook(WithLaunchOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+    func configureFacebook(WithLaunchOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         FBSDKApplicationDelegate.sharedInstance().application(UIApplication.shared, didFinishLaunchingWithOptions: launchOptions)
         
         NotificationCenter.default.addObserver(self, selector: #selector(FBTokenChanged(notification:)), name: .FBSDKAccessTokenDidChange, object: nil)
@@ -177,7 +177,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: Deeplinks
     
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any]) -> Bool {
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, options: options) ||
             deepLinkManager.handleDeepLink(url: url)
     }
@@ -185,7 +185,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: Universal Links
     
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
             let url = userActivity.webpageURL else {
                 return false

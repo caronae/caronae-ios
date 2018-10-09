@@ -67,7 +67,7 @@ class EditProfileViewController: UIViewController, NeighborhoodSelectionDelegate
         updateProfileFields()
         configureFacebookLoginButton()
         
-        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let spinner = UIActivityIndicatorView(style: .gray)
         spinner.startAnimating()
         loadingButton = UIBarButtonItem(customView: spinner)
         

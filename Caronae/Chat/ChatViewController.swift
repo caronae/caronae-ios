@@ -69,7 +69,7 @@ class ChatViewController: JSQMessagesViewController {
         self.clearNotifications()
         
         // Clear notifications when ApplicationWillEnterForeground
-        NotificationCenter.default.addObserver(self, selector: #selector(self.clearNotifications), name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.clearNotifications), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         automaticallyScrollsToMostRecentMessage = true
         

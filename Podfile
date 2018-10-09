@@ -24,7 +24,7 @@ abstract_target 'caronae-ios' do
     pod 'UIScrollView-InfiniteScroll'
     pod 'SimpleKeychain', '~> 0.8'
     pod 'YPImagePicker', '~> 3.0'
-    pod 'SKPhotoBrowser', '~> 5.1'
+    pod 'SKPhotoBrowser', '~> 6.0'
     
     target 'Caronae'
     

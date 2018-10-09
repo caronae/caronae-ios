@@ -13,7 +13,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         self.navigationController?.view.backgroundColor = UIColor.white
         navigationItem.titleView = UIImageView(image: UIImage(named: "NavigationBarLogo"))
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadRidesIfNecessary), name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadRidesIfNecessary), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         lastAllRidesUpdate = Date.distantPast
         
