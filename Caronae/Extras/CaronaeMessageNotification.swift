@@ -4,8 +4,8 @@ class CaronaeMessagesNotification {
     static let instance = CaronaeMessagesNotification()
     
     private init() {
-        // Set preferences according to safeArea of device - iPhone X type or not
-        if #available(iOS 11.0, *), UIApplication.shared.delegate?.window??.safeAreaInsets != .zero {
+        // Set preferences according to safeArea of device - check whether the device has notch or not
+        if #available(iOS 11.0, *), UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0 > 20 {
             SwiftMessages.defaultConfig.preferredStatusBarStyle = .lightContent
             SwiftMessages.defaultConfig.presentationContext = .window(windowLevel: .normal)
         } else {
