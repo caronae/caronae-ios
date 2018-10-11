@@ -43,7 +43,6 @@ class UniversalLinkParser {
         }
     }
     
-    
     private func getQueryParameter(queryItems: [URLQueryItem]?, param: String) -> String? {
         return queryItems?.first(where: { $0.name == param })?.value
     }

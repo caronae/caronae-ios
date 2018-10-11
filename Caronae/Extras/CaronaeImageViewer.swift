@@ -33,7 +33,6 @@ fileprivate class CustomSKPhotoBrowser: SKPhotoBrowser {
     }
 }
 
-
 fileprivate class CustomImageCache: SKImageCacheable {
     var cache: SDImageCache
     

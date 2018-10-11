@@ -79,7 +79,6 @@ class LoginViewController: UIViewController {
         isAutoLoginMethod = !isAutoLoginMethod
     }
     
-    
     func changeLoginMethod() {
         view.isUserInteractionEnabled = false
         
