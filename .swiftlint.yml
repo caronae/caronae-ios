@@ -112,6 +112,11 @@ custom_rules:
     regex: '^\s*\}\) \{.*'
     message: "Add the missing closure name"
     severity: warning
+  vertical_whitespace_except_for_marks:
+    name: "More than one vertical whitespace"
+    regex: '(?:\n[^\S\n]*){2,}\n(?![^\S\n]*\/\/ MARK:)'
+    message: "More than one empty line is not allowed, excecpt for two before // MARK:"
+    severity: warning
 
 included:
 - Caronae
