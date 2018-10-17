@@ -3,22 +3,26 @@ import Alamofire
 class CaronaeAPIHTTPSessionManager: SessionManager {
     static let instance = CaronaeAPIHTTPSessionManager()
     let caronaeAPIBaseURL = URL(string: CaronaeAPIBaseURLString)!
-    private var headers: HTTPHeaders = [:]
 
     private init() {
         super.init(configuration: .default, delegate: SessionDelegate())
-
-        let userService = UserService.instance
-        if let jwtToken = userService.jwtToken {
-            headers.updateValue("Bearer \(jwtToken)", forKey: "Authorization")
-        } else {
-            headers.updateValue(userService.userToken!, forKey: "token")
-        }
-        headers.updateValue(userService.userFacebookToken!, forKey: "Facebook-Token")
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    fileprivate func getHeaders() -> HTTPHeaders {
+        var headers: HTTPHeaders = [:]
+        let userService = UserService.instance
+        if let jwtToken = userService.jwtToken {
+            headers.updateValue("Bearer \(jwtToken)", forKey: "Authorization")
+        } else {
+            headers.updateValue((userService.userToken ?? ""), forKey: "token")
+        }
+        headers.updateValue((userService.userFacebookToken ?? ""), forKey: "Facebook-Token")
+
+        return headers
     }
 
     fileprivate func parseResponse(_ response: (DataResponse<Data>)) {
@@ -47,7 +51,7 @@ class CaronaeAPIHTTPSessionManager: SessionManager {
 
     // MARK: - Mimicking AFNetwork methods
     public func get(_ url: String, parameters: Parameters?, progress: DataRequest.ProgressHandler?, success: ((URLSessionDataTask?, Any?) -> Void)?, failure: ((URLSessionDataTask?, Error) -> Void)?) {
-        let request = self.request(self.caronaeAPIBaseURL.appendingPathExtension(url), parameters: parameters, headers: headers)
+        let request = self.request(self.caronaeAPIBaseURL.appendingPathExtension(url), parameters: parameters, headers: self.getHeaders())
         if let progress = progress {
             request.downloadProgress(closure: progress)
         }
@@ -59,8 +63,8 @@ class CaronaeAPIHTTPSessionManager: SessionManager {
     }
 
     public func post(_ url: String, parameters: Parameters?, constructingBodyWith: @escaping ((MultipartFormData) -> Void) = { _ in }, progress: DataRequest.ProgressHandler?, success: ((URLSessionDataTask?, Any?) -> Void)?, failure: ((URLSessionDataTask?, Error) -> Void)?) {
-        let request = self.request(self.caronaeAPIBaseURL.appendingPathExtension(url), method: .post, parameters: parameters, headers: headers)
-        
+        let request = self.request(self.caronaeAPIBaseURL.appendingPathExtension(url), method: .post, parameters: parameters, headers: self.getHeaders())
+
         self.upload(multipartFormData: constructingBodyWith, to: self.caronaeAPIBaseURL.appendingPathExtension(url), encodingCompletion: nil)
 
         if let progress = progress {
@@ -74,7 +78,7 @@ class CaronaeAPIHTTPSessionManager: SessionManager {
     }
 
     public func put(_ url: String, parameters: Parameters?, success: ((URLSessionDataTask?, Any?) -> Void)?, failure: ((URLSessionDataTask?, Error) -> Void)?) {
-        let request = self.request(self.caronaeAPIBaseURL.appendingPathExtension(url), method: .put, parameters: parameters, headers: headers)
+        let request = self.request(self.caronaeAPIBaseURL.appendingPathExtension(url), method: .put, parameters: parameters, headers: self.getHeaders())
         request.responseData { response in
             self.parseResponse(response)
             success?(request.task as? URLSessionDataTask, response.data)
@@ -83,7 +87,7 @@ class CaronaeAPIHTTPSessionManager: SessionManager {
     }
 
     public func delete(_ url: String, parameters: Parameters?, success: ((URLSessionDataTask?, Any?) -> Void)?, failure: ((URLSessionDataTask?, Error) -> Void)?) {
-        let request = self.request(self.caronaeAPIBaseURL.appendingPathExtension(url), method: .delete, parameters: parameters, headers: headers)
+        let request = self.request(self.caronaeAPIBaseURL.appendingPathExtension(url), method: .delete, parameters: parameters, headers: self.getHeaders())
         request.responseData { response in
             self.parseResponse(response)
             success?(request.task as? URLSessionDataTask, response.data)
