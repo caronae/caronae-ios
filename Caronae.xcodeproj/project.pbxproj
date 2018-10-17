@@ -142,10 +142,6 @@
 		71C908FE1E88C3E9009B7BFE /* FilterParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */; };
 		71D2B86D1E296AFC000454F7 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2B86C1E296AFC000454F7 /* ChatViewController.swift */; };
 		71DB83DE1F831FF40065300E /* FalaeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DB83DD1F831FF40065300E /* FalaeService.swift */; };
-		71DEAE512054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE502054A86100707004 /* CaronaeAPIRequestSerializer.swift */; };
-		71DEAE522054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE502054A86100707004 /* CaronaeAPIRequestSerializer.swift */; };
-		71DEAE542054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */; };
-		71DEAE552054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */; };
 		71E5200820C0DF87009768B4 /* CaronaeImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5200720C0DF87009768B4 /* CaronaeImagePicker.swift */; };
 		71E5200920C0DF87009768B4 /* CaronaeImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E5200720C0DF87009768B4 /* CaronaeImagePicker.swift */; };
 		71EAF4551F11406200B16CF8 /* CreateRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EAF4541F11406200B16CF8 /* CreateRideViewController.swift */; };
@@ -271,8 +267,6 @@
 		71C908FD1E88C3E9009B7BFE /* FilterParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterParameters.swift; sourceTree = "<group>"; };
 		71D2B86C1E296AFC000454F7 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		71DB83DD1F831FF40065300E /* FalaeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FalaeService.swift; path = Services/FalaeService.swift; sourceTree = "<group>"; };
-		71DEAE502054A86100707004 /* CaronaeAPIRequestSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaronaeAPIRequestSerializer.swift; path = Networking/CaronaeAPIRequestSerializer.swift; sourceTree = "<group>"; };
-		71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaronaeAPIResponseSerializer.swift; path = Networking/CaronaeAPIResponseSerializer.swift; sourceTree = "<group>"; };
 		71E5200720C0DF87009768B4 /* CaronaeImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaronaeImagePicker.swift; sourceTree = "<group>"; };
 		71EAF4541F11406200B16CF8 /* CreateRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRideViewController.swift; sourceTree = "<group>"; };
 		71EEF6F4205472D3004D782A /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = About/WebViewController.swift; sourceTree = "<group>"; };
@@ -658,8 +652,6 @@
 			isa = PBXGroup;
 			children = (
 				A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */,
-				71DEAE502054A86100707004 /* CaronaeAPIRequestSerializer.swift */,
-				71DEAE532054A88300707004 /* CaronaeAPIResponseSerializer.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -937,7 +929,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-caronae-ios-Caronae Dev/Pods-caronae-ios-Caronae Dev-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
@@ -971,7 +962,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
@@ -1015,7 +1005,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-caronae-ios-Caronae/Pods-caronae-ios-Caronae-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
@@ -1049,7 +1038,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
@@ -1093,7 +1081,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-caronae-ios-Caronae UITests/Pods-caronae-ios-Caronae UITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
@@ -1128,7 +1115,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
@@ -1213,7 +1199,6 @@
 				714AA359203B2247005EF615 /* CaronaeMessageNotification.swift in Sources */,
 				719428FF203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
 				717FFC6D209FDBBC00DD127A /* TabBarController.swift in Sources */,
-				71DEAE522054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */,
 				718F3AC51FE9FEBE001F1D40 /* UIColor+hex.swift in Sources */,
 				711259D62041EFDE000A92F9 /* ProfileViewController.swift in Sources */,
 				71E5200920C0DF87009768B4 /* CaronaeImagePicker.swift in Sources */,
@@ -1232,7 +1217,6 @@
 				718F3AD41FE9FEBE001F1D40 /* SearchRideViewController.swift in Sources */,
 				71A9A06020A3EC950098DAFD /* UIImageView+crn_setImageWithURL.swift in Sources */,
 				EBFC0A07210CDA5300C853D7 /* CaronaeImageViewer.swift in Sources */,
-				71DEAE552054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */,
 				718F3AD51FE9FEBE001F1D40 /* UniversalLinkParser.swift in Sources */,
 				711259DA204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
 				718F3AD61FE9FEBE001F1D40 /* NeighborhoodSelectionViewController.swift in Sources */,
@@ -1298,7 +1282,6 @@
 				719428FE203A651D008E2A24 /* CaronaeGradientButton.swift in Sources */,
 				714F82311F610E8300531C71 /* UIColor+hex.swift in Sources */,
 				717FFC6C209FDBBC00DD127A /* TabBarController.swift in Sources */,
-				71DEAE512054A86100707004 /* CaronaeAPIRequestSerializer.swift in Sources */,
 				711259D52041EFDB000A92F9 /* ProfileViewController.swift in Sources */,
 				7169143C1FEAEBEF004AD5C7 /* CaronaeConstants.swift in Sources */,
 				71E5200820C0DF87009768B4 /* CaronaeImagePicker.swift in Sources */,
@@ -1317,7 +1300,6 @@
 				7106CFD01F098BBB0071C4AE /* UniversalLinkParser.swift in Sources */,
 				71A9A05F20A3EC950098DAFD /* UIImageView+crn_setImageWithURL.swift in Sources */,
 				EBFC0A06210CDA5300C853D7 /* CaronaeImageViewer.swift in Sources */,
-				71DEAE542054A88300707004 /* CaronaeAPIResponseSerializer.swift in Sources */,
 				71F648611F71F364004C712F /* NeighborhoodSelectionViewController.swift in Sources */,
 				711259D9204320FC000A92F9 /* EditProfileViewController.swift in Sources */,
 				A375D2FB1C19175A00795CAE /* CaronaeAlertController.m in Sources */,
