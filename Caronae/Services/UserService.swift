@@ -276,7 +276,7 @@ class UserService {
         
         let imageData = image.jpegData(compressionQuality: 0.9)!
         api.post("/api/v1/users/\(userID)/profile_picture", parameters: nil, constructingBodyWith: { fromData in
-            fromData.appendPart(withFileData: imageData, name: "profile_picture", fileName: "profile_picture.jpeg", mimeType: "image/jpeg")
+            fromData.append(imageData, withName: "profile_picture", fileName: "profile_picture.jpeg", mimeType: "image/jpeg")
         }, progress: { upload in
             DispatchQueue.main.async {
                 showLoadingProgress(Float(upload.fractionCompleted))

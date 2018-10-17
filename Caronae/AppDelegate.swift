@@ -1,6 +1,7 @@
 import UIKit
 import SVProgressHUD
-import AFNetworking
+import Alamofire
+import AlamofireNetworkActivityIndicator
 import AudioToolbox
 import FBSDKCoreKit
 
@@ -9,14 +10,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var beepSound: SystemSoundID = 0
+    public var reachabilityManager: NetworkReachabilityManager?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         SVProgressHUD.setDefaultMaskType(.clear)
         SVProgressHUD.setFadeOutAnimationDuration(0)
         SVProgressHUD.setMinimumSize(CGSize(width: 100, height: 100))
         
-        AFNetworkActivityIndicatorManager.shared().isEnabled = true
-        AFNetworkReachabilityManager.shared().startMonitoring()
+        NetworkActivityIndicatorManager.shared.isEnabled = true
+        if let reachabilityManager = NetworkReachabilityManager(host: CaronaeAPIBaseURLString) {
+            reachabilityManager.listener = { status in
+                print("Network Status Changed: \(status)")
+            }
+            reachabilityManager.startListening()
+        }
         
         configureRealm()
         configureFirebase()
