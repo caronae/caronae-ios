@@ -168,7 +168,7 @@ class AllRidesViewController: RideListController, SearchRideDelegate {
         }
         
         filterIsEnabled = true
-        filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, hubs: centers, campus: campus)
+        filterParams = FilterParameters(neighborhoods: neighborhoods, zone: zone, centers: centers, campus: campus)
         filterLabel.text = filterParams.activeFiltersText()
         
         pagination = PaginationState()
