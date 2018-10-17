@@ -25,7 +25,8 @@ abstract_target 'caronae-ios' do
     pod 'SimpleKeychain', '~> 0.8'
     pod 'YPImagePicker', '~> 3.0'
     pod 'SKPhotoBrowser', '~> 6.0'
-    
+    pod 'Alamofire', '~> 4.7'
+    pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
     target 'Caronae'
     
     target 'Caronae Dev' do
