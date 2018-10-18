@@ -6,6 +6,7 @@ class CaronaeAPIHTTPSessionManager: SessionManager {
 
     private init() {
         super.init(configuration: .default, delegate: SessionDelegate())
+
         self.startRequestsImmediately = false
     }
 
@@ -33,10 +34,11 @@ class CaronaeAPIHTTPSessionManager: SessionManager {
     fileprivate func parseResponse(_ response: (DataResponse<Any>)) {
         let userService = UserService.instance
 
-        if let error = response.error as! NSErrorPointer,
+        if let error = response.error as? AFError,
             let response = response.response,
-            response.statusCode == 401 {
-            error.pointee = CaronaeError.invalidCredentials
+            response.statusCode == 401,
+            let pointer = error.underlyingError as! NSErrorPointer {
+            pointer.pointee = CaronaeError.invalidCredentials
 
             DispatchQueue.main.async {
                 if userService.user != nil {
