@@ -6,6 +6,7 @@ class CaronaeAPIHTTPSessionManager: SessionManager {
 
     private init() {
         super.init(configuration: .default, delegate: SessionDelegate())
+        self.startRequestsImmediately = false
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -18,14 +19,18 @@ class CaronaeAPIHTTPSessionManager: SessionManager {
         if let jwtToken = userService.jwtToken {
             headers.updateValue("Bearer \(jwtToken)", forKey: "Authorization")
         } else {
-            headers.updateValue((userService.userToken ?? ""), forKey: "token")
+            if let userToken = userService.userToken {
+                headers.updateValue(userToken, forKey: "token")
+            }
         }
-        headers.updateValue((userService.userFacebookToken ?? ""), forKey: "Facebook-Token")
+        if let userFacebookToken = userService.userFacebookToken {
+            headers.updateValue(userFacebookToken, forKey: "Facebook-Token")
+        }
 
         return headers
     }
 
-    fileprivate func parseResponse(_ response: (DataResponse<Data>)) {
+    fileprivate func parseResponse(_ response: (DataResponse<Any>)) {
         let userService = UserService.instance
 
         if let error = response.error as! NSErrorPointer,
@@ -51,46 +56,53 @@ class CaronaeAPIHTTPSessionManager: SessionManager {
 
     // MARK: - Mimicking AFNetwork methods
     public func get(_ url: String, parameters: Parameters?, progress: DataRequest.ProgressHandler?, success: ((URLSessionDataTask?, Any?) -> Void)?, failure: ((URLSessionDataTask?, Error) -> Void)?) {
-        let request = self.request(self.caronaeAPIBaseURL.appendingPathExtension(url), parameters: parameters, headers: self.getHeaders())
+        let fullUrl = self.caronaeAPIBaseURL.absoluteString.appending(url)
+        let request = self.request(fullUrl, parameters: parameters, headers: self.getHeaders())
+
         if let progress = progress {
             request.downloadProgress(closure: progress)
         }
-        request.responseData { response in
+        request.responseJSON { response in
             self.parseResponse(response)
-            success?(request.task as? URLSessionDataTask, response.data)
+            success?(request.task as? URLSessionDataTask, response.result.value)
         }
         request.resume()
     }
 
     public func post(_ url: String, parameters: Parameters?, constructingBodyWith: @escaping ((MultipartFormData) -> Void) = { _ in }, progress: DataRequest.ProgressHandler?, success: ((URLSessionDataTask?, Any?) -> Void)?, failure: ((URLSessionDataTask?, Error) -> Void)?) {
-        let request = self.request(self.caronaeAPIBaseURL.appendingPathExtension(url), method: .post, parameters: parameters, headers: self.getHeaders())
+        let fullUrl = self.caronaeAPIBaseURL.absoluteString.appending(url)
 
-        self.upload(multipartFormData: constructingBodyWith, to: self.caronaeAPIBaseURL.appendingPathExtension(url), encodingCompletion: nil)
+        let request = self.request(fullUrl, method: .post, parameters: parameters, headers: self.getHeaders())
+
+//        self.upload(multipartFormData: constructingBodyWith, to: self.caronaeAPIBaseURL.appendingPathExtension(url), encodingCompletion: nil)
 
         if let progress = progress {
             request.downloadProgress(closure: progress)
         }
-        request.responseData { response in
+        request.responseJSON { response in
             self.parseResponse(response)
-            success?(request.task as? URLSessionDataTask, response.data)
+            success?(request.task as? URLSessionDataTask, response.result.value)
         }
         request.resume()
     }
 
     public func put(_ url: String, parameters: Parameters?, success: ((URLSessionDataTask?, Any?) -> Void)?, failure: ((URLSessionDataTask?, Error) -> Void)?) {
-        let request = self.request(self.caronaeAPIBaseURL.appendingPathExtension(url), method: .put, parameters: parameters, headers: self.getHeaders())
-        request.responseData { response in
+        let fullUrl = self.caronaeAPIBaseURL.absoluteString.appending(url)
+        let request = self.request(fullUrl, method: .put, parameters: parameters, headers: self.getHeaders())
+        request.responseJSON { response in
             self.parseResponse(response)
-            success?(request.task as? URLSessionDataTask, response.data)
+            success?(request.task as? URLSessionDataTask, response.result.value)
         }
         request.resume()
     }
 
     public func delete(_ url: String, parameters: Parameters?, success: ((URLSessionDataTask?, Any?) -> Void)?, failure: ((URLSessionDataTask?, Error) -> Void)?) {
-        let request = self.request(self.caronaeAPIBaseURL.appendingPathExtension(url), method: .delete, parameters: parameters, headers: self.getHeaders())
-        request.responseData { response in
+        let fullUrl = self.caronaeAPIBaseURL.absoluteString.appending(url)
+
+        let request = self.request(fullUrl, method: .delete, parameters: parameters, headers: self.getHeaders())
+        request.responseJSON { response in
             self.parseResponse(response)
-            success?(request.task as? URLSessionDataTask, response.data)
+            success?(request.task as? URLSessionDataTask, response.result.value)
         }
         request.resume()
     }
