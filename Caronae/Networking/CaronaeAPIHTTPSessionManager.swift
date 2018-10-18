@@ -71,21 +71,33 @@ class CaronaeAPIHTTPSessionManager: SessionManager {
         request.resume()
     }
 
-    public func post(_ url: String, parameters: Parameters?, constructingBodyWith: @escaping ((MultipartFormData) -> Void) = { _ in }, progress: DataRequest.ProgressHandler?, success: ((URLSessionDataTask?, Any?) -> Void)?, failure: ((URLSessionDataTask?, Error) -> Void)?) {
+    public func post(_ url: String, parameters: Parameters?, constructingBodyWith: ((MultipartFormData) -> Void)? = nil, progress: DataRequest.ProgressHandler?, success: ((URLSessionDataTask?, Any?) -> Void)?, failure: ((URLSessionDataTask?, Error) -> Void)?) {
         let fullUrl = self.caronaeAPIBaseURL.absoluteString.appending(url)
 
-        let request = self.request(fullUrl, method: .post, parameters: parameters, headers: self.getHeaders())
-
-//        self.upload(multipartFormData: constructingBodyWith, to: self.caronaeAPIBaseURL.appendingPathExtension(url), encodingCompletion: nil)
-
-        if let progress = progress {
-            request.downloadProgress(closure: progress)
+        if let constructingBodyWith = constructingBodyWith {
+            self.upload(multipartFormData: constructingBodyWith, to: fullUrl, encodingCompletion: { encodingResult in
+                    switch encodingResult {
+                    case .success(let upload, _, _):
+                        upload.responseJSON { response in
+                            self.parseResponse(response)
+                            success?(upload.task as? URLSessionDataTask, response.result.value)
+                        }
+                        upload.resume()
+                    case .failure(let encodingError):
+                        print(encodingError)
+                    }
+                })
+        } else {
+            let request = self.request(fullUrl, method: .post, parameters: parameters, headers: self.getHeaders())
+            if let progress = progress {
+                request.downloadProgress(closure: progress)
+            }
+            request.responseJSON { response in
+                self.parseResponse(response)
+                success?(request.task as? URLSessionDataTask, response.result.value)
+            }
+            request.resume()
         }
-        request.responseJSON { response in
-            self.parseResponse(response)
-            success?(request.task as? URLSessionDataTask, response.result.value)
-        }
-        request.resume()
     }
 
     public func put(_ url: String, parameters: Parameters?, success: ((URLSessionDataTask?, Any?) -> Void)?, failure: ((URLSessionDataTask?, Error) -> Void)?) {
