@@ -36,6 +36,9 @@ class CaronaeAPIHTTPSessionManager: SessionManager {
             self.upload(multipartFormData: constructingBodyWith, to: fullUrl, encodingCompletion: { encodingResult in
                 switch encodingResult {
                 case .success(let upload, _, _):
+                    if let progress = progress {
+                        upload.uploadProgress(closure: progress)
+                    }
                     upload.responseCaronae { response in
                         success?(upload.task as? URLSessionDataTask, response.result.value)
                     }
