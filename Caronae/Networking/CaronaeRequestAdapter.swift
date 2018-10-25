@@ -1,9 +1,11 @@
 import Alamofire
 
-class CaronaeAccessTokenAdapter: RequestAdapter {
-
+class CaronaeRequestAdapter: RequestAdapter {
+    private let baseURL = URL(string: CaronaeAPIBaseURLString)!
+    
     func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
         var urlRequest = urlRequest
+        urlRequest.url = URL(string: urlRequest.url!.absoluteString, relativeTo: baseURL)
         
         let userService = UserService.instance
         if let jwtToken = userService.jwtToken {

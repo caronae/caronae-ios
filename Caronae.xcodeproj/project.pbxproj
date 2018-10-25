@@ -190,8 +190,8 @@
 		A3CA5DDC1E22DB830062522D /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDB1E22DB830062522D /* AppDelegate+Notifications.swift */; };
 		A3CA5DE01E22EC570062522D /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DDF1E22EC570062522D /* ChatService.swift */; };
 		A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */; };
-		B0DB21E0217A438A00A68FA5 /* CaronaeAccessTokenAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB21DF217A438A00A68FA5 /* CaronaeAccessTokenAdapter.swift */; };
-		B0DB21E1217A438A00A68FA5 /* CaronaeAccessTokenAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB21DF217A438A00A68FA5 /* CaronaeAccessTokenAdapter.swift */; };
+		B0DB21E0217A438A00A68FA5 /* CaronaeRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB21DF217A438A00A68FA5 /* CaronaeRequestAdapter.swift */; };
+		B0DB21E1217A438A00A68FA5 /* CaronaeRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB21DF217A438A00A68FA5 /* CaronaeRequestAdapter.swift */; };
 		B0DB21E3217A6F6B00A68FA5 /* DataRequest+responseCaronae.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB21E2217A6F6B00A68FA5 /* DataRequest+responseCaronae.swift */; };
 		B0DB21E4217A6F6B00A68FA5 /* DataRequest+responseCaronae.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DB21E2217A6F6B00A68FA5 /* DataRequest+responseCaronae.swift */; };
 		EBFC0A06210CDA5300C853D7 /* CaronaeImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC0A05210CDA5200C853D7 /* CaronaeImageViewer.swift */; };
@@ -331,7 +331,7 @@
 		A3CA5DE31E22F3830062522D /* AppDelegate+Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Firebase.swift"; sourceTree = "<group>"; };
 		A3D680191DB4016E00135C2B /* Caronae.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Caronae.entitlements; sourceTree = "<group>"; };
 		AB62F8C4B415DB9488E5B0EF /* Pods-caronae-ios-Caronae Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caronae-ios-Caronae Dev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-caronae-ios-Caronae Dev/Pods-caronae-ios-Caronae Dev.debug.xcconfig"; sourceTree = "<group>"; };
-		B0DB21DF217A438A00A68FA5 /* CaronaeAccessTokenAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaronaeAccessTokenAdapter.swift; path = Networking/CaronaeAccessTokenAdapter.swift; sourceTree = "<group>"; };
+		B0DB21DF217A438A00A68FA5 /* CaronaeRequestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaronaeRequestAdapter.swift; path = Networking/CaronaeRequestAdapter.swift; sourceTree = "<group>"; };
 		B0DB21E2217A6F6B00A68FA5 /* DataRequest+responseCaronae.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataRequest+responseCaronae.swift"; sourceTree = "<group>"; };
 		B935F3BB53907682C1EF3A28 /* Pods-Caronae.debug - production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Caronae.debug - production.xcconfig"; path = "Pods/Target Support Files/Pods-Caronae/Pods-Caronae.debug - production.xcconfig"; sourceTree = "<group>"; };
 		C0563B7E023B980C14E2CEF3 /* Pods-caronae-ios-Caronae Dev.debug - development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caronae-ios-Caronae Dev.debug - development.xcconfig"; path = "Pods/Target Support Files/Pods-caronae-ios-Caronae Dev/Pods-caronae-ios-Caronae Dev.debug - development.xcconfig"; sourceTree = "<group>"; };
@@ -659,7 +659,7 @@
 			isa = PBXGroup;
 			children = (
 				A3BBF1371DDC082700765CD7 /* CaronaeAPIHTTPSessionManager.swift */,
-				B0DB21DF217A438A00A68FA5 /* CaronaeAccessTokenAdapter.swift */,
+				B0DB21DF217A438A00A68FA5 /* CaronaeRequestAdapter.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -1242,7 +1242,7 @@
 				718F3AE11FE9FEBE001F1D40 /* CreateRideViewController.swift in Sources */,
 				718F3AE31FE9FEBE001F1D40 /* UIApplication+topViewController.m in Sources */,
 				718F3AE41FE9FEBE001F1D40 /* Zone.swift in Sources */,
-				B0DB21E1217A438A00A68FA5 /* CaronaeAccessTokenAdapter.swift in Sources */,
+				B0DB21E1217A438A00A68FA5 /* CaronaeRequestAdapter.swift in Sources */,
 				718F3AE51FE9FEBE001F1D40 /* Array+compactString.swift in Sources */,
 				718F3AE61FE9FEBE001F1D40 /* String+capitalizedAfter.swift in Sources */,
 				719428F9203A3D48008E2A24 /* AuthenticationController.swift in Sources */,
@@ -1327,7 +1327,7 @@
 				A3CA5DE41E22F3830062522D /* AppDelegate+Firebase.swift in Sources */,
 				71EAF4551F11406200B16CF8 /* CreateRideViewController.swift in Sources */,
 				A3CA5DCF1E1F3C000062522D /* UIApplication+topViewController.m in Sources */,
-				B0DB21E0217A438A00A68FA5 /* CaronaeAccessTokenAdapter.swift in Sources */,
+				B0DB21E0217A438A00A68FA5 /* CaronaeRequestAdapter.swift in Sources */,
 				7133482E1F5F609700E2218E /* Zone.swift in Sources */,
 				713E99B91E8D5FA900F3C9E0 /* Array+compactString.swift in Sources */,
 				719428F8203A3D48008E2A24 /* AuthenticationController.swift in Sources */,
