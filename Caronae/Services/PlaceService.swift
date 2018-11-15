@@ -91,40 +91,44 @@ class PlaceService {
     }
     
     func updatePlaces(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/api/v1/places", parameters: nil, progress: nil, success: { _, responseObject in
-            guard let response = responseObject as? [String: Any],
-                let campiJson = response["campi"] as? [[String: Any]],
-                let zonesJson = response["zones"] as? [[String: Any]],
-                let institution = response["institution"] as? [String: String] else {
-                    error(CaronaeError.invalidResponse)
-                    return
-            }
-            
-            // Update the current institution
-            Institution.name = institution["name"]
-            Institution.goingLabel = institution["going_label"]
-            Institution.leavingLabel = institution["leaving_label"]
-            
-            let campi = campiJson.compactMap { Campus(JSON: $0) }
-            let zones = zonesJson.compactMap { Zone(JSON: $0) }
-            
-            do {
-                let realm = try Realm()
-                // Clear old places and add new ones
-                try realm.write {
-                    realm.delete(realm.objects(Campus.self))
-                    realm.delete(realm.objects(Zone.self))
-                    realm.delete(realm.objects(Place.self))
-                    realm.add(campi)
-                    realm.add(zones)
+        let request = api.request("/api/v1/places")
+        request.validate().responseCaronae { response in
+            switch response.result {
+            case .success(let responseObject):
+                guard let response = responseObject as? [String: Any],
+                    let campiJson = response["campi"] as? [[String: Any]],
+                    let zonesJson = response["zones"] as? [[String: Any]],
+                    let institution = response["institution"] as? [String: String] else {
+                        error(CaronaeError.invalidResponse)
+                        return
                 }
-            } catch let realmError {
-                error(realmError)
+                
+                // Update the current institution
+                Institution.name = institution["name"]
+                Institution.goingLabel = institution["going_label"]
+                Institution.leavingLabel = institution["leaving_label"]
+                
+                let campi = campiJson.compactMap { Campus(JSON: $0) }
+                let zones = zonesJson.compactMap { Zone(JSON: $0) }
+                
+                do {
+                    let realm = try Realm()
+                    // Clear old places and add new ones
+                    try realm.write {
+                        realm.delete(realm.objects(Campus.self))
+                        realm.delete(realm.objects(Zone.self))
+                        realm.delete(realm.objects(Place.self))
+                        realm.add(campi)
+                        realm.add(zones)
+                    }
+                } catch let realmError {
+                    error(realmError)
+                }
+                
+                success()
+            case .failure(let err):
+                error(err)
             }
-            
-            success()
-        }, failure: { _, err in
-            error(err)
-        })
+        }
     }
 }
