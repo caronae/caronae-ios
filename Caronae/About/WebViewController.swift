@@ -1,6 +1,7 @@
 import UIKit
 import WebKit
 import SVProgressHUD
+import Alamofire
 
 class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
 
@@ -59,16 +60,13 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         
         var errorAlertTitle: String!
         var errorAlertMessage: String!
-        
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
-            let isReachable = appDelegate.reachabilityManager?.isReachable {
-            if !isReachable {
-                errorAlertTitle = "Sem conexão com a internet"
-                errorAlertMessage = "Verifique sua conexão com a internet e tente novamente."
-            } else {
-                errorAlertTitle = "Algo deu errado."
-                errorAlertMessage = "Não foi possível carregar a página. Por favor, tente novamente."
-            }
+        if let reachabilityManager = NetworkReachabilityManager(),
+            !reachabilityManager.isReachable {
+            errorAlertTitle = "Sem conexão com a internet"
+            errorAlertMessage = "Verifique sua conexão com a internet e tente novamente."
+        } else {
+            errorAlertTitle = "Algo deu errado."
+            errorAlertMessage = "Não foi possível carregar a página. Por favor, tente novamente."
         }
         
         CaronaeAlertController.presentOkAlert(withTitle: errorAlertTitle, message: errorAlertMessage)
