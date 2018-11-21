@@ -318,8 +318,11 @@ class RideViewController: UIViewController {
     }
     
     @IBAction func didTapShareRide(_ sender: Any) {
-        var rideToShare = String(format: "Carona: %@\n", ride.title)
-        rideToShare += dateLabel.text! + "\n"
+        var rideToShare = "Vai uma Caronaê?\n\n"
+        rideToShare += String(format: "👤 %@\n", ride.driver.shortName)
+        rideToShare += String(format: "📍 %@\n", ride.title)
+        rideToShare += "🕐📅 " + dateLabel.text! + "\n"
+        rideToShare += String(format: "Para solicitar uma vaga é só clicar nesse link aqui embaixo! 🚗🌿🙂 \n\n")
         rideToShare += String(format: "%@/carona/%ld", CaronaeURLString.base, ride.id)
  
         let activityVC = UIActivityViewController(activityItems: [rideToShare], applicationActivities: nil)
