@@ -1,49 +1,45 @@
 import Alamofire
 
 extension DataRequest {
-    static func caronaeResponseSerializer() -> DataResponseSerializer<Any> {
+    static func caronaeResponseSerializer(options: JSONSerialization.ReadingOptions = .allowFragments) -> DataResponseSerializer<Any> {
         return DataResponseSerializer { _, response, data, error in
-            let result = Request.serializeResponseJSON(options: .allowFragments, response: response, data: data, error: nil)
-
-            guard case let .success(validData) = result else {
-                return .failure(error!)
+            
+            let result = Request.serializeResponseJSON(options: options, response: response, data: data, error: error)
+            guard let response = response else {
+                return result
             }
-
-            let userService = UserService.instance
-
-            if let error = error as? AFError,
-                let response = response,
-                response.statusCode == 401,
-                let pointer = error.underlyingError as! NSErrorPointer {
-                pointer.pointee = CaronaeError.invalidCredentials
-
+            
+            if response.statusCode == 401 {
+                // Invalid credentials
                 DispatchQueue.main.async {
+                    let userService = UserService.instance
                     if userService.user != nil {
                         userService.signOut(force: true)
                     }
                 }
             }
-
-            if let response = response,
-                let authorizationHeader = response.allHeaderFields["Authorization"] as? String,
+            
+            if let authorizationHeader = response.allHeaderFields["Authorization"] as? String,
                 let jwtToken = authorizationHeader.components(separatedBy: "Bearer ").last {
                 NSLog("New token returned from API")
+                let userService = UserService.instance
                 userService.jwtToken = jwtToken
                 userService.userToken = nil
             }
-
-            return .success(validData)
+            
+            return result
         }
     }
-
+    
     @discardableResult
     func responseCaronae(
         queue: DispatchQueue? = nil,
+        options: JSONSerialization.ReadingOptions = .allowFragments,
         completionHandler: @escaping (DataResponse<Any>) -> Void)
         -> Self {
             return response(
                 queue: queue,
-                responseSerializer: DataRequest.caronaeResponseSerializer(),
+                responseSerializer: DataRequest.caronaeResponseSerializer(options: options),
                 completionHandler: completionHandler
             )
     }
