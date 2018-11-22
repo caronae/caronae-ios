@@ -362,6 +362,31 @@ class UserService {
         }
     }
     
+    func getUserRidesHistory(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
+        guard let user = UserService.instance.user else {
+            NSLog("Error: No userID registered")
+            return
+        }
+        
+        let request = api.request("/api/v1/users/\(user.id)/rides/history")
+        request.validate().responseCaronae { response in
+            switch response.result {
+            case .success(let responseObject):
+                guard let jsonResponse = responseObject as? [String: Any],
+                    let ridesJson = jsonResponse["rides"] as? [[String: Any]] else {
+                        error(CaronaeError.invalidResponse)
+                        return
+                }
+                
+                // Deserialize rides
+                let rides = ridesJson.compactMap { Ride(JSON: $0) }
+                success(rides)
+            case .failure(let err):
+                error(err)
+            }
+        }
+    }
+    
     // This actually should use the user's ID instead of the Facebook ID
     // but would need to refactor the API...
     func mutualFriendsForUser(withFacebookID facebookID: String?, success: @escaping (_ friends: [User], _ totalCount: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
