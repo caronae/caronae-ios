@@ -50,33 +50,37 @@ class ChatService {
             params = [ "since": dateFormatter.string(from: lastMessage.date) ]
         }
         
-        api.get("/api/v1/rides/\(rideID)/messages", parameters: params, progress: nil, success: { _, responseObject in
-            guard let jsonResponse = responseObject as? [String: Any],
-                let messagesJson = jsonResponse["messages"] as? [[String: Any]] else {
-                    completionBlock(CaronaeError.invalidResponse)
-                    return
-            }
-            
-            // Deserialize response
-            let messages = messagesJson.compactMap {
-                let message = Message(JSON: $0)
-                message?.ride = ride
-                return message
-            } as [Message]
-            
-            // Persist
-            do {
-                try realm.write {
-                    realm.add(messages, update: true)
+        let request = api.request("/api/v1/rides/\(rideID)/messages", parameters: params)
+        request.validate().responseCaronae { response in
+            switch response.result {
+            case .success(let responseObject):
+                guard let jsonResponse = responseObject as? [String: Any],
+                    let messagesJson = jsonResponse["messages"] as? [[String: Any]] else {
+                        completionBlock(CaronaeError.invalidResponse)
+                        return
                 }
-            } catch {
-                completionBlock(error)
+                
+                // Deserialize response
+                let messages = messagesJson.compactMap {
+                    let message = Message(JSON: $0)
+                    message?.ride = ride
+                    return message
+                } as [Message]
+                
+                // Persist
+                do {
+                    try realm.write {
+                        realm.add(messages, update: true)
+                    }
+                } catch {
+                    completionBlock(error)
+                }
+                
+                completionBlock(nil)
+            case .failure(let err):
+                completionBlock(err)
             }
-            
-            completionBlock(nil)
-        }, failure: { _, err in
-            completionBlock(err)
-        })
+        }
     }
     
     func sendMessage(_ body: String, rideID: Int, completionBlock: @escaping (Message?, Error?) -> Void) {
@@ -85,38 +89,42 @@ class ChatService {
         message.date = Date()
         message.sender = UserService.instance.user
         
-        let params = [ "message": message.body ]
-        api.post("/api/v1/rides/\(rideID)/messages", parameters: params, progress: nil, success: { _, responseObject in
-            guard let response = responseObject as? [String: Any],
-                let messageID = response["id"] as? Int else {
-                NSLog("Error saving message. Invalid response.")
-                completionBlock(nil, CaronaeError.invalidResponse)
-                return
-            }
-            
-            // Persist
-            do {
-                let realm = try Realm()
-                guard let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) else {
-                    NSLog("Could not find local ride with ID %ld", rideID)
-                    completionBlock(nil, nil)
-                    return
+        let params = [ "message": body ]
+        let request = api.request("/api/v1/rides/\(rideID)/messages", method: .post, parameters: params)
+        request.validate().responseCaronae { response in
+            switch response.result {
+            case .success(let responseObject):
+                guard let response = responseObject as? [String: Any],
+                    let messageID = response["id"] as? Int else {
+                        NSLog("Error saving message. Invalid response.")
+                        completionBlock(nil, CaronaeError.invalidResponse)
+                        return
                 }
                 
-                message.id = messageID
-                message.ride = ride
-                
-                try realm.write {
-                    realm.add(message)
+                // Persist
+                do {
+                    let realm = try Realm()
+                    guard let ride = realm.object(ofType: Ride.self, forPrimaryKey: rideID) else {
+                        NSLog("Could not find local ride with ID %ld", rideID)
+                        completionBlock(nil, nil)
+                        return
+                    }
+                    
+                    message.id = messageID
+                    message.ride = ride
+                    
+                    try realm.write {
+                        realm.add(message)
+                    }
+                } catch {
+                    completionBlock(nil, error)
                 }
-            } catch {
-                completionBlock(nil, error)
+                
+                completionBlock(message, nil)
+            case .failure(let err):
+                NSLog("Error sending message data: \(err.localizedDescription)")
+                completionBlock(nil, err)
             }
-
-            completionBlock(message, nil)
-        }, failure: { _, err in
-            NSLog("Error sending message data: \(err.localizedDescription)")
-            completionBlock(nil, err)
-        })
+        }
     }
 }

@@ -21,7 +21,7 @@ class RidesHistoryViewController: RideListController {
             tableView.backgroundView = loadingLabel
         }
         
-        RideService.instance.getRidesHistory(success: { rides in
+        UserService.instance.getUserRidesHistory(success: { rides in
             self.rides = rides
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()

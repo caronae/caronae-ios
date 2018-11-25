@@ -1,6 +1,7 @@
 import UIKit
 import SVProgressHUD
-import AFNetworking
+import Alamofire
+import AlamofireNetworkActivityIndicator
 import AudioToolbox
 import FBSDKCoreKit
 
@@ -15,8 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setFadeOutAnimationDuration(0)
         SVProgressHUD.setMinimumSize(CGSize(width: 100, height: 100))
         
-        AFNetworkActivityIndicatorManager.shared().isEnabled = true
-        AFNetworkReachabilityManager.shared().startMonitoring()
+        NetworkActivityIndicatorManager.shared.isEnabled = true
         
         configureRealm()
         configureFirebase()

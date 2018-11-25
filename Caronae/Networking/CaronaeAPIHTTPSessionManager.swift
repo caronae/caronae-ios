@@ -1,15 +1,12 @@
-import AFNetworking
+import Alamofire
 
-class CaronaeAPIHTTPSessionManager: AFHTTPSessionManager {
+class CaronaeAPIHTTPSessionManager: SessionManager {
     static let instance = CaronaeAPIHTTPSessionManager()
 
     private init() {
-        let caronaeAPIBaseURL = URL(string: CaronaeAPIBaseURLString)
-        super.init(baseURL: caronaeAPIBaseURL, sessionConfiguration: .default)
-        
-        requestSerializer = CaronaeAPIRequestSerializer()
-        responseSerializer = CaronaeAPIResponseSerializer()
-        requestSerializer.timeoutInterval = 30
+        super.init(configuration: .default, delegate: SessionDelegate())
+
+        self.adapter = CaronaeRequestAdapter()
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -12,10 +12,14 @@ class FalaeService {
             "message": message
             ]
         
-        api.post("/api/v1/falae/messages", parameters: params, progress: nil, success: { _, _ in
-            success()
-        }, failure: { _, err in
-            error(err)
-        })
+        let request = api.request("/api/v1/falae/messages", method: .post, parameters: params)
+        request.validate().responseCaronae { response in
+            switch response.result {
+            case .success:
+                success()
+            case .failure(let err):
+                error(err)
+            }
+        }
     }
 }

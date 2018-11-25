@@ -1,7 +1,7 @@
 import UIKit
 import WebKit
 import SVProgressHUD
-import AFNetworking
+import Alamofire
 
 class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
 
@@ -60,7 +60,8 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         
         var errorAlertTitle: String!
         var errorAlertMessage: String!
-        if !AFNetworkReachabilityManager.shared().isReachable {
+        if let reachabilityManager = NetworkReachabilityManager(),
+            !reachabilityManager.isReachable {
             errorAlertTitle = "Sem conexão com a internet"
             errorAlertMessage = "Verifique sua conexão com a internet e tente novamente."
         } else {

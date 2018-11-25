@@ -4,7 +4,6 @@ abstract_target 'caronae-ios' do
     use_frameworks!
     inhibit_all_warnings!
     
-    pod 'AFNetworking', '~> 3.2'
     pod 'ActionSheetPicker-3.0', '~> 2.3.0'
     pod 'TPKeyboardAvoiding', '~> 1.3.2'
     pod 'SDCAlertView', '2.5.4'
@@ -25,7 +24,8 @@ abstract_target 'caronae-ios' do
     pod 'SimpleKeychain', '~> 0.8'
     pod 'YPImagePicker', '~> 3.0'
     pod 'SKPhotoBrowser', '~> 6.0'
-    
+    pod 'Alamofire', '~> 4.7'
+    pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
     target 'Caronae'
     
     target 'Caronae Dev' do

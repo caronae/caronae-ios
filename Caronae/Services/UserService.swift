@@ -66,29 +66,33 @@ class UserService {
     }
     
     func getUser(withID id: String, success: @escaping (_ user: User) -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/api/v1/users/\(id)", parameters: nil, progress: nil, success: { _, responseObject in
-            guard let responseObject = responseObject as? [String: Any],
-                let userJson = responseObject["user"] as? [String: Any],
-                let user = User(JSON: userJson) else {
-                    NSLog("Error parsing user response")
-                    error(CaronaeError.invalidResponse)
-                    return
-            }
-            
-            do {
-                let realm = try Realm()
-                try realm.write {
-                    realm.add(user, update: true)
+        let request = api.request("/api/v1/users/\(id)")
+        request.validate().responseCaronae { response in
+            switch response.result {
+            case .success(let responseObject):
+                guard let responseObject = responseObject as? [String: Any],
+                    let userJson = responseObject["user"] as? [String: Any],
+                    let user = User(JSON: userJson) else {
+                        NSLog("Error parsing user response")
+                        error(CaronaeError.invalidResponse)
+                        return
                 }
-            } catch let realmError {
-                NSLog("Error saving the current user in the Realm: \(realmError.localizedDescription)")
+                
+                do {
+                    let realm = try Realm()
+                    try realm.write {
+                        realm.add(user, update: true)
+                    }
+                } catch let realmError {
+                    NSLog("Error saving the current user in the Realm: \(realmError.localizedDescription)")
+                }
+                
+                success(user)
+            case .failure(let err):
+                NSLog("Error loading user with id \(id): \(err.localizedDescription)")
+                error(err)
             }
-
-            success(user)
-        }, failure: { _, err in
-            NSLog("Error loading user with id \(id): \(err.localizedDescription)")
-            error(err)
-        })
+        }
     }
     
     func signIn(withID id: String, token: String, success: @escaping () -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
@@ -112,58 +116,61 @@ class UserService {
     
     func signIn(withIDUFRJ idUFRJ: String, token: String, success: @escaping () -> Void, error: @escaping (_ error: CaronaeError) -> Void) {
         let params = [ "id_ufrj": idUFRJ, "token": token ]
-        api.post("/api/v1/users/login", parameters: params, progress: nil, success: { task, responseObject in
-            guard let responseObject = responseObject as? [String: Any],
-            let userJson = responseObject["user"] as? [String: Any],
-            let user = User(JSON: userJson) else {
-                NSLog("Error parsing user response")
-                error(.invalidResponse)
-                return
-            }
-            
-            do {
-                let realm = try Realm()
-                try realm.write {
-                    realm.add(user, update: true)
+        let request = api.request("/api/v1/users/login", method: .post, parameters: params)
+        request.validate().responseCaronae { response in
+            switch response.result {
+            case .success(let responseObject):
+                guard let responseObject = responseObject as? [String: Any],
+                    let userJson = responseObject["user"] as? [String: Any],
+                    let user = User(JSON: userJson) else {
+                        NSLog("Error parsing user response")
+                        error(.invalidResponse)
+                        return
                 }
-            } catch let realmError {
-                NSLog("Error saving the current user in the Realm: \(realmError.localizedDescription)")
-            }
-
-            // Update the current user
-            self.user = user
-            self.userID = user.id
-            self.userToken = token
-            
-            self.migrateToJWT(success: {
-                NSLog("Successfully migrate to jwt token")
                 
-                PlaceService.instance.updatePlaces(success: {
-                    self.notifyObservers()
-                    success()
+                do {
+                    let realm = try Realm()
+                    try realm.write {
+                        realm.add(user, update: true)
+                    }
+                } catch let realmError {
+                    NSLog("Error saving the current user in the Realm: \(realmError.localizedDescription)")
+                }
+                
+                // Update the current user
+                self.user = user
+                self.userID = user.id
+                self.userToken = token
+                
+                self.migrateToJWT(success: {
+                    
+                    PlaceService.instance.updatePlaces(success: {
+                        self.notifyObservers()
+                        success()
+                    }, error: { err in
+                        NSLog("Failed to update places: \(err.localizedDescription)")
+                        error(.invalidResponse)
+                    })
                 }, error: { err in
-                    NSLog("Failed to update places: \(err.localizedDescription)")
+                    NSLog("Error during singIn when trying to migrate to JWT. %@", err.localizedDescription)
                     error(.invalidResponse)
                 })
-            }, error: { err in
-                NSLog("Error during singIn when trying to migrate to JWT. %@", err.localizedDescription)
-                error(.invalidResponse)
-            })
-        }, failure: { task, err in
-            NSLog("Failed to sign in: \(err.localizedDescription)")
-            
-            var authenticationError: CaronaeError = .invalidResponse
-            if let response = task?.response as? HTTPURLResponse {
-                switch response.statusCode {
-                case 403, 401:
-                    authenticationError = .invalidCredentials
-                default:
-                    authenticationError = .invalidResponse
+            case .failure(let err):
+                NSLog("Failed to sign in: \(err.localizedDescription)")
+                
+                var authenticationError: CaronaeError = .invalidResponse
+                if let response = request.task?.response as? HTTPURLResponse {
+                    switch response.statusCode {
+                    case 403, 401:
+                        authenticationError = .invalidCredentials
+                    default:
+                        authenticationError = .invalidResponse
+                    }
                 }
+                
+                error(authenticationError)
             }
-            
-            error(authenticationError)
-        })
+        }
     }
     
     func migrateToJWT(success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
@@ -171,12 +178,17 @@ class UserService {
             NSLog("Error: No userID registered")
             return error(CaronaeError.invalidUser)
         }
-        api.get("/api/v1/users/\(userID)/token", parameters: nil, progress: nil, success: { _, _ in
-            success()
-        }, failure: { _, err in
-            NSLog("Error getting user jwt token: \(err.localizedDescription)")
-            error(err)
-        })
+        
+        let request = api.request("/api/v1/users/\(userID)/token")
+        request.validate().responseCaronae { response in
+            switch response.result {
+            case .success:
+                success()
+            case .failure(let err):
+                NSLog("Error getting user jwt token: \(err.localizedDescription)")
+                error(err)
+            }
+        }
     }
     
     func signOut(force: Bool = false) {
@@ -212,31 +224,34 @@ class UserService {
     }
     
     func updateUser(_ user: User, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.put("/api/v1/users/\(user.id)", parameters: user.toJSON(), success: { _, _ in
-            
-            let currentUser = self.user!
-            
-            do {
-                let realm = try Realm()
-                try realm.write {
-                    currentUser.phoneNumber = user.phoneNumber
-                    currentUser.email = user.email
-                    currentUser.carOwner = user.carOwner
-                    currentUser.carModel = user.carModel
-                    currentUser.carPlate = user.carPlate
-                    currentUser.carColor = user.carColor
-                    currentUser.location = user.location
-                    currentUser.profilePictureURL = user.profilePictureURL
+        let request = api.request("/api/v1/users/\(user.id)", method: .put, parameters: user.toJSON())
+        request.validate().responseCaronae { response in
+            switch response.result {
+            case .success:
+                let currentUser = self.user!
+                
+                do {
+                    let realm = try Realm()
+                    try realm.write {
+                        currentUser.phoneNumber = user.phoneNumber
+                        currentUser.email = user.email
+                        currentUser.carOwner = user.carOwner
+                        currentUser.carModel = user.carModel
+                        currentUser.carPlate = user.carPlate
+                        currentUser.carColor = user.carColor
+                        currentUser.location = user.location
+                        currentUser.profilePictureURL = user.profilePictureURL
+                    }
+                } catch let realmError {
+                    error(realmError)
                 }
-            } catch let realmError {
-                error(realmError)
+                
+                self.notifyObservers()
+                success()
+            case .failure(let err):
+                error(err)
             }
-            
-            self.notifyObservers()
-            success()
-        }, failure: { _, err in
-            error(err)
-        })
+        }
     }
     
     func updateFacebookID(_ id: Any, success: @escaping () -> Void, error: @escaping (_ error: Error) -> Void) {
@@ -246,19 +261,23 @@ class UserService {
         }
         
         let params = [ "facebook_id": id ]
-        api.put("/api/v1/users/\(user.id)", parameters: params, success: { _, _ in
-            success()
-        }, failure: { _, err in
-            error(err)
-        })
+        let request = api.request("/api/v1/users/\(user.id)", method: .put, parameters: params)
+        request.validate().responseCaronae { response in
+            switch response.result {
+            case .success:
+                success()
+            case .failure(let err):
+                error(err)
+            }
+        }
     }
     
     func getPhotoFromFacebook(success: @escaping (_ url: String) -> Void, error: @escaping (_ error: Error) -> Void) {
         let request = FBSDKGraphRequest(graphPath: "me/picture?type=large&redirect=false", parameters: ["fields": "url"])!
         request.start(completionHandler: { _, result, err in
             guard err == nil,
-            let response = result as? [String: Any],
-            let data = response["data"] as? [String: Any],
+                let response = result as? [String: Any],
+                let data = response["data"] as? [String: Any],
                 let url = data["url"] as? String else {
                     error(CaronaeError.invalidResponse)
                     return
@@ -275,52 +294,97 @@ class UserService {
         }
         
         let imageData = image.jpegData(compressionQuality: 0.9)!
-        api.post("/api/v1/users/\(userID)/profile_picture", parameters: nil, constructingBodyWith: { fromData in
-            fromData.appendPart(withFileData: imageData, name: "profile_picture", fileName: "profile_picture.jpeg", mimeType: "image/jpeg")
-        }, progress: { upload in
-            DispatchQueue.main.async {
-                showLoadingProgress(Float(upload.fractionCompleted))
-            }
-        }, success: { _, responseObject in
-            guard let responseObject = responseObject as? [String: Any],
-                let pictureURL = responseObject["profile_pic_url"] as? String else {
-                    NSLog("Error receiving profile picture url after upload")
-                    error(CaronaeError.invalidResponse)
-                    return
-            }
+        api.upload(
+            multipartFormData: { fromData in
+                fromData.append(imageData, withName: "profile_picture", fileName: "profile_picture.jpeg", mimeType: "image/jpeg")
+            }, to: "/api/v1/users/\(userID)/profile_picture",
+            encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
             
-            success(pictureURL)
-        }, failure: { _, err in
-            error(err)
-        })
+                    upload.uploadProgress { progress in
+                        DispatchQueue.main.async {
+                            showLoadingProgress(Float(progress.fractionCompleted))
+                        }
+                    }
+                    
+                    upload.validate().responseCaronae { response in
+                        switch response.result {
+                        case .success(let responseObject):
+                            guard let responseObject = responseObject as? [String: Any],
+                                let pictureURL = responseObject["profile_pic_url"] as? String else {
+                                    NSLog("Error receiving profile picture url after upload")
+                                    error(CaronaeError.invalidResponse)
+                                    return
+                            }
+                            
+                            success(pictureURL)
+                        case .failure(let err):
+                            error(err)
+                        }
+                    }
+                case .failure(let encodingError):
+                    error(encodingError)
+                }
+            }
+        )
     }
     
     func ridesCountForUser(withID id: Int, success: @escaping (_ offered: Int, _ taken: Int) -> Void, error: @escaping (_ error: Error) -> Void) {
-        api.get("/api/v1/users/\(id)/rides/history", parameters: nil, progress: nil, success: { _, responseObject in
-            guard let response = responseObject as? [String: Any],
-                let offered = response["offered_rides_count"] as? Int,
-                let taken = response["taken_rides_count"] as? Int else {
-                    error(CaronaeError.invalidResponse)
-                    return
-            }
-            
-            // Cache the rides count if the user is persisted
-            do {
-                let realm = try Realm()
-                if let user = realm.object(ofType: User.self, forPrimaryKey: id) {
-                    try realm.write {
-                        user.numDrives = offered
-                        user.numRides = taken
-                    }
+        let request = api.request("/api/v1/users/\(id)/rides/history")
+        request.validate().responseCaronae { response in
+            switch response.result {
+            case .success(let responseObject):
+                guard let response = responseObject as? [String: Any],
+                    let offered = response["offered_rides_count"] as? Int,
+                    let taken = response["taken_rides_count"] as? Int else {
+                        error(CaronaeError.invalidResponse)
+                        return
                 }
-            } catch {
-                NSLog("Error persisting the rides count of the user with id \(id)")
+                
+                // Cache the rides count if the user is persisted
+                do {
+                    let realm = try Realm()
+                    if let user = realm.object(ofType: User.self, forPrimaryKey: id) {
+                        try realm.write {
+                            user.numDrives = offered
+                            user.numRides = taken
+                        }
+                    }
+                } catch {
+                    NSLog("Error persisting the rides count of the user with id \(id)")
+                }
+                
+                success(offered, taken)
+            case .failure(let err):
+                error(err)
             }
-            
-            success(offered, taken)
-        }, failure: { _, err in
-            error(err)
-        })
+        }
+    }
+    
+    func getUserRidesHistory(success: @escaping (_ rides: [Ride]) -> Void, error: @escaping (_ error: Error) -> Void) {
+        guard let user = UserService.instance.user else {
+            NSLog("Error: No userID registered")
+            return
+        }
+        
+        let request = api.request("/api/v1/users/\(user.id)/rides/history")
+        request.validate().responseCaronae { response in
+            switch response.result {
+            case .success(let responseObject):
+                guard let jsonResponse = responseObject as? [String: Any],
+                    let ridesJson = jsonResponse["rides"] as? [[String: Any]] else {
+                        error(CaronaeError.invalidResponse)
+                        return
+                }
+                
+                // Deserialize rides
+                let rides = ridesJson.compactMap { Ride(JSON: $0) }
+                success(rides)
+            case .failure(let err):
+                error(err)
+            }
+        }
     }
     
     // This actually should use the user's ID instead of the Facebook ID
@@ -331,19 +395,23 @@ class UserService {
             return
         }
         
-        api.get("/user/\(facebookID)/mutualFriends", parameters: nil, progress: nil, success: { _, responseObject in
-            guard let response = responseObject as? [String: Any],
-            let friendsJson = response["mutual_friends"] as? [[String: Any]],
-                let totalCount = response["total_count"] as? Int else {
-                    error(CaronaeError.invalidResponse)
-                    return
+        let request = api.request("/user/\(facebookID)/mutualFriends")
+        request.validate().responseCaronae { response in
+            switch response.result {
+            case .success(let responseObject):
+                guard let response = responseObject as? [String: Any],
+                    let friendsJson = response["mutual_friends"] as? [[String: Any]],
+                    let totalCount = response["total_count"] as? Int else {
+                        error(CaronaeError.invalidResponse)
+                        return
+                }
+                
+                let friends = friendsJson.compactMap { User(JSON: $0) }
+                success(friends, totalCount)
+            case .failure(let err):
+                error(err)
             }
-            
-            let friends = friendsJson.compactMap { User(JSON: $0) }
-            success(friends, totalCount)
-        }, failure: { _, err in
-            error(err)
-        })
+        }
     }
     
     private func notifyObservers(force: Bool = false) {
