@@ -72,7 +72,6 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
-  - MIBadgeButton-Swift (0.5)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -97,6 +96,7 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
+  - Sheriff (0.3.2)
   - SimpleKeychain (0.8.1)
   - SimulatorStatusMagic (2.3.2)
   - SKPhotoBrowser (6.0.0)
@@ -122,12 +122,12 @@ DEPENDENCIES:
   - Firebase/Messaging
   - InputMask
   - JSQMessagesViewController (from `https://github.com/caronae/JSQMessagesViewController.git`, branch `issue-1864`)
-  - MIBadgeButton-Swift (from `https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git`, branch `master`)
   - ObjectMapper (~> 3.1)
   - "ObjectMapper+Realm (~> 0.5)"
   - RealmSwift (~> 3.5)
   - SDCAlertView (= 2.5.4)
   - SDWebImage (~> 4.3)
+  - Sheriff
   - SimpleKeychain (~> 0.8)
   - SimulatorStatusMagic
   - SKPhotoBrowser (~> 6.0)
@@ -167,6 +167,7 @@ SPEC REPOS:
     - SDCAlertView
     - SDCAutoLayout
     - SDWebImage
+    - Sheriff
     - SimpleKeychain
     - SimulatorStatusMagic
     - SKPhotoBrowser
@@ -182,17 +183,11 @@ EXTERNAL SOURCES:
   JSQMessagesViewController:
     :branch: issue-1864
     :git: https://github.com/caronae/JSQMessagesViewController.git
-  MIBadgeButton-Swift:
-    :branch: master
-    :git: https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git
 
 CHECKOUT OPTIONS:
   JSQMessagesViewController:
     :commit: 1c03f1f20d7df02cd136126193add013fd0ca78e
     :git: https://github.com/caronae/JSQMessagesViewController.git
-  MIBadgeButton-Swift:
-    :commit: 44b28fd7c9071439861f9b0c366c84a55ffd7e53
-    :git: https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
@@ -212,7 +207,6 @@ SPEC CHECKSUMS:
   InputMask: 2eb0dd868885f5ba061db2640db0b17265bb95eb
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  MIBadgeButton-Swift: 9e57309b00b168d75ca8fecb45bc75124a8ffddf
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   ObjectMapper: 5311bd50ca732930959e7ca1a2de43ab823a5ced
   "ObjectMapper+Realm": 4cf44ed3202a73f08594e21e13eb3f8aa9b5a664
@@ -224,6 +218,7 @@ SPEC CHECKSUMS:
   SDCAlertView: 2e2b0ecc5f1ec367e45d83efa2e512688ca7fa55
   SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  Sheriff: d3d03fe6d35aa781e3f42d48f3fb53ed7d04958d
   SimpleKeychain: e2485c28d82fcece35e9e41faeac42ebfe614815
   SimulatorStatusMagic: 0c0e711acef6e70dd8a0710962347635a9cdef24
   SKPhotoBrowser: 76eb862685761707b5745fde7762757966565e07
@@ -235,6 +230,6 @@ SPEC CHECKSUMS:
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
   YPImagePicker: 26d5bf7bfe1cffd1c5eedea3ac60422b314e2a42
 
-PODFILE CHECKSUM: 49206d9de39872f208f8d825a7efdd54e854dbfe
+PODFILE CHECKSUM: f3fed6662bc77f6d610b68d1b0335a26ca427520
 
 COCOAPODS: 1.5.3

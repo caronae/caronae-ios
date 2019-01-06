@@ -1,5 +1,5 @@
 import SVProgressHUD
-import MIBadgeButton_Swift
+import Sheriff
 
 extension RideViewController {
     
@@ -19,12 +19,15 @@ extension RideViewController {
     @objc func updateChatButtonBadge() {
         guard let unreadNotifications = try? NotificationService.instance.getNotifications(of: [.chat])
             .filter({ $0.rideID == self.ride.id }) else { return }
+
+        let badge = GIBadgeView()
+        let button = UIButton()
         
-        let button = MIBadgeButton(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
-        button.setTitle("Chat", for: .normal)
+        button.setTitle("Chat  ", for: .normal)
         button.setTitleColor(navigationController?.navigationBar.tintColor, for: .normal)
         button.addTarget(self, action: #selector(openChatWindow), for: .touchUpInside)
-        button.badgeString = unreadNotifications.isEmpty ? nil : String(unreadNotifications.count)
+        button.titleLabel?.addSubview(badge)
+        badge.badgeValue = unreadNotifications.count
         
         let barButton = UIBarButtonItem(customView: button)
         navigationItem.rightBarButtonItem = barButton
