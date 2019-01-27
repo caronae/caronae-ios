@@ -149,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("Facebook Access Token did change.")
         
         var fbID = String()
-        if notification.userInfo?[FBSDKAccessTokenDidChangeUserID] != nil {
+        if notification.userInfo?[FBSDKAccessTokenDidChangeUserIDKey] != nil {
             if let userID = token.userID {
                 NSLog("Facebook has loogged in with Facebook ID %@.", userID)
                 fbID = userID
