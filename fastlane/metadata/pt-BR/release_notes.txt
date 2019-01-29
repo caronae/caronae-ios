@@ -1,10 +1,12 @@
-Alô Macaé! Vai uma caronaê? Fiquem ligados, estamos arrumando tudo para muito em breve liberar as opções do campus de Macaé.
+Alô Macaé! Vai uma caronaê?
 
-- Agora é possível atualizar a foto do perfil a partir de uma foto do celular.
-- Permite visualizar a foto do perfil em tela cheia para você identificar melhor quem vai na sua carona.
-- Aceita o cadastro de veículos com a placa no novo padrão Mercosul.
-- Pequenas melhorias internas de funcionamento.
+Cidade Universitária (Fundão) e Praia Vermelha também estão por aqui!
 
-Quer ser um testador (Beta Tester) do Caronaê? Você irá receber as atualizações primeiro e pode ajudar a melhorar ainda mais o funcionamento enviando seus comentários diretamente para os desenvolvedores! Envie um email para caronae@fundoverde.ufrj.br
+Nesta versão:
+- Nova mensagem de compartilhamento mais informativa :)
+- Melhorias para atualizar a foto de perfil.
+- Melhorias para exibição de notificação dentro do app.
+- Melhorias internas para a comunicação com o servidor.
 
-Caso você encontre algum problema, por favor nos avise através do Falaê, no menu do app, pela nossa página do Facebook ou pelo email caronae@fundoverde.ufrj.br :)
+Encontrou algum problema? 
+Fale com a gente através do Falaê, no menu do app, pela nossa página do Facebook ou pelo email caronae@fundoverde.ufrj.br :)
