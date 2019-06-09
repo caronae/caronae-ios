@@ -84,11 +84,11 @@ PODS:
   - Protobuf (3.6.1)
   - PryntTrimmerView (3.0.0)
   - RBBAnimation (0.4.0)
-  - Realm (3.13.1):
-    - Realm/Headers (= 3.13.1)
-  - Realm/Headers (3.13.1)
-  - RealmSwift (3.13.1):
-    - Realm (= 3.13.1)
+  - Realm (3.16.1):
+    - Realm/Headers (= 3.16.1)
+  - Realm/Headers (3.16.1)
+  - RealmSwift (3.16.1):
+    - Realm (= 3.16.1)
   - SDCAlertView (2.5.4):
     - RBBAnimation (~> 0.3)
     - SDCAutoLayout (~> 2.0)
@@ -124,7 +124,8 @@ DEPENDENCIES:
   - JSQMessagesViewController (from `https://github.com/caronae/JSQMessagesViewController.git`, branch `issue-1864`)
   - ObjectMapper (~> 3.1)
   - "ObjectMapper+Realm (~> 0.5)"
-  - RealmSwift (~> 3.5)
+  - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `tg/xcode-11-b1`)
+  - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, branch `tg/xcode-11-b1`)
   - SDCAlertView (= 2.5.4)
   - SDWebImage (~> 4.3)
   - Sheriff
@@ -162,8 +163,6 @@ SPEC REPOS:
     - Protobuf
     - PryntTrimmerView
     - RBBAnimation
-    - Realm
-    - RealmSwift
     - SDCAlertView
     - SDCAutoLayout
     - SDWebImage
@@ -183,11 +182,27 @@ EXTERNAL SOURCES:
   JSQMessagesViewController:
     :branch: issue-1864
     :git: https://github.com/caronae/JSQMessagesViewController.git
+  Realm:
+    :branch: tg/xcode-11-b1
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :branch: tg/xcode-11-b1
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
 
 CHECKOUT OPTIONS:
   JSQMessagesViewController:
     :commit: 1c03f1f20d7df02cd136126193add013fd0ca78e
     :git: https://github.com/caronae/JSQMessagesViewController.git
+  Realm:
+    :commit: 2e58dfe78e5f641262c4c5c7e5a13f05b434c610
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :commit: 2e58dfe78e5f641262c4c5c7e5a13f05b434c610
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
@@ -213,8 +228,8 @@ SPEC CHECKSUMS:
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   PryntTrimmerView: 53ac64053c7ce63cb3e27f54090f52da0734891d
   RBBAnimation: 4b2d66f6d993febce63cd564da934985313b9c59
-  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
-  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
+  Realm: 601cacc51d8be3b17a377ef787be0f6ee0e76cf1
+  RealmSwift: 486f2e09d5a8ccff63ed66e48d0846b111deb5e5
   SDCAlertView: 2e2b0ecc5f1ec367e45d83efa2e512688ca7fa55
   SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
   SDWebImage: c00ec18ab25d10e5ffac109b0f78d1b4341c9691
@@ -230,6 +245,6 @@ SPEC CHECKSUMS:
   UIScrollView-InfiniteScroll: 3ef456bcbe759c19f510a383cff96e6647c98c98
   YPImagePicker: 5dd3814b47b1208e9c8cc8f6ef77fe90db3723b6
 
-PODFILE CHECKSUM: f3fed6662bc77f6d610b68d1b0335a26ca427520
+PODFILE CHECKSUM: c4c632a622f7f3cfdfb94262c3f211b2aaf1c494
 
 COCOAPODS: 1.5.3

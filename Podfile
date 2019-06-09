@@ -13,7 +13,8 @@ abstract_target 'caronae-ios' do
     pod 'SwiftMessages'
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
-    pod 'RealmSwift', '~> 3.5'
+    pod 'Realm', git: 'https://github.com/realm/realm-cocoa.git', branch: 'tg/xcode-11-b1', submodules: true
+    pod 'RealmSwift', git: 'https://github.com/realm/realm-cocoa.git', branch: 'tg/xcode-11-b1', submodules: true
     pod 'ObjectMapper', '~> 3.1'
     pod 'ObjectMapper+Realm', '~> 0.5'
     pod 'Firebase/Core'
